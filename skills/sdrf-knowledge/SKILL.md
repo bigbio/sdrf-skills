@@ -29,7 +29,7 @@ This TSV file defines every valid SDRF column. Each row has 9 fields:
 |-------|---------|---------|
 | `term` | Column name (bare, without prefix) | `organism`, `disease`, `instrument` |
 | `type` | Column type | `anchor column`, `characteristics`, `comment`, `factor value` |
-| `ontology_term_accession` | Accession for the column itself | `COB:0000022`, `EFO:0000408` |
+| `ontology_term_accession` | Accession for the column itself | `COB:0000022`, `MONDO:0000001` |
 | `usage` | Which templates include this column | `base, ms-proteomics, human` |
 | `values` | Allowed values or ontology names | `MONDO, EFO, DOID, PATO` or `fixed: male, female` |
 | `description` | What the column means | `Disease state of the sample` |

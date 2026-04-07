@@ -93,11 +93,51 @@ After dependencies are installed (step 2 above):
 
 After dependencies are installed (step 2 above):
 
-1. Ensure you have `.cursor/rules/sdrf-skills.mdc` in your project.
-2. Cursor does not run Claude Code's `SessionStart` hook, so ask when needed:
-   - *"Install SDRF dependencies"*
-   - *"Follow the sdrf setup workflow"*
-3. The AI will use `skills/sdrf-setup/SKILL.md` to show the exact `conda` / `pip` commands.
+### What Cursor users should do
+
+Cursor does **not** install Claude Code plugins and does **not** support `/sdrf:*` slash commands. In Cursor, you use the same workflows by:
+
+1. Making sure the Cursor rule + workflows are present in your project
+2. Opening (or attaching) SDRF-related files in chat
+3. Asking in plain English (examples below)
+
+### 1) Put the rules + workflows in your Cursor project
+
+Pick one approach:
+
+- **Option A (recommended): open this repository in Cursor**  
+  The rule file (`.cursor/rules/sdrf-skills.mdc`) and workflows (`skills/`) are already here.
+
+- **Option B: copy the minimum files into your own project**  
+  Copy these into your project root:
+  - `.cursor/rules/sdrf-skills.mdc`
+  - `skills/` (all workflows)
+  - `spec/` (git submodule data used by the workflows at runtime)
+
+If you copy `spec/`, make sure submodules are initialized:
+
+```bash
+git submodule update --init --recursive
+```
+
+### 2) Use it in Cursor (how to reliably trigger the workflows)
+
+1. Open a relevant file so the rule activates (any of the following works):
+   - a `*.sdrf.tsv` file (or `*.sdrf`)
+   - anything under `spec/sdrf-proteomics/`
+2. In chat, **attach** the SDRF file (or paste the relevant section) and ask for what you want.
+
+Examples you can copy/paste into Cursor chat:
+
+- **Environment setup**: “Follow `skills/sdrf-setup/SKILL.md` and tell me the exact conda commands for this repo.”
+- **Annotate a PRIDE dataset**: “Annotate `PXD045678` and draft an SDRF. Use the templates and validate.”
+- **Validate**: “Validate the attached SDRF against the right template(s) and list required fixes.”
+- **Fix common issues**: “Fix the common SDRF errors in the attached file (UNIMOD swaps, reserved words, formatting).”
+- **Find ontology terms**: “For `characteristics[disease]`, find the best term for ‘liver cancer’ and include label + accession.”
+
+### 3) Note about hooks
+
+Cursor does not run Claude Code’s `SessionStart` hook, so you won’t get an automatic dependency reminder. If something isn’t installed, just ask for setup and the assistant should follow `skills/sdrf-setup/SKILL.md`.
 
 </details>
 
