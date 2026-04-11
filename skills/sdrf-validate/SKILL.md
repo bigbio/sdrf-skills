@@ -112,7 +112,7 @@ Verify: term exists, case is correct (Genus capitalized, species lowercase: "Hom
 ### Disease
 ```text
 search(query="<disease>")
-Verify: term exists in MONDO, EFO, or DOID
+Verify: term exists — prefer EFO (primary), MONDO, or DOID
 Check specificity: "cancer" too generic → use "breast carcinoma"
 Special case: "normal" is valid (PATO:0000461)
 ```

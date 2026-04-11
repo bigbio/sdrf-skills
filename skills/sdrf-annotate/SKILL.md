@@ -117,7 +117,7 @@ Or: search(query="Homo sapiens")
 Read TERMS.tsv `values` field for the column to determine which ontology(ies) to search:
 - organism → NCBITaxon
 - organism part → UBERON (primary), BTO (fallback)
-- disease → MONDO (primary), EFO, DOID
+- disease → EFO (primary), MONDO, DOID
 - cell type → CL (primary), BTO, CLO
 - cell line → CLO, BTO, EFO (+ Cellosaurus for accession)
 - instrument → MS, PRIDE
