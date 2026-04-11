@@ -90,11 +90,11 @@ parse_sdrf validate-sdrf \
   --template ms-proteomics
 ```
 
-**Notes on issues encountered during annotation:**
+**Annotation decisions for bacteria (prokaryotes):**
 
-- `characteristics[organism part]`: "whole organism" is not in UBERON/BTO for prokaryotes.
-  Use `not applicable` — bacteria have no anatomical tissues.
-- `comment[proteomics data acquisition method]`: required by `ms-proteomics` template.
+- `characteristics[organism part]`: Use `not applicable` for bacteria — they lack anatomical
+  tissues, so UBERON/BTO terms do not apply. Do NOT use "whole organism".
+- `comment[proteomics data acquisition method]`: Required by `ms-proteomics` template.
   Value: `Data-Dependent Acquisition` for DDA studies.
 - `factor value[...]` must be the **last** column group (after SDRF metadata columns).
 
