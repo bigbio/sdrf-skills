@@ -68,6 +68,8 @@ pip install -r requirements.txt
 
 For Thermo .raw files, `thermorawfileparser` is not on PyPI — use conda: `conda install -c bioconda thermorawfileparser`.
 
+Having trouble? See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common setup issues and fixes.
+
 ## Setup by AI Platform
 
 <details>
