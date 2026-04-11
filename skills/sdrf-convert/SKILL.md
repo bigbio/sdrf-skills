@@ -9,6 +9,13 @@ argument-hint: "[pipeline name or experiment description]"
 
 You are helping the user choose and configure an analysis pipeline from their SDRF.
 
+## Step 0: Check parse_sdrf availability
+
+Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
+- Inform the user that pipeline conversion commands will not run until `sdrf-pipelines` is installed
+- Suggest `/sdrf:setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install sdrf-pipelines`)
+- Continue with pipeline selection and recommendation guidance; actual conversion commands can be run once installed
+
 ## Supported Pipelines
 
 sdrf-pipelines can convert SDRF to these formats:
