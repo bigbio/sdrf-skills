@@ -330,6 +330,35 @@ The skills themselves work on any AI assistant that can read markdown and call
 external APIs (OLS, PRIDE, PubMed). The specification data in `spec/` stays
 current via the git submodule — no skills need updating when the spec changes.
 
+## Skill Dependency Map
+
+Understanding how the skills relate to each other helps you know which to use first:
+
+**Foundation skills** (read these if you're new):
+- `/sdrf:knowledge` — SDRF format rules, column naming, ontology routing, modification format
+- `/sdrf:templates` — Template layer system and selection rules
+
+**Learning / planning skills**:
+- `/sdrf:explain` — Plain-language explanation of any column, error, or concept
+- `/sdrf:brainstorm` — Plan metadata strategy before annotating
+- `/sdrf:terms` — Ontology term lookup (used by all other skills internally)
+
+**Core annotation workflow** (run in this order for a new dataset):
+```
+/sdrf:annotate  →  /sdrf:validate  →  /sdrf:fix  →  /sdrf:improve  →  /sdrf:contribute
+```
+
+**Supplementary workflow skills**:
+- `/sdrf:review` — Comprehensive quality review with paper + PRIDE cross-reference
+- `/sdrf:design` — Experimental design analysis (batch effects, confounders, replication)
+- `/sdrf:convert` — Choose and configure analysis pipelines from the finished SDRF
+- `/sdrf:techrefine` — Verify/refine technical metadata from raw MS files
+
+**Setup**:
+- `/sdrf:setup` — Guided installation of `parse_sdrf` and `techsdrf`
+
+---
+
 ## Why Skills Instead of an MCP Server?
 
 The tools AI assistants need already exist as MCP servers (OLS, PRIDE, PubMed).
