@@ -73,7 +73,10 @@ For each detected template:
 
 Additionally, read the individual template YAML at `spec/sdrf-proteomics/sdrf-templates/{name}/{version}/{name}.yaml` to determine requirement levels (required vs recommended vs optional).
 
-**Always required (base template — verify against TERMS.tsv):**
+**Always required (universal base columns — present in every valid SDRF regardless of template):**
+
+These seven columns are the irreducible minimum required by the base SDRF spec.
+They are listed here as a quick-check aid; always cross-verify against TERMS.tsv (`usage` contains `base`) for the authoritative list.
 - [ ] `source name`
 - [ ] `assay name`
 - [ ] `technology type`
