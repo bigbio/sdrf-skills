@@ -185,6 +185,27 @@ For full SDRF annotation (PRIDE, OLS, literature), configure these MCP servers:
 
 The SessionStart hook checks for `parse_sdrf` and recommends `/sdrf:setup` if dependencies are missing.
 
+## Example Annotation
+
+The `examples/` directory contains a worked annotation produced using the `/sdrf:annotate`
+workflow as a reference:
+
+| Dataset | Organism | Technology | Conditions |
+|---------|----------|------------|------------|
+| [PXD008355](examples/PXD008355/) | *E. coli* K-12 MG1655 | LFQ DDA, Q Exactive HF | 4 growth media × 3 replicates |
+
+See [examples/PXD008355/ANNOTATION_NOTES.md](examples/PXD008355/ANNOTATION_NOTES.md) for
+the full annotation trace (template selection, ontology decisions, validation result).
+
+```bash
+# Structural validation passes:
+parse_sdrf validate-sdrf \
+  --sdrf_file examples/PXD008355/PXD008355.sdrf.tsv \
+  --template ms-proteomics \
+  --skip-ontology
+# → Everything seems to be fine. Well done.
+```
+
 ## Example Usage
 
 ### Ask about templates
