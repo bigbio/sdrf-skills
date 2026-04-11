@@ -5,7 +5,7 @@ SDRF (Sample and Data Relationship Format) annotation in proteomics.
 
 ## What This Does
 
-14 structured workflows (SKILL.md files) that guide AI assistants through SDRF tasks
+15 structured workflows (SKILL.md files) that guide AI assistants through SDRF tasks
 using existing MCP tools (OLS, PRIDE, PubMed, bioRxiv, EuropePMC).
 Instead of guessing at ontology terms or validation rules, skills encode the
 community's annotation expertise as repeatable methodology.
@@ -22,7 +22,7 @@ Skills read these files at runtime. When the spec changes, run `git submodule up
 
 ## Available Skills (all under `sdrf:` namespace)
 
-All 14 skills are user-invocable. Type `/sdrf:` and autocomplete will show them all.
+All 15 skills are user-invocable. Type `/sdrf:` and autocomplete will show them all.
 
 | Command | Purpose |
 |---------|---------|

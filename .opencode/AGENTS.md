@@ -2,7 +2,7 @@
 
 ## Overview
 
-14 structured workflow files that encode expert-level SDRF (Sample and Data
+15 structured workflow files that encode expert-level SDRF (Sample and Data
 Relationship Format) annotation methodology for proteomics.
 
 ## Skills Directory
