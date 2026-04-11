@@ -5,5 +5,5 @@
 # Install:
 #   pip install -r requirements.txt
 
-sdrf-pipelines[ontology]
-techsdrf
+sdrf-pipelines[ontology]>=0.1.2
+techsdrf>=0.1.0

@@ -11,7 +11,7 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - python>=3.10
-  - sdrf-pipelines      # parse_sdrf CLI for validation and pipeline conversion
-  - techsdrf            # raw file analysis for /sdrf:techrefine
-  - thermorawfileparser # for Thermo .raw files (optional; techsdrf skips .raw without it)
+  - python>=3.10,<3.13
+  - sdrf-pipelines>=0.1.2   # parse_sdrf CLI for validation and pipeline conversion
+  - techsdrf>=0.1.0          # raw file analysis for /sdrf:techrefine
+  - thermorawfileparser      # for Thermo .raw files (optional; techsdrf skips .raw without it)
