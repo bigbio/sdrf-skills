@@ -43,6 +43,39 @@ When working with SDRF files, proteomics metadata, or when the user asks to **in
 4. Template selection should happen BEFORE annotation begins
 5. All ontology terms must include both label AND accession (e.g., "breast carcinoma" with EFO:0000305)
 6. Modification parameters must follow NT=;AC=;TA=;MT= format with correct UNIMOD accessions
+7. ALWAYS reconcile PRIDE file inventory completeness (pagination/truncation checks) before mapping runs
+8. ALWAYS include `comment[file uri]` when PRIDE URLs are available
+9. BEFORE reading article/supplementary, scan project files/FTP for metadata files (`*.csv`, `*.tsv`, `*.txt`, sample sheets) and use them as primary sample-mapping evidence
+10. Use article evidence to infer sample model first (`N_individuals`, optional pooled/control, sampling dimensions)
+11. Only infer "fractionated runs per individual" when individuals are explicit, extra sampling dimensions are absent, and file counts mismatch
+12. Search Methods + supplementary for fractionation and technical replicate evidence before deciding mapping
+13. For fractions belonging to one sample, keep sample-level metadata identical (`source name`, `characteristics[individual]`, age/sex/disease/organism part)
+14. Annotation MUST run a strict full-paper pass (main text + supplementary tables/data) before finalizing SDRF values
+15. If paper/supplement mapping is incomplete, keep uncertain fields as `not available` and record the evidence gap explicitly; never fill with filename-only assumptions
+16. In the paper Methods/search settings, explicitly detect variable modifications (e.g., Deamidation, Oxidation, Acetylation), map each to correct UNIMOD accession, and include them in `comment[modification parameters]`
+17. Sample-file matching should be robust to separator variants (`.`, `-`, `_`) and minor naming-format differences; normalize names before deciding unmatched status
+18. When parsing FTP/PRIDE sample sheets, handle common column synonyms and whitespace:
+    - trim leading/trailing spaces in all string cells (filenames often have leading spaces)
+    - map `Condition` / `Group` to `characteristics[disease]` when it represents disease/clinical group
+    - map `BioReplicate` / `Bio Replicate` to `characteristics[biological replicate]` (do not invent replicate IDs if provided)
+    - map `Run` to `comment[technical replicate]` only when the sheet indicates repeat injections; otherwise keep technical replicate at 1
+19. Disease normalization rule (applies to all datasets): if `characteristics[disease]` indicates healthy/normal control (e.g., "healthy", "healthy control", "normal control", "healthy patient"), normalize the value to exactly `normal`
+20. Age inference rule (applies to all datasets): if the paper reports age as group summaries by disease/condition (e.g., Table 1: mean ± SD per group), infer per-sample `characteristics[age]` as a conservative range per group (e.g., 68 ± 8 → `60Y-76Y`) and apply it to all samples in that disease group; do not invent ages when no group age stats are reported
+21. If full-text article/PDF or supplementary materials cannot be retrieved due to bot protection (e.g., HTTP 403, JS challenge, repeated timeouts), STOP and ask the user to download the files manually and provide a local path; proceed using the user-provided local files as the primary evidence source
+22. Replicate semantics (applies to all datasets):
+    - `characteristics[individual]` identifies the biological individual/sample origin. If evidence indicates each raw file is a unique participant/sample, assign a unique individual identifier per file. Prefer numeric identifiers (1..N) for stability.
+    - `characteristics[biological replicate]` groups different individuals under the same condition as biological replicates. Only copy values from sidecars if they truly represent biological replicate numbering; do not confuse row index / run index with biological replicates.
+    - `comment[technical replicate]` is ONLY for repeat measurements of the SAME sample (same individual) such as repeat injections/runs. Default to 1 unless the paper/supplement/sidecar explicitly indicates technical replicates.
+    - Never set technical replicate >1 solely because there are many files. Decide using explicit evidence (terms like "technical replicate", "repeat injection", "duplicate runs", "replicate injections", "fractions").
+23. Sex inference guardrail (applies to all datasets): if cohort is explicitly sex-specific in the paper context (e.g., prostate cancer study) or the sidecar sample labels encode sex (e.g., "for male"), populate `characteristics[sex]` accordingly; otherwise use `not available`.
+24. Longitudinal/repeated-measure semantics (applies to all datasets):
+    - If sidecar/paper maps multiple files to the same `Patient_ID` (or equivalent subject identifier), assign the same `characteristics[individual]` to all those rows.
+    - Set `comment[technical replicate]` >1 ONLY for repeated measurements of the same individual at the same sampling time / same biological sample; keep timepoint-followup samples as separate non-technical measurements.
+    - Set `characteristics[biological replicate]` by grouping different individuals sharing the same biological condition context (minimum: same `characteristics[disease]` and same `characteristics[sampling time]` when time is modeled).
+25. Always include mass tolerance columns in annotations:
+    - Include both `comment[precursor mass tolerance]` and `comment[fragment mass tolerance]`.
+    - If the paper/methods provides values, populate them (e.g., `20 ppm`, `50 ppm`); otherwise set `not available` and leave refinement to downstream tools.
+26. Always include at least one `factor value[...]` column in final SDRF. Unless a stronger experimental factor is explicit, use `factor value[organism part]` mirroring `characteristics[organism part]`.
 
 ## Specification Data
 
