@@ -40,6 +40,7 @@ MS_PROTEOMICS_REQUIRED = BASE_REQUIRED + [
     "comment[precursor mass tolerance]",
     "comment[fragment mass tolerance]",
     "comment[label]",
+    "comment[proteomics data acquisition method]",
 ]
 
 # Columns recommended for human studies
