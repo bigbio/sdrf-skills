@@ -37,6 +37,10 @@ If a publication is available:
 - Is `characteristics[developmental stage]` supported by the cohort description even if age is reported only at group level?
 - Are tissue types correctly annotated?
 
+When Europe PMC full text is available, do not inspect raw XML directly. First run:
+`python scripts/europepmc_fulltext.py PMC_ID --section methods --section results --section discussion --format text`
+or use `--format json` when structured links, captions, or accession detection will help the review.
+
 Flag any discrepancies:
 ```text
 DISCREPANCY: Paper says "24 patients" but SDRF has 20 unique source names.

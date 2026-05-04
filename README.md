@@ -260,6 +260,24 @@ Claude:
   → Lets user approve/reject each change
 ```
 
+### Clean Europe PMC full text for LLMs
+```bash
+python scripts/europepmc_fulltext.py PMC4047622 --format text
+python scripts/europepmc_fulltext.py 24657495 --id-type pmid --section methods
+python scripts/europepmc_fulltext.py 10.1016/j.jprot.2014.03.010 --id-type doi --format json
+python scripts/europepmc_fulltext.py https://europepmc.org/articles/PMC10960138 --format toc
+```
+
+Use this when you need Europe PMC full text converted from noisy JATS/XML into:
+- clean plain text with most citation/link clutter removed
+- structured article metadata for downstream prompts
+- explicit section splits like `abstract`, `methods`, `results`, `discussion`, and `conclusion`
+- a machine-friendly JSON representation for future agent workflows
+- canonical article links plus detected accessions such as `PXD`, `MSV`, `PRJNA`, `GSE`, and `E-MTAB`
+
+It also supports canonical URL-style inputs like Europe PMC article URLs and `doi:...`
+prefixes, plus `--xml-file` for offline parsing of previously downloaded Europe PMC XML.
+
 ### Find the right ontology term
 ```text
 You: /sdrf:terms disease "liver cancer"
@@ -353,6 +371,8 @@ sdrf-skills/
 ├── .opencode/AGENTS.md           # OpenCode — agent reference
 ├── environment.yml               # Conda env (sdrf-pipelines, techsdrf, thermorawfileparser)
 ├── requirements.txt              # Pip fallback
+├── scripts/
+│   └── europepmc_fulltext.py     # Europe PMC full text cleaner: JATS/XML → LLM-friendly text/JSON
 ├── hooks/hooks.json              # Claude Code — session init + dependency check
 ├── hooks/check-deps.sh           # Checks parse_sdrf, recommends setup
 ├── spec/                         # ← Git submodule: proteomics-metadata-standard

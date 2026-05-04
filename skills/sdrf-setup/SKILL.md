@@ -93,6 +93,11 @@ For full SDRF annotation (PRIDE, OLS, PubMed), the user needs MCP servers config
 - **bioRxiv** — preprint search (optional)
 - **Consensus** — evidence search (optional)
 
+For Europe PMC full text, prefer the local normalizer over raw XML inspection:
+`python scripts/europepmc_fulltext.py PMC_ID --format text`
+This keeps methods/results/discussion easier for LLMs to interpret and preserves
+canonical links plus detected accessions in JSON mode.
+
 ## Summary Output
 
 Provide a clear summary:

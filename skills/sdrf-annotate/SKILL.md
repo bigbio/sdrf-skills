@@ -85,6 +85,14 @@ a. pmcid is set AND is_open_access == true:
      deduped table and supplementary captions. Results/Discussion are
      EXCLUDED by default to keep context small.
 
+     If raw Europe PMC `fullTextXML` would otherwise be requested, do NOT pass
+     that XML directly to the model. Normalize it first with the local helper:
+        `python scripts/europepmc_fulltext.py PMC###### --section methods --section results --format text`
+        or `python scripts/europepmc_fulltext.py PMC###### --format json`
+     Use this helper when MCP full-text tools are unavailable, when you need
+     canonical article links, or when accession detection from the manuscript
+     will help downstream annotation.
+
      If you need Results text (rare — sometimes Table 1 sits there):
         get_full_text_article(pmc_ids=["PMC######"], sections=["results"])
 
@@ -110,6 +118,10 @@ do NOT search for a paper. Stop and ask the user:
 > fetch the article automatically. Could you provide a PMID, PMCID, DOI, or
 > paste the Methods section so I can continue? Otherwise I will proceed with
 > PRIDE metadata only and mark affected columns as `not available`."
+
+Rule: whenever Europe PMC full text XML would otherwise be requested, always use
+`scripts/europepmc_fulltext.py` to normalize the article first. Do not pass raw
+JATS/XML directly to the model unless the user explicitly asks for raw XML.
 
 ### 1.4 Extract sample metadata from the paper
 Read the paper systematically and extract:
