@@ -26,11 +26,12 @@ cp -r spec/ ~/.agents/skills/sdrf-skills/spec/
 
 ## What it provides
 
-15 structured workflows (SKILL.md files) that encode expert-level SDRF annotation methodology:
+16 structured workflows (SKILL.md files) that encode expert-level SDRF annotation methodology:
 
 | Skill | Purpose |
 |-------|---------|
 | sdrf-setup | Install dependencies (parse_sdrf, techsdrf) — conda or pip setup |
+| sdrf-autoresearch | Autonomous retained-improvement loop over one dataset, a manifest, or a dataset class |
 | sdrf-knowledge | SDRF format rules, column names, ontology mappings |
 | sdrf-templates | Template system, layer selection, mutual exclusivity |
 | sdrf-annotate | Full annotation: PXD → PRIDE + paper → draft SDRF |
@@ -52,6 +53,12 @@ Each SKILL.md file contains a complete workflow. Reference them from your Codex 
 
 ```text
 When annotating SDRF files, follow the workflow in skills/sdrf-annotate/SKILL.md
+```
+
+For autonomous loops, reference:
+
+```text
+Use the workflow in skills/sdrf-autoresearch/SKILL.md with target, profile, objective, evidence, stop, and write settings.
 ```
 
 ## Prerequisites

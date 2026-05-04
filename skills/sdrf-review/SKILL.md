@@ -34,6 +34,7 @@ If a publication is available:
 - Are all conditions from the paper represented?
 - Do the instruments match?
 - Are demographics (age, sex) consistent with the paper?
+- Is `characteristics[developmental stage]` supported by the cohort description even if age is reported only at group level?
 - Are tissue types correctly annotated?
 
 When Europe PMC full text is available, do not inspect raw XML directly. First run:
@@ -56,6 +57,7 @@ When SDRF and paper/PRIDE disagree:
 - **Instrument mismatch**: PRIDE might say "Q Exactive" while paper says "Q Exactive HF". The paper is usually more specific — update SDRF to match the paper's instrument model.
 - **Tissue specificity**: If paper says "hippocampus" but SDRF says "brain", update SDRF to the more specific term from the paper.
 - **Demographic mismatch**: If paper has a demographics table, prioritize it. SDRF might have been filled from incomplete metadata.
+- **Cohort-only demographics**: If the paper reports only cohort summaries, `developmental stage` may still be supportable, but do not force per-sample `age`, `sex`, or `ethnicity` without an individual-level mapping table.
 - **File count mismatch**: Some files in PRIDE may be non-raw (search results, FASTA, etc.). Compare only raw files.
 
 ## Step 4: Cross-Reference with PRIDE
@@ -65,9 +67,23 @@ If a PXD accession is available:
   ```text
   mcp PRIDE → get_project_files(project_accession="PXD######")
   ```
+  REST fallback:
+  ```text
+  GET https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD######/files/all
+  ```
 - Does the organism match?
 - Does the instrument match?
 - Are all raw files accounted for?
+
+If PRIDE exposes no raw files and the dataset is hosted by MassIVE, use the
+deterministic helper:
+
+```bash
+python -m tools massive-files PXD016117 --mode raw --format tsv
+```
+
+Treat this as a fallback for reconstructing defensible `comment[data file]`
+values when the repository metadata is incomplete.
 
 ## Step 5: Design Analysis
 

@@ -211,3 +211,9 @@ __marimo__/
 .cursor/rules/codacy.mdc
 
 .codacy/
+
+# Upstream files (temporary during integration)
+_upstream/
+
+# Cross-validation cache
+runs/

@@ -1,0 +1,55 @@
+name: Tools Tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - 'tests/**'
+      - 'requirements.txt'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - 'tests/**'
+      - 'requirements.txt'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          pip install requests>=2.28 pytest
+
+      - name: Run tests
+        run: |
+          python -m pytest tests/ -v --tb=short
+
+      - name: Verify CLI help (all subcommands)
+        run: |
+          python -m tools check --help
+          python -m tools score --help
+          python -m tools fix --help
+          python -m tools benchmark --help
+          python -m tools massive-files --help
+          python -m tools verify --help
+          python -m tools cellline --help
+
+      - name: Run offline hallucination check on synthetic example
+        run: |
+          python -m tools check examples/PXD_synthetic.sdrf.tsv --offline || true
+
+      - name: Score synthetic example
+        run: |
+          python -m tools score examples/PXD_synthetic.sdrf.tsv

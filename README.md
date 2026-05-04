@@ -96,7 +96,7 @@ git submodule update --remote --recursive
 
 ### 2. Install dependencies (recommended)
 
-Install the Python tools used by the skills. **Conda** is recommended (includes thermorawfileparser for Thermo .raw files):
+Install the deterministic helper tools used by the skills. **Conda** is recommended (includes thermorawfileparser for Thermo .raw files):
 
 ```bash
 # Recommended (conda):
@@ -289,6 +289,78 @@ Claude:
   → Checks specificity: "liver cancer" too generic → use subtype
 ```
 
+## Python Tools (`tools/`)
+
+The repository is **skills-first**. New user-facing SDRF workflows should
+normally be added as skills under `skills/`. The `tools/` package is reserved
+for deterministic helpers that a skill can call or that maintainers can run in
+batch jobs.
+
+Use this rule of thumb:
+
+| If it does this... | Put it here |
+|---|---|
+| Guides an agent through evidence gathering, ontology choices, or review policy | `skills/` |
+| Parses TSV, validates values, scores completeness, applies deterministic fixes, or wraps external APIs | `tools/` |
+| Talks to multiple LLM providers to compare answers | `skills/`, not `tools/` |
+| Ships a large upstream mirror that can be queried live instead | prefer `skills/` + upstream service, not a bundled dump |
+
+The Python helpers that remain in this PR are the pieces that are clearly
+programmatic:
+
+```text
+sdrf:validate   -> tools/hallucination.py + tools/ols_client.py + tools/sdrf_parser.py
+sdrf:improve    -> tools/completeness.py
+sdrf:fix        -> tools/sdrf_fixer.py
+sdrf:cellline   -> tools/cellline_db.py (offline helper only; Cellosaurus stays authoritative)
+maintainer use  -> tools/benchmark.py
+shared plumbing -> tools/services.py + tools/column_ontology_map.py + tools/cli.py
+MassIVE fallback -> tools/massive_raw_files.py
+```
+
+### Supported CLI helpers
+
+```bash
+# Detect hallucinated ontology terms and UNIMOD swaps
+python -m tools check your_file.sdrf.tsv
+
+# Score annotation quality (0-100 across 5 dimensions)
+python -m tools score your_file.sdrf.tsv
+
+# Auto-fix common errors (UNIMOD swaps, case, format, reserved words)
+python -m tools fix your_file.sdrf.tsv -o fixed.sdrf.tsv
+
+# Benchmark quality across multiple datasets
+python -m tools benchmark PXD000001 PXD012345 local_file.sdrf.tsv
+
+# Recover file names for MassIVE-hosted PXDs when PRIDE is empty
+python -m tools massive-files PXD016117 --mode raw
+python -m tools massive-files PXD016117 --mode acquisition --format tsv
+
+# Verify a single ontology accession against OLS
+python -m tools verify UNIMOD:1 --label Acetyl
+
+# Cell line metadata lookup and SDRF enrichment
+python -m tools cellline lookup HeLa
+python -m tools cellline annotate file.sdrf.tsv -o enriched.tsv
+python -m tools cellline stats
+```
+
+### Tool modules
+
+| Module | Purpose |
+|--------|---------|
+| `tools/sdrf_parser.py` | Lightweight TSV parser with column classification and value parsing |
+| `tools/ols_client.py` | EBI OLS4 REST API client with caching and rate limiting |
+| `tools/hallucination.py` | Ontology hallucination detector (UNIMOD swaps, label mismatches) |
+| `tools/completeness.py` | 5-dimension quality scorer (completeness, specificity, consistency, standards, design) |
+| `tools/sdrf_fixer.py` | Deterministic auto-fixer for 10 common error patterns |
+| `tools/cellline_db.py` | Curated offline cell-line enrichment helper for batch SDRF cleanup |
+| `tools/services.py` | REST clients for Cellosaurus, UniProt, BioSamples, PRIDE |
+| `tools/massive_raw_files.py` | MassIVE fallback for recovering raw/acquisition file names from ProteomeCentral + FTP |
+| `tools/benchmark.py` | Benchmark suite for quality analysis across datasets |
+| `tools/cli.py` | Unified CLI entry point (`python -m tools <command>`) |
+
 ## Architecture
 
 ```text
@@ -309,6 +381,21 @@ sdrf-skills/
 │       └── sdrf-templates/       # ← Nested submodule: sdrf-templates
 │           ├── templates.yaml    # Template manifest (read by skills at runtime)
 │           └── {name}/{ver}/     # Individual template YAMLs
+├── tools/                        # ← Python tools for programmatic analysis
+│   ├── sdrf_parser.py            # TSV parser with duplicate-column handling
+│   ├── ols_client.py             # OLS4 API client
+│   ├── hallucination.py          # Ontology hallucination detector
+│   ├── completeness.py           # 5-dimension quality scorer
+│   ├── sdrf_fixer.py             # Auto-fixer (10 error patterns)
+│   ├── cellline_db.py            # Curated offline cell-line enrichment helper
+│   ├── services.py               # External API clients
+│   ├── massive_raw_files.py      # MassIVE fallback for raw/acquisition file recovery
+│   ├── benchmark.py              # Dataset benchmark suite
+│   ├── column_ontology_map.py    # Column → ontology mappings
+│   └── cli.py                    # Unified CLI
+├── tests/                        # ← pytest test suite (80+ tests)
+├── examples/                     # ← Sample SDRF files for testing
+│   └── PXD_synthetic.sdrf.tsv    # Synthetic example with deliberate errors
 ├── skills/                       # ← Portable across ALL platforms
 │   ├── sdrf-setup/SKILL.md       # /sdrf:setup — guided dependency installation
 │   ├── sdrf-knowledge/SKILL.md   # /sdrf:knowledge — SDRF spec, columns, ontologies

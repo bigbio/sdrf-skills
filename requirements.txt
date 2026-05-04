@@ -5,5 +5,12 @@
 # Install:
 #   pip install -r requirements.txt
 
+# SDRF validation and raw file analysis
 sdrf-pipelines[ontology]
-techsdrf
+# techsdrf: upstream pyproject.toml is broken — install manually from a local patched clone:
+#   git clone https://github.com/bigbio/techsdrf.git ../techsdrf
+#   (remove the "License :: OSI Approved :: Apache Software License" classifier in pyproject.toml)
+#   uv pip install ../techsdrf
+
+# Tools dependencies (tools/ package)
+requests>=2.28

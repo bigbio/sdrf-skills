@@ -16,6 +16,22 @@ Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which pars
 - Suggest `/sdrf:setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
 - Continue with structural and ontology checks; manual validation is still valuable
 
+## Step 0.5: Protect the Machine During Validation
+
+Validation can be expensive because `parse_sdrf` may trigger ontology lookups,
+template loading, and large file parsing.
+
+Use these resource guards:
+
+- Default to serial validation for autonomous loops unless there is a clear reason to parallelize
+- If validating multiple SDRFs in parallel, keep the concurrency small: at most `2` `parse_sdrf` jobs at a time
+- If `techsdrf`, raw-file conversion, or other heavy IO/CPU work is running, validate only `1` SDRF at a time
+- Validate changed datasets first, not the whole collection by default
+- Prefer batch manifests or representative smoke checks before full-sandbox sweeps
+- For large SDRFs, validate unique values once rather than re-checking repeated ontology terms row by row
+
+If the machine looks stressed or validation becomes unresponsive, reduce concurrency before continuing.
+
 ## Step 1: Parse the SDRF
 
 1. Read the SDRF content (from file path or pasted content)
@@ -98,16 +114,70 @@ For all other template-specific columns, read from TERMS.tsv rather than using a
 - [ ] `comment[sdrf version]` matches semver pattern (vX.Y.Z)
 - [ ] Check TERMS.tsv `allow_not_available`, `allow_not_applicable`, `allow_pooled` fields for each column to verify reserved words are valid
 
+### 3.4 Demographic Evidence Checks
+- [ ] If `characteristics[developmental stage]` is filled, verify the paper or metadata supports a single clear stage for the analyzed cohort or for that individual sample
+- [ ] Accept cohort-level support for `developmental stage` values such as `adult`, `pediatric`, `juvenile`, or `fetal` when the entire analyzed cohort is unambiguous
+- [ ] Do not require `characteristics[age]`, `characteristics[sex]`, or `characteristics[ethnicity]` to be filled just because the paper has cohort summaries
+- [ ] If `age`, `sex`, or `ethnicity` are filled per sample, verify that the manuscript or supplementary data maps them to individual source samples rather than only to group-level summaries
+- [ ] If only cohort-level summaries exist, prefer omission or `not available` over guessed per-sample demographic values
+
 ## Step 4: Ontology Validation
 
 For EACH unique value in ontology-controlled columns, verify via OLS.
 Use TERMS.tsv `values` field to determine which ontology(ies) to search for each column.
+
+Use this search order for ambiguous values:
+1. Clean the value first (strip Python/list artifacts, trim whitespace, expand abbreviations if known)
+2. Run lexical OLS search in the ontology family allowed by `TERMS.tsv`
+3. If lexical search fails or is clearly ambiguous, run OLS embedding search on the cleaned phrase
+4. If the value looks manuscript-derived free text or lexical and embedding results still disagree, try ZOOMA:
+   `https://www.ebi.ac.uk/spot/zooma/v2/api/services/annotate?propertyValue=<clean phrase>&propertyType=<field>`
+5. Verify any accepted candidate in OLS before marking it valid
+
+Default behavior by field:
+- `organism`, `cell line` → lexical first, fallback methods rarely needed
+- `organism part`, `cell type`, `treatment` → lexical first, fallback only if lexical is weak
+- `disease`, `phenotype` → lexical first, embeddings and ZOOMA are useful when values are messy or abbreviated
+
+Do NOT mark a term invalid just because embeddings or ZOOMA suggest a more specific descendant than the cell text supports; warn about specificity instead.
 
 ### Organism
 ```text
 searchClasses(query="<organism>", ontologyId="ncbitaxon")
 Verify: term exists, case is correct (Genus capitalized, species lowercase: "Homo sapiens")
 ```
+
+When an imported SDRF uses an older NCBITaxon synonym, prefer the current
+accepted label before declaring the row invalid. Common cleanup mappings seen in
+crosslinking datasets:
+- `chaetomium thermophilum` → `thermochaetoides thermophila`
+- `chlorobium tepidum` → `chlorobaculum tepidum`
+- `canis familiaris` → `canis lupus familiaris`
+- `deinococcus radiodurans r1` → `deinococcus radiodurans`
+
+If a crosslinking SDRF still uses `NT=unknown crosslinker;AC=XLMOD:00000`, inspect `comment[data file]` for explicit reagent tokens before accepting the placeholder. Examples validated in sandbox cleanup:
+- `DSSO` in file name → `NT=DSSO;AC=XLMOD:02010;CL=yes;TA=K,S,T,Y,nterm;MH=54.01;ML=85.98`
+- `BS3` in file name → `NT=BS3;AC=XLMOD:02000`
+- `TurboID` in file name → `NT=TurboID;AC=XLMOD:02251`
+- `iQPIR`, `BDP`, or `d8BDP` in file name → `NT=PIR;AC=XLMOD:02014`
+
+When a specific cross-linker is recovered, validate whether `characteristics[crosslink distance]` can be backfilled from the crosslinking template:
+- `BS3` / `DSS` → `30 Å`
+- `DSSO` → `26.4 Å`
+- `EDC` → `11.4 Å`
+- `formaldehyde` → `2 Å`
+- `DSBU` / `DSBSO` → `26.4 Å`
+- `SDA` / `sulfo-SDA` → `18 Å`
+
+For missing `comment[crosslink enrichment method]`, inspect `comment[data file]` for explicit enrichment tokens before leaving the field unresolved:
+- `SCX` → `strong cation exchange chromatography`
+- `SEC` → `size exclusion chromatography`
+- `FAIMS` → `FAIMS`
+- dataset title containing `streptavidin pull-down` → `streptavidin pull-down`
+- dataset title containing `IMAC-enrichable` → `immobilized metal affinity chromatography`
+- dataset title containing `CuAAC-enrichable` → `CuAAC enrichment`
+
+When one of those values is recovered and `characteristics[enrichment process]` is still missing, backfill `enrichment of cross-linked peptides`.
 
 ### Disease
 ```text
@@ -136,6 +206,12 @@ searchClasses(query="<instrument name>", ontologyId="ms")
 Verify: AC= matches the returned MS accession
 ```
 
+If the validator warns on an instrument term but the accession is present in the
+official PSI-MS / ProteomeXchange schema, treat it as a review item rather than
+an automatic correction. Example: `LTQ Orbitrap Elite` with `MS:1001910` has
+been observed to warn in some validation/cache combinations even though the term
+is publicly documented.
+
 ### Modifications — CRITICAL
 ```text
 Parse NT=, AC=, TA=, MT= from each comment[modification parameters]
@@ -160,6 +236,8 @@ Verify: AC= matches
 ### Performance Note
 For large SDRF files (100+ rows), validate unique values only — don't make redundant OLS calls for repeated values. Group by unique values first, then validate once per unique value.
 
+When validating multiple files, prefer small bounded batches. Do not launch large numbers of `parse_sdrf` jobs at once.
+
 ## Step 5: Consistency Checks
 
 - [ ] All rows have the same number of columns (no ragged rows)
@@ -174,6 +252,8 @@ For large SDRF files (100+ rows), validate unique values only — don't make red
 - [ ] `technology type` is the same across all rows
 - [ ] All `comment[modification parameters]` columns have the same value across all rows (modifications are experiment-wide, not per-sample)
 - [ ] `comment[instrument]` should be consistent (or documented if multiple instruments used)
+- [ ] `characteristics[sampling time]` uses the template pattern `number + unit` such as `0 day`, `8 day`, or `12 week` when time-course metadata is present
+- [ ] `characteristics[depletion]` uses the controlled values `depletion` or `no depletion` rather than local variants like `depleted` or `yes`
 
 ## Step 6: Report
 
