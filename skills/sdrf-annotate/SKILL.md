@@ -38,13 +38,19 @@ Extract: raw file names (for comment[data file]), file count, file types
 a. Extract PMID or DOI from PRIDE response (publications field)
 b. If PMID → get_article_metadata(pmids=["PMID"])
 c. Convert to PMC ID → convert_article_ids(ids=["PMID"], id_type="pmid")
-d. If PMC ID exists → get_full_text_article(pmc_ids=["PMC_ID"])
-   Focus on: Methods section, sample descriptions, Table 1 (demographics)
+d. If PMC ID exists → use the local cleaner instead of reading raw Europe PMC XML directly:
+   `python scripts/europepmc_fulltext.py PMC_ID --section methods --section results --format text`
+   or `python scripts/europepmc_fulltext.py PMC_ID --format json`
+   Focus on: Methods section, sample descriptions, Table 1 (demographics), and data sharing statements
 e. If NO PMID in PRIDE → search_europepmc(query="PXD######")
    This searches EuropePMC for papers mentioning the accession.
 f. If DOI but no PMID → convert_article_ids(ids=["DOI"], id_type="doi")
 g. If only preprint → search_preprints() with title keywords from PRIDE
 ```
+
+Rule: whenever Europe PMC full text XML would otherwise be requested, always use
+`scripts/europepmc_fulltext.py` to normalize the article first. Do not pass raw
+JATS/XML directly to the model unless the user explicitly asks for raw XML.
 
 ### 1.4 Extract sample metadata from the paper
 Read the paper systematically and extract:

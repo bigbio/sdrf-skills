@@ -36,6 +36,10 @@ If a publication is available:
 - Are demographics (age, sex) consistent with the paper?
 - Are tissue types correctly annotated?
 
+When Europe PMC full text is available, do not inspect raw XML directly. First run:
+`python scripts/europepmc_fulltext.py PMC_ID --section methods --section results --section discussion --format text`
+or use `--format json` when structured links, captions, or accession detection will help the review.
+
 Flag any discrepancies:
 ```text
 DISCREPANCY: Paper says "24 patients" but SDRF has 20 unique source names.
@@ -128,4 +132,3 @@ Provide clear next steps:
 5. If the SDRF is for a ProteomeXchange dataset and the verdict is VALID or NEEDS MINOR FIXES:
    suggest contributing the annotation via `/sdrf:contribute {PXD}` to the
    `sdrf-annotated-datasets` community repository
-
