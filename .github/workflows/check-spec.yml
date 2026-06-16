@@ -43,7 +43,7 @@ jobs:
             echo "| Current | \`${CURRENT:0:12}\` |" >> "$GITHUB_STEP_SUMMARY"
             echo "| Latest | \`${LATEST:0:12}\` |" >> "$GITHUB_STEP_SUMMARY"
             echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "Run the [update-spec](/${{ github.repository }}/actions/workflows/update-spec.yml) workflow or update manually:" >> "$GITHUB_STEP_SUMMARY"
+            echo "Run the [update-spec](https://github.com/${{ github.repository }}/actions/workflows/update-spec.yml) workflow or update manually:" >> "$GITHUB_STEP_SUMMARY"
             echo "\`\`\`bash" >> "$GITHUB_STEP_SUMMARY"
             echo "git submodule update --remote --recursive" >> "$GITHUB_STEP_SUMMARY"
             echo "\`\`\`" >> "$GITHUB_STEP_SUMMARY"

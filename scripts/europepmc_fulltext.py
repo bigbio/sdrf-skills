@@ -28,6 +28,13 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.error import HTTPError, URLError
+
+try:
+    # Hardened parser: protects against XML entity-expansion / XXE attacks.
+    from defusedxml.ElementTree import fromstring as _safe_fromstring
+except ImportError:  # pragma: no cover - fallback when defusedxml is unavailable
+    _safe_fromstring = ET.fromstring
 
 
 EUROPE_PMC_BASE = "https://www.ebi.ac.uk/europepmc/webservices/rest"
@@ -36,7 +43,7 @@ DEFAULT_TIMEOUT = 120
 XLINK_HREF = "{http://www.w3.org/1999/xlink}href"
 
 PMCID_RE = re.compile(r"^PMC\d+$", re.IGNORECASE)
-PMID_RE = re.compile(r"^\d{5,}$")
+PMID_RE = re.compile(r"^\d+$")  # PMIDs are positive integers of any length
 DOI_RE = re.compile(r"^10\.\S+/\S+$", re.IGNORECASE)
 HTTP_URL_RE = re.compile(r"https?://[^\s<>()\[\]{}\"']+", re.IGNORECASE)
 
@@ -338,7 +345,18 @@ def read_xml_source(
     normalized_identifier, inferred_type = normalize_identifier_input(identifier)
     resolved_type = id_type or inferred_type or detect_id_type(normalized_identifier)
     record = resolve_article(normalized_identifier, resolved_type)
-    xml_text = fetch_text(f"{EUROPE_PMC_BASE}/{record['resolvedPmcid']}/fullTextXML")
+    pmcid = record["resolvedPmcid"]
+    try:
+        xml_text = fetch_text(f"{EUROPE_PMC_BASE}/{pmcid}/fullTextXML")
+    except HTTPError as exc:
+        if exc.code == 404:
+            raise SystemExit(
+                f"No full-text XML available for {pmcid} "
+                "(the article may not be in the Europe PMC open-access subset)."
+            )
+        raise SystemExit(f"Failed to fetch full-text XML for {pmcid}: HTTP {exc.code}")
+    except URLError as exc:
+        raise SystemExit(f"Network error fetching full-text XML for {pmcid}: {exc.reason}")
     return xml_text, record
 
 
@@ -718,9 +736,7 @@ def extract_metadata(root: ET.Element, record: dict) -> dict:
         "publication_date": publication_date
         or str(record.get("firstPublicationDate") or ""),
         "authors": authors
-        or [record.get("authorString", "")]
-        if record.get("authorString")
-        else authors,
+        or ([record["authorString"]] if record.get("authorString") else []),
         "pmcid": article_ids.get("pmcid")
         or record.get("resolvedPmcid")
         or record.get("pmcid", ""),
@@ -1011,7 +1027,7 @@ def main() -> None:
     args = parse_args()
     id_type = None if args.id_type == "auto" else args.id_type
     xml_text, record = read_xml_source(args.identifier, id_type, args.xml_file)
-    root = ET.fromstring(xml_text)
+    root = _safe_fromstring(xml_text)
     payload = build_payload(root, record)
     payload = filter_sections(payload, args.section)
 
