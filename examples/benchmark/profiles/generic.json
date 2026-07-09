@@ -1,0 +1,16 @@
+{
+  "weights": {
+    "read": 1.0,
+    "fresh": 1.0,
+    "write": 1.0,
+    "output": 1.0
+  },
+  "fields": {
+    "read": "cache_read_tokens",
+    "write": "cache_write_tokens",
+    "input_total": "input_tokens",
+    "output": "output_tokens",
+    "total_cost": "total_cost"
+  },
+  "note": "Unweighted token counts. Use when price ratios are unknown; cost_by_type then reflects raw token share, not dollars."
+}

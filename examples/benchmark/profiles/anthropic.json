@@ -1,0 +1,16 @@
+{
+  "weights": {
+    "read": 0.1,
+    "fresh": 1.0,
+    "write": 1.25,
+    "output": 5.0
+  },
+  "fields": {
+    "read": "cache_read_tokens",
+    "write": "cache_write_tokens",
+    "input_total": "input_tokens",
+    "output": "output_tokens",
+    "total_cost": "total_cost"
+  },
+  "note": "Claude Science frames-row schema. Weights are price ratios vs base input (5-min cache: read 0.1x, write 1.25x, output 5x)."
+}
