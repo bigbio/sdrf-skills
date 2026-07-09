@@ -509,7 +509,10 @@ def _unpaywall_save_dir(out_path: Path, parsed_type: str, pmid: str | None, doi:
     按输入类型决定保存目录：PMID/PubMed URL → pdf/{PMID}/；DOI 或 doi.org 链接 → pdf/{sanitized_doi}/。
     """
     if parsed_type == "pmid" and pmid:
-        return out_path / pmid
+        # Sanitize the PMID before using it as a path component to guard against
+        # path traversal (e.g. "../"); PMIDs are plain integers in practice.
+        safe_pmid = pmid.replace("/", "_").replace("\\", "_").replace("..", "_").strip()
+        return out_path / safe_pmid
     return out_path / _doi_to_subdir_name(doi)
 
 

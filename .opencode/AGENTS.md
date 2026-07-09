@@ -2,7 +2,7 @@
 
 ## Overview
 
-14 structured workflow files that encode expert-level SDRF (Sample and Data
+18 structured workflow files that encode expert-level SDRF (Sample and Data
 Relationship Format) annotation methodology for proteomics.
 
 ## Skills Directory
@@ -15,6 +15,8 @@ description) followed by a step-by-step workflow in Markdown.
 | Skill Directory | What It Does |
 |----------------|-------------|
 | `sdrf-setup` | Install dependencies (parse_sdrf, techsdrf) — conda or pip guided setup |
+| `sdrf-metascreen` | Screen/shortlist PRIDE, MassIVE, or ProteomeXchange studies against user-defined criteria → evidence-backed TSV |
+| `sdrf-autoresearch` | Autonomous retained-improvement loop over one dataset, a manifest, or a dataset class |
 | `sdrf-knowledge` | SDRF format rules, column naming, ontology-to-column mapping |
 | `sdrf-templates` | Template layer system (Technology → Organism → Experiment → Clinical → Platform) |
 | `sdrf-annotate` | Full annotation workflow: PXD → PRIDE metadata + publication → SDRF draft |
@@ -29,6 +31,7 @@ description) followed by a step-by-step workflow in Markdown.
 | `sdrf-design` | Experimental design analysis: batch effects, confounders, replication assessment |
 | `sdrf-contribute` | Contribute annotated SDRF to community repo via PR (automated or guided) |
 | `sdrf-techrefine` | Verify/refine technical metadata (instrument, tolerances, mods, DDA/DIA) from raw files via techsdrf |
+| `sdrf-cellline` | Look up cell lines via Cellosaurus and translate them into SDRF cell-line columns (organism, disease, sampling site, sex, ancestry, age) |
 
 ## Specification Data
 

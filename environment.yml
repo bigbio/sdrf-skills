@@ -15,5 +15,6 @@ dependencies:
   - sdrf-pipelines      # parse_sdrf CLI for validation and pipeline conversion
   - techsdrf            # raw file analysis for /sdrf:techrefine
   - thermorawfileparser # for Thermo .raw files (optional; techsdrf skips .raw without it)
+  - defusedxml          # hardened XML parsing for scripts/europepmc_fulltext.py
   - pip:
     - requests>=2.28
