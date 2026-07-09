@@ -1,0 +1,16 @@
+{
+  "weights": {
+    "read": 0.25,
+    "fresh": 1.0,
+    "write": 0.0,
+    "output": 4.0
+  },
+  "fields": {
+    "read": "cached_tokens",
+    "write": null,
+    "input_total": "prompt_tokens",
+    "output": "completion_tokens",
+    "total_cost": "total_cost"
+  },
+  "note": "STUB for OpenAI/Codex. Usage schema: prompt_tokens, completion_tokens, prompt_tokens_details.cached_tokens. No cache-write premium. Populate weights + total_cost from the run's own usage record before use."
+}

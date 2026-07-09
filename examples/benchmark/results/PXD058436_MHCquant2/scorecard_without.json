@@ -1,0 +1,85 @@
+{
+  "sdrf": "without.sdrf.tsv",
+  "n_rows": 633,
+  "n_columns": 28,
+  "B6_coverage": {
+    "required": {
+      "present": 10,
+      "defined": 10,
+      "pct": 100.0
+    },
+    "recommended": {
+      "present": 7,
+      "defined": 8,
+      "pct": 87.5
+    },
+    "optional": {
+      "present": 1,
+      "defined": 27,
+      "pct": 3.7
+    }
+  },
+  "B7_fill_rate": {
+    "filled": 12660,
+    "applicable": 15192,
+    "pct": 83.3
+  },
+  "B8_reserved_words": {
+    "illegal_blanks": 0,
+    "examples": []
+  },
+  "B9_ontology_breadth": {
+    "n_ontologies": 2,
+    "ontologies": [
+      "MS",
+      "UNIMOD"
+    ]
+  },
+  "A3_nt_ac": {
+    "nt_ac_paired_cells": 2532
+  },
+  "A4_accessions": {
+    "n_distinct_accessions": 4,
+    "accessions": [
+      "MS:1000133",
+      "MS:1001955",
+      "MS:1003230",
+      "UNIMOD:35"
+    ],
+    "resolved": null,
+    "resolved_via": "OLS4",
+    "n_checked": 4,
+    "n_unresolved": 0,
+    "hallucination_rate": 0.0
+  },
+  "A5_row_structure": {
+    "deposited": 633,
+    "delivered": 633,
+    "matched": 633,
+    "precision": 1.0,
+    "recall": 1.0
+  },
+  "D14_validate_with_templates": {
+    "templates": [
+      "ms-proteomics",
+      "human",
+      "immunopeptidomics"
+    ],
+    "cache_only": true,
+    "pass": true,
+    "error_lines": 0,
+    "warning_lines": 0
+  },
+  "D16_template_self_declaration": {
+    "n_template_declarations": 0,
+    "declared_templates": [],
+    "self_sufficient": false,
+    "expected": [
+      "human",
+      "immunopeptidomics",
+      "ms-proteomics"
+    ],
+    "declared_of_expected": [],
+    "coverage_pct": 0.0
+  }
+}

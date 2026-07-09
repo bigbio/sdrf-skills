@@ -1,0 +1,336 @@
+{
+  "sdrf": "with.sdrf.tsv",
+  "n_rows": 633,
+  "n_columns": 36,
+  "B6_coverage": {
+    "required": {
+      "present": 10,
+      "defined": 10,
+      "pct": 100.0
+    },
+    "recommended": {
+      "present": 8,
+      "defined": 8,
+      "pct": 100.0
+    },
+    "optional": {
+      "present": 2,
+      "defined": 27,
+      "pct": 7.4
+    }
+  },
+  "B7_fill_rate": {
+    "filled": 17091,
+    "applicable": 20256,
+    "pct": 84.4
+  },
+  "B8_reserved_words": {
+    "illegal_blanks": 0,
+    "examples": []
+  },
+  "B9_ontology_breadth": {
+    "n_ontologies": 3,
+    "ontologies": [
+      "MS",
+      "PRIDE",
+      "UNIMOD"
+    ]
+  },
+  "A3_nt_ac": {
+    "nt_ac_paired_cells": 3798
+  },
+  "A4_accessions": {
+    "n_distinct_accessions": 6,
+    "accessions": [
+      "MS:1000133",
+      "MS:1001956",
+      "MS:1002038",
+      "MS:1003230",
+      "PRIDE:0000627",
+      "UNIMOD:35"
+    ],
+    "resolved": null,
+    "resolved_via": "OLS4",
+    "n_checked": 6,
+    "n_unresolved": 0,
+    "hallucination_rate": 0.0
+  },
+  "A5_row_structure": {
+    "deposited": 633,
+    "delivered": 633,
+    "matched": 633,
+    "precision": 1.0,
+    "recall": 1.0
+  },
+  "D14_validate_with_templates": {
+    "templates": [
+      "ms-proteomics",
+      "human",
+      "immunopeptidomics"
+    ],
+    "cache_only": true,
+    "pass": true,
+    "error_lines": 0,
+    "warning_lines": 0
+  },
+  "D16_template_self_declaration": {
+    "n_template_declarations": 3,
+    "declared_templates": [
+      "ms-proteomics",
+      "human",
+      "immunopeptidomics"
+    ],
+    "self_sufficient": true,
+    "expected": [
+      "human",
+      "immunopeptidomics",
+      "ms-proteomics"
+    ],
+    "declared_of_expected": [
+      "human",
+      "immunopeptidomics",
+      "ms-proteomics"
+    ],
+    "coverage_pct": 100.0
+  },
+  "A1_curated_diff": {
+    "n_matched_rows": 633,
+    "shared_columns": 26,
+    "per_column_agreement": {
+      "source name": {
+        "agree": 0,
+        "n": 633,
+        "pct": 0.0
+      },
+      "characteristics[organism]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[organism part]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[cell type]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[disease]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[age]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[sex]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[individual]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[biological replicate]": {
+        "agree": 60,
+        "n": 633,
+        "pct": 9.5
+      },
+      "characteristics[mhc protein complex]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[mhc typing]": {
+        "agree": 0,
+        "n": 633,
+        "pct": 0.0
+      },
+      "characteristics[mhc typing method]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "characteristics[antibody enrichment]": {
+        "agree": 312,
+        "n": 633,
+        "pct": 49.3
+      },
+      "characteristics[immunopeptidome enrichment method]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "assay name": {
+        "agree": 0,
+        "n": 633,
+        "pct": 0.0
+      },
+      "technology type": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "comment[proteomics data acquisition method]": {
+        "agree": 0,
+        "n": 633,
+        "pct": 0.0
+      },
+      "comment[instrument]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "comment[label]": {
+        "agree": 0,
+        "n": 633,
+        "pct": 0.0
+      },
+      "comment[modification parameters]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "comment[cleavage agent details]": {
+        "agree": 0,
+        "n": 633,
+        "pct": 0.0
+      },
+      "comment[dissociation method]": {
+        "agree": 0,
+        "n": 633,
+        "pct": 0.0
+      },
+      "comment[precursor mass tolerance]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "comment[fragment mass tolerance]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "comment[fraction identifier]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      },
+      "comment[technical replicate]": {
+        "agree": 633,
+        "n": 633,
+        "pct": 100.0
+      }
+    },
+    "divergences_for_triage": [
+      {
+        "column": "source name",
+        "run": "DN02_Brain_classI",
+        "curated": "DN02_Brain_CI",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "source name",
+        "run": "DN02_Brain_classII",
+        "curated": "DN02_Brain_CII",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "source name",
+        "run": "DN02_Kidney_classI",
+        "curated": "DN02_Kidney_CI",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[biological replicate]",
+        "run": "2",
+        "curated": "1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[biological replicate]",
+        "run": "3",
+        "curated": "1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[biological replicate]",
+        "run": "3",
+        "curated": "2",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[mhc typing]",
+        "run": "HLA-A*11:01;HLA-A*68:01;HLA-B*15:01;HLA-B*35:03;HLA-C*03:03;",
+        "curated": "HLA-A*11:01;HLA-A*68:01;HLA-B*15:01;HLA-B*35:03;HLA-C*03:03;",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[mhc typing]",
+        "run": "HLA-A*11:01;HLA-A*68:01;HLA-B*15:01;HLA-B*35:03;HLA-C*03:03;",
+        "curated": "HLA-DRB1*04:01;HLA-DRB4*01:01;HLA-DQB1*03:01;HLA-DQA1*03:01;",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[mhc typing]",
+        "run": "HLA-A*02:01;HLA-A*23:01;HLA-B*27:05;HLA-B*50:01;HLA-C*02:02;",
+        "curated": "HLA-A*02:01;HLA-A*23:01;HLA-B*27:05;HLA-B*50:01;HLA-C*02:02;",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[antibody enrichment]",
+        "run": "T\u00fc-39;L243",
+        "curated": "T\u00fc-39",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "DN02_Brain_classI_techRep1",
+        "curated": "DN02_Brain_CI_run1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "DN02_Brain_classI_techRep2",
+        "curated": "DN02_Brain_CI_run2",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "DN02_Brain_classI_techRep3",
+        "curated": "DN02_Brain_CI_run3",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[proteomics data acquisition method]",
+        "run": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+        "curated": "data-dependent acquisition",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[label]",
+        "run": "NT=label free sample;AC=MS:1002038",
+        "curated": "label free sample",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[cleavage agent details]",
+        "run": "NT=unspecific cleavage;AC=MS:1001956",
+        "curated": "NT=no cleavage;AC=MS:1001955",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[dissociation method]",
+        "run": "NT=collision-induced dissociation;AC=MS:1000133",
+        "curated": "NT=CID;AC=MS:1000133",
+        "triage": "UNTRIAGED"
+      }
+    ]
+  }
+}

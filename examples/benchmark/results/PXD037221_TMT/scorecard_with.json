@@ -1,0 +1,339 @@
+{
+  "sdrf": "PXD037221_with_skills.sdrf.tsv",
+  "n_rows": 90,
+  "n_columns": 33,
+  "B6_coverage": {
+    "required": {
+      "present": 5,
+      "defined": 5,
+      "pct": 100.0
+    },
+    "recommended": {
+      "present": 4,
+      "defined": 4,
+      "pct": 100.0
+    },
+    "optional": {
+      "present": 4,
+      "defined": 25,
+      "pct": 16.0
+    }
+  },
+  "B7_fill_rate": {
+    "filled": 2430,
+    "applicable": 2700,
+    "pct": 90.0
+  },
+  "B8_reserved_words": {
+    "illegal_blanks": 0,
+    "examples": []
+  },
+  "B9_ontology_breadth": {
+    "n_ontologies": 3,
+    "ontologies": [
+      "MS",
+      "PRIDE",
+      "UNIMOD"
+    ]
+  },
+  "A3_nt_ac": {
+    "nt_ac_paired_cells": 720
+  },
+  "A4_accessions": {
+    "n_distinct_accessions": 8,
+    "accessions": [
+      "MS:1001251",
+      "MS:1002481",
+      "MS:1002877",
+      "PRIDE:0000627",
+      "UNIMOD:1",
+      "UNIMOD:35",
+      "UNIMOD:4",
+      "UNIMOD:737"
+    ],
+    "resolved": {
+      "MS:1001251": true,
+      "MS:1002481": true,
+      "MS:1002877": true,
+      "PRIDE:0000627": true,
+      "UNIMOD:1": true,
+      "UNIMOD:35": true,
+      "UNIMOD:4": true,
+      "UNIMOD:737": true
+    },
+    "n_unresolved": 0,
+    "unresolved": [],
+    "hallucination_rate": 0.0
+  },
+  "A5_row_structure": {
+    "deposited": 10,
+    "delivered_rows": 90,
+    "distinct_delivered": 10,
+    "matched_distinct": 10,
+    "precision": 1.0,
+    "recall": 1.0,
+    "note": "90 rows = 10 deposited raw files x 9 TMT channels (correct TMT expansion)"
+  },
+  "D14_validate_with_templates": {
+    "templates": [
+      "ms-proteomics"
+    ],
+    "cache_only": true,
+    "pass": false,
+    "error_lines": 0,
+    "warning_lines": 4
+  },
+  "D16_template_self_declaration": {
+    "n_template_declarations": 1,
+    "declared_templates": [
+      "ms-proteomics"
+    ],
+    "self_sufficient": true,
+    "expected": [
+      "ms-proteomics"
+    ],
+    "declared_of_expected": [
+      "ms-proteomics"
+    ],
+    "coverage_pct": 100.0
+  },
+  "A1_curated_diff": {
+    "key": [
+      "comment[data file]",
+      "comment[label]"
+    ],
+    "n_matched_rows": 90,
+    "shared_columns": 25,
+    "per_column_agreement": {
+      "source name": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "characteristics[organism]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "characteristics[strain/breed]": {
+        "agree": 30,
+        "n": 90,
+        "pct": 33.3
+      },
+      "characteristics[organism part]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "characteristics[cell type]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "characteristics[disease]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "characteristics[temperature]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "characteristics[biological replicate]": {
+        "agree": 30,
+        "n": 90,
+        "pct": 33.3
+      },
+      "assay name": {
+        "agree": 1,
+        "n": 90,
+        "pct": 1.1
+      },
+      "technology type": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[instrument]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[cleavage agent details]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[modification parameters]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[proteomics data acquisition method]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[dissociation method]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[collision energy]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[precursor mass tolerance]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[fragment mass tolerance]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[reduction reagent]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[alkylation reagent]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[fraction identifier]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[technical replicate]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[tool metadata]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[sdrf version]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[sdrf template]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      }
+    },
+    "divergences_for_triage": [
+      {
+        "column": "source name",
+        "run": "HFX4_FFRA20H101796-1A.raw-TMT127N",
+        "curated": "HFX4_FFRA20H101796-1A.raw",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "source name",
+        "run": "HFX4_FFRA20H101796-1A.raw-TMT127C",
+        "curated": "HFX4_FFRA20H101796-1A.raw",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "source name",
+        "run": "HFX4_FFRA20H101796-1A.raw-TMT128N",
+        "curated": "HFX4_FFRA20H101796-1A.raw",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[strain/breed]",
+        "run": "Escherichia coli str. K-12 substr. W3110 delta-glyA",
+        "curated": "Escherichia coli str. K-12 substr. W3110",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[strain/breed]",
+        "run": "Escherichia coli str. K-12 substr. W3110 N-15",
+        "curated": "Escherichia coli str. K-12 substr. W3110",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[organism part]",
+        "run": "not applicable",
+        "curated": "Cell lysate",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[cell type]",
+        "run": "not applicable",
+        "curated": "Prokaryotic cell",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[biological replicate]",
+        "run": "2",
+        "curated": "1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[biological replicate]",
+        "run": "3",
+        "curated": "1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "run 2",
+        "curated": "run 1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "run 3",
+        "curated": "run 1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "run 4",
+        "curated": "run 1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[instrument]",
+        "run": "NT=Q Exactive HF-X;AC=MS:1002877",
+        "curated": "NT=Q Exactive HF-X",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[cleavage agent details]",
+        "run": "NT=Trypsin;AC=MS:1001251;CS=(?<=[KR])(?!P)",
+        "curated": "NT=Trypsin;AC=1001251",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[modification parameters]",
+        "run": "NT=Carbamidomethyl;AC=UNIMOD:4;CF=H(3) C(2) N O;MM=57.021464",
+        "curated": "NT=Carbamidomethyl;AC=4;CF=H(3) C(2) N O;MM=57.021464;MT=Fix",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[dissociation method]",
+        "run": "NT=HCD;AC=MS:1002481",
+        "curated": "NT=HCD; AC=MS:1002481",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[tool metadata]",
+        "run": "sdrf-skills annotate v(this run)",
+        "curated": "lesSDRF v0.1.0",
+        "triage": "UNTRIAGED"
+      }
+    ]
+  }
+}

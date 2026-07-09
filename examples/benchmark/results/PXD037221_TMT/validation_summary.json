@@ -1,0 +1,46 @@
+{
+  "with_skills": {
+    "pass": true,
+    "hard_errors": 0,
+    "error_lines": [],
+    "warnings_real": 3,
+    "warnings_dup_tmt": 0,
+    "n_template_declarations": 1,
+    "has_sdrf_version": true,
+    "self_sufficient": true,
+    "fix_iterations_to_pass": 1
+  },
+  "without_skills": {
+    "pass": true,
+    "hard_errors": 0,
+    "error_lines": [],
+    "warnings_real": 3,
+    "warnings_dup_tmt": 0,
+    "n_template_declarations": 0,
+    "has_sdrf_version": false,
+    "self_sufficient": false,
+    "fix_iterations_to_pass": 1
+  },
+  "reference": {
+    "pass": true,
+    "hard_errors": 0,
+    "error_lines": [],
+    "warnings_real": 2,
+    "warnings_dup_tmt": 10,
+    "n_template_declarations": 1,
+    "has_sdrf_version": true,
+    "self_sufficient": true
+  },
+  "fix_iteration_note": "Both arms required exactly one correction pass resolving TWO issues each (Arm A: missing required comment[data file] + collision-energy format; Arm B: missing required comment[proteomics data acquisition method] + collision-energy pattern). Fix effort is SYMMETRIC \u2014 this metric does not separate the arms.",
+  "warning_provenance": {
+    "shared_with_reference": [
+      "DTT (comment[reduction reagent])",
+      "IAA (comment[alkylation reagent])"
+    ],
+    "unique_to_arms_not_in_reference": [
+      "free-text comment[fractionation method] value \u2014 reference has NO fractionation-method column, so this warning is NOT shared"
+    ],
+    "reference_warnings_real": 2,
+    "arm_warnings_real": 3
+  }
+}

@@ -1,0 +1,8 @@
+metric,arm_A,arm_B
+n_columns,36,28
+fill_rate_pct,84.4,83.3
+illegal_blanks,0,0
+n_ontologies,3,2
+n_accessions,6,4
+coverage_required_pct,100.0,100.0
+coverage_recommended_pct,100.0,87.5

@@ -1,0 +1,20 @@
+column,arm,arm_value,reference_value,triage_class,severity_weight,direction,justification
+comment[instrument],A,NT=Q Exactive HF-X;AC=MS:1002877,NT=Q Exactive HF-X,run_richer,3,+1,"Arm A adds OLS-verified MS:1002877 the reference omits; same term, machine-readable"
+comment[cleavage agent details],A,NT=Trypsin;AC=MS:1001251,NT=Trypsin;AC=1001251,curated_wrong,3,+1,Reference accession '1001251' lacks the MS: CURIE prefix; Arm A's MS:1001251 is spec-correct
+comment[modification parameters],A,AC=UNIMOD:4 / :35 / :737 / :1,AC=4 (bare number),curated_wrong,3,+1,Reference uses bare numeric accession (AC=4); Arm A uses proper UNIMOD CURIEs; also adds TMT6plex+Acetyl mods
+comment[dissociation method],A,NT=HCD;AC=MS:1002481,NT=HCD; AC=MS:1002481,both_ok,1,0,Identical term+accession; differ only by a whitespace after ';' (cosmetic)
+comment[proteomics data acquisition method],A,NT=Data-dependent acquisition;AC=PRIDE:0000627,(same),both_ok,1,0,Exact match to reference incl. PRIDE:0000627
+characteristics[cell type],A,not applicable,Prokaryotic cell,curated_richer,3,-1,Reference carries a real value (Prokaryotic cell) Arm A left blank — coverage gap against Arm A
+characteristics[organism part],A,not applicable,Cell lysate,curated_richer,3,-1,Reference carries 'Cell lysate' Arm A left blank — coverage gap against Arm A
+characteristics[strain/breed],A,W3110 / W3110 delta-glyA / W3110 N-15,W3110 (uniform),both_ok,1,0,"Arm A models the paper's 3-strain design per TMT channel; reference keeps uniform W3110. Arm's split UNVERIFIED (no channel key), reference thinner — defensible-different, flagged"
+characteristics[biological replicate],A,1/2/3 across channels,1 (uniform),both_ok,1,0,Arm A assigns 3 reps per strain; reference uses rep 1 throughout. Unverified channel key; neutral
+source name,A,<raw>-TMT<ch> (unique per row),<raw> (repeated),both_ok,1,0,Different but valid conventions; both key correctly to deposited raw via comment[data file]
+comment[instrument],B,Q Exactive HF-X (bare),NT=Q Exactive HF-X,run_wrong,1,-1,Missing NT= wrapper and no accession; term correct but structurally non-conformant/un-grounded
+comment[cleavage agent details],B,Trypsin (bare),NT=Trypsin;AC=1001251,run_wrong,3,-1,No accession at all — no machine-readable MS term; scientifically correct enzyme but ungrounded
+comment[modification parameters],B,NT=Carbamidomethyl;MT=fixed;... (no AC),AC=4;CF=;MM=;...,run_wrong,3,-1,"No UNIMOD accession, no CF/MM composition fields; missed TMT6plex + Acetyl mods entirely"
+comment[dissociation method],B,HCD (bare),NT=HCD; AC=MS:1002481,run_wrong,3,-1,No MS accession — dissociation term ungrounded
+comment[proteomics data acquisition method],B,data-dependent acquisition (bare),NT=...;AC=PRIDE:0000627,run_wrong,3,-1,No PRIDE accession; required column was also initially MISSING (added during fix iteration)
+comment[alkylation reagent],B,Iodoacetamide,IAA,both_ok,1,0,Synonym of reference 'IAA'; both free-text (neither ontology-grounded)
+characteristics[cell type],B,not applicable,Prokaryotic cell,curated_richer,3,-1,Same coverage gap as Arm A
+characteristics[organism part],B,not applicable,Cell lysate,curated_richer,3,-1,Same coverage gap as Arm A
+characteristics[biological replicate],B,1/2/3,1 (uniform),both_ok,1,0,Same as Arm A; unverified channel key

@@ -1,0 +1,40 @@
+{
+  "SINGLE_SESSION_CAVEAT": "Both arms were constructed in ONE session (this frame), so token/cost totals are a SHARED envelope for the whole benchmark (both arms + context fetch + scoring + triage + report) and CANNOT be cleanly split per-arm. This differs from the PXD058436 study, which used two separate sessions. Cost here is reported as the whole-benchmark envelope; the per-arm comparison rests on the FILE metrics and the verification-behavior counts, which ARE cleanly attributable.",
+  "session_envelope": {
+    "input_tokens": 9199165,
+    "output_tokens": 68427,
+    "cache_read": 8744784,
+    "cache_write": 293490,
+    "fresh_input": 160891,
+    "total_cost_usd": 9.42,
+    "cost_by_type_usd": {
+      "read": 4.723,
+      "fresh": 0.869,
+      "write": 1.981,
+      "output": 1.848
+    },
+    "pct_tokens_cache_read": 95.1,
+    "cache_read_write_ratio": 29.8
+  },
+  "execution_economy": {
+    "bash_ok": 31,
+    "python_ok": 20,
+    "python_error": 1,
+    "total_cells": 52,
+    "error_rate_pct": 1.9
+  },
+  "verification_behavior": {
+    "arm_A_with_skills": {
+      "ols_term_lookups": 17,
+      "pride_metadata_calls": 2,
+      "total_mcp_verification": 19,
+      "grounded_controlled_terms": "8 distinct accessions, all OLS-resolvable (instrument, cleavage, 4 mods, acquisition, dissociation)"
+    },
+    "arm_B_without_skills": {
+      "ols_term_lookups": 0,
+      "pride_metadata_calls": 0,
+      "total_mcp_verification": 0,
+      "grounded_controlled_terms": "0 \u2014 relied on model recall, emitted no accessions"
+    }
+  }
+}

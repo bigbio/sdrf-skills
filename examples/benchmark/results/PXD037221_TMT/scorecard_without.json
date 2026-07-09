@@ -1,0 +1,293 @@
+{
+  "sdrf": "PXD037221_without_skills.sdrf.tsv",
+  "n_rows": 90,
+  "n_columns": 26,
+  "B6_coverage": {
+    "required": {
+      "present": 5,
+      "defined": 5,
+      "pct": 100.0
+    },
+    "recommended": {
+      "present": 4,
+      "defined": 4,
+      "pct": 100.0
+    },
+    "optional": {
+      "present": 4,
+      "defined": 25,
+      "pct": 16.0
+    }
+  },
+  "B7_fill_rate": {
+    "filled": 1800,
+    "applicable": 2070,
+    "pct": 87.0
+  },
+  "B8_reserved_words": {
+    "illegal_blanks": 0,
+    "examples": []
+  },
+  "B9_ontology_breadth": {
+    "n_ontologies": 0,
+    "ontologies": []
+  },
+  "A3_nt_ac": {
+    "nt_ac_paired_cells": 0
+  },
+  "A4_accessions": {
+    "n_distinct_accessions": 0,
+    "accessions": [],
+    "resolved": {},
+    "n_unresolved": 0,
+    "unresolved": [],
+    "hallucination_rate": 0.0
+  },
+  "A5_row_structure": {
+    "deposited": 10,
+    "delivered_rows": 90,
+    "distinct_delivered": 10,
+    "matched_distinct": 10,
+    "precision": 1.0,
+    "recall": 1.0,
+    "note": "90 rows = 10 deposited raw files x 9 TMT channels (correct TMT expansion)"
+  },
+  "D14_validate_with_templates": {
+    "templates": [
+      "ms-proteomics"
+    ],
+    "cache_only": true,
+    "pass": false,
+    "error_lines": 0,
+    "warning_lines": 4
+  },
+  "D16_template_self_declaration": {
+    "n_template_declarations": 0,
+    "declared_templates": [],
+    "self_sufficient": false,
+    "expected": [
+      "ms-proteomics"
+    ],
+    "declared_of_expected": [],
+    "coverage_pct": 0.0
+  },
+  "A1_curated_diff": {
+    "key": [
+      "comment[data file]",
+      "comment[label]"
+    ],
+    "n_matched_rows": 90,
+    "shared_columns": 21,
+    "per_column_agreement": {
+      "source name": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "characteristics[organism]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "characteristics[strain/breed]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "characteristics[organism part]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "characteristics[cell type]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "characteristics[disease]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "characteristics[biological replicate]": {
+        "agree": 30,
+        "n": 90,
+        "pct": 33.3
+      },
+      "assay name": {
+        "agree": 1,
+        "n": 90,
+        "pct": 1.1
+      },
+      "technology type": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[instrument]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[cleavage agent details]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[modification parameters]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[dissociation method]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[collision energy]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[precursor mass tolerance]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[fragment mass tolerance]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[reduction reagent]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[alkylation reagent]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      },
+      "comment[fraction identifier]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[technical replicate]": {
+        "agree": 90,
+        "n": 90,
+        "pct": 100.0
+      },
+      "comment[proteomics data acquisition method]": {
+        "agree": 0,
+        "n": 90,
+        "pct": 0.0
+      }
+    },
+    "divergences_for_triage": [
+      {
+        "column": "source name",
+        "run": "HFX4_FFRA20H101796-1A.raw-TMT127N",
+        "curated": "HFX4_FFRA20H101796-1A.raw",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "source name",
+        "run": "HFX4_FFRA20H101796-1A.raw-TMT127C",
+        "curated": "HFX4_FFRA20H101796-1A.raw",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "source name",
+        "run": "HFX4_FFRA20H101796-1A.raw-TMT128N",
+        "curated": "HFX4_FFRA20H101796-1A.raw",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[strain/breed]",
+        "run": "Escherichia coli K-12 W3110",
+        "curated": "Escherichia coli str. K-12 substr. W3110",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[organism part]",
+        "run": "not applicable",
+        "curated": "Cell lysate",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[cell type]",
+        "run": "not applicable",
+        "curated": "Prokaryotic cell",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[biological replicate]",
+        "run": "2",
+        "curated": "1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "characteristics[biological replicate]",
+        "run": "3",
+        "curated": "1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "run 2",
+        "curated": "run 1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "run 3",
+        "curated": "run 1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "assay name",
+        "run": "run 4",
+        "curated": "run 1",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[instrument]",
+        "run": "Q Exactive HF-X",
+        "curated": "NT=Q Exactive HF-X",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[cleavage agent details]",
+        "run": "Trypsin",
+        "curated": "NT=Trypsin;AC=1001251",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[modification parameters]",
+        "run": "NT=Carbamidomethyl;MT=fixed;PP=Anywhere;TA=C",
+        "curated": "NT=Carbamidomethyl;AC=4;CF=H(3) C(2) N O;MM=57.021464;MT=Fix",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[dissociation method]",
+        "run": "HCD",
+        "curated": "NT=HCD; AC=MS:1002481",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[alkylation reagent]",
+        "run": "Iodoacetamide",
+        "curated": "IAA",
+        "triage": "UNTRIAGED"
+      },
+      {
+        "column": "comment[proteomics data acquisition method]",
+        "run": "data-dependent acquisition",
+        "curated": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+        "triage": "UNTRIAGED"
+      }
+    ]
+  }
+}
