@@ -8,6 +8,7 @@ Usage:
   python -m tools verify <ACCESSION> [--label L]   # verify single term
   python -m tools cellline lookup <name>           # curated cell line lookup
   python -m tools massive-files <PXD|MSV|task>     # MassIVE raw/acquisition file resolver
+  python -m tools review-gate <command>             # independent-review receipt gate
 """
 
 from __future__ import annotations
@@ -153,6 +154,12 @@ def cmd_cellline(args: argparse.Namespace) -> int:
 
     return 0
 
+def cmd_review_gate(args: argparse.Namespace) -> int:
+    from tools.review_gate import run_cli
+
+    return run_cli(args.review_gate_args)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="python -m tools",
@@ -217,6 +224,14 @@ def main() -> None:
     cl_stats = cl_sub.add_parser("stats", help="Database statistics")
     cl_stats.add_argument("--db", default=None)
 
+    # review-gate
+    p = subparsers.add_parser(
+        "review-gate",
+        help="Track hash-bound independent review receipts for changed SDRFs",
+        add_help=False,
+    )
+    p.add_argument("review_gate_args", nargs=argparse.REMAINDER)
+
     args = parser.parse_args()
 
     # Set default db path for cellline commands
@@ -232,6 +247,7 @@ def main() -> None:
         "massive-files": cmd_massive_files,
         "cellline": cmd_cellline,
         "verify": cmd_verify,
+        "review-gate": cmd_review_gate,
     }
 
     sys.exit(commands[args.command](args))

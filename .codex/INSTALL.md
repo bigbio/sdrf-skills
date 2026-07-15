@@ -26,7 +26,7 @@ cp -r spec/ ~/.agents/skills/sdrf-skills/spec/
 
 ## What it provides
 
-16 structured workflows (SKILL.md files) that encode expert-level SDRF annotation methodology:
+20 structured workflows (SKILL.md files) that encode expert-level SDRF annotation methodology:
 
 | Skill | Purpose |
 |-------|---------|
@@ -41,6 +41,8 @@ cp -r spec/ ~/.agents/skills/sdrf-skills/spec/
 | sdrf-terms | Ontology term lookup for any SDRF column |
 | sdrf-brainstorm | Pre-annotation metadata planning |
 | sdrf-review | Quality review with paper + PRIDE cross-reference |
+| sdrf-adversarial-review | Independent fresh-context falsification review with hash-bound approval |
+| sdrf-annotate-reviewed | Producer/reviewer annotation loop with mandatory re-review |
 | sdrf-explain | Plain-language SDRF education |
 | sdrf-convert | Pipeline selection (MaxQuant, DIA-NN, quantms) |
 | sdrf-design | Experimental design analysis |

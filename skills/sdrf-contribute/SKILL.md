@@ -49,9 +49,18 @@ Before contributing, the SDRF must pass validation:
    parse_sdrf validate-sdrf --sdrf_file {PXD}.sdrf.tsv
    ```
 
-2. **Optionally run `/sdrf:validate`** for a thorough check including ontology verification
+2. **Run `/sdrf:validate`** for a thorough check including ontology verification
 
-3. **Check file structure**:
+3. **Require independent adversarial approval**:
+   ```bash
+   python3 <sdrf-skills-root>/tools/review_gate.py gate
+   ```
+   If the artifact is pending, dispatch a fresh reviewer using
+   `skills/sdrf-adversarial-review/SKILL.md`. The contributing/producer context
+   must not create its own approval receipt. Any edit after approval requires a
+   new review.
+
+4. **Check file structure**:
    - All rows have the same number of columns (no ragged rows)
    - No trailing whitespace in column names or values
    - File is valid TSV (tab-delimited)

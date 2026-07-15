@@ -10,7 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 [![SDRF Spec](https://img.shields.io/badge/SDRF-proteomics--metadata--standard-orange)](https://github.com/bigbio/proteomics-metadata-standard)
-[![Skills](https://img.shields.io/badge/skills-16-informational)](#available-skills)
+[![Skills](https://img.shields.io/badge/skills-20-informational)](#available-skills)
 [![PRIDE](https://img.shields.io/badge/data-PRIDE-2C7BB6)](https://www.ebi.ac.uk/pride/)
 [![Ontologies](https://img.shields.io/badge/ontologies-OLS-7E57C2)](https://www.ebi.ac.uk/ols4/)
 
@@ -53,7 +53,8 @@ and is read at runtime — so the skills stay current when the spec evolves.
 
 ## Available skills
 
-All 18 skills are under the `sdrf:` namespace. In Claude Code, type `/sdrf:` and autocomplete will show them all.
+The repository contains 20 skills. The established domain workflows use the
+`sdrf:` namespace; the two review-gate skills use portable hyphenated names.
 
 | Skill | What it does |
 |-------|-------------|
@@ -69,6 +70,8 @@ All 18 skills are under the `sdrf:` namespace. In Claude Code, type `/sdrf:` and
 | `/sdrf:terms` | Find and verify ontology terms for any SDRF column |
 | `/sdrf:brainstorm` | Plan metadata strategy before creating an SDRF |
 | `/sdrf:review` | Comprehensive quality review with cross-reference to paper + PRIDE |
+| `$sdrf-adversarial-review` | Fresh-context, evidence-first review that distrusts the producer and issues a hash-bound verdict |
+| `$sdrf-annotate-reviewed` | Annotation orchestrator with deterministic validation, isolated review, repair, and mandatory re-review |
 | `/sdrf:explain` | Explain any column, error, or concept in plain language |
 | `/sdrf:convert` | Choose and configure analysis pipelines from SDRF |
 | `/sdrf:design` | Detect batch effects, confounders, replication issues |
@@ -184,7 +187,7 @@ For full SDRF annotation (PRIDE, OLS, literature), configure these MCP servers:
 - **PubMed** — Biomedical literature
 - **bioRxiv** — Preprint server
 
-The SessionStart hook checks for `parse_sdrf` and recommends `/sdrf:setup` if dependencies are missing.
+The SessionStart hook checks for `parse_sdrf` and recommends `/sdrf:setup` if dependencies are missing. A Stop hook blocks completion while any changed SDRF still lacks a passing independent review.
 
 ## Example Usage
 
@@ -346,7 +349,37 @@ python -m tools verify UNIMOD:1 --label Acetyl
 python -m tools cellline lookup HeLa
 python -m tools cellline annotate file.sdrf.tsv -o enriched.tsv
 python -m tools cellline stats
+
+# Inspect or enforce independent-review receipts
+python -m tools review-gate pending --json
+python -m tools review-gate gate
 ```
+
+### Adversarial review gate
+
+Changed SDRFs are identified by SHA-256. A passing receipt is valid only for that
+exact content; any subsequent edit makes the artifact pending again. The
+reviewer must run in fresh context, reconstruct requirements from the pinned
+specification, rerun deterministic validation, and challenge ontology, source
+evidence, file mappings, and experimental design.
+
+Changed artifacts are discovered from git on every call — measured against the
+merge base with the branch's upstream or default branch — so the gate does not
+depend on any hook having observed the edit. It works the same from Claude Code,
+another assistant, CI, or a plain shell:
+
+```bash
+python3 <sdrf-skills-root>/tools/review_gate.py gate --cwd <repo-root>
+```
+
+Exit status 1 means an artifact still needs review. Pass `--baseline <ref>` to
+measure against an explicit ref instead of the auto-detected one.
+
+On Claude Code, a `Stop` hook runs that same check and blocks completion while
+anything is pending, naming the artifacts and the reviewer skill to dispatch.
+The hook is a convenience, not the enforcement: the command above is what
+`/sdrf:contribute` and `$sdrf-annotate-reviewed` actually gate on, which is why
+the gate holds on platforms that cannot run Claude Code hooks at all.
 
 ### Tool modules
 
@@ -362,6 +395,7 @@ python -m tools cellline stats
 | `tools/massive_raw_files.py` | MassIVE fallback for recovering raw/acquisition file names from ProteomeCentral + FTP |
 | `tools/benchmark.py` | Benchmark suite for quality analysis across datasets |
 | `tools/cli.py` | Unified CLI entry point (`python -m tools <command>`) |
+| `tools/review_gate.py` | Finds changed SDRFs from git and verifies hash-bound independent-review receipts |
 
 ## Architecture
 
@@ -375,7 +409,7 @@ sdrf-skills/
 ├── requirements.txt              # Pip fallback
 ├── scripts/
 │   └── europepmc_fulltext.py     # Europe PMC full text cleaner: JATS/XML → LLM-friendly text/JSON
-├── hooks/hooks.json              # Claude Code — session init + dependency check
+├── hooks/hooks.json              # Claude Code — dependency check + review-gate Stop hook
 ├── hooks/check-deps.sh           # Checks parse_sdrf, recommends setup
 ├── spec/                         # ← Git submodule: proteomics-metadata-standard
 │   └── sdrf-proteomics/
@@ -394,6 +428,7 @@ sdrf-skills/
 │   ├── massive_raw_files.py      # MassIVE fallback for raw/acquisition file recovery
 │   ├── benchmark.py              # Dataset benchmark suite
 │   ├── column_ontology_map.py    # Column → ontology mappings
+│   ├── review_gate.py            # Hash-bound independent-review receipts
 │   └── cli.py                    # Unified CLI
 ├── tests/                        # ← pytest test suite (80+ tests)
 ├── examples/                     # ← Sample SDRF files for testing
@@ -409,6 +444,8 @@ sdrf-skills/
 │   ├── sdrf-terms/SKILL.md       # /sdrf:terms — ontology term lookup
 │   ├── sdrf-brainstorm/SKILL.md  # /sdrf:brainstorm — metadata planning
 │   ├── sdrf-review/SKILL.md      # /sdrf:review — comprehensive review
+│   ├── sdrf-adversarial-review/  # Independent falsification review + report contract
+│   ├── sdrf-annotate-reviewed/   # Producer/reviewer orchestration and re-review gate
 │   ├── sdrf-explain/SKILL.md     # /sdrf:explain — explain any concept
 │   ├── sdrf-contribute/SKILL.md   # /sdrf:contribute — PR to community repo
 │   ├── sdrf-convert/SKILL.md     # /sdrf:convert — pipeline guidance
@@ -423,7 +460,7 @@ sdrf-skills/
 
 ## Cross-Platform Design
 
-The core of this plugin is the `skills/` directory — 15 markdown files that encode
+The core of this plugin is the `skills/` directory — 20 markdown files that encode
 annotation methodology. These are **platform-agnostic**. Each platform just needs a
 thin shim to discover and load them:
 

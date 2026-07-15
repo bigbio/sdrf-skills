@@ -5,7 +5,7 @@ SDRF (Sample and Data Relationship Format) annotation in proteomics.
 
 ## What This Does
 
-18 structured workflows (SKILL.md files) that guide AI assistants through SDRF tasks
+20 structured workflows (SKILL.md files) that guide AI assistants through SDRF tasks
 using existing MCP tools (OLS, PRIDE, PubMed, bioRxiv, EuropePMC).
 Instead of guessing at ontology terms or validation rules, skills encode the
 community's annotation expertise as repeatable methodology.
@@ -22,7 +22,8 @@ Skills read these files at runtime. When the spec changes, run `git submodule up
 
 ## Available Skills (all under `sdrf:` namespace)
 
-All 18 skills are user-invocable. Type `/sdrf:` and autocomplete will show them all.
+The 18 established domain skills use `/sdrf:`. Two portable review-gate skills
+use the names `$sdrf-adversarial-review` and `$sdrf-annotate-reviewed`.
 
 | Command | Purpose |
 |---------|---------|
@@ -38,6 +39,8 @@ All 18 skills are user-invocable. Type `/sdrf:` and autocomplete will show them 
 | `/sdrf:terms` | Ontology term lookup with column-aware routing (from TERMS.tsv `values` field) |
 | `/sdrf:brainstorm` | Plan metadata strategy: templates, columns, design considerations |
 | `/sdrf:review` | Quality review with PRIDE + paper cross-reference and conflict resolution |
+| `$sdrf-adversarial-review` | Independent fresh-context falsification review with a hash-bound receipt |
+| `$sdrf-annotate-reviewed` | Producer/reviewer annotation loop with mandatory repair and re-review |
 | `/sdrf:explain` | Explain any SDRF column, error, or concept in plain language |
 | `/sdrf:convert` | Pipeline selection (MaxQuant, DIA-NN, OpenMS, quantms) + conversion commands |
 | `/sdrf:design` | Experimental design: batch effects, confounders, replication, MSstats contrasts |
@@ -68,3 +71,4 @@ These skills expect the following MCP servers to be available:
 11. ALWAYS validate with `parse_sdrf validate-sdrf --sdrf_file X --template Y` before presenting any produced SDRF to the user — update spec first with `git submodule update --remote --recursive`
 12. When the user asks for autonomous large-scale annotation, use `/sdrf:autoresearch` to resolve the target set, choose an objective, and run retained improvement rounds until the configured stop rule fires
 13. For blood-plasma discovery or biomarker campaigns, default to `Homo sapiens` only and require manuscript-backed plasma confirmation before promoting a dataset into annotation
+14. A producer must never approve its own SDRF. For changed SDRFs, require a passing receipt from `$sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.
