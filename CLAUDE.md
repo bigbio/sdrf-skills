@@ -1,74 +1,189 @@
-# sdrf-skills — SDRF Annotation Skills
+# CLAUDE.md
 
-Structured skills that give AI assistants expert-level capabilities for
-SDRF (Sample and Data Relationship Format) annotation in proteomics.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## What This Does
+## What this repo is
 
-20 structured workflows (SKILL.md files) that guide AI assistants through SDRF tasks
-using existing MCP tools (OLS, PRIDE, PubMed, bioRxiv, EuropePMC).
-Instead of guessing at ontology terms or validation rules, skills encode the
-community's annotation expertise as repeatable methodology.
+A **skills-first** repo: the product is `skills/*/SKILL.md` — markdown workflows that teach an AI
+assistant to annotate proteomics SDRF files. Supporting Python lives in `tools/`. Specification data
+is **not** stored here; it is read at runtime from the `spec/` git submodule.
 
-## Specification Data (Dynamic via Submodule)
+Skills are auto-discovered — `.claude-plugin/plugin.json` points at the `skills/` directory, and each
+SKILL.md declares its own name and routing description in frontmatter. Currently 20: 18 domain skills
+named `sdrf:*` (invoked `/sdrf:annotate`) plus 2 review-gate skills named `sdrf-adversarial-review`
+and `sdrf-annotate-reviewed`, deliberately platform-portable rather than `/sdrf:`-namespaced.
+Run `ls skills/` for the current set — **do not trust a hardcoded skill count anywhere in this repo**;
+README.md alone carries three contradictory numbers, and commit `d5c4c70` exists only to repair drift.
 
-The SDRF specification lives in the `spec/` git submodule:
+## Commands
 
-- **Column definitions**: `spec/sdrf-proteomics/TERMS.tsv`
-- **Template manifest**: `spec/sdrf-proteomics/sdrf-templates/templates.yaml`
-- **Individual templates**: `spec/sdrf-proteomics/sdrf-templates/{name}/{version}/{name}.yaml`
+```bash
+# Tests (126, ~2s, no network). CI runs: python -m pytest tests/ -v --tb=short
+python -m pytest tests/ -q
+python -m pytest tests/test_parser.py -q                                # single file
+python -m pytest tests/test_services.py::TestPRIDEClient::test_get_project_mock -q  # single test (tests use classes)
+python -m pytest tests/ -q -k unimod                                    # by keyword
 
-Skills read these files at runtime. When the spec changes, run `git submodule update --remote --recursive` to pull the latest.
+# Lint — NOT in CI, and currently RED: 32 errors (28 F401, 4 F541), all auto-fixable.
+# tools/review_gate.py is clean; the rest predates it. Run `ruff check --fix` before gating on it.
+ruff check tools/ tests/
 
-## Available Skills (all under `sdrf:` namespace)
+# Submodule: TWO levels deep (spec/ -> spec/sdrf-proteomics/sdrf-templates).
+# `--recursive` is mandatory or templates.yaml is silently MISSING.
+git submodule update --init --recursive     # restore pinned state (what you usually want)
+git submodule update --remote --recursive   # advance to upstream tip; leaves a dirty gitlink
 
-The 18 established domain skills use `/sdrf:`. Two portable review-gate skills
-use the names `$sdrf-adversarial-review` and `$sdrf-annotate-reviewed`.
+# tools CLI (no console_scripts; requires cwd == repo root)
+python -m tools --help   # check, score, fix, benchmark, massive-files, verify, cellline, review-gate
+```
 
-| Command | Purpose |
-|---------|---------|
-| `/sdrf:setup` | Install dependencies (parse_sdrf, techsdrf) — conda or pip guided setup |
-| `/sdrf:metascreen` | Screen/shortlist PRIDE, MassIVE, or ProteomeXchange studies against user-defined criteria → evidence-backed TSV for downstream annotation |
-| `/sdrf:autoresearch` | Autonomous retained-improvement loop over one dataset, a manifest, or a dataset class |
-| `/sdrf:knowledge` | SDRF format rules, column definitions (from TERMS.tsv), ontology routing, modification format, reserved words |
-| `/sdrf:templates` | Template system (from templates.yaml), selection rules, mutual exclusivity, inheritance |
-| `/sdrf:annotate` | Full annotation: PXD → PRIDE + paper → select templates → draft SDRF → validate |
-| `/sdrf:validate` | Validate against templates (columns from TERMS.tsv) with OLS ontology verification |
-| `/sdrf:improve` | Quality scoring (5 dimensions, weighted formula), specificity and completeness analysis |
-| `/sdrf:fix` | Auto-fix 10 error patterns (UNIMOD swaps, case, format, artifacts) + re-validate |
-| `/sdrf:terms` | Ontology term lookup with column-aware routing (from TERMS.tsv `values` field) |
-| `/sdrf:brainstorm` | Plan metadata strategy: templates, columns, design considerations |
-| `/sdrf:review` | Quality review with PRIDE + paper cross-reference and conflict resolution |
-| `$sdrf-adversarial-review` | Independent fresh-context falsification review with a hash-bound receipt |
-| `$sdrf-annotate-reviewed` | Producer/reviewer annotation loop with mandatory repair and re-review |
-| `/sdrf:explain` | Explain any SDRF column, error, or concept in plain language |
-| `/sdrf:convert` | Pipeline selection (MaxQuant, DIA-NN, OpenMS, quantms) + conversion commands |
-| `/sdrf:design` | Experimental design: batch effects, confounders, replication, MSstats contrasts |
-| `/sdrf:contribute` | Contribute annotated SDRF back to sdrf-annotated-datasets via PR (automated or guided) |
-| `/sdrf:techrefine` | Verify/refine technical metadata (instrument, tolerances, mods, DDA/DIA) from raw files via techsdrf |
-| `/sdrf:cellline` | Look up cell lines via Cellosaurus (REST API or bulk file) and translate them into SDRF cell-line columns (organism, disease, sampling site, sex, ancestry, age) |
+`python` is an alias to `python3` here, not a binary — skills invoke bare `python`, assuming an
+activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` pins only
+`python>=3.10` with no upper bound. **conda is not installed on this machine**, so the README's
+"recommended" conda path does not work here; `uv` is available and `requirements.txt` already assumes it.
 
-## MCP Servers Used
+## Architecture
 
-These skills expect the following MCP servers to be available:
-- **OLS** — Ontology term validation and search (NCBITaxon, UBERON, EFO, MONDO, CL, MS, UNIMOD, HANCESTRO, CHEBI, XLMOD, PRIDE, PATO)
-- **PRIDE MCP** — Project metadata, file listings, dataset search, EuropePMC search
-- **PubMed** — Publication metadata, full text from PMC, ID conversion (PMID↔PMCID↔DOI)
-- **bioRxiv** — Preprint search for recent experimental designs
+**Three layers, loosely coupled — the coupling gaps matter more than the layers:**
 
-## Key Rules
+1. `skills/` — 20 SKILL.md workflows. Most are single-file; only the two review-gate skills ship
+   supporting files (`references/review-contract.md`, `agents/openai.yaml`). Everything else reaches
+   shared machinery at repo root by relative path.
+2. `tools/` — offline-first Python. Only `massive-files` (annotate, review) and `cellline lookup`
+   (annotate) are ever called by a skill. `check`, `score`, `fix`, `benchmark`, and `verify` are called
+   by **no skill** — reachable only by hand or from CI, which smoke-tests all subcommands.
+3. `spec/` — the runtime data contract (below).
 
-1. NEVER guess ontology accessions — always verify via OLS
-2. NEVER invent SDRF column names — read TERMS.tsv from `spec/sdrf-proteomics/TERMS.tsv`
-3. When a PXD accession is given, ALWAYS fetch PRIDE project + publication before annotating
-4. Template selection BEFORE annotation begins — read `spec/sdrf-proteomics/sdrf-templates/templates.yaml`
-5. All ontology terms: label + accession (e.g., "breast carcinoma" with MONDO:0007254)
-6. Modification format: `NT=name;AC=UNIMOD:id;TA=aa;MT=Fixed|Variable`
-7. UNIMOD:1 = Acetyl, UNIMOD:21 = Phospho — the #1 most common swap
-8. Reserved words: "not available", "not applicable" — NEVER "N/A", "NA", "unknown"
-9. Multiple `comment[modification parameters]` columns are normal (one per modification)
-10. Multiple `comment[sdrf template]` columns are normal (one per template)
-11. ALWAYS validate with `parse_sdrf validate-sdrf --sdrf_file X --template Y` before presenting any produced SDRF to the user — update spec first with `git submodule update --remote --recursive`
-12. When the user asks for autonomous large-scale annotation, use `/sdrf:autoresearch` to resolve the target set, choose an objective, and run retained improvement rounds until the configured stop rule fires
-13. For blood-plasma discovery or biomarker campaigns, default to `Homo sapiens` only and require manuscript-backed plasma confirmation before promoting a dataset into annotation
-14. A producer must never approve its own SDRF. For changed SDRFs, require a passing receipt from `$sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.
+**Skill dependency graph:** `sdrf-autoresearch` is the only orchestrator, chaining
+annotate → terms → techrefine → validate → fix → improve in a keep/discard loop. **Five** skills
+(design, convert, brainstorm, explain, metascreen) are referenced by nothing and reachable only via
+frontmatter routing. `knowledge` is referenced exactly once (by `explain`), which is itself
+unreferenced — so it is only transitively reachable, despite its description claiming it is background
+for all skills.
+
+**Everything is relative-path fragile.** The 28 spec references in `skills/` (across 27 lines in 12
+files) are all repo-root-relative — 11 to `TERMS.tsv`, 9 to `templates.yaml`, 8 to individual template
+YAMLs. None is absolute or variable-prefixed, and `CLAUDE_PLUGIN_ROOT` appears **zero** times
+repo-wide. Installed as a real plugin these resolve against the *user's* cwd and silently miss; it
+works today only because `.claude/settings.json` enables it from a local dev clone.
+
+### Frontmatter schema (uniform across the 18 domain skills — match it exactly)
+
+```yaml
+---
+name: sdrf:annotate          # namespaced; does NOT match the directory (skills/sdrf-annotate/)
+description: Use when the user wants to ... Triggers on ...   # always starts "Use when the user"
+user-invocable: true
+argument-hint: "[PXD accession or experiment description]"
+---
+```
+
+No skill uses `allowed-tools`, `model`, or `version`.
+
+### Adding/renaming a skill: the 6-file lockstep
+
+Nothing in CI or the tests checks this, which is why the copies have already rotted. Update **all** of:
+`CLAUDE.md`, `README.md` (badge, prose, table, tree), `GEMINI.md`, `.opencode/AGENTS.md`,
+`.cursor/rules/sdrf-skills.mdc`, `.codex/INSTALL.md`. `.claude-plugin/plugin.json` needs **no** edit —
+it points at the directory.
+
+Domain policy is likewise duplicated: the UNIMOD table, reserved words, and row-count formula appear
+verbatim in both `sdrf-knowledge` and `sdrf-annotate` (error patterns a third time in `sdrf-fix`); the
+plasma heuristic is ~40 near-identical lines in both `sdrf-annotate` and `sdrf-autoresearch`. Edit one
+copy and the others desync silently.
+
+## MCP
+
+`.mcp.json` wires the bundled `mcp/server.py` (FastMCP, name `sdrf-pride-pmc`) as a project MCP server,
+launched via `./.venv/bin/python`. It exposes 9 tools: `get_project_details`, `get_project_files`,
+`get_article_metadata`, `get_pdf_by_unpaywall`, `search`, `searchClasses`, `getChildren`,
+`get_full_text_article`, `get_full_text_section`. `fastmcp`/`httpx` are in `requirements.txt` and
+`environment.yml`. **The server depends on `.venv/` existing** (`uv venv .venv && uv pip install
+--python .venv/bin/python -r requirements.txt`); conda users must repoint `command` in `.mcp.json`.
+
+Skills still call **five tools that exist in no bundled server** — `searchClassesWithEmbeddingModel`,
+`listEmbeddingModels`, `searchWithEmbeddingModel` (in `sdrf-terms` and `sdrf-annotate`), and
+`search_articles` / `search_preprints` (in `sdrf-brainstorm`). Those paths need an external OLS/PubMed/
+bioRxiv MCP or a rewrite onto `searchClasses`/`getChildren`.
+
+## Spec data contract (`spec/`, read at runtime — never hardcode)
+
+- **Columns**: `spec/sdrf-proteomics/TERMS.tsv`
+- **Manifest**: `spec/sdrf-proteomics/sdrf-templates/templates.yaml`
+- **Templates**: `spec/sdrf-proteomics/sdrf-templates/{name}/{version}/{name}.yaml`
+
+**TERMS.tsv is a glossary, not a column index.** 223 rows vs 345 distinct template columns, overlapping
+only 204. For "is this column valid for template X?", **the resolved template YAML is authoritative**.
+9 tab-separated columns (`term/type/ontology_term_accession/usage/values/description/allow_not_available/allow_not_applicable/allow_pooled`),
+**CRLF-terminated** with one blank row — parse with
+`csv.DictReader(open(p, newline='', encoding='utf-8-sig'), delimiter='\t')` and filter empty terms, or
+`allow_pooled == 'false'` fails against `'false\r'`. Header is `type[term]`
+(`characteristics[organism]`) **except** `type == 'anchor column'` (source name, assay name,
+technology type), which is the bare term — `anchor column[source name]` is invalid SDRF.
+
+**The `values` field drives ontology routing, but it is prose, not a closed grammar.** Common shapes:
+comma-separated prefixes in preference order (`disease` → `MONDO, EFO, DOID, PATO`) → OLS;
+`fixed: a, b, c` → closed enum, **no** OLS call; `pattern:`/`integer`/`numeric`/`free text` → no OLS;
+prefix + subtree restriction (`MS, PRIDE (children of MS:1000044)`). **~26 of 223 rows fit none of
+these** — do not write a parser that assumes total coverage, and never split on `,` without handling
+the parenthetical, or you get the bogus ontology `PRIDE (children of MS:1000044)`.
+
+**Templates**: `mutually_exclusive_with` appears **0 times** in `templates.yaml` — exclusivity lives in
+the individual YAMLs and the graph is **asymmetric**, so compute the symmetric closure or you will
+propose `human` + `plants`. Only `ms-proteomics`, `affinity-proteomics`, and `ms-metabolomics` are
+`usable_alone: true`; `base` and `sample-metadata` are construction artifacts — never offer them.
+`excludes` is **inert**: `resolve_templates.py` surfaces it as metadata only, and `merge_columns` never
+consults it. The version in `extends: sample-metadata@>=1.0.0` is likewise decorative — the resolver
+splits on `@` and always loads `latest`. Read `spec/scripts/resolve_templates.py` rather than
+reimplementing merge semantics.
+
+## SDRF invariants (silent-corruption class — wrong output, no exception)
+
+1. **NEVER guess ontology accessions** — always verify via OLS. This is *not* self-enforcing: only
+   `annotate` and `cellline` state it about accessions specifically, and `knowledge` — despite being
+   the "background" skill — contains no such language at all. This file is the only global home for it.
+2. **UNIMOD:1 = Acetyl, UNIMOD:21 = Phospho** — the #1 swap. (`tools/column_ontology_map.py` maps both
+   UNIMOD:354 and UNIMOD:737 to `TMT6plex`, so swaps between *those* are never detected.)
+3. **Reserved words**: `not available` / `not applicable` — never `N/A`, `NA`, `unknown`. Gated
+   per-column by TERMS.tsv's `allow_*` booleans. Exception: `sdrf-metascreen` emits a curation TSV, not
+   an SDRF, and uses **neither** reserved word — it mandates `unclear` for any undetermined `extract`
+   field and `uncertain` in the `label` column (legal values: `include`/`exclude`/`uncertain`). The two
+   tokens are not interchangeable, and neither belongs in an SDRF.
+4. **Modification format**: `NT=name;AC=UNIMOD:id;TA=aa;MT=Fixed|Variable`. A positional value
+   (`Protein N-term`) belongs in `PP=`, not `TA=`.
+5. **All ontology terms carry label + accession** (e.g. "breast carcinoma" / MONDO:0007254). This file
+   is the correct copy — `GEMINI.md:45`, `.cursor/rules/sdrf-skills.mdc:44`, and
+   `.opencode/AGENTS.md:50` all say EFO:0000305; fix those toward this file, not the reverse.
+6. **Duplicate columns are legal and load-bearing**: multiple `comment[modification parameters]` (one
+   per mod) and multiple `comment[sdrf template]` (one per template) — both `cardinality: multiple`.
+   `tools/sdrf_parser.py` disambiguates with `__N` keys; keying rows by raw name silently reads only
+   the first occurrence.
+7. **Validate before presenting any SDRF**: `parse_sdrf validate-sdrf --sdrf_file X --template Y`
+   (repeat `--template` per template), after refreshing the submodule. `parse_sdrf` ships in
+   `sdrf-pipelines` and is **not installed by default** (CI installs only `requests` + `pytest`) — run
+   `/sdrf:setup`. Keep concurrent `parse_sdrf` jobs ≤ 2.
+8. **A producer must never approve its own SDRF.** For changed SDRFs, require a passing receipt from
+   `sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.
+   Enforced by `python -m tools review-gate` (`track`, `pending`, `status`, `gate`, `approve`), which
+   discovers changed artifacts from git and binds each receipt to the artifact's SHA-256, so an
+   approval cannot outlive the content it describes. `gate` exits 1 while review is pending.
+   Enforcement lives in the CLI, not the Stop hook, because four of the five platforms this repo
+   supports cannot run Claude Code hooks at all.
+
+## Landmines
+
+- **CI runs no tests on the product.** `tools-tests.yml` is path-filtered to `tools/**`, `tests/**`,
+  `requirements.txt`. A PR touching **only** `skills/**` — the actual product — plus `hooks/`, `mcp/`,
+  `plugin.json`, or docs runs **zero** tests. `check-spec.yml` has no path filter so it runs on every
+  PR, but only warns when the spec is stale; it never fails the build.
+- **Fixture path-filter gap**: `tests/conftest.py` reads `examples/PXD_synthetic.sdrf.tsv` and
+  `tools/cellline_db.py` defaults to `data/*.tsv`, but neither `examples/**` nor `data/**` is in the CI
+  filter. Editing them can break main with CI never running — run pytest locally.
+- **`tests/test_services.py` mocks fail open**: it pre-seeds the private `_cache` with a key that must
+  byte-for-byte equal `f"{base_url}{endpoint}|{params}"`. Any mismatch issues a **live** request to
+  Cellosaurus/UniProt/EBI instead of failing. Prefer `MagicMock(spec=OLSClient)` injection, as
+  `tests/test_hallucination.py` does.
+- **Dead code**: `tools/services.py` is imported only by its own test; `hooks/check-deps.sh` is dead —
+  `hooks/hooks.json` inlines the same logic, so both must be edited in lockstep.
+- `tools/sdrf_fixer.py` implements **7** fix patterns, not the 10 its own docstring and the README
+  claim (comments number them 1,3,4,5,6,7,9).
