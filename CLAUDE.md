@@ -54,12 +54,23 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
    by **no skill** — reachable only by hand or from CI, which smoke-tests all subcommands.
 3. `spec/` — the runtime data contract (below).
 
-**Skill dependency graph:** `sdrf-autoresearch` is the only orchestrator, chaining
-annotate → terms → techrefine → validate → fix → improve in a keep/discard loop. **Five** skills
-(design, convert, brainstorm, explain, metascreen) are referenced by nothing and reachable only via
-frontmatter routing. `knowledge` is referenced exactly once (by `explain`), which is itself
-unreferenced — so it is only transitively reachable, despite its description claiming it is background
-for all skills.
+**Skill dependency graph — two orchestrators.** `sdrf-autoresearch` chains
+annotate → terms → techrefine → validate → fix → improve in a keep/discard loop, then dispatches a
+fresh-context `sdrf-adversarial-review` at Step 9. `sdrf-annotate-reviewed` runs the producer/reviewer
+loop: annotate (or fix/improve/techrefine) → adversarial review → repair → mandatory re-review.
+
+The review gate is routed from exactly three places, all deliberate: `sdrf-contribute` runs
+`review_gate.py gate` before publishing, `sdrf-autoresearch` gates completion, and `sdrf-review`
+declares itself **advisory-only** when it produced the artifact, pointing at the real reviewer rather
+than laundering a self-assessment into a verdict. Contribute and autoresearch are the only paths by
+which an SDRF escapes, so gating elsewhere would be ceremony. None of this routing is covered by CI
+(`tools-tests.yml` ignores `skills/**`), so all three call sites could be deleted and CI stays green.
+
+**Six** skills (design, convert, brainstorm, explain, metascreen, annotate-reviewed) are referenced by
+no other skill and reachable only via frontmatter routing — for metascreen and annotate-reviewed that
+is by design; they are entry points. `knowledge` is referenced exactly once (by `explain`), which is
+itself unreferenced, so it is only transitively reachable despite its description claiming it is
+background for all skills.
 
 **Everything is relative-path fragile.** The 28 spec references in `skills/` (across 27 lines in 12
 files) are all repo-root-relative — 11 to `TERMS.tsv`, 9 to `templates.yaml`, 8 to individual template
@@ -78,7 +89,9 @@ argument-hint: "[PXD accession or experiment description]"
 ---
 ```
 
-No skill uses `allowed-tools`, `model`, or `version`.
+No skill uses `allowed-tools`, `model`, or `version`. The two review-gate skills are the exception to
+the schema above: they declare only `name` + `description` and are **not** `user-invocable` — they are
+dispatched by other skills into a fresh context, never typed as a slash command.
 
 ### Adding/renaming a skill: the 6-file lockstep
 
