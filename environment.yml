@@ -13,10 +13,19 @@ channels:
 dependencies:
   - python>=3.10
   - sdrf-pipelines      # parse_sdrf CLI for validation and pipeline conversion
-  - techsdrf            # raw file analysis for /sdrf:techrefine
   - thermorawfileparser # for Thermo .raw files (optional; techsdrf skips .raw without it)
   - defusedxml          # hardened XML parsing for scripts/europepmc_fulltext.py
+  - pip                 # explicit: conda warns if pip deps are listed without it
   - pip:
     - requests>=2.28
     - fastmcp>=3.4      # bundled MCP server (mcp/server.py), wired up via .mcp.json
     - httpx>=0.28       # HTTP client used by mcp/server.py
+
+# techsdrf (/sdrf:techrefine) is NOT installable here: it is on no conda channel,
+# not on PyPI, and a plain `pip install git+https://github.com/bigbio/techsdrf.git`
+# fails because upstream pyproject.toml carries a PEP 639-invalid license classifier:
+#   InvalidConfigError: License classifiers have been superseded by license expressions
+# Install it manually from a patched clone (see requirements.txt):
+#   git clone https://github.com/bigbio/techsdrf.git ../techsdrf
+#   # remove the 'License :: OSI Approved :: Apache Software License' classifier
+#   pip install ../techsdrf
