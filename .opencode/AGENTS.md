@@ -2,7 +2,7 @@
 
 ## Overview
 
-18 structured workflow files that encode expert-level SDRF (Sample and Data
+20 structured workflow files that encode expert-level SDRF (Sample and Data
 Relationship Format) annotation methodology for proteomics.
 
 ## Skills Directory
@@ -26,6 +26,8 @@ description) followed by a step-by-step workflow in Markdown.
 | `sdrf-terms` | Ontology term lookup with column-aware routing (disease→EFO, tissue→UBERON, etc.) |
 | `sdrf-brainstorm` | Pre-annotation planning: templates, similar experiments, column recommendations |
 | `sdrf-review` | Quality review: cross-reference SDRF against publication and PRIDE metadata |
+| `sdrf-adversarial-review` | Independent fresh-context falsification review with hash-bound approval |
+| `sdrf-annotate-reviewed` | Annotation, validation, independent review, repair, and re-review orchestration |
 | `sdrf-explain` | Plain-language education about any SDRF column, error, or concept |
 | `sdrf-convert` | Pipeline selection and conversion commands (MaxQuant, DIA-NN, OpenMS, quantms) |
 | `sdrf-design` | Experimental design analysis: batch effects, confounders, replication assessment |

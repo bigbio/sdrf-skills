@@ -303,6 +303,12 @@ For each dataset:
    - keep only if the score improves and validation does not regress
    - discard any refinement that adds unsupported metadata
 
+9. Independently review retained final artifacts
+   - dispatch a fresh context using `sdrf-adversarial-review`
+   - do not pass producer reasoning or self-assessment
+   - require a hash-bound passing receipt before contribution or completion
+   - after any correction, re-review in another fresh context
+
 ## Step 5: Repeat Until the Stop Rule Fires
 
 Repeat the full loop until one of these is true:

@@ -29,6 +29,8 @@ When working with SDRF files, proteomics metadata, or when the user asks to **in
 - **Find ontology terms**: `skills/sdrf-terms/SKILL.md` — column-to-ontology mapping, OLS search
 - **Plan metadata**: `skills/sdrf-brainstorm/SKILL.md` — pre-annotation strategy
 - **Review quality**: `skills/sdrf-review/SKILL.md` — cross-reference with paper + PRIDE
+- **Adversarial review**: `skills/sdrf-adversarial-review/SKILL.md` — require a fresh reviewer and hash-bound receipt
+- **Reviewed annotation**: `skills/sdrf-annotate-reviewed/SKILL.md` — orchestrate producer, isolated reviewer, repair, and re-review
 - **Explain concepts**: `skills/sdrf-explain/SKILL.md` — plain-language SDRF education
 - **Choose pipelines**: `skills/sdrf-convert/SKILL.md` — MaxQuant, DIA-NN, quantms guidance
 - **Analyze design**: `skills/sdrf-design/SKILL.md` — batch effects, confounders, replication
