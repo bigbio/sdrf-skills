@@ -121,16 +121,21 @@ For Thermo .raw files, `thermorawfileparser` is not on PyPI — use conda: `cond
 
 After dependencies are installed (step 2 above):
 
-1. Install the plugin:
+1. Load the plugin from your clone (step 1 above):
 ```bash
-# From the official marketplace (when published):
-/plugin install sdrf-skills
-
-# Or from GitHub:
-/plugin install github:bigbio/sdrf-skills
+cd sdrf-skills
+claude --plugin-dir .
 ```
+This loads the skills straight from the working tree — no install step. `/reload-plugins` picks up edits without a restart.
+
+Start Claude Code from the repo root: skills reference the `spec/` data (`TERMS.tsv`, `templates.yaml`) by repo-root-relative path.
+
+Check what loaded with `claude --plugin-dir . plugin details sdrf-skills` — you should see 20 skills.
+
 2. Run guided dependency setup: `/sdrf:setup`
 3. Then use: `/sdrf:annotate PXD######` and/or `/sdrf:validate your_file.sdrf.tsv`
+
+> Marketplace install (`/plugin install sdrf-skills@...`) is not available yet: this repo ships no `.claude-plugin/marketplace.json`. See [#27](https://github.com/bigbio/sdrf-skills/issues/27).
 
 </details>
 
