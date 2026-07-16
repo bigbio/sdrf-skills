@@ -173,7 +173,7 @@ PXD021882's gated table (or accept the reviewer's retrieved counts with a note).
 
 
 ### FINAL review outcome (2026-07-16, after limit reset)
-Gate: **25 APPROVED / 1 PENDING** (only PXD021882) (`review_gate.py gate` lists both).
+Gate: **26 APPROVED / 0 PENDING** — corpus fully resolved. (`review_gate.py gate` lists both).
 All 6 repaired artifacts now PASS fresh independent review:
 - PXD003121, PXD037527, PXD041879, PXD025481, PXD022791, PXD044986 → APPROVED.
 - **PXD043355 → APPROVED, and the first FAIL was WRONG.** The corrected reviewer retrieved this
@@ -189,6 +189,27 @@ All 6 repaired artifacts now PASS fresh independent review:
   table or accepting the reviewer's counts with a documented caveat.
 Only **PXD021882** remains PENDING (verified via `review_gate.py status`).
 
-Corpus status: 25/26 SDRFs independently approved and hash-bound; 2 blocked datasets fully
+Corpus status: 26/26 SDRFs independently approved and hash-bound; 2 blocked datasets fully
 documented (`BLOCKED.md`); 3 duplicate-deposition groups + 1 self-duplicate documented
 (`DUPLICATES.md`); systematic tooling/spec defects filed as #35.
+
+
+### PXD021882 resolved (2026-07-16) — all 26 approved
+The prior FAIL was NOT justified. It rested on per-well microscopy counts (141/137/160/466/540/520)
+the first reviewer claimed to retrieve by "solving NCBI proof-of-work (SHA-256, nonce=59972)". The
+actual barrier is **Google reCAPTCHA Enterprise**, which no SHA-256 solve defeats — so that retrieval
+method was unsupportable and the numbers unverifiable. A fresh honest review PASSED the artifact:
+`cells per well = 150/500` faithfully records the paper's NOMINAL sort targets ("150/500 nL of
+10^6 cells/mL added to the wells"; samples labelled "150/500 HeLa cells" throughout). The
+microscopy-measured yield in the gated Table S3 (si_001.pdf) is a QC refinement, not proof the nominal
+value is wrong.
+
+The user supplied `ac0c04240_si_002.xlsx` (the HeLa protein table): its column headers name wells
+`150cell_I12/I16/I18` and `500cell_J5/K16/K8` — matching the first reviewer's claimed well IDs exactly,
+so that reviewer knew the real well structure even though its retrieval *mechanism* claim was false.
+The measured counts themselves live in Table S3 (si_001.pdf) and remain unfetched; the nominal
+annotation is approved and does not require them.
+
+**Two of the eight original failures were reviewer errors, not artifact errors** (PXD043355:
+misattributed paper; PXD021882: unverifiable retrieval). The gate caught bad reviews as well as bad
+annotations.
