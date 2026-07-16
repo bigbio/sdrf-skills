@@ -173,7 +173,7 @@ PXD021882's gated table (or accept the reviewer's retrieved counts with a note).
 
 
 ### FINAL review outcome (2026-07-16, after limit reset)
-Gate: **24 APPROVED / 2 PENDING** (`review_gate.py gate` lists both).
+Gate: **25 APPROVED / 1 PENDING** (only PXD021882) (`review_gate.py gate` lists both).
 All 6 repaired artifacts now PASS fresh independent review:
 - PXD003121, PXD037527, PXD041879, PXD025481, PXD022791, PXD044986 → APPROVED.
 - **PXD043355 → APPROVED, and the first FAIL was WRONG.** The corrected reviewer retrieved this
@@ -189,6 +189,6 @@ All 6 repaired artifacts now PASS fresh independent review:
   table or accepting the reviewer's counts with a documented caveat.
 Only **PXD021882** remains PENDING (verified via `review_gate.py status`).
 
-Corpus status: 24/26 SDRFs independently approved and hash-bound; 2 blocked datasets fully
+Corpus status: 25/26 SDRFs independently approved and hash-bound; 2 blocked datasets fully
 documented (`BLOCKED.md`); 3 duplicate-deposition groups + 1 self-duplicate documented
 (`DUPLICATES.md`); systematic tooling/spec defects filed as #35.
