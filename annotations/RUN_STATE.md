@@ -213,3 +213,11 @@ annotation is approved and does not require them.
 **Two of the eight original failures were reviewer errors, not artifact errors** (PXD043355:
 misattributed paper; PXD021882: unverifiable retrieval). The gate caught bad reviews as well as bad
 annotations.
+
+
+### Continued: PXD053023 (2026-07-16) — 27 total approved
+Next study after the 26-artifact round. Xenopus blastomere + HeLa CE-ESI SCP (Nemes lab), 35 rows,
+annotated -> independently reviewed (rev-PXD053023) -> committed (f8299e3). The flagged
+Carbamidomethyl(Fixed) was confirmed against the deposited FragPipe search config. Found PXD057685 is
+a superset re-deposition -> DUPLICATES.md Group 4 (canonical: PXD053023). Not pushed.
+**41 include datasets remain unannotated.**
