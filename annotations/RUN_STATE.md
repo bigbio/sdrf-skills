@@ -280,3 +280,27 @@ After the limit reset, all four were carried to approval:
 
 **Gate: 35 APPROVED / 0 PENDING.** **33 include datasets remain unannotated.** Not pushed since 2d61c4c
 (f8299e3, ba790d4, 9999980, 9c93d00, + this batch's commit local only).
+
+### Wave: 4 label-free/DIA studies (2026-07-16) — 39 total approved (commits 3e13c71, 1460789)
+Cleanest-first wave; each independently reviewed and hash-bound.
+- **PXD056327** — HeLa One-Tip + cellenONE SCP (Piga et al., PMID:39901769), 138×50. Sibling of the
+  approved PXD054445, **0 run overlap** (AST5-only vs AST1/3/5; no DUPLICATES entry). Mixed DDA/DIA →
+  dia-acquisition template omitted. TMTproZero DDA arm carried as UNIMOD:2017 variable mod (mono-plex,
+  no reporter channels → comment[label]=label free sample). APPROVED rev-PXD056327.
+- **PXD051942** — SC-pSILAC turnover single cells (Sabatier et al., Cell 2025), 1376×43 (largest so
+  far). Heavy Lys8 UNIMOD:259 + Arg10 UNIMOD:267 as variable mods, one row/file (intra-cell pulse, not
+  multiplexing). hFF foreskin identity is **paper-backed here** ("human foreskin fibroblasts") — the
+  legitimate contrast to PXD054066 where it was filename-token inference. APPROVED rev-PXD051942.
+- **PXD049412** — heterogeneous Astral SCP benchmark (A549/HeLa/H9-ESC/HeLa-S3), 289/357×44 (partial).
+  H9=WA09 CVCL_9773 and Pierce HeLa digest=HeLa-S3 CVCL_0058 traps handled; instrument split
+  Astral/Exploris-480 confirmed from raw headers. 68 excluded w/ full accounting: 18 two-proteome
+  HeLa+yeast mixes (partial block in BLOCKED.md), 34 blanks, 16 washes. APPROVED rev-PXD049412.
+- **PXD055869** — salivary-gland stem/progenitor SCP, timsTOF diaPASEF, 271×44. **Three review rounds:**
+  (1) FAIL — modifications wrongly "not applicable" (DIA-NN external PTM library → Ox/Acetyl/Phospho/
+  Methyl/Dimethyl/Trimethyl present in deposited pr_matrix) + enrichment marker overstated; (2) FAIL —
+  assay name "run 1" on all 271 rows (base.yaml unique-per-run, not machine-enforced by parse_sdrf);
+  (3) PASS. APPROVED rev3-PXD055869. Good demonstration the gate catches spec-convention violations the
+  validator misses.
+
+**Gate: 39 APPROVED / 0 PENDING.** **29 include datasets remain unannotated** (4 in flight: PXD061710,
+PXD062231, PXD069335, PXD074900). Not pushed (local: …, cc39d8c, 3e13c71, 1460789).
