@@ -233,8 +233,18 @@ that exists **for precisely these five rows** — while `characteristics[cell li
 ships the word for the concept; the other forbids the row from existing. Both templates are declared
 by the same file, as `single-cell` requires an organism/sample template alongside it.
 
-Eight datasets now (`PXD052416`, `PXD019515`, `PXD016921`, `PXD022791`, `PXD021882`, `PXD025387`,
-`PXD024043`, `PXD043355`) have lost runs or a whole template to one flag pair on one column. `PXD016921` is the cleanest minimal
+`PXD037527` hits the **same wall**: 331 deposited raw runs → **325** annotated. The 6 excluded are
+4 × `BlankCarryOver02ng_{15m,30m}_{1,2}` and 2 × `..._DIA50_02ng_blk{,2}` — solvent runs acquired to
+measure column carry-over. Same cause: `characteristics[cell line]` has no legal value for a
+sample-less run, and asserting `HeLa S3` for mobile phase A passes `parse_sdrf` and is false. The
+blanks are **not incidental**: the paper quantifies them directly ("Only 171 proteins were identified
+on average from blank runs, including those identified by MBR, indicating a low degree of column
+carryover"), and the submitters deposited two dedicated Proteome Discoverer result files for them
+(`02ng_blank_15m_MBR.msf`, `02ng_blank_30m_MBR.msf`). A run with its own deposited search result and
+its own sentence in the paper is not debris — and it is still unwritable.
+
+Nine datasets now (`PXD052416`, `PXD019515`, `PXD016921`, `PXD022791`, `PXD021882`, `PXD025387`,
+`PXD024043`, `PXD043355`, `PXD037527`) have lost runs or a whole template to one flag pair on one column. `PXD016921` is the cleanest minimal
 reproduction: a 7-file deposit where exactly one row is inexpressible. `PXD022791` (below) is the
 most damaging: a deposition that is 63% cell-line material and still cannot declare `cell-lines`.
 `PXD025387` (above) and `PXD043355` are the strongest argument that the flags are simply wrong: there, `single-cell`
@@ -323,6 +333,36 @@ Two details this instance adds:
 
 **Unblocked by:** the same fix — per-row template applicability, or `allow_not_applicable: true` on
 `characteristics[cell line]`.
+
+### Sixth instance: `PXD046467` — the mixing partner is a *whole other phylum*
+
+`PXD046467` (Shen *et al.*, PMID:39325989) was annotated in full: 83 deposited raw → **83**
+annotated. It reproduces the shape a sixth time, and closes the "maybe it's always neurons/blood"
+escape: here the 30 rows that veto `cell-lines` are **cells inside a live frog embryo**.
+
+| | count |
+|---|---|
+| HeLa S3 rows losing `CVCL_0058` | **53 of 83 (64%)** |
+| rows forcing the drop | 30 (*X. laevis* D11 blastomere aspirates) |
+
+Structurally identical to `PXD022791`: a majority-cell-line deposition (64%) silenced by a minority
+of rows. Two details this instance adds:
+
+- **It compounds with the organism templates.** The deposition is human + Xenopus, and
+  `human`↔`vertebrates` are mutually exclusive, so `vertebrates` is forced — which *also* un-licenses
+  `characteristics[age]` and `[ancestry category]`. HeLa S3's Cellosaurus demographics
+  (`AG=30Y6M`, `Population: African American`) are therefore unrecordable on two independent grounds
+  at once. The all-or-nothing template model fails twice over the same mixed cohort.
+- **The lost accession is the one the brief warns hardest about.** `CVCL_0058` (HeLa **S3**, the
+  Pierce 88329 digest standard) versus parental `CVCL_0030` is exactly the distinction that is
+  "research, not lookup" — and the column that would record it does not exist in the file. Identity
+  survives only as `characteristics[cell type]` = `NT=HeLa S3 cell;AC=CLO:0003696`, which is a
+  second-best home made worse by CLO carrying **two indistinguishable S3 terms** (`CLO:0003696`
+  "HeLa S3 cell" / `CLO:0003699` "HELA-S3 cell", neither with a definition, xref, or Cellosaurus
+  link). The fallback the previous instances relied on is itself ambiguous here.
+
+**Unblocked by:** the same fix. Six datasets now (`PXD019515`, `PXD022791`, `PXD021882`,
+`PXD046467`, plus `PXD052416`/`PXD016921` via the sample-less-run variant).
 
 ---
 
@@ -452,6 +492,56 @@ What is lost is again measured, not hypothetical, and again a clean scalar: the 
 **25 m/z** isolation window over **400–1000 m/z**, 8 PASEF scans/cycle, `diaPASEF` — every one of
 which fits its column's pattern and has nowhere to go. Two independent depositions have now paid the
 same cost, which is the argument for the fix proposed above.
+
+### Third instance: PXD037527 — and the first where the DDA half *is* the paper
+
+`PXD037527` (Truong *et al.*, PMID:37380610) is the third independent collision: **255 DDA/WWA +
+70 DIA runs**, screen `acquisition=both`, again true *per run*. Same option, same reason, same cost:
+325 deposited-and-annotated rows, four DIA columns lost.
+
+This instance **retires the "just declare `dia-acquisition` and drop the DDA rows" counter-argument
+entirely.** In PXD024043 the DDA runs were a minority arm; in PXD044986 they built the spectral
+libraries. Here the paper is *titled* "Data-Dependent Acquisition with Precursor Coisolation…" — DIA
+is the **comparator**, present only so the DDA/WWA method can be shown to beat it (Fig. 2A, 4A).
+Declaring `dia-acquisition` would drop 255 of 325 rows, including every run of the method the paper
+exists to describe, and keep only the arm it argues against.
+
+The lost values are again clean scalars: fixed **50 m/z** windows over **400–800 m/z** (plus SWATH
+variants in Table S1), all of which fit their columns' patterns and have nowhere to go.
+
+A fourth option specific to this deposition — split it into two SDRFs, DDA and DIA — was rejected
+because the ATG9A-knockout comparison and the HeLa/K562 cell-type comparison **span both acquisition
+modes**; splitting would sever the biological factor from half its samples to satisfy a template flag.
+
+### Fourth instance: PXD046467 — a DDA-vs-DIA benchmark, i.e. the exact study the template excludes
+
+`PXD046467` (Shen *et al.*, PMID:39325989) is the fourth independent collision: **62 DIA + 21 DDA**
+Q Exactive Plus runs, screen `acquisition=both`, again true *per run*. Same option, same reason:
+83 deposited → **83** annotated, four DIA columns lost.
+
+If PXD037527 retired the "drop the DDA rows" counter-argument, this instance retires the template's
+premise. The paper is titled *"Data-Independent Acquisition Shortens the Analytical Window of
+Single-Cell Proteomics to Fifteen Minutes…"* and its entire claim is a **head-to-head DDA-vs-DIA
+comparison on the same material** ("This DIA method identified 1161 proteins vs 401 proteins by the
+reference DDA"). The 21 DDA runs *are* the control the result is measured against, and they are
+searched with Proteome Discoverer to build the very spectral library the DIA half uses (the
+deposited Spectronaut `.sne` files name it `CE 350-900 library 7 runs 20kV`; the paper: "The DIA
+spectral library was developed by analyzing the HeLa proteome digest using DDA in 7 technical
+replicates").
+
+`dia-acquisition` is therefore undeclarable for **method-development papers about DIA** — the
+population most likely to have DIA window metadata worth recording. Declaring it would drop the
+control arm and the library-generation runs in one move.
+
+Splitting into two SDRFs was rejected for the same reason as PXD037527: the DDA/DIA axis **is** the
+study's `factor value`, so splitting severs the factor from half its rows.
+
+The lost values are again clean scalars, and here they are the study's *independent variable* —
+read directly out of the Xcalibur methods embedded in the raw files: **40 windows × 10 m/z** vs
+**20 × 20**, over **500–900 m/z** (MS1 490–910). Every one fits its column's pattern and has nowhere
+to go; they survive only in `assay name` and `comment[data file]`.
+
+Four depositions have now paid this cost (`PXD024043`, `PXD044986`, `PXD037527`, `PXD046467`).
 
 ---
 

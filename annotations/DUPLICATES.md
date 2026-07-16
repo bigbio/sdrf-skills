@@ -64,6 +64,55 @@ Needs a human decision. All three are annotated; do not load more than one.
 
 ---
 
+## New shape — PXD046467: 8 duplicate files **inside a single deposition** (83 files = 75 runs)
+
+The three groups above are duplicate *depositions*: dangerous only if a consumer concatenates two
+SDRFs. `PXD046467` is the first instance where **one accession double-counts itself**, so a consumer
+loading a single SDRF and no others still double-counts.
+
+`PXD046467` (Shen *et al.*, PMID:39325989) deposits **83 `.RAW` files that are only 75 distinct
+acquisitions.** Eight files are byte-identical re-deposits of another eight:
+
+| primary deposit | byte-identical re-deposit |
+|---|---|
+| `2020_12_17_BS01_hela_DDA_90min_trial1.RAW` | `2020_12_17_BS01_heladigest_350-900_trial1.RAW` |
+| `2020_12_21_BS01_hela_DDA_90min_trial2.RAW` | `2020_12_21_BS01_heladigest_350-900_trial2.RAW` |
+| `2020_12_23_BS01_hela_DDA_90min_trial3.RAW` | `2020_12_23_BS01_heladigest_350-900_trial3.RAW` |
+| `2021-1-20-BS03-Hela-60min-trial1.RAW` | `2021-1-20-BS03-Hela-500-900_10X40_3e6_-20kV-trial1.RAW` |
+| `2021-1-20-BS04-Hela-60min-trial2.RAW` | `2021-1-20-BS04-Hela-500-900_10X40_3e6_-20kV-trial2.RAW` |
+| `2021-1-21-BS02-Hela-60min-trial3.RAW` | `2021-1-21-BS02-Hela-500-900_10X40_3e6_-20kV-trial3.RAW` |
+| `2021-1-21-BS04-Hela-60min-trial4.RAW` | `2021-1-21-BS04-Hela-500-900_10X40_3e6_-20kV-trial4.RAW` |
+| `2021_2_6_BS02_HelaDIA40mintrial2.RAW` | `2021_2_6_BS02_Hela**V**DIA40mintrial3.RAW` |
+
+**Verification differed from the groups above, and this matters for future runs.** The other groups
+were confirmed on PRIDE's SHA-1. **PRIDE's `checksum` field is empty for every file in
+PXD046467**, so checksum comparison was impossible. The pairs were found by exact `fileSizeBytes`
+collision (8 collisions among 83 Thermo `.raw` files is not chance) and confirmed by HTTP-range
+reading **five 64 KB windows per file** (offsets 0, ¼, ½, ¾, end) and hashing: identical at every
+sampled offset in all 8 pairs. **Do not assume `files/all` carries a checksum.**
+
+**Cause, from the deposition's own search files** (not inferred): the PD `.msf` input paths read
+`E:\...\Official Data for PRIDE Submission\Gradiant Separation Time\DDA\RAW\90 min\...`. One
+acquisition served two figure panels, so it was copied into two folders and flattened into one PRIDE
+directory under two names. `DDA_350-900_combined.msf` and `90min_HeLa_DDA_combinednormalized.msf`
+**take the same three raw files as input** — the "350–900 m/z" panel *is* the 90-min DDA condition.
+
+**One pair is a data-integrity defect, not just redundancy.** `HelaDIA40mintrial2` and
+`Hela**V**DIA40mintrial3` are one acquisition deposited as *trial 2* and *trial 3*. The 40-min DIA
+condition therefore presents 5 technical replicates but holds **4 distinct measurements**, against a
+paper that claims "3–5 technical replicates" per condition.
+
+**`annotations/PXD046467.sdrf.tsv` carries all 83 rows** (an SDRF indexes its deposition, and
+`comment[data file]` must resolve every file). The pairs share `source name` and every technical
+value and differ only in `assay name` + `comment[data file]`, so the table above is the
+deduplication key. **A consumer processing all 83 files will double-count 8 runs.**
+
+Note `parse_sdrf` *will* surface this if the duplicates are given a shared `assay name`: it rejects
+a repeated `(source name, assay name, comment[label])`. That is the one validator check that caught
+a real defect in this dataset — see `annotations/PXD046467.report.md`.
+
+---
+
 ## Why these were annotated anyway
 
 Each SDRF is correct *for its own accession* — that is what an SDRF describes, and a consumer
