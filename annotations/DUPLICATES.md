@@ -139,6 +139,41 @@ a real defect in this dataset — see `annotations/PXD046467.report.md`.
 
 ---
 
+## Group 5 — PXD048179 ≡ PXD053464 (same runs, two formats; only PXD048179 annotated)
+
+Same paper (PMID:39327420 / PMC11427561, Krijgsveld lab, *Nat. Commun.* 2024; DIA-ME single-cell
+proteomics of U-2 OS ± IFN-γ on a timsTOF Pro). **PXD053464 was NOT annotated and none of its files
+were modified** (read-only `files/all` + HTTP-range reads for verification only, per brief).
+
+| | files | note |
+|---|---|---|
+| `PXD048179` | 161 | 159 `.mzML` (ProteoWizard-converted) + `03_SingleCell_Searches.zip` + 1 FASTA. **Annotated here.** |
+| `PXD053464` | 204 | 203 `.d.zip` (Bruker raw) + 1 FASTA. Superset of *runs*: adds ~44 `Blank_*` acquisitions absent from PXD048179. |
+
+**The two depositions are the same acquisitions in two formats.** All **159** single-cell + 10-cell
+run basenames in PXD048179 (`YYYYMMDD_KK_(SC|10SC)_(control|IFNy)_NN_WELL_1_NNNNN`) each have a
+matching `.d.zip` of the identical basename in PXD053464. The `.mzML` and `.d.zip` members are **not**
+byte-identical (different container formats, ~9× size difference), so this pair is verified at the
+**run level** (basename correspondence), not file-hash level, for the raw data.
+
+`files/all` carries **no checksum** for either accession (`checksum` empty on every entry). The two
+**shared non-raw files** were confirmed **byte-identical** by exact `fileSizeBytes` **plus HTTP-range
+SHA-1 of three 64 KB windows (start / middle / end)** fetched from *both* accessions — identical at
+every sampled offset:
+
+| shared file | size | verification |
+|---|---|---|
+| `03_SingleCell_Searches.zip` | 79 144 668 | 3/3 window SHA-1 match (the deposited DIA-NN 1.8 report + logs) |
+| `SwissProt_canonical_Hsapiens_0921.fasta` | 13 609 147 | 3/3 window SHA-1 match |
+
+**Recommended canonical for the single-cell runs: pick one.** PXD053464 is the superset (adds Blank
+runs and ships the raw `.d`, which carries `analysis.tdf` DIA-window params); PXD048179 is the
+mzML-converted twin and the one annotated here. **A consumer concatenating both SDRFs would
+double-count all 159 cells/10-cell samples.** (PXD053464's Blank runs have no sample and would be
+excluded from an SDRF regardless — see `characteristics[cell line]` reserved-word trap, #35 B1.)
+
+---
+
 ## Why these were annotated anyway
 
 Each SDRF is correct *for its own accession* — that is what an SDRF describes, and a consumer
