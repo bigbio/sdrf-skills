@@ -333,3 +333,31 @@ Two overlapping cleanest-first waves (a session-limit reset at 23:10 CEST split 
 
 **Gate: 47 APPROVED / 0 PENDING.** **21 include datasets remain unannotated.** Not pushed since 2d61c4c
 (local: …, cc39d8c, 3e13c71, 1460789, 60394f4, da0e291, 057e73e, 91203fb, cb985b5, ed1c3f6).
+
+### Wave 5: 4 SILAC/DDA label-free studies (2026-07-17) — 51 total approved
+Commits f80cd4a, 39ee961, a1c3e8c, b3519f1.
+- **PXD054083** — SC-pSILAC subset re-deposition of approved PXD051942 (186 runs byte-identical subset,
+  HeLa/HEK293T/hFF arms). DUPLICATES.md **Group 6**. Rows byte-identical to PXD051942. PASS first pass.
+- **PXD058753** — hFF SC-pSILAC proliferation-state, 384. DISJOINT from PXD051942 (0 overlap). hFF
+  foreskin identity paper-backed. PASS first pass.
+- **PXD062702** — X. laevis blastomere SCP, 16/43 (27 HeLa method-dev standards excluded). FAIL→repair:
+  collision energy 30% NCE was the non-deposited Fusion Lumos value → corrected to 28% NCE (deposited
+  Q Exactive Plus Top-10). PASS on re-review (rev2).
+- **PXD069898** — SpecFormer training data (methods dataset), 14, mixed mouse-kidney/HeLa/organoid.
+  Per-row templates; per-arm CAM. PASS first pass.
+
+### parse_sdrf --template DEFECT discovered (2026-07-17) — affects all prior validation claims
+`parse_sdrf validate-sdrf --template A --template B ...` honors **only the LAST** --template (single-value
+Click option, not multiple). Proven on PXD061710: cell-lines LAST → ERROR on tissue rows; cell-lines FIRST
+→ passes. So every "validated against N templates, exit 0" in these runs (and CLAUDE.md invariant #7's
+"repeat --template per template") only checked the last template. MITIGATED: the adversarial reviewers ran
+resolve_templates.py themselves to check licensing + allow_* across ALL templates — that manual check, not
+parse_sdrf, is what enforced multi-template compliance (and caught the PXD067623/PXD070185 violations).
+Going forward: validate each declared template in a SEPARATE parse_sdrf run. Saved to memory
+(parse-sdrf-only-last-template). Open items for the user: (1) fix CLAUDE.md invariant #7; (2) optional
+per-template re-validation sweep of the committed corpus (reviewers' manual checks already cover it).
+
+**Gate: 51 APPROVED / 0 PENDING.** **17 include datasets remain** — mostly multiplexed TMT/SCoPE carrier
+(PXD029320, PXD034370, PXD040455, PXD041328, PXD048052, PXD048347, PXD053053, PXD063590, PXD064499,
+PXD064501, PXD064518) which will hinge on whether a channel->sample map exists (BLOCKED if not).
+Not pushed (local: …, f80cd4a, 39ee961, a1c3e8c, b3519f1).
