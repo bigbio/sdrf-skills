@@ -701,3 +701,36 @@ Also excluded (non-samples, documented in the report): **34 process blanks** (em
 
 **Unblocked by:** an SDRF-Proteomics convention for mixed-species reference standards (e.g. an
 agreed organism value or a per-organism split), if the community defines one.
+
+---
+
+## PXD061710 — SCP cell/tissue preservation (PARTIAL block: Figure 8 decrosslinking arm only)
+
+**Dataset is ANNOTATED** (491 deposited single cells across Fig 1–5,7 → `PXD061710.sdrf.tsv`).
+This entry records the **one arm that cannot be faithfully annotated**, per the "partial annotation is
+legitimate" rule.
+
+**Blocker: Figure 8 sample identity (cell line + organism) is undetermined.**
+
+| | |
+|---|---|
+| Publication | bioRxiv `10.1101/2025.03.10.642380` (CC-BY, read in full) + J. Proteome Res. `10.1021/acs.jproteome.5c00268` (PMID 40534510) |
+| Arm | `Decrosslinking_20min_fix_Figure8` — 96 single cells + 1 blank |
+| Raw | `Decrosslinking_20min_fix_Figure8.7z` (259 GB) + `20250509_decrosslinking_Figure8.sne` (22 GB) |
+| Search results | **none deposited** (Fig 1–5,7 each have a `_search_engine_results.tsv`; Fig 8 does not) |
+
+Run names **were** recovered (LZMA2-decoded `.7z` header, no bulk download): 8 conditions ×12 cells +
+1 blank — `Fresh_SC`, `01PFA_SC`, `03PFA_SC`, `1PFA_SC` and their `95C_…` (95 °C decrosslinked)
+counterparts. So this is a **formaldehyde de-crosslinking** experiment (± 95 °C heat reversal across
+fixation levels).
+
+Why blocked: the **preprint's main text stops at Figure 7** — Figure 8 was added *after* the March-2025
+preprint (raw dated `20250509`) for the journal version, which is **paywalled** (ACS returned HTTP 403;
+Unpaywall/Europe PMC have no OA PDF). The file names encode fixation state but **not the cell line or
+organism**. The Methods describe both human lines (RKO, MDA-MB-231) and a 20-minute-fixation mouse
+(Pdx1-Cre;R26-LSL-Cas9-eGFP, 19 wk) — so Fig 8 could be human *or* mouse, cell line *or* tissue.
+`characteristics[organism]` is required and I will **not** guess it; no arm-specific evidence resolves it.
+
+**Unblocked by:** the journal Figure 8 legend / Methods (naming the Fig 8 cell line + organism), or a
+deposited Fig 8 search-results/sample sheet. Given those, the 96 SC + 1 blank are trivially addable —
+run names are already recovered in scratch (`fig8_dnames.txt`).
