@@ -174,6 +174,34 @@ excluded from an SDRF regardless — see `characteristics[cell line]` reserved-w
 
 ---
 
+## Group 6 — PXD054083 ⊂ PXD051942 (non-EB subset re-deposited)
+
+Same paper (PMID:40168994, Sabatier … Olsen JV, *Cell* 2025; **SC-pSILAC** single-cell protein-turnover
+on an Orbitrap Astral). PXD054083 is the study's **"non-EB" submission** — the HeLa / HEK293T / hFF
+arms only. **PXD051942 was NOT modified** (read-only `files/all` + `checksum.txt` + `fileSizeBytes`
+used for verification).
+
+| | files | note |
+|---|---|---|
+| `PXD054083` | 186 RAW (+15 non-raw) | **every one of the 186 `.raw` runs** is present in PXD051942. **Zero files unique to it.** Annotated here (186 rows). Internal submission path label: `20240701_SC-pSILAC_non-EB_files_Px_submission`. |
+| `PXD051942` | 1376 RAW (+17 non-raw) | superset; adds the **1,190 iPSC hi1240 + embryoid-body (EB)** differentiation/time-series runs. The one annotated as the canonical full study. |
+
+**All 186 shared runs verified byte-level by `fileSizeBytes`:** 186/186 exact filename match **and**
+186/186 **byte-identical `fileSizeBytes`** across both `files/all` JSONs (0 differing, 0 unique to
+PXD054083). `files/all` carries **no `checksum`** for either accession, and **PXD051942 ships no
+`checksum.txt`** at all, so a cross-dataset file-hash was not possible; corroborated instead by the
+**identical Spectronaut report/setup files** present in *both* deposition folders
+(`..._cyclo_borte`, `..._HeLa_HEK`, `..._beta_catenin`, `..._hFF`) and PXD054083's own SHA-1
+`checksum.txt` self-manifest.
+
+**Recommended canonical: `PXD051942`** (superset; contains these 186 runs plus the 1,190 iPSC/EB
+runs and the submitter `sample_keys.txt` map). **A consumer concatenating both SDRFs would
+double-count all 186 HeLa/HEK293T/hFF cells and bulk samples.** The 186 shared rows are annotated
+**consistently with the approved PXD051942 rows** (same cell-line identities, SILAC mods, isolation
+and treatment calls) so the two are `diff`-able for the shared basenames.
+
+---
+
 ## Why these were annotated anyway
 
 Each SDRF is correct *for its own accession* — that is what an SDRF describes, and a consumer
