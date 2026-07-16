@@ -304,3 +304,32 @@ Cleanest-first wave; each independently reviewed and hash-bound.
 
 **Gate: 39 APPROVED / 0 PENDING.** **29 include datasets remain unannotated** (4 in flight: PXD061710,
 PXD062231, PXD069335, PXD074900). Not pushed (local: …, cc39d8c, 3e13c71, 1460789).
+
+### Waves 3-4: 8 more label-free/DIA studies (2026-07-16/17) — 47 total approved
+Two overlapping cleanest-first waves (a session-limit reset at 23:10 CEST split them). Commits
+60394f4, da0e291, 057e73e, 91203fb, cb985b5, ed1c3f6. This batch exercised the review gate hard —
+5 of 8 needed one or more repair rounds, every failure a spec-flag violation parse_sdrf passes silently.
+- **PXD069335** — NCI-H460 single cells + HeLa-S3 Pierce dilution series, FAIMS method-dev, 88/125.
+  CAM only on the HeLa-standard arm; 37 excluded (blanks + static-spray CV-scan). PASS first pass.
+- **PXD074900** — HeLa single cells, EasySCP liver-zonation, Orbitrap Astral Zoom (MS:1003442 from raw
+  header), 55/57. Curator-key mapping matched every row. PASS first pass.
+- **PXD062231** — scDVP human liver, 792 = 18 donors × 44 LCM hepatocytes. Disease split fibrosis
+  (donors 14-17) vs normal verified vs Supp Table 4. PASS first pass.
+- **PXD061710** — SCP preservation-methods, 491, mixed human (RKO/MDA-MB-231) + mouse (KPC/acinar).
+  Per-row cell-lines template declaration (spec-sanctioned; reviewer ran the union-validation control).
+  Fig 8 arm BLOCKED (organism undetermined, journal paywalled). PASS first pass.
+- **PXD071075** — developing human brain SCP, 2310, fetal GW13/15/19. cell type=not available (correct
+  restraint: FACS agnostic, 805/2310 erythroid, no raw→cluster map). PASS first pass.
+- **PXD067623** — NOVA1/lead brain-organoid SCP, 226. FAIL→repair: single cell isolation protocol
+  "not available" illegal (allow_not_available=false → not applicable); lead-dose direction unverifiable
+  → downgraded to neutral "dose level 1/2". PASS on re-review (rev2).
+- **PXD070185** — EasySCP mixed-organism (32 HEK293 + 618 mouse primary), 650. FAIL→repair: cell-lines
+  declared file-wide but not-applicable on 618 primary rows (#35 B1 trap) → per-row cell-lines
+  declaration (PXD061710 pattern). PASS on re-review (rev2).
+- **PXD070201** — Tecan-UNO mixed-organism (HeLa/K562/RAW264.7), 1500, 799 excluded. **FOUR rounds:**
+  (1) CAM omitted despite fixed-CAM search → added on 764 vendor rows; (2) same + isolation enum
+  droplet→microfluidics; (3) 20 Hela_lib rows were commercial Pierce (=HeLa S3), not in-house →
+  CVCL_0058 + CAM; (4) factor value[cell line] left stale at HeLa → HeLa S3. PASS (rev4).
+
+**Gate: 47 APPROVED / 0 PENDING.** **21 include datasets remain unannotated.** Not pushed since 2d61c4c
+(local: …, cc39d8c, 3e13c71, 1460789, 60394f4, da0e291, 057e73e, 91203fb, cb985b5, ed1c3f6).
