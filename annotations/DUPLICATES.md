@@ -44,6 +44,32 @@ single-neuron runs. `PXD030607` is the earlier superseded deposition.
 
 ---
 
+## Group 4 — PXD053023 ⊂ PXD057685
+
+Same paper (PMID:39674510; Nemes lab, *X. laevis* blastomere + HeLa-standard Eco-IMS CE-ESI ddaPASEF on
+a timsTOF Pro).
+
+| | files | note |
+|---|---|---|
+| `PXD053023` | 8 | deposited 2025-02. **All 8 files** (6 `.zip` + 2 FASTA) present in PXD057685. |
+| `PXD057685` | 9 | deposited 2025-05; superset, adds only `SupplementalSpectra.7z` (annotation spectra, no new runs). |
+
+`files/all` carries **no checksum** for either accession (as in PXD046467). Verified instead by
+(a) identical filenames + **byte-exact `fileSizeBytes`** on all 8 shared files (incl. the 18.28 GB
+`500pgHeLa_raw.zip` and 11.92 GB `xenopus.zip`), and (b) **HTTP-range SHA-1 of three 16 KB windows
+(start, middle, end)** of the three smaller shared archives (`200pgHeLa_processing.zip`,
+`200pgHeLa_raw.zip`, `SingleCell_processing.zip`) fetched from **both** accessions — identical at every
+sampled offset. The two multi-GB raw zips were matched on name + exact size only (full range hashing
+timed out). The **35 deposited runs are identical** across the pair (9 Xenopus cells × classical+Eco;
+HeLa 500 pg 5+4; HeLa 200 pg 4+4).
+
+**Recommended canonical: `PXD053023`** — the earlier deposition and the one annotated here. `PXD057685`
+adds no runs, only a supplemental-spectra archive. A consumer concatenating both SDRFs would double-count
+all 35 runs. `PXD057685` was not annotated and none of its files were touched (read-only file-list +
+range reads for verification).
+
+---
+
 ## Group 3 — PXD003121 / PXD003691 / PXD004142 (same study, deposited three times)
 
 Same paper (PMID:27215607; human oocyte SP3).
