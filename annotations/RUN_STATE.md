@@ -221,3 +221,21 @@ annotated -> independently reviewed (rev-PXD053023) -> committed (f8299e3). The 
 Carbamidomethyl(Fixed) was confirmed against the deposited FragPipe search config. Found PXD057685 is
 a superset re-deposition -> DUPLICATES.md Group 4 (canonical: PXD053023). Not pushed.
 **41 include datasets remain unannotated.**
+
+### Continued batch: 4 more studies (2026-07-16) — 31 total approved (commit 9999980)
+Annotated "cleanest first" (label-free / DIA, no channel-map risk); each independently reviewed and
+hash-bound, then committed together.
+- **PXD048179** — U-2 OS ±IFN-γ DIA-ME single-cell (Krijgsveld, PMC11427561). **Group 5** duplicate of
+  PXD053464 (same 159 runs, mzML vs Bruker `.d`) recorded in `DUPLICATES.md`; PXD053464 left
+  un-annotated by design.
+- **PXD049181**, **PXD055915** — label-free SCP, approved.
+- **PXD061065** — glioblastoma tumour-associated neutrophils, Orbitrap Astral DIA (Sadiku et al.,
+  *Nat Commun* 2025, PMC12816625). First review FAILED on a **provenance-only** defect: the producer
+  report declared "Publication: None" but the paper cites this deposition. Report corrected with a
+  provenance section; the SDRF content was already correct (unchanged, hash `55727b27`). Fresh review
+  re-confirmed every value against the paper (342 = 330 TANs + 12 zero-cell QC; disease=glioblastoma
+  because only TANs are in this deposition; age/sex `not available` since Table 1 is aggregate-only)
+  → APPROVED.
+
+**Gate: 31 APPROVED / 0 PENDING.** **37 include datasets remain unannotated.** Not pushed since 2d61c4c
+(f8299e3, ba790d4, 9999980 local only).
