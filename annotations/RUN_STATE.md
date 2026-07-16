@@ -238,4 +238,45 @@ hash-bound, then committed together.
   → APPROVED.
 
 **Gate: 31 APPROVED / 0 PENDING.** **37 include datasets remain unannotated.** Not pushed since 2d61c4c
-(f8299e3, ba790d4, 9999980 local only).
+(f8299e3, ba790d4, 9999980, 9c93d00 local only).
+
+### Interrupted batch: session API limit hit (2026-07-16, resets 5:10pm Berlin)
+Four annotators were launched "cleanest first"; the session hit its API limit and all four (plus a
+reviewer dispatched for PXD049211) died mid-run with "session limit" errors. Survivors on disk, ALL
+UNTRACKED, **none committed, none reviewed** — do NOT commit until each is independently reviewed:
+- **PXD049211** — annotation COMPLETE (188×42 + report). HeLa single/multi-cell benchmark (CVCL_0030)
+  + HCT116 spheroids ±5-FU (CVCL_0291), label-free nDIA, PMC11903336. **PENDING REVIEW** (reviewer
+  af3fef5 died on the limit before verifying). Attack points flagged by producer: spheroid cell-line
+  identity (zip says "HeLa", Methods say HCT116), Carbamidomethyl deliberately omitted, sample
+  type=pooled for 10/20/40-cell, inferred epithelial cell type.
+- **PXD059079** — annotation COMPLETE (150×48 + report, bone tissue, 75/75 treatment split, CAM for
+  bulk / no-CAM single cells). **PENDING REVIEW.**
+- **PXD054066** — SDRF only (118×46), **REPORT MISSING** — annotator died mid spot-check. INCOMPLETE;
+  needs report + review, or re-run.
+- **PXD054445** — **nothing survived** (died before writing SDRF). Needs a fresh annotation run.
+When the limit resets: (1) review PXD049211 + PXD059079 with fresh independent reviewers; (2) finish
+or re-run PXD054066 (report) and PXD054445 (whole thing); (3) commit only what passes.
+
+### Interrupted batch RESOLVED (2026-07-16) — 35 total approved
+After the limit reset, all four were carried to approval:
+- **PXD049211** — HeLa single/multi-cell benchmark (CVCL_0030) + HCT116 spheroids ±5-FU (CVCL_0291),
+  188×42. Reviewer confirmed spheroids=HCT116 (zip name "HeLa_spheroids" misleading) and Carbamidomethyl
+  correctly omitted (paper excluded Cys alkylation). Report prose fixed (140 not-applicable factor
+  values, not 152; SDRF unchanged). APPROVED rev-PXD049211.
+- **PXD059079** — PC-3 DRC vs parental single-cell DIA, bone-tissue metastatic site, 150×48. Reviewer
+  confirmed the per-arm alkylation asymmetry (single cells TCEP-only → no CAM; bulk TCEP+IAA → CAM) and
+  byte-matched 144 raw names inside the 4.35 GB zip. APPROVED rev-PXD059079.
+- **PXD054445** — Astral formaldehyde-fixation SCP (HeLa + SCC-25), 142×53. Reviewer resolved the
+  Carbamidomethyl override in the producer's favour (paper: "protocol does not involve reduction and
+  alkylation… Carbamidomethyl included only for the PAC digested samples"); the 20c_Noco Spectronaut
+  fixed-CAM was a Biognosys factory default. APPROVED rev-PXD054445.
+- **PXD054066** — Chip-Tip HeLa benchmark + hFF + blanks, 123×43. Same paper as PXD049211
+  (PMC11903336) but **0 run overlap** (verified). First review **FAILED**: the 10 hFF rows asserted
+  `organism part=prepuce of penis` + `sex=male` purely from the filename token "hFF", unsupported by any
+  primary source (paper never mentions fibroblast/foreskin; supplementary hits are false positives).
+  Repaired: both fields → `not available` on the 10 hFF rows, keeping `cell type=fibroblast` +
+  `disease=normal`; report corrected; re-validated clean. Fresh re-review APPROVED rev2-PXD054066
+  (hash 36f04e9d).
+
+**Gate: 35 APPROVED / 0 PENDING.** **33 include datasets remain unannotated.** Not pushed since 2d61c4c
+(f8299e3, ba790d4, 9999980, 9c93d00, + this batch's commit local only).
