@@ -131,3 +131,64 @@ looking like cross-citation). A check that *disagrees* needs verifying as hard a
   capitalised CL label (`T cell`) yields a spurious warning.
 - Known false positives: `tools check` "hallucinated term" warnings; `tools score` calling the
   mass-tolerance columns "required" and rejecting valid compound ages (`30Y6M`).
+
+## Review-round corrections (2026-07-16)
+
+24 artifacts reviewed → 18 passed, 8 failed. 6 failures repaired on independently-verified evidence
+(read the deposited `fragger.params`/`summary.txt`, the paper's own Materials, the passing sibling's
+idiom) and sent for fresh re-review. 2 were NOT repaired:
+
+- **PXD043355** — the first reviewer FAILED it claiming the QC digest is HeLa S3, citing bioRxiv
+  `10.1101/2022.10.18.512791`. **That is the WRONG paper** — it is Truong et al (PXD037527's
+  preprint), not this dataset's. This dataset's paper is PMC11002963 (Sanchez-Avila), which is
+  anti-bot-gated. The producer's own report correctly treated Truong as a *companion* paper and chose
+  parental HeLa conservatively. Re-review is in flight with the correct paper named; the prior FAIL
+  may have been an artifact of the misattribution.
+- **PXD021882** — FAILED because 6 rows carry nominal `150/500` where per-file measured counts
+  (`141/137/160/466/540/520`) exist in Table S3, which is behind NCBI's proof-of-work. The reviewer
+  solved the PoW and retrieved them; this session could not replicate the handshake, so the values
+  were NOT applied (editing the study's primary factor on unverified numbers = the anti-pattern).
+  Needs the gated table or an author key.
+
+Producer reports are the pre-repair versions for the 6 edited artifacts; their mod/tolerance/cell-line
+prose is now stale where repaired. The ARTIFACT is authoritative, not the old report prose.
+
+
+### Re-review outcome (2026-07-16, session limit hit at 12:10 reset)
+Gate: **22 APPROVED / 4 PENDING.**
+- Re-approved after repair: PXD003121, PXD037527, PXD041879, PXD025481 (last recorded from a
+  completed independent PASS report whose hash matched the artifact; reviewer died before the
+  bookkeeping `approve` call — verdict transcribed, attributed to rev2-PXD025481, not self-formed).
+- **PXD022791** — repaired TWICE: (1) Lys-C + HeLa S3 on the 12 digest rows, (2) `factor value[cell
+  type]` re-mirrored to `characteristics[cell type]` on those rows, which the first re-review caught
+  as a broken invariant from my incomplete edit 1. Now validates (hash `dee8486b`). Needs fresh
+  re-review — the FAIL on record is bound to the pre-mirror hash and is stale.
+- **PXD044986**, **PXD043355** — re-reviews died mid-work (session limit), no verdict recorded.
+  PXD044986 repair is applied and self-verified; PXD043355 is unedited pending the misattribution
+  re-review (must use PMC11002963, NOT bioRxiv 512791). Re-dispatch both after reset.
+- **PXD021882** — still not repaired; measured counts are behind NCBI PoW (Table S3). Unchanged.
+
+To finish after reset: dispatch fresh reviewers for PXD022791, PXD044986, PXD043355; resolve
+PXD021882's gated table (or accept the reviewer's retrieved counts with a note).
+
+
+### FINAL review outcome (2026-07-16, after limit reset)
+Gate: **24 APPROVED / 2 PENDING** (`review_gate.py gate` lists both).
+All 6 repaired artifacts now PASS fresh independent review:
+- PXD003121, PXD037527, PXD041879, PXD025481, PXD022791, PXD044986 → APPROVED.
+- **PXD043355 → APPROVED, and the first FAIL was WRONG.** The corrected reviewer retrieved this
+  dataset's OWN paper (PMC11002963, via eutils) whose Methods name only "10 ng/50 ng HeLa digest" —
+  no vendor, no "Pierce", no "S3". The producer's conservative **parental HeLa (CVCL_0030)** was
+  correct; the original FAIL was an artifact of the misattributed Truong preprint. No edit was made
+  to PXD043355 — the artifact was faithful as produced.
+
+**2 still PENDING:**
+- **PXD021882** — not repairable without Table S3 (behind NCBI proof-of-work). The reviewer's
+  retrieved per-file counts (141/137/160/466/540/520 vs nominal 150/500) are credible but were not
+  independently re-verified this session, so the artifact was NOT edited. Resolve by retrieving the
+  table or accepting the reviewer's counts with a documented caveat.
+Only **PXD021882** remains PENDING (verified via `review_gate.py status`).
+
+Corpus status: 24/26 SDRFs independently approved and hash-bound; 2 blocked datasets fully
+documented (`BLOCKED.md`); 3 duplicate-deposition groups + 1 self-duplicate documented
+(`DUPLICATES.md`); systematic tooling/spec defects filed as #35.
