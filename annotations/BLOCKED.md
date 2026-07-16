@@ -669,3 +669,35 @@ cleanly either way.
   The inverse of the PXD073250 lesson: the OA flag was *right* and the full-text tooling still failed.
 - Two deposited files are byte-identical: `SCP_168SC_MTX_48h_split_CP_peptides.xlsx` and
   `Inbuilt_bulk_MTX_48h_peptides.xlsx` (MD5 `b042c1d0e5af87d4dbe2cc9cdf5d19a1`).
+
+---
+
+## PXD049412 — Astral single-cell proteomics (PARTIAL block: two-proteome arm only)
+
+**Dataset is ANNOTATED** (289/357 raw files → `PXD049412.sdrf.tsv`). This entry records the **one arm
+that is not faithfully representable**, per the "partial annotation is legitimate" rule.
+
+**Blocker: two-proteome (HeLa-S3 + yeast) mixes cannot carry a single `characteristics[organism]`.**
+
+| | |
+|---|---|
+| Publication | PMID:39820751 / PMC11903296 (open access, full Methods read) |
+| Arm | 18 raw files: HeLa-S3 + *S. cerevisiae* peptides mixed in one injection |
+| Ratios (stated) | HeLa:yeast = 150:100, 200:50, 240:10 pg (Methods "Two-proteome mixes") |
+| Instruments | 9 on Orbitrap Astral (2023-11-23), 9 on Orbitrap Exploris 480 (`E0_NEO6`, 2023-11-27) |
+
+Each file is a **single physical sample containing two organisms**. `characteristics[organism]` is
+single-valued per SDRF row; there is no non-fabricating way to state "Homo sapiens + Saccharomyces
+cerevisiae" in one row, and splitting one file into two organism rows would misrepresent the run.
+The mixes are quantification-benchmark standards, not a biological sample group, so no scientific
+information is lost by omitting them from the biological SDRF.
+
+Files excluded:
+- `20231123_..._150pg_100pg_H_Y_r1..r3.raw`, `..._200pg_50pg_H_Y_r1..r3.raw`, `..._240pg_10pg_H_Y_r1..r3.raw` (Astral)
+- `20231127_E0_NEO6_..._150pgH_100pgY_01..03.raw`, `..._200pgH_50pgY_01..03.raw`, `..._240pgH_10pgY_01..03.raw` (Exploris 480)
+
+Also excluded (non-samples, documented in the report): **34 process blanks** (empty wells —
+`characteristics[cell line]` forbids both reserved words) and **16 column washes**.
+
+**Unblocked by:** an SDRF-Proteomics convention for mixed-species reference standards (e.g. an
+agreed organism value or a per-organism split), if the community defines one.
