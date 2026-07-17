@@ -734,3 +734,137 @@ organism**. The Methods describe both human lines (RKO, MDA-MB-231) and a 20-min
 **Unblocked by:** the journal Figure 8 legend / Methods (naming the Fig 8 cell line + organism), or a
 deposited Fig 8 search-results/sample sheet. Given those, the 96 SC + 1 blank are trivially addable —
 run names are already recovered in scratch (`fig8_dnames.txt`).
+
+---
+
+## PXD029320 — RTS-Assisted Acquisition Improves Coverage in Multiplexed Single-Cell Proteomics (RETICLE)
+
+**Blocker: the TMTpro channel → sample (gate / differentiation-stage) map does not exist.**
+
+| | |
+|---|---|
+| Screen label | `include` (correct — FACS single-cell-sorted OCI-AML8227, TMTpro16plex, 200/100-cell carrier) |
+| Publication | PMID:35219906 / PMC8961214 (open access, full text read); PRIDE listed no publication |
+| Deposited | 249 files: **97 raw** (39 diluted-standard `TMTpro2` + 58 real scMS `TMTpro5`/`TMTpro7`), 66 RTS `_realtimesearch.csv` logs, 14 `.pdStudy`, 70 PD result DBs (`.msf`/`.pdResult`/`.bak`/views), 1 fasta, 1 checksum.txt |
+| SDRF would need | 97 files × 16 channels ≈ 1552 rows, each with a sample identity |
+
+The paper gives the plex *composition* — real scMS: **4 CD34−, 5 CD34+CD38−, 5 CD34+CD38+** single
+cells + 200-cell carrier (channel 126) per plex; diluted standard: 9 channels × 250 pg, **3 channels
+per stage** (LSC/PROG/BLAST) + carrier — but **never states which channel holds which cell/stage**.
+It says outright that identities were assigned **post-hoc in Python**: *"FACS data and sort- and
+label layouts were used to create the metadata for each cell"* (SCeptre). Those `FACS.fcs`
+index-sort files and sort/label layouts are **not deposited**, and per-plate index sorting means the
+layout varies between plexes and cannot be inferred.
+
+Sources checked, all exhausted:
+
+| source | result |
+|---|---|
+| Paper Methods + Results + Table 1 | composition only (4/5/5; 3-per-stage); **no channel assignment** |
+| 14 `.pdStudy` (all run groups) | every channel named **`"<rawfile> - [126…134N]"`, `SampleType="Sample"`** (Proteome Discoverer default) |
+| `.msf` / `.pdResult` | same PD DBs, generic channels (GB-scale; `.pdStudy` design already proves it) |
+| PRIDE `files/all` (249) | 97 RAW + 66 per-scan RTS `.csv` logs + fasta + checksum. **No sample sheet / FACS / layout file** |
+| Europe PMC supplementary | 15 entries, all figures (`gr1–4`, `mmc1–5` = Figs S1–S5, `fx1`) |
+| Cellosaurus API (`OCI-AML8227` + variants) | **0 hits** — patient-derived AML hierarchy culture, no CVCL |
+
+Only 9 (standard) or 14 (scMS) of the 15 non-carrier channels are occupied, so even **which
+channels are empty** is unrecorded. Annotating would mean inventing the identity of ~1552 rows.
+
+**Unblocked by:** the authors' sort/label layout (channel → gate/stage per plex) or the SCeptre
+per-cell metadata table, or a re-deposition with sample names set in Proteome Discoverer. Given a
+layout the annotation is mechanical: carrier (126) → `sample type = standard`,
+`cells per well = 200`/`100`; each single-cell channel → its gate, `cells per well = 1`; empty
+channels omitted; templates `ms-proteomics + human + single-cell` (**not** `cell-lines` — no CVCL).
+
+**Incidental notes** (for whoever revisits):
+- The scMS arm was **not** reduced/alkylated ("Carbamidomethyl on cysteine (C) was not set, as
+  these samples were not treated with TCEP/CAA") → **do not** annotate Carbamidomethyl for the scMS
+  runs; it applies only to the diluted-standard arm.
+- PRIDE `instruments` = `Orbitrap Eclipse`; paper = `Orbitrap Eclipse Tribrid` + FAIMS Pro. PRIDE
+  `modifications` = `iodoacetamide derivatized residue` only (misses TMTpro / Oxidation / Acetyl /
+  Met-loss, and wrongly implies alkylation of the scMS arm).
+- One scMS file is flagged faulty in its own name: `…TMTpro7…RETICLE_750ms_10_faulty.raw`.
+
+---
+
+## PXD041328 — Deciphering lineage specification in mouse gastruloids (multilayered proteomics)
+
+**Blocker: TMTpro channel → sample-identity map does not exist in the deposition.**
+
+| | |
+|---|---|
+| Screen hint | multiplexed TMT proteoCHIP SCP — mouse gastruloid germ-layer cells (correct) |
+| Publication | PMID:38754429 · DOI:10.1016/j.stem.2024.04.017 (Cell Stem Cell) — **not OA**, no PMCID |
+| Organism | *Mus musculus* (NCBITaxon:10090), verified — not the blocker |
+| Deposited | 75 RAW (`..._C{1..6}_S{...}.raw`, 6 proteoCHIPs; 3 named `_empty`) + `SEARCH.zip` (30.8 GB PD output) |
+| SDRF would need | 75 files × 18 TMTpro channels = **1350 rows**, each with a sample identity |
+
+Each `.raw` is one TMTpro-**18**plex injection (126→135N). The deposited Proteome Discoverer design is
+the authoritative sample layout and carries **no identity**:
+
+| source | result |
+|---|---|
+| PRIDE `sample_processing_protocol` | templated stub with **unfilled placeholders** ("presorted with **which?** FACS", "**Carrier were printed .**", "**For TMT labeling, .**") |
+| `SEARCH.zip → CVG_Exp55.pdStudy` (design XML) | **1350 samples, all `SampleType="Sample"`**; sample names are just `<file> - [TMTtag]`; only Factor = `Experiments` (Exp55/Exp56); grouping only by Quan Channel. No carrier/single-cell/germ-layer |
+| `SEARCH.zip → ..._PeptideGroups.txt` header | abundance cols `Abundance F{n} {tag} Sample Exp{55/56}` — generic **Sample** (PD no-map default) |
+| PRIDE `files/all` (76, all PXD041328-verified) | no sample sheet / channel key |
+| Publication | paywalled (cell.com + ScienceDirect 403; Unpaywall/EuropePMC no PDF); no PMCID → no EuropePMC supplementary |
+
+No channel — not even the carrier — has a recoverable identity, so **no partial annotation is
+possible**. Annotating would mean inventing all 1350 identities, including which channels are carrier
+vs single germ-layer cells; the brief forbids fabricating channel/germ-layer identities.
+
+`SEARCH.zip` was inspected by **ZIP64 central-directory range reads** (no 30.8 GB download): the
+`.pdStudy` and `PeptideGroups.txt` header were the only members inflated (both small). The 50 GB `.msf`
+SQLite was not extracted — it shares the same design origin.
+
+**Unblocked by:** a deposited per-(file × channel) proteoCHIP layout table (carrier vs which single
+germ-layer cell), a cellenONE isolation sheet, or a re-deposited PD study with real sample names
+replacing the generic `Sample` default. Given that, the rows are straightforward (TMTpro-18;
+vertebrates + ms-proteomics + single-cell).
+
+---
+
+## PXD034370 — Microscopy-based functional single-cell proteomic profiling (FUNpro / SCoPE-MS)
+
+**Blocker: TMT10plex channel → single-cell identity mapping does not exist.**
+
+| | |
+|---|---|
+| Screen label | `include` (correct — SCoPE-MS single-cell profiling of U2OS, microscopy-guided FACS) |
+| Publication | PMID:35784653 / PMC9243628, Cell Reports Methods 2022, DOI 10.1016/j.crmeth.2022.100237 (OA, STAR Methods read in full). PRIDE `publications` is **empty**; paper found via Europe PMC. |
+| Deposited | 44 files: **34 raw + 10 MaxQuant txt** (`evidence.txt`/`proteinGroups.txt` per figure group). No sample sheet. |
+| SDRF would need | Fig4 alone = 10 TMT10plex sets × 10 channels = 100 rows, each with a cell identity + DDR group. |
+
+The paper gives run *composition* — some wells "single cells", others "two hundred carrier cells",
+plus "blank channels (PBS only)" (Fig S2B) — but never states **which TMT channel holds which cell**,
+nor which single cell is DDR **Group 1** vs **Group 2** (the study's only factor).
+
+Sources checked, all exhausted:
+
+| source | result |
+|---|---|
+| Paper STAR Methods | composition only; no channel assignment; no Group-per-channel table |
+| `Fig4_proteinGroups.txt` / `evidence.txt` | MaxQuant `Reporter intensity corrected 1..10` — **numbered only, no identity** (the `mqpar.xml`/experimentalDesign holding channel names was not deposited) |
+| PRIDE `files/all` | 44 files: 34 RAW + 10 MaxQuant txt. **No csv/xlsx/mqpar sample sheet** |
+| Europe PMC supplementary (PMC9243628) | 2 files, both figure images (`gr3.gif`, `gr5.jpg`) |
+| Publisher/PMC `mmc1.pdf`/`mmc2.pdf` | not retrievable (PMC `bin/` → HTTP 404); Fig S2A shows MS settings, not a channel key |
+
+**Forensic finding (insufficient):** per-channel reporter-intensity fractions across all 10 Fig4 sets
+reliably identify the **carrier as ch10 / TMT131** (~78–89 % of signal; 59.6 % in the FigS2B set), but
+the **blank position flips between runs** (ch8/TMT130N in Fig4; no near-zero channel in FigS2B) and the
+remaining 8 single-cell channels are mutually anonymous with **no reference channel**. Only the carrier
+is recoverable; the single-cell identities and phenotype groups are not.
+
+**Unblocked by:** a channel key from the authors (M-P. Chien, Erasmus MC), a re-deposited MaxQuant
+`mqpar.xml`/experimentalDesign with per-channel names, or a supplementary channel→cell table.
+
+**Incidental discrepancies** (recorded for whoever revisits):
+- **Instrument split across two Orbitraps.** PRIDE says only `Orbitrap Fusion Lumos`; the paper says only
+  `Orbitrap Eclipse Tribrid`. Raw InstModel fields show BOTH: `Fig4_2206_*`, `FigS2A_2195_*`,
+  `FigS2D_2178_*` = **Fusion Lumos**; `Fig4_2227_*`, `Fig4_2236_*`, `FigS2C_2363_*`, `FigS3A_2363_*` =
+  **Eclipse**. Neither source is fully right.
+- Label is **TMT10plex** (UNIMOD:737), not TMTpro. Static modification left empty → **no Carbamidomethyl**
+  (no reduction/alkylation described). Variable mods: Deamidation NQ (UNIMOD:7), Oxidation M (UNIMOD:35).
+- `FigS2D_2178_200T/200NT` is a **bulk 200-cell, label-free (LFQ)** control, not single-cell TMT.
+- Cell line: U2OS (CVCL_0042) stably transfected with PB-mScarlet-53BP1; CLO returned no `U2OS` hit.
