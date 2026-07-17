@@ -171,8 +171,14 @@ reimplementing merge semantics.
    per mod) and multiple `comment[sdrf template]` (one per template) — both `cardinality: multiple`.
    `tools/sdrf_parser.py` disambiguates with `__N` keys; keying rows by raw name silently reads only
    the first occurrence.
-7. **Validate before presenting any SDRF**: `parse_sdrf validate-sdrf --sdrf_file X --template Y`
-   (repeat `--template` per template), after refreshing the submodule. `parse_sdrf` ships in
+7. **Validate before presenting any SDRF**: `parse_sdrf validate-sdrf --sdrf_file X --template Y`,
+   after refreshing the submodule. **`--template` is a single-value option, so a call with several
+   `--template` flags validates against only the LAST one** (verified 2026-07-17 on PXD061710:
+   `cell-lines` last → ERROR on the tissue rows, `cell-lines` first → passes). Run `parse_sdrf`
+   **once per declared template** (each against the rows that declare it) and require every run to
+   pass; do not trust a single multi-`--template` invocation. For the authoritative multi-template
+   constraint set (column licensing + reserved-word `allow_*`), resolve with
+   `spec/scripts/resolve_templates.py` — parse_sdrf enforces neither. `parse_sdrf` ships in
    `sdrf-pipelines` and is **not installed by default** (CI installs only `requests` + `pytest`) — run
    `/sdrf:setup`. Keep concurrent `parse_sdrf` jobs ≤ 2.
 8. **A producer must never approve its own SDRF.** For changed SDRFs, require a passing receipt from
