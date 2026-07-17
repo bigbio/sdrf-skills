@@ -868,3 +868,46 @@ is recoverable; the single-cell identities and phenotype groups are not.
   (no reduction/alkylation described). Variable mods: Deamidation NQ (UNIMOD:7), Oxidation M (UNIMOD:35).
 - `FigS2D_2178_200T/200NT` is a **bulk 200-cell, label-free (LFQ)** control, not single-cell TMT.
 - Cell line: U2OS (CVCL_0042) stably transfected with PB-mScarlet-53BP1; CLO returned no `U2OS` hit.
+
+---
+
+## PXD048347 — Deciphering lineage specification in mouse gastruloids (SCP arm, `_GFP` deposition)
+
+**Blocker: no deposited TMTpro channel → single-cell germ-layer identity map.** Same paper as
+PXD041328 (PMID:38754429), but a **different deposition** — different runs (2023-09-20 `CVG_0553 ..._GFP`
+vs 2022-12-22 `EXP55`), no file overlap. Investigated independently.
+
+| | |
+|---|---|
+| Screen hint | multiplexed TMTpro proteoCHIP SCP — mouse gastruloid germ-layer cells (correct) |
+| Publication | PMID:38754429 · DOI:10.1016/j.stem.2024.04.017 (Cell Stem Cell) — **not OA**, no PMCID (`inPMC=false`) |
+| Organism | *Mus musculus* (NCBITaxon:10090), verified — not the blocker |
+| Deposited | 28 RAW (`..._C{1,2,3}_S{n}.raw`, 3 proteoCHIPs) + `CVG_0553_SCP_Gastruloids_GFP.zip` (25.5 GB PD 2.4 output) + `checksum.txt` |
+| SDRF would need | 28 files × 18 TMTpro channels = **504 rows**, each with a sample identity |
+
+The **channel roles ARE recoverable** from the (here detailed, unlike PXD041328) `sample_processing_protocol`:
+**126 = carrier** (20-cell-equivalent pool of endoderm+ectoderm+mesoderm+unsorted+mESC), **127C = empty**
+(left blank), **127N…135N (16 ch) = FACS GFP-sorted germ-layer single cells**. What is missing is
+**which germ layer each single-cell channel holds** — the study's only factor.
+
+| source (all zip members read via ZIP64 central-directory range reads; no bulk download) | result |
+|---|---|
+| `..._StudyInformation.txt` (PD design, 504 rows) | **every `Sample Type = "Sample"`** (generic); id = `<file> - [tag]`; no factor/cell-type columns |
+| `..._GFP.pdStudy` (PD study XML) | all **504 `<FactorValues/>` empty**; no populated factor; generic sample names |
+| `..._ProteinGroups.txt` header | per-channel cols `Found in Sample F{n} {tag} Sample` — generic **Sample** (PD no-map default) |
+| `Proteins_..._FilteredImputed.txt` / `PCA_res.ind_coord.txt` (SCP outputs) | cells keyed only as `F{n}Abundance.{channel}`; trailing `TMT`/`Files` cols are tag+file; **no germ-layer label** |
+| `..._InputFiles_forSCP.txt` / `ParametersData.txt` | File→channel list; confirm 126=carrier; **no identity** |
+| PRIDE `files/all` (30, all PXD048347-verified) / `checksum.txt` | no sample sheet / channel key |
+| Publication | paywalled; Unpaywall/EuropePMC no PDF; no PMCID → no EuropePMC supplementary |
+
+The downstream analysis ("ComBat ... accounting for the different **known cell types**") proves the
+authors held a channel→germ-layer annotation, but **it is not deposited**. Every single cell in every
+file is equally anonymous, so **no partial annotation is possible**: a subset of only the 28 carrier +
+28 empty scaffolding rows would identify 0 of the 448 single cells. Consistent with the PXD041328 and
+PXD034370 (U2OS "only carrier recoverable") precedents. Assigning germ layers would be fabrication.
+
+**Unblocked by:** a deposited per-(file × channel) proteoCHIP/cellenONE layout table (which channel =
+which germ-layer single cell vs carrier vs empty), the authors' SCP `colData`/sampleAnnotation, a Cell
+Stem Cell supplementary channel key, or a re-deposited PD study with real sample names. Given that, rows
+are straightforward (TMTpro-18 `UNIMOD:2016`; Orbitrap Eclipse `MS:1003029`; ms-proteomics + vertebrates
++ single-cell; **no Carbamidomethyl** — no reduction/alkylation in the protocol).
