@@ -7,6 +7,7 @@ This project includes SDRF annotation rules that activate when you work with SDR
 - **Rules**: `.cursor/rules/sdrf-skills.mdc` loads when you have SDRF-related files open or in context.
 - **Skills**: The rule references markdown workflows in `skills/`. The AI reads these when you ask for annotation, validation, setup, etc.
 - **No SessionStart hook**: Unlike Claude Code, Cursor does not run hooks on session start. You will not see an automatic "install dependencies" message.
+- **Manual review gate**: Cursor cannot run the bundled Claude Stop hook. Ask it to follow `skills/sdrf-annotate-reviewed/SKILL.md`, then enforce the receipt with `python3 <sdrf-skills-root>/tools/review_gate.py gate --cwd <repo-root>` (exit 1 means review is still pending).
 
 ## First-Time Setup
 

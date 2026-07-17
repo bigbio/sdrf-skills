@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reviewed SDRF Annotation"
+  short_description: "Annotate with independent adversarial review"
+  default_prompt: "Use $sdrf-annotate-reviewed to annotate this dataset and require an independent passing review."

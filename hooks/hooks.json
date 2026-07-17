@@ -11,6 +11,17 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/tools/review_gate.py\" stop-hook",
+            "timeout": 30
+          }
+        ]
+      }
     ]
   }
 }

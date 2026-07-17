@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "sdrf-pride-pmc": {
+      "command": "./.venv/bin/python",
+      "args": ["mcp/server.py"],
+      "env": {}
+    }
+  }
+}

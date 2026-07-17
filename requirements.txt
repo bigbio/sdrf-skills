@@ -16,3 +16,9 @@ sdrf-pipelines[ontology]
 requests>=2.28
 # Hardened XML parsing for scripts/europepmc_fulltext.py (XXE / entity-expansion safe)
 defusedxml>=0.7
+
+# Bundled MCP server (mcp/server.py), wired up via .mcp.json. Provides the
+# PRIDE / Europe PMC / OLS tools the skills call (get_project_details,
+# get_article_metadata, get_pdf_by_unpaywall, search, searchClasses, getChildren).
+fastmcp>=3.4
+httpx>=0.28

@@ -10,6 +10,11 @@ argument-hint: "[file path, PXD accession, or GitHub PR URL]"
 You are performing a comprehensive quality review of an SDRF file — like a peer reviewer
 would for a PRIDE submission or a community annotation PR.
 
+If this context created or edited the SDRF, this workflow is an advisory
+self-review only. For an approval verdict, dispatch a fresh context that follows
+`skills/sdrf-adversarial-review/SKILL.md`; never approve work produced in the
+same context.
+
 ## Step 1: Load Context
 
 1. **Read the SDRF** content

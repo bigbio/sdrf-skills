@@ -1,9 +1,10 @@
 {
   "name": "sdrf-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "SDRF annotation skills — expert-level proteomics metadata workflows for AI assistants",
-  "author": "Yasset Perez-Riverol",
+  "author": {
+    "name": "Yasset Perez-Riverol"
+  },
   "license": "MIT",
-  "skills": "skills/",
-  "hooks": "hooks/"
+  "hooks": "./hooks/hooks.json"
 }
