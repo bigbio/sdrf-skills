@@ -398,8 +398,24 @@ that map is deposited/published anywhere:
 - **Issue #37** — skill should read modifications from deposited search files (PD `.msf` Workflows node,
   MaxQuant/FragPipe/DIA-NN), not just the channel map (PXD048052 Carbamidomethyl miss).
 
-**FINAL: 56 APPROVED / 0 PENDING. Include set COMPLETE** — every screened `include` dataset has either a
-hash-bound approved SDRF or a documented blocker. Blocked (full): PXD029320, PXD034370, PXD041328,
-PXD048347, PXD064501, PXD064518 (this session) + PXD043473, PXD073250, PXD020586, PXD025387 (earlier).
-Partial blocks (annotated + one blocked arm): PXD049412, PXD061710. Duplicates recorded: Groups 1-6 +
-PXD046467 self-dup in DUPLICATES.md. **Nothing pushed — 44 local commits await an explicit "push".**
+### mDIA closeout (2026-07-17) — the last two dimethyl-multiplex datasets
+The two remaining `include` datasets were dimethyl-mDIA (outside the TMT/SCoPE sweep). Both ANNOTATED —
+neither had a missing experimental factor (untreated HeLa / normal mouse liver), and the mDIA reference
+channel (Δ0 light dimethyl = bulk pool) was correctly modeled as reference, not a single cell.
+- **PXD038632** — mDIA HeLa single cells (Thielert et al., Mol Syst Biol 2023), 1359 rows (906 cells +
+  453 Δ0 reference). Curator key isolated the one true single-cell arm from 12 dilution/bulk/decoy arms.
+- **PXD038699** — scDVP mouse-liver hepatocyte zonation (Rosenberger/Mann, Nat Methods 2023), 1154 rows
+  (dimethyl mDIA single hepatocytes + a label-free 5-shape pentagon-pool arm). 45 unmapped m1A runs
+  confirmed real by range-reading the 322 GB zip.
+Dimethyl channels verified by mass on both: Δ0=UNIMOD:36, Δ4=UNIMOD:199 (+4), Δ8=UNIMOD:330 (+8; the +6
+UNIMOD:510 trap avoided). No Carbamidomethyl (mDIA prep not reduced/alkylated).
+
+**FINAL: 58 APPROVED / 0 PENDING. Include set COMPLETE — 0 truly-unhandled.** All 70 screened `include`
+datasets accounted for: 58 hash-bound approved SDRFs + documented blockers, plus PXD046211/PXD058457
+(already carry an upstream SDRF in PRIDE) and PXD053464/PXD057685 (recorded duplicates in DUPLICATES.md).
+Blocked (full, no SDRF): PXD029320, PXD034370, PXD041328, PXD048347, PXD064501, PXD064518 (multiplexed, no
+channel->sample map) + PXD043473, PXD073250, PXD020586, PXD025387 (earlier). Partial blocks (annotated +
+one blocked arm): PXD049412, PXD061710. Duplicates: Groups 1-6 + PXD046467 self-dup in DUPLICATES.md.
+Tooling: parse_sdrf `--template` only-last defect (memory + CLAUDE.md #7 fixed); issues #36 (Zenodo maps)
+and #37 (.msf modifications) opened. Pushed through 4aa93bf; the mDIA commits (b2e7d36, 2a18efe + this)
+await the next "push".
