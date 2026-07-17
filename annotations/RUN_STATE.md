@@ -361,3 +361,45 @@ per-template re-validation sweep of the committed corpus (reviewers' manual chec
 (PXD029320, PXD034370, PXD040455, PXD041328, PXD048052, PXD048347, PXD053053, PXD063590, PXD064499,
 PXD064501, PXD064518) which will hinge on whether a channel->sample map exists (BLOCKED if not).
 Not pushed (local: …, f80cd4a, 39ee961, a1c3e8c, b3519f1).
+
+### Wave 6 — multiplexed TMT/SCoPE cohort (2026-07-17) — 56 total approved; include set COMPLETE
+The channel->sample map is make-or-break for every multiplexed dataset. Outcome split cleanly on whether
+that map is deposited/published anywhere:
+- **ANNOTATED (map found):**
+  - **PXD053053** — hypoxia SCoPE2 (HEK293-F/PIP-FUCCI), 1344 rows. Map in **Zenodo 12615623** (not
+    PRIDE). Reviewer rebuilt it: 0/1152 mismatches. (→ issue #36)
+  - **PXD063590** — Alzheimer's DLPFC TMTpro35, 2928 rows. Map in deposited sample sheet
+    `metadata_pSCOPE.txt`. Age fix: donor 2225 `90Y`→`>=90Y` (HIPAA "90+" cap; the age regex allows a
+    leading comparison operator; prose-suggested "anonymized" is rejected by parse_sdrf).
+  - **PXD040455** — hyperSCP (HeLa/A549/HFL1/K562) TMTpro+SILAC, 1178 rows. Map = published **Table S1**,
+    walled behind PMC reCAPTCHA / ACS Cloudflare (unreachable by any agent). **User supplied the ACS SI
+    file**; reviewer decoded it, 0 mismatches. K562=pleural effusion, HFL1=CVCL_0298 (not CVCL_3495 trap).
+  - **PXD048052** — microHOLD prostate TMT10 (LNCaP/LNCaP-C4/"U118"), 390 rows (PARTIAL, 39/326 files).
+    Map read from the deposited PD `.msf` StudyInformation via byte-range SQLite. Gate caught Carbamidomethyl
+    + Oxidation omitted despite the `.msf` search node listing them. (→ issue #37)
+  - **PXD064499** — cardiomyocyte SCP pilot (mouse, WT vs Myc), 108 rows. Map in **Zenodo** iSanXoT
+    `level_creator.tsv`. Gate caught unlicensed `characteristics[genotype]` (relied on TERMS glossary, not
+    the resolved template) → declared clinical-metadata.
+- **BLOCKED (no channel->sample map anywhere — per policy "block when the biological factor is missing"):**
+  PXD029320 (RETICLE AML; FACS index files not deposited), PXD034370 (SCoPE-MS U2OS; MaxQuant channels
+  anonymous), PXD041328 + PXD048347 (mouse gastruloid; PD design all generic "Sample"; germ-layer factor
+  absent), PXD064501 + PXD064518 (cardiomyocyte FACS/analytical; per-channel WT/Myc map exists only for the
+  pilot PXD064499). Each has a report + BLOCKED.md entry documenting sources exhausted.
+
+### Tooling findings this run (saved to memory / opened as issues)
+- **parse_sdrf `--template` honors only the LAST flag** (single-value Click option). All "validated against N
+  templates" claims only checked the last; reviewers' manual `resolve_templates.py` checks are what enforced
+  multi-template compliance. Going forward: validate each template in a separate run. (memory:
+  parse-sdrf-only-last-template)
+- **parse_sdrf age regex rejects `anonymized`** though human.yaml prose recommends it for protected ages;
+  the regex DOES accept a leading `>=`/`<=` operator (used `>=90Y` for a HIPAA "90+" cap in PXD063590).
+- **Issue #36** — skill should hunt channel maps in Zenodo/figshare/OSF/GitHub cited in Data Availability
+  (PXD053053/PXD064499 maps lived in Zenodo, not PRIDE).
+- **Issue #37** — skill should read modifications from deposited search files (PD `.msf` Workflows node,
+  MaxQuant/FragPipe/DIA-NN), not just the channel map (PXD048052 Carbamidomethyl miss).
+
+**FINAL: 56 APPROVED / 0 PENDING. Include set COMPLETE** — every screened `include` dataset has either a
+hash-bound approved SDRF or a documented blocker. Blocked (full): PXD029320, PXD034370, PXD041328,
+PXD048347, PXD064501, PXD064518 (this session) + PXD043473, PXD073250, PXD020586, PXD025387 (earlier).
+Partial blocks (annotated + one blocked arm): PXD049412, PXD061710. Duplicates recorded: Groups 1-6 +
+PXD046467 self-dup in DUPLICATES.md. **Nothing pushed — 44 local commits await an explicit "push".**
