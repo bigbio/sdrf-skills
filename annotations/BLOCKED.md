@@ -936,3 +936,44 @@ whose only distinguishing axis is `not available`.
 `level_creator.tsv` for the analytical batches, or a supplementary design table), supplied by the
 authors. See `annotations/PXD064518.report.md` for the recoverable structural facts. Sibling PXD064499
 (pilot) IS annotatable; PXD064501 (FACS) uses disjoint TMT84–97 runs (no overlap).
+
+---
+
+## PXD064501 — Pro-regenerative adult mouse cardiomyocytes (FACS dataset, control-vs-Myc factor absent)
+
+TMT-10plex single-cell proteomics of adult mouse cardiomyocytes, wild-type vs Myc-overexpressing
+(Marín-Vicente et al., *Genome Biology* 2026, PMC13292336, open access). The **FACS** deposition
+("dataset 2"): 14 `20221019_Ec_01_SC_CNIC-KI_TMT{84,85,87,88,89,90,91,92,93,94,95,96,97,98}` runs
+(42 files = 14 raw + 14 mzML + 14 mzid). Same study, same blocker, same decision as **PXD064518**
+(analytical set) — recorded separately because it is a distinct deposition with disjoint runs.
+
+**Channel ROLES are known** (paper Methods + the pilot's iSanXoT map): per run, 130N = empty,
+131 = 200-cell booster [100 control + 100 Myc], and the other 8 channels = single cardiomyocytes
+(4 control + 4 Myc). A **140-row SDRF** (112 single + 14 carrier + 14 empty) is technically constructible
+and **validates clean** against `ms-proteomics + vertebrates + single-cell + clinical-metadata`
+(`parse_sdrf` exit 0, one run per template).
+
+**Blocker (per project policy — block when the biological factor is missing):** the study's core
+variable, **per-channel control-vs-Myc genotype**, is NOT deposited for these 14 FACS files. The two
+alternating label designs (Fig. 1c) are described but the per-run A/B assignment for TMT84–98 is never
+stated. A motivated hunt across eight sources — PRIDE `files/all`; the open paper Methods +
+supplementary (PMC13292336); Zenodo records 19439667 (iSanXoT), 18379944 (complementary), 19484833
+(Raw_data_1, incl. `Metaboanalyst_Fig3a.txt` and `median_reporter_ion_intensity_per_TMT.csv`); the
+paper GitHub (iSanXoT docs only); and Europe PMC supplementary — found a per-channel genotype
+`level_creator.tsv` only for the **pilot PXD064499** (`20220323_SST_cnic_SCP_*`), never for this dataset.
+`Fig3a` confirms 4 control + 4 Myc per TMT84–98 run but gives only a within-genotype index, not the
+physical channel. Extrapolating the pilot's alternating design to these files is forbidden (layouts flip;
+the brief bars assuming a fixed layout). Depositing 112 single cardiomyocytes whose only distinguishing
+axis (`genotype`/`factor value`) is `not available` would be an SDRF with no biological factor — matching
+`PXD025387` (label randomisation) and `PXD029320` (undeposited per-channel condition map).
+
+**Deliberately not used:** a forensic reconstruction matching the deposited per-scan reporter intensities
+to the named Z-values in `Fig3a` could infer each channel's cell, but that is inference from data, not
+deposited metadata (the `PXD073250` principle), and would silently assert the factor for 112 rows.
+
+**Unblocked by:** a per-channel control/Myc design table for the `CNIC-KI_TMT{84–98}` files (a 14-row A/B
+assignment, an iSanXoT `level_creator.tsv` for the FACS batches, or a re-deposited Proteome Discoverer
+study with real sample names), supplied by the authors. See `annotations/PXD064501.report.md` for the
+full recoverable structural facts (organism/tissue/cell type/instrument/mods/labels all resolved and
+OLS-verified). Sibling PXD064499 (pilot) IS annotated (its map was deposited); PXD064518 (analytical) is
+likewise BLOCKED. The three depositions use disjoint runs — no duplication.
