@@ -911,3 +911,28 @@ which germ-layer single cell vs carrier vs empty), the authors' SCP `colData`/sa
 Stem Cell supplementary channel key, or a re-deposited PD study with real sample names. Given that, rows
 are straightforward (TMTpro-18 `UNIMOD:2016`; Orbitrap Eclipse `MS:1003029`; ms-proteomics + vertebrates
 + single-cell; **no Carbamidomethyl** — no reduction/alkylation in the protocol).
+
+---
+
+## PXD064518 — Pro-regenerative adult mouse cardiomyocytes (Analytical dataset, control-vs-Myc factor absent)
+
+TMT-10plex single-cell proteomics of adult mouse cardiomyocytes, wild-type vs Myc-overexpressing
+(Marín-Vicente et al., *Genome Biology* 2026, PMC13292336, open access). 81 deposited `..._CNIC-KI_TMT{n}`
+raw files. **Channel ROLES are known** from Methods + the pilot's iSanXoT map (130N = empty, 131 =
+200-cell booster [100 control + 100 Myc], the other 8 channels = single cardiomyocytes), so a 729-row
+SDRF of single mouse cardiomyocytes is technically constructible and validates clean.
+
+**Blocker (per project policy — block when the biological factor is missing):** the study's core
+variable, **per-channel control-vs-Myc genotype**, is NOT deposited for these 81 analytical files. A
+motivated hunt (the annotator produced a draft SDRF) across six sources — PRIDE `files/all`, the open
+paper Methods + supplementary (PMC13292336), Zenodo records 19439667 / 18379944 / 19484833, and Europe
+PMC supplementary — found a per-channel genotype map only for the **pilot PXD064499** (`20220323_SST_cnic_SCP_*`
+files), never for this dataset. The pilot uses two alternating designs (odd batches = Design A, even =
+Design B); extrapolating that to the analytical files is forbidden (layouts flip; the brief bars
+assuming a fixed layout). Depositing 729 cardiomyocytes with no control/Myc distinction would be an SDRF
+whose only distinguishing axis is `not available`.
+
+**Unblocked by:** a per-channel control/Myc map for the `CNIC-KI_TMT{n}` files (e.g. an iSanXoT
+`level_creator.tsv` for the analytical batches, or a supplementary design table), supplied by the
+authors. See `annotations/PXD064518.report.md` for the recoverable structural facts. Sibling PXD064499
+(pilot) IS annotatable; PXD064501 (FACS) uses disjoint TMT84–97 runs (no overlap).
