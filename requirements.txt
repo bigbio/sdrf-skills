@@ -1,4 +1,5 @@
 # SDRF skills — pip dependencies
+# Supported Python: >=3.10, <3.13 (matches CI matrix in .github/workflows/tools-tests.yml)
 # For Thermo .raw files, thermorawfileparser is not on PyPI; use conda:
 #   conda install -c bioconda thermorawfileparser
 #

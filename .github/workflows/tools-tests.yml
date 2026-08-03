@@ -7,12 +7,14 @@ on:
       - 'tools/**'
       - 'tests/**'
       - 'requirements.txt'
+      - 'environment.yml'
   push:
     branches: [main]
     paths:
       - 'tools/**'
       - 'tests/**'
       - 'requirements.txt'
+      - 'environment.yml'
 
 jobs:
   test:
