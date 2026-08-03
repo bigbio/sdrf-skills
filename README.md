@@ -105,11 +105,12 @@ Install the deterministic helper tools used by the skills. **Conda** is recommen
 
 ```bash
 # Recommended (conda):
-conda env create -f environment.yml
+conda env create -f environment.yml   # installs parse_sdrf, thermorawfileparser, techsdrf, and helpers
 conda activate sdrf-skills
 
-# Or pip:
+# Or pip (thermorawfileparser not on PyPI — skip or install via conda separately):
 pip install -r requirements.txt
+pip install git+https://github.com/bigbio/techsdrf.git
 ```
 
 For Thermo .raw files, `thermorawfileparser` is not on PyPI — use conda: `conda install -c bioconda thermorawfileparser`.
@@ -410,7 +411,7 @@ sdrf-skills/
 ├── .cursor/rules/sdrf-skills.mdc # Cursor — rules file (auto-activates on *.sdrf.tsv)
 ├── .codex/INSTALL.md             # Codex — installation instructions
 ├── .opencode/AGENTS.md           # OpenCode — agent reference
-├── environment.yml               # Conda env (sdrf-pipelines, techsdrf, thermorawfileparser)
+├── environment.yml               # Conda env (sdrf-pipelines, thermorawfileparser, techsdrf via pip)
 ├── requirements.txt              # Pip fallback
 ├── scripts/
 │   └── europepmc_fulltext.py     # Europe PMC full text cleaner: JATS/XML → LLM-friendly text/JSON
