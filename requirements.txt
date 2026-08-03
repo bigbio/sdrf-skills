@@ -7,10 +7,9 @@
 
 # SDRF validation and raw file analysis
 sdrf-pipelines[ontology]
-# techsdrf: upstream pyproject.toml is broken — install manually from a local patched clone:
-#   git clone https://github.com/bigbio/techsdrf.git ../techsdrf
-#   (remove the "License :: OSI Approved :: Apache Software License" classifier in pyproject.toml)
-#   uv pip install ../techsdrf
+# techsdrf: not on PyPI or any conda channel; install from git:
+#   pip install git+https://github.com/bigbio/techsdrf.git
+# (fallback if that fails: git clone https://github.com/bigbio/techsdrf.git ../techsdrf && pip install ../techsdrf)
 
 # Tools dependencies (tools/ package)
 requests>=2.28

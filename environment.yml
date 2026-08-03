@@ -20,12 +20,5 @@ dependencies:
     - requests>=2.28
     - fastmcp>=3.4      # bundled MCP server (mcp/server.py), wired up via .mcp.json
     - httpx>=0.28       # HTTP client used by mcp/server.py
-
-# techsdrf (/sdrf:techrefine) is NOT installable here: it is on no conda channel,
-# not on PyPI, and a plain `pip install git+https://github.com/bigbio/techsdrf.git`
-# fails because upstream pyproject.toml carries a PEP 639-invalid license classifier:
-#   InvalidConfigError: License classifiers have been superseded by license expressions
-# Install it manually from a patched clone (see requirements.txt):
-#   git clone https://github.com/bigbio/techsdrf.git ../techsdrf
-#   # remove the 'License :: OSI Approved :: Apache Software License' classifier
-#   pip install ../techsdrf
+    - git+https://github.com/bigbio/techsdrf.git  # /sdrf:techrefine; not on PyPI or any conda channel
+    # fallback if the git URL fails: git clone https://github.com/bigbio/techsdrf.git ../techsdrf && pip install ../techsdrf
