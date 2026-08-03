@@ -708,6 +708,43 @@ def _search_all_ontologies(query: str, page_size: int, exact: bool) -> dict:
     }
 
 
+def _smart_search(searcher, page_size: int) -> dict:
+    """Exact-first search that refuses to present a non-exact / one-of-many hit
+    as if it were THE answer (issue #35 C4).
+
+    Previously smart mode probed exact with ``page_size=1`` and collapsed
+    ``numFound`` to 1, so ``HeLa`` → ``HeLa-MAGI-CCR5`` (a synonym-matched
+    *different* entity) came back looking authoritative. Here we probe exact
+    **wide**: if more than one *distinct accession* matches the query exactly
+    (label or synonym), we return them all with ``ambiguous: true`` so the
+    caller must disambiguate rather than trust a single hit. Only a single
+    distinct exact match is returned as confident; otherwise we fall back to
+    fuzzy (flagged ``fallback: "fuzzy"``).
+
+    ``searcher(page_size, exact) -> dict`` runs one OLS query and returns a dict
+    carrying ``results`` (each ``{label, accession, ontology}``).
+    """
+    probe = min(max(page_size, 10), 50)
+    hit = searcher(probe, True)
+    results = hit.get("results", [])
+    distinct = {r.get("accession") for r in results if r.get("accession")}
+    if distinct:
+        hit["numFound"] = len(results)
+        if len(distinct) > 1:
+            hit["ambiguous"] = True
+            hit["note"] = (
+                "Multiple distinct terms match this query exactly (label or "
+                "synonym). This is NOT a single authoritative hit — verify which "
+                "entity is intended (e.g. parental cell line vs a derivative, the "
+                "drug vs a regimen) before citing an accession."
+            )
+        return hit
+    fuzzy = searcher(page_size, False)
+    fuzzy["numFound"] = len(fuzzy.get("results", []))
+    fuzzy["fallback"] = "fuzzy"
+    return fuzzy
+
+
 @mcp.tool()
 def searchClasses(
     query: str,
@@ -723,16 +760,23 @@ def searchClasses(
     xlmod, go.
 
     mode (default "smart"):
-      - "smart" : try EXACT label/synonym first; if a hit exists, return JUST
-                  that single exact match (page_size is ignored). Only when
-                  nothing matches exactly, fall back to fuzzy top-`page_size`
-                  (default 3). This keeps downstream reasoning uncluttered.
+      - "smart" : EXACT label/synonym first, probed WIDE. A single distinct
+                  exact match is returned as confident; if several *distinct*
+                  terms match exactly (e.g. a cell line and its derivatives),
+                  all are returned with `ambiguous: true` so you disambiguate
+                  rather than trust one hit. Only when nothing matches exactly
+                  does it fall back to fuzzy top-`page_size`.
       - "exact" : exact-only, cap results at page_size. Returns empty on miss.
       - "fuzzy" : fuzzy-only, returns top-`page_size` regardless of exact hits.
 
+    NOTE: for controlled identifiers where a query commonly names several
+    entities — cell lines (`HeLa`), drugs (`methotrexate`), anatomy
+    (`hippocampus`) — prefer `mode="fuzzy"` and eyeball the candidates; smart
+    mode's exact probe can surface a synonym-matched *different* entity.
+
     Returns {query, ontology_id, numFound, results:[{label, accession, ontology}]}.
-    When smart mode falls back to fuzzy, the returned dict carries
-    `fallback: "fuzzy"` so callers can tell the match is not exact.
+    `fallback: "fuzzy"` marks a non-exact result; `ambiguous: true` marks
+    several distinct exact matches (not a single authoritative hit).
     """
     m = (mode or "smart").lower().strip()
     if m == "exact":
@@ -740,17 +784,10 @@ def searchClasses(
     if m == "fuzzy":
         return _search_ontology_classes(query, ontologyId, page_size, exact=False)
 
-    # smart: exact first (single), fuzzy top-N fallback
-    exact_hit = _search_ontology_classes(query, ontologyId, page_size=1, exact=True)
-    if exact_hit.get("results"):
-        # Align numFound with the slice we actually return, so the AI reads
-        # `numFound == len(results)` as "this IS the exact answer".
-        exact_hit["numFound"] = len(exact_hit["results"])
-        return exact_hit
-    fuzzy = _search_ontology_classes(query, ontologyId, page_size, exact=False)
-    fuzzy["numFound"] = len(fuzzy.get("results", []))
-    fuzzy["fallback"] = "fuzzy"
-    return fuzzy
+    return _smart_search(
+        lambda ps, ex: _search_ontology_classes(query, ontologyId, ps, exact=ex),
+        page_size,
+    )
 
 
 # --- 4.1 Search OLS across ALL ontologies (no filter) ---
@@ -762,12 +799,15 @@ def search(query: str, page_size: int = 3, mode: str = "smart") -> dict:
     ontology is unknown.
 
     mode (default "smart"):
-      - "smart" : exact-first (single hit), fuzzy top-`page_size` fallback.
+      - "smart" : exact-first probed WIDE; a single distinct exact match is
+                  confident, several distinct exact matches come back with
+                  `ambiguous: true`, else fuzzy top-`page_size` fallback.
       - "exact" : exact-only, cap at page_size. Empty on miss.
       - "fuzzy" : fuzzy-only, returns top-`page_size`.
 
     Returns {query, numFound, results:[{label, accession, ontology}]}.
-    Carries `fallback: "fuzzy"` when smart mode falls back.
+    `fallback: "fuzzy"` marks a non-exact result; `ambiguous: true` marks
+    several distinct exact matches (not a single authoritative hit).
     """
     m = (mode or "smart").lower().strip()
     if m == "exact":
@@ -775,14 +815,9 @@ def search(query: str, page_size: int = 3, mode: str = "smart") -> dict:
     if m == "fuzzy":
         return _search_all_ontologies(query, page_size, exact=False)
 
-    exact_hit = _search_all_ontologies(query, page_size=1, exact=True)
-    if exact_hit.get("results"):
-        exact_hit["numFound"] = len(exact_hit["results"])
-        return exact_hit
-    fuzzy = _search_all_ontologies(query, page_size, exact=False)
-    fuzzy["numFound"] = len(fuzzy.get("results", []))
-    fuzzy["fallback"] = "fuzzy"
-    return fuzzy
+    return _smart_search(
+        lambda ps, ex: _search_all_ontologies(query, ps, ex), page_size
+    )
 
 
 # --- 4.2 Get children of an ontology term (specificity check) ---
@@ -833,13 +868,21 @@ def _resolve_ols_term(accession: str) -> tuple[str, str] | None:
 
 
 @mcp.tool()
-def getChildren(accession: str, rows: int = 20) -> dict:
+def getChildren(accession: str, rows: int = 100) -> dict:
     """
-    Get direct child terms for an ontology accession (e.g. 'MONDO:0004992').
-    Useful for specificity checks: if a term has many specific children, prefer
-    a more specific child term in the SDRF characteristic.
+    Get the **descendant** terms (transitive children) of an ontology accession
+    (e.g. 'PRIDE:0000895'). Useful for specificity / enumeration checks.
+
+    Returns descendants, not just direct children (issue #35 B7): OLS's own
+    `/children` returns only the immediate level, so `getChildren(PRIDE:0000895)`
+    would omit `pooled` / `empty` / `bulk control` — genuine descendants reached
+    via an intermediate node — and an annotator that trusted it would force
+    `not applicable` onto valid rows. The validator's `examples` treat these
+    grandchildren as members, so "children" here means *descendant*.
+
     Falls back to OLS /search for ontologies not in the static IRI map.
-    Returns: accession, count, children [{label, accession, ontology}].
+    Returns: accession, count, children [{label, accession, ontology}]
+    (`children` key kept for backward compatibility; entries are descendants).
     """
     parsed = _accession_to_ols_iri(accession)
     if parsed is None:
@@ -851,12 +894,12 @@ def getChildren(accession: str, rows: int = 20) -> dict:
     ont_id, iri = parsed
     encoded_iri = urllib.parse.quote(urllib.parse.quote(iri, safe=""))
     data = _cached_get_json(
-        f"{OLS_BASE}/ontologies/{ont_id}/terms/{encoded_iri}/children",
+        f"{OLS_BASE}/ontologies/{ont_id}/terms/{encoded_iri}/descendants",
         params={"size": rows},
     )
     if not data:
         return {"accession": accession, "count": 0, "children": [],
-                "error": "No children or lookup failed"}
+                "error": "No descendants or lookup failed"}
     terms = data.get("_embedded", {}).get("terms", []) or []
     children = []
     for t in terms:

@@ -18,6 +18,14 @@ polish or extend it. Approve only what the artifact and cited evidence support.
 4. If context isolation cannot be established, return `REVIEW_UNAVAILABLE` and
    do not create a passing receipt.
 5. Do not edit the SDRF. Return findings to the producer.
+6. Read only files scoped to this artifact's accession. When reviewers run
+   concurrently, a shared scratchpad with generic filenames (`files_all.json`,
+   `efetch.xml`, `mmc*.xlsx`) silently substitutes one dataset's data for
+   another's — the file still parses, it just describes a different PXD. Read
+   from `scratchpad/<PXD>/` only, and assert on read: every fetched file
+   list's `projectAccessions`, and every supplementary/`efetch` result's
+   returned title/accession, must match the artifact's accession before you use
+   it — verify identity, not just HTTP 200.
 
 Read [references/review-contract.md](references/review-contract.md) before
 writing the report or recording approval.

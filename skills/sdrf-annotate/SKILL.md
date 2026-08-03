@@ -10,6 +10,29 @@ argument-hint: "[PXD accession or experiment description]"
 You are performing a complete SDRF annotation. Follow these steps IN ORDER.
 Do not skip steps. Do not guess — use MCP tools to verify everything.
 
+## Step 0a: Isolate this dataset's working files (required)
+
+When annotators run concurrently they collide through a **shared scratchpad**:
+generic filenames (`files_all.json`, `build.py`, `efetch.xml`) written by several
+agents into one directory silently overwrite each other. The failure is silent —
+the file still parses, it just describes a *different* dataset — so an agent that
+trusts the re-read annotates the wrong PXD. This has happened (a cached PRIDE file
+list overwritten mid-run with another accession's data; an `efetch.xml` replaced
+by an unrelated paper).
+
+1. Derive your working directory from the accession — `scratchpad/<PXD>/` — and
+   write **every** temp file there and nowhere else.
+2. Never read a scratch file you did not write in **this** run.
+3. Point PDF/full-text fetchers at that directory
+   (`get_pdf_by_unpaywall(output_dir="scratchpad/<PXD>/")`); `mcp/pdf/` is shared
+   by default and two agents fetching different papers will collide.
+4. **Assert on read anyway** (defence in depth — the substitution also comes from
+   outside): after fetching the file list, check every entry's `projectAccessions`
+   contains your accession; when you pull supplementary files or an `efetch`
+   result, verify the returned **title/accession**, not just HTTP 200. (Europe
+   PMC `supplementaryFiles` has returned another paper's `mmc*.xlsx`; `efetch`
+   with `id=PMC…` silently returns a different article — use the numeric id.)
+
 ## Step 0: Check parse_sdrf availability
 
 Before starting, verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
@@ -38,6 +61,27 @@ Europe PMC. You do NOT need a separate identifier-conversion tool.
 The sample/data processing protocols are submitter-authored free text and are
 often the highest-signal source for enzyme, modifications, tolerances, labeling,
 and instrument acquisition — read them BEFORE the publication.
+
+> **PRIDE's structured fields are NOT ground truth — trust them last.**
+> Precedence for any disputed value is **raw data > paper Methods > PRIDE fields**.
+> Across a 26-dataset audit, `get_project_details` was wrong repeatedly:
+> - `instruments` off by model/variant (HF vs **HF-X**; LTQ Orbitrap Velos vs
+>   **Velos Pro**; LTQ Orbitrap Elite vs **Fusion Lumos**; Q Exactive vs
+>   **Q Exactive Plus**) — and sometimes the structured field contradicted the
+>   free-text protocol *in the same record*.
+> - `modifications` routinely said "No PTMs are included in the dataset" while the
+>   paper listed several.
+>
+> When a value matters, recover it from the primary sources instead of trusting the field:
+> - **Instrument model** — HTTP-range-read the first ~256 KB of a Thermo `.raw`
+>   (utf-16-le); the model string is in the header. Bruker `.d` →
+>   `analysis.tdf` is a SQLite DB (see the Bruker skill, #33).
+> - **Search settings & the channel→sample map** — deposited search outputs beat
+>   Methods prose: MaxQuant `summary.txt`/`parameters.txt`, FragPipe
+>   `fragger.params`, DIA-NN logs, PD `.msf` (SQLite). These are often the *only*
+>   source of the channel map.
+> - **Run names inside huge archives** — read the ZIP central directory via an
+>   HTTP range request rather than downloading a multi-GB archive.
 
 ### 1.2 Get the file list
 ```text
@@ -76,6 +120,16 @@ alone.
 ### 1.3 Find and read the publication
 
 For each record in `publications` (Step 1.1), pick exactly ONE tool:
+
+> **`is_open_access` is unreliable — a `false` means "try harder", not "abstract
+> only".** Both PRIDE and Europe PMC reported a gold-OA CC-BY paper as
+> `is_open_access: false`; Europe PMC has returned anti-bot HTML while reporting
+> `oa_status: green`, and `fullTextXML` sometimes 404s for papers that are in
+> fact open. Before falling back to abstract-only (branch b), exhaust the
+> recovery routes: Unpaywall (by DOI), the PMC HTML render, NCBI eutils, and a
+> Europe PMC free-text search on the **accession itself**. Several datasets'
+> entire Methods — hence cell line, channel map, instrument — hung on not
+> believing this flag.
 
 ```text
 a. pmcid is set AND is_open_access == true:
@@ -278,16 +332,29 @@ For clean SDRF-like values, lexical exact or synonym matches are the default pat
 
 **Smart mode is the default** (do NOT pass `mode` unless you need to override):
 
-1. The tool first tries an **exact** label/synonym match.
-   - If exactly one hit → returns ONLY that record. Use its accession directly.
+1. The tool tries an **exact** label/synonym match, probed wide.
+   - Exactly one *distinct* term → returns it. Use its accession directly.
+   - Several distinct terms match exactly → the response carries
+     `ambiguous: true` and lists them. This is NOT a single answer — pick the
+     intended entity yourself (see the trap table below), do not grab the first.
 2. If there is no exact hit → the tool falls back to **fuzzy top-3**
    and tags the response with `fallback: "fuzzy"`.
    - Pick the best candidate. If none fit, refine the query (correct typos,
      try a synonym, or switch to a more specific ontology) and search again.
 
+> **For controlled identifiers that a query commonly over-matches — cell lines
+> (`HeLa`), drugs (`methotrexate`), anatomy (`hippocampus`) — do not trust a
+> single smart-mode hit.** In an audit, smart mode returned confident *wrong*
+> single hits: `HeLa` → `HeLa-MAGI-CCR5`, `A549` → `A549-CR` (a resistant
+> derivative), `methotrexate` → `High-dose Methotrexate/Rituximab Regimen`,
+> `hippocampus` → `CA1 field of hippocampus`, and `in vitro maturation` →
+> unrelated terms for a concept with *no* OLS term. For these, pass
+> `mode="fuzzy"` and eyeball the candidates against the intended entity.
+
 Override only when necessary:
 - `mode="exact"` — force exact-only (e.g. strict validation); empty on miss.
-- `mode="fuzzy"` — force fuzzy top-N; use when exploring close neighbours.
+- `mode="fuzzy"` — force fuzzy top-N; use for cell lines/drugs/anatomy and when
+  exploring close neighbours.
 
 ### 4.3 Use embeddings and ZOOMA only when needed
 Trigger OLS embedding search when:
@@ -420,6 +487,25 @@ Column 3: NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable
 **Double-check**: UNIMOD:1 = Acetyl, UNIMOD:21 = Phospho. Most common swap!
 For TMT: UNIMOD:737 (TMT6/10/11plex) or UNIMOD:2016 (TMTpro 16/18plex)
 
+**Domain traps — verify, don't reflex** (each is validator-clean when wrong):
+- **Dimethyl**: OLS returns `UNIMOD:510` for "Dimethyl" — that is
+  `Dimethyl:2H(4)13C(2)` (+6). The plain light label is `UNIMOD:36`; heavy **+8
+  is `UNIMOD:330`**. Match the mass to the labelling scheme; don't take the first hit.
+- **Carbamidomethyl requires an alkylation step.** Do NOT assert
+  `NT=Carbamidomethyl;AC=UNIMOD:4` when the protocol explicitly omits
+  reduction/alkylation — it is then wrong on every row (and passes validation).
+  When the deposited search params and the paper's Methods disagree, the search
+  params win (precedence: raw > Methods > PRIDE).
+- **Cell-line identity is a research task, not a lookup.** Pierce HeLa digest
+  standard is **HeLa S3** (`CVCL_0058`), not parental HeLa (`CVCL_0030`);
+  ATCC-purchased Jurkat is the **E6-1 clone** (`CVCL_0367`), not the naive
+  `CVCL_0065`. Both wrong answers are validator-clean — confirm against the
+  vendor's page, not just the name.
+- **"Single-cell-equivalent" is a mass, not a count.** `0.5 ng ≈ 2–3 cells` is a
+  dilution standard; annotate the mass, not `cells per well = 2`.
+- **`developmental stage` is the DONOR's stage**, not a cell's maturation state
+  (e.g. not an oocyte's IVM state) — the obvious-looking column is the wrong one.
+
 ### 5.3 Cleavage agent
 ```text
 searchClasses(query="Trypsin", ontologyId="ms")
@@ -431,10 +517,23 @@ Format: NT=Trypsin;AC=MS:1001251
 - TMT: `TMT126`, `TMT127N`, `TMT127C`, etc. (one row per channel per file)
 - SILAC: `SILAC light`, `SILAC heavy`
 
-### 5.5 Acquisition method
-Use PRIDE ontology terms:
-- `Data-Dependent Acquisition`
-- `Data-Independent Acquisition`
+### 5.5 Acquisition method (PRIDE-first — required)
+Column: `comment[proteomics data acquisition method]`
+
+1. Look up terms under parent **`PRIDE:0000659`** (Proteomics data acquisition method)
+   in the **PRIDE** ontology (OLS children/descendants of that parent).
+2. Prefer PRIDE over PSI-MS for this column whenever a PRIDE child exists.
+3. Write the **canonical case-sensitive** `NT=…;AC=…` form (labels must match OLS):
+
+| Mode | Value |
+|------|--------|
+| DDA | `NT=Data-dependent acquisition;AC=PRIDE:0000627` |
+| DIA (incl. SWATH / diaPASEF flavours) | `NT=Data-independent acquisition;AC=PRIDE:0000450` |
+| SRM / MRM | `NT=Selected reaction monitoring;AC=PRIDE:0000630` |
+| PRM | `NT=Parallel reaction monitoring;AC=PRIDE:0000629` |
+
+Do **not** write plain text, `NT=`-only, or PSI-MS accessions (e.g. `MS:1000206`) for
+this column when the PRIDE term above applies.
 
 ### 5.6 Verify technical metadata with raw file analysis (recommended)
 If the dataset has raw files available (PRIDE or local), recommend using **techsdrf**
