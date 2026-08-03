@@ -237,7 +237,7 @@ def get_project_files(project_accession: str) -> dict:
     ftp_root_url (HTTPS mirror of the PRIDE FTP directory containing all files),
     aspera_root_url (Aspera path for high-throughput transfer).
     """
-    data = _cached_get_json(f"{PRIDE_BASE}/projects/{project_accession}/files")
+    data = _cached_get_json(f"{PRIDE_BASE}/projects/{project_accession}/files/all")
     if data is None:
         return {
             "project_accession": project_accession,
