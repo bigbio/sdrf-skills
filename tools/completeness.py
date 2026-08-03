@@ -37,10 +37,15 @@ MS_PROTEOMICS_REQUIRED = BASE_REQUIRED + [
     "comment[instrument]",
     "comment[modification parameters]",
     "comment[cleavage agent details]",
-    "comment[precursor mass tolerance]",
-    "comment[fragment mass tolerance]",
     "comment[label]",
     "comment[proteomics data acquisition method]",
+]
+
+# Columns recommended for ms-proteomics template
+# (required in older spec drafts but only recommended in ms-proteomics/1.1.0)
+MS_PROTEOMICS_RECOMMENDED = [
+    "comment[precursor mass tolerance]",
+    "comment[fragment mass tolerance]",
 ]
 
 # Columns recommended for human studies
@@ -61,6 +66,7 @@ TEMPLATE_REQUIRED: dict[str, list[str]] = {
 
 # Template -> recommended columns mapping
 TEMPLATE_RECOMMENDED: dict[str, list[str]] = {
+    "ms-proteomics": MS_PROTEOMICS_RECOMMENDED,
     "human": HUMAN_RECOMMENDED,
     "cell-lines": [
         "characteristics[cell line]",
@@ -76,8 +82,8 @@ GENERIC_TERMS: dict[str, list[str]] = {
     "cell type": ["cell", "cells"],
 }
 
-# Age format pattern
-AGE_PATTERN = re.compile(r"^\d+[YMWD]$")
+# Age format pattern: one or more "integer + unit" groups (e.g. "58Y", "30Y6M", "2W3D")
+AGE_PATTERN = re.compile(r"^(\d+[YMWD])+$")
 
 # Valid sex values
 VALID_SEX = {"male", "female", "not available", "not applicable", "mixed"}
