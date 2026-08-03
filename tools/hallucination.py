@@ -17,7 +17,7 @@ from tools.column_ontology_map import (
     UNIMOD_SWAPS,
     try_load_terms_tsv,
 )
-from tools.ols_client import OLSClient
+from tools.ols_client import OLSClient, _labels_match
 from tools.sdrf_parser import (
     SDRFFile,
     parse_modification,
@@ -398,12 +398,12 @@ def _check_ontology_column(
     for value, rows in value_rows.items():
         report.total_terms_checked += 1
 
-        # Search in expected ontologies
+        # Search in expected ontologies — use exact search for precision
         found = False
         for ont in expected_onts:
-            terms = ols_client.search_term(value, ontology_id=ont, rows=5)
+            terms = ols_client.search_term(value, ontology_id=ont, exact=True, rows=10)
             for term in terms:
-                if term.label.lower() == value.lower():
+                if _labels_match(value, term.label, term.synonyms):
                     report.verified.append(VerifiedTerm(
                         column=col_name,
                         accession=term.short_form,
@@ -416,10 +416,10 @@ def _check_ontology_column(
                 break
 
         if not found:
-            # Try broad search
-            terms = ols_client.search_term(value, rows=5)
+            # Try broad exact search across all ontologies
+            terms = ols_client.search_term(value, exact=True, rows=10)
             for term in terms:
-                if term.label.lower() == value.lower():
+                if _labels_match(value, term.label, term.synonyms):
                     prefix = term.short_form.split(":")[0].upper() if ":" in term.short_form else ""
                     if prefix and prefix not in [o.upper() for o in expected_onts]:
                         report.wrong_ontology.append(WrongOntologyTerm(
@@ -440,7 +440,33 @@ def _check_ontology_column(
                     found = True
                     break
 
-            # If still not found, it might be a hallucinated label
+        if not found:
+            # Final fallback: fuzzy search to avoid false positives on terms
+            # that exist in OLS but aren't caught by exact matching
+            terms = ols_client.search_term(value, rows=10)
+            for term in terms:
+                if _labels_match(value, term.label, term.synonyms):
+                    prefix = term.short_form.split(":")[0].upper() if ":" in term.short_form else ""
+                    if prefix and prefix not in [o.upper() for o in expected_onts]:
+                        report.wrong_ontology.append(WrongOntologyTerm(
+                            column=col_name,
+                            accession=term.short_form,
+                            label=value,
+                            expected_ontologies=expected_onts,
+                            actual_ontology=prefix,
+                            rows=rows,
+                        ))
+                    else:
+                        report.verified.append(VerifiedTerm(
+                            column=col_name,
+                            accession=term.short_form,
+                            label=value,
+                            ontology=term.ontology_name,
+                        ))
+                    found = True
+                    break
+
+            # If still not found after all search strategies, it may be hallucinated
             if not found:
                 report.hallucinated.append(HallucinatedTerm(
                     column=col_name,

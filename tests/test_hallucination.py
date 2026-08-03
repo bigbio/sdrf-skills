@@ -191,3 +191,34 @@ class TestDetectHallucinationsOnline:
         )
         assert len(report.hallucinated) == 1
         assert report.hallucinated[0].label == "Fake organism"
+
+    def test_synonym_match_not_hallucinated(self):
+        """A term found via synonym must not be reported as hallucinated.
+
+        Mirrors the 'HeLa S3' vs 'HeLa-S3' class of false positives: the SDRF
+        value matches a synonym rather than the OLS primary label.
+        """
+        mock_client = MagicMock(spec=OLSClient)
+        # OLS primary label differs (hyphen vs space) but SDRF value is a synonym
+        mock_client.search_term.return_value = [
+            OLSTerm(
+                iri="http://www.ebi.ac.uk/efo/EFO_0002791",
+                label="HeLa-S3",          # primary label uses hyphen
+                short_form="EFO:0002791",
+                ontology_name="efo",
+                synonyms=["HeLa S3"],     # SDRF value matches this synonym
+            )
+        ]
+
+        sdrf_content = (
+            "source name\tcharacteristics[cell line]\n"
+            "s1\tHeLa S3\n"
+        )
+        report = detect_hallucinations(
+            sdrf_content, ols_client=mock_client, verify_online=True
+        )
+        assert len(report.hallucinated) == 0, (
+            "Term found via synonym should not be reported as hallucinated"
+        )
+        assert len(report.verified) == 1
+        assert report.verified[0].label == "HeLa S3"
