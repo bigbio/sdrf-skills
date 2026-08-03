@@ -4,10 +4,42 @@ from __future__ import annotations
 
 import importlib.util
 import sys
+import types
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pytest
+
+# ---------------------------------------------------------------------------
+# Stub out optional heavy dependencies so the module can be loaded in CI
+# (CI installs only requests + pytest; fastmcp and httpx are not present).
+# ---------------------------------------------------------------------------
+
+def _make_stub_modules():
+    """Inject minimal stubs for fastmcp and httpx into sys.modules."""
+    if "fastmcp" not in sys.modules:
+        class _FakeFastMCP:
+            def __init__(self, *args, **kwargs):
+                pass
+
+            def tool(self, *args, **kwargs):
+                """Support @mcp.tool() as a no-op decorator."""
+                def decorator(fn):
+                    return fn
+                return decorator
+
+        fastmcp_mod = types.ModuleType("fastmcp")
+        fastmcp_mod.FastMCP = _FakeFastMCP
+        sys.modules["fastmcp"] = fastmcp_mod
+
+    if "httpx" not in sys.modules:
+        httpx_mod = types.ModuleType("httpx")
+        httpx_mod.Client = MagicMock
+        httpx_mod.HTTPStatusError = Exception
+        sys.modules["httpx"] = httpx_mod
+
+
+_make_stub_modules()
 
 # Import the local mcp/server.py directly to avoid collision with the
 # installed 'mcp' package from fastmcp/anthropic.
@@ -43,10 +75,6 @@ class TestGetProjectFiles:
         assert captured_urls[0].endswith("/files/all"), (
             f"get_project_files must use the /files/all endpoint to avoid "
             f"silent truncation at 100 files; called {captured_urls[0]!r} instead"
-        )
-        assert "/files/all" in captured_urls[0]
-        assert captured_urls[0].rstrip("/") != captured_urls[0].rstrip("/").replace(
-            "/files/all", "/files"
         )
 
     def test_returns_complete_file_list(self):
