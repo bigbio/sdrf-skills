@@ -9,6 +9,7 @@ Usage:
   python -m tools cellline lookup <name>           # curated cell line lookup
   python -m tools massive-files <PXD|MSV|task>     # MassIVE raw/acquisition file resolver
   python -m tools review-gate <command>             # independent-review receipt gate
+  python -m tools audit-existing <file.sdrf.tsv>    # audit an already-annotated dataset
 """
 
 from __future__ import annotations
@@ -160,6 +161,34 @@ def cmd_review_gate(args: argparse.Namespace) -> int:
     return run_cli(args.review_gate_args)
 
 
+def cmd_audit_existing(args: argparse.Namespace) -> int:
+    """Audit an SDRF that already exists for a dataset, before re-annotating it."""
+    from pathlib import Path
+
+    from tools.existing_annotation import audit
+
+    runs = None
+    if args.runs:
+        runs_text = Path(args.runs).read_text(encoding="utf-8-sig")
+        runs = [ln.strip() for ln in runs_text.splitlines() if ln.strip()]
+    organisms = args.organism or None
+
+    report = audit(
+        Path(args.sdrf_file).read_text(encoding="utf-8-sig"),
+        deposited_runs=runs,
+        pride_organisms=organisms,
+        accession=args.accession or "",
+    )
+    print(report.render())
+    print(f"\nsuggested action: {report.recommendation}")
+    if not args.runs or not organisms:
+        skipped = [n for n, v in (("--runs", args.runs), ("--organism", organisms)) if not v]
+        print(f"note: {', '.join(skipped)} not supplied, so those checks were SKIPPED (not passed)")
+    # Exit non-zero only for blockers, so this can gate a workflow without
+    # blocking on convention drift.
+    return 1 if report.blockers else 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="python -m tools",
@@ -232,6 +261,18 @@ def main() -> None:
     )
     p.add_argument("review_gate_args", nargs=argparse.REMAINDER)
 
+    # audit-existing
+    p = subparsers.add_parser(
+        "audit-existing",
+        help="Audit an SDRF that already exists for a dataset, before re-annotating",
+    )
+    p.add_argument("sdrf_file", help="the EXISTING SDRF (e.g. from the community repo)")
+    p.add_argument("--accession", default=None, help="PXD accession, enables convention checks")
+    p.add_argument("--runs", default=None,
+                   help="file with one deposited run filename per line; omitted = coverage check skipped")
+    p.add_argument("--organism", action="append", default=None,
+                   help="organism registered in PRIDE (repeatable); omitted = organism check skipped")
+
     args = parser.parse_args()
 
     # Set default db path for cellline commands
@@ -248,6 +289,7 @@ def main() -> None:
         "cellline": cmd_cellline,
         "verify": cmd_verify,
         "review-gate": cmd_review_gate,
+        "audit-existing": cmd_audit_existing,
     }
 
     sys.exit(commands[args.command](args))
