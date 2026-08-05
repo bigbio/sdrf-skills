@@ -36,8 +36,31 @@ gh api repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD} \
 ```
 
 - **New annotation**: The PXD folder does not exist → this is a new contribution
-- **Update**: The PXD folder already exists → this updates an existing annotation
-- Report which case it is to the user
+- **Update**: The PXD folder already exists → this **replaces a file someone else
+  curated**, so it needs justification, not just a report
+
+For the update case, do not open the PR yet. Audit the file you are about to
+replace, so the PR can say what was actually wrong with it:
+
+```bash
+curl -sL "$(gh api repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD}/{PXD}.sdrf.tsv --jq .download_url)" -o existing.sdrf.tsv
+python -m tools audit-existing existing.sdrf.tsv --accession {PXD} \
+  --runs deposited_runs.txt --organism "<each organism PRIDE registers>"
+```
+
+Then:
+
+- **The audit is clean and your version is merely different** → say so and ask the
+  user whether to proceed. Replacing a correct annotation with an equivalent one
+  costs reviewer time and can regress hand curation. Style-only changes are rarely
+  worth a PR on their own.
+- **The audit found defects** → proceed, and make the PR body lead with them:
+  each defect, the evidence from the deposit, and what the new file does instead.
+  A reviewer must be able to check the claim rather than trust it.
+
+If `/sdrf:annotate` already ran its Step 0.5 gate for this accession, reuse that
+audit instead of repeating it, and confirm the user chose `fix` or `reannotate`.
+**Never open a PR that silently overwrites an existing annotation.**
 
 ## Step 2: Validate Before Contributing
 
