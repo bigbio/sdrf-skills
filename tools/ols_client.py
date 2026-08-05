@@ -187,8 +187,15 @@ class OLSClient:
     # Hierarchy navigation
     # ------------------------------------------------------------------
 
-    def get_children(self, accession: str, rows: int = 20) -> list[OLSTerm]:
-        """Get child terms for specificity checks."""
+    def get_children(self, accession: str, rows: int = 100) -> list[OLSTerm]:
+        """Get **descendant** terms (transitive children) for specificity /
+        enumeration checks.
+
+        Uses OLS `/descendants`, not `/children` (issue #35 B7): `/children`
+        returns only the immediate level, so descendants reached via an
+        intermediate node (e.g. `pooled`/`empty`/`bulk control` under
+        `PRIDE:0000895`) would be missed. The validator's `examples` treat such
+        grandchildren as members, so "children" here means *descendant*."""
         ontology_id, _ = self._split_accession(accession)
         iri = self._accession_to_iri(accession, ontology_id or "")
         if not iri or not ontology_id:
@@ -196,7 +203,7 @@ class OLSClient:
         encoded_iri = urllib.parse.quote(urllib.parse.quote(iri, safe=""))
         try:
             data = self._get(
-                f"/ontologies/{ontology_id.lower()}/terms/{encoded_iri}/children",
+                f"/ontologies/{ontology_id.lower()}/terms/{encoded_iri}/descendants",
                 params={"size": rows},
             )
         except requests.HTTPError:
