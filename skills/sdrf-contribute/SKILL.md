@@ -35,15 +35,33 @@ gh api repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD} \
   --silent && echo "exists" || echo "new"
 ```
 
-- **New annotation**: The PXD folder does not exist → this is a new contribution
-- **Update**: The PXD folder already exists → this **replaces a file someone else
-  curated**, so it needs justification, not just a report
-
-For the update case, do not open the PR yet. Audit the file you are about to
-replace, so the PR can say what was actually wrong with it:
+Classify at the level of the **file you are about to write**, not the directory.
+A PXD folder may legitimately hold several SDRFs with descriptive suffixes
+(`PXD006430-tmt.sdrf.tsv` + `PXD006430-silac.sdrf.tsv`), so an existing folder
+does not mean you are replacing anything:
 
 ```bash
-curl -sL "$(gh api repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD}/{PXD}.sdrf.tsv --jq .download_url)" -o existing.sdrf.tsv
+gh api repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD} \
+  --jq '.[] | select(.name | endswith(".sdrf.tsv")) | .name' 2>/dev/null
+```
+
+- **New annotation**: your target filename is not in that listing → new
+  contribution, even if the folder already exists. Name any sibling files in the
+  PR so a reviewer can see how the sub-experiments divide.
+- **Update**: your target filename IS in the listing → this **replaces a file
+  someone else curated**, so it needs justification, not just a report.
+
+For the update case, do not open the PR yet. Audit the file you are about to
+replace, so the PR can say what was actually wrong with it. Abort on a failed
+fetch rather than auditing a truncated or error-page file:
+
+```bash
+set -euo pipefail
+url=$(gh api "repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD}/{FILE}" --jq .download_url)
+[ -n "$url" ] || { echo "could not resolve download URL — abort"; exit 1; }
+curl -fsSL "$url" -o existing.sdrf.tsv
+[ -s existing.sdrf.tsv ] || { echo "empty download — abort"; exit 1; }
+
 python -m tools audit-existing existing.sdrf.tsv --accession {PXD} \
   --runs deposited_runs.txt --organism "<each organism PRIDE registers>"
 ```

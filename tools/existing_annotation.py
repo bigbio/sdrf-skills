@@ -84,6 +84,11 @@ class AuditReport:
 
 
 def _read(sdrf_text: str) -> tuple[list[str], list[list[str]]]:
+    # An SDRF saved from Excel commonly carries a UTF-8 BOM. Left in place it
+    # turns the first header cell into "﻿source name", every column lookup
+    # misses, and the audit reports a clean file — the worst possible failure
+    # mode for a gate.
+    sdrf_text = sdrf_text.lstrip("﻿")
     rows = list(csv.reader(io.StringIO(sdrf_text), delimiter="\t"))
     if not rows:
         return [], []
@@ -118,9 +123,24 @@ def audit(
 
     # ---- run coverage -----------------------------------------------------
     file_ix = _cols(header, "comment[data file]")
+    if deposited_runs is not None and not file_ix:
+        # Evidence WAS supplied, so this is not a skipped check - the SDRF
+        # cannot support it. Staying silent here would return "leave" for a
+        # file that has no run mapping at all.
+        report.findings.append(Finding(
+            "no_data_file_column", BLOCKER,
+            "the SDRF has no comment[data file] column, so no row can be tied "
+            "to a deposited run"))
     if deposited_runs is not None and file_ix:
-        deposited = {r for r in deposited_runs}
-        annotated = _values(rows, file_ix)
+        deposited = {r.strip() for r in deposited_runs if r.strip()}
+        raw = _values(rows, file_ix)
+        annotated = {v.strip() for v in raw if v.strip()}
+        # A blank cell is a real defect, but calling it an "invented run" is
+        # confusing, so it is reported on its own.
+        if any(not v.strip() for v in raw):
+            report.findings.append(Finding(
+                "blank_data_file", MAJOR,
+                "comment[data file] has blank cell(s), so some rows name no run"))
         missing = deposited - annotated
         invented = annotated - deposited
         if missing:
@@ -136,6 +156,11 @@ def audit(
 
     # ---- organism agreement ----------------------------------------------
     org_ix = _cols(header, "characteristics[organism]")
+    if pride_organisms and not org_ix:
+        report.findings.append(Finding(
+            "no_organism_column", BLOCKER,
+            "the SDRF has no characteristics[organism] column, so the organisms "
+            "PRIDE registers cannot be checked"))
     if pride_organisms and org_ix:
         def norm(s: str) -> str:
             s = re.sub(r"NT=([^;]*).*", r"\1", s)
@@ -167,8 +192,11 @@ def audit(
 
     # ---- malformed CV terms ----------------------------------------------
     # Provenance columns legitimately use NT=<name>;VV=<version> and carry no
-    # ontology accession, so an absent AC= is only a defect elsewhere.
+    # ontology accession. They are excluded BY NAME: exempting every value that
+    # merely contains "VV=" would also excuse a real CV column written that way,
+    # and an empty "AC=" is not an accession either.
     provenance = {"comment[sdrf template]", "comment[sdrf annotation tool]"}
+    has_accession = re.compile(r"AC=\s*\S")
     malformed = set()
     for i, col in enumerate(header):
         if not col.startswith("comment[") or col in provenance:
@@ -177,7 +205,7 @@ def audit(
             if i >= len(r):
                 continue
             v = r[i]
-            if v.startswith("NT=") and "AC=" not in v and "VV=" not in v:
+            if v.startswith("NT=") and not has_accession.search(v):
                 malformed.add(f"{col}={v}")
     if malformed:
         report.findings.append(Finding(
@@ -206,7 +234,8 @@ def audit(
         src_ix = _cols(header, "source name")
         if src_ix:
             srcs = _values(rows, src_ix)
-            if srcs and not all(s.startswith(f"{accession}-Sample-") for s in srcs):
+            expected = re.compile(rf"{re.escape(accession)}-Sample-\d+")
+            if srcs and not all(expected.fullmatch(s.strip()) for s in srcs):
                 report.findings.append(Finding(
                     "source_name_convention", MINOR,
                     "source name does not follow <ACCESSION>-Sample-<n>",

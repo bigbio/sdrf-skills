@@ -172,3 +172,81 @@ class TestProvenanceColumnsAreNotOntologyTerms:
                      "1", "1", "r1.raw", "c")]
         report = audit(_sdrf(rows), accession="PXD1")
         assert any(f.code == "cv_term_no_accession" for f in report.findings)
+
+
+class TestReviewFindings:
+    """Regression tests for the review feedback on PR #46."""
+
+    def test_utf8_bom_does_not_silently_disable_checks(self):
+        """A BOM turned 'source name' into '﻿source name', so every column
+        lookup missed and the audit reported a clean file."""
+        report = audit("﻿" + GOOD, deposited_runs=["r1.raw", "r9.raw"],
+                       accession="PXD1")
+        assert any(f.code == "missing_runs" for f in report.findings), report.render()
+
+    def test_blank_data_file_is_not_reported_as_an_invented_run(self):
+        rows = [
+            _row("PXD1-Sample-1", "Homo sapiens", "normal", "r1", "NT=x;AC=MS:1",
+                 "NT=y;AC=MS:2", "1", "1", "r1.raw", "c"),
+            _row("PXD1-Sample-2", "Homo sapiens", "normal", "r2", "NT=x;AC=MS:1",
+                 "NT=y;AC=MS:2", "1", "1", "", "c"),
+        ]
+        report = audit(_sdrf(rows), deposited_runs=["r1.raw"], accession="PXD1")
+        assert any(f.code == "blank_data_file" for f in report.findings)
+        assert not any(f.code == "invented_runs" for f in report.findings)
+
+    def test_surrounding_whitespace_does_not_double_report(self):
+        rows = [_row("PXD1-Sample-1", "Homo sapiens", "normal", "r1", "NT=x;AC=MS:1",
+                     "NT=y;AC=MS:2", "1", "1", "  r1.raw  ", "c")]
+        report = audit(_sdrf(rows), deposited_runs=["r1.raw"], accession="PXD1")
+        assert not any(f.code in ("missing_runs", "invented_runs") for f in report.findings)
+
+    def test_evidence_supplied_but_data_file_column_absent_is_reported(self):
+        header = HEADER.replace("\tcomment[data file]", "")
+        cells = ("PXD1-Sample-1", "Homo sapiens", "normal", "r1",
+                 "NT=x;AC=MS:1", "NT=y;AC=MS:2", "1", "1", "c")
+        rows = ["\t".join(cells)]
+        report = audit(_sdrf(rows, header=header), deposited_runs=["r1.raw"],
+                       accession="PXD1")
+        f = next(f for f in report.findings if f.code == "no_data_file_column")
+        assert f.severity == BLOCKER
+        assert report.recommendation == "reannotate"
+
+    def test_evidence_supplied_but_organism_column_absent_is_reported(self):
+        header = HEADER.replace("characteristics[organism]\t", "")
+        cells = ("PXD1-Sample-1", "normal", "r1", "NT=x;AC=MS:1",
+                 "NT=y;AC=MS:2", "1", "1", "r1.raw", "c")
+        rows = ["\t".join(cells)]
+        report = audit(_sdrf(rows, header=header), pride_organisms=["Homo sapiens"],
+                       accession="PXD1")
+        assert any(f.code == "no_organism_column" and f.severity == BLOCKER
+                   for f in report.findings)
+
+    def test_vv_on_a_real_cv_column_is_not_exempt(self):
+        """Only the named provenance columns are exempt — a VV= anywhere else
+        must not excuse a missing accession."""
+        rows = [_row("PXD1-Sample-1", "Homo sapiens", "normal", "r1",
+                     "NT=Some Instrument;VV=v1", "NT=y;AC=MS:2", "1", "1",
+                     "r1.raw", "c")]
+        report = audit(_sdrf(rows), accession="PXD1")
+        assert any(f.code == "cv_term_no_accession" for f in report.findings)
+
+    def test_empty_accession_value_is_not_an_accession(self):
+        rows = [_row("PXD1-Sample-1", "Homo sapiens", "normal", "r1",
+                     "NT=Some Instrument;AC=", "NT=y;AC=MS:2", "1", "1", "r1.raw", "c")]
+        report = audit(_sdrf(rows), accession="PXD1")
+        assert any(f.code == "cv_term_no_accession" for f in report.findings)
+
+    def test_source_name_suffix_must_be_numeric(self):
+        for bad in ("PXD1-Sample-abc", "PXD1-Sample-"):
+            rows = [_row(bad, "Homo sapiens", "normal", "r1", "NT=x;AC=MS:1",
+                         "NT=y;AC=MS:2", "1", "1", "r1.raw", "c")]
+            report = audit(_sdrf(rows), accession="PXD1")
+            assert any(f.code == "source_name_convention" for f in report.findings), bad
+
+    def test_accession_is_regex_escaped(self):
+        """A '.' in the accession must not act as a wildcard."""
+        rows = [_row("PXDx1-Sample-1", "Homo sapiens", "normal", "r1", "NT=x;AC=MS:1",
+                     "NT=y;AC=MS:2", "1", "1", "r1.raw", "c")]
+        report = audit(_sdrf(rows), accession="PXD.1")
+        assert any(f.code == "source_name_convention" for f in report.findings)

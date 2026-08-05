@@ -169,11 +169,12 @@ def cmd_audit_existing(args: argparse.Namespace) -> int:
 
     runs = None
     if args.runs:
-        runs = [ln.strip() for ln in Path(args.runs).read_text().splitlines() if ln.strip()]
+        runs_text = Path(args.runs).read_text(encoding="utf-8-sig")
+        runs = [ln.strip() for ln in runs_text.splitlines() if ln.strip()]
     organisms = args.organism or None
 
     report = audit(
-        Path(args.sdrf_file).read_text(encoding="utf-8"),
+        Path(args.sdrf_file).read_text(encoding="utf-8-sig"),
         deposited_runs=runs,
         pride_organisms=organisms,
         accession=args.accession or "",
