@@ -8,6 +8,7 @@ Implements tools for SDRF annotation workflow:
 - OLS: ontology term search for SDRF column annotation
 """
 
+import json
 import os
 import re
 import threading
@@ -21,10 +22,11 @@ import httpx
 
 mcp = FastMCP(
     "sdrf-pride-pmc",
-    instructions="PRIDE, Europe PMC, Unpaywall, and OLS tools for SDRF annotation workflow",
+    instructions="PRIDE, MassIVE, Europe PMC, Unpaywall, and OLS tools for SDRF annotation workflow",
 )
 
 PRIDE_BASE = "https://www.ebi.ac.uk/pride/ws/archive/v2"
+MASSIVE_BASE = "https://massive.ucsd.edu/ProteoSAFe/proxi/v0.1"
 EUROPE_PMC_BASE = "https://www.ebi.ac.uk/europepmc/webservices/rest"
 OLS_BASE = "https://www.ebi.ac.uk/ols4/api"
 UNPAYWALL_BASE = "https://api.unpaywall.org/v2"
@@ -64,9 +66,18 @@ _CACHE_MAX = 512
 
 
 def _cached_get_json(
-    url: str, params: dict | None = None, timeout: float | None = None
+    url: str,
+    params: dict | None = None,
+    timeout: float | None = None,
+    not_found_ok: bool = False,
 ) -> dict | None:
-    """GET → JSON with process-local caching. Returns None on non-200 or network error."""
+    """GET → JSON with process-local caching. Returns None on non-200 or network error.
+
+    `not_found_ok=True` maps a 404 to `[]` instead of None, so callers can tell
+    "nothing there" apart from "request failed". MassIVE's PROXI search 404s when
+    you page past the last page; without this the two are indistinguishable and a
+    transient failure looks like the end of the result set.
+    """
     key = url + "|" + repr(sorted((params or {}).items()))
     hit = _json_cache.get(key)
     if hit is not None:
@@ -76,8 +87,16 @@ def _cached_get_json(
             url, params=params, timeout=timeout or _DEFAULT_TIMEOUT
         )
         if resp.status_code != 200:
-            return None
-        data = resp.json()
+            return [] if (not_found_ok and resp.status_code == 404) else None
+        try:
+            data = resp.json()
+        except UnicodeDecodeError:
+            # httpx .json() decodes the raw bytes as UTF-8. MassIVE serves
+            # `application/json;charset=ISO-8859-1`, so any record carrying an
+            # accented character (author names, European affiliations) blows up
+            # and would silently drop a whole page. .text honours the declared
+            # charset — decode through it instead.
+            data = json.loads(resp.text)
     except Exception:
         return None
     if len(_json_cache) >= _CACHE_MAX:
@@ -115,6 +134,272 @@ def _resolve_publication(pmid: str | None, doi: str | None, reference: str) -> d
     }
 
 
+# -----------------------------------------------------------------------------
+# MassIVE (PROXI) adapter.
+#
+# MassIVE serves the PROXI standard, whose records differ from PRIDE's in three
+# ways that all corrupt silently if ignored:
+#   1. the payload sits in `value`, not `name` (`name` is the CV term label)
+#   2. species / publications / contacts are nested one list deeper
+#   3. a missing value is often the literal STRING "null", not JSON null
+# _proxi_values() is the single place all three are handled.
+# -----------------------------------------------------------------------------
+_PROXI_EMPTY = {"", "null", "none", "n/a", "na"}
+
+
+def _proxi_values(record: dict, key: str) -> list[str]:
+    """Flatten a PROXI CvParam field to real string values, dropping empties."""
+    out: list[str] = []
+    for entry in record.get(key, []) or []:
+        group = entry if isinstance(entry, list) else [entry]
+        for cv in group:
+            if not isinstance(cv, dict):
+                continue
+            val = cv.get("value")
+            if val is None:
+                continue
+            val = str(val).strip()
+            if val.lower() in _PROXI_EMPTY:
+                continue
+            out.append(val)
+    return out
+
+
+def _proxi_publications(record: dict) -> list[dict]:
+    """Resolve PROXI publication CvParams into the PRIDE publication shape."""
+    publications: list[dict] = []
+    for group in record.get("publications", []) or []:
+        entries = group if isinstance(group, list) else [group]
+        pmid = doi = None
+        reference = ""
+        for cv in entries:
+            if not isinstance(cv, dict):
+                continue
+            val = cv.get("value")
+            if val is None or str(val).strip().lower() in _PROXI_EMPTY:
+                continue
+            val = str(val).strip()
+            acc = cv.get("accession")
+            if acc == "MS:1000879":       # PubMed identifier
+                pmid = val
+            elif acc == "MS:1001922":     # Digital Object Identifier
+                doi = val
+            elif acc == "MS:1002866":     # Reference
+                reference = val
+        if not (pmid or doi or reference):
+            continue
+        if pmid or doi:
+            publications.append(_resolve_publication(pmid, doi, reference))
+        else:
+            publications.append({
+                "pmid": None, "pmcid": None, "doi": None,
+                "is_open_access": False, "reference": reference,
+            })
+    return publications
+
+
+def _massive_to_project(record: dict, queried: str | None = None) -> dict:
+    """Map a MassIVE PROXI dataset record onto the get_project_details schema."""
+    accessions = _proxi_values(record, "accession")
+    primary = queried or next(
+        (a for a in accessions if a.upper().startswith("PXD")),
+        accessions[0] if accessions else None,
+    )
+    return {
+        "accession": primary,
+        "all_accessions": accessions,
+        "repository": "MassIVE",
+        "title": record.get("title"),
+        "description": record.get("summary"),
+        # MassIVE PROXI exposes no protocol text and no experiment/quantification
+        # CV terms. Empty is honest here — screen these from the publication.
+        "sample_processing_protocol": None,
+        "data_processing_protocol": None,
+        "organism": _proxi_values(record, "species"),
+        "organism_parts": [],
+        "countries": [],
+        "instruments": _proxi_values(record, "instruments"),
+        "experiment_types": [],
+        "quantification_methods": [],
+        "modifications": _proxi_values(record, "modifications"),
+        "publications": _proxi_publications(record),
+        "keywords": _proxi_values(record, "keywords"),
+    }
+
+
+def _massive_search_hit(record: dict) -> dict:
+    """Cheap projection of a PROXI search hit — NOT _massive_to_project().
+
+    A search page returns up to `page_size` records and none of them expose
+    `publications` in the output shape, so resolving publications here (a live
+    Europe PMC call per record, via _proxi_publications) would be pure waste —
+    measured at 17 discarded Europe PMC requests for one 30-record page. Only
+    compute what a search hit actually reports.
+    """
+    accessions = _proxi_values(record, "accession")
+    return {
+        "accession": next((a for a in accessions if a.upper().startswith("PXD")),
+                          accessions[0] if accessions else None),
+        "all_accessions": accessions,
+        "repository": "MassIVE",
+        "title": record.get("title"),
+        "description": record.get("summary"),
+        "organism": _proxi_values(record, "species"),
+        "organism_parts": [],
+        "instruments": _proxi_values(record, "instruments"),
+        "experiment_types": [],
+        "quantification_methods": [],
+        "keywords": _proxi_values(record, "keywords"),
+        "publication_date": None,
+        "has_sdrf": False,
+    }
+
+
+def _massive_get_dataset(accession: str) -> dict | None:
+    """Fetch one MassIVE dataset by MSV… or PXD… accession."""
+    data = _cached_get_json(f"{MASSIVE_BASE}/datasets/{accession}")
+    if isinstance(data, dict) and data.get("title"):
+        return data
+    # Direct path can 200 with an empty body for unknown ids; the accession
+    # filter is the reliable confirmation.
+    hits = _cached_get_json(
+        f"{MASSIVE_BASE}/datasets",
+        params={"resultType": "full", "accession": accession},
+    )
+    if isinstance(hits, list) and hits:
+        return hits[0]
+    return None
+
+
+# --- 1.0 Search projects across PRIDE + MassIVE (discovery) ---
+@mcp.tool()
+def search_projects(
+    keyword: str,
+    page_size: int = 100,
+    page: int = 0,
+    repository: str = "all",
+) -> dict:
+    """
+    Search proteomics projects by keyword across PRIDE and MassIVE. Use this to
+    resolve a free-text dataset category ("human gut metaproteomics") into
+    concrete accessions.
+
+    `repository`: "all" (default, both), "pride", or "massive".
+
+    Each hit carries the structured screening fields, so a candidate set can be
+    pre-filtered on organism / instrument / experiment_types /
+    quantification_methods WITHOUT one get_project_details call per hit. Fetch
+    details only for survivors. Each hit reports its `repository`.
+
+    MassIVE hits carry BOTH accessions (`all_accessions`: MSV… and, when the
+    dataset is in ProteomeXchange, PXD…). Results are deduplicated on any shared
+    accession, preferring the PRIDE copy because MassIVE PROXI publishes no
+    experiment_types, quantification_methods, organism_parts or countries.
+
+    Keyword behaviour (measured, not documented upstream): PRIDE ANDs the terms
+    and narrows HARD — "metaproteomics" returns 100+, "human gut metaproteomics"
+    returns 2. For recall, issue several SHORT keyword searches and union the
+    accessions; do not pass a whole category sentence as one keyword. Hits are
+    ranked, not filtered, so always re-check the structured fields yourself.
+
+    Results cap at `page_size` per call; page through until a call returns fewer
+    than `page_size` hits.
+
+    Returns {keyword, repository, page, page_size, count, results:[{accession,
+    all_accessions, repository, title, description, organism, organism_parts,
+    instruments, experiment_types, quantification_methods, keywords,
+    publication_date, has_sdrf}], errors:[...]}.
+    """
+    repo = (repository or "all").lower().strip()
+    if repo not in {"all", "pride", "massive"}:
+        return {"keyword": keyword, "count": 0, "results": [],
+                "error": f"repository must be all|pride|massive, got {repository!r}"}
+
+    results: list[dict] = []
+    errors: list[str] = []
+
+    def _names(rec: dict, key: str) -> list[str]:
+        # /search/projects returns plain strings where /projects/{acc} returns
+        # CvParam dicts for the same logical field. Accept both.
+        out = []
+        for v in rec.get(key, []) or []:
+            out.append(v.get("name", "") if isinstance(v, dict) else str(v))
+        return out
+
+    if repo in {"all", "pride"}:
+        data = _cached_get_json(
+            f"{PRIDE_BASE}/search/projects",
+            params={"keyword": keyword, "pageSize": str(page_size), "page": str(page)},
+        )
+        if data is None:
+            errors.append("PRIDE search unreachable")
+            items = []
+        else:
+            items = data if isinstance(data, list) else (
+                data.get("_embedded", {}).get("compactprojects", []) or []
+            )
+        for it in items:
+            results.append(_pride_search_hit(it, _names))
+
+    if repo in {"all", "massive"}:
+        # PROXI requires resultType; `keywords=` is silently IGNORED and returns
+        # the unfiltered listing — `search=` is the only real filter. pageNumber
+        # is 1-based (`page=` is ignored). Paging past the end 404s, which
+        # not_found_ok maps to [] so it reads as exhaustion, not failure.
+        mparams = {
+            "resultType": "full",
+            "search": keyword,
+            "pageSize": str(page_size),
+            "pageNumber": str(page + 1),
+        }
+        mdata = _cached_get_json(
+            f"{MASSIVE_BASE}/datasets", params=mparams, not_found_ok=True
+        )
+        if mdata is None:
+            errors.append(
+                f"MassIVE search failed for page {page} — results are INCOMPLETE, retry this page"
+            )
+        else:
+            seen = {a for r in results for a in r["all_accessions"] if a}
+            for rec in mdata if isinstance(mdata, list) else []:
+                hit = _massive_search_hit(rec)
+                if any(a in seen for a in hit["all_accessions"]):
+                    continue  # already covered by the richer PRIDE record
+                results.append(hit)
+
+    out = {
+        "keyword": keyword,
+        "repository": repo,
+        "page": page,
+        "page_size": page_size,
+        "count": len(results),
+        "results": results,
+    }
+    if errors:
+        out["errors"] = errors
+    return out
+
+
+def _pride_search_hit(it: dict, _names) -> dict:
+    acc = it.get("accession")
+    return {
+            "accession": acc,
+            "all_accessions": [acc] if acc else [],
+            "repository": "PRIDE",
+            "title": it.get("title"),
+            "description": it.get("projectDescription"),
+            "organism": _names(it, "organisms"),
+            # search spells this "organismsPart"; project details uses "organismParts"
+            "organism_parts": _names(it, "organismsPart") or _names(it, "organismParts"),
+            "instruments": _names(it, "instruments"),
+            "experiment_types": _names(it, "experimentTypes"),
+            "quantification_methods": _names(it, "quantificationMethods"),
+            "keywords": it.get("keywords", []),
+            "publication_date": it.get("publicationDate"),
+            "has_sdrf": bool(it.get("sdrf")),
+    }
+
+
 # --- 1.1 Get PRIDE project metadata ---
 @mcp.tool()
 def get_project_details(project_accession: str) -> dict:
@@ -128,19 +413,48 @@ def get_project_details(project_accession: str) -> dict:
       - otherwise (pmid and/or doi set)   → get_article_metadata(ids=[<any-id>])
       - nothing set                       → ask the user for the publication.
 
-    Returns: title, description, sample_processing_protocol, data_processing_protocol,
-    organism, instruments, modifications, publications, keywords.
+    Resolves across BOTH repositories, so callers need no routing logic:
+      - MSV…  → MassIVE
+      - PXD…  → PRIDE, falling back to MassIVE when PRIDE does not hold it
+                (MassIVE-hosted ProteomeXchange datasets 404 in PRIDE —
+                e.g. PXD003626 — so the fallback is required, not cosmetic)
+
+    Returns: accession, all_accessions, repository, title, description,
+    sample_processing_protocol, data_processing_protocol, organism,
+    organism_parts, countries, instruments, experiment_types,
+    quantification_methods, modifications, publications, keywords.
+
+    `experiment_types` (e.g. "Shotgun proteomics") and `quantification_methods`
+    (e.g. "TIC", "TMT") are the structured screening fields — prefer them over
+    parsing the free-text protocols when filtering candidates. MassIVE PROXI
+    publishes neither, and no protocol text; those come back empty and must be
+    screened from the publication instead. An empty field is not a failed check.
     """
-    data = _cached_get_json(f"{PRIDE_BASE}/projects/{project_accession}")
+    accession = (project_accession or "").strip()
+
+    if accession.upper().startswith("MSV"):
+        record = _massive_get_dataset(accession)
+        if record is None:
+            return {"accession": accession,
+                    "error": "MassIVE dataset not found or API unreachable"}
+        return _massive_to_project(record, queried=accession)
+
+    data = _cached_get_json(f"{PRIDE_BASE}/projects/{accession}")
     if data is None:
+        record = _massive_get_dataset(accession)
+        if record is not None:
+            return _massive_to_project(record, queried=accession)
         return {
-            "accession": project_accession,
-            "error": "PRIDE project not found or API unreachable",
+            "accession": accession,
+            "error": "Not found in PRIDE or MassIVE, or both APIs unreachable",
         }
 
     organisms = [o.get("name", "") for o in data.get("organisms", [])]
     instruments = [i.get("name", "") for i in data.get("instruments", [])]
     mods = [m.get("name", "") for m in data.get("identifiedPTMStrings", [])]
+    organism_parts = [p.get("name", "") for p in data.get("organismParts", []) or []]
+    experiment_types = [e.get("name", "") for e in data.get("experimentTypes", []) or []]
+    quant_methods = [q.get("name", "") for q in data.get("quantificationMethods", []) or []]
 
     publications: list[dict] = []
     for r in data.get("references", []) or []:
@@ -157,12 +471,18 @@ def get_project_details(project_accession: str) -> dict:
 
     return {
         "accession": data.get("accession"),
+        "all_accessions": [data.get("accession")] if data.get("accession") else [],
+        "repository": "PRIDE",
         "title": data.get("title"),
         "description": data.get("projectDescription"),
         "sample_processing_protocol": data.get("sampleProcessingProtocol"),
         "data_processing_protocol": data.get("dataProcessingProtocol"),
         "organism": organisms,
+        "organism_parts": organism_parts,
+        "countries": data.get("countries", []),
         "instruments": instruments,
+        "experiment_types": experiment_types,
+        "quantification_methods": quant_methods,
         "modifications": mods,
         "publications": publications,
         "keywords": data.get("keywords", []),

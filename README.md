@@ -61,7 +61,7 @@ The repository contains 20 skills. The established domain workflows use the
 | `/sdrf:setup` | Install dependencies (parse_sdrf, techsdrf) — conda or pip guided setup |
 | `/sdrf:knowledge` | Ask about SDRF format, column rules, ontology mappings, reserved words |
 | `/sdrf:templates` | Ask about templates, select templates, understand layers and selection rules |
-| `/sdrf:metascreen` | Screen/shortlist PRIDE, MassIVE, or ProteomeXchange studies against user criteria → evidence-backed TSV |
+| `/sdrf:metascreen` | Screen/shortlist PRIDE, MassIVE, or ProteomeXchange studies against user criteria → evidence-backed, resumable TSV |
 | `/sdrf:autoresearch` | Autonomous retained-improvement loop over a dataset, manifest, or dataset class |
 | `/sdrf:annotate` | Full annotation workflow: PXD → PRIDE + paper → draft SDRF → validate |
 | `/sdrf:validate` | Systematic validation against templates + ontology checking via OLS |

@@ -5,12 +5,14 @@ on:
     branches: [main]
     paths:
       - 'tools/**'
+      - 'mcp/**'
       - 'tests/**'
       - 'requirements.txt'
   push:
     branches: [main]
     paths:
       - 'tools/**'
+      - 'mcp/**'
       - 'tests/**'
       - 'requirements.txt'
 
