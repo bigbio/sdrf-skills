@@ -217,8 +217,9 @@ reimplementing merge semantics.
    pass; do not trust a single multi-`--template` invocation. For the authoritative multi-template
    constraint set (column licensing + reserved-word `allow_*`), resolve with
    `spec/scripts/resolve_templates.py` — parse_sdrf enforces neither. `parse_sdrf` ships in
-   `sdrf-pipelines` and is **not installed by default** (CI installs only `requests` + `pytest`) — run
-   `/sdrf:setup`. Keep concurrent `parse_sdrf` jobs ≤ 2.
+   `sdrf-pipelines` and is **not installed by default** (CI installs only `requests`, `pytest`,
+   `fastmcp`, `httpx` — not `sdrf-pipelines[ontology]`, which is heavy) — run `/sdrf:setup`. Keep
+   concurrent `parse_sdrf` jobs ≤ 2.
 8. **A producer must never approve its own SDRF.** For changed SDRFs, require a passing receipt from
    `sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.
    Enforced by `python -m tools review-gate` (`track`, `pending`, `status`, `gate`, `approve`), which
