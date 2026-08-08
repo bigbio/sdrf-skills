@@ -2,7 +2,7 @@
 name: sdrf:metascreen
 description: Use before sdrf:autoresearch when the user needs to screen or shortlist proteomics studies from PRIDE, MassIVE, or ProteomeXchange accessions, or from a manifest, using detailed user-defined inclusion/exclusion criteria; extract study-level metadata from repository records and publications; and write an evidence-backed, resumable TSV for downstream annotation, review, or meta-analysis.
 user-invocable: true
-argument-hint: 'target="<all PRIDE|MassIVE ...|accessions:PXD...,MSV...|path/to/accessions.txt|path/to/manifest.tsv>" [criteria="<md|txt|inline>"] [extract="<cols|txt|md>"] [output="results.tsv"]'
+argument-hint: 'target="<all PRIDE|MassIVE ...|accessions:PXD...,MSV...|path/to/accessions.txt|path/to/manifest.tsv>" [criteria="<md|txt|inline>"] [extract="<cols|txt|md>"] [output="results.tsv"] [dig_passes=1]'
 ---
 
 # SDRF Meta-Analysis Screening Protocol
@@ -89,6 +89,12 @@ report each name dropped.
 ### `output`
 Path for the output TSV. Default: `metascreen_results.tsv`
 
+### `dig_passes`
+Integer, default `1`. How many extra evidence-gathering rounds (3.5) to spend
+on an accession that would otherwise land on `uncertain` or an `unclear`
+extract field, before finalizing the row. `0` disables the extra round —
+finalize on the first pass, same as always taking the first answer.
+
 ---
 
 State the resolved config before processing begins:
@@ -97,6 +103,7 @@ Target     : <resolved description>
 Criteria   : <source or "none">
 Extract    : <resolved column list>
 Output     : <path>
+Dig passes : <N>
 Resuming   : <N already screened | fresh run>
 ```
 
@@ -195,12 +202,15 @@ evidence the record is in PRIDE. Each result reports its `repository`, and
 Record the `repository` value in its own output column, and use `all_accessions`
 to avoid screening the same study twice under its two accessions.
 
-Read all fields. The structured fields from the table above are the most
-reliable; `sample_processing_protocol` and `data_processing_protocol` are
+Read all fields the tool returns, not just the ones in the pre-filter table
+above — that table is scoped to what `search_projects` exposes for Step 2's
+purpose, and `get_project_details` returns more. Check the full result against
+whatever the `extract` request actually asks for. Structured fields are the
+most reliable; `sample_processing_protocol` and `data_processing_protocol` are
 free text but are often the highest-signal source for anything the structured
-fields omit. **MassIVE records have no protocol text and no experiment or
-quantification terms** — for those, the publication is the only evidence source,
-so go straight to 3.2.
+fields omit. **MassIVE records have far fewer structured fields and no protocol
+text** — for those, the publication is the only evidence source, so go straight
+to 3.2.
 
 If the tool returns an `error` key, the accession is in neither repository. Do
 not retry and do not invent metadata — go to 3.2 and screen from the publication
@@ -291,7 +301,33 @@ Extract fields for `exclude` rows too when the evidence is already in hand — i
 costs nothing and makes the exclusion tally analysable. Never fetch extra
 publications just to fill fields on an excluded row.
 
-### 3.5 Append the row and print progress
+### 3.5 Dig deeper before settling for uncertain or unclear
+
+Applies only when the row so far has `label: uncertain` or at least one
+`unclear` extract field, and only when the label is not `exclude` — an
+excluded row is already decided, and 3.4 already says not to spend extra
+fetches filling its fields.
+
+Spend up to `dig_passes` extra rounds per accession before finalizing. One
+round means: go back and look harder at evidence you may have skimmed or
+never explicitly requested, for example —
+- Re-read the full repository record from 3.1, field by field, and the full
+  `sample_processing_protocol` / `data_processing_protocol` text — don't skim
+  past a field or a sentence because it looked like lab-protocol boilerplate.
+- If 3.2 only ever fetched the default methods-filtered sections, call
+  `get_full_text_article(mode="toc")` to see the full section list, then
+  `get_full_text_section` on any section name that could plausibly hold the
+  missing evidence but didn't match the default keyword filter.
+- If there is a DOI or PMID but no PMCID full text was tried yet, try
+  `get_pdf_by_unpaywall` (3.2).
+
+Then redo 3.3 and 3.4 with whatever new evidence turned up. After `dig_passes`
+rounds (or immediately, if `dig_passes` is `0`), finalize the row as-is —
+don't retry a source that has already been exhausted (e.g. a full-text fetch
+that already returned an error), since that spends the budget without a
+chance of new evidence.
+
+### 3.6 Append the row and print progress
 
 Append the row to the output file **now** (see Step 4) — do not accumulate rows
 in memory until the end. Then print:
@@ -344,6 +380,8 @@ run_date        : <ISO 8601>
 target          : <verbatim target argument>
 criteria_source : <path or "inline">
 criteria_sha256 : <sha256 of the criteria file, or "n/a" for inline>
+dig_passes      : <configured N>  (recovered: N rows where digging changed
+                  an uncertain label or unclear field)
 repositories    : <PRIDE+MassIVE | PRIDE | MassIVE>
 keywords        : <the keyword searches issued, if discovery was used>
 discovered      : N  (PRIDE N, MassIVE N)
