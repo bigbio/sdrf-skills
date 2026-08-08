@@ -1,6 +1,6 @@
 ---
 name: sdrf:metascreen
-description: Use before sdrf:autoresearch when the user needs to screen or shortlist proteomics studies from PRIDE, MassIVE, or ProteomeXchange accessions, or from a manifest, using detailed user-defined inclusion/exclusion criteria; extract study-level metadata from repository records and publications; and write an evidence-backed, resumable TSV for downstream annotation, review, or meta-analysis.
+description: Use when the user needs to screen or shortlist proteomics studies from PRIDE, MassIVE, or ProteomeXchange accessions, or from a manifest, using detailed user-defined inclusion/exclusion criteria — run this before sdrf:autoresearch; extract study-level metadata from repository records and publications; and write an evidence-backed, resumable TSV for downstream annotation, review, or meta-analysis.
 user-invocable: true
 argument-hint: 'target="<all PRIDE|MassIVE ...|accessions:PXD...,MSV...|path/to/accessions.txt|path/to/manifest.tsv>" [criteria="<md|txt|inline>"] [extract="<cols|txt|md>"] [output="results.tsv"] [dig_passes=1]'
 ---
@@ -39,22 +39,23 @@ What dataset set to screen. Accepted forms:
   - `.txt` — one accession per line, strip whitespace, skip blank lines
   - `.tsv` / `.csv` — read the first available accession column from:
     `id`, `accession`, `project_accession`, `project`, or the first column
-- `all PRIDE <category> datasets` — use `search_projects` to discover matching
+- `all <category> datasets` — use `search_projects` to discover matching
   datasets. Examples:
   - `all PRIDE human gut metaproteomics datasets`
-  - `all PRIDE crosslinking datasets`
-  - `all PRIDE human plasma proteomics datasets`
+  - `all crosslinking datasets`
+  - `all human plasma proteomics datasets`
 
-  `search_projects` covers **PRIDE and MassIVE together** by default. Unless the
-  user explicitly scopes to one repository, search both — a category phrased as
-  "all PRIDE …" is ordinary shorthand for "all public datasets", not an
-  instruction to skip MassIVE. Pass `repository="pride"` or `"massive"` only when
-  the user actually asks for one.
+  `search_projects` covers **PRIDE and MassIVE together** by default. A
+  repository name inside the category phrase ("all PRIDE …") is ordinary habit,
+  not a scoping instruction — search both. Pass `repository="pride"` or
+  `"massive"` only when the user is unambiguously scoping to one, e.g. "PRIDE
+  only", "just MassIVE datasets", "skip MassIVE" — phrasing that names the
+  repository *as an exclusion*, not just in the category sentence.
 
 If a manifest contains previous labels, scores, or notes, use only the accession
 column unless the user explicitly asks to reuse those fields.
 
-When `target` is a free-text PRIDE category, resolve it into a concrete accession
+When `target` is a free-text category, resolve it into a concrete accession
 list before screening begins (see Step 2).
 
 ### `criteria`
@@ -93,12 +94,16 @@ Path for the output TSV. Default: `metascreen_results.tsv`
 Integer, default `1`. How many extra evidence-gathering rounds (3.5) to spend
 on an accession that would otherwise land on `uncertain` or an `unclear`
 extract field, before finalizing the row. `0` disables the extra round —
-finalize on the first pass, same as always taking the first answer.
+finalize on the first pass, same as always taking the first answer. Negative
+values are invalid, treat as `0`. Each round costs a handful of extra tool
+calls per accession that needs it, so it multiplies across a large target set
+— if the user asks for more than `5`, confirm they want that before running
+rather than silently burning calls on a typo.
 
 ---
 
 State the resolved config before processing begins:
-```
+```text
 Target     : <resolved description>
 Criteria   : <source or "none">
 Extract    : <resolved column list>
@@ -114,8 +119,8 @@ For `accessions:...` and file paths, resolve directly into a working list. Keep
 the original order. Preserve duplicate accessions only if the user explicitly
 asks; otherwise deduplicate and report the number removed.
 
-### PRIDE category discovery
-For `all PRIDE <category> datasets`:
+### Category discovery
+For `all <category> datasets`:
 
 1. **Break the category into SHORT keywords.** PRIDE ANDs the terms in a
    keyword, so a whole category sentence collapses recall — measured:
@@ -178,7 +183,7 @@ Tool: search_projects(keyword="metaproteomics", page_size=100, page=0)
 
 4. Report the counts — this is the title/abstract stage of the screen, and its
    numbers belong in the run log:
-   ```
+   ```text
    Discovered  : N unique datasets across K keyword searches
    Pre-filtered: N remaining after structured-field check (M dropped)
    ```
@@ -315,9 +320,9 @@ never explicitly requested, for example —
   `sample_processing_protocol` / `data_processing_protocol` text — don't skim
   past a field or a sentence because it looked like lab-protocol boilerplate.
 - If 3.2 only ever fetched the default methods-filtered sections, call
-  `get_full_text_article(mode="toc")` to see the full section list, then
-  `get_full_text_section` on any section name that could plausibly hold the
-  missing evidence but didn't match the default keyword filter.
+  `get_full_text_article(pmc_ids=[pmcid], mode="toc")` to see the full section
+  list, then `get_full_text_section` on any section name that could plausibly
+  hold the missing evidence but didn't match the default keyword filter.
 - If there is a DOI or PMID but no PMCID full text was tried yet, try
   `get_pdf_by_unpaywall` (3.2).
 
@@ -331,7 +336,7 @@ chance of new evidence.
 
 Append the row to the output file **now** (see Step 4) — do not accumulate rows
 in memory until the end. Then print:
-```
+```text
 [N/total] PXD###### → LABEL
 ```
 
@@ -363,7 +368,7 @@ Format rules:
   `PRIDE protocol`, `paper methods`, `abstract`, or `title/keywords only`
 
 Print a summary:
-```
+```text
 Saved N records to <output>
 include:   N
 exclude:   N
@@ -375,7 +380,7 @@ uncertain: N
 Write a sidecar `<output>.log` (plain text, next to the TSV) so the screen is
 reproducible and can be reported as a PRISMA-style flow:
 
-```
+```text
 run_date        : <ISO 8601>
 target          : <verbatim target argument>
 criteria_source : <path or "inline">

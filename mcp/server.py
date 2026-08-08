@@ -147,12 +147,15 @@ def _resolve_publication(pmid: str | None, doi: str | None, reference: str) -> d
 _PROXI_EMPTY = {"", "null", "none", "n/a", "na"}
 
 
-def _proxi_values(record: dict, key: str) -> list[str]:
-    """Flatten a PROXI CvParam field to real string values, dropping empties."""
-    out: list[str] = []
+def _proxi_cv_groups(record: dict, key: str) -> list[list[dict]]:
+    """Normalize a PROXI CvParam field into its item groups, each a list of
+    {accession, value} dicts with non-dict junk and empty/null values dropped.
+    The single place that handles all three PROXI parsing traps described
+    above — `_proxi_values()` and `_proxi_publications()` both build on it."""
+    groups: list[list[dict]] = []
     for entry in record.get(key, []) or []:
-        group = entry if isinstance(entry, list) else [entry]
-        for cv in group:
+        cleaned: list[dict] = []
+        for cv in (entry if isinstance(entry, list) else [entry]):
             if not isinstance(cv, dict):
                 continue
             val = cv.get("value")
@@ -161,31 +164,29 @@ def _proxi_values(record: dict, key: str) -> list[str]:
             val = str(val).strip()
             if val.lower() in _PROXI_EMPTY:
                 continue
-            out.append(val)
-    return out
+            cleaned.append({"accession": cv.get("accession"), "value": val})
+        groups.append(cleaned)
+    return groups
+
+
+def _proxi_values(record: dict, key: str) -> list[str]:
+    """Flatten a PROXI CvParam field to real string values, dropping empties."""
+    return [cv["value"] for group in _proxi_cv_groups(record, key) for cv in group]
 
 
 def _proxi_publications(record: dict) -> list[dict]:
     """Resolve PROXI publication CvParams into the PRIDE publication shape."""
     publications: list[dict] = []
-    for group in record.get("publications", []) or []:
-        entries = group if isinstance(group, list) else [group]
+    for group in _proxi_cv_groups(record, "publications"):
         pmid = doi = None
         reference = ""
-        for cv in entries:
-            if not isinstance(cv, dict):
-                continue
-            val = cv.get("value")
-            if val is None or str(val).strip().lower() in _PROXI_EMPTY:
-                continue
-            val = str(val).strip()
-            acc = cv.get("accession")
-            if acc == "MS:1000879":       # PubMed identifier
-                pmid = val
-            elif acc == "MS:1001922":     # Digital Object Identifier
-                doi = val
-            elif acc == "MS:1002866":     # Reference
-                reference = val
+        for cv in group:
+            if cv["accession"] == "MS:1000879":       # PubMed identifier
+                pmid = cv["value"]
+            elif cv["accession"] == "MS:1001922":     # Digital Object Identifier
+                doi = cv["value"]
+            elif cv["accession"] == "MS:1002866":     # Reference
+                reference = cv["value"]
         if not (pmid or doi or reference):
             continue
         if pmid or doi:
@@ -366,6 +367,7 @@ def search_projects(
                 if any(a in seen for a in hit["all_accessions"]):
                     continue  # already covered by the richer PRIDE record
                 results.append(hit)
+                seen.update(a for a in hit["all_accessions"] if a)
 
     out = {
         "keyword": keyword,

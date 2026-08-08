@@ -1,5 +1,8 @@
 """Tests for tools.massive_raw_files."""
 
+import email
+import json
+
 import tools.massive_raw_files as mrf
 from tools.massive_raw_files import (
     MassiveResolution,
@@ -101,3 +104,35 @@ def test_enrich_from_massive_proxi_survives_lookup_failure(monkeypatch):
         MassiveResolution(input_accession="MSV1", massive_accession="MSV1")
     )
     assert r.proxi_ftp_url is None  # degrades to the guessed candidates
+
+
+class _FakeHTTPResponse:
+    """Minimal stand-in for the urllib.request.urlopen() context manager."""
+
+    def __init__(self, data: bytes, charset: str):
+        self._data = data
+        self.headers = email.message_from_string(
+            f"Content-Type: application/json; charset={charset}\n"
+        )
+
+    def read(self) -> bytes:
+        return self._data
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc_info):
+        return False
+
+
+def test_fetch_json_decodes_declared_iso_8859_1_charset(monkeypatch):
+    """MassIVE serves charset=ISO-8859-1; json.loads() assumes UTF-8, so an
+    accented byte raises UnicodeDecodeError and drops the whole response
+    unless fetch_json honours the declared charset (see its docstring)."""
+    payload = json.dumps({"name": "Café"}, ensure_ascii=False).encode("iso-8859-1")
+    monkeypatch.setattr(
+        mrf.urllib.request,
+        "urlopen",
+        lambda request, timeout=None: _FakeHTTPResponse(payload, "iso-8859-1"),
+    )
+    assert mrf.fetch_json("http://example.org/dataset") == {"name": "Café"}

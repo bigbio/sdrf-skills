@@ -229,6 +229,23 @@ def test_search_dedups_massive_record_already_seen_in_pride(monkeypatch):
     assert r["count"] == 1 and r["results"][0]["repository"] == "PRIDE"
 
 
+def test_search_dedups_two_massive_records_sharing_an_accession(monkeypatch):
+    """Two MassIVE hits in the same page can share an accession (e.g. a
+    dataset re-listed under both its MSV and PXD entry) — `seen` must grow as
+    each MassIVE hit is accepted, not just start from the PRIDE results."""
+    dupe = {
+        "title": "Same dataset, second listing",
+        "accession": [{"accession": "MS:1002487", "value": "MSV000079512"}],
+    }
+
+    def fake_get(url, params=None, **kw):
+        return [] if "pride" in url else [_MASSIVE, dupe]
+
+    monkeypatch.setattr(server, "_cached_get_json", fake_get)
+    r = server.search_projects("x", repository="all")
+    assert r["count"] == 1
+
+
 # --- transport-level contracts -----------------------------------------
 
 class _Resp:

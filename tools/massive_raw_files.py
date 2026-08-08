@@ -415,7 +415,7 @@ def run_cli(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     resolution = resolve_accession(args.accession)
     if args.summary_only:
-        emit_json(resolution, resolution.ftp_url, [])
+        emit_json(resolution, resolution.proxi_ftp_url or resolution.ftp_url, [])
         return 0
 
     candidates = [args.ftp_url] if args.ftp_url else ftp_candidates(resolution)
