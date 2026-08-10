@@ -31,6 +31,9 @@ PX_PROXI_TEMPLATE = "https://proteomecentral.proteomexchange.org/api/proxi/v0.1/
 MASSIVE_DETAIL_TEMPLATE = (
     "https://massive.ucsd.edu/ProteoSAFe/MassiveServlet?task={task}&function=massiveinformation"
 )
+MASSIVE_PROXI_TEMPLATE = "https://massive.ucsd.edu/ProteoSAFe/proxi/v0.1/datasets/{accession}"
+# "Dataset FTP location" in the PROXI datasetLink block.
+MS_DATASET_FTP = "MS:1002852"
 
 PXD_RE = re.compile(r"^PXD\d{6,}$", re.IGNORECASE)
 MSV_RE = re.compile(r"^MSV\d+(?:\.\d+)?$", re.IGNORECASE)
@@ -61,6 +64,8 @@ class MassiveResolution:
     massive_accession: str | None = None
     task: str | None = None
     ftp_url: str | None = None
+    # MassIVE's own PROXI root — authoritative, tried before ftp_url.
+    proxi_ftp_url: str | None = None
     title: str | None = None
     hosting_repository: str | None = None
     filecount_hint: int | None = None
@@ -73,7 +78,16 @@ def fetch_json(url: str) -> object:
         headers={"Accept": "application/json", "User-Agent": USER_AGENT},
     )
     with urllib.request.urlopen(request, timeout=DEFAULT_TIMEOUT) as response:
-        return json.load(response)
+        raw = response.read()
+        # MassIVE serves `application/json;charset=ISO-8859-1`. json.loads assumes
+        # UTF-8, so one accented byte (author names, European affiliations) raises
+        # UnicodeDecodeError and loses the whole response. Honour the declared
+        # charset instead of guessing.
+        charset = response.headers.get_content_charset() or "utf-8"
+        try:
+            return json.loads(raw.decode(charset))
+        except (UnicodeDecodeError, LookupError):
+            return json.loads(raw.decode("utf-8", errors="replace"))
 
 
 def normalize_accession(value: str) -> str:
@@ -168,15 +182,53 @@ def enrich_from_massive_detail(resolution: MassiveResolution) -> MassiveResoluti
     return resolution
 
 
+def enrich_from_massive_proxi(resolution: MassiveResolution) -> MassiveResolution:
+    """Record MassIVE's own FTP root for the dataset, from its PROXI record.
+
+    MassIVE is authoritative about its own layout, and the other two sources are
+    not: a bare MSV accession yields no ftp_url at all (so ftp_candidates() could
+    only guess `/v02/`, while e.g. MSV000078958 lives under `/v01/`), and the
+    ProteomeCentral route yields a root with the version directory missing
+    (`ftp://massive.ucsd.edu/MSV000079512` vs the real
+    `ftp://massive.ucsd.edu/v01/MSV000079512`). Both fail the FTP walk. Ask
+    MassIVE instead of guessing, and try this root first.
+    """
+    if not resolution.massive_accession:
+        return resolution
+    try:
+        payload = fetch_json(
+            MASSIVE_PROXI_TEMPLATE.format(
+                accession=urllib.parse.quote(resolution.massive_accession)
+            )
+        )
+    except Exception:
+        return resolution
+    if not isinstance(payload, dict):
+        return resolution
+
+    for link in payload.get("datasetLink", []) or []:
+        if not isinstance(link, dict):
+            continue
+        value = str(link.get("value") or "").strip()
+        if link.get("accession") == MS_DATASET_FTP and value.startswith("ftp://"):
+            resolution.proxi_ftp_url = value if value.endswith("/") else value + "/"
+            break
+    if not resolution.title and payload.get("title"):
+        resolution.title = str(payload["title"])
+    return resolution
+
+
 def ftp_candidates(resolution: MassiveResolution) -> list[str]:
     candidates: list[str] = []
-    if resolution.ftp_url:
-        candidates.append(resolution.ftp_url)
+    for url in (resolution.proxi_ftp_url, resolution.ftp_url):
+        if url and url not in candidates:
+            candidates.append(url)
     if resolution.massive_accession:
         msv = resolution.massive_accession
         for url in (
             f"ftp://massive-ftp.ucsd.edu/v02/{msv}/",
             f"ftp://massive.ucsd.edu/v02/{msv}/",
+            f"ftp://massive.ucsd.edu/v01/{msv}/",
             f"ftp://massive.ucsd.edu/{msv}/",
         ):
             if url not in candidates:
@@ -280,12 +332,16 @@ def resolve_accession(accession: str) -> MassiveResolution:
     accession = normalize_accession(accession)
     if PXD_RE.match(accession):
         resolution = resolve_from_proteomecentral(accession.upper())
-        return enrich_from_massive_detail(resolution)
+        return enrich_from_massive_proxi(enrich_from_massive_detail(resolution))
     if MSV_RE.match(accession):
-        return MassiveResolution(input_accession=accession.upper(), massive_accession=accession.upper())
+        return enrich_from_massive_proxi(
+            MassiveResolution(
+                input_accession=accession.upper(), massive_accession=accession.upper()
+            )
+        )
     if TASK_RE.match(accession):
         resolution = MassiveResolution(input_accession=accession.lower(), task=accession.lower())
-        return enrich_from_massive_detail(resolution)
+        return enrich_from_massive_proxi(enrich_from_massive_detail(resolution))
     raise SystemExit(f"Unsupported accession format: {accession}")
 
 
@@ -359,7 +415,7 @@ def run_cli(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     resolution = resolve_accession(args.accession)
     if args.summary_only:
-        emit_json(resolution, resolution.ftp_url, [])
+        emit_json(resolution, resolution.proxi_ftp_url or resolution.ftp_url, [])
         return 0
 
     candidates = [args.ftp_url] if args.ftp_url else ftp_candidates(resolution)

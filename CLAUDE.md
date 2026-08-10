@@ -53,6 +53,11 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 2. `tools/` — offline-first Python. Only `massive-files` (annotate, review) and `cellline lookup`
    (annotate) are ever called by a skill. `check`, `score`, `fix`, `benchmark`, and `verify` are called
    by **no skill** — reachable only by hand or from CI, which smoke-tests all subcommands.
+   `massive-files` asks MassIVE's PROXI record for the dataset's FTP root and tries it first
+   (`proxi_ftp_url`): a bare MSV yielded no root at all, and the ProteomeCentral route yields one with
+   the version directory missing, so both fell through to guessing `/v02/` and timed out on the many
+   datasets that live under `/v01/`. `fetch_json` honours the response charset for the same
+   ISO-8859-1 reason as the MCP client.
 3. `spec/` — the runtime data contract (below).
 
 **Skill dependency graph — two orchestrators.** `sdrf-autoresearch` chains
@@ -109,9 +114,9 @@ copy and the others desync silently.
 ## MCP
 
 `.mcp.json` wires the bundled `mcp/server.py` (FastMCP, name `sdrf-pride-pmc`) as a project MCP server,
-launched via `./.venv/bin/python`. It exposes 9 tools: `get_project_details`, `get_project_files`,
-`get_article_metadata`, `get_pdf_by_unpaywall`, `search`, `searchClasses`, `getChildren`,
-`get_full_text_article`, `get_full_text_section`. `fastmcp`/`httpx` are in `requirements.txt` and
+launched via `./.venv/bin/python`. It exposes 10 tools: `search_projects`, `get_project_details`,
+`get_project_files`, `get_article_metadata`, `get_pdf_by_unpaywall`, `search`, `searchClasses`,
+`getChildren`, `get_full_text_article`, `get_full_text_section`. `fastmcp`/`httpx` are in `requirements.txt` and
 `environment.yml`. **The server depends on `.venv/` existing** (`uv venv .venv && uv pip install
 --python .venv/bin/python -r requirements.txt`); conda users must repoint `command` in `.mcp.json`.
 
@@ -119,6 +124,39 @@ Skills still call **five tools that exist in no bundled server** — `searchClas
 `listEmbeddingModels`, `searchWithEmbeddingModel` (in `sdrf-terms` and `sdrf-annotate`), and
 `search_articles` / `search_preprints` (in `sdrf-brainstorm`). Those paths need an external OLS/PubMed/
 bioRxiv MCP or a rewrite onto `searchClasses`/`getChildren`.
+
+**Article identifiers must be BARE — silent-corruption class.** `get_article_metadata` and
+`get_pdf_by_unpaywall` classify with `_classify_article_id` / `_parse_identifier`, which accept a bare
+PMID (`35695565`), `PMC…`, or a bare DOI matching `^10\.\d{4,9}/…`. A prefixed `PMID:35695565` or
+`doi:10.…` is rejected and yields an **error record, not an exception** — so a skill that documents the
+prefixed form degrades every lookup to "no evidence" and reports it as low confidence. Pinned by
+`tests/test_mcp_pride.py`.
+
+**`get_project_details` / `search_projects` span PRIDE *and* MassIVE.** `MSV…` routes to MassIVE's
+PROXI API; `PXD…` tries PRIDE then falls back to MassIVE, because MassIVE-hosted ProteomeXchange
+datasets **404 in PRIDE** (`PXD003626` is a live example) — a PXD prefix is not evidence of PRIDE
+residency. Results carry `repository` and `all_accessions` (a dataset may hold both an MSV and a PXD;
+dedupe on it). MassIVE metadata is far thinner — measured over 100 datasets each: instruments
+PRIDE 100% / MassIVE 3%, `experiment_types` and `quantification_methods` never published by MassIVE
+(PRIDE 100% / 14%). Screen MassIVE candidates from the publication; empty ≠ excluded.
+
+**PROXI parsing has three traps, all silent** — payload is in `value` not `name`; species /
+publications / contacts nest one list deeper; and a missing value is often the literal string
+`"null"`. `_proxi_values()` is the single place all three are handled — do not hand-roll PROXI parsing
+elsewhere.
+
+**MassIVE serves `charset=ISO-8859-1`.** `httpx.Response.json()` decodes raw bytes as UTF-8, so one
+accented character (author names, European affiliations) raised `UnicodeDecodeError` and silently
+dropped a whole result page — 29% recall loss on a measured query. `_cached_get_json` now falls back
+to `json.loads(resp.text)`, which honours the declared charset. It also takes `not_found_ok=True` to
+map a 404 to `[]`, because MassIVE 404s when you page past the end and that is exhaustion, not failure.
+
+**PRIDE keyword search ANDs its terms.** `search_projects(keyword=…)` narrows hard on multi-word input
+(`metaproteomics` → 100+, `human gut metaproteomics` → 2). Issue several short keywords and union the
+accessions. PRIDE hits return the structured fields as **plain strings**, where `get_project_details`
+returns **CvParam dicts** for the same logical fields; `_names()` handles both. On MassIVE's PROXI,
+`resultType` is required, `pageNumber` is 1-based, and **`keywords=` is silently ignored** — it returns
+the unfiltered listing, so only `search=` actually filters.
 
 ## Spec data contract (`spec/`, read at runtime — never hardcode)
 
@@ -180,8 +218,9 @@ reimplementing merge semantics.
    pass; do not trust a single multi-`--template` invocation. For the authoritative multi-template
    constraint set (column licensing + reserved-word `allow_*`), resolve with
    `spec/scripts/resolve_templates.py` — parse_sdrf enforces neither. `parse_sdrf` ships in
-   `sdrf-pipelines` and is **not installed by default** (CI installs only `requests` + `pytest`) — run
-   `/sdrf:setup`. Keep concurrent `parse_sdrf` jobs ≤ 2.
+   `sdrf-pipelines` and is **not installed by default** (CI installs only `requests`, `pytest`,
+   `fastmcp`, `httpx` — not `sdrf-pipelines[ontology]`, which is heavy) — run `/sdrf:setup`. Keep
+   concurrent `parse_sdrf` jobs ≤ 2.
 8. **A producer must never approve its own SDRF.** For changed SDRFs, require a passing receipt from
    `sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.
    Enforced by `python -m tools review-gate` (`track`, `pending`, `status`, `gate`, `approve`), which

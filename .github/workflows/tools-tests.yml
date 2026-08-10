@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'tools/**'
+      - 'mcp/**'
       - 'tests/**'
       - 'requirements.txt'
       - 'environment.yml'
@@ -12,6 +13,7 @@ on:
     branches: [main]
     paths:
       - 'tools/**'
+      - 'mcp/**'
       - 'tests/**'
       - 'requirements.txt'
       - 'environment.yml'
@@ -32,7 +34,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests>=2.28 pytest
+          pip install requests>=2.28 pytest fastmcp>=3.4 httpx>=0.28
 
       - name: Run tests
         run: |
