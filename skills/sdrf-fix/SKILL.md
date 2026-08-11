@@ -72,12 +72,12 @@ Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which pars
 ### 6. DIA/DDA Terminology
 | Wrong | Correct |
 |-------|---------|
-| `data-dependent acquisition` | `Data-Dependent Acquisition` |
-| `data-independent` | `Data-Independent Acquisition` |
-| `DDA` | `Data-Dependent Acquisition` |
-| `DIA` | `Data-Independent Acquisition` |
+| `data-dependent acquisition` / `DDA` | `NT=Data-dependent acquisition;AC=PRIDE:0000627` |
+| `data-independent acquisition` / `DIA` | `NT=Data-independent acquisition;AC=PRIDE:0000450` |
+| `PRM` | `NT=Parallel reaction monitoring;AC=PRIDE:0000629` |
+| `SRM` / `MRM` | `NT=Selected reaction monitoring;AC=PRIDE:0000630` |
 
-**Fix**: Use the ontology-standard full name.
+**Fix**: Use `NT=<OLS label>;AC=<accession>` — the OLS label written as-is (e.g. `Data-dependent acquisition`, sentence case, not Title Case) with its accession, a descendant of `PRIDE:0000659`. DIA variants (diaPASEF, SWATH) map to `PRIDE:0000450`.
 
 ### 7. Age Format
 | Wrong | Correct |

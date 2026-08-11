@@ -137,7 +137,7 @@ Rows = samples × fractions × label_channels × technical_replicates
 2. **Missing ontology prefix** — "0000305" instead of "EFO:0000305"
 3. **Case mismatch** — "Male" instead of "male" (SDRF values are lowercase)
 4. **Python artifacts** — "['value']" instead of "value"
-5. **DIA mislabeling** — Use "Data-Independent Acquisition" (PRIDE ontology term)
+5. **DIA mislabeling** — Use `NT=Data-independent acquisition;AC=PRIDE:0000450` (OLS label as written + accession under PRIDE:0000659)
 6. **Wrong reserved word** — "N/A", "NA", "unknown" instead of "not available"
 7. **Age format** — "58 years" instead of "58Y"
 8. **Missing AC= in instruments** — Just "Q Exactive" without `AC=MS:1001911;NT=Q Exactive`
