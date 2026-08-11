@@ -135,7 +135,7 @@ has generic names (e.g., "Q Exactive") while raw files have the specific model
 ### 5.2 Acquisition mode
 | Detected Field | Method | Example |
 |---------------|--------|---------|
-| DDA vs DIA | Spectrum analysis | Data-Dependent Acquisition |
+| DDA vs DIA | Spectrum analysis | `NT=Data-dependent acquisition;AC=PRIDE:0000627` |
 
 **What to check**: Is the acquisition method in the SDRF correct? Misclassification
 of DDA as DIA (or vice versa) affects which analysis pipelines can be used.

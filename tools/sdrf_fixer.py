@@ -84,13 +84,21 @@ _AGE_UNIT_MAP = {
 
 _PYTHON_ARTIFACT_RE = re.compile(r"^\[?['\"](.+?)['\"]\]?$")
 
+# Acquisition method must be a descendant of PRIDE:0000659, encoded as the OLS label
+# written as-is plus its accession (NT=<OLS label>;AC=PRIDE:...). See the SDRF spec's
+# proteomics-data-acquisition-method policy.
 _DDA_DIA_FIXES = {
-    "data-dependent acquisition": "Data-Dependent Acquisition",
-    "data-independent acquisition": "Data-Independent Acquisition",
-    "data-independent": "Data-Independent Acquisition",
-    "data-dependent": "Data-Dependent Acquisition",
-    "dda": "Data-Dependent Acquisition",
-    "dia": "Data-Independent Acquisition",
+    "data-dependent acquisition": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+    "data-independent acquisition": "NT=Data-independent acquisition;AC=PRIDE:0000450",
+    "data-independent": "NT=Data-independent acquisition;AC=PRIDE:0000450",
+    "data-dependent": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+    "dda": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+    "dia": "NT=Data-independent acquisition;AC=PRIDE:0000450",
+    "prm": "NT=Parallel reaction monitoring;AC=PRIDE:0000629",
+    "parallel reaction monitoring": "NT=Parallel reaction monitoring;AC=PRIDE:0000629",
+    "srm": "NT=Selected reaction monitoring;AC=PRIDE:0000630",
+    "mrm": "NT=Selected reaction monitoring;AC=PRIDE:0000630",
+    "selected reaction monitoring": "NT=Selected reaction monitoring;AC=PRIDE:0000630",
 }
 
 
@@ -192,7 +200,7 @@ def _fix_dda_dia(value: str) -> tuple[str | None, str]:
     """Fix DDA/DIA terminology."""
     fixed = _DDA_DIA_FIXES.get(value.lower())
     if fixed and fixed != value:
-        return fixed, f"Standardized acquisition method to ontology term"
+        return fixed, "Standardized acquisition method to PRIDE NT+AC form (under PRIDE:0000659)"
     return None, ""
 
 
