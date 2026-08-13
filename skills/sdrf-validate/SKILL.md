@@ -156,10 +156,21 @@ crosslinking datasets:
 - `deinococcus radiodurans r1` → `deinococcus radiodurans`
 
 If a crosslinking SDRF still uses `NT=unknown crosslinker;AC=XLMOD:00000`, inspect `comment[data file]` for explicit reagent tokens before accepting the placeholder. Examples validated in sandbox cleanup:
-- `DSSO` in file name → `NT=DSSO;AC=XLMOD:02010;CL=yes;TA=K,S,T,Y,nterm;MH=54.01;ML=85.98`
+- `DSSO` in file name → `NT=DSSO;AC=XLMOD:02126;CL=yes;TA=K,S,T,Y,nterm;MH=54.01;ML=85.98`
+- `DSS` in file name → `NT=DSS;AC=XLMOD:02001`
 - `BS3` in file name → `NT=BS3;AC=XLMOD:02000`
-- `TurboID` in file name → `NT=TurboID;AC=XLMOD:02251`
-- `iQPIR`, `BDP`, or `d8BDP` in file name → `NT=PIR;AC=XLMOD:02014`
+- `DSBU` in file name → `NT=DSBU;AC=XLMOD:02120` (XLMOD's preferred label is `BuUrBu`)
+- `iQPIR`, `BDP`, or `d8BDP` in file name → `NT=PIR;AC=XLMOD:02237`
+  (the BDP-NHP reagent itself is `XLMOD:02011`)
+
+> **Verify every XLMOD accession against OLS before accepting it.** Neighbouring
+> XLMOD ids are unrelated reagents, so a wrong accession passes validation and
+> silently corrupts the annotation.
+
+**`TurboID` is not a cross-linker.** It is a promiscuous biotin ligase used for
+proximity-dependent labelling (BioID family); XLMOD has no term for it. Flag a
+`comment[cross-linker]` value of `TurboID` as an error rather than repairing it
+to an accession.
 
 When a specific cross-linker is recovered, validate whether `characteristics[crosslink distance]` can be backfilled from the crosslinking template:
 - `BS3` / `DSS` → `30 Å`
