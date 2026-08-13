@@ -104,6 +104,34 @@ def _values(rows: Iterable[Sequence[str]], idx: Sequence[int]) -> set[str]:
     return {r[i] for r in rows for i in idx if i < len(r)}
 
 
+# Archive wrappers a repository may add around a run. Bruker `.d` is a
+# DIRECTORY, so PRIDE can only ship it zipped; the SDRF names the `.d` itself.
+_ARCHIVE_SUFFIXES = (".tar.gz", ".tar.bz2", ".tar", ".zip", ".7z", ".gz")
+
+
+def _strip_archive_suffix(name: str) -> str:
+    for suffix in _ARCHIVE_SUFFIXES:
+        if name.lower().endswith(suffix) and len(name) > len(suffix):
+            return name[: -len(suffix)]
+    return name
+
+
+def _same_modulo_archive_suffix(deposited: set[str], annotated: set[str]) -> bool:
+    """True when the two run sets differ only by an archive wrapper.
+
+    Requires both sides to stay the same size after stripping, so that two
+    genuinely different runs collapsing onto one name is not mistaken for a
+    tidy suffix mismatch.
+    """
+    if not deposited or not annotated:
+        return False
+    dep = {_strip_archive_suffix(n) for n in deposited}
+    ann = {_strip_archive_suffix(n) for n in annotated}
+    if len(dep) != len(deposited) or len(ann) != len(annotated):
+        return False
+    return dep == ann
+
+
 def audit(
     sdrf_text: str,
     deposited_runs: Iterable[str] | None = None,
@@ -143,6 +171,26 @@ def audit(
                 "comment[data file] has blank cell(s), so some rows name no run"))
         missing = deposited - annotated
         invented = annotated - deposited
+
+        # A systematic archive-suffix mismatch is not a wrong annotation, but
+        # it presents as one: PRIDE ships Bruker `.d` directories zipped, so a
+        # deposited-run list taken straight from the file listing holds
+        # `<run>.d.zip` while the SDRF (correctly) names `<run>.d`. Every run
+        # then lands in BOTH sets and the audit emits 2N blockers reading
+        # "the annotation does not match the deposit" -- which invites a
+        # caller to "repair" a correct SDRF into a broken one. Detect the
+        # systematic case and report it once, naming the real fix.
+        if missing and invented and _same_modulo_archive_suffix(deposited, annotated):
+            report.findings.append(Finding(
+                "run_name_suffix_mismatch", MAJOR,
+                (f"the {len(deposited)} deposited run(s) and the annotated runs are "
+                 "identical apart from an archive suffix, so neither set is wrong "
+                 "about which runs exist"),
+                ("normalise one side: comment[data file] names the unpacked run "
+                 f"(e.g. {sorted(annotated)[0]}), not the archive PRIDE ships "
+                 f"(e.g. {sorted(deposited)[0]})")))
+            missing = invented = set()
+
         if missing:
             report.findings.append(Finding(
                 "missing_runs", BLOCKER,
