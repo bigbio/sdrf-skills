@@ -246,19 +246,30 @@ class OLSClient:
             "chebi": f"http://purl.obolibrary.org/obo/CHEBI_{local}",
             "bto": f"http://purl.obolibrary.org/obo/BTO_{local}",
             "pride": f"http://purl.obolibrary.org/obo/PRIDE_{local}",
+            "xlmod": f"http://purl.obolibrary.org/obo/XLMOD_{local}",
         }
         return iri_bases.get(ont)
 
     @staticmethod
     def _doc_to_term(doc: dict) -> OLSTerm:
-        """Convert an OLS search result doc to OLSTerm."""
+        """Convert an OLS search result doc to OLSTerm.
+
+        See _collect_synonyms for why the synonym key cannot be assumed.
+        """
         return OLSTerm(
             iri=doc.get("iri", ""),
             label=doc.get("label", ""),
             short_form=doc.get("short_form", doc.get("obo_id", "")),
             ontology_name=doc.get("ontology_name", ""),
             description=(doc.get("description") or [""])[0] if isinstance(doc.get("description"), list) else doc.get("description", ""),
-            synonyms=doc.get("synonyms", []) or [],
+            # The /search endpoint does NOT use the key "synonyms" that the
+            # /terms endpoint uses: by default it returns "exact_synonyms", and
+            # "synonym" when that field is requested explicitly via fieldList.
+            # Reading only the plural left every search-resolved term with an
+            # empty synonym list, so an SDRF using a reagent's common name
+            # (e.g. DSBU for XLMOD:02120, whose preferred label is BuUrBu) was
+            # reported as a label mismatch.
+            synonyms=_collect_synonyms(doc),
             is_obsolete=doc.get("is_obsolete", False),
         )
 
@@ -274,7 +285,7 @@ class OLSClient:
             short_form=data.get("short_form", data.get("obo_id", "")),
             ontology_name=data.get("ontology_name", ""),
             description=desc,
-            synonyms=data.get("synonyms", []) or [],
+            synonyms=_collect_synonyms(data),
             is_obsolete=data.get("is_obsolete", False),
         )
 
@@ -282,6 +293,31 @@ class OLSClient:
 # ---------------------------------------------------------------------------
 # Label matching
 # ---------------------------------------------------------------------------
+
+def _collect_synonyms(doc: dict) -> list[str]:
+    """Gather synonyms from an OLS payload regardless of which key it used.
+
+    OLS4 spells this field three different ways depending on the endpoint and
+    on whether `fieldList` was supplied:
+
+    * ``/ontologies/{ont}/terms``     -> ``synonyms``
+    * ``/search`` (default fields)    -> ``exact_synonyms``
+    * ``/search`` with ``fieldList``  -> ``synonym``
+
+    Returns a de-duplicated list preserving first-seen order.
+    """
+    seen: dict[str, None] = {}
+    for key in ("synonyms", "synonym", "exact_synonyms"):
+        value = doc.get(key)
+        if not value:
+            continue
+        if isinstance(value, str):
+            value = [value]
+        for syn in value:
+            if syn:
+                seen.setdefault(syn, None)
+    return list(seen)
+
 
 def _labels_match(expected: str, actual: str, synonyms: list[str] | None = None) -> bool:
     """Check if an expected label matches the OLS term label or synonyms."""
