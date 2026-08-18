@@ -404,17 +404,26 @@ def _score_design(sdrf: SDRFFile) -> DimensionScore:
     else:
         dim.issues.append("No factor value columns defined")
 
-    # Factor values correspond to characteristics
-    char_names = {c.inner_name.lower() for c in sdrf.columns if c.col_type == "characteristics"}
+    # A factor value must restate a variable declared elsewhere in the file.
+    # That source is usually a characteristics column, but it is legitimately a
+    # comment column when the studied variable is technical: the crosslinking
+    # template declares the cross-linker as comment[cross-linker], so a
+    # cross-linker factor can NEVER have a matching characteristics column.
+    # parse_sdrf accepts either, requiring only that the values match.
+    source_names = {
+        c.inner_name.lower()
+        for c in sdrf.columns
+        if c.col_type in ("characteristics", "comment")
+    }
     for fc in factor_cols:
         checks += 1
         # Extract inner name from "factor value[disease]"
         inner = fc.split("[", 1)[1].rstrip("]").lower() if "[" in fc else ""
-        if inner in char_names:
+        if inner in source_names:
             ok += 1
         else:
             dim.issues.append(
-                f"Factor value '{fc}' has no matching characteristics column"
+                f"Factor value '{fc}' has no matching characteristics or comment column"
             )
 
     # Biological replicate column
