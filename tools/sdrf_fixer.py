@@ -290,7 +290,7 @@ def fix_sdrf(source: str | Path) -> tuple[str, FixReport]:
             fixers.append(("reserved_word", _fix_reserved_words))
 
             # Pattern 6: DDA/DIA terminology
-            if inner in ("dissociation method",) or "acquisition" in inner:
+            if inner == "proteomics data acquisition method":
                 fixers.append(("dda_dia", _fix_dda_dia))
 
             # Pattern 7: Age format

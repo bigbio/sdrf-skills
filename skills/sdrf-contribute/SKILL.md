@@ -84,11 +84,15 @@ audit instead of repeating it, and confirm the user chose `fix` or `reannotate`.
 
 Before contributing, the SDRF must pass validation:
 
-1. **Suggest programmatic validation**:
+1. **Suggest programmatic validation** — run once per declared `comment[sdrf template]`, each against the rows that declare it; every run must pass:
    ```bash
    pip install sdrf-pipelines
-   parse_sdrf validate-sdrf --sdrf_file {PXD}.sdrf.tsv
+   parse_sdrf validate-sdrf --sdrf_file datasets/{PXD}/{PXD}.sdrf.tsv --template ms-proteomics
+   # repeat --template <organism/experiment template> for each declared template
    ```
+   The target repo's CI **SDRF review gate** also checks coordinate collisions and ragged rows on every changed file — reproduce those locally before pushing.
+
+   **Zero-deletion guard (mandatory before PR):** stage only your new folder (`git add datasets/{PXD}/`, never `git add -A`), then run `git diff --cached --name-status` and confirm every line is `A` — abort if any `D`/`M`/`R` touches a dataset you did not create.
 
 2. **Run `/sdrf:validate`** for a thorough check including ontology verification
 
@@ -129,10 +133,12 @@ datasets/
 ```
 
 ### 3.2 Save the file
-Save the SDRF content to the correct path:
+Save the SDRF content to the correct path (note the top-level `datasets/`):
 ```text
-{PXD}/{PXD}.sdrf.tsv
+datasets/{PXD}/{PXD}.sdrf.tsv
 ```
+If the SDRF still has unverifiable sample->file/channel maps or demographics, put it under
+`sandbox/{PXD}/` instead (CI-exempt) with a `BLOCKED:` note — never PR unresolved data to `datasets/`.
 
 Ensure the file:
 - Uses tab delimiters (not spaces or commas)
@@ -184,11 +190,11 @@ gh pr create \
 **Factor values**: {factor_description}
 
 ### Validation
-- [x] Validated with `sdrf-pipelines validate-sdrf`
-- [x] Ontology terms verified via OLS
+- [ ] Validated with `parse_sdrf validate-sdrf` (per declared template)
+- [ ] Ontology terms verified via OLS
+- [ ] Coordinate rows unique; no ragged rows
 
-### Annotation source
-Annotated using [sdrf-skills](https://github.com/bigbio/sdrf-skills).
+_Tick each box only after it actually passes._
 EOF
 )"
 ```

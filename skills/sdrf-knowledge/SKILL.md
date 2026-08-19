@@ -60,9 +60,16 @@ Example: disease → "MONDO, EFO, DOID, PATO" → search these ontologies via OL
 - Each **column** = a property of the sample or run
 - Column names are **case-sensitive** and follow the patterns above
 - First column is always `source name` (unique biological sample identifier)
-- The combination of (`source name`, `assay name`) must be unique per row
+- Row identity: (`source name`, `assay name`, `comment[label]`) MUST be unique (error); (`source name`, `assay name`) SHOULD be unique (warning). In multiplexed (TMT/iTRAQ) data the same `assay name` deliberately repeats across label channels, so `source name`+`assay name` alone is NOT unique.
+- De-duplication coordinate: (`source name`, `characteristics[biological replicate]`, `comment[technical replicate]`, `comment[fraction identifier]`) must be unique across rows — never use `technical replicate` or `fraction identifier` as a row counter
 - No trailing whitespace in any cell or column name
 - No empty cells in required columns
+- **Data files are vendor RAW** (`.raw`/`.d`/`.wiff`/`.wiff2`) in `comment[data file]` — never peak lists (`.mgf`/`.mzML`/`.mzXML`); a peak-list reference validates structurally but breaks reprocessing
+- **At least one `factor value[...]`** column must be present (the experimental variable)
+- **Acquisition method**: `comment[proteomics data acquisition method]` is REQUIRED for MS files and must be a descendant of `PRIDE:0000659` (DDA `PRIDE:0000627`, DIA `PRIDE:0000450`, PRM `PRIDE:0000629`, SRM `PRIDE:0000630`); never `NCIT:C161786`/`MS:1000206`, and there is no `comment[dia method]` column
+- **Carrier / reference channels** (single-cell / TMT): `comment[carrier channel]` = `PRIDE:0000901`, `comment[reference channel]` = `PRIDE:0000899` (not `PRIDE:0000941`/`0000942`); values are TMT channel labels (e.g. `TMT131C`)
+- **Never write SDRF with pandas `to_csv`** — it renames legitimately repeated headers (`comment[modification parameters].1`); write raw TSV preserving duplicated column names
+- **Multiple values = repeat the whole column** with the same header (there is no delimiter-separated list)
 
 ## Column Type System
 

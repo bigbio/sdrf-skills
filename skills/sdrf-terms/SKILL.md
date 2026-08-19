@@ -77,9 +77,9 @@ Example: User has DOID term, needs EFO equivalent
   3. Present both options with accessions
 ```
 
-For disease terms, SDRF accepts EFO, MONDO, or DOID. Recommend:
-- **EFO** as first choice (most commonly used in SDRF)
-- **MONDO** as second choice (good cross-references)
+For disease terms, SDRF accepts MONDO, EFO, or DOID. Recommend (matches TERMS.tsv and sdrf-annotate):
+- **MONDO** as first choice (primary; strong cross-references)
+- **EFO** as second choice
 - **DOID** as third choice
 
 ## Step 5: Present Results
