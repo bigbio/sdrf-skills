@@ -63,6 +63,23 @@ by evidence. Keep values short and analysis-ready.
 - `carrier_channel` — `yes` / `no` / `unclear`. Whether a booster/carrier proteome
   channel is used (characteristic of SCoPE-MS/SCoPE2). Load-bearing: the carrier is
   a distinct sample in SDRF and is a classic annotation error when omitted.
+- `channel_map` — `yes` / `no` / `label free` / `unclear`. Whether the deposited
+  evidence records **which label channel of which run held which sample**. This is
+  the annotatability gate for multiplexed studies: without it an SDRF needs one row
+  per (file × channel) and every one of those rows would have a fabricated identity.
+  - `label free` when `labelling` is `label free` — file→cell is 1:1 and the
+    question does not arise. (Not `not applicable`: that is an SDRF reserved word
+    and this is not an SDRF.)
+  - `yes` when a real map exists — a deposited sample sheet, per-channel sample
+    names in the result tables, an explicit channel table in the paper or SI, or
+    layout files in an external repository cited in Data Availability (Zenodo,
+    figshare, OSF, Dryad, GitHub).
+  - `no` when those are exhausted and every channel carries a placeholder.
+    Proteome Discoverer's `"Sample, n/a"` per channel, `StudyInformation.txt`'s
+    bare `"Sample"` with empty groups, and SpectroMine's equivalent are the
+    reliable, greppable tells — they look like data and are not.
+  - `unclear` when the sources have not been checked, rather than checked and empty.
+  A `no` does **not** change `label`: the study is still SCP and still `include`.
 - `acquisition` — `DDA`, `DIA`, or both. Determines the acquisition-method template.
 - `instrument` — instrument as reported (e.g. `Orbitrap Eclipse`, `timsTOF SCP`).
   Verbatim; OLS/MS-ontology mapping happens during annotation.
@@ -77,3 +94,17 @@ by evidence. Keep values short and analysis-ready.
 - SCP is a young field: most datasets are post-2019. Do not exclude on date alone.
 - `carrier_channel` and `n_single_cells` are the two fields most often wrong when
   inferred from the abstract. Take them from Methods or mark `unclear`.
+- **Relevance and annotatability are different questions.** A study can be
+  unambiguously SCP and still impossible to turn into a correct SDRF, because the
+  deposited data never records which channel held which cell. `channel_map` carries
+  that; the inclusion rules do not. PXD043473 ("Toward Single Bacterium Proteomics",
+  PMID:37713396) is the reference case: a correct `include` — FACS-sorted single
+  *E. coli* with a 250-cell carrier — whose 16 files × 10 channels are
+  unannotatable, because the Methods give the run composition (3 single + 3 double
+  + 2 carrier + 2 unused) but never the channel assignment, both Percolator result
+  tables name all 11 channels `"Sample, n/a"`, the PRIDE file list holds no sample
+  sheet, and the Europe PMC supplementary is 8 figures. Screening it as
+  `channel_map=no` up front saves a full PRIDE + full-text + result-table round
+  trip in annotation before the same blocker surfaces.
+- `carrier_channel=yes` is a strong prompt to check `channel_map`: the carrier is
+  itself a channel, so "which channel is the carrier" has to be answerable too.
