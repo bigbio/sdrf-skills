@@ -109,3 +109,31 @@ class TestIndividualFixers:
         content = "source name\tcharacteristics[disease]\n" "s1\t cancer \n"
         _fixed, report = fix_sdrf(content)
         assert any(f.pattern == "whitespace" for f in report.fixes)
+
+    def test_characteristics_ntac_to_bare_label(self):
+        content = (
+            "source name\tcharacteristics[organism]\n"
+            "s1\tNT=Homo sapiens;AC=NCBITaxon:9606\n"
+        )
+        fixed, report = fix_sdrf(content)
+        assert "\tHomo sapiens\n" in fixed
+        assert "NT=" not in fixed.splitlines()[1]
+        assert any(f.pattern == "characteristics_bare_label" for f in report.fixes)
+
+    def test_comment_keeps_ntac(self):
+        content = (
+            "source name\tcomment[cleavage agent details]\n"
+            "s1\tNT=Trypsin;AC=MS:1001251\n"
+        )
+        fixed, report = fix_sdrf(content)
+        assert "NT=Trypsin;AC=MS:1001251" in fixed
+        assert not any(f.pattern == "characteristics_bare_label" for f in report.fixes)
+
+    def test_structured_characteristic_untouched(self):
+        content = (
+            "source name\tcharacteristics[spiked compound]\n"
+            "s1\tCT=spike;QY=10;PS=PEPTIDE\n"
+        )
+        fixed, report = fix_sdrf(content)
+        assert "CT=spike;QY=10;PS=PEPTIDE" in fixed
+        assert not any(f.pattern == "characteristics_bare_label" for f in report.fixes)

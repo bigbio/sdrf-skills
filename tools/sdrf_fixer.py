@@ -204,6 +204,27 @@ def _fix_dda_dia(value: str) -> tuple[str | None, str]:
     return None, ""
 
 
+def _fix_characteristics_bare_label(value: str) -> tuple[str | None, str]:
+    """Sample-metadata (characteristics) ontology values are written as the bare OLS label.
+
+    Convert a pure ``NT=<label>;AC=<accession>`` pair to just ``<label>`` (e.g.
+    ``NT=Homo sapiens;AC=NCBITaxon:9606`` -> ``Homo sapiens``). Only applied to
+    ``characteristics[...]`` columns; ``comment[...]`` values keep the NT=;AC= form.
+    Structured characteristics that carry qualifier keys (spiked compound CT=/QY=,
+    pooled sample SN=, etc.) are left untouched, since they are not a plain NT/AC pair.
+    """
+    parts = [p for p in value.split(";") if p.strip()]
+    kv: dict[str, str] = {}
+    for p in parts:
+        if "=" not in p:
+            return None, ""  # already a bare label (or free text) -> leave it
+        k, v = p.split("=", 1)
+        kv[k.strip().upper()] = v.strip()
+    if set(kv) != {"NT", "AC"} or not kv.get("NT"):
+        return None, ""  # structured value (extra keys) -> keep as-is
+    return kv["NT"], "characteristics value written as the bare ontology label (dropped NT=;AC=)"
+
+
 def _fix_whitespace(value: str) -> tuple[str | None, str]:
     """Fix trailing/leading whitespace."""
     stripped = value.strip()
@@ -247,6 +268,12 @@ def fix_sdrf(source: str | Path) -> tuple[str, FixReport]:
 
             # Apply fixes in priority order
             fixers = []
+
+            # Pattern 0: characteristics ontology values -> bare OLS label.
+            # Sample metadata uses the plain label; comment columns keep NT=;AC=.
+            # Runs first so later fixes (e.g. case) act on the resulting label.
+            if col.raw_name.strip().lower().startswith("characteristics["):
+                fixers.append(("characteristics_bare_label", _fix_characteristics_bare_label))
 
             # Pattern 1: UNIMOD swaps (modification parameters)
             if inner == "modification parameters":

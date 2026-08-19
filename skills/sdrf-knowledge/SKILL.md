@@ -73,6 +73,25 @@ Example: disease → "MONDO, EFO, DOID, PATO" → search these ontologies via OL
 | **comment** | `comment[x]` | Technical/run properties ("how was it measured?") |
 | **factor value** | `factor value[x]` | Experimental variable ("what are we comparing?") |
 
+## Value Encoding: characteristics vs comment
+
+Sample metadata and technical metadata are encoded differently:
+
+- **`characteristics[...]` → bare ontology label (free text).** Write the value as the
+  OLS term's label only — **not** `NT=;AC=`. For example use `Homo sapiens`, not
+  `NT=Homo sapiens;AC=NCBITaxon:9606`; `liver`, not `NT=liver;AC=UBERON:0002107`;
+  `lung adenocarcinoma`, not `NT=lung adenocarcinoma;AC=MONDO:0005097`. The validator
+  resolves the label to its accession, so the bare label is complete.
+- **`comment[...]` → keep the `NT=<OLS label>;AC=<accession>` key-value form** (instrument,
+  cleavage agent details, modification parameters, proteomics data acquisition method, etc.).
+
+Exceptions (kept structured, not converted to a bare label):
+- Structured `characteristics` that carry qualifier keys — `characteristics[spiked compound]`
+  (`CT=`/`QY=`/`PS=`), `characteristics[pooled sample]` (`SN=`) — keep their key-value form.
+- `characteristics[age]` and similar pattern values (`50Y`) are not ontology terms.
+- `factor value[...]` mirrors the column it derives from: bare label if it mirrors a
+  `characteristics` column, `NT=;AC=` if it mirrors a `comment` column.
+
 ## Reserved Words
 
 These values have special meaning in SDRF:
