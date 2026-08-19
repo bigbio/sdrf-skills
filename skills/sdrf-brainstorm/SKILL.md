@@ -55,8 +55,9 @@ Read `spec/sdrf-proteomics/TERMS.tsv` and filter by the selected template names 
 Find reference datasets to learn from:
 
 ```text
-Search PRIDE for similar experiments:
-  mcp PRIDE → search_extensive(query="<keywords>")
+Search PRIDE + MassIVE for similar experiments (sweep several SHORT keywords —
+one keyword under-recalls, and this tool unions them and reports what each added):
+  mcp PRIDE → search_extensive(keywords=["<kw1>", "<kw2>", ...])
 
 Search publications for standard experimental designs:
   mcp PubMed → search_articles(query="<keywords> AND proteomics")

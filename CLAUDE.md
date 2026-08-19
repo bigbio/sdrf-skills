@@ -114,9 +114,9 @@ copy and the others desync silently.
 ## MCP
 
 `.mcp.json` wires the bundled `mcp/server.py` (FastMCP, name `sdrf-pride-pmc`) as a project MCP server,
-launched via `./.venv/bin/python`. It exposes 10 tools: `search_projects`, `get_project_details`,
-`get_project_files`, `get_article_metadata`, `get_pdf_by_unpaywall`, `search`, `searchClasses`,
-`getChildren`, `get_full_text_article`, `get_full_text_section`. `fastmcp`/`httpx` are in `requirements.txt` and
+launched via `./.venv/bin/python`. It exposes 11 tools: `search_projects`, `search_extensive`,
+`get_project_details`, `get_project_files`, `get_article_metadata`, `get_pdf_by_unpaywall`, `search`,
+`searchClasses`, `getChildren`, `get_full_text_article`, `get_full_text_section`. `fastmcp`/`httpx` are in `requirements.txt` and
 `environment.yml`. **The server depends on `.venv/` existing** (`uv venv .venv && uv pip install
 --python .venv/bin/python -r requirements.txt`); conda users must repoint `command` in `.mcp.json`.
 
@@ -124,6 +124,18 @@ Skills still call **five tools that exist in no bundled server** — `searchClas
 `listEmbeddingModels`, `searchWithEmbeddingModel` (in `sdrf-terms` and `sdrf-annotate`), and
 `search_articles` / `search_preprints` (in `sdrf-brainstorm`). Those paths need an external OLS/PubMed/
 bioRxiv MCP or a rewrite onto `searchClasses`/`getChildren`.
+
+**`search_projects` is one page; `search_extensive` is the whole sweep.** The latter takes a LIST of
+keywords, pages each to a short page, unions and dedupes on `all_accessions`, and reports what each
+keyword contributed (`per_keyword.new` = 0 means that keyword was redundant). PRIDE ANDs the terms in
+a keyword and then RANKS rather than filters, so recall — not pagination — is the binding limit: a
+16-keyword single-cell sweep unions to more datasets than `single-cell proteomics` returns alone
+(measured today: `nanoPOTS` 11 + `proteoCHIP` 11 = 22 unique, zero overlap). Exhaustion is proven
+ONLY by a short page; an empty page after a full one is ambiguous, so it triggers a year-partitioned
+(`filter=submissionDate==YYYY`) retry and anything still unresolved lands in `truncated` rather than
+being reported as complete. PRIDE's historical bare-keyword 100-cap (#28) no longer reproduces —
+verified 2026-08-19, v2 and v3 both paginate — which is why the partitioning is a detector, not an
+unconditional workaround.
 
 **Article identifiers must be BARE — silent-corruption class.** `get_article_metadata` and
 `get_pdf_by_unpaywall` classify with `_classify_article_id` / `_parse_identifier`, which accept a bare

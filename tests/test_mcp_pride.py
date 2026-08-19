@@ -283,3 +283,98 @@ def test_cached_get_json_404_is_not_found_not_failure(monkeypatch):
     assert server._cached_get_json("https://example.invalid/y") is None
     server._json_cache.clear()
     assert server._cached_get_json("https://example.invalid/y", not_found_ok=True) == []
+
+
+# --- search_extensive: multi-keyword union + visible truncation ---------
+
+def _pride_pages(pages: dict):
+    """Fake _cached_get_json serving PRIDE pages keyed by (keyword, filter, page)."""
+    def fake(url, params=None, **kw):
+        params = params or {}
+        if "pride" not in url:
+            return []          # MassIVE: exhausted immediately
+        key = (params.get("keyword"), params.get("filter"), params.get("page"))
+        return pages.get(key, [])
+    return fake
+
+
+def _accs(n, start=1):
+    return [{"accession": f"PXD{i:06d}"} for i in range(start, start + n)]
+
+
+def test_search_extensive_unions_keywords_and_dedupes(monkeypatch):
+    """Recall needs a keyword sweep; the same dataset found twice is one row."""
+    monkeypatch.setattr(server, "_cached_get_json", _pride_pages({
+        ("SCoPE2", None, "0"): _accs(2, 1),          # PXD000001, PXD000002
+        ("nanoPOTS", None, "0"): _accs(2, 2),        # PXD000002 again, PXD000003
+    }))
+    r = server.search_extensive(["SCoPE2", "nanoPOTS"], page_size=100)
+    assert r["count"] == 3
+    assert r["per_keyword"]["SCoPE2"]["new"] == 2
+    assert r["per_keyword"]["nanoPOTS"]["new"] == 1   # the overlap is not double counted
+    assert "truncated" not in r
+
+
+def test_search_extensive_accepts_a_single_string(monkeypatch):
+    monkeypatch.setattr(server, "_cached_get_json", _pride_pages({
+        ("plexDIA", None, "0"): _accs(1),
+    }))
+    assert server.search_extensive("plexDIA")["count"] == 1
+
+
+def test_search_extensive_pages_until_a_short_page(monkeypatch):
+    """A full page is never the end: only a short page proves exhaustion."""
+    monkeypatch.setattr(server, "_cached_get_json", _pride_pages({
+        ("proteomics", None, "0"): _accs(2, 1),
+        ("proteomics", None, "1"): _accs(2, 3),
+        ("proteomics", None, "2"): _accs(1, 5),
+    }))
+    r = server.search_extensive("proteomics", page_size=2)
+    assert r["count"] == 5
+    assert r["per_keyword"]["proteomics"]["status"].startswith("exhausted")
+    # Every page is fetched once: a re-read page would inflate `hits` past `count`.
+    assert r["per_keyword"]["proteomics"]["hits"] == 5
+
+
+def test_full_page_then_empty_page_triggers_partitioned_retry(monkeypatch):
+    """The historical PRIDE cap (#28): a full page then an empty one is ambiguous.
+
+    It must not be reported as exhaustion. The year-partitioned retry recovers
+    the records the plain walk could not reach.
+    """
+    year = server.date.today().year
+    monkeypatch.setattr(server, "_cached_get_json", _pride_pages({
+        ("proteomics", None, "0"): _accs(2, 1),
+        ("proteomics", None, "1"): [],                       # looks like the end
+        ("proteomics", f"submissionDate=={year}", "0"): _accs(1, 3),
+    }))
+    r = server.search_extensive("proteomics", page_size=2)
+    assert r["per_keyword"]["proteomics"]["status"].startswith("partitioned")
+    assert r["count"] == 3                                   # PXD000003 recovered
+    assert "truncated" not in r
+
+
+def test_a_partition_still_capped_is_reported_not_swallowed(monkeypatch):
+    year = server.date.today().year
+    monkeypatch.setattr(server, "_cached_get_json", _pride_pages({
+        ("proteomics", None, "0"): _accs(2, 1),
+        ("proteomics", None, "1"): [],
+        ("proteomics", f"submissionDate=={year}", "0"): _accs(2, 3),
+        ("proteomics", f"submissionDate=={year}", "1"): [],   # capped again
+    }))
+    r = server.search_extensive("proteomics", page_size=2)
+    assert any(f"@{year}:suspected_cap" in t for t in r["truncated"])
+    assert "NOT complete" in r["warning"]
+
+
+def test_search_extensive_reports_a_lost_page_as_incomplete(monkeypatch):
+    def fake(url, params=None, **kw):
+        return None if "pride" in url else []
+    monkeypatch.setattr(server, "_cached_get_json", fake)
+    r = server.search_extensive("proteomics")
+    assert any("INCOMPLETE" in e for e in r["errors"])
+
+
+def test_search_extensive_rejects_empty_and_bad_input():
+    assert "error" in server.search_extensive([])
+    assert "error" in server.search_extensive(["x"], repository="nope")
