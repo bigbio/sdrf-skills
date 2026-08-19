@@ -15,14 +15,14 @@ annotation expertise. When working with SDRF files, consult the relevant skill:
 - **Templates**: `skills/sdrf-templates/SKILL.md` — 5-layer template system, selection rules
 - **Annotation**: `skills/sdrf-annotate/SKILL.md` — full PXD → SDRF workflow
 - **Validation**: `skills/sdrf-validate/SKILL.md` — template + ontology checking
-- **Quality**: `skills/sdrf-improve/SKILL.md` — scoring and improvement suggestions
+- **Quality**: `skills/sdrf-review/SKILL.md` — review + 5-dimension quality scoring and improvement suggestions
 - **Fixes**: `skills/sdrf-fix/SKILL.md` — auto-fix common errors
 - **Terms**: `skills/sdrf-terms/SKILL.md` — ontology term lookup
 - **Planning**: `skills/sdrf-brainstorm/SKILL.md` — metadata strategy
 - **Review**: `skills/sdrf-review/SKILL.md` — cross-reference with publications
 - **Adversarial review**: `skills/sdrf-adversarial-review/SKILL.md` — isolated evidence-first review with hash-bound approval
 - **Reviewed annotation**: `skills/sdrf-annotate-reviewed/SKILL.md` — producer/reviewer loop with mandatory re-review
-- **Education**: `skills/sdrf-explain/SKILL.md` — explain SDRF concepts
+- **Education**: `skills/sdrf-knowledge/SKILL.md` — SDRF reference + plain-language explanations
 - **Pipelines**: `skills/sdrf-convert/SKILL.md` — pipeline configuration
 - **Design**: `skills/sdrf-design/SKILL.md` — experimental design analysis
 - **Contribute**: `skills/sdrf-contribute/SKILL.md` — PR to community repository

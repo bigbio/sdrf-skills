@@ -21,14 +21,12 @@ description) followed by a step-by-step workflow in Markdown.
 | `sdrf-templates` | Template layer system (Technology → Organism → Experiment → Clinical → Platform) |
 | `sdrf-annotate` | Full annotation workflow: PXD → PRIDE metadata + publication → SDRF draft |
 | `sdrf-validate` | Validation: structural checks + OLS ontology verification |
-| `sdrf-improve` | Quality scoring across 5 dimensions (completeness, specificity, consistency, compliance, clarity) |
 | `sdrf-fix` | Auto-fix 10 common error patterns (UNIMOD swaps, case, format, artifacts) |
 | `sdrf-terms` | Ontology term lookup with column-aware routing (disease→EFO, tissue→UBERON, etc.) |
 | `sdrf-brainstorm` | Pre-annotation planning: templates, similar experiments, column recommendations |
 | `sdrf-review` | Quality review: cross-reference SDRF against publication and PRIDE metadata |
 | `sdrf-adversarial-review` | Independent fresh-context falsification review with hash-bound approval |
 | `sdrf-annotate-reviewed` | Annotation, validation, independent review, repair, and re-review orchestration |
-| `sdrf-explain` | Plain-language education about any SDRF column, error, or concept |
 | `sdrf-convert` | Pipeline selection and conversion commands (MaxQuant, DIA-NN, OpenMS, quantms) |
 | `sdrf-design` | Experimental design analysis: batch effects, confounders, replication assessment |
 | `sdrf-contribute` | Contribute annotated SDRF to community repo via PR (automated or guided) |

@@ -1,6 +1,6 @@
 """Annotation completeness scorer for SDRF files.
 
-Implements the 5-dimension quality scoring from sdrf-improve SKILL.md:
+Implements the 5-dimension quality scoring from the quality-scoring section of sdrf-review SKILL.md (formerly sdrf-improve):
   Completeness (0.30) + Specificity (0.25) + Consistency (0.15)
   + Standards (0.15) + Design (0.15)
 """

@@ -11,7 +11,7 @@ contexts separate; validation by the producer is not review.
 ## 1. Produce the SDRF
 
 Run the `sdrf:annotate` workflow in the current producer context. For an
-existing artifact, run the applicable `sdrf:fix`, `sdrf:improve`, or
+existing artifact, run the applicable `sdrf:fix`, `sdrf:review`, or
 `sdrf:techrefine` workflows first.
 
 Create an evidence manifest using the schema in

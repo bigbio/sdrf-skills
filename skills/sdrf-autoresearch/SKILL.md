@@ -296,7 +296,7 @@ For each dataset:
 6. Run `/sdrf:fix`
    - apply safe corrections to known SDRF error patterns
 
-7. Run `/sdrf:improve`
+7. Run `/sdrf:review`
    - rescore completeness, specificity, consistency, standards, and design
 
 8. Keep or discard

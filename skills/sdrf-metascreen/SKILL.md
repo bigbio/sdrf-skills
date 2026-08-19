@@ -490,5 +490,5 @@ each, so a human knows what to go find.
   for a field whose question genuinely does not arise for a row — give that case
   its own vocabulary word (see `channel_map` in
   `criteria/single_cell_proteomics.md`, which uses `label free`).
-- Do not run `sdrf:annotate`, `sdrf:validate`, `sdrf:fix`, or `sdrf:improve` here.
+- Do not run `sdrf:annotate`, `sdrf:validate`, `sdrf:fix`, or `sdrf:review` here.
   Those belong to `sdrf:autoresearch`.
