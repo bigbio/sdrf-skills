@@ -103,10 +103,19 @@ An SDRF needs one row per (file × label channel), each with a sample identity.
 - **Label-free, 1 file = 1 cell** → annotatable.
 - **Multiplexed** (TMT/plexDIA/dimethyl): you MUST find the channel→sample map. Check the paper +
   supplementary, the deposited result tables (Proteome Discoverer defaults every channel to
-  `"Sample, n/a"` = NO map; SpectroMine `.psar` likewise), `files/all` for a sample sheet, and
+  `"Sample, n/a"`, and `StudyInformation.txt` to a bare `"Sample"` with empty groups = NO map;
+  SpectroMine `.psar` likewise), `files/all` for a sample sheet, and
   `https://www.ebi.ac.uk/europepmc/webservices/rest/<PMCID>/supplementaryFiles`.
+  **Then follow the paper's Data Availability / Code Availability links** — Zenodo
+  (`https://zenodo.org/api/records/<id>`), figshare, OSF, Dryad, or the analysis GitHub repo.
+  The layout files (`label_layout`, `sort_layout`, `sample_layout`, `file_sample_mapping`,
+  `annotation.csv`, FACS exports) are deposited there far more often than in PRIDE: PXD053053
+  was a false BLOCK until its Zenodo record (12615623) turned it into 1344 annotatable rows,
+  cross-validated against the deposited `.h5ad` with 0 discrepancies. Reconstruct the map
+  deterministically and cross-check it against a collated result object where one exists.
   Layouts can **flip between runs** — never assume one fixed layout.
-  If no map exists → **BLOCKED**. Do not fabricate channel identities. Write the report +
+  If no map exists → **BLOCKED**, but only after those external sources are exhausted too;
+  name every source checked in the report. Do not fabricate channel identities. Write the report +
   BLOCKED.md entry. A partial annotation (one arm annotatable, another not) is legitimate.
 - Supplementary per-sample tables are gold — but verify they belong to YOUR paper.
 
