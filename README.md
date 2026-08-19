@@ -142,8 +142,12 @@ Maintained by the [BigBio](https://github.com/bigbio) team.
 - **Enrique Audain** — [@enriquea](https://github.com/enriquea)
 - **Husen M. Umer** — [@husensofteng](https://github.com/husensofteng)
 - **Chengxin Dai** — [@daichengxin](https://github.com/daichengxin)
-- [@2024-denglei](https://github.com/2024-denglei)
+- **Yixuan Yang** — [@Yixuan39](https://github.com/Yixuan39)
+- **Selvakumar** — [@selva439](https://github.com/selva439)
+- **Jonas Scheid** — [@jonasscheid](https://github.com/jonasscheid)
+- **Yufei Shen** — [@Shen-YuFei](https://github.com/Shen-YuFei)
 - **Asier Larrea Sebal** — [@asierlarrea](https://github.com/asierlarrea) · EMBL-EBI
+- [@2024-denglei](https://github.com/2024-denglei)
 
 ## License
 
