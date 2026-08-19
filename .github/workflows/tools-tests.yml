@@ -49,6 +49,7 @@ jobs:
           python -m tools massive-files --help
           python -m tools verify --help
           python -m tools cellline --help
+          python -m tools bruker-dia --help
 
       - name: Run offline hallucination check on synthetic example
         run: |

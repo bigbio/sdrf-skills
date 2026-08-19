@@ -33,6 +33,9 @@ pip install techsdrf
   # Check availability:
   msconvert --help
   ```
+  For Bruker DIA **isolation windows** specifically, no converter and no download
+  are needed — `python -m tools bruker-dia` range-reads `analysis.tdf` out of the
+  archive. See the Bruker section below.
 
 If converters are missing, inform the user which file types cannot be processed
 and suggest installation commands. techsdrf will skip files it cannot convert.
@@ -250,6 +253,50 @@ If this is a ProteomeXchange dataset:
 Your refined SDRF has verified technical metadata from actual raw file analysis.
 Run /sdrf:contribute to submit this annotation to the community repository.
 ```
+
+## Bruker timsTOF: DIA windows straight from `analysis.tdf`
+
+techsdrf needs the raw files converted; for **one** high-value table on Bruker
+`.d` data it is not needed at all, and neither is the download. `analysis.tdf`
+inside a `.d` archive is a plain SQLite database, and PRIDE's HTTPS mirror
+serves byte ranges — so the ZIP central directory can be read from the tail and
+that single member range-fetched. Measured on `PXD052416`: **14.7 MB instead of
+2502 MB**, a ~170x reduction.
+
+```bash
+python -m tools bruker-dia "https://ftp.pride.ebi.ac.uk/.../Blank_BK1_1_1799.d.zip"
+python -m tools bruker-dia path/to/analysis.tdf --json     # already extracted
+```
+
+It reads `DiaFrameMsMsWindows` and reports the isolation windows, the measured
+m/z coverage, the collision-energy ramp, and the instrument name from
+`GlobalMetadata`. Use it whenever the deposition is timsTOF/diaPASEF and the
+manuscript is vague about window placement — on PXD052416 the paper puts the
+placement in a supplementary *figure*, i.e. unreadable, while the table has the
+numbers.
+
+### The isolation-window trap — read this before filling the column
+
+`comment[isolation window width]` is a **single scalar** (`pattern:
+^\d+(\.\d+)?$`, examples 25/8/4). That fits uniform SWATH-style windows.
+diaPASEF windows are variable-width by design — 15 distinct widths from 29.52 to
+74.51 m/z in PXD052416 — and **no single number is correct** for them.
+
+| Situation | What to write |
+|---|---|
+| Every window the same width | that width |
+| Widths vary (diaPASEF, typical) | `not available`, with the measured table in the report |
+
+Never derive the value from the manuscript instead: "15 windows spanning
+400–1000" → `600/15 = 40` produces a width matching **none** of the 15 actual
+windows, and it passes both the regex and `parse_sdrf`. A mean or a median is
+the same error with more arithmetic. `python -m tools bruker-dia` applies this
+rule for you and prints the value it would write plus the reason.
+
+This is a spec limitation, not an annotator failure — the column cannot express
+what the instrument did (bigbio/sdrf-templates, tracked from #33). Until it can,
+`not available` plus the measured table is the honest answer, and the table in
+the report is what makes the value recoverable later.
 
 ## What techsdrf Detects
 

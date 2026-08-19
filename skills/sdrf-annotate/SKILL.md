@@ -747,6 +747,19 @@ techsdrf can detect discrepancies between what's declared in the paper/PRIDE and
 what's actually in the raw data — especially for instrument model specificity,
 mass tolerances, and undeclared or incorrect modifications.
 
+**Bruker timsTOF / diaPASEF — the DIA windows are readable without any of that.**
+`analysis.tdf` inside a `.d` archive is a SQLite database, so one member of the ZIP
+can be range-fetched (14.7 MB rather than a 2.5 GB download) and read directly:
+```bash
+python -m tools bruker-dia "<url of the .d.zip>"
+```
+It reports the isolation windows, m/z coverage and CE ramp. Fill
+`comment[isolation window width]` from it and **only** from it: diaPASEF windows are
+variable-width, the column is a single scalar, and deriving one from the manuscript
+("15 windows spanning 400–1000" → 40) yields a width matching no actual window while
+passing both the regex and `parse_sdrf`. When the widths vary, the honest value is
+`not available` with the measured table in the report — see `/sdrf:techrefine`.
+
 ## Step 6: Map Files to Samples
 
 - Get file names from Step 1.2 (PRIDE file list)
