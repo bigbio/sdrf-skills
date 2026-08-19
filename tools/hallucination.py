@@ -25,6 +25,17 @@ from tools.sdrf_parser import (
 )
 
 
+# Columns whose values are ALWAYS written as NT=<label>;AC=<accession>, even
+# when a row carries a reserved word instead. Columns outside this set are
+# dispatched on their actual values by _has_structured_values().
+STRUCTURED_COLUMNS = frozenset({
+    "instrument",
+    "cleavage agent details",
+    "label",
+    "dissociation method",
+})
+
+
 # ---------------------------------------------------------------------------
 # Report dataclasses
 # ---------------------------------------------------------------------------
@@ -279,7 +290,7 @@ def detect_hallucinations(
         if inner == "modification parameters":
             _check_modification_column(sdrf, col_key, report,
                                        ols_client, verify_online)
-        elif inner in ("instrument", "cleavage agent details"):
+        elif inner in STRUCTURED_COLUMNS or _has_structured_values(sdrf, col_key):
             _check_structured_column(sdrf, col_key, inner, expected_onts,
                                      report, ols_client, verify_online)
         elif expected_onts:
@@ -287,6 +298,27 @@ def detect_hallucinations(
                                    report, ols_client, verify_online)
 
     return report
+
+
+def _has_structured_values(sdrf: SDRFFile, col_name: str) -> bool:
+    """True when this column's values carry an ``AC=`` accession.
+
+    Dispatching on the value rather than the column name matters because
+    ontology-controlled columns are written in BOTH styles across the corpus:
+    ``characteristics[...]`` conventionally hold a bare label, while
+    ``comment[...]`` CV columns hold ``NT=<label>;AC=<accession>``. Handing a
+    structured value to the bare-label checker makes it search OLS for the
+    literal string ``"NT=label free sample;AC=MS:1002038"``, which can never
+    match, and the term is then reported as hallucinated.
+
+    Only the first non-reserved value is inspected: a column mixes styles
+    only if it is already malformed, and that is reported elsewhere.
+    """
+    for row in sdrf.rows:
+        val = row.get(col_name, "").strip()
+        if val and val.lower() not in ("not available", "not applicable"):
+            return "AC=" in val
+    return False
 
 
 def _check_modification_column(

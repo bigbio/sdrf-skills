@@ -225,6 +225,114 @@ class TestDetectHallucinationsOnline:
         assert report.verified[0].label == "HeLa S3"
 
 
+class TestStructuredCVColumns:
+    """comment[...] CV columns are written NT=<label>;AC=<accession>.
+
+    Regression tests: these columns were routed to the bare-label checker,
+    which searched OLS for the literal cell string and always missed, so every
+    value was reported as hallucinated.
+    """
+
+    @staticmethod
+    def _client():
+        client = MagicMock(spec=OLSClient)
+        client.verify_accession.return_value = VerificationResult(
+            accession="MS:1002038",
+            expected_label="label free sample",
+            exists=True,
+            resolved_term=OLSTerm(
+                iri="http://purl.obolibrary.org/obo/MS_1002038",
+                label="label free sample",
+                short_form="MS:1002038",
+                ontology_name="ms",
+            ),
+            label_match=True,
+        )
+        return client
+
+    def test_label_column_not_hallucinated(self):
+        client = self._client()
+        sdrf = (
+            "source name\tcomment[label]\n"
+            "s1\tNT=label free sample;AC=MS:1002038\n"
+        )
+        report = detect_hallucinations(sdrf, ols_client=client, verify_online=True)
+        assert report.hallucinated == []
+        assert len(report.verified) == 1
+        assert report.verified[0].accession == "MS:1002038"
+
+    def test_dissociation_method_not_hallucinated(self):
+        client = self._client()
+        client.verify_accession.return_value = VerificationResult(
+            accession="MS:1000133",
+            expected_label="collision-induced dissociation",
+            exists=True,
+            resolved_term=OLSTerm(
+                iri="http://purl.obolibrary.org/obo/MS_1000133",
+                label="collision-induced dissociation",
+                short_form="MS:1000133",
+                ontology_name="ms",
+            ),
+            label_match=True,
+        )
+        sdrf = (
+            "source name\tcomment[dissociation method]\n"
+            "s1\tNT=collision-induced dissociation;AC=MS:1000133\n"
+        )
+        report = detect_hallucinations(sdrf, ols_client=client, verify_online=True)
+        assert report.hallucinated == []
+        assert len(report.verified) == 1
+
+    def test_structured_value_in_unmapped_column_is_checked(self):
+        """A column outside COLUMN_ONTOLOGY_MAP still gets verified when its
+        values carry AC= — e.g. comment[cross-linker] (XLMOD)."""
+        client = MagicMock(spec=OLSClient)
+        client.verify_accession.return_value = VerificationResult(
+            accession="XLMOD:02126",
+            expected_label="DSSO",
+            exists=True,
+            resolved_term=OLSTerm(
+                iri="http://purl.obolibrary.org/obo/XLMOD_02126",
+                label="DSSO",
+                short_form="XLMOD:02126",
+                ontology_name="xlmod",
+            ),
+            label_match=True,
+        )
+        sdrf = (
+            "source name\tcomment[cross-linker]\n"
+            "s1\tNT=DSSO;AC=XLMOD:02126\n"
+        )
+        report = detect_hallucinations(sdrf, ols_client=client, verify_online=True)
+        assert report.total_terms_checked == 1
+        assert report.hallucinated == []
+
+    def test_provenance_column_without_accession_is_skipped(self):
+        """comment[sdrf template] uses NT=..;VV=.. and carries no accession,
+        so it must not be treated as a CV column."""
+        client = MagicMock(spec=OLSClient)
+        sdrf = (
+            "source name\tcomment[sdrf template]\n"
+            "s1\tNT=ms-proteomics;VV=v1.1.0\n"
+        )
+        report = detect_hallucinations(sdrf, ols_client=client, verify_online=True)
+        assert report.total_terms_checked == 0
+        assert report.hallucinated == []
+        client.verify_accession.assert_not_called()
+
+    def test_reserved_words_do_not_decide_column_style(self):
+        """A leading 'not applicable' must not make the column look bare-label."""
+        client = self._client()
+        sdrf = (
+            "source name\tcomment[label]\n"
+            "s1\tnot applicable\n"
+            "s2\tNT=label free sample;AC=MS:1002038\n"
+        )
+        report = detect_hallucinations(sdrf, ols_client=client, verify_online=True)
+        assert report.hallucinated == []
+        assert len(report.verified) == 1
+
+
 class TestModificationLabelMatching:
     """The NT/AC pair must name the same modification.
 
