@@ -556,10 +556,25 @@ Crosslinking cleanup examples that should be normalized before final validation:
 - `deinococcus radiodurans r1` → `deinococcus radiodurans`
 
 For crosslinking-specific assay cleanup, use explicit file-name evidence when the SDRF still says `NT=unknown crosslinker;AC=XLMOD:00000`. Safe examples seen in sandbox cleanup:
-- file names containing `DSSO` → `NT=DSSO;AC=XLMOD:02010;CL=yes;TA=K,S,T,Y,nterm;MH=54.01;ML=85.98`
+- file names containing `DSSO` → `NT=DSSO;AC=XLMOD:02126;CL=yes;TA=K,S,T,Y,nterm;MH=54.01;ML=85.98`
+- file names containing `DSS` → `NT=DSS;AC=XLMOD:02001`
 - file names containing `BS3` → `NT=BS3;AC=XLMOD:02000`
-- file names containing `TurboID` → `NT=TurboID;AC=XLMOD:02251`
-- file names containing `iQPIR`, `BDP`, or `d8BDP` → `NT=PIR;AC=XLMOD:02014`
+- file names containing `DSBU` → `NT=DSBU;AC=XLMOD:02120` (XLMOD's preferred label is `BuUrBu`)
+- file names containing `iQPIR`, `BDP`, or `d8BDP` → `NT=PIR;AC=XLMOD:02237`
+  (the BDP-NHP reagent itself is `XLMOD:02011`)
+
+> **Verify every XLMOD accession against OLS before writing it.** Neighbouring
+> XLMOD ids are unrelated reagents, so a wrong accession is validator-clean and
+> silently corrupts the annotation. Confirm with:
+> `curl -s "https://www.ebi.ac.uk/ols4/api/search?q=XLMOD:02126&ontology=xlmod&fieldList=obo_id,label"`
+
+**`TurboID` is not a cross-linker — do not map it to `comment[cross-linker]`.**
+It is a promiscuous biotin ligase used for proximity-dependent labelling
+(BioID family), not a chemical cross-linking reagent, and XLMOD has no term for
+it. Proximity-labelling experiments are not XL-MS: annotate the biotin
+enrichment via `characteristics[enrichment process]` /
+`comment[crosslink enrichment method]` and do not apply the `crosslinking`
+template on the strength of a `TurboID` filename token alone.
 
 After recovering a known cross-linker, backfill `characteristics[crosslink distance]` when the template guidance is explicit:
 - `BS3` / `DSS` → `30 Å`
