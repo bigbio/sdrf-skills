@@ -122,20 +122,40 @@ asks; otherwise deduplicate and report the number removed.
 ### Category discovery
 For `all <category> datasets`:
 
-1. **Break the category into SHORT keywords.** PRIDE ANDs the terms in a
-   keyword, so a whole category sentence collapses recall — measured:
-   `metaproteomics` returns 100+ hits, `human gut metaproteomics` returns 2.
-   Issue several short searches and union the accessions.
+1. **Break the category into SHORT keywords and sweep them.** PRIDE ANDs the
+   terms in a keyword and then RANKS rather than filters, so a whole category
+   sentence collapses recall — measured: `metaproteomics` returns 100+ hits,
+   `human gut metaproteomics` returns 2. And no single term covers a field:
+   `nanoPOTS` (11) and `proteoCHIP` (11) union to 22 single-cell datasets with
+   zero overlap, and neither term is returned by `single-cell proteomics`.
+
+```text
+Tool: search_extensive(keywords=["metaproteomics", "gut microbiome proteomics", ...])
+```
+
+   `search_extensive` pages every keyword to exhaustion, unions and dedupes on
+   `all_accessions`, and reports `per_keyword.new` — what each keyword
+   contributed that no earlier one had. A keyword with `new: 0` was redundant
+   for this sweep; put the whole `per_keyword` block in the run log, since it is
+   the evidence that the sweep was wide enough.
+
+   Use `search_projects` for a single probe or a manual page walk:
 
 ```text
 Tool: search_projects(keyword="metaproteomics", page_size=100, page=0)
 ```
 
-2. **Page until exhausted.** A call returning exactly `page_size` hits means
-   there are probably more; increment `page` until a call returns fewer.
-   If a page comes back with an `errors` entry, that page was **lost, not
-   empty** — the result set is incomplete. Retry it, and if it still fails, say
-   so in the run log rather than reporting the screen as complete.
+2. **Never report a truncated sweep as complete.** Exhaustion is proven ONLY by
+   a page shorter than `page_size`. `search_extensive` enforces that: an empty
+   page after a full one is ambiguous (PRIDE has historically capped a bare
+   keyword and served an empty next page, indistinguishable from the end), so it
+   retries partitioned by submission year and reports whatever is still
+   unresolved in `truncated`.
+   - `truncated` non-empty → the union is a **floor, not the result set**. Say so
+     in the run log and in the final report.
+   - `errors` non-empty → that page was **lost, not empty**. Retry it, and if it
+     still fails, log it rather than reporting the screen as complete.
+   If you page manually with `search_projects`, apply the same rule by hand.
 
 3. **Fast pre-filter on the structured fields the criteria constrain** — before
    fetching any publication, discard obvious mismatches. `search_projects`
@@ -396,6 +416,9 @@ include         : N  (PRIDE N, MassIVE N)
 exclude         : N
 uncertain       : N
 lost_pages      : <none | the search pages that errored and stayed incomplete>
+truncated       : <none | the search_extensive `truncated` entries — for each one
+                  listed, coverage is a floor, not a complete set>
+per_keyword     : <the search_extensive per_keyword block: hits / new per keyword>
 exclusions_by_criterion:
   rule 2 (Orbitrap instrument) : N
   rule 3 (DDA acquisition)     : N
