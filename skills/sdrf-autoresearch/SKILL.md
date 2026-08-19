@@ -279,7 +279,7 @@ For each dataset:
 2. Run `/sdrf:annotate`
    - draft or extend the SDRF using the selected templates
 
-3. Run `/sdrf:terms`
+3. Run `/sdrf:knowledge`
    - normalize ontology-backed fields
    - use lexical OLS first
    - use embeddings for fuzzy manuscript-derived mentions

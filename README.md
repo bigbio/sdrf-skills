@@ -9,7 +9,7 @@
 [![OpenCode](https://img.shields.io/badge/OpenCode-Skill-purple)](https://opencode.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![SDRF Spec](https://img.shields.io/badge/SDRF-proteomics--metadata--standard-orange)](https://github.com/bigbio/proteomics-metadata-standard)
-[![Skills](https://img.shields.io/badge/skills-18-informational)](#available-skills)
+[![Skills](https://img.shields.io/badge/skills-16-informational)](#available-skills)
 
 > **Pick a dataset → the agent fetches PRIDE + paper → you review a validated SDRF.**
 
@@ -22,20 +22,18 @@ lives in a git submodule and is read at runtime, so the skills stay current as t
 
 ## Available skills
 
-Eighteen skills, most in the `sdrf:` namespace (the two review-gate skills use portable hyphenated names):
+Sixteen skills, most in the `sdrf:` namespace (the two review-gate skills use portable hyphenated names):
 
 | Skill | What it does |
 |-------|-------------|
 | `/sdrf:setup` | Guided dependency install (parse_sdrf, techsdrf) — conda or pip |
-| `/sdrf:knowledge` | SDRF format, column rules, ontology mappings, reserved words; plain-language explanations |
+| `/sdrf:knowledge` | SDRF format, column rules, ontology mappings, reserved words; plain-language explanations; ontology term lookup |
 | `/sdrf:templates` | Template selection, layers, and selection rules |
 | `/sdrf:metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies → resumable TSV |
 | `/sdrf:autoresearch` | Autonomous retained-improvement loop over a dataset or dataset class |
-| `/sdrf:annotate` | Full workflow: PXD → PRIDE + paper → draft SDRF → validate |
+| `/sdrf:annotate` | Plan + full workflow: PXD → PRIDE + paper → draft SDRF → validate |
 | `/sdrf:validate` | Systematic validation against templates + OLS ontology checking |
 | `/sdrf:fix` | Auto-fix common errors (UNIMOD swaps, case, format, artifacts) |
-| `/sdrf:terms` | Find and verify ontology terms for any column |
-| `/sdrf:brainstorm` | Plan metadata strategy before creating an SDRF |
 | `/sdrf:review` | Comprehensive quality review + 5-dimension quality score cross-referenced to paper + PRIDE |
 | `$sdrf-adversarial-review` | Fresh-context, evidence-first review with a hash-bound verdict |
 | `$sdrf-annotate-reviewed` | Annotation orchestrator with isolated review, repair, and re-review |

@@ -48,7 +48,7 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 
 **Three layers, loosely coupled — the coupling gaps matter more than the layers:**
 
-1. `skills/` — 18 SKILL.md workflows. Most are single-file; only the two review-gate skills ship
+1. `skills/` — 16 SKILL.md workflows. Most are single-file; only the two review-gate skills ship
    supporting files (`references/review-contract.md`, `agents/openai.yaml`). Everything else reaches
    shared machinery at repo root by relative path.
 2. `tools/` — offline-first Python. Only `massive-files` (annotate, review) and `cellline lookup`
@@ -122,8 +122,8 @@ launched via `./.venv/bin/python`. It exposes 11 tools: `search_projects`, `sear
 --python .venv/bin/python -r requirements.txt`); conda users must repoint `command` in `.mcp.json`.
 
 Skills still call **five tools that exist in no bundled server** — `searchClassesWithEmbeddingModel`,
-`listEmbeddingModels`, `searchWithEmbeddingModel` (in `sdrf-terms` and `sdrf-annotate`), and
-`search_articles` / `search_preprints` (in `sdrf-brainstorm`). Those paths need an external OLS/PubMed/
+`listEmbeddingModels`, `searchWithEmbeddingModel` (in `sdrf-knowledge` and `sdrf-annotate`), and
+`search_articles` / `search_preprints` (in `sdrf-annotate`). Those paths need an external OLS/PubMed/
 bioRxiv MCP or a rewrite onto `searchClasses`/`getChildren`.
 
 **`search_projects` is one page; `search_extensive` is the whole sweep.** The latter takes a LIST of

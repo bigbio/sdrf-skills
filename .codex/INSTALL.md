@@ -37,8 +37,6 @@ cp -r spec/ ~/.agents/skills/sdrf-skills/spec/
 | sdrf-annotate | Full annotation: PXD → PRIDE + paper → draft SDRF |
 | sdrf-validate | Validation against templates + OLS checking |
 | sdrf-fix | Auto-fix UNIMOD swaps, case, format, artifacts |
-| sdrf-terms | Ontology term lookup for any SDRF column |
-| sdrf-brainstorm | Pre-annotation metadata planning |
 | sdrf-review | Quality review with paper + PRIDE cross-reference |
 | sdrf-adversarial-review | Independent fresh-context falsification review with hash-bound approval |
 | sdrf-annotate-reviewed | Producer/reviewer annotation loop with mandatory re-review |

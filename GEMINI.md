@@ -17,8 +17,8 @@ annotation expertise. When working with SDRF files, consult the relevant skill:
 - **Validation**: `skills/sdrf-validate/SKILL.md` — template + ontology checking
 - **Quality**: `skills/sdrf-review/SKILL.md` — review + 5-dimension quality scoring and improvement suggestions
 - **Fixes**: `skills/sdrf-fix/SKILL.md` — auto-fix common errors
-- **Terms**: `skills/sdrf-terms/SKILL.md` — ontology term lookup
-- **Planning**: `skills/sdrf-brainstorm/SKILL.md` — metadata strategy
+- **Terms**: `skills/sdrf-knowledge/SKILL.md` — ontology term lookup (reference + OLS)
+- **Planning**: `skills/sdrf-annotate/SKILL.md` — pre-annotation metadata strategy
 - **Review**: `skills/sdrf-review/SKILL.md` — cross-reference with publications
 - **Adversarial review**: `skills/sdrf-adversarial-review/SKILL.md` — isolated evidence-first review with hash-bound approval
 - **Reviewed annotation**: `skills/sdrf-annotate-reviewed/SKILL.md` — producer/reviewer loop with mandatory re-review
