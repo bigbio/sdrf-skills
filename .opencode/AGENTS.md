@@ -22,8 +22,6 @@ description) followed by a step-by-step workflow in Markdown.
 | `sdrf-annotate` | Full annotation workflow: PXD → PRIDE metadata + publication → SDRF draft |
 | `sdrf-validate` | Validation: structural checks + OLS ontology verification |
 | `sdrf-fix` | Auto-fix 10 common error patterns (UNIMOD swaps, case, format, artifacts) |
-| `sdrf-terms` | Ontology term lookup with column-aware routing (disease→EFO, tissue→UBERON, etc.) |
-| `sdrf-brainstorm` | Pre-annotation planning: templates, similar experiments, column recommendations |
 | `sdrf-review` | Quality review: cross-reference SDRF against publication and PRIDE metadata |
 | `sdrf-adversarial-review` | Independent fresh-context falsification review with hash-bound approval |
 | `sdrf-annotate-reviewed` | Annotation, validation, independent review, repair, and re-review orchestration |

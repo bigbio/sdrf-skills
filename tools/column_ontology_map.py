@@ -1,6 +1,6 @@
 """Mapping from SDRF column names to expected ontology sources.
 
-Derived from TERMS.tsv `values` field and the sdrf-terms SKILL.md.
+Derived from TERMS.tsv `values` field and the sdrf-knowledge SKILL.md (formerly sdrf-terms).
 Used as a fallback when the spec submodule is not initialized.
 """
 

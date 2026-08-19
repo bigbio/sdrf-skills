@@ -36,7 +36,7 @@ offline mode or needs to enrich many SDRFs in one pass.
 - Resolving ambiguous cell line names raised by `/sdrf:annotate`,
   `/sdrf:validate`, or `/sdrf:fix`.
 
-For pure ontology-term lookup unrelated to cell lines, use `/sdrf:terms`.
+For pure ontology-term lookup unrelated to cell lines, use `/sdrf:knowledge`.
 
 ## Step 0: Identify the cell-lines template requirements
 
@@ -153,7 +153,7 @@ When Step 2 yields more than one candidate, pick in this order:
    ambiguous queries: `293`, `SK`, `HCT`, `HEK`, `T-47`.
 
 If nothing matches:
-- Suggest the user check spelling, then offer `/sdrf:terms cell line "<name>"`
+- Suggest the user check spelling, then offer `/sdrf:knowledge cell line "<name>"`
   for a broader CLO/BTO/EFO search.
 - Set `characteristics[cell line]` to the user's input verbatim and the rest of
   the cell-line columns to `not available` (never `N/A`, never `unknown`).
