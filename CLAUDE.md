@@ -241,6 +241,22 @@ reimplementing merge semantics.
    approval cannot outlive the content it describes. `gate` exits 1 while review is pending.
    Enforcement lives in the CLI, not the Stop hook, because four of the five platforms this repo
    supports cannot run Claude Code hooks at all.
+9. **Vendor RAW only in `comment[data file]`** — `.raw`/`.d`/`.wiff`/`.wiff2`, never peak lists
+   (`.mgf`/`.mzML`/`.mzXML`). A peak-list reference validates structurally but breaks reprocessing.
+10. **Row-uniqueness coordinate**: (`source name`, `characteristics[biological replicate]`,
+    `comment[technical replicate]`, `comment[fraction identifier]`) must be unique; the spec MUST-unique
+    key is `source name`+`assay name`+`comment[label]`. The `sdrf-annotated-datasets` review gate rejects
+    collisions, so annotate/fix/contribute must produce it.
+11. **Value encoding by column type**: `characteristics[...]` = the bare ontology label (never
+    `NT=;AC=`); `comment[...]` = `NT=<OLS label>;AC=<accession>`; structured characteristics
+    (`spiked compound` `CT=/QY=`, `pooled sample` `SN=`) keep key-value.
+12. **Acquisition method** (`comment[proteomics data acquisition method]`, required for MS) is a
+    descendant of `PRIDE:0000659` — DDA `PRIDE:0000627`, DIA `PRIDE:0000450`, PRM `PRIDE:0000629`,
+    SRM `PRIDE:0000630`; never `MS:1000206`/`NCIT:C161786`; `comment[dia method]` was removed.
+13. **Contribution hygiene**: a `datasets/` PR adds exactly one new `{ACC}/` folder —
+    `git diff --cached --name-status` must show 0 deletions/modifications to other datasets;
+    unresolved datasets go to CI-exempt `sandbox/` with a `BLOCKED:` note; no AI/assistant attribution
+    in public commits or PRs. Never invent sample->file/channel maps, demographics, or runs.
 
 ## Landmines
 

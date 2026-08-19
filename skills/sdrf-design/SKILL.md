@@ -22,6 +22,12 @@ Extract from the SDRF:
 - **Instruments**: From comment[instrument]
 - **Files per sample**: Count of rows per source name
 
+> **Exclude non-biological channels before counting replicates or testing balance.** Drop rows that are
+> reference / carrier / bridge / empty / pooled / control — `characteristics[sample type]` in {reference,
+> bridge, carrier, empty, pooled, ...-control}, or rows carrying `comment[carrier channel]` (`PRIDE:0000901`) /
+> `comment[reference channel]` (`PRIDE:0000899`). Counting them inflates n and corrupts the TMT/label
+> cross-tabs. Replication = unique `source name` per condition, not raw row count.
+
 ## Step 2: Design Summary
 
 Present a clear summary:

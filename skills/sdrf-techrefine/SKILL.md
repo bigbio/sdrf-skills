@@ -141,7 +141,11 @@ has generic names (e.g., "Q Exactive") while raw files have the specific model
 | DDA vs DIA | Spectrum analysis | `NT=Data-dependent acquisition;AC=PRIDE:0000627` |
 
 **What to check**: Is the acquisition method in the SDRF correct? Misclassification
-of DDA as DIA (or vice versa) affects which analysis pipelines can be used.
+of DDA as DIA (or vice versa) affects which analysis pipelines can be used. Write the value in
+`comment[proteomics data acquisition method]` as a descendant of `PRIDE:0000659` — DDA `PRIDE:0000627`,
+DIA `PRIDE:0000450`; when techsdrf identifies a named DIA variant, prefer its specific accession
+(diaPASEF `NT=diaPASEF;AC=PRIDE:0000650`, SWATH `NT=SWATH MS;AC=PRIDE:0000447`); plain DIA `PRIDE:0000450`
+remains acceptable. There is no `comment[dia method]` column.
 
 ### 5.3 Fragmentation
 | Detected Field | Source | Example |

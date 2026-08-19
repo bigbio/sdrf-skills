@@ -120,6 +120,16 @@ Think of it this way:
 - comment = "how was it measured?"
 - factor value = "what are we testing?"
 
+### "How do I write a value — plain label or NT=;AC=?"
+It depends on the column TYPE:
+- **characteristics[...]** → the **bare ontology label**: `Homo sapiens`, `liver`, `breast carcinoma`. Not `NT=;AC=` (the validator resolves the label to its accession).
+- **comment[...]** → **`NT=<label>;AC=<accession>`**: `NT=Trypsin;AC=MS:1001251`.
+- **Structured characteristics** keep key=value: `spiked compound` (`CT=;QY=;PS=;AC=;CN=;CV=`), and modifications in `comment[modification parameters]` (`NT=;AC=;TA=;MT=`).
+- **Acquisition method** (`comment[proteomics data acquisition method]`, required for MS) is a descendant of `PRIDE:0000659` — DDA `PRIDE:0000627`, DIA `PRIDE:0000450`, PRM `PRIDE:0000629`, SRM `PRIDE:0000630`.
+
+### "How do I give a column more than one value?"
+You **repeat the whole column** with the same header — there is no comma-separated list. Three modifications = three `comment[modification parameters]` columns; two organism parts = two `characteristics[organism part]` columns.
+
 ### "Why do I need ontology terms?"
 Ontology terms enable:
 1. **Machine readability** — software can group samples by disease automatically
