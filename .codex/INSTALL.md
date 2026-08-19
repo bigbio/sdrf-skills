@@ -36,14 +36,12 @@ cp -r spec/ ~/.agents/skills/sdrf-skills/spec/
 | sdrf-templates | Template system, layer selection, mutual exclusivity |
 | sdrf-annotate | Full annotation: PXD → PRIDE + paper → draft SDRF |
 | sdrf-validate | Validation against templates + OLS checking |
-| sdrf-improve | Quality scoring: specificity, completeness, consistency |
 | sdrf-fix | Auto-fix UNIMOD swaps, case, format, artifacts |
 | sdrf-terms | Ontology term lookup for any SDRF column |
 | sdrf-brainstorm | Pre-annotation metadata planning |
 | sdrf-review | Quality review with paper + PRIDE cross-reference |
 | sdrf-adversarial-review | Independent fresh-context falsification review with hash-bound approval |
 | sdrf-annotate-reviewed | Producer/reviewer annotation loop with mandatory re-review |
-| sdrf-explain | Plain-language SDRF education |
 | sdrf-convert | Pipeline selection (MaxQuant, DIA-NN, quantms) |
 | sdrf-design | Experimental design analysis |
 | sdrf-contribute | Contribute annotation via PR to community repo |

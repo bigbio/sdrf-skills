@@ -244,7 +244,7 @@ After the PR is created:
 
 - NEVER create a PR without user confirmation
 - NEVER skip validation before contributing
-- NEVER modify the SDRF content during the contribution step (that's what `/sdrf:fix` and `/sdrf:improve` are for)
+- NEVER modify the SDRF content during the contribution step (that's what `/sdrf:fix` and `/sdrf:review` are for)
 - If the user doesn't have `gh` CLI installed, always fall back to Mode B (guided commands)
 - If the user doesn't have a GitHub account, explain that one is needed and point to https://github.com/signup
 - For non-PXD accessions (MSV, PMID), the same workflow applies — just use the accession as the folder name
