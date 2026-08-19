@@ -208,8 +208,11 @@ and instrument acquisition — read them BEFORE the publication.
 >   `analysis.tdf` is a SQLite DB (see the Bruker skill, #33).
 > - **Search settings & the channel→sample map** — deposited search outputs beat
 >   Methods prose: MaxQuant `summary.txt`/`parameters.txt`, FragPipe
->   `fragger.params`, DIA-NN logs, PD `.msf` (SQLite). These are often the *only*
->   source of the channel map.
+>   `fragger.params`, DIA-NN logs, PD `.msf`/`.pdStudy` (SQLite), SpectroMine
+>   `.psar`. These are often the *only* source of the channel map, **and they are
+>   the authoritative source of the search modifications** (static/dynamic) that
+>   drive `comment[modification parameters]` — see §5.2.1. Read both out of the
+>   same file in one pass.
 > - **Run names inside huge archives** — read the ZIP central directory via an
 >   HTTP range request rather than downloading a multi-GB archive.
 
@@ -317,7 +320,8 @@ Read the paper systematically and extract:
 - Labeling strategy (which TMT/iTRAQ channels for which samples)
 - Fractionation details (number of fractions, method)
 - Instrument and acquisition method details
-- Modifications searched
+- Modifications searched — the paper is a cross-check here, not the source;
+  the deposited search files decide (§5.2.1)
 
 Demographic evidence rules:
 - `characteristics[developmental stage]` can be added from cohort-level evidence when the whole analyzed cohort is clearly in one stage, for example all subjects are adults or the study is explicitly pediatric.
@@ -617,15 +621,67 @@ Column 3: NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable
 **Double-check**: UNIMOD:1 = Acetyl, UNIMOD:21 = Phospho. Most common swap!
 For TMT: UNIMOD:737 (TMT6/10/11plex) or UNIMOD:2016 (TMTpro 16/18plex)
 
+#### 5.2.1 Read the modifications out of the deposited search — do not infer them
+`comment[modification parameters]` describes **what the search actually did**, so derive
+it from the deposited search files. Paper Methods, PRIDE's `modifications` field (often
+"No PTMs are included in the dataset" while the search used several), and reasoning from
+the protocol are all downstream of it. Precedence: **deposited search settings > paper
+Methods > PRIDE fields**. Open the search files *before* writing the columns — the same
+files you open for the channel→sample map (Step 1.1) carry the modifications, so read
+both out in one pass.
+
+| Search engine | Deposited file | Where the modifications are |
+|---|---|---|
+| Proteome Discoverer | `.msf`, `.pdStudy`, `.pdResult` (SQLite) | `Workflows` table → processing-node XML |
+| MaxQuant | `parameters.txt`, `mqpar.xml` | `Fixed modifications` / `Variable modifications` |
+| FragPipe / MSFragger | `fragger.params` | `table.fix-mods` / `table.var-mods` |
+| DIA-NN | `report.log.txt` / logged command line | `--fixed-mod`, `--var-mod` (`--unimod4` = fixed Carbamidomethyl) |
+| Spectronaut / SpectroMine | `.psar`, exported settings (UTF-16 strings) | modification list in the settings block |
+
+**Proteome Discoverer `.msf` — read it, never download it.** `.msf`/`.pdResult` are SQLite
+databases and routinely multi-GB (10.5 GB in the case below). Read them with HTTP
+byte-range requests over the SQLite pages, the same way you range-read a ZIP central
+directory. The `Workflows` table stores each processing node's XML, which names every
+modification verbatim with its purpose, its UNIMOD id and its target:
+
+| XML `IntendedPurpose` | SDRF |
+|---|---|
+| `StaticModification` | `MT=Fixed`, residue → `TA=` |
+| `DynamicModification` | `MT=Variable`, residue → `TA=` |
+| any `…TerminalModification` (e.g. `StaticTerminalModification`) | same `Fixed`/`Variable` split, terminus → `PP=`, **never** `TA=` |
+
+`UnimodAccession="4"` → `AC=UNIMOD:4`. The node XML also carries `CleavageReagent`
+(→ `comment[cleavage agent details]`), so one read yields both.
+
+*Worked example (PXD048052)*: the paper was closed (abstract only), and the producer
+reasoned that the "microHOLD" single-cell protocol skips reduction/alkylation, so it
+omitted Carbamidomethyl and set `comment[reduction reagent]` and
+`comment[alkylation reagent]` to `not applicable`. The deposited PD `.msf` said
+otherwise — `StaticModification` Carbamidomethyl/+57.021 Da (C), `UnimodAccession="4"`;
+`DynamicModification` Oxidation/+15.995 Da (M), `UnimodAccession="35"`;
+`StaticModification` + `StaticTerminalModification` TMT6plex (K / Any N-Term),
+`UnimodAccession="737"`; `CleavageReagent` Trypsin (Full). Both missing modifications
+had to be added and the reagent claims retracted.
+
+**Reserved word for an undocumented reagent.** A fixed Carbamidomethyl in the deposited
+search means alkylation was in the search space. If no primary source states which
+reagent the prep used, set `comment[reduction reagent]` / `comment[alkylation reagent]`
+to `not available` (used, unspecified) — **not** `not applicable`, which asserts the step
+did not happen and contradicts the search you just read.
+
 **Domain traps — verify, don't reflex** (each is validator-clean when wrong):
 - **Dimethyl**: OLS returns `UNIMOD:510` for "Dimethyl" — that is
   `Dimethyl:2H(4)13C(2)` (+6). The plain light label is `UNIMOD:36`; heavy **+8
   is `UNIMOD:330`**. Match the mass to the labelling scheme; don't take the first hit.
-- **Carbamidomethyl requires an alkylation step.** Do NOT assert
-  `NT=Carbamidomethyl;AC=UNIMOD:4` when the protocol explicitly omits
-  reduction/alkylation — it is then wrong on every row (and passes validation).
-  When the deposited search params and the paper's Methods disagree, the search
-  params win (precedence: raw > Methods > PRIDE).
+- **Carbamidomethyl cuts both ways — the deposited search decides.** Do NOT
+  assert `NT=Carbamidomethyl;AC=UNIMOD:4` when a primary source *explicitly*
+  documents that reduction/alkylation was omitted (common in SCP protocols) — it
+  is then wrong on every row and passes validation. But the inverse error is just
+  as real: do NOT drop a Carbamidomethyl that the deposited search declares
+  `Fixed` merely because the wet-lab reagent is unstated (§5.2.1, PXD048052).
+  Silence about the prep is not evidence of no alkylation. When the deposited
+  search params and the paper's Methods disagree, the search params win
+  (precedence: raw > Methods > PRIDE).
 - **Cell-line identity is a research task, not a lookup.** Pierce HeLa digest
   standard is **HeLa S3** (`CVCL_0058`), not parental HeLa (`CVCL_0030`);
   ATCC-purchased Jurkat is the **E6-1 clone** (`CVCL_0367`), not the naive
