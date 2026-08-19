@@ -86,7 +86,7 @@ GENERIC_TERMS: dict[str, list[str]] = {
 AGE_PATTERN = re.compile(r"^(\d+[YMWD])+$")
 
 # Valid sex values
-VALID_SEX = {"male", "female", "not available", "not applicable", "mixed"}
+VALID_SEX = {"male", "female", "intersex", "hermaphrodite", "anonymized", "not available", "not applicable", "pooled"}
 
 
 # ---------------------------------------------------------------------------

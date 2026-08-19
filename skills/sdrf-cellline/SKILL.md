@@ -220,7 +220,7 @@ Cellosaurus `SX` field (`Sex: Female | Male | Mixed sex | Sex unspecified`):
 
 - `Female` → `female`
 - `Male` → `male`
-- `Mixed sex` → `mixed`
+- `Mixed sex` → `not applicable` (or `pooled` for a deliberate pool — `characteristics[sex]` has no `mixed` value)
 - `Sex unspecified` / absent → `not available`
 
 Lowercase always. Never `M`/`F`. The `cell-lines` template inherits

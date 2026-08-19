@@ -96,6 +96,8 @@ Additionally, read the individual template YAML at `spec/sdrf-proteomics/sdrf-te
 - [ ] `comment[data file]`
 - [ ] `comment[fraction identifier]`
 - [ ] `comment[technical replicate]`
+- [ ] `comment[instrument]`
+- [ ] `comment[proteomics data acquisition method]` (descendant of `PRIDE:0000659`)
 - [ ] `comment[sdrf version]`
 
 For all other template-specific columns, read from TERMS.tsv rather than using a hardcoded list.
@@ -252,7 +254,10 @@ When validating multiple files, prefer small bounded batches. Do not launch larg
 ## Step 5: Consistency Checks
 
 - [ ] All rows have the same number of columns (no ragged rows)
-- [ ] `source name` + `assay name` combination is unique per row
+- [ ] Uniqueness: (`source name` + `assay name` + `comment[label]`) is unique (ERROR); (`source name` + `assay name`) unique (WARN); coordinate (`source name`, `characteristics[biological replicate]`, `comment[technical replicate]`, `comment[fraction identifier]`) unique across rows — no duplicate coordinates
+- [ ] Value encoding by column type: `characteristics[...]` ontology values are the BARE label (flag a pure `NT=;AC=` pair); `comment[...]` CV values are `NT=<label>;AC=<accession>`; structured characteristics (`spiked compound` CT=/QY=, `pooled sample` SN=) keep key-value
+- [ ] `comment[proteomics data acquisition method]` resolves to a descendant of `PRIDE:0000659`; reject `MS:1000206`/`MS:1003221`/`NCIT:C161786` and any `comment[dia method]` column
+- [ ] NT/AC agreement: for each `NT=…;AC=…`, the accession's OLS label matches NT= (catches label/accession swaps beyond UNIMOD)
 - [ ] `source name` values follow a consistent naming pattern
 - [ ] `characteristics[biological replicate]` values are sequential integers
 - [ ] `comment[fraction identifier]` values are consistent across samples
