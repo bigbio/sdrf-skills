@@ -10,6 +10,7 @@ Usage:
   python -m tools massive-files <PXD|MSV|task>     # MassIVE raw/acquisition file resolver
   python -m tools review-gate <command>             # independent-review receipt gate
   python -m tools audit-existing <file.sdrf.tsv>    # audit an already-annotated dataset
+  python -m tools bruker-dia <url|path>             # DIA windows from Bruker analysis.tdf
 """
 
 from __future__ import annotations
@@ -189,6 +190,29 @@ def cmd_audit_existing(args: argparse.Namespace) -> int:
     return 1 if report.blockers else 0
 
 
+def cmd_bruker_dia(args: argparse.Namespace) -> int:
+    """Read DIA isolation windows out of a Bruker .d archive without downloading it."""
+    import json
+
+    from tools.bruker_tdf import ZipRangeError, analyze, describe_isolation_window, render
+
+    try:
+        acq = analyze(args.source)
+    except ZipRangeError as exc:
+        print(f"error: {exc}")
+        return 2
+    if args.json:
+        print(json.dumps({
+            "source": acq.source,
+            "instrument": acq.properties.get("InstrumentName"),
+            "windows": [vars(w) for w in acq.windows],
+            "isolation_window": describe_isolation_window(acq),
+        }, indent=2))
+    else:
+        print(render(acq))
+    return 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="python -m tools",
@@ -273,6 +297,17 @@ def main() -> None:
     p.add_argument("--organism", action="append", default=None,
                    help="organism registered in PRIDE (repeatable); omitted = organism check skipped")
 
+    # bruker-dia
+    p = subparsers.add_parser(
+        "bruker-dia",
+        help="Read DIA isolation windows from a Bruker analysis.tdf (HTTP-range, no download)",
+    )
+    p.add_argument(
+        "source",
+        help="URL or path of a .d.zip archive, or a path to an extracted analysis.tdf",
+    )
+    p.add_argument("--json", action="store_true", help="machine-readable output")
+
     args = parser.parse_args()
 
     # Set default db path for cellline commands
@@ -290,6 +325,7 @@ def main() -> None:
         "verify": cmd_verify,
         "review-gate": cmd_review_gate,
         "audit-existing": cmd_audit_existing,
+        "bruker-dia": cmd_bruker_dia,
     }
 
     sys.exit(commands[args.command](args))

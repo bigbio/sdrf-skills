@@ -35,7 +35,8 @@ git submodule update --init --recursive     # restore pinned state (what you usu
 git submodule update --remote --recursive   # advance to upstream tip; leaves a dirty gitlink
 
 # tools CLI (no console_scripts; requires cwd == repo root)
-python -m tools --help   # check, score, fix, benchmark, massive-files, verify, cellline, review-gate
+python -m tools --help   # check, score, fix, benchmark, massive-files, verify, cellline,
+                         # review-gate, audit-existing, bruker-dia
 ```
 
 `python` is an alias to `python3` here, not a binary — skills invoke bare `python`, assuming an
