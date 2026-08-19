@@ -113,6 +113,19 @@ Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which pars
 mcp OLS → searchClasses(query="<instrument>", ontologyId="ms")
 ```
 
+### 11. Characteristics as bare ontology label
+Sample metadata uses the plain label; only `comment[...]` keeps `NT=;AC=`.
+
+| Column | Wrong | Correct |
+|--------|-------|---------|
+| `characteristics[organism]` | `NT=Homo sapiens;AC=NCBITaxon:9606` | `Homo sapiens` |
+| `characteristics[disease]` | `NT=lung adenocarcinoma;AC=MONDO:0005097` | `lung adenocarcinoma` |
+| `comment[cleavage agent details]` | — | `NT=Trypsin;AC=MS:1001251` *(unchanged — comment keeps NT/AC)* |
+
+**Fix**: For a `characteristics[...]` value that is a pure `NT=<label>;AC=<accession>` pair,
+replace it with `<label>`. Leave structured characteristics (`spiked compound` `CT=`/`QY=`,
+`pooled sample` `SN=`) and every `comment[...]` value untouched.
+
 ## Fix Procedure
 
 1. **Parse** the SDRF into a structured table
