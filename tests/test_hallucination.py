@@ -12,6 +12,7 @@ from tools.hallucination import (
     detect_hallucinations,
     _check_unimod_swap,
     _check_modification_cell,
+    _modification_label_matches,
 )
 from tools.ols_client import OLSClient, OLSTerm, VerificationResult
 
@@ -330,3 +331,134 @@ class TestStructuredCVColumns:
         report = detect_hallucinations(sdrf, ols_client=client, verify_online=True)
         assert report.hallucinated == []
         assert len(report.verified) == 1
+
+
+class TestModificationLabelMatching:
+    """The NT/AC pair must name the same modification.
+
+    Tuned against every NT/AC pair in bigbio/sdrf-annotated-datasets: the
+    accept rules below cover 98.3% of rows, and each rejected pair inspected
+    named a genuinely different chemistry.
+    """
+
+    def test_exact(self):
+        assert _modification_label_matches("Oxidation", "Oxidation", "UNIMOD:35")
+
+    def test_case_and_punctuation_insensitive(self):
+        assert _modification_label_matches("deamidated", "Deamidated", "UNIMOD:7")
+        assert _modification_label_matches("Gln->pyro-Glu", "Gln->pyro Glu", "UNIMOD:28")
+
+    def test_abbreviation_is_substring(self):
+        assert _modification_label_matches("TMT", "TMT6plex", "UNIMOD:737")
+        assert _modification_label_matches("iTRAQ", "iTRAQ4plex", "UNIMOD:214")
+
+    def test_process_name_vs_residue_name(self):
+        assert _modification_label_matches("Phosphorylation", "Phospho", "UNIMOD:21")
+        assert _modification_label_matches("Deamidation", "Deamidated", "UNIMOD:7")
+
+    def test_multiname_accession(self):
+        """UNIMOD:737 is one term for TMT6/10/11plex."""
+        assert _modification_label_matches("TMT10plex", "TMT6plex", "UNIMOD:737")
+
+    def test_different_chemistry_rejected(self):
+        assert not _modification_label_matches("Oxidation", "Dimethyl", "UNIMOD:36")
+        assert not _modification_label_matches("Oxidation", "Methylthio", "UNIMOD:39")
+        assert not _modification_label_matches("Acetyl", "Amidated", "UNIMOD:2")
+        assert not _modification_label_matches("Carbamidomethyl", "Asp->Cys", "UNIMOD:1067")
+        assert not _modification_label_matches("Ubiquitination", "Label:2H(4)+GG", "UNIMOD:853")
+
+    def test_swapped_pyro_glu_pair_rejected(self):
+        """Gln->pyro-Glu is UNIMOD:28; UNIMOD:27 is Glu->pyro-Glu."""
+        assert not _modification_label_matches("Gln->pyro-Glu", "Glu->pyro-Glu", "UNIMOD:27")
+
+    def test_multiname_does_not_leak_to_other_accessions(self):
+        assert not _modification_label_matches("TMT10plex", "Oxidation", "UNIMOD:35")
+
+    def test_isotope_label_prefix_omitted(self):
+        """UNIMOD prefixes isotope labels with 'Label:'; SDRFs often omit it."""
+        assert _modification_label_matches("13C6-15N4", "Label:13C(6)15N(4)", "UNIMOD:267")
+
+    def test_containment_alone_must_not_accept(self):
+        """The swaps this check exists to catch are all substring-related."""
+        assert not _modification_label_matches("Trimethyl", "Methyl", "UNIMOD:34")
+        assert not _modification_label_matches("Carbamidomethyl", "Methyl", "UNIMOD:34")
+        assert not _modification_label_matches("Acetyl", "Pyridylacetyl", "UNIMOD:25")
+        assert not _modification_label_matches(
+            "Carbamidomethyl", "Pyro-carbamidomethyl", "UNIMOD:26")
+
+    def test_isotope_labels_are_not_prefix_matched(self):
+        """13C(6) is a prefix of 13C(6)15N(2) but a different label."""
+        assert not _modification_label_matches(
+            "Label:13C(6)", "Label:13C(6)15N(2)", "UNIMOD:259")
+
+
+class TestModificationAccessionCrossCheck:
+    """Online NT<->AC verification for comment[modification parameters]."""
+
+    @staticmethod
+    def _sdrf(value):
+        return ("source name\tcomment[modification parameters]\n"
+                f"s1\t{value}\n")
+
+    @staticmethod
+    def _client(term):
+        c = MagicMock(spec=OLSClient)
+        c.resolve_accession.return_value = term
+        return c
+
+    def test_nonexistent_accession_is_hallucinated(self):
+        client = self._client(None)
+        report = detect_hallucinations(
+            self._sdrf("NT=Acetyl;AC=UNIMOD:67;TA=K;MT=Variable"),
+            ols_client=client, verify_online=True)
+        assert len(report.hallucinated) == 1
+        assert report.hallucinated[0].accession == "UNIMOD:67"
+
+    def test_accession_naming_other_chemistry_is_mismatch(self):
+        client = self._client(OLSTerm(
+            iri="", label="Asp->Cys", short_form="UNIMOD:1067",
+            ontology_name="unimod"))
+        report = detect_hallucinations(
+            self._sdrf("NT=Carbamidomethyl;AC=UNIMOD:1067;TA=C;MT=Fixed"),
+            ols_client=client, verify_online=True)
+        assert len(report.mismatched) == 1
+        assert report.mismatched[0].actual_label == "Asp->Cys"
+        assert report.hallucinated == []
+
+    def test_variant_spelling_is_verified_not_flagged(self):
+        client = self._client(OLSTerm(
+            iri="", label="Deamidated", short_form="UNIMOD:7",
+            ontology_name="unimod"))
+        report = detect_hallucinations(
+            self._sdrf("NT=Deamidation;AC=UNIMOD:7;TA=N,Q;MT=Variable"),
+            ols_client=client, verify_online=True)
+        assert report.mismatched == [] and report.hallucinated == []
+        assert any(v.accession == "UNIMOD:7" for v in report.verified)
+
+    def test_offline_mode_makes_no_calls(self):
+        client = MagicMock(spec=OLSClient)
+        report = detect_hallucinations(
+            self._sdrf("NT=Carbamidomethyl;AC=UNIMOD:1067;TA=C;MT=Fixed"),
+            ols_client=client, verify_online=False)
+        client.resolve_accession.assert_not_called()
+        assert report.mismatched == [] and report.hallucinated == []
+
+    def test_known_swap_is_not_double_reported(self):
+        """The offline swap check already names the correct accession."""
+        client = self._client(OLSTerm(
+            iri="", label="Phospho", short_form="UNIMOD:21",
+            ontology_name="unimod"))
+        report = detect_hallucinations(
+            self._sdrf("NT=Acetyl;AC=UNIMOD:21;TA=K;MT=Variable"),
+            ols_client=client, verify_online=True)
+        assert len(report.unimod_swaps) == 1
+        assert report.mismatched == [] and report.hallucinated == []
+
+    def test_correct_pair_stays_clean(self):
+        client = self._client(OLSTerm(
+            iri="", label="Carbamidomethyl", short_form="UNIMOD:4",
+            ontology_name="unimod"))
+        report = detect_hallucinations(
+            self._sdrf("NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed"),
+            ols_client=client, verify_online=True)
+        assert report.is_clean

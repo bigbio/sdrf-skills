@@ -250,3 +250,58 @@ class TestReviewFindings:
                      "NT=y;AC=MS:2", "1", "1", "r1.raw", "c")]
         report = audit(_sdrf(rows), accession="PXD.1")
         assert any(f.code == "source_name_convention" for f in report.findings)
+
+
+class TestRunNameSuffixMismatch:
+    """PRIDE ships Bruker `.d` directories zipped; the SDRF names the `.d`.
+
+    Regression test: a deposited-run list taken straight from the PRIDE file
+    listing put every run in BOTH `missing_runs` and `invented_runs`, emitting
+    2N blockers that read like a wrong annotation and invite a caller to
+    "repair" a correct SDRF.
+    """
+
+    @staticmethod
+    def _sdrf(runs):
+        head = "source name\tcomment[data file]\tfactor value[disease]\n"
+        return head + "".join(f"PXD1-Sample-1\t{r}\tnormal\n" for r in runs)
+
+    def test_zip_suffix_mismatch_reported_once(self):
+        annotated = ["a_1.d", "b_2.d", "c_3.d"]
+        deposited = [f"{r}.zip" for r in annotated]
+        report = audit(self._sdrf(annotated), deposited_runs=deposited)
+        codes = [f.code for f in report.findings]
+        assert "run_name_suffix_mismatch" in codes
+        assert "missing_runs" not in codes
+        assert "invented_runs" not in codes
+        assert sum(c == "run_name_suffix_mismatch" for c in codes) == 1
+
+    def test_identical_sets_produce_no_finding(self):
+        runs = ["a_1.d", "b_2.d"]
+        report = audit(self._sdrf(runs), deposited_runs=runs)
+        codes = [f.code for f in report.findings]
+        assert "run_name_suffix_mismatch" not in codes
+        assert "missing_runs" not in codes
+        assert "invented_runs" not in codes
+
+    def test_genuine_mismatch_still_blocks(self):
+        """A real coverage error must not be excused as a suffix mismatch."""
+        report = audit(self._sdrf(["a_1.d"]), deposited_runs=["a_1.d", "b_2.d"])
+        codes = [f.code for f in report.findings]
+        assert "missing_runs" in codes
+        assert "run_name_suffix_mismatch" not in codes
+
+    def test_partial_suffix_mismatch_still_blocks(self):
+        """Only a wholesale suffix mismatch is benign."""
+        report = audit(self._sdrf(["a_1.d", "b_2.d"]),
+                       deposited_runs=["a_1.d.zip", "c_3.d.zip"])
+        codes = [f.code for f in report.findings]
+        assert "run_name_suffix_mismatch" not in codes
+        assert "missing_runs" in codes and "invented_runs" in codes
+
+    def test_collapsing_names_are_not_treated_as_suffix_mismatch(self):
+        """Two distinct runs must not collapse onto one stripped name."""
+        report = audit(self._sdrf(["x.d", "x.d.zip"]),
+                       deposited_runs=["x.d.zip", "x.d.zip.zip"])
+        codes = [f.code for f in report.findings]
+        assert "run_name_suffix_mismatch" not in codes

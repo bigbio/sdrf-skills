@@ -160,3 +160,43 @@ class TestToleranceColumnsNotRequired:
         assert len(recommended_issues) == 2, (
             f"Both tolerance columns should be flagged as recommended: {report.completeness.issues}"
         )
+
+
+class TestFactorValueSource:
+    """A factor value restates a variable declared elsewhere in the file.
+
+    Regression test: _score_design only scanned characteristics columns, so a
+    factor on a technical variable was always penalised. The crosslinking
+    template declares the cross-linker as comment[cross-linker], which means a
+    cross-linker factor could never satisfy the check on any XL-MS dataset.
+    """
+
+    HEADER = (
+        "source name\tcharacteristics[organism]\tcharacteristics[organism part]\t"
+        "characteristics[disease]\tcharacteristics[biological replicate]\t"
+        "assay name\ttechnology type\tcomment[cross-linker]\t"
+        "comment[fraction identifier]\tcomment[technical replicate]\t"
+        "comment[data file]\tcomment[sdrf version]\t{factor}\n"
+    )
+    ROW = (
+        "s1\tHomo sapiens\tnot applicable\tnormal\t1\trun 1\t"
+        "proteomic profiling by mass spectrometry\tNT=DSSO;AC=XLMOD:02126\t"
+        "1\t1\ta.raw\tv1.1.0\t{value}\n"
+    )
+
+    def _design(self, factor: str, value: str):
+        content = (self.HEADER.format(factor=factor)
+                   + self.ROW.format(value=value))
+        return score_sdrf(content).design
+
+    def test_factor_backed_by_comment_column_is_accepted(self):
+        dim = self._design("factor value[cross-linker]", "NT=DSSO;AC=XLMOD:02126")
+        assert not any("no matching" in i for i in dim.issues), dim.issues
+
+    def test_factor_backed_by_characteristics_column_is_accepted(self):
+        dim = self._design("factor value[disease]", "normal")
+        assert not any("no matching" in i for i in dim.issues), dim.issues
+
+    def test_factor_backed_by_nothing_is_still_reported(self):
+        dim = self._design("factor value[treatment]", "drug A")
+        assert any("no matching" in i for i in dim.issues), dim.issues
