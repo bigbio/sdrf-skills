@@ -25,7 +25,10 @@ sdrf-pipelines can convert SDRF to these formats:
 ## Pipeline Recommendation Logic
 
 ```text
-Is it DIA data?
+Is it targeted (PRM/SRM)?   acquisition method = PRIDE:0000629 (PRM) / PRIDE:0000630 (SRM)
+├── YES → Skyline / OpenSWATH (targeted) — not the DDA/DIA tree below
+│
+Is it DIA data?            acquisition method = PRIDE:0000450 (incl. diaPASEF PRIDE:0000650, SWATH PRIDE:0000447)
 ├── YES → DIA-NN (fastest, best DIA performance)
 │         Also consider: quantms with DIA module
 │
