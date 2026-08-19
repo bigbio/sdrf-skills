@@ -306,6 +306,28 @@ Extract fields for `exclude` rows too when the evidence is already in hand — i
 costs nothing and makes the exclusion tally analysable. Never fetch extra
 publications just to fill fields on an excluded row.
 
+### 3.4b Feasibility fields are not inclusion criteria
+
+Some extract fields describe whether the study **can be used downstream**, not
+whether it belongs in the set: whether a multiplexed study records which label
+channel held which sample, whether per-sample metadata exists at row resolution,
+whether the raw files are actually deposited. Two rules:
+
+- **Never let a feasibility field move `label`.** A study that is squarely in
+  scope but impossible to annotate is still `include` — demoting it to `exclude`
+  or `uncertain` corrupts what those labels mean and hides it from the tally it
+  belongs in. Record the blocker in its own column and let the caller filter.
+- **Decide it from evidence already in hand.** These fields are cheap: the
+  screen has already opened the repository record and, for multiplexed
+  candidates, often the result tables. Do not spend extra fetches on them beyond
+  `dig_passes`.
+
+The tells are worth knowing because they *look* like data. For a
+channel→sample map, Proteome Discoverer writes every channel as `"Sample, n/a"`
+and `StudyInformation.txt` as a bare `"Sample"` with empty groups; SpectroMine
+does the same. A generic placeholder repeated across all channels of all files
+means **no map**, not a map you failed to read.
+
 ### 3.5 Dig deeper before settling for uncertain or unclear
 
 Applies only when the row so far has `label: uncertain` or at least one
@@ -441,5 +463,9 @@ each, so a human knows what to go find.
   present in an existing output file are resumed, not skipped.)
 - `unclear` (extract fields) and `uncertain` (label) are not interchangeable, and
   neither is an SDRF reserved word. This skill emits a curation TSV, not an SDRF.
+  In particular, never write `not applicable` or `not available` in this TSV, even
+  for a field whose question genuinely does not arise for a row — give that case
+  its own vocabulary word (see `channel_map` in
+  `criteria/single_cell_proteomics.md`, which uses `label free`).
 - Do not run `sdrf:annotate`, `sdrf:validate`, `sdrf:fix`, or `sdrf:improve` here.
   Those belong to `sdrf:autoresearch`.
