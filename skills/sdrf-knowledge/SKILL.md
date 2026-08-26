@@ -71,6 +71,38 @@ Example: disease → "MONDO, EFO, DOID, PATO" → search these ontologies via OL
 - **Never write SDRF with pandas `to_csv`** — it renames legitimately repeated headers (`comment[modification parameters].1`); write raw TSV preserving duplicated column names
 - **Multiple values = repeat the whole column** with the same header (there is no delimiter-separated list)
 
+## Writing SDRF Safely (writer-side rules)
+
+Every rule here corresponds to a defect class found across the public annotated corpus.
+They are cheap to honour when writing and expensive to find later, because each one
+**parses into the wrong thing instead of failing loudly** — the file still validates.
+
+1. **An accession always carries its ontology prefix.** `AC=MS:1001251`, never `AC=1001251`.
+   A bare number is unresolvable and the intended ontology is only recoverable from context.
+2. **Prefix and id are separated by a colon**, never an underscore: `PRIDE:0000568`, not
+   `PRIDE_0000568`.
+3. **The accession for a term is constant.** If several rows carry the same `NT=`, they carry
+   the same `AC=`. An accession that increments down the rows (`MS:1001309`, `MS:1001310`,
+   `MS:1001311`, … all labelled `Lys-C`) is a generator bug — it names a different, real,
+   wrong term on every row.
+4. **Never emit Python repr into a cell.** No `['C']`, `None`, `nan`, `null`, `"['breast cancer']"`.
+   Watch key=value fields especially: `TA=['C']` must be `TA=C` — a whole-cell artifact check
+   will not catch one nested inside `NT=…;AC=…;TA=…`.
+5. **Do not let a CSV writer quote the value.** `"NT=timsTOF HT;AC=MS:1003404"` is a value whose
+   first character is a quote, not a quoted value, once it is read as TSV.
+6. **Reserved words are written bare**, never wrapped: `not applicable`, not
+   `NT=not applicable;AC=not available`.
+7. **Never write SDRF with pandas `to_csv`.** It renames legitimately repeated columns
+   (`comment[modification parameters].1`), which silently turns one repeated column into several
+   distinct ones, so a reader keyed on the name sees only the first. Write raw TSV lines and
+   preserve duplicate headers exactly.
+8. **Ages carry a unit** from `Y`/`M`/`W`/`D`: `58Y`, not `58` and not `58 years`.
+9. **One value per cell.** Several modifications means several
+   `comment[modification parameters]` columns — never concatenate them into one cell.
+
+`tools/sdrf_fixer.py` repairs 1, 2, 4, 5, 6, 7 and 8 deterministically; run it before
+presenting or contributing any SDRF you generated.
+
 ## Column Type System
 
 | Type | Format | Purpose |

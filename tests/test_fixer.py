@@ -137,3 +137,58 @@ class TestIndividualFixers:
         fixed, report = fix_sdrf(content)
         assert "CT=spike;QY=10;PS=PEPTIDE" in fixed
         assert not any(f.pattern == "characteristics_bare_label" for f in report.fixes)
+
+    def test_kv_python_artifact(self):
+        content = (
+            "source name\tcomment[modification parameters]\n"
+            "s1\tNT=Carbamidomethyl;AC=UNIMOD:4;MT=Fixed;TA=['C']\n"
+        )
+        fixed, report = fix_sdrf(content)
+        assert "TA=C" in fixed and "TA=['C']" not in fixed
+        assert any(f.pattern == "kv_python_artifact" for f in report.fixes)
+
+    def test_quoted_cell_unwrapped(self):
+        # A CSV writer may leave the whole value quoted. Reading and rewriting drops the
+        # quotes, so the value must come back out unwrapped either way.
+        content = 'source name\tcomment[instrument]\ns1\t"NT=timsTOF HT;AC=MS:1003404"\n'
+        fixed, _report = fix_sdrf(content)
+        assert 'NT=timsTOF HT;AC=MS:1003404' in fixed
+        assert '"NT=' not in fixed
+
+    def test_accession_separator(self):
+        content = "source name\tcomment[fractionation method]\ns1\tNT=SDS PAGE;AC=PRIDE_0000568\n"
+        fixed, report = fix_sdrf(content)
+        assert "AC=PRIDE:0000568" in fixed
+        assert any(f.pattern == "accession_separator" for f in report.fixes)
+
+    def test_bare_accession_gets_prefix(self):
+        content = "source name\tcomment[cleavage agent details]\ns1\tNT=Trypsin;AC=1001251\n"
+        fixed, report = fix_sdrf(content)
+        assert "AC=MS:1001251" in fixed
+        assert any(f.pattern == "bare_accession" for f in report.fixes)
+
+    def test_bare_accession_left_when_column_ontology_ambiguous(self):
+        # a column with no single expected ontology cannot have its prefix inferred
+        content = "source name\tcomment[some unmapped thing]\ns1\tNT=cancer;AC=1234\n"
+        fixed, report = fix_sdrf(content)
+        assert "AC=1234" in fixed
+        assert not any(f.pattern == "bare_accession" for f in report.fixes)
+
+    def test_sentinel_not_wrapped_in_kv(self):
+        content = (
+            "source name\tcomment[cleavage agent details]\n"
+            "s1\tNT=not applicable;AC=not available\n"
+        )
+        fixed, report = fix_sdrf(content)
+        assert "\tnot applicable" in fixed and "NT=not applicable" not in fixed
+        assert any(f.pattern == "sentinel_kv" for f in report.fixes)
+
+    def test_pandas_header_suffix_removed(self):
+        content = (
+            "source name\tcomment[modification parameters]\tcomment[modification parameters].1\n"
+            "s1\tNT=Oxidation;AC=UNIMOD:35\tNT=Acetyl;AC=UNIMOD:1\n"
+        )
+        fixed, report = fix_sdrf(content)
+        assert ".1" not in fixed.splitlines()[0]
+        assert fixed.splitlines()[0].count("comment[modification parameters]") == 2
+        assert any(f.pattern == "pandas_header_suffix" for f in report.fixes)

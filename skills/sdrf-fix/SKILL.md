@@ -126,6 +126,23 @@ Sample metadata uses the plain label; only `comment[...]` keeps `NT=;AC=`.
 replace it with `<label>`. Leave structured characteristics (`spiked compound` `CT=`/`QY=`,
 `pooled sample` `SN=`) and every `comment[...]` value untouched.
 
+### 12. Writer artifacts (accession syntax, Python repr, CSV quoting)
+Faults that survive validation because they parse into something wrong rather than failing.
+
+| Wrong | Correct | Why |
+|-------|---------|-----|
+| `AC=1001251` | `AC=MS:1001251` | a bare number is unresolvable |
+| `AC=PRIDE_0000568` | `AC=PRIDE:0000568` | colon separates prefix and id |
+| `TA=['C']` | `TA=C` | Python list left inside a key=value field |
+| `"NT=Trypsin;AC=MS:1001251"` | `NT=Trypsin;AC=MS:1001251` | CSV writer quoted the value |
+| `NT=not applicable;AC=not available` | `not applicable` | reserved words are written bare |
+| `comment[modification parameters].1` | `comment[modification parameters]` | pandas suffix splits a repeated column |
+| `NT=Lys-C;AC=MS:1001309`, `…1310`, `…1311` | all `AC=MS:1001309` | an accession must not increment per row |
+
+**Fix**: `python -m tools fix <file>` handles all of these. The bare-accession prefix is only
+restored when the column maps to exactly one ontology, so an ambiguous column is left alone;
+an incrementing accession needs the correct term confirmed before collapsing the run.
+
 ## Fix Procedure
 
 1. **Parse** the SDRF into a structured table
