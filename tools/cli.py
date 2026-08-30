@@ -55,6 +55,7 @@ def cmd_score(args: argparse.Namespace) -> int:
 
 def cmd_fix(args: argparse.Namespace) -> int:
     from pathlib import Path
+
     from tools.sdrf_fixer import fix_sdrf
     fixed, report = fix_sdrf(args.sdrf_file)
     print(report.changelog())
@@ -119,8 +120,9 @@ def cmd_massive_files(args: argparse.Namespace) -> int:
 
 
 def cmd_cellline(args: argparse.Namespace) -> int:
-    from tools.cellline_db import CellLineDatabase, annotate_sdrf_celllines
     from pathlib import Path
+
+    from tools.cellline_db import CellLineDatabase, annotate_sdrf_celllines
 
     if args.cellline_command == "lookup":
         db = CellLineDatabase()
@@ -194,7 +196,12 @@ def cmd_bruker_dia(args: argparse.Namespace) -> int:
     """Read DIA isolation windows out of a Bruker .d archive without downloading it."""
     import json
 
-    from tools.bruker_tdf import ZipRangeError, analyze, describe_isolation_window, render
+    from tools.bruker_tdf import (
+        ZipRangeError,
+        analyze,
+        describe_isolation_window,
+        render,
+    )
 
     try:
         acq = analyze(args.source)
@@ -211,6 +218,42 @@ def cmd_bruker_dia(args: argparse.Namespace) -> int:
     else:
         print(render(acq))
     return 0
+
+
+def cmd_reconcile(args: argparse.Namespace) -> int:
+    """Reconcile an SDRF's values against the archive record they came from."""
+    import json
+    from pathlib import Path
+
+    from tools.record_reconcile import reconcile
+
+    record = json.loads(Path(args.record).read_text(encoding="utf-8-sig"))
+    # PRIDE's /projects/{acc} endpoint nests the fields under a "project" key; the search
+    # endpoint returns them flat. Accept either.
+    if "project" in record and isinstance(record["project"], dict):
+        record = record["project"]
+
+    text = Path(args.sdrf_file).read_text(encoding="utf-8-sig")
+    lines = text.splitlines()
+    if not lines:
+        print("empty SDRF")
+        return 1
+    header = [h.strip() for h in lines[0].split("\t")]
+    rows = []
+    for line in lines[1:]:
+        if not line.strip():
+            continue
+        cells = line.split("\t")
+        row: dict[str, str] = {}
+        for name, value in zip(header, cells):
+            # A repeated column (cleavage agent, modification parameters) must not be
+            # collapsed to its last value the way csv.DictReader would.
+            row[name] = value if name not in row else f"{row[name]}|{value}"
+        rows.append(row)
+
+    report = reconcile(record, rows, accession=args.accession or "")
+    print(report.render())
+    return 1 if report.blockers else 0
 
 
 def main() -> None:
@@ -285,6 +328,16 @@ def main() -> None:
     )
     p.add_argument("review_gate_args", nargs=argparse.REMAINDER)
 
+    # reconcile
+    p = subparsers.add_parser(
+        "reconcile",
+        help="Check an SDRF's values against the deposit record's prose and run names",
+    )
+    p.add_argument("sdrf_file")
+    p.add_argument("--record", required=True,
+                   help="JSON project record from the archive (PRIDE /projects/{acc} or search)")
+    p.add_argument("--accession", default=None)
+
     # audit-existing
     p = subparsers.add_parser(
         "audit-existing",
@@ -326,6 +379,7 @@ def main() -> None:
         "review-gate": cmd_review_gate,
         "audit-existing": cmd_audit_existing,
         "bruker-dia": cmd_bruker_dia,
+        "reconcile": cmd_reconcile,
     }
 
     sys.exit(commands[args.command](args))
