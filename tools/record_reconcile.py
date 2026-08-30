@@ -82,22 +82,42 @@ _SPECIES = [
 ]
 
 
+# A species name inside a reagent is not the study organism. "modified porcine trypsin",
+# "bovine serum albumin" and "goat anti-rabbit IgG" are the common offenders.
+_SPECIES_AS_REAGENT = re.compile(
+    r"(porcine|bovine|rabbit|goat|sheep|horse|mouse|murine|human)\s+"
+    r"(trypsin|serum albumin|BSA|serum|IgG|anti-|antibod|albumin|insulin|"
+    r"gelatin|collagen|fibronectin|thrombin)", re.IGNORECASE)
+
+
 def check_organism(record: dict, declared: str) -> Finding | None:
     """Flag a declared organism the prose never mentions while naming exactly one other.
 
-    Deliberately conservative. A species is mentioned in passing in almost every study —
-    a human ortholog, a human search database, human disease context — so a contradiction
-    is only reported when the declared species appears *nowhere* in the text.
+    Deliberately conservative, and silent wherever it cannot judge:
+
+    * the declared organism is outside this module's small species vocabulary — its absence
+      from the text then carries no information, and reporting would flag every yeast,
+      bacterial or plant deposit;
+    * the prose names several species, or none;
+    * the only species named appears in a reagent (``modified porcine trypsin``) rather than
+      as the material under study.
+
+    A species is mentioned in passing in almost every study — a human ortholog, a human
+    search database, human disease context — so a contradiction is only reported when the
+    declared species appears *nowhere* in the text.
     """
+    declared_pat = next((pat for pat, sp in _SPECIES if sp == declared), None)
+    if declared_pat is None:
+        return None
     text = prose(record, "title", "projectDescription", "sampleProcessingProtocol")
+    text = _SPECIES_AS_REAGENT.sub(" ", text)
     named = {sp for pat, sp in _SPECIES if re.search(pat, text, re.IGNORECASE)}
     if len(named) != 1:
         return None
     only = next(iter(named))
     if only == declared or declared.startswith(only.split()[0]):
         return None
-    declared_pat = next((pat for pat, sp in _SPECIES if sp == declared), None)
-    if declared_pat and re.search(declared_pat, text, re.IGNORECASE):
+    if re.search(declared_pat, text, re.IGNORECASE):
         return None
     return Finding("organism_contradicted", BLOCKER, "characteristics[organism]",
                    f"the record names only {only} and never {declared}",

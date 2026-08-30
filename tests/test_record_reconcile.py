@@ -129,6 +129,22 @@ class TestOrganism:
     def test_agreement_is_clean(self):
         assert check_organism(rec(title="Mouse heart"), "Mus musculus") is None
 
+    def test_organism_outside_the_vocabulary_is_never_flagged(self):
+        """A yeast deposit whose prose mentions humans must not be reported.
+
+        The check can only reason about species it knows; absence of an unknown species
+        from the text carries no information.
+        """
+        r = rec(title="Saccharomyces cerevisiae proteome",
+                projectDescription="Orthologs of the human complex were compared.")
+        assert check_organism(r, "Saccharomyces cerevisiae") is None
+
+    def test_species_named_only_in_a_reagent_is_ignored(self):
+        """'modified porcine trypsin' is a reagent, not the organism under study."""
+        r = rec(title="Proteome analysis",
+                sampleProcessingProtocol="Digested with modified porcine trypsin overnight.")
+        assert check_organism(r, "Mus musculus") is None
+
 
 class TestOrganismPart:
     def test_title_names_adipose_not_heart(self):
