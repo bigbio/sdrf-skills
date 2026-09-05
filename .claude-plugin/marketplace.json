@@ -1,0 +1,29 @@
+{
+  "name": "sdrf-skills",
+  "owner": {
+    "name": "Yasset Perez-Riverol"
+  },
+  "metadata": {
+    "description": "SDRF annotation skills - expert-level proteomics metadata workflows for AI assistants",
+    "version": "0.2.0"
+  },
+  "plugins": [
+    {
+      "name": "sdrf-skills",
+      "source": "./",
+      "description": "SDRF annotation skills - expert-level proteomics metadata workflows for AI assistants",
+      "version": "0.2.0",
+      "author": {
+        "name": "Yasset Perez-Riverol"
+      },
+      "keywords": [
+        "sdrf",
+        "proteomics",
+        "pride",
+        "metadata",
+        "annotation"
+      ],
+      "category": "domain-specific"
+    }
+  ]
+}

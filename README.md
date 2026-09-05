@@ -62,10 +62,18 @@ Update the bundled spec any time with `git submodule update --remote --recursive
 
 <details><summary>Claude Code (plugin)</summary>
 
+**Recommended: run from a working tree**
 ```bash
 cd sdrf-skills && claude --plugin-dir .   # loads skills from the working tree
 ```
-Start from the repo root (skills reference `spec/` by repo-root-relative path). Then run `/sdrf:setup`, and use `/sdrf:annotate PXD######` or `/sdrf:validate your_file.sdrf.tsv`. Marketplace install is not available yet — see [#27](https://github.com/bigbio/sdrf-skills/issues/27).
+Start from the repo root (skills reference `spec/` by repo-root-relative path). Then run `/sdrf:setup`, and use `/sdrf:annotate PXD######` or `/sdrf:validate your_file.sdrf.tsv`.
+
+**Marketplace install** (this repo is also a marketplace as of `.claude-plugin/marketplace.json`):
+```bash
+/plugin marketplace add bigbio/sdrf-skills
+/plugin install sdrf-skills@sdrf-skills
+```
+Caveat: several skills (e.g. `/sdrf:annotate`) reference `spec/` by a path relative to the repo root. A marketplace install copies the plugin into Claude Code's plugin cache, so those repo-root-relative reads may not resolve correctly there yet — the skills would need to resolve `spec/` via `${CLAUDE_PLUGIN_ROOT}` instead. Until that's done, prefer `--plugin-dir` for full functionality; the marketplace path is offered for discovery/installability, tracked further at [#27](https://github.com/bigbio/sdrf-skills/issues/27).
 </details>
 
 <details><summary>Cursor</summary>
