@@ -52,7 +52,7 @@ by evidence. Keep values short and analysis-ready.
 - `organism` — scientific name as reported (e.g. `Homo sapiens`, `Mus musculus`).
   Do NOT map to an NCBITaxon accession here; that happens during annotation.
 - `cell_type` — cell line or primary cell type (e.g. `HeLa`, `U-937`, `CD4+ T cell`).
-  Prefer the cell line name verbatim; `/sdrf:cellline` resolves Cellosaurus later.
+  Prefer the cell line name verbatim; `/sdrf-skills:sdrf-cellline` resolves Cellosaurus later.
 - `isolation_method` — how single cells were isolated (`CellenONE`, `FACS`,
   `nanoPOTS`, `laser capture`, `microfluidic`, `manual picking`).
 - `scp_method` — the named method/platform (`SCoPE2`, `plexDIA`, `nanoPOTS-DIA`, ...).

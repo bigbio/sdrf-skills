@@ -1,5 +1,5 @@
 ---
-name: sdrf:templates
+name: sdrf-templates
 description: Use when the user asks about SDRF templates, wants to select templates for an experiment, or needs to understand template layers, inheritance, mutual exclusivity, and selection rules.
 user-invocable: true
 argument-hint: "[experiment description or template name]"

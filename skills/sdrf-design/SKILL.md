@@ -1,5 +1,5 @@
 ---
-name: sdrf:design
+name: sdrf-design
 description: Use when the user wants to analyze the experimental design encoded in an SDRF file, check for batch effects, confounders, or replication issues.
 user-invocable: true
 argument-hint: "[file path or paste SDRF content]"

@@ -1,5 +1,5 @@
 ---
-name: sdrf:knowledge
+name: sdrf-knowledge
 description: Use when the user asks about the SDRF format, column naming rules, ontology mappings, modification format, reserved words, label types, or any SDRF specification question, wants a plain-language explanation of a column/error/concept, or needs to find/verify/compare ontology terms and accessions for a column. Also serves as background knowledge for all other SDRF skills.
 user-invocable: true
 argument-hint: "[question about SDRF format or column rules]"
@@ -371,7 +371,7 @@ Experiment (optional), Clinical (optional), and Metaproteomics (special).
 You declare templates via `comment[sdrf template]` columns:
   `NT=ms-proteomics;VV=v1.1.0`
 
-See `/sdrf:templates` for the full selection guide and decision tree.
+See `/sdrf-skills:sdrf-templates` for the full selection guide and decision tree.
 
 ### "How many rows should my SDRF have?"
 ```text

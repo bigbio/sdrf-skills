@@ -1,5 +1,5 @@
 ---
-name: sdrf:annotate
+name: sdrf-annotate
 description: Use when the user wants to create or annotate an SDRF file for a proteomics dataset. Also use to plan what metadata to capture and discuss experimental design/strategy before creating the file. Triggers on PXD accessions, requests to create SDRF, planning/strategy questions, or annotation tasks.
 user-invocable: true
 argument-hint: "[PXD accession or experiment description]"
@@ -37,7 +37,7 @@ by an unrelated paper).
 
 Before starting, verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
 - Inform the user that programmatic validation will be skipped
-- Suggest `/sdrf:setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
+- Suggest `/sdrf-skills:sdrf-setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
 - Offer to continue with manual checks only, or wait for the user to install and retry
 
 ## Step 0.5: Check whether the dataset is ALREADY annotated — STOP GATE
@@ -75,7 +75,7 @@ Interpret the listing as an **artifact set**, not a yes/no:
   what your file should cover and how it should be named. Audit a sibling only if
   you intend to replace it.
 
-Use the same artifact set in `/sdrf:contribute` rather than recomputing it, so the
+Use the same artifact set in `/sdrf-skills:sdrf-contribute` rather than recomputing it, so the
 two workflows cannot disagree about what "already annotated" means.
 
 ### 0.5.2 Audit the existing annotation
@@ -540,12 +540,12 @@ Read TERMS.tsv `values` field for the column to determine which ontology(ies) to
 ### 4.5 Cell Line Lookup (if using cell-lines template)
 
 For any `characteristics[cell line]` column, prefer the dedicated
-`/sdrf:cellline` workflow or the live Cellosaurus service rather than a bundled
+`/sdrf-skills:sdrf-cellline` workflow or the live Cellosaurus service rather than a bundled
 full-database script. The skill owns the decision rules; tools are only helpers.
 
 Use this order:
 
-1. `/sdrf:cellline <name or CVCL_XXXX>` for the full translation workflow
+1. `/sdrf-skills:sdrf-cellline <name or CVCL_XXXX>` for the full translation workflow
 2. `python -m tools cellline lookup <name>` for the curated offline helper
 3. https://www.cellosaurus.org/search when you need manual confirmation
 
@@ -749,7 +749,7 @@ this column when the PRIDE term above applies.
 If the dataset has raw files available (PRIDE or local), recommend using **techsdrf**
 to verify and refine the technical metadata filled in Steps 5.1–5.5:
 ```text
-Run /sdrf:techrefine PXD###### to verify instrument, tolerances, modifications,
+Run /sdrf-skills:sdrf-techrefine PXD###### to verify instrument, tolerances, modifications,
 and DDA/DIA classification directly from the raw MS files.
 ```
 techsdrf can detect discrepancies between what's declared in the paper/PRIDE and
@@ -767,7 +767,7 @@ It reports the isolation windows, m/z coverage and CE ramp. Fill
 variable-width, the column is a single scalar, and deriving one from the manuscript
 ("15 windows spanning 400–1000" → 40) yields a width matching no actual window while
 passing both the regex and `parse_sdrf`. When the widths vary, the honest value is
-`not available` with the measured table in the report — see `/sdrf:techrefine`.
+`not available` with the measured table in the report — see `/sdrf-skills:sdrf-techrefine`.
 
 ## Step 6: Map Files to Samples
 
@@ -963,7 +963,7 @@ for ProteomeXchange datasets. Contributing your annotation means:
   - Analysis pipelines (quantms) can automatically reprocess the dataset
   - The annotation becomes part of the PRIDE SDRF Explorer
 
-Run /sdrf:contribute {PXD} to create a PR, or see the commands to do it manually.
+Run /sdrf-skills:sdrf-contribute {PXD} to create a PR, or see the commands to do it manually.
 ```
 
 3. If the PXD already existed, this is an **update**. The PR description must
@@ -1158,6 +1158,6 @@ Technical metadata (from instrument):
 
 Factor values: disease (tumor vs normal)
 
-Next step: Run /sdrf:annotate to create the file
+Next step: Run /sdrf-skills:sdrf-annotate to create the file
 ```
 

@@ -1,5 +1,5 @@
 ---
-name: sdrf:convert
+name: sdrf-convert
 description: Use when the user wants to choose an analysis pipeline, check SDRF compatibility with a pipeline, or understand how to go from SDRF to analysis.
 user-invocable: true
 argument-hint: "[pipeline name or experiment description]"

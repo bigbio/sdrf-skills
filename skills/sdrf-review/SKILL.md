@@ -1,5 +1,5 @@
 ---
-name: sdrf:review
+name: sdrf-review
 description: Use when the user wants a comprehensive quality review of an SDRF file, a PR review of an SDRF submission, a quality score assessment, or to improve/score an existing SDRF strictly against templates and specification rules (specificity, completeness, consistency; no speculative additions).
 user-invocable: true
 argument-hint: "[file path, PXD accession, or GitHub PR URL]"
@@ -53,7 +53,7 @@ DISCREPANCY: Paper mentions "hippocampus and temporal cortex" but SDRF only has 
 ```
 
 For technical metadata (instrument, tolerances, modifications, DDA/DIA), consider
-recommending `/sdrf:techrefine` — techsdrf can verify these parameters directly from
+recommending `/sdrf-skills:sdrf-techrefine` — techsdrf can verify these parameters directly from
 the raw MS files, which is more reliable than cross-referencing with the publication.
 
 ### Conflict Resolution
@@ -147,11 +147,11 @@ Calculate and present an overall quality score:
 
 Provide clear next steps:
 1. List fixes in priority order
-2. Offer to auto-fix what can be auto-fixed (`/sdrf:fix`)
+2. Offer to auto-fix what can be auto-fixed (`/sdrf-skills:sdrf-fix`)
 3. Identify what needs human input (e.g., missing demographics)
 4. Suggest running final validation after fixes
 5. If the SDRF is for a ProteomeXchange dataset and the verdict is VALID or NEEDS MINOR FIXES:
-   suggest contributing the annotation via `/sdrf:contribute {PXD}` to the
+   suggest contributing the annotation via `/sdrf-skills:sdrf-contribute {PXD}` to the
    `sdrf-annotated-datasets` community repository
 
 ---
