@@ -1,5 +1,5 @@
 ---
-name: sdrf:contribute
+name: sdrf-contribute
 description: Use when the user has a completed SDRF annotation for a ProteomeXchange dataset and wants to contribute it back to the community via a PR to sdrf-annotated-datasets.
 user-invocable: true
 argument-hint: "[PXD accession and SDRF file path]"
@@ -19,7 +19,7 @@ and review — closing the loop from "I annotated a dataset" to "the community c
 
 ### 1.2 Verify the SDRF content
 - The SDRF must be available as a file on disk or from a previous annotation step
-- If the user just finished `/sdrf:annotate`, the content is in the conversation
+- If the user just finished `/sdrf-skills:sdrf-annotate`, the content is in the conversation
 - Ask the user to confirm the file path or provide the content
 
 ### 1.3 Check if this is a new annotation or an update
@@ -76,7 +76,7 @@ Then:
   each defect, the evidence from the deposit, and what the new file does instead.
   A reviewer must be able to check the claim rather than trust it.
 
-If `/sdrf:annotate` already ran its Step 0.5 gate for this accession, reuse that
+If `/sdrf-skills:sdrf-annotate` already ran its Step 0.5 gate for this accession, reuse that
 audit instead of repeating it, and confirm the user chose `fix` or `reannotate`.
 **Never open a PR that silently overwrites an existing annotation.**
 
@@ -94,7 +94,7 @@ Before contributing, the SDRF must pass validation:
 
    **Zero-deletion guard (mandatory before PR):** stage only your new folder (`git add datasets/{PXD}/`, never `git add -A`), then run `git diff --cached --name-status` and confirm every line is `A` — abort if any `D`/`M`/`R` touches a dataset you did not create.
 
-2. **Run `/sdrf:validate`** for a thorough check including ontology verification
+2. **Run `/sdrf-skills:sdrf-validate`** for a thorough check including ontology verification
 
 3. **Require independent adversarial approval**:
    ```bash
@@ -244,7 +244,7 @@ After the PR is created:
 
 - NEVER create a PR without user confirmation
 - NEVER skip validation before contributing
-- NEVER modify the SDRF content during the contribution step (that's what `/sdrf:fix` and `/sdrf:review` are for)
+- NEVER modify the SDRF content during the contribution step (that's what `/sdrf-skills:sdrf-fix` and `/sdrf-skills:sdrf-review` are for)
 - If the user doesn't have `gh` CLI installed, always fall back to Mode B (guided commands)
 - If the user doesn't have a GitHub account, explain that one is needed and point to https://github.com/signup
 - For non-PXD accessions (MSV, PMID), the same workflow applies — just use the accession as the folder name

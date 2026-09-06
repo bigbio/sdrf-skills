@@ -1,5 +1,5 @@
 ---
-name: sdrf:cellline
+name: sdrf-cellline
 description: Use when the user needs to look up cell line metadata or enrich an SDRF with cell-line-derived characteristics (organism, disease, sex, sampling site, ancestry, age). Triggers on cell line names (HeLa, MCF-7, A549, …), Cellosaurus accessions (CVCL_XXXX), or "annotate cell line" requests.
 user-invocable: true
 argument-hint: "[cell line name | CVCL_XXXX | path/to/file.sdrf.tsv]"
@@ -33,10 +33,10 @@ offline mode or needs to enrich many SDRFs in one pass.
   Cellosaurus-derivable columns (organism, disease, sampling site, sex,
   ancestry, age, developmental stage, cellosaurus accession/name) are blank,
   generic, or inconsistent.
-- Resolving ambiguous cell line names raised by `/sdrf:annotate`,
-  `/sdrf:validate`, or `/sdrf:fix`.
+- Resolving ambiguous cell line names raised by `/sdrf-skills:sdrf-annotate`,
+  `/sdrf-skills:sdrf-validate`, or `/sdrf-skills:sdrf-fix`.
 
-For pure ontology-term lookup unrelated to cell lines, use `/sdrf:knowledge`.
+For pure ontology-term lookup unrelated to cell lines, use `/sdrf-skills:sdrf-knowledge`.
 
 ## Step 0: Identify the cell-lines template requirements
 
@@ -73,7 +73,7 @@ The `cell-lines` template **also requires** an organism layer
 Cell line names in the wild are messy. Apply this pipeline before any lookup:
 
 1. **Strip enclosing punctuation/quotes/brackets.**
-   `"['HeLa']"` → `HeLa`. (The `/sdrf:fix` artifact rule handles this; rerun if dirty.)
+   `"['HeLa']"` → `HeLa`. (The `/sdrf-skills:sdrf-fix` artifact rule handles this; rerun if dirty.)
 2. **Trim whitespace** at both ends.
 3. **Recognize an accession directly.**
    Pattern `^CVCL_[A-Z0-9]{4,}$` → skip name lookup, fetch the accession.
@@ -153,7 +153,7 @@ When Step 2 yields more than one candidate, pick in this order:
    ambiguous queries: `293`, `SK`, `HCT`, `HEK`, `T-47`.
 
 If nothing matches:
-- Suggest the user check spelling, then offer `/sdrf:knowledge cell line "<name>"`
+- Suggest the user check spelling, then offer `/sdrf-skills:sdrf-knowledge cell line "<name>"`
   for a broader CLO/BTO/EFO search.
 - Set `characteristics[cell line]` to the user's input verbatim and the rest of
   the cell-line columns to `not available` (never `N/A`, never `unknown`).
@@ -252,7 +252,7 @@ The cell-lines template also defines `passage number`, `biorepository`,
 `cell line authentication`, `culture medium`, and `sample storage temperature`.
 Cellosaurus has no values for these — they are study-specific. Either:
 
-- Take them from the paper / PRIDE submission via `/sdrf:annotate`, or
+- Take them from the paper / PRIDE submission via `/sdrf-skills:sdrf-annotate`, or
 - Set them to `not available` if the paper does not state them.
 
 ## Step 5: Bulk enrichment of an SDRF
@@ -266,7 +266,7 @@ When the input is a `.sdrf.tsv` file:
 4. For each row, fill empty / `not available` Cellosaurus-derivable columns.
    **Do not overwrite** existing values that disagree with Cellosaurus —
    instead, surface them as conflicts and ask the user, exactly the way
-   `/sdrf:review` does.
+   `/sdrf-skills:sdrf-review` does.
 5. If the SDRF lacks a needed column entirely (e.g.
    `characteristics[cellosaurus accession]`), insert it adjacent to
    `characteristics[cell line]` and re-emit the full TSV.
@@ -293,7 +293,7 @@ parse_sdrf validate-sdrf \
   --template cell-lines
 ```
 
-Then run `/sdrf:validate` for ontology-level checks. Round-trip rules:
+Then run `/sdrf-skills:sdrf-validate` for ontology-level checks. Round-trip rules:
 
 - `CVCL_*` accessions must resolve via the Cellosaurus REST API
   (`/cell-line/<CVCL_id>`).

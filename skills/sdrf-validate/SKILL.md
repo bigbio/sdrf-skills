@@ -1,5 +1,5 @@
 ---
-name: sdrf:validate
+name: sdrf-validate
 description: Use when the user wants to validate an SDRF file, check for errors, or verify ontology terms. Triggers on requests to check, validate, or review SDRF content.
 user-invocable: true
 argument-hint: "[file path or paste SDRF content]"
@@ -13,7 +13,7 @@ You are validating an SDRF file. Perform systematic checks in order.
 
 Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
 - Inform the user that programmatic validation with parse_sdrf will be skipped
-- Suggest `/sdrf:setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
+- Suggest `/sdrf-skills:sdrf-setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
 - Continue with structural and ontology checks; manual validation is still valuable
 
 ## Step 0.5: Protect the Machine During Validation

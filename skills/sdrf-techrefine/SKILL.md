@@ -1,5 +1,5 @@
 ---
-name: sdrf:techrefine
+name: sdrf-techrefine
 description: Use when the user wants to refine or verify SDRF technical metadata (instrument, tolerances, modifications, DDA/DIA) using raw MS file analysis via techsdrf.
 user-invocable: true
 argument-hint: "[PXD accession or SDRF file path]"
@@ -214,7 +214,7 @@ For each changed column:
 - Explain WHY techsdrf made this change (what evidence from raw data)
 - Let the user approve or reject the individual change
 
-### 6.3 If the user is working on an in-memory SDRF from `/sdrf:annotate`
+### 6.3 If the user is working on an in-memory SDRF from `/sdrf-skills:sdrf-annotate`
 Instead of a file diff, show the corrected values to paste into the SDRF:
 ```text
 Update these technical columns based on raw file analysis:
@@ -255,7 +255,7 @@ until validation passes (or only warnings remain).
 If this is a ProteomeXchange dataset:
 ```text
 Your refined SDRF has verified technical metadata from actual raw file analysis.
-Run /sdrf:contribute to submit this annotation to the community repository.
+Run /sdrf-skills:sdrf-contribute to submit this annotation to the community repository.
 ```
 
 ## Bruker timsTOF: DIA windows straight from `analysis.tdf`

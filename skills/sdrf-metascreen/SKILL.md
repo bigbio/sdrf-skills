@@ -1,5 +1,5 @@
 ---
-name: sdrf:metascreen
+name: sdrf-metascreen
 description: Use when the user needs to screen or shortlist proteomics studies from PRIDE, MassIVE, or ProteomeXchange accessions, or from a manifest, using detailed user-defined inclusion/exclusion criteria — run this before sdrf:autoresearch; extract study-level metadata from repository records and publications; and write an evidence-backed, resumable TSV for downstream annotation, review, or meta-analysis.
 user-invocable: true
 argument-hint: 'target="<all PRIDE|MassIVE ...|accessions:PXD...,MSV...|path/to/accessions.txt|path/to/manifest.tsv>" [criteria="<md|txt|inline>"] [extract="<cols|txt|md>"] [output="results.tsv"] [dig_passes=1]'
@@ -458,16 +458,16 @@ each, so a human knows what to go find.
 
 ```text
 # Discover across PRIDE + MassIVE and screen
-/sdrf:metascreen target="all PRIDE human gut metaproteomics datasets" criteria="criteria/human_gut_metaproteomics.md" extract="criteria/human_gut_metaproteomics.md" output="results/human_gut_screen.tsv"
+/sdrf-skills:sdrf-metascreen target="all PRIDE human gut metaproteomics datasets" criteria="criteria/human_gut_metaproteomics.md" extract="criteria/human_gut_metaproteomics.md" output="results/human_gut_screen.tsv"
 
 # Fixed accession list from a txt file
-/sdrf:metascreen target="data/accessions.txt" criteria="criteria/eligibility.md" extract="instrument,acquisition,sex,age,region" output="results/screen.tsv"
+/sdrf-skills:sdrf-metascreen target="data/accessions.txt" criteria="criteria/eligibility.md" extract="instrument,acquisition,sex,age,region" output="results/screen.tsv"
 
 # Mixed PRIDE + MassIVE accessions
-/sdrf:metascreen target="accessions:PXD005969,MSV000078958" criteria="human fecal metaproteomics only; exclude animal-only studies" extract="organism,sample_type,instrument" output="results/screen.tsv"
+/sdrf-skills:sdrf-metascreen target="accessions:PXD005969,MSV000078958" criteria="human fecal metaproteomics only; exclude animal-only studies" extract="organism,sample_type,instrument" output="results/screen.tsv"
 
 # From a manifest TSV
-/sdrf:metascreen target="data/candidates.tsv" criteria="criteria/eligibility.md" extract="criteria/extract_fields.txt" output="results/screen.tsv"
+/sdrf-skills:sdrf-metascreen target="data/candidates.tsv" criteria="criteria/eligibility.md" extract="criteria/extract_fields.txt" output="results/screen.tsv"
 ```
 
 ## Notes

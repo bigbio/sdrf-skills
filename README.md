@@ -26,22 +26,22 @@ Sixteen skills, most in the `sdrf:` namespace (the two review-gate skills use po
 
 | Skill | What it does |
 |-------|-------------|
-| `/sdrf:setup` | Guided dependency install (parse_sdrf, techsdrf) — conda or pip |
-| `/sdrf:knowledge` | SDRF format, column rules, ontology mappings, reserved words; plain-language explanations; ontology term lookup |
-| `/sdrf:templates` | Template selection, layers, and selection rules |
-| `/sdrf:metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies → resumable TSV |
-| `/sdrf:autoresearch` | Autonomous retained-improvement loop over a dataset or dataset class |
-| `/sdrf:annotate` | Plan + full workflow: PXD → PRIDE + paper → draft SDRF → validate |
-| `/sdrf:validate` | Systematic validation against templates + OLS ontology checking |
-| `/sdrf:fix` | Auto-fix common errors (UNIMOD swaps, case, format, artifacts) |
-| `/sdrf:review` | Comprehensive quality review + 5-dimension quality score cross-referenced to paper + PRIDE |
+| `/sdrf-skills:sdrf-setup` | Guided dependency install (parse_sdrf, techsdrf) — conda or pip |
+| `/sdrf-skills:sdrf-knowledge` | SDRF format, column rules, ontology mappings, reserved words; plain-language explanations; ontology term lookup |
+| `/sdrf-skills:sdrf-templates` | Template selection, layers, and selection rules |
+| `/sdrf-skills:sdrf-metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies → resumable TSV |
+| `/sdrf-skills:sdrf-autoresearch` | Autonomous retained-improvement loop over a dataset or dataset class |
+| `/sdrf-skills:sdrf-annotate` | Plan + full workflow: PXD → PRIDE + paper → draft SDRF → validate |
+| `/sdrf-skills:sdrf-validate` | Systematic validation against templates + OLS ontology checking |
+| `/sdrf-skills:sdrf-fix` | Auto-fix common errors (UNIMOD swaps, case, format, artifacts) |
+| `/sdrf-skills:sdrf-review` | Comprehensive quality review + 5-dimension quality score cross-referenced to paper + PRIDE |
 | `$sdrf-adversarial-review` | Fresh-context, evidence-first review with a hash-bound verdict |
 | `$sdrf-annotate-reviewed` | Annotation orchestrator with isolated review, repair, and re-review |
-| `/sdrf:convert` | Choose and configure analysis pipelines from SDRF |
-| `/sdrf:design` | Detect batch effects, confounders, replication issues |
-| `/sdrf:contribute` | Contribute an annotated SDRF back to sdrf-annotated-datasets via PR |
-| `/sdrf:techrefine` | Verify/refine technical metadata from raw files via techsdrf |
-| `/sdrf:cellline` | Translate Cellosaurus records into SDRF cell-line columns |
+| `/sdrf-skills:sdrf-convert` | Choose and configure analysis pipelines from SDRF |
+| `/sdrf-skills:sdrf-design` | Detect batch effects, confounders, replication issues |
+| `/sdrf-skills:sdrf-contribute` | Contribute an annotated SDRF back to sdrf-annotated-datasets via PR |
+| `/sdrf-skills:sdrf-techrefine` | Verify/refine technical metadata from raw files via techsdrf |
+| `/sdrf-skills:sdrf-cellline` | Translate Cellosaurus records into SDRF cell-line columns |
 
 ## Installation
 
@@ -66,14 +66,14 @@ Update the bundled spec any time with `git submodule update --remote --recursive
 ```bash
 cd sdrf-skills && claude --plugin-dir .   # loads skills from the working tree
 ```
-Start from the repo root (skills reference `spec/` by repo-root-relative path). Then run `/sdrf:setup`, and use `/sdrf:annotate PXD######` or `/sdrf:validate your_file.sdrf.tsv`.
+Start from the repo root (skills reference `spec/` by repo-root-relative path). Then run `/sdrf-skills:sdrf-setup`, and use `/sdrf-skills:sdrf-annotate PXD######` or `/sdrf-skills:sdrf-validate your_file.sdrf.tsv`.
 
 **Marketplace install** (this repo is also a marketplace as of `.claude-plugin/marketplace.json`):
 ```bash
 /plugin marketplace add bigbio/sdrf-skills
 /plugin install sdrf-skills@sdrf-skills
 ```
-Caveat: several skills (e.g. `/sdrf:annotate`) reference `spec/` by a path relative to the repo root. A marketplace install copies the plugin into Claude Code's plugin cache, so those repo-root-relative reads may not resolve correctly there yet — the skills would need to resolve `spec/` via `${CLAUDE_PLUGIN_ROOT}` instead. Until that's done, prefer `--plugin-dir` for full functionality; the marketplace path is offered for discovery/installability, tracked further at [#27](https://github.com/bigbio/sdrf-skills/issues/27).
+Caveat: several skills (e.g. `/sdrf-skills:sdrf-annotate`) reference `spec/` by a path relative to the repo root. A marketplace install copies the plugin into Claude Code's plugin cache, so those repo-root-relative reads may not resolve correctly there yet — the skills would need to resolve `spec/` via `${CLAUDE_PLUGIN_ROOT}` instead. Until that's done, prefer `--plugin-dir` for full functionality; the marketplace path is offered for discovery/installability, tracked further at [#27](https://github.com/bigbio/sdrf-skills/issues/27).
 </details>
 
 <details><summary>Cursor</summary>
@@ -93,10 +93,10 @@ For full annotation, configure the **OLS**, **PRIDE**, **PubMed**, and **bioRxiv
 ## Usage
 
 ```text
-/sdrf:annotate PXD045678     → fetch PRIDE + paper → select templates → draft SDRF with OLS-verified terms → validate
-/sdrf:validate file.sdrf.tsv → template + ontology validation
-/sdrf:fix file.sdrf.tsv      → repair UNIMOD swaps, case, formats, artifacts (with changelog)
-/sdrf:contribute PXD045678   → open a PR to bigbio/sdrf-annotated-datasets
+/sdrf-skills:sdrf-annotate PXD045678     → fetch PRIDE + paper → select templates → draft SDRF with OLS-verified terms → validate
+/sdrf-skills:sdrf-validate file.sdrf.tsv → template + ontology validation
+/sdrf-skills:sdrf-fix file.sdrf.tsv      → repair UNIMOD swaps, case, formats, artifacts (with changelog)
+/sdrf-skills:sdrf-contribute PXD045678   → open a PR to bigbio/sdrf-annotated-datasets
 ```
 
 ## Python tools

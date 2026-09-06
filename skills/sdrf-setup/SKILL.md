@@ -1,5 +1,5 @@
 ---
-name: sdrf:setup
+name: sdrf-setup
 description: Use when the user wants to set up SDRF skills dependencies, install parse_sdrf and techsdrf, or configure the environment for the first time.
 user-invocable: true
 argument-hint: "[optional: conda | pip | check]"
@@ -9,7 +9,7 @@ argument-hint: "[optional: conda | pip | check]"
 
 You are guiding the user through installing SDRF skills dependencies. Follow these steps.
 
-**In Cursor**: The user invokes this by asking "install SDRF dependencies" or similar (no `/sdrf:setup` slash command). Ensure `environment.yml` and `requirements.txt` exist at the workspace root; if not, suggest cloning the full sdrf-skills repo or copying those files.
+**In Cursor**: The user invokes this by asking "install SDRF dependencies" or similar (no `/sdrf-skills:sdrf-setup` slash command). Ensure `environment.yml` and `requirements.txt` exist at the workspace root; if not, suggest cloning the full sdrf-skills repo or copying those files.
 
 ## Step 1: Detect Available Package Managers
 
@@ -105,11 +105,11 @@ Provide a clear summary:
 1. **Package manager detected**: conda / pip / uv
 2. **Commands to run**: (copy-paste block)
 3. **Verify**: parse_sdrf --version, techsdrf --version
-4. **Next**: Run /sdrf:annotate PXD###### or /sdrf:validate yourfile.sdrf.tsv
+4. **Next**: Run /sdrf-skills:sdrf-annotate PXD###### or /sdrf-skills:sdrf-validate yourfile.sdrf.tsv
 
 ## If User Passes "check"
 
-When the user invokes `/sdrf:setup check`, run the verification step and report status:
+When the user invokes `/sdrf-skills:sdrf-setup check`, run the verification step and report status:
 - parse_sdrf: ✓ or ✗
 - techsdrf: ✓ or ✗
 - spec/ submodule: present and init'd or not

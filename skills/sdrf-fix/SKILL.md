@@ -1,5 +1,5 @@
 ---
-name: sdrf:fix
+name: sdrf-fix
 description: Use when the user has an SDRF file with known errors and wants them fixed automatically. Triggers on requests to fix, correct, or repair SDRF errors.
 user-invocable: true
 argument-hint: "[file path or paste SDRF content]"
@@ -13,7 +13,7 @@ You are fixing known common errors in an SDRF file. Apply fixes systematically.
 
 Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
 - Inform the user that re-validation after fixes will need to be done manually
-- Suggest `/sdrf:setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
+- Suggest `/sdrf-skills:sdrf-setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
 - Continue with the fixes; the user can validate later once dependencies are installed
 
 ## Common Error Patterns and Their Fixes
@@ -203,7 +203,7 @@ If `parse_sdrf` is not installed, tell the user: `pip install sdrf-pipelines`
 Present the re-validation summary alongside the changelog.
 
 If all errors are fixed and the SDRF is for a ProteomeXchange dataset (PXD accession),
-suggest contributing the corrected annotation via `/sdrf:contribute {PXD}` to the
+suggest contributing the corrected annotation via `/sdrf-skills:sdrf-contribute {PXD}` to the
 `sdrf-annotated-datasets` community repository.
 
 ## When NOT to Auto-Fix

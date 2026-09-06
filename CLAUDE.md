@@ -11,8 +11,8 @@ is **not** stored here; it is read at runtime from the `spec/` git submodule.
 Skills are auto-discovered — `.claude-plugin/plugin.json` carries no `skills` key, so Claude Code
 scans the `skills/` directory automatically. Each SKILL.md declares its own name and routing
 description in frontmatter. Currently 20: 18 domain skills
-named `sdrf:*` (invoked `/sdrf:annotate`) plus 2 review-gate skills named `sdrf-adversarial-review`
-and `sdrf-annotate-reviewed`, deliberately platform-portable rather than `/sdrf:`-namespaced.
+named `sdrf-*` (invoked as `/sdrf-skills:sdrf-annotate` etc. once installed as a marketplace plugin) plus 2 review-gate skills named `sdrf-adversarial-review`
+and `sdrf-annotate-reviewed`, deliberately platform-portable rather than plugin-namespaced.
 Run `ls skills/` for the current set — **do not trust a hardcoded skill count anywhere in this repo**;
 README.md alone carries three contradictory numbers, and commit `d5c4c70` exists only to repair drift.
 
@@ -89,7 +89,7 @@ supported local-dev flow is `claude --plugin-dir <path>`, which loads skills fro
 
 ```yaml
 ---
-name: sdrf:annotate          # namespaced; does NOT match the directory (skills/sdrf-annotate/)
+name: sdrf-annotate           # matches the directory (skills/sdrf-annotate/); invoked as /sdrf-skills:sdrf-annotate once installed as a marketplace plugin
 description: Use when the user wants to ... Triggers on ...   # always starts "Use when the user"
 user-invocable: true
 argument-hint: "[PXD accession or experiment description]"
@@ -232,7 +232,7 @@ reimplementing merge semantics.
    constraint set (column licensing + reserved-word `allow_*`), resolve with
    `spec/scripts/resolve_templates.py` — parse_sdrf enforces neither. `parse_sdrf` ships in
    `sdrf-pipelines` and is **not installed by default** (CI installs only `requests`, `pytest`,
-   `fastmcp`, `httpx` — not `sdrf-pipelines[ontology]`, which is heavy) — run `/sdrf:setup`. Keep
+   `fastmcp`, `httpx` — not `sdrf-pipelines[ontology]`, which is heavy) — run `/sdrf-skills:sdrf-setup`. Keep
    concurrent `parse_sdrf` jobs ≤ 2.
 8. **A producer must never approve its own SDRF.** For changed SDRFs, require a passing receipt from
    `sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.

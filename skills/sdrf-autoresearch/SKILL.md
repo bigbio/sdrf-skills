@@ -1,5 +1,5 @@
 ---
-name: sdrf:autoresearch
+name: sdrf-autoresearch
 description: Use when the user wants SDRF annotation to run as an autonomous retained-improvement loop over one dataset, a manifest, or a dataset class such as all PRIDE cell line or crosslinking datasets.
 user-invocable: true
 argument-hint: 'target="<dataset scope>" [profile="<preset>"] [objective="<metric>"] [focus_fields="<field1,field2>"] [evidence="<pride,files,europepmc>"] [stop="<rule>"] [write="<sandbox|branch|report-only>"]'
@@ -24,9 +24,9 @@ following the steps below and by calling the existing `sdrf:*` skills in order.
 
 Claude-style examples:
 ```text
-/sdrf:autoresearch target="all PRIDE cell line datasets"
-/sdrf:autoresearch target="all sandbox crosslinking datasets" profile="crosslinking"
-/sdrf:autoresearch target="manifest:data/cell_line_manifest.tsv" objective="maximize_valid_field_coverage"
+/sdrf-skills:sdrf-autoresearch target="all PRIDE cell line datasets"
+/sdrf-skills:sdrf-autoresearch target="all sandbox crosslinking datasets" profile="crosslinking"
+/sdrf-skills:sdrf-autoresearch target="manifest:data/cell_line_manifest.tsv" objective="maximize_valid_field_coverage"
 ```
 
 Codex-style examples:
@@ -276,27 +276,27 @@ For each dataset:
    Keep the accession in play and note the repository-backed limitation in the
    ranking output.
 
-2. Run `/sdrf:annotate`
+2. Run `/sdrf-skills:sdrf-annotate`
    - draft or extend the SDRF using the selected templates
 
-3. Run `/sdrf:knowledge`
+3. Run `/sdrf-skills:sdrf-knowledge`
    - normalize ontology-backed fields
    - use lexical OLS first
    - use embeddings for fuzzy manuscript-derived mentions
    - use ZOOMA as slower fallback when useful
 
-4. Run `/sdrf:techrefine`
+4. Run `/sdrf-skills:sdrf-techrefine`
    - refine technical MS metadata when raw files or techsdrf evidence are available
 
-5. Run `/sdrf:validate`
+5. Run `/sdrf-skills:sdrf-validate`
    - validate template structure, reserved words, and ontology-backed fields
    - keep validation concurrency bounded: default to serial, and never run more than `2` `parse_sdrf` jobs at once
    - if `sdrf-techrefine`, raw-file conversion, or other heavy analysis is active, validate only `1` dataset at a time
 
-6. Run `/sdrf:fix`
+6. Run `/sdrf-skills:sdrf-fix`
    - apply safe corrections to known SDRF error patterns
 
-7. Run `/sdrf:review`
+7. Run `/sdrf-skills:sdrf-review`
    - rescore completeness, specificity, consistency, standards, and design
 
 8. Keep or discard
@@ -379,15 +379,15 @@ If `write=report-only`, produce the same retained-improvement report without wri
 
 ### Cell lines
 ```text
-/sdrf:autoresearch target="all PRIDE cell line datasets" profile="cell-line" objective="maximize_valid_field_coverage" focus_fields="cell line,disease,organism part,treatment" evidence="pride,files,europepmc" stop="3_no_improve_rounds" write="sandbox"
+/sdrf-skills:sdrf-autoresearch target="all PRIDE cell line datasets" profile="cell-line" objective="maximize_valid_field_coverage" focus_fields="cell line,disease,organism part,treatment" evidence="pride,files,europepmc" stop="3_no_improve_rounds" write="sandbox"
 ```
 
 ### Crosslinking
 ```text
-/sdrf:autoresearch target="all sandbox crosslinking datasets" profile="crosslinking" objective="crosslinking_assay_completion" focus_fields="cross-linker,crosslink enrichment method,collision energy,crosslinking reaction time" evidence="pride,files,europepmc" stop="only_low_confidence_candidates_left" write="sandbox"
+/sdrf-skills:sdrf-autoresearch target="all sandbox crosslinking datasets" profile="crosslinking" objective="crosslinking_assay_completion" focus_fields="cross-linker,crosslink enrichment method,collision energy,crosslinking reaction time" evidence="pride,files,europepmc" stop="only_low_confidence_candidates_left" write="sandbox"
 ```
 
 ### Report-only review
 ```text
-/sdrf:autoresearch target="manifest:data/review_set.tsv" objective="minimize_unknowns" write="report-only"
+/sdrf-skills:sdrf-autoresearch target="manifest:data/review_set.tsv" objective="minimize_unknowns" write="report-only"
 ```
