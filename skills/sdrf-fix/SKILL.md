@@ -143,6 +143,24 @@ Faults that survive validation because they parse into something wrong rather th
 restored when the column maps to exactly one ontology, so an ambiguous column is left alone;
 an incrementing accession needs the correct term confirmed before collapsing the run.
 
+### 13. Spike-in amounts modeled as factor value
+
+A quantity that was added to the sample during preparation (a spiked protein/peptide/mixture
+and how much of it) describes what the sample *is*, not a studied experimental variable — it
+belongs in sample metadata, not `factor value[...]`.
+
+| Wrong | Correct |
+|-------|---------|
+| `factor value[enolase spike ratio]` = `10` | `characteristics[spiked compound]` = `CT=protein;AC=P00924;CN=Enolase spike;QY=10` |
+| `factor value[spike protein]` = `Enolase spike` (one label per row) | one `characteristics[spiked compound]` column per spiked component, repeated across rows |
+
+**Fix**: Use `characteristics[spiked compound]` (see SAMPLE-GUIDELINES.adoc §Spiked-in Samples)
+with `CT=`/`QY=`/`PS=`/`AC=`/`CN=`/`CV=` key-value pairs — repeat the column once per spiked
+component when a row has more than one. Reserve `factor value[...]` for the variable the
+experiment is actually comparing (genotype, treatment, dose group, timepoint); a reference/
+benchmark dataset with no such comparison correctly has no factor value at all (the
+`no_factor_value` advisory is expected, not a defect to paper over with an unrelated column).
+
 ## Fix Procedure
 
 1. **Parse** the SDRF into a structured table
@@ -211,6 +229,8 @@ suggest contributing the corrected annotation via `/sdrf-skills:sdrf-contribute 
 - Values that might be intentionally different (ask the user)
 - Ontology terms where the "correct" version is ambiguous
 - Missing columns (suggest but don't add without user approval)
-- Factor values (design decisions — always ask)
+- Factor values (design decisions — always ask). This does not cover miscategorization: a
+  `factor value[...]` column holding a sample property (spike-in amount, concentration, etc.)
+  instead of the compared variable is fixable per rule 13, not a design decision to preserve.
 - Cell line names (need Cellosaurus verification)
 - Organism names that might be intentional (e.g., hybrid organisms)

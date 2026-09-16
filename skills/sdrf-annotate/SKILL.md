@@ -841,6 +841,15 @@ rather than a shrug.
 3. Copy values from the corresponding characteristics column
 4. If multiple factors → create multiple factor value columns
 
+**Do not invent a factor value column for sample composition.** A quantity that describes
+what was added to the sample during preparation — a spiked protein/peptide/mixture and how
+much of it, a carrier amount, a dilution — is sample metadata, not the compared variable. It
+belongs in `characteristics[spiked compound]` (`CT=`/`QY=`/`PS=`/`AC=`/`CN=`/`CV=`, repeated
+once per spiked component; see SAMPLE-GUIDELINES.adoc §Spiked-in Samples), even when no other
+factor exists. A reference/benchmark dataset with no real experimental comparison correctly
+has no `factor value[...]` column at all — that is an expected `no_factor_value` advisory, not
+a gap to fill with an unrelated column.
+
 ## Step 8: Add SDRF Metadata
 
 - `comment[sdrf version]` → read latest version from `spec/sdrf-proteomics/sdrf-templates/templates.yaml`
