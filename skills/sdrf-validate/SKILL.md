@@ -19,18 +19,32 @@ Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which pars
 ## Step 0.5: Protect the Machine During Validation
 
 Validation can be expensive because `parse_sdrf` may trigger ontology lookups,
-template loading, and large file parsing.
+template loading, and large file parsing. **Measured cost**: a single
+`parse_sdrf validate-sdrf` run with full ontology validation peaks at **~1.9GB
+RSS** (each `-t` template loads its own ontology data into memory). On a
+16GB-class laptop, `xargs -P 16` (or any double-digit concurrency) demands
+30GB+ of RAM and *will* thrash swap and hang the machine — this has caused
+multiple full-machine restarts in practice. Do not guess at a safe
+concurrency; measure it:
+
+```bash
+# Before any batch validation over more than ~10 files, check headroom:
+sysctl hw.memsize                 # total RAM (macOS)
+vm_stat | head -5                 # free pages (macOS); `free -h` on Linux
+df -h / 2>&1                      # free disk — swap needs room too
+```
 
 Use these resource guards:
 
 - Default to serial validation for autonomous loops unless there is a clear reason to parallelize
-- If validating multiple SDRFs in parallel, keep the concurrency small: at most `2` `parse_sdrf` jobs at a time
+- If validating multiple SDRFs in parallel with full ontology checks, keep concurrency small: at most `2` `parse_sdrf` jobs at a time (≈3.8GB peak — leave the rest of RAM for the OS, IDE, browser)
+- **Two-pass strategy for large batches (tens to thousands of files)**: first run every file with `--skip-ontology` (≈130MB RSS, ~15x lighter — safe at concurrency 8-16) to catch structural/required-column errors fast and cheap; fix those; only then run the full ontology pass, and only at concurrency ≤2. If the files will be validated by CI anyway (a repo's GitHub Actions workflow), consider skipping the local full-ontology pass entirely — push after the cheap structural pass and read the CI logs for the authoritative ontology-level result instead of reproducing that cost locally.
 - If `techsdrf`, raw-file conversion, or other heavy IO/CPU work is running, validate only `1` SDRF at a time
 - Validate changed datasets first, not the whole collection by default
 - Prefer batch manifests or representative smoke checks before full-sandbox sweeps
 - For large SDRFs, validate unique values once rather than re-checking repeated ontology terms row by row
 
-If the machine looks stressed or validation becomes unresponsive, reduce concurrency before continuing.
+If the machine looks stressed or validation becomes unresponsive, reduce concurrency before continuing. If disk free space is under ~10-20GB, treat any large download or batch-write operation (dataset downloads, raw-file conversion, bulk SDRF generation) as high-risk until space is freed — low disk space also constrains how much the OS can grow swap, which turns a memory spike into a full hang instead of graceful slowdown.
 
 ## Step 1: Parse the SDRF
 
