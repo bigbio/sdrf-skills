@@ -7,6 +7,12 @@ argument-hint: "[PXD accession and SDRF file path]"
 
 # SDRF Contribution Workflow
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
+> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> Files the user is annotating stay relative to the working directory.
+
 You are helping the user contribute an annotated SDRF file back to the community repository
 (`bigbio/sdrf-annotated-datasets`). This is the final step after annotation, validation,
 and review — closing the loop from "I annotated a dataset" to "the community can reuse it."

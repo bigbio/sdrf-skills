@@ -7,6 +7,12 @@ argument-hint: "[file path or paste SDRF content]"
 
 # SDRF Auto-Fix Workflow
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
+> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> Files the user is annotating stay relative to the working directory.
+
 You are fixing known common errors in an SDRF file. Apply fixes systematically.
 
 ## Step 0: Check parse_sdrf availability

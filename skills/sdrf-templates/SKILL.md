@@ -7,6 +7,12 @@ argument-hint: "[experiment description or template name]"
 
 # SDRF Template System
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
+> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> Files the user is annotating stay relative to the working directory.
+
 Templates define which columns are required for a given experiment type.
 Each SDRF can declare one or more templates via `comment[sdrf template]` columns.
 

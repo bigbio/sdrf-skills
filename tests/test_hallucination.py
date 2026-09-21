@@ -540,3 +540,34 @@ class TestUnimodTableIntegrity:
         assert swap is not None
         assert swap.correct_accession == "UNIMOD:374"
         assert swap.correct_name == "Dehydro"
+
+class TestBundledSpecResolution:
+    """The spec ships in the bundle, so it must resolve from any working directory.
+
+    Installed as a Claude Code plugin, cwd is the user's project, not the plugin
+    root -- a cwd-relative "spec/..." silently misses and the detector degrades to
+    the hardcoded fallback map with no signal.
+    """
+
+    def test_resolves_without_cwd(self, tmp_path, monkeypatch):
+        from tools.column_ontology_map import BUNDLED_TERMS_TSV, resolve_terms_tsv
+
+        if not BUNDLED_TERMS_TSV.exists():
+            pytest.skip("spec submodule not initialised")
+        monkeypatch.chdir(tmp_path)
+        assert resolve_terms_tsv() == BUNDLED_TERMS_TSV
+
+    def test_explicit_path_still_wins(self, tmp_path):
+        from tools.column_ontology_map import resolve_terms_tsv
+
+        terms = tmp_path / "TERMS.tsv"
+        terms.write_text("term\tvalues\n")
+        assert resolve_terms_tsv(terms) == terms
+
+    def test_missing_spec_returns_none(self, tmp_path, monkeypatch):
+        from tools.column_ontology_map import resolve_terms_tsv
+
+        monkeypatch.chdir(tmp_path)
+        monkeypatch.setattr("tools.column_ontology_map.BUNDLED_TERMS_TSV",
+                            tmp_path / "nope" / "TERMS.tsv")
+        assert resolve_terms_tsv() is None

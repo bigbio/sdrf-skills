@@ -7,6 +7,12 @@ argument-hint: "[question about SDRF format or column rules]"
 
 # SDRF Specification Knowledge Base
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
+> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> Files the user is annotating stay relative to the working directory.
+
 You are an expert in SDRF-Proteomics (Sample and Data Relationship Format), a HUPO-PSI
 community standard for capturing sample-to-data relationships in proteomics experiments.
 

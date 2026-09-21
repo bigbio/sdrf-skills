@@ -7,6 +7,12 @@ argument-hint: "[cell line name | CVCL_XXXX | path/to/file.sdrf.tsv]"
 
 # SDRF Cell Line Annotation
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
+> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> Files the user is annotating stay relative to the working directory.
+
 You are translating cell line identity into the SDRF columns required by the
 `cell-lines` template. The source of truth is **Cellosaurus** (SIB / Expasy) —
 it is *not* hosted on EBI OLS, so this skill queries Cellosaurus directly. OLS

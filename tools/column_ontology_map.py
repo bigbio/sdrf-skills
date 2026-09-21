@@ -111,16 +111,32 @@ def get_ontologies_for_column(inner_name: str) -> list[str]:
     return COLUMN_ONTOLOGY_MAP.get(inner_name.lower(), [])
 
 
-def try_load_terms_tsv(spec_path: str | Path = "spec/sdrf-proteomics/TERMS.tsv") -> dict[str, list[str]] | None:
+# The spec submodule ships inside the bundle, so resolve it from this file rather
+# than from the working directory: installed as a plugin, cwd is the user's project
+# and a cwd-relative "spec/..." silently misses, degrading to the hardcoded map.
+BUNDLED_TERMS_TSV = Path(__file__).resolve().parent.parent / "spec" / "sdrf-proteomics" / "TERMS.tsv"
+
+
+def resolve_terms_tsv(spec_path: str | Path | None = None) -> Path | None:
+    """Locate TERMS.tsv: explicit path, then the bundled spec, then cwd-relative."""
+    candidates = (
+        [Path(spec_path)] if spec_path
+        else [BUNDLED_TERMS_TSV, Path("spec/sdrf-proteomics/TERMS.tsv")]
+    )
+    return next((c for c in candidates if c.exists()), None)
+
+
+def try_load_terms_tsv(spec_path: str | Path | None = None) -> dict[str, list[str]] | None:
     """Try to load column-ontology mappings from TERMS.tsv.
 
     Handles both the current spec header (``term``) and legacy (``name``).
+    With no argument, reads the spec bundled with this checkout.
 
     Returns a dict mapping column inner name -> list of ontology prefixes,
     or None if the file is not available.
     """
-    path = Path(spec_path)
-    if not path.exists():
+    path = resolve_terms_tsv(spec_path)
+    if path is None:
         return None
 
     import csv
