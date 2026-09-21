@@ -117,12 +117,16 @@ copy and the others desync silently.
 
 ## MCP
 
-`.mcp.json` wires the bundled `mcp/server.py` (FastMCP, name `sdrf-pride-pmc`) as a project MCP server,
-launched via `./.venv/bin/python`. It exposes 11 tools: `search_projects`, `search_extensive`,
+`.mcp.json` wires the bundled `mcp/server.py` (FastMCP, name `sdrf-pride-pmc`), launched via
+`${CLAUDE_PLUGIN_ROOT:-.}/.venv/bin/python`. The entry **must** carry `"type": "stdio"`: without it
+Claude Code never resolves `command` and tries to exec a binary literally named `stdio`, failing with
+`ENOENT: no such file or directory, posix_spawn 'stdio'`. It exposes 11 tools: `search_projects`, `search_extensive`,
 `get_project_details`, `get_project_files`, `get_article_metadata`, `get_pdf_by_unpaywall`, `search`,
 `searchClasses`, `getChildren`, `get_full_text_article`, `get_full_text_section`. `fastmcp`/`httpx` are in `requirements.txt` and
-`environment.yml`. **The server depends on `.venv/` existing** (`uv venv .venv && uv pip install
---python .venv/bin/python -r requirements.txt`); conda users must repoint `command` in `.mcp.json`.
+`environment.yml`. **The server depends on `.venv/` existing** next to the plugin
+(`uv venv "$CLAUDE_PLUGIN_ROOT/.venv" && uv pip install --python "$CLAUDE_PLUGIN_ROOT/.venv/bin/python"
+-r "$CLAUDE_PLUGIN_ROOT/requirements.txt"`) — a marketplace install ships no venv, and a plugin
+upgrade replaces the directory, so it has to be re-created. Conda users repoint `command`.
 
 Skills still call **five tools that exist in no bundled server** — `searchClassesWithEmbeddingModel`,
 `listEmbeddingModels`, `searchWithEmbeddingModel` (in `sdrf-knowledge` and `sdrf-annotate`), and

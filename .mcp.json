@@ -1,6 +1,7 @@
 {
   "mcpServers": {
     "sdrf-pride-pmc": {
+      "type": "stdio",
       "command": "${CLAUDE_PLUGIN_ROOT:-.}/.venv/bin/python",
       "args": ["${CLAUDE_PLUGIN_ROOT:-.}/mcp/server.py"],
       "env": {}
