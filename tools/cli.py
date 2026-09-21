@@ -2,6 +2,7 @@
 
 Usage:
   python -m tools check <file.sdrf.tsv>          # hallucination check
+  python -m tools structure <file.sdrf.tsv>       # structural invariants
   python -m tools score <file.sdrf.tsv>           # quality scoring
   python -m tools fix <file.sdrf.tsv> [-o out]    # auto-fix
   python -m tools benchmark <PXD1> <file2> ...    # benchmark suite
@@ -44,6 +45,18 @@ def cmd_check(args: argparse.Namespace) -> int:
             print(f"  Row(s) {m.rows}: expected '{m.expected_label}', got '{m.actual_label}'")
 
     return 0 if report.is_clean else 1
+
+
+def cmd_structure(args: argparse.Namespace) -> int:
+    from tools.structure import check_structure
+    findings = check_structure(args.sdrf_file)
+    if not findings:
+        print("Structure OK: acquisition, template declaration and column order are consistent.")
+        return 0
+    print(f"{len(findings)} structural problem(s):")
+    for finding in findings:
+        print(f"  {finding}")
+    return 1
 
 
 def cmd_score(args: argparse.Namespace) -> int:
@@ -269,6 +282,12 @@ def main() -> None:
     p.add_argument("--offline", action="store_true")
     p.add_argument("--spec", default=None)
 
+    # structure
+    p = subparsers.add_parser(
+        "structure", help="Check SDRF structural invariants (acquisition, templates, column order)"
+    )
+    p.add_argument("sdrf_file")
+
     # score
     p = subparsers.add_parser("score", help="Score SDRF quality (0-100)")
     p.add_argument("sdrf_file")
@@ -370,6 +389,7 @@ def main() -> None:
 
     commands = {
         "check": cmd_check,
+        "structure": cmd_structure,
         "score": cmd_score,
         "fix": cmd_fix,
         "benchmark": cmd_benchmark,
