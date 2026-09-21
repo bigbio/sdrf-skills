@@ -4,6 +4,7 @@ from tools.structure import (
     acquisition_family,
     check_factor_values_last,
     check_one_template_per_cell,
+    check_reserved_words_allowed,
     check_single_acquisition_method,
     check_structure,
     check_template_declaration_constant,
@@ -134,3 +135,60 @@ class TestCheckStructure:
             "multiple-templates-in-one-cell",
             "template-contradicts-acquisition",
         }
+
+
+class TestReservedWords:
+    """Rules come from TERMS.tsv, which is a submodule and absent in CI, so build a fixture.
+
+    The fixture is written with CRLF line endings on purpose: that is how the real TERMS.tsv
+    ships, and comparing an unstripped 'false\r' reads as true, which would silently make the
+    check pass everything.
+    """
+
+    def terms(self, tmp_path) -> str:
+        header = "term\ttype\tvalues\tallow_not_available\tallow_not_applicable"
+        rows = [
+            "cell line\tcharacteristics\tCLO\tfalse\tfalse",
+            "age\tcharacteristics\tpattern\ttrue\tfalse",
+            "disease\tcharacteristics\tMONDO\ttrue\ttrue",
+        ]
+        path = tmp_path / "TERMS.tsv"
+        path.write_bytes(("\r\n".join([header, *rows]) + "\r\n\r\n").encode("utf-8"))
+        return str(path)
+
+    def sdrf_with(self, column: str, value: str) -> str:
+        return build(["source name", column], [["sample 1", value]])
+
+    def test_disallowed_reserved_word_is_reported(self, tmp_path):
+        content = self.sdrf_with("characteristics[cell line]", "not applicable")
+        findings = check_reserved_words_allowed(parse_sdrf(content), spec_path=self.terms(tmp_path))
+        assert [f.rule for f in findings] == ["reserved-word-not-allowed"]
+
+    def test_a_real_value_is_fine(self, tmp_path):
+        content = self.sdrf_with("characteristics[cell line]", "HeLa")
+        assert check_reserved_words_allowed(parse_sdrf(content), spec_path=self.terms(tmp_path)) == []
+
+    def test_each_reserved_word_is_permitted_independently(self, tmp_path):
+        """characteristics[age] allows 'not available' but not 'not applicable'."""
+        terms = self.terms(tmp_path)
+        ok = self.sdrf_with("characteristics[age]", "not available")
+        assert check_reserved_words_allowed(parse_sdrf(ok), spec_path=terms) == []
+        bad = self.sdrf_with("characteristics[age]", "not applicable")
+        assert [f.rule for f in check_reserved_words_allowed(parse_sdrf(bad), spec_path=terms)] == [
+            "reserved-word-not-allowed"
+        ]
+
+    def test_column_allowing_both_is_fine(self, tmp_path):
+        terms = self.terms(tmp_path)
+        for word in ("not available", "not applicable"):
+            content = self.sdrf_with("characteristics[disease]", word)
+            assert check_reserved_words_allowed(parse_sdrf(content), spec_path=terms) == []
+
+    def test_missing_spec_makes_the_check_silent(self):
+        """No spec means no opinion: the check must not guess, and must not crash."""
+        content = self.sdrf_with("characteristics[cell line]", "not applicable")
+        assert check_reserved_words_allowed(parse_sdrf(content), spec_path="/nonexistent/TERMS.tsv") == []
+
+    def test_unknown_column_has_no_rule(self, tmp_path):
+        content = self.sdrf_with("characteristics[invented thing]", "not applicable")
+        assert check_reserved_words_allowed(parse_sdrf(content), spec_path=self.terms(tmp_path)) == []
