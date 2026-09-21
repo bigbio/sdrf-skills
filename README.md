@@ -45,6 +45,20 @@ Sixteen skills, most in the `sdrf:` namespace (the two review-gate skills use po
 
 ## Installation
 
+**Claude Code, in two lines** — no clone needed; the marketplace install fetches the `spec/`
+submodules with it:
+
+```text
+/plugin marketplace add bigbio/sdrf-skills
+/plugin install sdrf-skills@sdrf-skills
+```
+
+Then run `/sdrf-skills:sdrf-setup`, which installs the helper tools (`parse_sdrf`, `techsdrf`) and
+tells you where the plugin lives. The skills resolve `spec/`, `tools/` and `data/` against
+`$CLAUDE_PLUGIN_ROOT`, so you can work from any directory.
+
+**From a checkout** (for development, or for the other platforms below):
+
 ```bash
 # 1. Clone WITH submodules (the spec data is a submodule):
 git clone --recurse-submodules https://github.com/bigbio/sdrf-skills
@@ -62,18 +76,32 @@ Update the bundled spec any time with `git submodule update --remote --recursive
 
 <details><summary>Claude Code (plugin)</summary>
 
-**Recommended: run from a working tree**
-```bash
-cd sdrf-skills && claude --plugin-dir .   # loads skills from the working tree
-```
-Start from the repo root (skills reference `spec/` by repo-root-relative path). Then run `/sdrf-skills:sdrf-setup`, and use `/sdrf-skills:sdrf-annotate PXD######` or `/sdrf-skills:sdrf-validate your_file.sdrf.tsv`.
-
-**Marketplace install** (this repo is also a marketplace as of `.claude-plugin/marketplace.json`):
-```bash
+**Marketplace install (recommended)**
+```text
 /plugin marketplace add bigbio/sdrf-skills
 /plugin install sdrf-skills@sdrf-skills
 ```
-Caveat: several skills (e.g. `/sdrf-skills:sdrf-annotate`) reference `spec/` by a path relative to the repo root. A marketplace install copies the plugin into Claude Code's plugin cache, so those repo-root-relative reads may not resolve correctly there yet — the skills would need to resolve `spec/` via `${CLAUDE_PLUGIN_ROOT}` instead. Until that's done, prefer `--plugin-dir` for full functionality; the marketplace path is offered for discovery/installability, tracked further at [#27](https://github.com/bigbio/sdrf-skills/issues/27).
+Claude Code clones the repository with its submodules, so the SDRF spec data comes with the plugin.
+Skills resolve bundled paths through `$CLAUDE_PLUGIN_ROOT`, so any working directory is fine — your
+SDRF files stay where they are. Run `/sdrf-skills:sdrf-setup` once for `parse_sdrf`/`techsdrf`, then
+`/sdrf-skills:sdrf-annotate PXD######` or `/sdrf-skills:sdrf-validate your_file.sdrf.tsv`.
+
+**From a working tree (development)**
+```bash
+cd sdrf-skills && claude --plugin-dir .   # loads skills from the working tree
+```
+
+**Bundled MCP server (optional).** `.mcp.json` wires `mcp/server.py` (PRIDE + Europe PMC + OLS
+helpers) and expects a virtualenv *next to the plugin*, so create it inside the plugin directory —
+`/sdrf-skills:sdrf-setup` prints the exact path for your install:
+
+```bash
+uv venv "$PLUGIN_ROOT/.venv" && uv pip install --python "$PLUGIN_ROOT/.venv/bin/python" -r "$PLUGIN_ROOT/requirements.txt"
+```
+
+Without it the server simply fails to connect; the skills fall back to their other sources.
+A plugin upgrade replaces the plugin directory, so re-create the venv after upgrading.
+
 </details>
 
 <details><summary>Cursor</summary>

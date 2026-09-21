@@ -7,6 +7,12 @@ argument-hint: "[file path, PXD accession, or GitHub PR URL]"
 
 # SDRF Review Workflow
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
+> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> Files the user is annotating stay relative to the working directory.
+
 You are performing a comprehensive quality review of an SDRF file — like a peer reviewer
 would for a PRIDE submission or a community annotation PR.
 

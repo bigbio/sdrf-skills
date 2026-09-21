@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "sdrf-pride-pmc": {
-      "command": "./.venv/bin/python",
-      "args": ["mcp/server.py"],
+      "command": "${CLAUDE_PLUGIN_ROOT:-.}/.venv/bin/python",
+      "args": ["${CLAUDE_PLUGIN_ROOT:-.}/mcp/server.py"],
       "env": {}
     }
   }

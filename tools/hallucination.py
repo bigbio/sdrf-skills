@@ -283,6 +283,7 @@ def detect_hallucinations(
     # Load column->ontology mappings
     ont_map = COLUMN_ONTOLOGY_MAP.copy()
     if spec_path:
+        # Resolved via resolve_terms_tsv, so a bundled spec is found whatever the cwd.
         loaded = try_load_terms_tsv(spec_path)
         if loaded:
             ont_map.update(loaded)
@@ -640,7 +641,7 @@ def main(argv: list[str] | None = None) -> None:
     )
     parser.add_argument(
         "--spec", default=None,
-        help="Path to TERMS.tsv (default: spec/sdrf-proteomics/TERMS.tsv)"
+        help="Path to TERMS.tsv (default: the spec bundled with sdrf-skills)"
     )
     args = parser.parse_args(argv)
 

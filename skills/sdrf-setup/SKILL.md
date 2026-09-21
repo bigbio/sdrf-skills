@@ -7,6 +7,12 @@ argument-hint: "[optional: conda | pip | check]"
 
 # SDRF Setup Workflow
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
+> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> Files the user is annotating stay relative to the working directory.
+
 You are guiding the user through installing SDRF skills dependencies. Follow these steps.
 
 **In Cursor**: The user invokes this by asking "install SDRF dependencies" or similar (no `/sdrf-skills:sdrf-setup` slash command). Ensure `environment.yml` and `requirements.txt` exist at the workspace root; if not, suggest cloning the full sdrf-skills repo or copying those files.
@@ -76,13 +82,30 @@ If both succeed, setup is complete.
 
 ## Step 4: Optional — Spec Submodule
 
-If the user cloned without submodules or wants the latest spec:
+A marketplace install already carries `spec/` (Claude Code clones submodules), so this step is only
+for checkouts. If the user cloned without submodules or wants the latest spec:
 
 ```bash
 git submodule update --init --recursive
 # To pull latest:
 git submodule update --remote --recursive
 ```
+
+## Step 4b: Bundled MCP server (Claude Code plugin installs)
+
+`.mcp.json` runs `mcp/server.py` (PRIDE, Europe PMC, Unpaywall, OLS helpers) from a virtualenv
+**inside the plugin directory**, because a marketplace install lives in Claude Code's plugin cache,
+not in the user's project. Resolve the directory first and show the user the real path:
+
+```bash
+echo "$CLAUDE_PLUGIN_ROOT"
+uv venv "$CLAUDE_PLUGIN_ROOT/.venv"
+uv pip install --python "$CLAUDE_PLUGIN_ROOT/.venv/bin/python" -r "$CLAUDE_PLUGIN_ROOT/requirements.txt"
+```
+
+(`python -m venv` + `pip install -r` works the same way if `uv` is unavailable.) Tell the user a
+plugin upgrade replaces that directory, so the venv has to be re-created afterwards. Without it the
+`sdrf-pride-pmc` server just fails to connect — the skills fall back to their other sources.
 
 ## Step 5: Optional — MCP Servers
 

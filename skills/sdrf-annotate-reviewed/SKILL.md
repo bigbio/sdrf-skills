@@ -5,6 +5,11 @@ description: Create or improve an SDRF through a producer-reviewer workflow with
 
 # Reviewed SDRF Annotation
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/tools/review_gate.py`), or your sdrf-skills checkout on other
+> platforms. Files the user is annotating stay relative to the working directory.
+
 Orchestrate annotation and independent review. Keep producer and reviewer
 contexts separate; validation by the producer is not review.
 

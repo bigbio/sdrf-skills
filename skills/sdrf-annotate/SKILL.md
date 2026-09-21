@@ -7,6 +7,12 @@ argument-hint: "[PXD accession or experiment description]"
 
 # SDRF Annotation Workflow
 
+> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
+> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
+> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
+> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> Files the user is annotating stay relative to the working directory.
+
 You are performing a complete SDRF annotation. Follow these steps IN ORDER.
 Do not skip steps. Do not guess — use MCP tools to verify everything.
 

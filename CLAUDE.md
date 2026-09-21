@@ -10,9 +10,10 @@ is **not** stored here; it is read at runtime from the `spec/` git submodule.
 
 Skills are auto-discovered — `.claude-plugin/plugin.json` carries no `skills` key, so Claude Code
 scans the `skills/` directory automatically. Each SKILL.md declares its own name and routing
-description in frontmatter. Currently 20: 18 domain skills
-named `sdrf-*` (invoked as `/sdrf-skills:sdrf-annotate` etc. once installed as a marketplace plugin) plus 2 review-gate skills named `sdrf-adversarial-review`
-and `sdrf-annotate-reviewed`, deliberately platform-portable rather than plugin-namespaced.
+description in frontmatter. Currently 16: 14 user-invocable domain skills named `sdrf-*` (invoked
+as `/sdrf-skills:sdrf-annotate` etc. once installed as a marketplace plugin) plus 2 review-gate
+skills named `sdrf-adversarial-review` and `sdrf-annotate-reviewed`, which are dispatched into a
+fresh context rather than typed.
 Run `ls skills/` for the current set — **do not trust a hardcoded skill count anywhere in this repo**;
 README.md alone carries three contradictory numbers, and commit `d5c4c70` exists only to repair drift.
 
@@ -79,13 +80,15 @@ is by design; they are entry points. `knowledge` is referenced exactly once (by 
 itself unreferenced, so it is only transitively reachable despite its description claiming it is
 background for all skills.
 
-**Everything is relative-path fragile.** The 28 spec references in `skills/` (across 27 lines in 12
-files) are all repo-root-relative — 11 to `TERMS.tsv`, 9 to `templates.yaml`, 8 to individual template
-YAMLs. None is absolute or variable-prefixed, and `CLAUDE_PLUGIN_ROOT` appears **zero** times
-repo-wide. Installed as a real plugin these resolve against the *user's* cwd and silently miss; the
-supported local-dev flow is `claude --plugin-dir <path>`, which loads skills from the repo root.
+**Bundled paths resolve against the plugin root, not the cwd.** The spec references in `skills/`
+are still written bare (`spec/sdrf-proteomics/TERMS.tsv`), so every skill that reads one opens with a
+**Bundle paths** blockquote telling the agent to resolve them against `$CLAUDE_PLUGIN_ROOT` and to
+run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`. On the Python side,
+`resolve_terms_tsv()` finds the bundled `TERMS.tsv` from `__file__` before falling back to a
+cwd-relative path. Keep both when adding a skill: installed as a plugin, the cwd is the user's
+project, and a cwd-relative read silently misses (degrading to the hardcoded fallback map).
 
-### Frontmatter schema (uniform across the 18 domain skills — match it exactly)
+### Frontmatter schema (uniform across the 14 domain skills — match it exactly)
 
 ```yaml
 ---
