@@ -284,8 +284,15 @@ Exit 0 means clean; exit 1 lists one line per violated invariant. It catches thi
 validates as correct: DDA and DIA rows in the same file, a `comment[sdrf template]` value that
 changes from row to row, several templates packed into one cell instead of repeated columns, a
 declared `dia-acquisition` template contradicted by a DDA acquisition value, factor value columns
-that are not last, and `not available` / `not applicable` in a column whose TERMS.tsv row forbids
-it (omit the column instead). Fix every line it reports before working through the list below.
+that are not last, `not available` / `not applicable` in a column whose TERMS.tsv row forbids it
+(omit the column instead), and the row-coordinate rules: technical replicates numbered 1..n within
+a sample, a sample having as many data files as it claims replicates, and
+(`source name`, biological replicate, technical replicate, fraction identifier) unique across rows.
+It also flags `characteristics[...]` values written as an `NT=<label>;AC=<accession>` pair: a sample
+property is the bare label (`colon`), or the identifier alone where the column is an accession
+(`CVCL_0030`). The NT/AC form belongs to `comment[...]`. Structured sample properties keep their own
+keys (`SN=` pooled sample, `CT=`/`QY=` spiked compound) and are not affected.
+Fix every line it reports before working through the list below.
 
 - [ ] All rows have the same number of columns (no ragged rows)
 - [ ] Uniqueness: (`source name` + `assay name` + `comment[label]`) is unique (ERROR); (`source name` + `assay name`) unique (WARN); coordinate (`source name`, `characteristics[biological replicate]`, `comment[technical replicate]`, `comment[fraction identifier]`) unique across rows — no duplicate coordinates
