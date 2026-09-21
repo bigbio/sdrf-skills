@@ -207,8 +207,12 @@ reimplementing merge semantics.
 1. **NEVER guess ontology accessions** — always verify via OLS. This is *not* self-enforcing: only
    `annotate` and `cellline` state it about accessions specifically, and `knowledge` — despite being
    the "background" skill — contains no such language at all. This file is the only global home for it.
-2. **UNIMOD:1 = Acetyl, UNIMOD:21 = Phospho** — the #1 swap. (`tools/column_ontology_map.py` maps both
-   UNIMOD:354 and UNIMOD:737 to `TMT6plex`, so swaps between *those* are never detected.)
+2. **UNIMOD:1 = Acetyl, UNIMOD:21 = Phospho** — the #1 swap. `tools/column_ontology_map.py`'s
+   `UNIMOD_KNOWN` is what detects these; every row in it was verified against OLS on 2026-09-21
+   (issue #73 found 8 wrong rows, including `UNIMOD:374` → `Propionamide`, which made `check`
+   *endorse* the error it exists to catch). Labels are unique, so `UNIMOD_BY_NAME` inverts the
+   table: when NT= names a known modification, the accession is treated as the typo. **Verify any
+   new row against OLS before adding it** — a wrong entry here is invisible by construction.
 3. **Reserved words**: `not available` / `not applicable` — never `N/A`, `NA`, `unknown`. Gated
    per-column by TERMS.tsv's `allow_*` booleans. Exception: `sdrf-metascreen` emits a curation TSV, not
    an SDRF, and uses **neither** reserved word — it mandates `unclear` for any undetermined `extract`

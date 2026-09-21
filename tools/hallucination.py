@@ -13,6 +13,7 @@ from pathlib import Path
 
 from tools.column_ontology_map import (
     COLUMN_ONTOLOGY_MAP,
+    UNIMOD_BY_NAME,
     UNIMOD_KNOWN,
     UNIMOD_SWAPS,
     try_load_terms_tsv,
@@ -187,12 +188,20 @@ def _check_unimod_swap(accession: str, name: str) -> UnimodSwap | None:
     # strict equality reported each of those as a swap.
     known_name = UNIMOD_KNOWN.get(accession.upper())
     if known_name and not _modification_label_matches(name, known_name, accession):
+        # Which half is the typo? If the name is itself a known UNIMOD label,
+        # the accession is what is wrong -- NT=Propionamide;AC=UNIMOD:374 means
+        # UNIMOD:24, not a request to relabel the mod as Dehydro. This is the
+        # same rule the hardcoded UNIMOD_SWAPS entries encode: the name is what
+        # a curator or a search tool supplies, the accession is the half that
+        # gets guessed. When the name is unrecognised, keep the accession and
+        # correct the name, as before.
+        by_name = UNIMOD_BY_NAME.get(name.strip().lower())
         return UnimodSwap(
             column="",
             wrong_accession=accession,
             wrong_name_for_accession=name,
-            correct_accession=accession,
-            correct_name=known_name,
+            correct_accession=by_name or accession,
+            correct_name=name.strip() if by_name else known_name,
             rows=[],
         )
     return None

@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.column_ontology_map import (
+    UNIMOD_BY_NAME,
     UNIMOD_KNOWN,
     UNIMOD_SWAPS,
     WRONG_RESERVED,
@@ -196,6 +197,15 @@ def _fix_unimod_swap(mod_str: str) -> tuple[str | None, str]:
     # Check accession is known but name doesn't match
     known = UNIMOD_KNOWN.get(mod.ac.upper())
     if known and known.lower() != mod.nt.strip().lower():
+        # Prefer correcting the accession when the name is itself a known UNIMOD
+        # label: NT=Propionamide;AC=UNIMOD:374 is a mistyped accession
+        # (UNIMOD:24), not a request to relabel the mod as Dehydro.
+        by_name = UNIMOD_BY_NAME.get(mod.nt.strip().lower())
+        if by_name:
+            fixed = mod_str.replace(f"AC={mod.ac}", f"AC={by_name}")
+            reason = (f"{mod.ac} is {known}, not {mod.nt}. "
+                      f"Correct accession is {by_name}")
+            return fixed, reason
         fixed = mod_str.replace(f"NT={mod.nt}", f"NT={known}")
         reason = f"{mod.ac} = {known}, not {mod.nt}"
         return fixed, reason

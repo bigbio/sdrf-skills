@@ -1101,13 +1101,37 @@ def _unpaywall_result(
     return rec
 
 
+def _pick_oa_location(uw: dict) -> tuple[dict, str | None, int]:
+    """Choose the OA location to download from an Unpaywall record.
+
+    `best_oa_location` regularly has `url_for_pdf: null` (a publisher landing
+    page) while a repository copy in `oa_locations[]` does expose a direct PDF,
+    so falling back through the list is the difference between reporting a paper
+    as unreachable and fetching it. Unpaywall already orders `oa_locations`
+    best-first, so the first entry with a PDF is the preferred one.
+
+    Returns (location, pdf_url, n_oa_locations); `location` is the one the URL
+    came from, so license/host_type describe what is actually downloaded.
+    """
+    best = uw.get("best_oa_location") or {}
+    locations = [loc for loc in (uw.get("oa_locations") or []) if isinstance(loc, dict)]
+    if best.get("url_for_pdf"):
+        return best, best["url_for_pdf"], len(locations)
+    for loc in locations:
+        if loc.get("url_for_pdf"):
+            return loc, loc["url_for_pdf"], len(locations)
+    return best, None, len(locations)
+
+
 # --- 1.3f Get PDF via Unpaywall 并下载到本地 ---
 @mcp.tool()
 def get_pdf_by_unpaywall(identifiers: list[str], output_dir: str | None = None) -> list[dict]:
     """
     Find OA PDF via Unpaywall and download to local. Accepts DOI, PMID, doi_url, or pubmed_url.
-    For PMID: resolves to DOI via Europe PMC first. When Unpaywall has no pdf_url, falls back
-    to Europe PMC PDF. Downloaded files are validated against the PDF magic bytes; non-PDF
+    For PMID: resolves to DOI via Europe PMC first. The PDF URL comes from best_oa_location,
+    then from the first oa_locations[] entry exposing url_for_pdf (a repository copy often does
+    when the publisher landing page does not); the returned license/host_type describe the
+    location actually used. Falls back to the Europe PMC PDF last. Downloaded files are validated against the PDF magic bytes; non-PDF
     responses (e.g. publisher anti-bot HTML) are rejected.
     Download is streamed with a size cap (env SDRF_MCP_MAX_DOWNLOAD_MB, default 500 MB).
 
@@ -1157,9 +1181,9 @@ def get_pdf_by_unpaywall(identifiers: list[str], output_dir: str | None = None) 
         license_val = None
         host_type = None
         uw = _cached_get_json(f"{UNPAYWALL_BASE}/{doi}", params={"email": email})
+        n_oa_locations = 0
         if uw:
-            best = uw.get("best_oa_location") or {}
-            pdf_url = best.get("url_for_pdf")
+            best, pdf_url, n_oa_locations = _pick_oa_location(uw)
             oa_status = uw.get("oa_status") or "closed"
             license_val = best.get("license")
             host_type = best.get("host_type")
@@ -1171,10 +1195,18 @@ def get_pdf_by_unpaywall(identifiers: list[str], output_dir: str | None = None) 
                 pdf_url = _extract_pdf_url(hit)
 
         if not pdf_url:
+            # Distinguish "not openly available" from "open access, but no direct
+            # PDF link" -- they mean very different things to a caller deciding
+            # whether a source is reachable.
+            if n_oa_locations:
+                detail = (f"{n_oa_locations} Unpaywall OA location(s) exist but none "
+                          f"exposed a direct PDF link, and Europe PMC had none")
+            else:
+                detail = "no Unpaywall OA location and no Europe PMC PDF"
             results.append(_unpaywall_result(
                 raw, doi=doi, pmid=pmid,
                 oa_status=oa_status, license_val=license_val, host_type=host_type,
-                error="No PDF URL found (Unpaywall and Europe PMC)"))
+                error=f"No PDF URL found ({detail})"))
             continue
 
         # Stream-download and verify PDF magic bytes
