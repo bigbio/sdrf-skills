@@ -273,6 +273,19 @@ When validating multiple files, prefer small bounded batches. Do not launch larg
 
 ## Step 5: Consistency Checks
 
+Run the deterministic structural checks first — they decide from the file alone, so do not
+re-reason about what they cover:
+
+```bash
+PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools structure <file.sdrf.tsv>
+```
+
+Exit 0 means clean; exit 1 lists one line per violated invariant. It catches things `parse_sdrf`
+validates as correct: DDA and DIA rows in the same file, a `comment[sdrf template]` value that
+changes from row to row, several templates packed into one cell instead of repeated columns, a
+declared `dia-acquisition` template contradicted by a DDA acquisition value, and factor value
+columns that are not last. Fix every line it reports before working through the list below.
+
 - [ ] All rows have the same number of columns (no ragged rows)
 - [ ] Uniqueness: (`source name` + `assay name` + `comment[label]`) is unique (ERROR); (`source name` + `assay name`) unique (WARN); coordinate (`source name`, `characteristics[biological replicate]`, `comment[technical replicate]`, `comment[fraction identifier]`) unique across rows — no duplicate coordinates
 - [ ] Value encoding by column type: `characteristics[...]` ontology values are the BARE label (flag a pure `NT=;AC=` pair); `comment[...]` CV values are `NT=<label>;AC=<accession>`; structured characteristics (`spiked compound` CT=/QY=, `pooled sample` SN=) keep key-value
