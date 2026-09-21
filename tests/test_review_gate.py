@@ -399,3 +399,74 @@ def test_plugin_config_uses_only_command_hooks():
         for group in groups:
             for hook in group["hooks"]:
                 assert hook["type"] == "command"
+
+
+def test_digest_ignores_line_ending_encoding(tmp_path: Path):
+    lf = tmp_path / "lf.sdrf.tsv"
+    crlf = tmp_path / "crlf.sdrf.tsv"
+    lf.write_bytes(b"source name\tassay name\nsample-1\trun-1\n")
+    crlf.write_bytes(b"source name\tassay name\r\nsample-1\trun-1\r\n")
+
+    assert artifact_digest(lf) == artifact_digest(crlf)
+
+
+def test_digest_normalizes_across_read_chunk_boundary(tmp_path: Path, monkeypatch):
+    # A \r\n split across two reads must normalize like any other, or the digest
+    # silently depends on buffer size.
+    monkeypatch.setattr("tools.review_gate.DIGEST_CHUNK_BYTES", 8)
+    lf = tmp_path / "lf.sdrf.tsv"
+    crlf = tmp_path / "crlf.sdrf.tsv"
+    body_lf = b"\n".join(f"sample-{index}\trun-{index}".encode() for index in range(500)) + b"\n"
+    lf.write_bytes(body_lf)
+    crlf.write_bytes(body_lf.replace(b"\n", b"\r\n"))
+
+    assert artifact_digest(lf) == artifact_digest(crlf)
+
+
+def test_lone_carriage_return_still_changes_digest(tmp_path: Path):
+    plain = tmp_path / "plain.sdrf.tsv"
+    with_cr = tmp_path / "cr.sdrf.tsv"
+    plain.write_bytes(b"source name\tassay name\nsample-1\trun-1\n")
+    with_cr.write_bytes(b"source name\tassay name\nsample-1\rrun-1\n")
+
+    assert artifact_digest(plain) != artifact_digest(with_cr)
+
+
+def test_receipt_survives_crlf_checkout(review_repo: Path, tmp_path: Path):
+    artifact = _write_sdrf(review_repo)
+    rel = artifact.relative_to(review_repo).as_posix()
+    track_artifacts([artifact], cwd=review_repo)
+    report_path = tmp_path / "report.json"
+    report_path.write_text(
+        json.dumps(_passing_report(rel, artifact_digest(artifact))), encoding="utf-8"
+    )
+    approve_artifact(
+        rel,
+        report_path=report_path,
+        reviewer="independent-reviewer",
+        cwd=review_repo,
+    )
+
+    # Simulate a clone whose EOL filter smudges the working tree to CRLF.
+    artifact.write_bytes(artifact.read_bytes().replace(b"\n", b"\r\n"))
+
+    status = review_status(review_repo)
+
+    assert status["pending"] == []
+    assert [entry["artifact"] for entry in status["approved"]] == [rel]
+
+
+def test_crlf_blob_baseline_matches_lf_working_tree(review_repo: Path):
+    artifact = review_repo / "data" / "PXD000002.sdrf.tsv"
+    artifact.parent.mkdir(exist_ok=True)
+    artifact.write_bytes(b"source name\tassay name\r\nsample-1\trun-1\r\n")
+    _git(review_repo, "add", "--", "data/PXD000002.sdrf.tsv")
+    _git(review_repo, "commit", "-qm", "commit CRLF artifact")
+    rel = artifact.relative_to(review_repo).as_posix()
+    # The blob holds CRLF; a normalizing checkout gives the working tree LF.
+    artifact.write_bytes(b"source name\tassay name\nsample-1\trun-1\n")
+    track_artifacts([artifact], cwd=review_repo)
+
+    status = review_status(review_repo)
+
+    assert [entry["artifact"] for entry in status["pending"]] == []

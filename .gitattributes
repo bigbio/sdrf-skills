@@ -1,0 +1,9 @@
+# Pin working-tree line endings to LF regardless of the cloner's core.autocrlf.
+# Working-tree bytes must match the committed blob: the review gate hashes the
+# working tree but derives its baseline from the blob, and CRLF is a data fault
+# in its own right for TSV readers (a trailing \r lands on the last column).
+* text=auto eol=lf
+
+# Committed with CRLF as reference output. Renormalizing them would rewrite
+# recorded benchmark results, so keep their bytes exactly as stored.
+examples/benchmark/results/** -text
