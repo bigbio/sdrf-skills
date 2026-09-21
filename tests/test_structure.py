@@ -4,6 +4,7 @@ from tools.structure import (
     acquisition_family,
     check_factor_values_last,
     check_one_template_per_cell,
+    check_reserved_words_allowed,
     check_single_acquisition_method,
     check_structure,
     check_template_declaration_constant,
@@ -134,3 +135,36 @@ class TestCheckStructure:
             "multiple-templates-in-one-cell",
             "template-contradicts-acquisition",
         }
+
+
+class TestReservedWords:
+    """characteristics[cell line] permits neither reserved word in TERMS.tsv."""
+
+    def columns(self, value: str) -> str:
+        return build(["source name", "characteristics[cell line]"], [["sample 1", value]])
+
+    def test_disallowed_reserved_word_is_reported(self):
+        findings = check_reserved_words_allowed(parse_sdrf(self.columns("not applicable")))
+        assert [f.rule for f in findings] == ["reserved-word-not-allowed"]
+
+    def test_a_real_value_is_fine(self):
+        assert check_reserved_words_allowed(parse_sdrf(self.columns("HeLa"))) == []
+
+    def test_allowed_reserved_word_is_fine(self):
+        """characteristics[age] allows 'not available' but not 'not applicable'."""
+        ok = build(["source name", "characteristics[age]"], [["sample 1", "not available"]])
+        assert check_reserved_words_allowed(parse_sdrf(ok)) == []
+        bad = build(["source name", "characteristics[age]"], [["sample 1", "not applicable"]])
+        assert [f.rule for f in check_reserved_words_allowed(parse_sdrf(bad))] == [
+            "reserved-word-not-allowed"
+        ]
+
+    def test_missing_spec_makes_the_check_silent(self):
+        findings = check_reserved_words_allowed(
+            parse_sdrf(self.columns("not applicable")), spec_path="/nonexistent/TERMS.tsv"
+        )
+        assert findings == []
+
+    def test_unknown_column_has_no_rule(self):
+        content = build(["source name", "characteristics[invented thing]"], [["s1", "not applicable"]])
+        assert check_reserved_words_allowed(parse_sdrf(content)) == []

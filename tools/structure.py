@@ -2,8 +2,9 @@
 
 These are the rules a file can be checked against without knowing any biology: one acquisition
 method per file, a template declaration that is constant and agrees with the data, multi-valued
-annotations carried as repeated columns, factor columns last. Each is decidable from the file
-alone, so a model can be told to run this before it finishes rather than be trusted to remember.
+annotations carried as repeated columns, factor columns last, and reserved words only where
+TERMS.tsv permits them. Each is decidable from the file alone (the last one against the bundled
+spec), so a model can be told to run this before it finishes rather than be trusted to remember.
 
 Motivated by bigbio/sdrf-skills#85, where a weak model produced files that mixed DDA and DIA rows,
 varied the template declaration row by row, and packed two templates into one cell. Only the last
@@ -12,9 +13,11 @@ of those was caught by parse_sdrf; the other two validated cleanly.
 
 from __future__ import annotations
 
+import csv
 from dataclasses import dataclass
 from pathlib import Path
 
+from tools.column_ontology_map import resolve_terms_tsv
 from tools.sdrf_parser import SDRFFile, parse_sdrf, parse_template_value
 
 ACQUISITION_COLUMN = "comment[proteomics data acquisition method]"
@@ -26,6 +29,8 @@ DIA_ACCESSIONS = {"PRIDE:0000450", "PRIDE:0000650", "PRIDE:0000447"}
 DDA_ACCESSIONS = {"PRIDE:0000627"}
 #: Templates that constrain the acquisition method of every row.
 DIA_TEMPLATES = {"dia-acquisition"}
+#: Order matters: it lines up with TERMS.tsv's allow_not_available / allow_not_applicable.
+RESERVED_WORDS = ("not available", "not applicable")
 
 
 @dataclass(frozen=True)
@@ -164,12 +169,63 @@ def check_factor_values_last(sdrf: SDRFFile) -> list[Finding]:
     ]
 
 
+def reserved_word_rules(spec_path: str | Path | None = None) -> dict[str, tuple[bool, bool]]:
+    """term -> (may say 'not available', may say 'not applicable'), from TERMS.tsv.
+
+    Empty when the spec submodule is absent, which makes the check silent rather than wrong.
+    TERMS.tsv is CRLF-terminated with a blank row, so read it with newline='' and strip every
+    field: 'false\\r' is truthy compared naively.
+    """
+    path = resolve_terms_tsv(spec_path)
+    if path is None:
+        return {}
+    rules: dict[str, tuple[bool, bool]] = {}
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        for row in csv.DictReader(handle, delimiter="\t"):
+            term = (row.get("term") or "").strip()
+            if not term:
+                continue
+            rules[term.lower()] = (
+                (row.get("allow_not_available") or "").strip().lower() == "true",
+                (row.get("allow_not_applicable") or "").strip().lower() == "true",
+            )
+    return rules
+
+
+def check_reserved_words_allowed(sdrf: SDRFFile, spec_path: str | Path | None = None) -> list[Finding]:
+    """'not available' / 'not applicable' only where TERMS.tsv permits them.
+
+    Where a column forbids both, the annotation is to omit the column, not to fill it with a
+    reserved word: characteristics[cell line] on a tissue experiment is the common case.
+    """
+    rules = reserved_word_rules(spec_path)
+    if not rules:
+        return []
+    findings = []
+    for index, column in enumerate(sdrf.columns):
+        allowed = rules.get((column.inner_name or column.raw_name).strip().lower())
+        if allowed is None:
+            continue
+        permitted = {word for word, ok in zip(RESERVED_WORDS, allowed) if ok}
+        used = {v.strip().lower() for v in sdrf.unique_values(sdrf.key_for_column(index))}
+        for word in sorted(used & set(RESERVED_WORDS) - permitted):
+            findings.append(
+                Finding(
+                    "reserved-word-not-allowed",
+                    f"{word!r} is not an allowed value for this column; omit the column instead",
+                    column.raw_name,
+                )
+            )
+    return findings
+
+
 CHECKS = (
     check_single_acquisition_method,
     check_template_declaration_constant,
     check_one_template_per_cell,
     check_template_matches_acquisition,
     check_factor_values_last,
+    check_reserved_words_allowed,
 )
 
 
