@@ -28,6 +28,7 @@ from typing import Any, Iterable, Iterator
 
 SCHEMA_VERSION = 1
 DELETED_DIGEST = "deleted"
+DIGEST_CHUNK_BYTES = 1024 * 1024
 SDRF_SUFFIXES = (".sdrf.tsv", ".sdrf")
 PLUGIN_ROOT = Path(__file__).resolve().parent.parent
 REVIEWER_SKILL = PLUGIN_ROOT / "skills" / "sdrf-adversarial-review" / "SKILL.md"
@@ -198,12 +199,25 @@ def _resolve_artifact(raw_path: str | Path, root: Path, cwd: str | Path | None =
 
 
 def artifact_digest(path: Path) -> str:
+    """Digest an SDRF by content, independent of how this checkout encodes line endings.
+
+    Receipts are compared against baselines taken from the git blob, which is always
+    LF. Hashing raw working-tree bytes makes every receipt invalid on a clone with
+    core.autocrlf=true, so CRLF is folded to LF before hashing on both sides.
+    """
     if not path.exists():
         return DELETED_DIGEST
     digest = hashlib.sha256()
+    pending_cr = b""
     with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
+        for chunk in iter(lambda: handle.read(DIGEST_CHUNK_BYTES), b""):
+            # A \r\n straddling a chunk boundary must not survive normalization.
+            chunk = pending_cr + chunk
+            pending_cr = b""
+            if chunk.endswith(b"\r"):
+                chunk, pending_cr = chunk[:-1], b"\r"
+            digest.update(chunk.replace(b"\r\n", b"\n"))
+    digest.update(pending_cr)
     return digest.hexdigest()
 
 
@@ -215,7 +229,7 @@ def _ref_digest(root: Path, rel: str, ref: str) -> str:
     proc = _run_git(root, "show", f"{ref}:{rel}", check=False)
     if proc.returncode != 0:
         return DELETED_DIGEST
-    return hashlib.sha256(proc.stdout).hexdigest()
+    return hashlib.sha256(proc.stdout.replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _decode_paths(payload: bytes) -> list[str]:
