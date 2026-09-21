@@ -21,6 +21,7 @@ from tools.record_reconcile import (
     proteases_in_record,
     reconcile,
     sentences,
+    term_name,
 )
 
 
@@ -77,13 +78,53 @@ class TestProteaseRole:
             "with modified porcine trypsin for 16 h at 37 °C."))
         assert set(proteases_in_record(r)) == {"Trypsin", "Lys-C"}
 
+    def test_incubation_phrasing_is_a_digest(self):
+        """PXD056970: an in-gel digest stated as a 37 C incubation of a stated duration.
+
+        Every cue lived in a neighbouring sentence ("in-gel" two sentences earlier,
+        "overnight at 37" never), so a correctly annotated Trypsin was reported as a
+        BLOCKER -- a false positive that pushes a curator to delete a true value.
+        """
+        r = rec(sampleProcessingProtocol=(
+            "The gel pieces were shrunk by using 100 % acetonitrile, followed by treatment "
+            "with 2 \u00b5g of trypsin at 37\u00b0C for 16 hours."))
+        assert proteases_in_record(r) == ["Trypsin"]
+
+    def test_incubated_protease_inhibitor_is_still_not_a_digest(self):
+        """The widened cue must not drag in a protease named in another role."""
+        r = rec(sampleProcessingProtocol=(
+            "Lysates were prepared by treatment with a trypsin inhibitor at 37 \u00b0C for 2 h."))
+        assert proteases_in_record(r) == []
+
     def test_search_setting_still_counts(self):
         """The submitter stating the search enzyme is still stating the digest."""
         r = rec(dataProcessingProtocol="The enzyme specificity was trypsin.")
         assert proteases_in_record(r) == ["Trypsin"]
 
 
+class TestTermName:
+    """SDRF does not fix key order; both spellings occur in the community corpus."""
+
+    def test_nt_first(self):
+        assert term_name("NT=Trypsin;AC=MS:1001251") == "Trypsin"
+
+    def test_ac_first(self):
+        """The order bigbio/sdrf-annotated-datasets itself writes."""
+        assert term_name("AC=MS:1001251;NT=Trypsin") == "Trypsin"
+
+    def test_extra_keys_do_not_confuse_it(self):
+        assert term_name("NT=Lys-C;AC=MS:1001309;CS=K") == "Lys-C"
+
+    def test_bare_label_passes_through(self):
+        assert term_name("Trypsin") == "Trypsin"
+
+
 class TestCleavageAgent:
+    def test_ac_first_spelling_is_not_a_contradiction(self):
+        """A correct annotation must not be reported as contradicting the record."""
+        r = rec(sampleProcessingProtocol="Tryptic digestion was performed for 50 ug protein.")
+        assert check_cleavage_agent(r, ["AC=MS:1001251;NT=Trypsin"]) == []
+
     def test_fabricated_enzyme_is_a_blocker(self):
         r = rec(sampleProcessingProtocol="Tryptic digestion was performed for 50 ug protein.")
         f = check_cleavage_agent(r, ["NT=Chymotrypsin;AC=MS:1001306"])
