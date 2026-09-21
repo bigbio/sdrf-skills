@@ -3,7 +3,8 @@
 These are the rules a file can be checked against without knowing any biology: one acquisition
 method per file, a template declaration that is constant and agrees with the data, multi-valued
 annotations carried as repeated columns, factor columns last, reserved words only where TERMS.tsv
-permits them, and a row coordinate that identifies each measurement exactly once. Each is decidable
+permits them, sample properties written bare, and a row coordinate that identifies each
+measurement exactly once. Each is decidable
 from the file alone (reserved words against the bundled spec), so a model can be told to run this
 before it finishes rather than be trusted to remember.
 
@@ -15,6 +16,7 @@ of those was caught by parse_sdrf; the other two validated cleanly.
 from __future__ import annotations
 
 import csv
+import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -38,6 +40,8 @@ REPLICATE_COLUMN = "comment[technical replicate]"
 BIO_REPLICATE_COLUMN = "characteristics[biological replicate]"
 FRACTION_COLUMN = "comment[fraction identifier]"
 DATA_FILE_COLUMN = "comment[data file]"
+#: NT=/AC= key-value form. Belongs to comment[...]; sample properties are bare.
+NT_AC_RE = re.compile(r"\b(NT|AC)=", re.I)
 
 
 @dataclass(frozen=True)
@@ -325,6 +329,37 @@ def check_row_coordinate_unique(sdrf: SDRFFile) -> list[Finding]:
     ]
 
 
+def check_characteristics_are_bare(sdrf: SDRFFile) -> list[Finding]:
+    """characteristics[...] carries a bare value, never an NT=/AC= pair.
+
+    A sample property is written as the ontology label on its own ('HeLa', 'colon'), or as the
+    identifier itself where the column is an accession ('CVCL_0030' in
+    characteristics[cellosaurus accession]). The NT=<label>;AC=<accession> form belongs to
+    comment[...] columns. Structured sample properties that legitimately carry keys -- SN= for
+    pooled sample, CT=/QY= for spiked compound -- use other keys and are untouched by this rule.
+    """
+    findings = []
+    for index, column in enumerate(sdrf.columns):
+        if not column.raw_name.strip().lower().startswith("characteristics["):
+            continue
+        offenders = sorted(
+            v.strip() for v in sdrf.unique_values(sdrf.key_for_column(index))
+            if NT_AC_RE.search(v)
+        )
+        if offenders:
+            shown = ", ".join(repr(o[:48]) for o in offenders[:2])
+            findings.append(
+                Finding(
+                    "characteristics-uses-nt-ac",
+                    f"{len(offenders)} value(s) written as an NT=/AC= pair ({shown}"
+                    f"{', ...' if len(offenders) > 2 else ''}); a sample property is the bare "
+                    "label, or the accession alone where the column is an accession",
+                    column.raw_name,
+                )
+            )
+    return findings
+
+
 CHECKS = (
     check_single_acquisition_method,
     check_template_declaration_constant,
@@ -335,6 +370,7 @@ CHECKS = (
     check_technical_replicate_indices,
     check_technical_replicates_have_distinct_files,
     check_row_coordinate_unique,
+    check_characteristics_are_bare,
 )
 
 

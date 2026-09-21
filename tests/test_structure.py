@@ -1,6 +1,7 @@
 """Tests for the structural invariant checks."""
 
 from tools.structure import (
+    check_characteristics_are_bare,
     acquisition_family,
     check_factor_values_last,
     check_one_template_per_cell,
@@ -282,3 +283,43 @@ class TestTechnicalReplicatesHaveDistinctFiles:
     def test_missing_data_file_column_is_silent(self):
         content = build([SRC, TECH], [["s1", "1"], ["s1", "2"]])
         assert check_technical_replicates_have_distinct_files(parse_sdrf(content)) == []
+
+
+class TestCharacteristicsAreBare:
+    """A sample property is a bare value; NT=/AC= belongs to comment[...] columns."""
+
+    def test_bare_label_is_fine(self):
+        content = build([SRC, "characteristics[organism part]"], [["s1", "colon"]])
+        assert check_characteristics_are_bare(parse_sdrf(content)) == []
+
+    def test_nt_ac_pair_is_reported(self):
+        content = build([SRC, "characteristics[organism part]"], [["s1", "NT=colon;AC=UBERON:0001155"]])
+        findings = check_characteristics_are_bare(parse_sdrf(content))
+        assert [f.rule for f in findings] == ["characteristics-uses-nt-ac"]
+
+    def test_accession_alone_is_fine(self):
+        """characteristics[cellosaurus accession] is the identifier itself."""
+        content = build([SRC, "characteristics[cellosaurus accession]"], [["s1", "CVCL_0030"]])
+        assert check_characteristics_are_bare(parse_sdrf(content)) == []
+
+    def test_pooled_sample_keys_are_untouched(self):
+        content = build([SRC, "characteristics[pooled sample]"], [["s1", "SN=HeLa;SN=liver tissue"]])
+        assert check_characteristics_are_bare(parse_sdrf(content)) == []
+
+    def test_spiked_compound_keys_are_untouched(self):
+        content = build([SRC, "characteristics[spiked compound]"], [["s1", "CT=mixture;QY=1 fmol"]])
+        assert check_characteristics_are_bare(parse_sdrf(content)) == []
+
+    def test_comment_columns_are_not_checked(self):
+        """comment[...] is exactly where the NT=/AC= form belongs."""
+        content = build([SRC, "comment[instrument]"], [["s1", "NT=Q Exactive;AC=MS:1001911"]])
+        assert check_characteristics_are_bare(parse_sdrf(content)) == []
+
+    def test_one_finding_per_column(self):
+        content = build(
+            [SRC, "characteristics[disease]"],
+            [["s1", "NT=colon carcinoma;AC=MONDO:0002032"], ["s2", "NT=healthy;AC=PATO:0000461"]],
+        )
+        findings = check_characteristics_are_bare(parse_sdrf(content))
+        assert len(findings) == 1
+        assert "2 value(s)" in findings[0].message
