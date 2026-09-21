@@ -305,6 +305,20 @@ def check_disease(record: dict, declared: str,
     return out
 
 
+def term_name(value: str) -> str:
+    """The NT= name out of an SDRF key-value cell, whatever order the keys are in.
+
+    SDRF does not fix the key order, and the community corpus writes both
+    `NT=Trypsin;AC=MS:1001251` and `AC=MS:1001251;NT=Trypsin`. Matching a leading
+    `NT=` only returned the whole raw cell for the AC-first spelling, so a correct
+    annotation was reported as contradicting a record that named the same enzyme.
+    """
+    for part in (value or "").split(";"):
+        k, sep, v = part.partition("=")
+        if sep and k.strip().upper() == "NT":
+            return v.strip()
+    return (value or "").strip()
+
 # --------------------------------------------------------------------------- acquisition
 _DDA_RUN = re.compile(r"(^|[_\-.])(dda|ida|ddalib|dda[_\-]?lib)([_\-.]|$)", re.IGNORECASE)
 _DIA_RUN = re.compile(r"(^|[_\-.])(dia|swath|diapasef|udmse|hdmse|mse)([_\-.]|$)", re.IGNORECASE)
@@ -333,7 +347,7 @@ def check_acquisition(declared_per_row: Sequence[str],
     bad: list[tuple[str, str, str]] = []
     for value, name in zip(declared_per_row, run_names):
         from_name = acquisition_from_run_name(name)
-        written = re.sub(r"^NT=|;AC=.*$", "", value or "")
+        written = term_name(value)
         if from_name and written and from_name.lower() != written.lower():
             bad.append((name, written, from_name))
     if not bad:
@@ -348,7 +362,10 @@ def check_acquisition(declared_per_row: Sequence[str],
 # --------------------------------------------------------------------------- cleavage agent
 _DIGEST_CUE = re.compile(
     r"digest\w*|proteolytic|in-?gel|in-?solution|FASP|SP3|1\s*:\s*\d+\s*\(?w/w|"
-    r"enzyme[- ]to[- ]protein|overnight at 37|incubated with|"
+    r"enzyme[- ]to[- ]protein|overnight at 37|incubated with|treat(ed|ment)\s+with|"
+    # an explicit 37 C incubation of a stated duration -- "at 37 C for 16 hours".
+    # "overnight at 37" alone missed every record that gives the time in hours.
+    r"at\s*37\s*\u00b0?\s*C\s*(for|,)\s*\d+|"
     r"enzyme\s+(specificity|was|used)|specificity\s+(was|of)|enzymes?\s+such as|"
     r"as the (proteolytic )?enzyme|cleav\w+\s+(agent|specificity)", re.IGNORECASE)
 # The protease name is the analyte, a proteasome activity readout, an inhibitor or a
@@ -388,7 +405,7 @@ def proteases_in_record(record: dict) -> list[str]:
 
 def check_cleavage_agent(record: dict, declared: Iterable[str]) -> list[Finding]:
     """Flag a protease the record does not support, or a co-digest reduced to one enzyme."""
-    written = [re.sub(r"^NT=|;AC=.*$", "", d or "").strip() for d in declared]
+    written = [term_name(d) for d in declared]
     written = [w for w in written if w]
     supported = proteases_in_record(record)
     out: list[Finding] = []
@@ -504,7 +521,7 @@ def reconcile(record: dict, rows: Sequence[dict], accession: str = "") -> Reconc
 
     instrument = next((v for v in col("comment[instrument]") if v), "")
     if instrument:
-        model = re.sub(r"^NT=|;AC=.*$", "", instrument).strip()
+        model = term_name(instrument)
         report.findings += check_instrument(record, model, files)
 
     disease = next((v for v in col("characteristics[disease]") if v), "")
