@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import ClassVar
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -13,6 +14,11 @@ from tools.hallucination import (
     _check_unimod_swap,
     _check_modification_cell,
     _modification_label_matches,
+)
+from tools.column_ontology_map import (
+    UNIMOD_BY_NAME,
+    UNIMOD_KNOWN,
+    UNIMOD_SWAPS,
 )
 from tools.ols_client import OLSClient, OLSTerm, VerificationResult
 
@@ -54,11 +60,16 @@ class TestUnimodSwapDetection:
         swap = _check_unimod_swap("UNIMOD:35", "Oxidation")
         assert swap is None
 
-    def test_unknown_accession_wrong_name(self):
-        """Known accession with wrong name (not a swap pair)."""
+    def test_known_accession_wrong_name(self):
+        """Known accession, known-but-different name: the accession is the typo.
+
+        Same rule as the hardcoded UNIMOD_SWAPS entries -- the name is what a
+        curator or a search tool supplies, the accession is what gets guessed.
+        """
         swap = _check_unimod_swap("UNIMOD:4", "Phospho")
         assert swap is not None
-        assert swap.correct_name == "Carbamidomethyl"
+        assert swap.correct_accession == "UNIMOD:21"
+        assert swap.correct_name == "Phospho"
 
 
 class TestModificationCellCheck:
@@ -462,3 +473,70 @@ class TestModificationAccessionCrossCheck:
             self._sdrf("NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed"),
             ols_client=client, verify_online=True)
         assert report.is_clean
+
+
+class TestUnimodTableIntegrity:
+    """Guard the UNIMOD_KNOWN table itself -- a wrong row here is invisible.
+
+    The detector's whole job is catching NT=/AC= mismatches, so a transposed
+    entry makes it endorse the exact error it exists to catch (issue #73).
+    """
+
+    # Independently sourced from OLS4 (ontologies/unimod/terms), not copied
+    # from the module under test.
+    VERIFIED: ClassVar[dict[str, str]] = {
+        "UNIMOD:1": "Acetyl",
+        "UNIMOD:4": "Carbamidomethyl",
+        "UNIMOD:21": "Phospho",
+        "UNIMOD:24": "Propionamide",
+        "UNIMOD:30": "Cation:Na",
+        "UNIMOD:35": "Oxidation",
+        "UNIMOD:199": "Dimethyl:2H(4)",
+        "UNIMOD:214": "iTRAQ4plex",
+        "UNIMOD:259": "Label:13C(6)15N(2)",
+        "UNIMOD:267": "Label:13C(6)15N(4)",
+        "UNIMOD:312": "Cysteinyl",
+        "UNIMOD:354": "Nitro",
+        "UNIMOD:374": "Dehydro",
+        "UNIMOD:730": "iTRAQ8plex",
+        "UNIMOD:737": "TMT6plex",
+        "UNIMOD:2016": "TMTpro",
+    }
+
+    def test_known_accessions_match_unimod(self):
+        for accession, label in self.VERIFIED.items():
+            assert UNIMOD_KNOWN[accession] == label
+
+    def test_labels_are_unique(self):
+        """UNIMOD_BY_NAME is only well defined if no label is mapped twice."""
+        labels = [name.lower() for name in UNIMOD_KNOWN.values()]
+        assert len(labels) == len(set(labels))
+        assert len(UNIMOD_BY_NAME) == len(UNIMOD_KNOWN)
+
+    def test_swap_table_agrees_with_known_table(self):
+        """Every UNIMOD_SWAPS target must be the pair UNIMOD_KNOWN gives."""
+        for correct_ac, correct_name in UNIMOD_SWAPS.values():
+            assert UNIMOD_KNOWN[correct_ac] == correct_name
+
+    def test_propionamide_is_not_dehydro(self):
+        """issue #73: NT=Propionamide;AC=UNIMOD:374 must be flagged, not endorsed."""
+        swap = _check_unimod_swap("UNIMOD:374", "Propionamide")
+        assert swap is not None
+        assert swap.correct_accession == "UNIMOD:24"
+        assert swap.correct_name == "Propionamide"
+
+    def test_propionamide_with_correct_accession_verifies(self):
+        verified, swaps, _warnings = _check_modification_cell(
+            "NT=Propionamide;AC=UNIMOD:24;TA=C;MT=Fixed",
+            "comment[modification parameters]", [1],
+        )
+        assert not swaps
+        assert len(verified) == 1
+        assert verified[0].accession == "UNIMOD:24"
+
+    def test_unknown_name_falls_back_to_relabelling(self):
+        """When only the accession is recognised, the name is what gets corrected."""
+        swap = _check_unimod_swap("UNIMOD:374", "Totally Not A Mod")
+        assert swap is not None
+        assert swap.correct_accession == "UNIMOD:374"
+        assert swap.correct_name == "Dehydro"

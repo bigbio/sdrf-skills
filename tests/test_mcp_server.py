@@ -6,6 +6,7 @@ import importlib.util
 import sys
 import types
 from pathlib import Path
+from typing import ClassVar
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -196,3 +197,72 @@ class TestGetChildrenDescendants:
         assert "/children" not in captured_urls[0]
         assert out["count"] == 2
         assert {c["accession"] for c in out["children"]} == {"PRIDE:0000544", "PRIDE:0000562"}
+
+
+class TestUnpaywallOALocationFallback:
+    """issue #73 -- a PDF in oa_locations[] must not read as 'not openly available'.
+
+    Unpaywall routinely returns best_oa_location.url_for_pdf = null (a publisher
+    landing page) while a repository copy in oa_locations[] has a real PDF.
+    """
+
+    # Shape of the live record for 10.1016/j.foodres.2023.113687 (PXD043864).
+    RECORD: ClassVar[dict] = {
+        "is_oa": True,
+        "oa_status": "hybrid",
+        "best_oa_location": {
+            "host_type": "publisher", "url_for_pdf": None, "license": "cc-by",
+        },
+        "oa_locations": [
+            {"host_type": "publisher", "url_for_pdf": None, "license": "cc-by"},
+            {"host_type": "repository", "url_for_pdf": "https://edepot.wur.nl/645829",
+             "license": "cc-by"},
+        ],
+    }
+
+    def test_falls_back_to_repository_pdf(self):
+        loc, pdf_url, n = _mcp_server._pick_oa_location(self.RECORD)
+        assert pdf_url == "https://edepot.wur.nl/645829"
+        assert loc["host_type"] == "repository", \
+            "license/host_type must describe the location actually used"
+        assert n == 2
+
+    def test_best_oa_location_still_wins_when_it_has_a_pdf(self):
+        record = {
+            "best_oa_location": {"host_type": "publisher",
+                                 "url_for_pdf": "https://publisher.example/a.pdf"},
+            "oa_locations": [{"host_type": "repository",
+                              "url_for_pdf": "https://repo.example/b.pdf"}],
+        }
+        loc, pdf_url, n = _mcp_server._pick_oa_location(record)
+        assert pdf_url == "https://publisher.example/a.pdf"
+        assert loc["host_type"] == "publisher"
+        assert n == 1
+
+    def test_no_pdf_anywhere_returns_none(self):
+        loc, pdf_url, n = _mcp_server._pick_oa_location({"best_oa_location": None,
+                                                         "oa_locations": []})
+        assert pdf_url is None
+        assert loc == {}
+        assert n == 0
+
+    def test_closed_record_reports_no_oa_location(self, tmp_path):
+        """The negative must distinguish 'no OA location' from 'no direct PDF'."""
+        mcp_server = _mcp_server
+        with patch.object(mcp_server, "_cached_get_json",
+                          return_value={"oa_status": "closed", "oa_locations": []}), \
+             patch.object(mcp_server, "_europe_pmc_lookup", return_value=None):
+            out = mcp_server.get_pdf_by_unpaywall(["10.1000/closed"],
+                                                  output_dir=str(tmp_path))
+        assert "no Unpaywall OA location" in out[0]["error"]
+
+    def test_oa_without_direct_pdf_says_so(self, tmp_path):
+        mcp_server = _mcp_server
+        record = {"oa_status": "green",
+                  "best_oa_location": {"host_type": "publisher", "url_for_pdf": None},
+                  "oa_locations": [{"host_type": "publisher", "url_for_pdf": None}]}
+        with patch.object(mcp_server, "_cached_get_json", return_value=record), \
+             patch.object(mcp_server, "_europe_pmc_lookup", return_value=None):
+            out = mcp_server.get_pdf_by_unpaywall(["10.1000/nopdf"],
+                                                  output_dir=str(tmp_path))
+        assert "OA location(s) exist but none exposed a direct PDF" in out[0]["error"]

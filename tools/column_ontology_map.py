@@ -34,30 +34,45 @@ COLUMN_ONTOLOGY_MAP: dict[str, list[str]] = {
 }
 
 # Known UNIMOD accession -> name mappings for swap detection.
-# These are the most commonly confused pairs.
+# Every entry was verified against the UNIMOD ontology (OLS4, cross-checked
+# against the unimod release shipped with sdrf-pipelines) on 2026-09-21. A wrong
+# entry here is invisible by construction: `python -m tools check` would endorse
+# the exact mismatch it exists to catch. Re-verify against OLS before adding a
+# row -- never copy an accession from memory.
 UNIMOD_KNOWN: dict[str, str] = {
     "UNIMOD:1": "Acetyl",
     "UNIMOD:4": "Carbamidomethyl",
     "UNIMOD:5": "Carbamyl",
     "UNIMOD:7": "Deamidated",
     "UNIMOD:21": "Phospho",
+    "UNIMOD:24": "Propionamide",
+    "UNIMOD:30": "Cation:Na",
     "UNIMOD:34": "Methyl",
     "UNIMOD:35": "Oxidation",
     "UNIMOD:36": "Dimethyl",
     "UNIMOD:37": "Trimethyl",
     "UNIMOD:122": "Formyl",
     "UNIMOD:188": "Label:13C(6)",
-    "UNIMOD:199": "Label:13C(6)15N(2)",
-    "UNIMOD:259": "Label:13C(6)15N(4)",
-    "UNIMOD:267": "Silac:2H(4)",
-    "UNIMOD:268": "iTRAQ4plex",
-    "UNIMOD:304": "iTRAQ8plex",
-    "UNIMOD:312": "Cation:Na",
-    "UNIMOD:354": "TMT6plex",
-    "UNIMOD:374": "Propionamide",
+    "UNIMOD:199": "Dimethyl:2H(4)",
+    "UNIMOD:214": "iTRAQ4plex",
+    "UNIMOD:259": "Label:13C(6)15N(2)",
+    "UNIMOD:267": "Label:13C(6)15N(4)",
+    "UNIMOD:268": "Label:13C(5)15N(1)",
+    "UNIMOD:312": "Cysteinyl",
+    "UNIMOD:354": "Nitro",
+    "UNIMOD:374": "Dehydro",
+    "UNIMOD:481": "Label:2H(4)",
+    "UNIMOD:730": "iTRAQ8plex",
     "UNIMOD:737": "TMT6plex",
+    "UNIMOD:738": "TMT2plex",
     "UNIMOD:2016": "TMTpro",
 }
+
+# Reverse lookup: lowercased UNIMOD name -> accession. Labels in UNIMOD_KNOWN
+# are unique, so this is well defined (guarded by tests/test_hallucination.py).
+# Used to decide which half of a mismatched NT=/AC= pair is the typo: if the
+# name is itself a known UNIMOD label, the accession is what is wrong.
+UNIMOD_BY_NAME: dict[str, str] = {name.lower(): acc for acc, name in UNIMOD_KNOWN.items()}
 
 # Common UNIMOD swap pairs (wrong -> correct)
 UNIMOD_SWAPS: dict[tuple[str, str], tuple[str, str]] = {
