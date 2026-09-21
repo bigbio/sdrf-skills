@@ -246,3 +246,47 @@ class TestBundledDatabase:
         db = CellLineDatabase()
         db.load()
         assert db.size > 100
+
+
+class TestSDRFEncodedQueries:
+    """SDRF writes a cell line as NT=<name>;AC=<accession>; lookup must accept that form."""
+
+    def db(self):
+        from tools.cellline_db import CellLineDatabase
+        d = CellLineDatabase()
+        d.load()
+        return d
+
+    def test_nt_ac_pair_resolves(self):
+        d = self.db()
+        assert d.find("NT=HeLa;AC=CVCL_0030").entry.cell_line == "HeLa"
+
+    def test_key_order_does_not_matter(self):
+        d = self.db()
+        assert d.find("AC=CVCL_0030;NT=HeLa").entry.cell_line == "HeLa"
+
+    def test_accession_wins_over_name(self):
+        """The accession identifies the line exactly; the name may be a local alias."""
+        d = self.db()
+        assert d.find("NT=some local alias;AC=CVCL_0030").entry.cell_line == "HeLa"
+
+    def test_name_used_when_no_accession(self):
+        d = self.db()
+        assert d.find("NT=HeLa").entry.cell_line == "HeLa"
+
+    def test_unknown_accession_is_a_miss_not_a_guess(self):
+        """CVCL_7035 is not in the curated subset. Fuzzy-matching it returned an unrelated
+        cell line at 0.88 confidence, which is worse than no answer."""
+        d = self.db()
+        result = d.find("CVCL_7035")
+        assert result.entry is None
+        assert result.match_type == "none"
+
+    def test_unknown_accession_in_nt_ac_form_is_also_a_miss(self):
+        d = self.db()
+        assert d.find("NT=BLM;AC=CVCL_7035").entry is None
+
+    def test_plain_names_still_fuzzy_match(self):
+        """Only accessions lose fuzzy matching; misspelled names still resolve."""
+        d = self.db()
+        assert d.find("Hela").entry.cell_line == "HeLa"

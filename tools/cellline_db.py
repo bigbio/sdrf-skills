@@ -66,6 +66,10 @@ DEFAULT_SYNONYMS_PATH = _DATA_DIR / "ai-synonyms.tsv"
 # Data structures
 # ---------------------------------------------------------------------------
 
+#: Cellosaurus accession, e.g. CVCL_0030. Exact identifier: never fuzzy-matched.
+ACCESSION_RE = re.compile(r"CVCL_[A-Z0-9]+", re.I)
+
+
 @dataclass
 class CellLineEntry:
     """A single cell line record from the database."""
@@ -245,6 +249,24 @@ class CellLineDatabase:
         """Normalize a cell line name for matching."""
         return re.sub(r"[\s\-_]+", "", name.strip().lower())
 
+    @staticmethod
+    def _unwrap_query(query: str) -> tuple[str, bool]:
+        """Return (what to look up, whether it is a Cellosaurus accession).
+
+        SDRF writes a cell line as ``NT=<name>;AC=<accession>``. The accession identifies the line
+        exactly, so it is preferred over the name, which may be a local alias. A bare accession is
+        recognised too, so callers do not have to know which form they hold.
+        """
+        text = query.strip()
+        pairs = dict(re.findall(r"(NT|AC)=([^;]*)", text, flags=re.I))
+        accession = (pairs.get("AC") or pairs.get("ac") or "").strip()
+        if accession:
+            return accession, bool(ACCESSION_RE.fullmatch(accession))
+        name = (pairs.get("NT") or pairs.get("nt") or "").strip()
+        if name:
+            return name, False
+        return text, bool(ACCESSION_RE.fullmatch(text))
+
     @property
     def size(self) -> int:
         return len(self.entries)
@@ -256,11 +278,14 @@ class CellLineDatabase:
     def find(self, query: str) -> MatchResult:
         """Look up a cell line by name, accession, or synonym.
 
-        Tries in order: exact match, synonym match, AI synonym, fuzzy match.
+        Tries in order: exact match, synonym match, AI synonym, fuzzy match. An SDRF cell carrying
+        ``NT=<name>;AC=<accession>`` is unwrapped first, and a query that is an accession is never
+        fuzzy-matched -- see _unwrap_query.
         """
         if not query or query.lower() in ("not available", "not applicable"):
             return MatchResult(query=query, entry=None, match_type="none")
 
+        query, is_accession = self._unwrap_query(query)
         norm = self._normalize(query)
 
         # 1. Exact match via index
@@ -304,7 +329,11 @@ class CellLineDatabase:
                             matched_name=key,
                         )
 
-        # 4. Fuzzy match using difflib
+        # 4. Fuzzy match using difflib. Never for an accession: CVCL_ ids are exact identifiers,
+        #    so the nearest string is a different cell line, not a spelling of this one. An
+        #    accession the database does not hold has to come back as a miss.
+        if is_accession:
+            return MatchResult(query=query, entry=None, match_type="none")
         all_names = list(self._index.keys())
         close = difflib.get_close_matches(norm, all_names, n=1, cutoff=0.8)
         if close:
