@@ -266,3 +266,31 @@ class TestUnpaywallOALocationFallback:
             out = mcp_server.get_pdf_by_unpaywall(["10.1000/nopdf"],
                                                   output_dir=str(tmp_path))
         assert "OA location(s) exist but none exposed a direct PDF" in out[0]["error"]
+
+
+class TestBundledMcpConfig:
+    """The plugin's own .mcp.json must be launchable by Claude Code.
+
+    Without `"type": "stdio"` the command is never resolved and the launch fails
+    with `ENOENT: no such file or directory, posix_spawn 'stdio'` -- it tries to
+    exec a binary literally named `stdio`. Nothing else in the repo would catch
+    that, because the file is only ever read by the host.
+    """
+
+    @staticmethod
+    def _entry():
+        import json
+        cfg = json.loads((Path(__file__).parent.parent / ".mcp.json").read_text())
+        return cfg["mcpServers"]["sdrf-pride-pmc"]
+
+    def test_declares_stdio_type(self):
+        assert self._entry().get("type") == "stdio"
+
+    def test_paths_are_plugin_root_anchored(self):
+        entry = self._entry()
+        assert "CLAUDE_PLUGIN_ROOT" in entry["command"]
+        assert any("CLAUDE_PLUGIN_ROOT" in a for a in entry["args"])
+
+    def test_server_script_exists_where_the_args_point(self):
+        rel = self._entry()["args"][0].split("}", 1)[1].lstrip("/")
+        assert (Path(__file__).parent.parent / rel).is_file()
