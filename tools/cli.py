@@ -59,6 +59,17 @@ def cmd_structure(args: argparse.Namespace) -> int:
     return 1
 
 
+def cmd_contract(args: argparse.Namespace) -> int:
+    from tools.contract import render_json, render_text, template_contract
+    try:
+        c = template_contract(args.templates, args.terms)
+    except ValueError as e:
+        print(f"error: {e}")
+        return 2
+    print(render_json(c) if args.json else render_text(c))
+    return 0
+
+
 def cmd_score(args: argparse.Namespace) -> int:
     from tools.completeness import score_sdrf
     report = score_sdrf(args.sdrf_file)
@@ -288,6 +299,16 @@ def main() -> None:
     )
     p.add_argument("sdrf_file")
 
+    # contract
+    p = subparsers.add_parser(
+        "contract",
+        help="Print the column contract (order, requirement, value form, reserved words) for a template union",
+    )
+    p.add_argument("-t", "--template", dest="templates", action="append", required=True,
+                   help="Template name; repeat for a union (e.g. -t ms-proteomics -t human)")
+    p.add_argument("--terms", default=None, help="Path to TERMS.tsv (default: bundled spec)")
+    p.add_argument("--json", action="store_true", help="Machine-readable output")
+
     # score
     p = subparsers.add_parser("score", help="Score SDRF quality (0-100)")
     p.add_argument("sdrf_file")
@@ -390,6 +411,7 @@ def main() -> None:
     commands = {
         "check": cmd_check,
         "structure": cmd_structure,
+        "contract": cmd_contract,
         "score": cmd_score,
         "fix": cmd_fix,
         "benchmark": cmd_benchmark,

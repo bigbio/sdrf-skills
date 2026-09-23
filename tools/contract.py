@@ -60,7 +60,7 @@ def load_terms(terms_path: str | Path | None = None) -> dict[str, dict[str, obje
     if path is None:
         return {}
     out: dict[str, dict[str, object]] = {}
-    with path.open(encoding="utf-8-sig") as fh:
+    with path.open(newline="", encoding="utf-8-sig") as fh:
         for row in csv.DictReader(fh, delimiter="\t"):
             name = (row.get("term") or row.get("name") or "").strip().lower()
             if not name:

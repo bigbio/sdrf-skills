@@ -68,3 +68,20 @@ def test_load_terms_keys_are_inner_names():
     assert "fraction identifier" in terms
     assert "label" in terms
     assert terms["organism part"]["allow_not_available"] is True
+
+
+def test_cli_contract_prints_text(capsys):
+    import sys
+
+    from tools.cli import main
+    argv = sys.argv
+    sys.argv = ["tools", "contract", "-t", "ms-proteomics", "-t", "human"]
+    try:
+        with pytest.raises(SystemExit) as e:
+            main()
+        assert e.value.code == 0
+    finally:
+        sys.argv = argv
+    out = capsys.readouterr().out
+    assert "CONTRACT for templates: ms-proteomics" in out
+    assert "comment[label]" in out
