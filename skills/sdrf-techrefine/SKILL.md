@@ -10,7 +10,7 @@ argument-hint: "[PXD accession or SDRF file path]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are guiding the user through refining SDRF technical metadata using **techsdrf** —
@@ -40,7 +40,7 @@ pip install techsdrf
   msconvert --help
   ```
   For Bruker DIA **isolation windows** specifically, no converter and no download
-  are needed — `python -m tools bruker-dia` range-reads `analysis.tdf` out of the
+  are needed — `sdrf-tools bruker-dia` range-reads `analysis.tdf` out of the
   archive. See the Bruker section below.
 
 If converters are missing, inform the user which file types cannot be processed
@@ -274,8 +274,8 @@ that single member range-fetched. Measured on `PXD052416`: **14.7 MB instead of
 2502 MB**, a ~170x reduction.
 
 ```bash
-python -m tools bruker-dia "https://ftp.pride.ebi.ac.uk/.../Blank_BK1_1_1799.d.zip"
-python -m tools bruker-dia path/to/analysis.tdf --json     # already extracted
+sdrf-tools bruker-dia "https://ftp.pride.ebi.ac.uk/.../Blank_BK1_1_1799.d.zip"
+sdrf-tools bruker-dia path/to/analysis.tdf --json     # already extracted
 ```
 
 It reads `DiaFrameMsMsWindows` and reports the isolation windows, the measured
@@ -300,7 +300,7 @@ diaPASEF windows are variable-width by design — 15 distinct widths from 29.52 
 Never derive the value from the manuscript instead: "15 windows spanning
 400–1000" → `600/15 = 40` produces a width matching **none** of the 15 actual
 windows, and it passes both the regex and `parse_sdrf`. A mean or a median is
-the same error with more arithmetic. `python -m tools bruker-dia` applies this
+the same error with more arithmetic. `sdrf-tools bruker-dia` applies this
 rule for you and prints the value it would write plus the reason.
 
 This is a spec limitation, not an annotator failure — the column cannot express

@@ -17,6 +17,7 @@ dependencies:
   - defusedxml          # hardened XML parsing for scripts/europepmc_fulltext.py
   - pip                 # explicit: conda warns if pip deps are listed without it
   - pip:
+    - -e .               # sdrf-tools console script: contract, build, check, fix, review gate
     - requests>=2.28
     - fastmcp>=3.4      # bundled MCP server (mcp/server.py), wired up via .mcp.json
     - httpx>=0.28       # HTTP client used by mcp/server.py

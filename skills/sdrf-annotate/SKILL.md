@@ -10,11 +10,64 @@ argument-hint: "[PXD accession or experiment description]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
-You are performing a complete SDRF annotation. Follow these steps IN ORDER.
-Do not skip steps. Do not guess — use MCP tools to verify everything.
+You are performing a complete SDRF annotation. Work through the steps in order, but
+settle **Step 0 first**: it decides which of the later steps apply at all. Do not guess a
+value — verify it, against the record when you have network tools and against the files in
+front of you when you do not.
+
+## Step 0: Settle the operating mode, then stop looking around
+
+Answer both questions below **before any other tool call**. Getting them wrong is what turns
+a ten-turn annotation into a fifty-turn one, because the workflow below assumes lookups that
+may not exist here and you will spend turns discovering that one failed call at a time.
+
+**1. Is the record already on disk?** If the working directory holds an `evidence/`
+directory, or the user handed you the PRIDE record, file list and paper as files, then the
+gathering is already done. You are in **offline mode**:
+
+- Read those files, and treat them as the whole of the available record.
+- **Skip Steps 0.5, 1.1, 1.2 and 1.3 entirely.** There is nothing to fetch, and no
+  community repository to consult.
+- Do not call MCP tools, do not search the web, and do not ask the user a question. Where
+  the evidence is silent, write an explicit reserved word (below) rather than inferring a
+  value from what is typical.
+
+**2. Which lookups do you actually have?** Check once, in a single turn, and remember the
+answer: MCP tools for PRIDE/Europe PMC/OLS, and `parse_sdrf` on the PATH. Do not re-probe
+later. If a class of lookup is missing, use the offline substitute named below instead of
+retrying it.
+
+If `parse_sdrf` is missing and you can reach the user, point them at
+`/sdrf-skills:sdrf-setup` (or `pip install sdrf-pipelines`) and ask whether to wait or
+continue with structural checks only. If you cannot ask, continue and say plainly in your
+final report that the file was not machine-validated.
+
+### Facts you do not need to go looking for
+
+These are fixed. Do **not** grep the installed `sdrf_pipelines` package, glob for its
+source, or re-derive them from a template file:
+
+- **Validate with:** `parse_sdrf validate-sdrf -s <file> -t <template> [-t <template> ...]`
+  (`-s`/`-t` are the short forms of `--sdrf_file`/`--template`). Add `--use_ols_cache_only`
+  when you have no network, and `--skip-ontology` only for a fast structural check. A full
+  ontology run peaks near 1.9GB of RSS, so run one at a time.
+- **Column order:** `source name` first; all `characteristics[...]` next; then `assay name`
+  and `technology type`; then all `comment[...]`; and every `factor value[...]` **last**,
+  closing the file. Repeated column names are legal and meaningful — never de-duplicate them
+  by appending a suffix.
+- **Controlled terms without a network:** `$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`
+  is the authoritative offline table. It gives each term's type, the templates that use it,
+  the permitted values, and — per term — whether `not available` and `not applicable` are
+  allowed. Consult it instead of OLS when OLS is unreachable.
+- **Reserved words:** exactly `not available` and `not applicable`, and only for terms whose
+  `allow_not_available` / `allow_not_applicable` column in TERMS.tsv is true.
+- **Sample properties carry the bare value.** Write `characteristics[...]` as the value
+  alone (`HeLa`, `Homo sapiens`); do not wrap it as `NT=<name>;AC=<accession>`. Accession-
+  shaped values such as a Cellosaurus `CVCL_0030` are written as they are. `comment[...]`
+  columns do take `NT=;AC=` where the term is ontology-backed.
 
 ## Step 0a: Isolate this dataset's working files (required)
 
@@ -39,14 +92,10 @@ by an unrelated paper).
    PMC `supplementaryFiles` has returned another paper's `mmc*.xlsx`; `efetch`
    with `id=PMC…` silently returns a different article — use the numeric id.)
 
-## Step 0: Check parse_sdrf availability
-
-Before starting, verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
-- Inform the user that programmatic validation will be skipped
-- Suggest `/sdrf-skills:sdrf-setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
-- Offer to continue with manual checks only, or wait for the user to install and retry
-
 ## Step 0.5: Check whether the dataset is ALREADY annotated — STOP GATE
+
+> **Offline mode (Step 0):** skip this step — the community repository is not reachable, so there is nothing to check against.
+
 
 **Do this before any annotation work.** Annotating a dataset that is already
 annotated is not free: if the existing file is fine you have wasted the effort and
@@ -101,7 +150,7 @@ url=$(gh api "repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD}/{FILE
 curl -fsSL "$url" -o existing.sdrf.tsv
 [ -s existing.sdrf.tsv ] || { echo "empty download — abort, do NOT audit"; exit 1; }
 
-python -m tools audit-existing existing.sdrf.tsv --accession {PXD} \
+sdrf-tools audit-existing existing.sdrf.tsv --accession {PXD} \
   --runs deposited_runs.txt --organism "<each organism PRIDE registers>"
 ```
 
@@ -186,6 +235,9 @@ reviewer can check the claim rather than take it on trust.
 If a **PXD accession** is provided:
 
 ### 1.1 Get PRIDE project metadata
+
+> **Offline mode (Step 0):** skip this step — the PRIDE record is already in `evidence/pride.json`; read that instead.
+
 ```text
 Tool: get_project_details(project_accession="PXD######")
 Extract: title, description, sample_processing_protocol, data_processing_protocol,
@@ -228,6 +280,9 @@ and instrument acquisition — read them BEFORE the publication.
 >   HTTP range request rather than downloading a multi-GB archive.
 
 ### 1.2 Get the file list
+
+> **Offline mode (Step 0):** skip this step — the run's file list is already in `evidence/files.json`; read that instead.
+
 ```text
 Tool: get_project_files(project_accession="PXD######")
 Extract: raw_file_names (for comment[data file]), rawfile_count,
@@ -248,8 +303,8 @@ If this endpoint returns `0` files for a valid PXD hosted through
 For MassIVE-backed datasets, use the helper in this repo to recover raw
 file names from ProteomeCentral + MassIVE JSON + MassIVE FTP:
 ```bash
-python -m tools massive-files PXD016117 --mode raw
-python -m tools massive-files PXD016117 --mode acquisition --format tsv
+sdrf-tools massive-files PXD016117 --mode raw
+sdrf-tools massive-files PXD016117 --mode acquisition --format tsv
 ```
 This is the preferred fallback when you need `comment[data file]` values for a
 MassIVE-hosted PXD and PRIDE does not expose the archive file list. The helper
@@ -262,6 +317,9 @@ timepoints, or cohort aliases that are not recoverable from PRIDE metadata
 alone.
 
 ### 1.3 Find and read the publication
+
+> **Offline mode (Step 0):** skip this step — the paper, if one is available, is already in `evidence/manuscript.txt`; if that file is absent there is no paper to find — do not search for one.
+
 
 For each record in `publications` (Step 1.1), pick exactly ONE tool:
 
@@ -421,39 +479,76 @@ Use the sdrf:templates decision tree. Based on the gathered context:
 Present the template selection to the user for confirmation before proceeding.
 Explain WHY each template was chosen and what columns it adds.
 
-## Step 3: Build the SDRF Structure
+## Step 3: Get the contract, then author two tables — do not write the SDRF by hand
 
-Determine the columns to include based on the selected templates:
+You will not build SDRF structure yourself. Column order, fraction and replicate numbering,
+channel rows and repeated columns are produced by `build` from two small tables you write.
+This is what keeps the file structurally valid on the first try and what keeps this
+annotation short: no spec reading beyond one command, no editing the SDRF, no re-reading it.
 
-1. **Read `spec/sdrf-proteomics/TERMS.tsv`** — filter rows where `usage` contains each selected template name
-2. **Read individual template YAMLs** at `spec/sdrf-proteomics/sdrf-templates/{name}/{version}/{name}.yaml` for requirement levels
-3. Merge all columns from all selected templates (union of all template column sets)
+### 3.1 Print the contract (once)
 
-Organize columns in this order:
+```bash
+sdrf-tools contract -t <template1> [-t <template2> ...]
+```
 
-**Anchor columns:**
-1. `source name`
+It lists every column of the template union in order, whether it is required, whether it
+takes multiple values, the value form (`bare value`, `NT=<name>;AC=<accession>`,
+`<number> ppm|Da`, `integer`), and which reserved words it permits. Keep it in context; do
+**not** read `TERMS.tsv`, the template YAMLs or the spec README to learn the same thing.
 
-**Characteristics columns (sample metadata):**
-- All `characteristics[...]` columns from TERMS.tsv for the selected templates
-- Order: organism, organism part, disease, cell type, material type, then template-specific (developmental stage, age, sex, cell line, etc.), then biological replicate
+`contract` and `build` need `sdrf-pipelines`; if the `python3` on your PATH cannot import it
+but `parse_sdrf` is installed, they re-run themselves under `parse_sdrf`'s interpreter. Do not
+go looking for another Python yourself.
 
-**Anchor + technology:**
-- `assay name`
-- `technology type`
+### 3.2 Write `samples.tsv` — one row per source *and replicate*
 
-**Comment columns (technical metadata):**
-- All `comment[...]` columns from TERMS.tsv for the selected templates
-- Order: instrument, label, modification parameters (one per mod), cleavage agent details, acquisition method, dissociation method, collision energy, tolerances, template-specific (scan windows for DIA, etc.), fraction identifier, technical replicate, data file
+Tab-separated. Three structural columns, then the sample properties you can support from
+the evidence:
 
-**Factor values:**
-- `factor value[<variable>]`
+| column | required | content |
+|---|---|---|
+| `source name` | yes | the sample identifier you choose; never generated for you |
+| `files` | yes | the **fractions of one injection**, comma-separated, in fraction order (one file if unfractionated) |
+| `label` | yes | `label free sample`, or one channel (`TMT126`, `TMT127N`, `iTRAQ114`, `SILAC heavy`) — never a plex name like `TMT10` |
+| `assay name` | no | only to override the default (file stem; `<stem>-<channel>` when multiplexed) |
+| `technical replicate` | no | integer; default 1 |
+| `characteristics[...]` | as evidenced | bare values; `not available` only where the contract allows it |
+| `factor value[...]` | as designed | the variable(s) the study compares |
 
-**SDRF metadata:**
-- `comment[sdrf version]` (read the current version from `spec/sdrf-proteomics/sdrf-templates/templates.yaml`)
-- `comment[sdrf template]` (one column per template, format: `NT=template_name;VV=vX.Y.Z`)
+**Replicates are separate rows, not a longer `files` list.** A source measured in three
+runs is three rows that differ in `characteristics[biological replicate]` or
+`technical replicate`; a comma list means fractions of a single injection. `build` refuses
+two rows that share (source, biological replicate, technical replicate, fraction) — that is
+the row coordinate the community review gate checks — rather than renumber them for you.
+
+Multiplexed runs: one row per (source, channel), each listing the run file(s) in `files`. A
+channel the run does not use gets a row with an **empty** `source name`; `build` emits
+nothing for it. `build` refuses a run whose channel set is incomplete — it will not fill a
+channel in, and neither may you: see 6.1 for where the map is found.
+
+### 3.3 Write `technical.tsv` — run-level settings shared by every row
+
+Two columns, `column` and `value`, one row per comment column that is constant across the
+file: `comment[instrument]`, `comment[cleavage agent details]`, tolerances,
+`comment[proteomics data acquisition method]`, `comment[sdrf version]`, and so on. A
+`multiple` column such as `comment[modification parameters]` takes its values separated by
+`|` — one column per value is emitted:
+
+```text
+column	value
+comment[instrument]	NT=Orbitrap Fusion Lumos;AC=MS:1002732
+comment[modification parameters]	NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed|NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable
+```
+
+`comment[sdrf template]` and `technology type` are filled by `build` from the templates you
+pass; do not add them.
+
+Steps 4 and 5 tell you how to find the *values* for these two tables. Step 6 builds.
 
 ## Step 4: Fill Sample Metadata
+
+> The values found in this step go into `samples.tsv` (Step 3.2), one row per source and replicate.
 
 Before filling demographic fields, decide whether the paper supports:
 - cohort-level demographic context only
@@ -473,6 +568,9 @@ For EACH unique value that goes into a characteristics column:
 - Do NOT send full manuscript sentences to OLS or ZOOMA unless you are debugging a failed lookup.
 
 ### 4.2 Search OLS lexically first
+
+> **Offline mode (Step 0):** skip this step — use `spec/sdrf-proteomics/TERMS.tsv` for permitted values instead of OLS.
+
 ```text
 Use: searchClasses(query="breast carcinoma", ontologyId="mondo")
 Or:  search(query="Homo sapiens")       # only when the target ontology is unknown
@@ -506,6 +604,9 @@ Override only when necessary:
   exploring close neighbours.
 
 ### 4.3 Use embeddings and ZOOMA only when needed
+
+> **Offline mode (Step 0):** skip this step — there is no embedding or ZOOMA service offline.
+
 Trigger OLS embedding search when:
 - lexical search returns no result
 - the mention is abbreviation-like (`HCC`, `PDAC`, `GBM`, `TNBC`)
@@ -533,7 +634,8 @@ Field defaults:
 - `disease`, `phenotype` → lexical first, embeddings and ZOOMA are useful fallbacks
 
 ### 4.4 Verify the term is from the CORRECT ontology
-Read TERMS.tsv `values` field for the column to determine which ontology(ies) to search:
+The contract (Step 3.1) names, per column, which ontology(ies) to search (`<- NCBITaxon`,
+`<- UBERON, BTO`, ...); do not read TERMS.tsv for it. The usual routing:
 - organism → NCBITaxon
 - organism part → UBERON (primary), BTO (fallback)
 - disease → MONDO (primary), EFO, DOID
@@ -552,7 +654,7 @@ full-database script. The skill owns the decision rules; tools are only helpers.
 Use this order:
 
 1. `/sdrf-skills:sdrf-cellline <name or CVCL_XXXX>` for the full translation workflow
-2. `python -m tools cellline lookup <name>` for the curated offline helper
+2. `sdrf-tools cellline lookup <name>` for the curated offline helper
 3. https://www.cellosaurus.org/search when you need manual confirmation
 
 The goal is to recover:
@@ -628,6 +730,8 @@ When one of those enrichment-method values is recovered and `characteristics[enr
 - Check TERMS.tsv `allow_not_available`, `allow_not_applicable`, `allow_pooled` for each column
 
 ## Step 5: Fill Technical Metadata
+
+> The values found in this step go into `technical.tsv` (Step 3.3), one row per column.
 
 ### 5.1 Instrument
 ```text
@@ -766,7 +870,7 @@ mass tolerances, and undeclared or incorrect modifications.
 `analysis.tdf` inside a `.d` archive is a SQLite database, so one member of the ZIP
 can be range-fetched (14.7 MB rather than a 2.5 GB download) and read directly:
 ```bash
-python -m tools bruker-dia "<url of the .d.zip>"
+sdrf-tools bruker-dia "<url of the .d.zip>"
 ```
 It reports the isolation windows, m/z coverage and CE ramp. Fill
 `comment[isolation window width]` from it and **only** from it: diaPASEF windows are
@@ -775,18 +879,25 @@ variable-width, the column is a single scalar, and deriving one from the manuscr
 passing both the regex and `parse_sdrf`. When the widths vary, the honest value is
 `not available` with the measured table in the report — see `/sdrf-skills:sdrf-techrefine`.
 
-## Step 6: Map Files to Samples
+## Step 6: Build the SDRF
 
-- Get file names from Step 1.2 (PRIDE file list)
-- Each raw file → 1 row (label-free) or N rows (N = label channels for TMT/SILAC)
-- Match files to samples using naming patterns from the paper or PRIDE description
-- Set `comment[fraction identifier]` from file naming patterns (1 if not fractionated)
-- Set `comment[technical replicate]` starting from 1
-
-**Row count formula:**
-```text
-Total rows = samples × fractions × label_channels × technical_replicates
+```bash
+sdrf-tools build \
+  --samples samples.tsv --technical technical.tsv --files evidence/files.json \
+  -t <template1> [-t <template2> ...] -o output.sdrf.tsv
 ```
+
+`build` assigns one row per (source, file); `comment[fraction identifier]` from the position
+in `files` (1 for a single file); `comment[technical replicate]` from the column or 1;
+`assay name` from the file stem unless you set it; the contract's column order with factor
+values last. Every file in `files.json` should be claimed by exactly one source (or, when
+multiplexed, by one row per channel).
+
+If `build` refuses, it names the table and row. Fix that row and run it again. It refuses,
+rather than guesses, an incomplete channel map (6.1). **If `build` cannot be run at all** — the
+command is denied or the tools are missing — stop, keep `samples.tsv` and `technical.tsv`, and say
+so in the report. Do not write `output.sdrf.tsv` by hand: a hand-written file is exactly what
+this step exists to prevent, and on a large dataset it will not even fit in one response.
 
 ### 6.1 Multiplexed: exhaust every source of the channel→sample map before BLOCKING
 For TMT / TMTpro / plexDIA / dimethyl, each of the N rows per file needs a sample
@@ -843,9 +954,10 @@ rather than a shrug.
 ## Step 7: Set Factor Values
 
 1. Identify what is being compared (disease vs control? treatment vs untreated?)
-2. Create `factor value[<variable>]` column (e.g., `factor value[disease]`)
+2. Add a `factor value[<variable>]` column to `samples.tsv` (e.g., `factor value[disease]`);
+   `build` places it last
 3. Copy values from the corresponding characteristics column
-4. If multiple factors → create multiple factor value columns
+4. If multiple factors → one `factor value[...]` column per factor
 
 **Do not invent a factor value column for sample composition.** A quantity that describes
 what was added to the sample during preparation — a spiked protein/peptide/mixture and how
@@ -858,9 +970,12 @@ a gap to fill with an unrelated column.
 
 ## Step 8: Add SDRF Metadata
 
-- `comment[sdrf version]` → read latest version from `spec/sdrf-proteomics/sdrf-templates/templates.yaml`
-- `comment[sdrf template]` → one column per template: `NT={template_name};VV=v{version}` (versions from templates.yaml)
-- `comment[sdrf annotation tool]` → `manual curation` (or tool name if applicable)
+Two rows in `technical.tsv`; the third column is `build`'s:
+
+- `comment[sdrf version]` → the technology template's version as the contract header prints
+  it (e.g. `v1.1.0` for `ms-proteomics v1.1.0`); do not read `templates.yaml` for it
+- `comment[sdrf annotation tool]` → `manual curation` (or the tool name if applicable)
+- `comment[sdrf template]` → filled by `build`, one column per template you passed with `-t`
 
 ## Step 8.5: Reconcile every value against the record — REQUIRED
 
@@ -880,7 +995,7 @@ usually in the same JSON — in the title.
 Run the reconciler over the finished file before validating it:
 
 ```bash
-python -m tools reconcile <file.sdrf.tsv> --record <project.json> --accession <PXD>
+sdrf-tools reconcile <file.sdrf.tsv> --record <project.json> --accession <PXD>
 ```
 
 It reports a finding whenever the prose, the title or the run names disagree with what was
@@ -908,46 +1023,24 @@ because a downstream consumer has no way to tell it is wrong.
    a Thermo writes `.raw`, a SCIEX writes `.wiff`. An instrument that cannot have produced
    the deposited files is a contradiction that needs no judgement at all.
 
-## Step 9: Validate with sdrf-pipelines
+## Step 9: Validate — at most two rounds, fixes go to the tables
 
-Before presenting the SDRF to the user, **always** run programmatic validation
-with `sdrf-pipelines`. This catches errors that manual review misses.
-
-### 9.1 Update spec to latest version
 ```bash
-git submodule update --remote --recursive
+parse_sdrf validate-sdrf -s output.sdrf.tsv -t <template1> [-t <template2> ...]
 ```
+Add `--use_ols_cache_only` when there is no network. Use the templates from Step 2; several
+`-t` flags validate against their union.
 
-### 9.2 Save the SDRF to a temporary file
-Write the completed SDRF to a `.sdrf.tsv` file so `parse_sdrf` can validate it.
+If it reports errors:
+1. Change the offending **value in `samples.tsv` or `technical.tsv`** — never `Edit`
+   `output.sdrf.tsv`, and do not read it back; the tables are the source, the SDRF is output.
+2. Run `build` again (Step 6), then validate again.
+3. **Stop after the second validation.** If errors remain, list them verbatim in the report
+   (Step 10) with what you tried. Two rounds is the budget; a third rarely converges and the
+   remaining errors are more useful to the reader than another guess.
 
-### 9.3 Run validation with detected templates
-```bash
-parse_sdrf validate-sdrf \
-  --sdrf_file output.sdrf.tsv \
-  --template <template1> \
-  --template <template2>
-```
-Use the templates selected in Step 2. For example, a human DIA study:
-```bash
-parse_sdrf validate-sdrf \
-  --sdrf_file output.sdrf.tsv \
-  --template ms-proteomics \
-  --template human \
-  --template dia-acquisition
-```
-
-If `parse_sdrf` is not installed, tell the user:
-```text
-Install sdrf-pipelines to enable automatic validation:
-  pip install sdrf-pipelines
-```
-
-### 9.4 Fix any validation errors
-If `parse_sdrf` reports errors:
-1. Fix each error in the SDRF
-2. Re-run validation until it passes
-3. Only proceed to Step 10 when validation is clean (or only warnings remain)
+If `parse_sdrf` is not installed, say so in the report and point at
+`/sdrf-skills:sdrf-setup` (or `pip install sdrf-pipelines`).
 
 ## Step 10: Present Results
 

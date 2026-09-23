@@ -15,6 +15,7 @@ Symlink the skills and spec directories into your Codex agents skills path:
 ```bash
 ln -s "$(pwd)/skills" ~/.agents/skills/sdrf-skills
 ln -s "$(pwd)/spec" ~/.agents/skills/sdrf-skills/spec
+ln -s "$(pwd)/tools" ~/.agents/skills/sdrf-skills/tools   # contract and build helpers
 ```
 
 Or copy both directories:
@@ -22,6 +23,7 @@ Or copy both directories:
 ```bash
 cp -r skills/ ~/.agents/skills/sdrf-skills/
 cp -r spec/ ~/.agents/skills/sdrf-skills/spec/
+cp -r tools/ ~/.agents/skills/sdrf-skills/tools/
 ```
 
 ## What it provides
@@ -44,6 +46,25 @@ cp -r spec/ ~/.agents/skills/sdrf-skills/spec/
 | sdrf-design | Experimental design analysis |
 | sdrf-contribute | Contribute annotation via PR to community repo |
 | sdrf-techrefine | Verify/refine technical metadata from raw files via techsdrf |
+
+## Bundled tools: contract and build
+
+Two deterministic helpers keep annotation short and structurally valid. Run them with `sdrf-tools ...` (the
+directory that holds `tools/`); `sdrf-pipelines` must be installed:
+
+- `sdrf-tools contract -t ms-proteomics [-t human ...]` — prints the column contract of the
+  template union: every column in order, required/optional/multiple, value form, permitted reserved
+  words and the ontologies to search. Read this instead of `TERMS.tsv` and the template YAMLs.
+- `sdrf-tools build --samples samples.tsv --technical technical.tsv --files files.json
+  -t ms-proteomics [-t ...] -o output.sdrf.tsv` — expands a sample table (one row per source and
+  replicate; `files` = the fractions of one injection; `label` = `label free sample` or one channel)
+  plus a technical table (run-level `comment[...]` values, `|` between multiple values) into the SDRF:
+  fractions, technical replicates, channel rows, repeated columns and column order are decided by
+  code. It refuses, and writes nothing, on a file outside `files.json`, a file claimed twice, two rows
+  sharing a (source, biological replicate, technical replicate, fraction) coordinate, or an incomplete
+  channel map — it never fills a channel in.
+
+Fix validation errors in the two tables and rebuild; never edit the SDRF by hand.
 
 ## Usage
 

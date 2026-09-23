@@ -10,7 +10,7 @@ argument-hint: "[file path or paste SDRF content]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are fixing known common errors in an SDRF file. Apply fixes systematically.
@@ -145,7 +145,7 @@ Faults that survive validation because they parse into something wrong rather th
 | `comment[modification parameters].1` | `comment[modification parameters]` | pandas suffix splits a repeated column |
 | `NT=Lys-C;AC=MS:1001309`, `…1310`, `…1311` | all `AC=MS:1001309` | an accession must not increment per row |
 
-**Fix**: `python -m tools fix <file>` handles all of these. The bare-accession prefix is only
+**Fix**: `sdrf-tools fix <file>` handles all of these. The bare-accession prefix is only
 restored when the column maps to exactly one ontology, so an ambiguous column is left alone;
 an incrementing accession needs the correct term confirmed before collapsing the run.
 

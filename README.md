@@ -134,11 +134,14 @@ helpers a skill can call (TSV parsing, OLS client, hallucination detection, qual
 cell-line enrichment, MassIVE fallback, and the review gate). Run them via the unified CLI:
 
 ```bash
-python -m tools check  file.sdrf.tsv          # hallucinated terms / UNIMOD swaps
-python -m tools score  file.sdrf.tsv          # quality score (0-100, 5 dimensions)
-python -m tools fix    file.sdrf.tsv -o out.tsv
-python -m tools verify UNIMOD:1 --label Acetyl
-python -m tools review-gate gate              # enforce independent-review receipts
+sdrf-tools check  file.sdrf.tsv          # hallucinated terms / UNIMOD swaps
+sdrf-tools score  file.sdrf.tsv          # quality score (0-100, 5 dimensions)
+sdrf-tools fix    file.sdrf.tsv -o out.tsv
+sdrf-tools verify UNIMOD:1 --label Acetyl
+sdrf-tools review-gate gate              # enforce independent-review receipts
+sdrf-tools contract -t ms-proteomics -t human          # column contract of a template union
+sdrf-tools build --samples samples.tsv --technical technical.tsv \
+  --files files.json -t ms-proteomics -t human -o out.sdrf.tsv  # SDRF from a sample table, deterministically
 ```
 
 **Adversarial review gate.** Changed SDRFs are identified by SHA-256; a passing receipt is valid only

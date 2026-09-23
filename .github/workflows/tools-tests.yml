@@ -34,7 +34,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests>=2.28 pytest fastmcp>=3.4 httpx>=0.28
+          # sdrf-pipelines without the [ontology] extra: contract/build need its template registry only
+          pip install requests>=2.28 pytest fastmcp>=3.4 httpx>=0.28 sdrf-pipelines
 
       - name: Run tests
         run: |
@@ -43,6 +44,8 @@ jobs:
       - name: Verify CLI help (all subcommands)
         run: |
           python -m tools check --help
+          python -m tools contract --help
+          python -m tools build --help
           python -m tools score --help
           python -m tools fix --help
           python -m tools benchmark --help
