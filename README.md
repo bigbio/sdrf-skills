@@ -22,21 +22,22 @@ lives in a git submodule and is read at runtime, so the skills stay current as t
 
 ## Available skills
 
-Sixteen skills, most in the `sdrf:` namespace (the two review-gate skills use portable hyphenated names):
+Sixteen skills. Fourteen are slash commands under `/sdrf-skills:`; two are review-gate skills that other
+skills dispatch into a fresh context and that are never typed as a command:
 
 | Skill | What it does |
 |-------|-------------|
 | `/sdrf-skills:sdrf-setup` | Guided dependency install (parse_sdrf, techsdrf) — conda or pip |
-| `/sdrf-skills:sdrf-knowledge` | SDRF format, column rules, ontology mappings, reserved words; plain-language explanations; ontology term lookup |
+| `/sdrf-skills:sdrf-knowledge` | Explains the SDRF format in plain language; holds the one canonical copy of the format rules (`references/format-rules.md`) that every other skill points to |
 | `/sdrf-skills:sdrf-templates` | Template selection, layers, and selection rules |
 | `/sdrf-skills:sdrf-metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies → resumable TSV |
 | `/sdrf-skills:sdrf-autoresearch` | Autonomous retained-improvement loop over a dataset or dataset class |
-| `/sdrf-skills:sdrf-annotate` | Plan + full workflow: PXD → PRIDE + paper → draft SDRF → validate |
+| `/sdrf-skills:sdrf-annotate` | Full workflow: PXD → record + paper → `samples.tsv` + `technical.tsv` → `sdrf-tools build` → validate. A short core plus `references/` files it reads only when a step needs them |
 | `/sdrf-skills:sdrf-validate` | Systematic validation against templates + OLS ontology checking |
 | `/sdrf-skills:sdrf-fix` | Auto-fix common errors (UNIMOD swaps, case, format, artifacts) |
 | `/sdrf-skills:sdrf-review` | Comprehensive quality review + 5-dimension quality score cross-referenced to paper + PRIDE |
-| `$sdrf-adversarial-review` | Fresh-context, evidence-first review with a hash-bound verdict |
-| `$sdrf-annotate-reviewed` | Annotation orchestrator with isolated review, repair, and re-review |
+| `sdrf-adversarial-review` (dispatched, not typed) | Independent review of an SDRF in a fresh context, checked against the evidence, with a verdict bound to the file's hash |
+| `sdrf-annotate-reviewed` (dispatched, not typed) | Runs annotate, then the adversarial review, then repair and a mandatory re-review |
 | `/sdrf-skills:sdrf-convert` | Choose and configure analysis pipelines from SDRF |
 | `/sdrf-skills:sdrf-design` | Detect batch effects, confounders, replication issues |
 | `/sdrf-skills:sdrf-contribute` | Contribute an annotated SDRF back to sdrf-annotated-datasets via PR |
@@ -121,7 +122,7 @@ For full annotation, configure the **OLS**, **PRIDE**, **PubMed**, and **bioRxiv
 ## Usage
 
 ```text
-/sdrf-skills:sdrf-annotate PXD045678     → fetch PRIDE + paper → select templates → draft SDRF with OLS-verified terms → validate
+/sdrf-skills:sdrf-annotate PXD045678     → record + paper → templates → sample and technical tables → sdrf-tools build → validate
 /sdrf-skills:sdrf-validate file.sdrf.tsv → template + ontology validation
 /sdrf-skills:sdrf-fix file.sdrf.tsv      → repair UNIMOD swaps, case, formats, artifacts (with changelog)
 /sdrf-skills:sdrf-contribute PXD045678   → open a PR to bigbio/sdrf-annotated-datasets
@@ -158,6 +159,13 @@ The MCP tools an agent needs already exist (OLS, PRIDE, PubMed) — what was mis
 which ontology to search per column, how to read a paper for SDRF metadata, the common errors and their
 fixes, and what "good" annotation looks like. Skills encode that as step-by-step workflows, and the
 `spec/` submodule keeps the column/template data current with no SKILL.md changes.
+
+A skill's `SKILL.md` is loaded whole whenever it is invoked, and it stays in the model's context for every
+turn after that, so its length is a per-turn cost. The largest skill, `sdrf-annotate`, is therefore a
+short core (the workflow: operating mode, templates, the two tables, `build`, validate) plus
+`references/` files — gathering the record, finding sample and technical values, the channel-map
+ladder, reconciliation, planning — that it tells the model to read only when that step needs them.
+The format rules themselves exist once, in `skills/sdrf-knowledge/references/format-rules.md`.
 
 ## Contributing
 

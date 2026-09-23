@@ -24,6 +24,10 @@ Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which pars
 
 ## Common Error Patterns and Their Fixes
 
+> The rules these patterns violate are stated once in
+> [../sdrf-knowledge/references/format-rules.md](../sdrf-knowledge/references/format-rules.md);
+> this list is the diagnostic side.
+
 ### 1. UNIMOD Accession Swaps (45% of all errors)
 | Wrong | Correct | Modification |
 |-------|---------|-------------|
