@@ -10,7 +10,7 @@ is **not** stored here; it is read at runtime from the `spec/` git submodule.
 
 Skills are auto-discovered — `.claude-plugin/plugin.json` carries no `skills` key, so Claude Code
 scans the `skills/` directory automatically. Each SKILL.md declares its own name and routing
-description in frontmatter. Currently 12: 11 user-invocable skills named `sdrf-*` (invoked as `/sdrf-skills:sdrf-annotate` etc.
+description in frontmatter. Currently 11: 10 user-invocable skills named `sdrf-*` (invoked as `/sdrf-skills:sdrf-annotate` etc.
 once installed as a marketplace plugin) plus `sdrf-adversarial-review`, which `sdrf-annotate`
 dispatches into a fresh context at Step 9.5 and which is never typed. `sdrf-annotate` is the one
 entry point for creating, reviewing and planning an SDRF; review is always part of it.
@@ -49,7 +49,7 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 
 **Three layers, loosely coupled — the coupling gaps matter more than the layers:**
 
-1. `skills/` — 12 SKILL.md workflows. `sdrf-annotate` is a ~3k-word core plus seven `references/`
+1. `skills/` — 11 SKILL.md workflows. `sdrf-annotate` is a ~3k-word core plus seven `references/`
    files it reads on demand (the full text of Steps 0.5, 1, 4, 5, 6.1, 8.5 and the planning mode);
    `sdrf-knowledge` holds the single canonical `references/format-rules.md` that annotate, fix and
    knowledge all point to; the two review-gate skills ship `references/review-contract.md` and

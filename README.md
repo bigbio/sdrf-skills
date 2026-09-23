@@ -22,7 +22,7 @@ lives in a git submodule and is read at runtime, so the skills stay current as t
 
 ## Available skills
 
-Twelve skills. Eleven are slash commands under `/sdrf-skills:`; `sdrf-adversarial-review` is dispatched by
+Eleven skills. Ten are slash commands under `/sdrf-skills:`; `sdrf-adversarial-review` is dispatched by
 `sdrf-annotate` into a fresh context and is never typed as a command:
 
 | Skill | What it does |
