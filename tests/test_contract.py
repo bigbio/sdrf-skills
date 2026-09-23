@@ -97,3 +97,14 @@ def test_cli_contract_prints_text(capsys):
     out = capsys.readouterr().out
     assert "CONTRACT for templates: ms-proteomics" in out
     assert "comment[label]" in out
+
+
+def test_interpreter_for_sdrf_pipelines_reads_shebang(tmp_path, monkeypatch):
+    from tools.__main__ import interpreter_for_sdrf_pipelines
+    exe = tmp_path / "parse_sdrf"
+    exe.write_text(f"#!{__import__('sys').executable}\nprint('x')\n")
+    exe.chmod(0o755)
+    monkeypatch.setattr("shutil.which", lambda name: str(exe) if name == "parse_sdrf" else None)
+    assert interpreter_for_sdrf_pipelines() == __import__("sys").executable
+    monkeypatch.setattr("shutil.which", lambda name: None)
+    assert interpreter_for_sdrf_pipelines() is None

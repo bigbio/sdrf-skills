@@ -497,6 +497,10 @@ takes multiple values, the value form (`bare value`, `NT=<name>;AC=<accession>`,
 `<number> ppm|Da`, `integer`), and which reserved words it permits. Keep it in context; do
 **not** read `TERMS.tsv`, the template YAMLs or the spec README to learn the same thing.
 
+`contract` and `build` need `sdrf-pipelines`; if the `python3` on your PATH cannot import it
+but `parse_sdrf` is installed, they re-run themselves under `parse_sdrf`'s interpreter. Do not
+go looking for another Python yourself.
+
 ### 3.2 Write `samples.tsv` — one row per source *and replicate*
 
 Tab-separated. Three structural columns, then the sample properties you can support from
