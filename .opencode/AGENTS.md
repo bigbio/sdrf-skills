@@ -15,18 +15,13 @@ description) followed by a step-by-step workflow in Markdown.
 | Skill Directory | What It Does |
 |----------------|-------------|
 | `sdrf-setup` | Install dependencies (parse_sdrf, techsdrf) — conda or pip guided setup |
-| `sdrf-metascreen` | Screen/shortlist PRIDE, MassIVE, or ProteomeXchange studies against user-defined criteria → evidence-backed TSV |
-| `sdrf-autoresearch` | Autonomous retained-improvement loop over one dataset, a manifest, or a dataset class |
 | `sdrf-knowledge` | SDRF format rules, column naming, ontology-to-column mapping |
-| `sdrf-templates` | Template layer system (Technology → Organism → Experiment → Clinical → Platform) |
 | `sdrf-annotate` | Full annotation workflow: PXD → PRIDE metadata + publication → SDRF draft |
+| `sdrf-metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies against your criteria into a resumable TSV |
+| `sdrf-autoresearch` | Autonomous retained-improvement loop over a dataset or dataset class |
 | `sdrf-validate` | Validation: structural checks + OLS ontology verification |
 | `sdrf-fix` | Auto-fix 10 common error patterns (UNIMOD swaps, case, format, artifacts) |
-| `sdrf-review` | Quality review: cross-reference SDRF against publication and PRIDE metadata |
 | `sdrf-adversarial-review` | Independent fresh-context falsification review with hash-bound approval |
-| `sdrf-annotate-reviewed` | Annotation, validation, independent review, repair, and re-review orchestration |
-| `sdrf-convert` | Pipeline selection and conversion commands (MaxQuant, DIA-NN, OpenMS, quantms) |
-| `sdrf-design` | Experimental design analysis: batch effects, confounders, replication assessment |
 | `sdrf-contribute` | Contribute annotated SDRF to community repo via PR (automated or guided) |
 | `sdrf-techrefine` | Verify/refine technical metadata (instrument, tolerances, mods, DDA/DIA) from raw files via techsdrf |
 | `sdrf-cellline` | Look up cell lines via Cellosaurus and translate them into SDRF cell-line columns (organism, disease, sampling site, sex, ancestry, age) |

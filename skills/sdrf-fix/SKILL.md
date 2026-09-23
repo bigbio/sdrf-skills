@@ -15,7 +15,13 @@ argument-hint: "[file path or paste SDRF content]"
 
 You are fixing known common errors in an SDRF file. Apply fixes systematically.
 
-## Step 0: Check parse_sdrf availability
+## Step 0: `sdrf-tools fix` first
+
+`sdrf-tools fix <file> -o <out>` repairs the deterministic patterns (bare accessions, underscores,
+Python artefacts, CSV quoting, wrapped reserved words, age units, pandas `.1` headers) and writes a
+changelog. Run it before reasoning about anything below; the patterns that remain need judgement.
+
+## Step 0.1: Check parse_sdrf availability
 
 Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
 - Inform the user that re-validation after fixes will need to be done manually

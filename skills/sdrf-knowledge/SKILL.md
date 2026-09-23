@@ -92,7 +92,7 @@ _Folded from the former `sdrf:explain` skill: use this when the user wants a con
 # SDRF Explanation Skill
 
 You are explaining SDRF concepts to users who may be new to the format.
-Use the sdrf-knowledge and sdrf-templates background skills for reference.
+Use this skill's `references/format-rules.md` and `../sdrf-annotate/references/templates.md` for reference.
 
 ## When Explaining a Column
 
@@ -233,7 +233,7 @@ Experiment (optional), Clinical (optional), and Metaproteomics (special).
 You declare templates via `comment[sdrf template]` columns:
   `NT=ms-proteomics;VV=v1.1.0`
 
-See `/sdrf-skills:sdrf-templates` for the full selection guide and decision tree.
+See ``../sdrf-annotate/references/templates.md`` for the full selection guide and decision tree.
 
 ### "How many rows should my SDRF have?"
 ```text
