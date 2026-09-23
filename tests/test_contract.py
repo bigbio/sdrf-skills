@@ -125,3 +125,19 @@ def test_interpreter_for_sdrf_pipelines_reads_shebang(tmp_path, monkeypatch):
     assert interpreter_for_sdrf_pipelines() == __import__("sys").executable
     monkeypatch.setattr("shutil.which", lambda name: None)
     assert interpreter_for_sdrf_pipelines() is None
+
+
+def test_cli_doctor_reports_each_dependency(capsys):
+    import sys
+
+    from tools.cli import main
+    argv = sys.argv
+    sys.argv = ["tools", "doctor"]
+    try:
+        with pytest.raises(SystemExit):
+            main()
+    finally:
+        sys.argv = argv
+    out = capsys.readouterr().out
+    for what in ("parse_sdrf", "sdrf_pipelines importable", "sdrf-tools on PATH", "spec TERMS.tsv", "techsdrf"):
+        assert what in out

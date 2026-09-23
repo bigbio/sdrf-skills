@@ -10,10 +10,13 @@ is **not** stored here; it is read at runtime from the `spec/` git submodule.
 
 Skills are auto-discovered — `.claude-plugin/plugin.json` carries no `skills` key, so Claude Code
 scans the `skills/` directory automatically. Each SKILL.md declares its own name and routing
-description in frontmatter. Currently 11: 10 user-invocable skills named `sdrf-*` (invoked as `/sdrf-skills:sdrf-annotate` etc.
-once installed as a marketplace plugin) plus `sdrf-adversarial-review`, which `sdrf-annotate`
-dispatches into a fresh context at Step 9.5 and which is never typed. `sdrf-annotate` is the one
-entry point for creating, reviewing and planning an SDRF; review is always part of it.
+description in frontmatter. Currently 5: `sdrf-annotate`, `sdrf-contribute`, `sdrf-metascreen`, `sdrf-autoresearch` (invoked as
+`/sdrf-skills:sdrf-annotate` etc. once installed as a marketplace plugin) plus `sdrf-adversarial-review`,
+which `sdrf-annotate` dispatches into a fresh context at Step 9.5 and which is never typed.
+`sdrf-annotate` is the one entry point for everything about one SDRF - create (review always
+included), review/validate/check/score/fix an existing file, look up cell lines and terms, verify
+technical metadata from raw files, plan, explain. Its `references/` hold what used to be separate
+skills (setup, knowledge, templates, validate, fix, techrefine, cellline, review, design).
 Run `ls skills/` for the current set — **do not trust a hardcoded skill count anywhere in this repo**;
 README.md alone carries three contradictory numbers, and commit `d5c4c70` exists only to repair drift.
 
@@ -49,10 +52,9 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 
 **Three layers, loosely coupled — the coupling gaps matter more than the layers:**
 
-1. `skills/` — 11 SKILL.md workflows. `sdrf-annotate` is a ~3k-word core plus seven `references/`
+1. `skills/` — 5 SKILL.md workflows. `sdrf-annotate` is a ~3k-word core plus seven `references/`
    files it reads on demand (the full text of Steps 0.5, 1, 4, 5, 6.1, 8.5 and the planning mode);
-   `sdrf-knowledge` holds the single canonical `references/format-rules.md` that annotate, fix and
-   knowledge all point to; the two review-gate skills ship `references/review-contract.md` and
+   `references/format-rules.md` is the single canonical copy of the format rules; the two review-gate skills ship `references/review-contract.md` and
    `agents/openai.yaml`. A SKILL.md is resident every turn once invoked, so its length is a per-turn
    cost - keep cores short and put detail in `references/`.
 2. `tools/` — offline-first Python. `contract` and `build` are what `sdrf-annotate` runs (Steps 3
@@ -71,9 +73,8 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 annotating, ends every annotation with a fresh-context `sdrf-adversarial-review` (Step 9.5: manifest,
 track, dispatch, repair, re-review, gate), and in review mode does what `sdrf-review` and
 `sdrf-annotate-reviewed` used to. `sdrf-metascreen` screens a class of studies and hands the included ones to
-`sdrf-autoresearch`, which loops `annotate` over them. `contribute` runs `sdrf-tools review-gate gate` before publishing. `validate` and
-`fix` are thin entry points around `parse_sdrf` and `sdrf-tools`. `knowledge` explains; `setup`
-installs. Removed 2026-09-23: `sdrf-review`, `sdrf-annotate-reviewed`, `sdrf-design` (folded into
+`sdrf-autoresearch`, which loops `annotate` over them. `contribute` runs `sdrf-tools review-gate gate` before publishing. `sdrf-tools doctor` replaces `setup`; validate, fix, knowledge, techrefine and cellline are
+references and tool commands now. Removed 2026-09-23: `sdrf-review`, `sdrf-annotate-reviewed`, `sdrf-design` (folded into
 annotate's review mode and `references/review-checks.md`), `sdrf-templates` (now
 `sdrf-annotate/references/templates.md`), `sdrf-convert` (a README block). None of this routing is covered by CI
 (`tools-tests.yml` ignores `skills/**`).
@@ -109,8 +110,8 @@ Nothing in CI or the tests checks this, which is why the copies have already rot
 it points at the directory.
 
 Domain policy (value encoding, reserved words, modification syntax, UNIMOD swaps, label types, row
-identity) exists once, in `skills/sdrf-knowledge/references/format-rules.md`; `sdrf-annotate` and
-`sdrf-fix` point to it. Do not paste rules back into a skill. The plasma heuristic is still ~40
+identity) exists once, in `skills/sdrf-annotate/references/format-rules.md`; `sdrf-annotate` and
+`sdrf-annotate`'s core and references point to it. Do not paste rules back into a skill. The plasma heuristic is still ~40
 near-identical lines in both `sdrf-annotate/references/gather-context.md` and `sdrf-autoresearch`.
 
 ## MCP
@@ -127,7 +128,7 @@ Claude Code never resolves `command` and tries to exec a binary literally named 
 upgrade replaces the directory, so it has to be re-created. Conda users repoint `command`.
 
 Skills still call **five tools that exist in no bundled server** — `searchClassesWithEmbeddingModel`,
-`listEmbeddingModels`, `searchWithEmbeddingModel` (in `sdrf-knowledge` and `sdrf-annotate`), and
+`listEmbeddingModels`, `searchWithEmbeddingModel` (in `sdrf-annotate` and its references, formerly `sdrf-knowledge`), and
 `search_articles` / `search_preprints` (in `sdrf-annotate`). Those paths need an external OLS/PubMed/
 bioRxiv MCP or a rewrite onto `searchClasses`/`getChildren`.
 
@@ -241,7 +242,7 @@ reimplementing merge semantics.
    constraint set (column licensing + reserved-word `allow_*`), resolve with
    `spec/scripts/resolve_templates.py` — parse_sdrf enforces neither. `parse_sdrf` ships in
    `sdrf-pipelines` and is **not installed by default** (CI installs only `requests`, `pytest`,
-   `fastmcp`, `httpx` — not `sdrf-pipelines[ontology]`, which is heavy) — run `/sdrf-skills:sdrf-setup`. Keep
+   `fastmcp`, `httpx` — not `sdrf-pipelines[ontology]`, which is heavy) — run ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`. Keep
    concurrent `parse_sdrf` jobs ≤ 2.
 8. **A producer must never approve its own SDRF.** For changed SDRFs, require a passing receipt from
    `sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.

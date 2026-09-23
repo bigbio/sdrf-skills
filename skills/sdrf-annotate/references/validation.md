@@ -1,25 +1,6 @@
----
-name: sdrf-validate
-description: Use when the user wants to validate an SDRF file, check for errors, or verify ontology terms. Triggers on requests to check, validate, or review SDRF content.
-user-invocable: true
-argument-hint: "[file path or paste SDRF content]"
----
+# Reference: validating an SDRF (review mode and Step 9 of sdrf-annotate)
 
-# SDRF Validation
-
-> The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`.
-
-Validation is one command plus the structural checks it does not cover. It answers whether a file is
-well-formed against its templates; it cannot say whether the values are true of the deposit — that is
-review (`/sdrf-skills:sdrf-annotate <file.sdrf.tsv>`).
-
-## Step 1: Templates
-
-Read the file's `comment[sdrf template]` columns (`NT=<name>;VV=<version>`). If absent, infer from
-content ([../sdrf-annotate/references/templates.md](../sdrf-annotate/references/templates.md) —
-"How to Detect Templates from Existing SDRF") and confirm with the user.
-
-## Step 2: Validate
+## The command
 
 ```bash
 parse_sdrf validate-sdrf -s <file.sdrf.tsv> -t <template1> [-t <template2> ...] [--use_ols_cache_only]
@@ -58,7 +39,7 @@ Use these resource guards:
 
 If the machine looks stressed or validation becomes unresponsive, reduce concurrency before continuing. If disk free space is under ~10-20GB, treat any large download or batch-write operation (dataset downloads, raw-file conversion, bulk SDRF generation) as high-risk until space is freed — low disk space also constrains how much the OS can grow swap, which turns a memory spike into a full hang instead of graceful slowdown.
 
-## Step 3: Structural and consistency checks
+## Structural and consistency checks
 
 Run the deterministic structural checks first — they decide from the file alone, so do not
 re-reason about what they cover:
@@ -99,9 +80,9 @@ Fix every line it reports before working through the list below.
 - [ ] `characteristics[sampling time]` uses the template pattern `number + unit` such as `0 day`, `8 day`, or `12 week` when time-course metadata is present
 - [ ] `characteristics[depletion]` uses the controlled values `depletion` or `no depletion` rather than local variants like `depleted` or `yes`
 
-## Step 4: Report
+## Reporting
 
 Errors first, then warnings, then the checklist items that failed, each with row and column. Say
-what `/sdrf-skills:sdrf-fix` can repair deterministically and what needs the record. Do not fix
+what ``sdrf-tools fix` (patterns: `fix-patterns.md`)` can repair deterministically and what needs the record. Do not fix
 here. If the file is for a ProteomeXchange dataset and validates clean, the next step is review:
 `/sdrf-skills:sdrf-annotate <file.sdrf.tsv>`.

@@ -1,21 +1,16 @@
----
-name: sdrf-setup
-description: Use when the user wants to set up SDRF skills dependencies, install parse_sdrf and techsdrf, or configure the environment for the first time.
-user-invocable: true
-argument-hint: "[optional: conda | pip | check]"
----
+# Reference: installing the tools (when `sdrf-tools doctor` reports something missing)
 
 # SDRF Setup Workflow
 
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by ``sdrf-tools doctor` (install notes: `setup.md`)`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are guiding the user through installing SDRF skills dependencies. Follow these steps.
 
-**In Cursor**: The user invokes this by asking "install SDRF dependencies" or similar (no `/sdrf-skills:sdrf-setup` slash command). Ensure `environment.yml` and `requirements.txt` exist at the workspace root; if not, suggest cloning the full sdrf-skills repo or copying those files.
+**In Cursor**: The user invokes this by asking "install SDRF dependencies" or similar (no ``sdrf-tools doctor` (install notes: `setup.md`)` slash command). Ensure `environment.yml` and `requirements.txt` exist at the workspace root; if not, suggest cloning the full sdrf-skills repo or copying those files.
 
 ## Step 1: Detect Available Package Managers
 
@@ -133,11 +128,11 @@ Provide a clear summary:
 1. **Package manager detected**: conda / pip / uv
 2. **Commands to run**: (copy-paste block)
 3. **Verify**: parse_sdrf --version, techsdrf --version
-4. **Next**: Run /sdrf-skills:sdrf-annotate PXD###### or /sdrf-skills:sdrf-validate yourfile.sdrf.tsv
+4. **Next**: Run /sdrf-skills:sdrf-annotate PXD###### or `/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode) yourfile.sdrf.tsv
 
 ## If User Passes "check"
 
-When the user invokes `/sdrf-skills:sdrf-setup check`, run the verification step and report status:
+When the user invokes ``sdrf-tools doctor` (install notes: `setup.md`) check`, run the verification step and report status:
 - parse_sdrf: ✓ or ✗
 - techsdrf: ✓ or ✗
 - spec/ submodule: present and init'd or not

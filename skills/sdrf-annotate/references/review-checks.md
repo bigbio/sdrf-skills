@@ -25,7 +25,7 @@ DISCREPANCY: Paper mentions "hippocampus and temporal cortex" but SDRF only has 
 ```
 
 For technical metadata (instrument, tolerances, modifications, DDA/DIA), consider
-recommending `/sdrf-skills:sdrf-techrefine` — techsdrf can verify these parameters directly from
+recommending ``techrefine.md`` — techsdrf can verify these parameters directly from
 the raw MS files, which is more reliable than cross-referencing with the publication.
 
 ### Conflict Resolution

@@ -22,24 +22,37 @@ lives in a git submodule and is read at runtime, so the skills stay current as t
 
 ## Available skills
 
-Eleven skills. Ten are slash commands under `/sdrf-skills:`; `sdrf-adversarial-review` is dispatched by
+Five skills. Four are slash commands under `/sdrf-skills:`; `sdrf-adversarial-review` is dispatched by
 `sdrf-annotate` into a fresh context and is never typed as a command:
 
 | Skill | What it does |
 |-------|-------------|
-| `/sdrf-skills:sdrf-setup` | Guided dependency install (parse_sdrf, techsdrf) — conda or pip |
-| `/sdrf-skills:sdrf-knowledge` | Explains the SDRF format in plain language; holds the one canonical copy of the format rules (`references/format-rules.md`) that every other skill points to |
-| `/sdrf-skills:sdrf-annotate` | The one entry point. A PXD: record + paper → `samples.tsv` + `technical.tsv` → `sdrf-tools build` → validate → **independent review, always**. An existing `.sdrf.tsv`: review it against the record and the spec. A question: plan. A short core plus `references/` it reads only when a step needs them |
-| `/sdrf-skills:sdrf-metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies → resumable TSV |
-| `/sdrf-skills:sdrf-autoresearch` | Autonomous retained-improvement loop over a dataset or dataset class |
-| `/sdrf-skills:sdrf-validate` | Systematic validation against templates + OLS ontology checking |
-| `/sdrf-skills:sdrf-fix` | Auto-fix common errors (UNIMOD swaps, case, format, artifacts) |
+| `/sdrf-skills:sdrf-annotate` | Everything about one SDRF. A PXD: record + paper → `samples.tsv` + `technical.tsv` → `sdrf-tools build` → validate → **independent review, always**. An existing `.sdrf.tsv`: review it (validate, structure, check, reconcile, cross-reference, score, then the independent review). A question: explain the format, look up a term, or plan what to capture. A short core plus `references/` it reads only when a step needs them |
+| `/sdrf-skills:sdrf-contribute` | Contribute a reviewed SDRF back to sdrf-annotated-datasets via PR, behind the review gate |
+| `/sdrf-skills:sdrf-metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies against your criteria → resumable TSV |
+| `/sdrf-skills:sdrf-autoresearch` | Loop `sdrf-annotate` over a manifest or a dataset class, keeping evidence-backed improvements |
 | `sdrf-adversarial-review` (dispatched, not typed) | Independent review of an SDRF in a fresh context, checked against the evidence, with a verdict bound to the file's hash |
-| `/sdrf-skills:sdrf-contribute` | Contribute an annotated SDRF back to sdrf-annotated-datasets via PR |
-| `/sdrf-skills:sdrf-techrefine` | Verify/refine technical metadata from raw files via techsdrf |
-| `/sdrf-skills:sdrf-cellline` | Translate Cellosaurus records into SDRF cell-line columns |
+
+**Where the old commands went.** The skills below were folded into `sdrf-annotate` on 2026-09-23;
+nothing they did is gone, it is just not a separate command any more.
+
+| Before | Now |
+|---|---|
+| `/sdrf-skills:sdrf-setup` | `sdrf-tools doctor` reports what is missing; [Installation](#installation) below says how to install it |
+| `/sdrf-skills:sdrf-knowledge` | ask `/sdrf-skills:sdrf-annotate` the question; the rules live in `skills/sdrf-annotate/references/format-rules.md` |
+| `/sdrf-skills:sdrf-templates` | `skills/sdrf-annotate/references/templates.md`; `sdrf-tools contract` derives the columns |
+| `/sdrf-skills:sdrf-validate` | `/sdrf-skills:sdrf-annotate file.sdrf.tsv` (review mode), or `parse_sdrf validate-sdrf` + `sdrf-tools structure` directly |
+| `/sdrf-skills:sdrf-fix` | `sdrf-tools fix file.sdrf.tsv -o out.tsv`; the review lists what it can repair |
+| `/sdrf-skills:sdrf-review`, `sdrf-annotate-reviewed` | `/sdrf-skills:sdrf-annotate file.sdrf.tsv`; every annotation now ends with the independent review |
+| `/sdrf-skills:sdrf-techrefine` | Step 5.6 of annotate (`references/techrefine.md`), `techsdrf` |
+| `/sdrf-skills:sdrf-cellline` | Step 4.5 of annotate (`references/cellline.md`), `sdrf-tools cellline lookup` |
+| `/sdrf-skills:sdrf-design` | the design checks of the review mode (`references/review-checks.md`) |
+| `/sdrf-skills:sdrf-convert` | see *Feeding a pipeline* under Python tools |
 
 ## Installation
+
+After installing, `sdrf-tools doctor` checks `parse_sdrf`, `sdrf-tools`, the spec submodule and `techsdrf`,
+and says what to install for anything missing.
 
 **Claude Code, in two lines** — no clone needed; the marketplace install fetches the `spec/`
 submodules with it:
@@ -49,7 +62,7 @@ submodules with it:
 /plugin install sdrf-skills@sdrf-skills
 ```
 
-Then run `/sdrf-skills:sdrf-setup`, which installs the helper tools (`parse_sdrf`, `techsdrf`) and
+Then run ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`, which installs the helper tools (`parse_sdrf`, `techsdrf`) and
 tells you where the plugin lives. The skills resolve `spec/`, `tools/` and `data/` against
 `$CLAUDE_PLUGIN_ROOT`, so you can work from any directory.
 
@@ -79,8 +92,8 @@ Update the bundled spec any time with `git submodule update --remote --recursive
 ```
 Claude Code clones the repository with its submodules, so the SDRF spec data comes with the plugin.
 Skills resolve bundled paths through `$CLAUDE_PLUGIN_ROOT`, so any working directory is fine — your
-SDRF files stay where they are. Run `/sdrf-skills:sdrf-setup` once for `parse_sdrf`/`techsdrf`, then
-`/sdrf-skills:sdrf-annotate PXD######` or `/sdrf-skills:sdrf-validate your_file.sdrf.tsv`.
+SDRF files stay where they are. Run ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)` once for `parse_sdrf`/`techsdrf`, then
+`/sdrf-skills:sdrf-annotate PXD######` or ``/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode) your_file.sdrf.tsv`.
 
 **From a working tree (development)**
 ```bash
@@ -89,7 +102,7 @@ cd sdrf-skills && claude --plugin-dir .   # loads skills from the working tree
 
 **Bundled MCP server (optional).** `.mcp.json` wires `mcp/server.py` (PRIDE + Europe PMC + OLS
 helpers) and expects a virtualenv *next to the plugin*, so create it inside the plugin directory —
-`/sdrf-skills:sdrf-setup` prints the exact path for your install:
+``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)` prints the exact path for your install:
 
 ```bash
 uv venv "$PLUGIN_ROOT/.venv" && uv pip install --python "$PLUGIN_ROOT/.venv/bin/python" -r "$PLUGIN_ROOT/requirements.txt"
@@ -119,8 +132,8 @@ For full annotation, configure the **OLS**, **PRIDE**, **PubMed**, and **bioRxiv
 ```text
 /sdrf-skills:sdrf-annotate PXD045678     → record + paper → tables → sdrf-tools build → validate → independent review
 /sdrf-skills:sdrf-annotate file.sdrf.tsv → review an existing SDRF against its record and the spec
-/sdrf-skills:sdrf-validate file.sdrf.tsv → template + ontology validation
-/sdrf-skills:sdrf-fix file.sdrf.tsv      → repair UNIMOD swaps, case, formats, artifacts (with changelog)
+`/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode) file.sdrf.tsv → template + ontology validation
+`sdrf-tools fix` (patterns: `sdrf-annotate/references/fix-patterns.md`) file.sdrf.tsv      → repair UNIMOD swaps, case, formats, artifacts (with changelog)
 /sdrf-skills:sdrf-contribute PXD045678   → open a PR to bigbio/sdrf-annotated-datasets
 ```
 
@@ -136,6 +149,7 @@ sdrf-tools score  file.sdrf.tsv          # quality score (0-100, 5 dimensions)
 sdrf-tools fix    file.sdrf.tsv -o out.tsv
 sdrf-tools verify UNIMOD:1 --label Acetyl
 sdrf-tools review-gate gate              # enforce independent-review receipts
+sdrf-tools doctor                        # is everything installed?
 sdrf-tools contract -t ms-proteomics -t human          # column contract of a template union
 sdrf-tools build --samples samples.tsv --technical technical.tsv \
   --files files.json -t ms-proteomics -t human -o out.sdrf.tsv  # SDRF from a sample table, deterministically
@@ -165,7 +179,7 @@ turn after that, so its length is a per-turn cost. The largest skill, `sdrf-anno
 short core (the workflow: operating mode, templates, the two tables, `build`, validate) plus
 `references/` files — gathering the record, finding sample and technical values, the channel-map
 ladder, reconciliation, planning — that it tells the model to read only when that step needs them.
-The format rules themselves exist once, in `skills/sdrf-knowledge/references/format-rules.md`.
+The format rules themselves exist once, in `skills/sdrf-annotate/references/format-rules.md`.
 
 ## Contributing
 

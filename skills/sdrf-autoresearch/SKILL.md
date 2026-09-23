@@ -279,21 +279,21 @@ For each dataset:
 2. Run `/sdrf-skills:sdrf-annotate`
    - draft or extend the SDRF using the selected templates
 
-3. Run `/sdrf-skills:sdrf-knowledge`
+3. Run ``sdrf-annotate/references/format-rules.md` and `explaining.md``
    - normalize ontology-backed fields
    - use lexical OLS first
    - use embeddings for fuzzy manuscript-derived mentions
    - use ZOOMA as slower fallback when useful
 
-4. Run `/sdrf-skills:sdrf-techrefine`
+4. Run ``sdrf-annotate/references/techrefine.md``
    - refine technical MS metadata when raw files or techsdrf evidence are available
 
-5. Run `/sdrf-skills:sdrf-validate`
+5. Run ``/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode)`
    - validate template structure, reserved words, and ontology-backed fields
    - keep validation concurrency bounded: default to serial, and never run more than `2` `parse_sdrf` jobs at once
-   - if `sdrf-techrefine`, raw-file conversion, or other heavy analysis is active, validate only `1` dataset at a time
+   - if `techsdrf` raw-file analysis, file conversion, or other heavy work is active, validate only `1` dataset at a time
 
-6. Run `/sdrf-skills:sdrf-fix`
+6. Run ``sdrf-tools fix` (patterns: `sdrf-annotate/references/fix-patterns.md`)`
    - apply safe corrections to known SDRF error patterns
 
 7. Review: `/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode)

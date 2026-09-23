@@ -8,20 +8,12 @@ annotation in proteomics.
 The `skills/` directory contains 20 workflow files (SKILL.md) that encode community
 annotation expertise. When working with SDRF files, consult the relevant skill:
 
-- **Setup**: `skills/sdrf-setup/SKILL.md` — install parse_sdrf, techsdrf (conda or pip)
 - **Screen**: `skills/sdrf-metascreen/SKILL.md` — shortlist PRIDE/MassIVE/ProteomeXchange studies against user criteria → evidence-backed TSV
 - **Autoresearch**: `skills/sdrf-autoresearch/SKILL.md` — autonomous retained-improvement loop over a dataset, manifest, or dataset class
-- **Format rules**: `skills/sdrf-knowledge/SKILL.md` — column naming, ontology mappings, modification format
 - **Annotation**: `skills/sdrf-annotate/SKILL.md` — create an SDRF from a PXD and always have it independently reviewed; review an existing .sdrf.tsv; or plan. The only entry point for annotation and review
-- **Validation**: `skills/sdrf-validate/SKILL.md` — template + ontology checking
-- **Fixes**: `skills/sdrf-fix/SKILL.md` — auto-fix common errors
-- **Terms**: `skills/sdrf-knowledge/SKILL.md` — ontology term lookup (reference + OLS)
 - **Planning**: `skills/sdrf-annotate/SKILL.md` — pre-annotation metadata strategy
 - **Adversarial review**: `skills/sdrf-adversarial-review/SKILL.md` — isolated evidence-first review with hash-bound approval
-- **Education**: `skills/sdrf-knowledge/SKILL.md` — SDRF reference + plain-language explanations
 - **Contribute**: `skills/sdrf-contribute/SKILL.md` — PR to community repository
-- **Tech Refine**: `skills/sdrf-techrefine/SKILL.md` — verify/refine technical metadata from raw files via techsdrf
-- **Cell line**: `skills/sdrf-cellline/SKILL.md` — translate Cellosaurus records into SDRF cell-line columns (organism, disease, sex, sampling site, ancestry, age)
 
 ## Specification Data
 
