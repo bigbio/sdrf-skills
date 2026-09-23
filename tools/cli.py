@@ -79,6 +79,26 @@ def cmd_build(args: argparse.Namespace) -> int:
         return 2
 
 
+def cmd_doctor(args: argparse.Namespace) -> int:
+    """Is everything the skills need installed? One line per dependency, exit 1 if the validator is missing."""
+    import importlib.util
+    import shutil
+
+    from tools.column_ontology_map import resolve_terms_tsv
+    rows = []
+    ok = shutil.which("parse_sdrf") is not None
+    rows.append((ok, "parse_sdrf (sdrf-pipelines)", "pip install 'sdrf-pipelines[ontology]'"))
+    rows.append((importlib.util.find_spec("sdrf_pipelines") is not None, "sdrf_pipelines importable by this interpreter",
+                 "install sdrf-pipelines into the interpreter that runs sdrf-tools"))
+    rows.append((shutil.which("sdrf-tools") is not None, "sdrf-tools on PATH", "pip install -e <sdrf-skills checkout>"))
+    rows.append((resolve_terms_tsv(args.terms) is not None, "spec TERMS.tsv", "git submodule update --init --recursive"))
+    rows.append((shutil.which("techsdrf") is not None, "techsdrf (optional: raw-file verification)",
+                 "pip install git+https://github.com/bigbio/techsdrf.git"))
+    for good, what, fix in rows:
+        print(f"  {'ok ' if good else 'MISSING'}  {what}" + ("" if good else f"  ->  {fix}"))
+    return 0 if rows[0][0] else 1
+
+
 def cmd_score(args: argparse.Namespace) -> int:
     from tools.completeness import score_sdrf
     report = score_sdrf(args.sdrf_file)
@@ -329,6 +349,10 @@ def main() -> None:
     p.add_argument("-t", "--template", dest="templates", action="append", required=True)
     p.add_argument("-o", "--output", required=True)
 
+    # doctor
+    p = subparsers.add_parser("doctor", help="Check that parse_sdrf, sdrf-tools, the spec and techsdrf are available")
+    p.add_argument("--terms", default=None, help="Path to TERMS.tsv (default: bundled spec)")
+
     # score
     p = subparsers.add_parser("score", help="Score SDRF quality (0-100)")
     p.add_argument("sdrf_file")
@@ -433,6 +457,7 @@ def main() -> None:
         "structure": cmd_structure,
         "contract": cmd_contract,
         "build": cmd_build,
+        "doctor": cmd_doctor,
         "score": cmd_score,
         "fix": cmd_fix,
         "benchmark": cmd_benchmark,

@@ -133,7 +133,7 @@ this column when the PRIDE term above applies.
 If the dataset has raw files available (PRIDE or local), recommend using **techsdrf**
 to verify and refine the technical metadata filled in Steps 5.1–5.5:
 ```text
-Run /sdrf-skills:sdrf-techrefine PXD###### to verify instrument, tolerances, modifications,
+Run `techrefine.md` PXD###### to verify instrument, tolerances, modifications,
 and DDA/DIA classification directly from the raw MS files.
 ```
 techsdrf can detect discrepancies between what's declared in the paper/PRIDE and
@@ -151,4 +151,4 @@ It reports the isolation windows, m/z coverage and CE ramp. Fill
 variable-width, the column is a single scalar, and deriving one from the manuscript
 ("15 windows spanning 400–1000" → 40) yields a width matching no actual window while
 passing both the regex and `parse_sdrf`. When the widths vary, the honest value is
-`not available` with the measured table in the report — see `/sdrf-skills:sdrf-techrefine`.
+`not available` with the measured table in the report — see ``techrefine.md``.

@@ -11,5 +11,5 @@ else
   echo "SDRF skills loaded. Install dependencies for full functionality:"
   echo "  conda: conda env create -f \"$root/environment.yml\" && conda activate sdrf-skills"
   echo "  pip:   pip install -r \"$root/requirements.txt\""
-  echo "Run /sdrf-skills:sdrf-setup for guided installation."
+  echo "Run `sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`) for guided installation."
 fi

@@ -1,8 +1,8 @@
 ---
 name: sdrf-annotate
-description: Use when the user wants to create or annotate an SDRF file for a proteomics dataset. Also use to plan what metadata to capture and discuss experimental design/strategy before creating the file. Triggers on PXD accessions, requests to create SDRF, planning/strategy questions, or annotation tasks.
+description: Use for anything about one SDRF file - create it from a PXD accession (always followed by an independent review), review, validate, check, score or fix an existing .sdrf.tsv, look up a cell line or an ontology term, verify technical metadata from raw files, plan what to capture before there is a file, or explain what a column, value, error or concept means. Triggers on PXD accessions, .sdrf.tsv paths, and any question about the SDRF format, its templates, reserved words, modifications or ontology terms.
 user-invocable: true
-argument-hint: "[PXD accession or experiment description]"
+argument-hint: "[PXD accession | path/to/file.sdrf.tsv | experiment description]"
 ---
 
 # SDRF Annotation Workflow
@@ -10,7 +10,7 @@ argument-hint: "[PXD accession or experiment description]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are performing a complete SDRF annotation. Work through the steps in order, but
@@ -40,8 +40,8 @@ answer: MCP tools for PRIDE/Europe PMC/OLS, and `parse_sdrf` on the PATH. Do not
 later. If a class of lookup is missing, use the offline substitute named below instead of
 retrying it.
 
-If `parse_sdrf` is missing and you can reach the user, point them at
-`/sdrf-skills:sdrf-setup` (or `pip install sdrf-pipelines`) and ask whether to wait or
+If `parse_sdrf` is missing and you can reach the user, run `sdrf-tools doctor` and point them at
+[references/setup.md](references/setup.md) and ask whether to wait or
 continue with structural checks only. If you cannot ask, continue and say plainly in your
 final report that the file was not machine-validated.
 
@@ -68,6 +68,25 @@ source, or re-derive them from a template file:
   alone (`HeLa`, `Homo sapiens`); do not wrap it as `NT=<name>;AC=<accession>`. Accession-
   shaped values such as a Cellosaurus `CVCL_0030` are written as they are. `comment[...]`
   columns do take `NT=;AC=` where the term is ontology-backed.
+
+## Which mode?
+
+- **A PXD accession (or a description of an experiment)** → annotate: Steps 0a–11 below, ending
+  with the independent review in Step 9.5. Review is not optional; an annotation that has not been
+  independently reviewed is a draft.
+- **A path to an existing `.sdrf.tsv`** → review it: skip to **Reviewing an existing SDRF** at the
+  end of this file. Do not re-annotate a file you were asked to review.
+- **A question about what to capture, before there is a file** → planning: see the last section.
+- **A question about the format** (what a column, value, error or concept means; which template;
+  how to write a modification) → answer it from [references/format-rules.md](references/format-rules.md)
+  and [references/explaining.md](references/explaining.md); look terms up per
+  [references/ols-lookup.md](references/ols-lookup.md). Do not start an annotation.
+- **"Validate / check / fix / score this file"** → the review mode below does all four; a user who
+  wants only the deterministic part can run `parse_sdrf validate-sdrf`, `sdrf-tools structure`,
+  `sdrf-tools check`, `sdrf-tools fix` or `sdrf-tools score` directly.
+
+**Tools missing?** `sdrf-tools doctor` says what, and [references/setup.md](references/setup.md) says
+how to install it.
 
 ## Step 0a: Isolate this dataset's working files (required)
 
@@ -117,7 +136,8 @@ what to extract, and the traps.
 
 ## Step 2: Select Templates
 
-Use the sdrf:templates decision tree. Based on the gathered context:
+Read [references/templates.md](references/templates.md) — layers, exclusivity, the decision
+tree. Based on the gathered context:
 
 1. **Technology**: MS → `ms-proteomics`. Affinity → `affinity-proteomics`
 2. **Organism**: Human → `human`. Mouse/rat → `vertebrates`. Drosophila → `invertebrates`. Plant → `plants`. Microbiome → `metaproteomics` + child
@@ -202,7 +222,8 @@ Steps 4 and 5 tell you how to find the *values* for these two tables. Step 6 bui
 evidence, `developmental stage` may come from an unambiguous cohort description; when only a
 cohort summary exists, leave the per-sample field out rather than guess. Verify every term in
 the ontology the contract names for its column; use `not available` only where the contract
-allows it. Cell lines: `sdrf-tools cellline lookup <name>` or `/sdrf-skills:sdrf-cellline`.
+allows it. Cell lines: `sdrf-tools cellline lookup <name>`; the translation rules are in
+[references/cellline.md](references/cellline.md).
 Read [references/sample-values.md](references/sample-values.md) for the OLS procedure,
 embeddings/ZOOMA fallbacks, and the specificity and reserved-word rules.
 
@@ -214,7 +235,8 @@ modifications **out of the deposited search results** (MaxQuant `parameters.txt`
 mzIdentML), never infer them from the paper; the acquisition method is a descendant of
 `PRIDE:0000659`, PRIDE-first. Read
 [references/technical-values.md](references/technical-values.md) for where each value lives
-in the deposit and how to verify it from the raw files.
+in the deposit, and [references/techrefine.md](references/techrefine.md) to verify it from the raw
+files with `techsdrf`.
 
 ## Step 6: Build the SDRF
 
@@ -300,8 +322,34 @@ If it reports errors:
    (Step 10) with what you tried. Two rounds is the budget; a third rarely converges and the
    remaining errors are more useful to the reader than another guess.
 
-If `parse_sdrf` is not installed, say so in the report and point at
-`/sdrf-skills:sdrf-setup` (or `pip install sdrf-pipelines`).
+If `parse_sdrf` is not installed, say so in the report; `sdrf-tools doctor` and
+[references/setup.md](references/setup.md) say what to install.
+
+## Step 9.5: Independent review — always
+
+Validation by the producer is not review, and a producer must never approve its own SDRF.
+Before Step 10:
+
+1. **Write the evidence manifest** using the schema in
+   [../sdrf-adversarial-review/references/review-contract.md](../sdrf-adversarial-review/references/review-contract.md):
+   exact source URLs or local paths, each claim mapped to a column or row, unavailable evidence
+   marked as such. Do not invent citations.
+2. **Track the artifact**: `sdrf-tools review-gate track <file.sdrf.tsv> --cwd <repo-root>`.
+3. **Dispatch a fresh, isolated context** (subagent, hook agent, or equivalent) with only: the
+   original request, the SDRF path, the manifest path, the spec root and revision, the
+   deterministic validation output, and the path to `sdrf-adversarial-review/SKILL.md`. Do not pass
+   your transcript, reasoning, suspected issues or a proposed verdict. If the platform cannot create
+   an isolated context, say the adversarial gate is unavailable — never substitute self-review and
+   never claim a pass.
+4. **Repair and re-review.** Evaluate each blocker or important finding against the evidence; push
+   back only with concrete counter-evidence. Fix in `samples.tsv` / `technical.tsv`, rebuild,
+   re-validate, then dispatch a **new** fresh reviewer — never ask the previous one to reuse its
+   verdict. Escalate to the user after two failed rounds, or when a finding needs scientific
+   judgement the evidence does not contain.
+5. **Enforce the gate**: `sdrf-tools review-gate gate --cwd <repo-root>` must exit 0 with the
+   current hash approved before Step 10, before any commit, and before contribution. Report the
+   reviewer identity, the hash, the validation commands, remaining minor findings, and evidence
+   limitations.
 
 ## Step 10: Present Results
 
@@ -324,7 +372,7 @@ update; an update's PR must state what was wrong before, with evidence). A recom
 
 The format rules — value encoding, reserved words, modification syntax, UNIMOD swaps, label
 types, row identity — live in one place:
-[../sdrf-knowledge/references/format-rules.md](../sdrf-knowledge/references/format-rules.md).
+[references/format-rules.md](references/format-rules.md).
 Read it once per annotation. On top of them:
 
 - NEVER re-annotate an already-annotated dataset silently (Step 0.5)
@@ -335,6 +383,33 @@ Read it once per annotation. On top of them:
   ("chymotrypsin-like activity" is an assay, not a digest; `icat` matches inside "quantifi(cat)ion")
 - NEVER fabricate accessions, guess file names, or invent sample information
 - Always distinguish: extracted from the paper vs inferred vs assumed
+
+## Reviewing an existing SDRF
+
+You were given a `.sdrf.tsv`, not an accession. Review it; do not rebuild it.
+
+1. **Load the record.** Read the file; read its declared templates from `comment[sdrf template]`
+   (do not upgrade versions — report a newer one as an optional migration). If a PXD is known, gather
+   the record as in Step 1 (offline: whatever is in `evidence/`). If this is a pull request, read the
+   diff to see what changed.
+2. **Validate.** `parse_sdrf validate-sdrf -s <file> -t <t1> [-t ...] --use_ols_cache_only`, then
+   `sdrf-tools structure <file>` and `sdrf-tools check <file> --offline`
+   ([references/validation.md](references/validation.md) has the full checklist). Collect every error
+   and warning; do not fix anything yet.
+3. **Reconcile and cross-reference.** `sdrf-tools reconcile <file> --record <project.json>
+   --accession <PXD>` (Step 8.5), then the checks in
+   [references/review-checks.md](references/review-checks.md): sample counts, conditions,
+   instruments, demographics and tissues against the paper; file names, organism and instrument
+   against PRIDE; batch effects, confounders and replication in the design. Write each disagreement
+   as a `DISCREPANCY:` line with the evidence on both sides.
+4. **Score.** `sdrf-tools score <file>` (completeness, specificity, consistency, standards, design).
+5. **Independent review.** Step 9.5 applies unchanged: manifest, track, fresh-context
+   `sdrf-adversarial-review`, gate. If **this context edited the file**, everything above is
+   advisory — the verdict comes only from the isolated reviewer.
+6. **Report**: verdict (valid / needs minor fixes / needs major fixes / invalid), the errors and
+   discrepancies in priority order, what `sdrf-tools fix` can repair deterministically ([references/fix-patterns.md](references/fix-patterns.md)), what
+   needs a human, and — for a ProteomeXchange dataset with a clean verdict — the offer to contribute
+   (Step 11).
 
 ## Planning instead of annotating
 

@@ -82,7 +82,7 @@ The audit is mechanical and checks only what the deposit can settle:
 > **Value encoding.** `characteristics[...]` values are written as the **bare ontology label**
 > (e.g. `Homo sapiens`, not `NT=Homo sapiens;AC=NCBITaxon:9606`); only `comment[...]` values keep
 > the `NT=;AC=` form. Structured characteristics (`spiked compound`, `pooled sample`) keep their
-> key-value form. See `sdrf-knowledge` → *Value Encoding: characteristics vs comment*.
+> key-value form. See [format-rules.md](format-rules.md) → *Value Encoding: characteristics vs comment*.
 
 Also validate the existing file — it can be structurally valid and still be wrong
 about the deposit, so the two checks are complementary. Validate the way the rest

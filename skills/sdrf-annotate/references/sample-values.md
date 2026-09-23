@@ -106,12 +106,12 @@ The contract (Step 3.1) names, per column, which ontology(ies) to search (`<- NC
 ### 4.5 Cell Line Lookup (if using cell-lines template)
 
 For any `characteristics[cell line]` column, prefer the dedicated
-`/sdrf-skills:sdrf-cellline` workflow or the live Cellosaurus service rather than a bundled
+``cellline.md`` workflow or the live Cellosaurus service rather than a bundled
 full-database script. The skill owns the decision rules; tools are only helpers.
 
 Use this order:
 
-1. `/sdrf-skills:sdrf-cellline <name or CVCL_XXXX>` for the full translation workflow
+1. ``cellline.md` <name or CVCL_XXXX>` for the full translation workflow
 2. `sdrf-tools cellline lookup <name>` for the curated offline helper
 3. https://www.cellosaurus.org/search when you need manual confirmation
 

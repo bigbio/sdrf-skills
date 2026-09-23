@@ -32,20 +32,11 @@ cp -r tools/ ~/.agents/skills/sdrf-skills/tools/
 
 | Skill | Purpose |
 |-------|---------|
-| sdrf-setup | Install dependencies (parse_sdrf, techsdrf) — conda or pip setup |
-| sdrf-autoresearch | Autonomous retained-improvement loop over one dataset, a manifest, or a dataset class |
-| sdrf-knowledge | SDRF format rules, column names, ontology mappings |
-| sdrf-templates | Template system, layer selection, mutual exclusivity |
 | sdrf-annotate | Full annotation: PXD → PRIDE + paper → draft SDRF |
-| sdrf-validate | Validation against templates + OLS checking |
-| sdrf-fix | Auto-fix UNIMOD swaps, case, format, artifacts |
-| sdrf-review | Quality review with paper + PRIDE cross-reference |
+| sdrf-metascreen | Shortlist PRIDE / MassIVE / ProteomeXchange studies → resumable TSV |
+| sdrf-autoresearch | Autonomous retained-improvement loop over one dataset, a manifest, or a dataset class |
 | sdrf-adversarial-review | Independent fresh-context falsification review with hash-bound approval |
-| sdrf-annotate-reviewed | Producer/reviewer annotation loop with mandatory re-review |
-| sdrf-convert | Pipeline selection (MaxQuant, DIA-NN, quantms) |
-| sdrf-design | Experimental design analysis |
 | sdrf-contribute | Contribute annotation via PR to community repo |
-| sdrf-techrefine | Verify/refine technical metadata from raw files via techsdrf |
 
 ## Bundled tools: contract and build
 

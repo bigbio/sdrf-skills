@@ -52,7 +52,7 @@ They are cheap to honour when writing and expensive to find later, because each 
 9. **One value per cell.** Several modifications means several
    `comment[modification parameters]` columns — never concatenate them into one cell.
 
-`tools/sdrf_fixer.py` repairs 1, 2, 4, 5, 6, 7 and 8 deterministically; run it before
+`sdrf-tools fix` repairs 1, 2, 4, 5, 6, 7 and 8 deterministically; run it before
 presenting or contributing any SDRF you generated.
 
 ## Column Type System

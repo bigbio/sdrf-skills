@@ -10,7 +10,7 @@ argument-hint: "[PXD accession and SDRF file path]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are helping the user contribute an annotated SDRF file back to the community repository
@@ -100,7 +100,7 @@ Before contributing, the SDRF must pass validation:
 
    **Zero-deletion guard (mandatory before PR):** stage only your new folder (`git add datasets/{PXD}/`, never `git add -A`), then run `git diff --cached --name-status` and confirm every line is `A` — abort if any `D`/`M`/`R` touches a dataset you did not create.
 
-2. **Run `/sdrf-skills:sdrf-validate`** for a thorough check including ontology verification
+2. **Run ``/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode)`** for a thorough check including ontology verification
 
 3. **Require independent adversarial approval**:
    ```bash
@@ -250,7 +250,7 @@ After the PR is created:
 
 - NEVER create a PR without user confirmation
 - NEVER skip validation before contributing
-- NEVER modify the SDRF content during the contribution step (that's what `/sdrf-skills:sdrf-fix` and `/sdrf-skills:sdrf-review` are for)
+- NEVER modify the SDRF content during the contribution step (that's what ``sdrf-tools fix` (patterns: `sdrf-annotate/references/fix-patterns.md`)` and `/sdrf-skills:sdrf-annotate <file.sdrf.tsv> (review mode)` are for)
 - If the user doesn't have `gh` CLI installed, always fall back to Mode B (guided commands)
 - If the user doesn't have a GitHub account, explain that one is needed and point to https://github.com/signup
 - For non-PXD accessions (MSV, PMID), the same workflow applies — just use the accession as the folder name

@@ -1,31 +1,13 @@
----
-name: sdrf-fix
-description: Use when the user has an SDRF file with known errors and wants them fixed automatically. Triggers on requests to fix, correct, or repair SDRF errors.
-user-invocable: true
-argument-hint: "[file path or paste SDRF content]"
----
+# Reference: error patterns and their fixes (review mode of sdrf-annotate)
 
-# SDRF Auto-Fix Workflow
-
-> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
-> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
-> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
-> Files the user is annotating stay relative to the working directory.
-
-You are fixing known common errors in an SDRF file. Apply fixes systematically.
-
-## Step 0: Check parse_sdrf availability
-
-Verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
-- Inform the user that re-validation after fixes will need to be done manually
-- Suggest `/sdrf-skills:sdrf-setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
-- Continue with the fixes; the user can validate later once dependencies are installed
+`sdrf-tools fix <file> -o <out>` repairs the deterministic ones and writes a changelog; the rest need
+judgement and evidence. Fix values in `samples.tsv` / `technical.tsv` and rebuild when the file came
+from `build`; edit the SDRF only when it did not.
 
 ## Common Error Patterns and Their Fixes
 
 > The rules these patterns violate are stated once in
-> [../sdrf-knowledge/references/format-rules.md](../sdrf-knowledge/references/format-rules.md);
+> [format-rules.md](format-rules.md);
 > this list is the diagnostic side.
 
 ### 1. UNIMOD Accession Swaps (45% of all errors)
@@ -170,69 +152,6 @@ component when a row has more than one. Reserve `factor value[...]` for the vari
 experiment is actually comparing (genotype, treatment, dose group, timepoint); a reference/
 benchmark dataset with no such comparison correctly has no factor value at all (the
 `no_factor_value` advisory is expected, not a defect to paper over with an unrelated column).
-
-## Fix Procedure
-
-1. **Parse** the SDRF into a structured table
-2. **Scan** every cell for each error pattern above
-3. **Apply fixes** — for ontology-dependent fixes, verify via OLS before changing
-4. **Log changes** — track every change made (row, column, old value, new value, reason)
-5. **Present changelog** to user before outputting the fixed SDRF
-6. **Output** the corrected SDRF as a TSV code block
-
-## Changelog Format
-
-```text
-Changes Applied:
-  Row 3, comment[modification parameters]:
-    OLD: NT=Acetyl;AC=UNIMOD:21;TA=Protein N-term;MT=Variable
-    NEW: NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable
-    FIX: UNIMOD:21 is Phospho, not Acetyl. Correct accession is UNIMOD:1. Also TA→PP for position.
-
-  Row 5, characteristics[sex]:
-    OLD: Male
-    NEW: male
-    FIX: Sex values must be lowercase per SDRF specification.
-
-  All rows, comment[data file]:
-    FIX: Trimmed trailing whitespace from 12 values.
-
-Summary: 15 fixes applied (3 UNIMOD corrections, 5 case fixes, 7 whitespace trims)
-```
-
-## Step After Fixes: Re-Validate with sdrf-pipelines
-
-After applying all fixes, **always** run programmatic validation before presenting
-results to the user.
-
-### 1. Update spec to latest version
-```bash
-git submodule update --remote --recursive
-```
-
-### 2. Run sdrf-pipelines validation
-Save the fixed SDRF to a file and validate with the detected templates:
-```bash
-parse_sdrf validate-sdrf \
-  --sdrf_file fixed.sdrf.tsv \
-  --template <template1> \
-  --template <template2>
-```
-Detect templates from `comment[sdrf template]` columns in the SDRF.
-If `parse_sdrf` is not installed, tell the user: `pip install sdrf-pipelines`
-
-### 3. Interpret results
-1. If validation passes → present the changelog + fixed SDRF to the user
-2. If validation finds new errors → fix them and re-run until clean
-3. Verify fixed UNIMOD accessions match the NT= modification names
-4. Read `spec/sdrf-proteomics/TERMS.tsv` and check `allow_not_available`/`allow_not_applicable` fields
-5. Count: total fixes applied, remaining issues not auto-fixable
-
-Present the re-validation summary alongside the changelog.
-
-If all errors are fixed and the SDRF is for a ProteomeXchange dataset (PXD accession),
-suggest contributing the corrected annotation via `/sdrf-skills:sdrf-contribute {PXD}` to the
-`sdrf-annotated-datasets` community repository.
 
 ## When NOT to Auto-Fix
 

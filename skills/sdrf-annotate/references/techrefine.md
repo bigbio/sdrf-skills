@@ -1,16 +1,11 @@
----
-name: sdrf-techrefine
-description: Use when the user wants to refine or verify SDRF technical metadata (instrument, tolerances, modifications, DDA/DIA) using raw MS file analysis via techsdrf.
-user-invocable: true
-argument-hint: "[PXD accession or SDRF file path]"
----
+# Reference: verifying technical metadata from the raw files (Step 5.6 of sdrf-annotate)
 
 # SDRF Technical Metadata Refinement Workflow
 
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by ``sdrf-tools doctor` (install notes: `setup.md`)`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are guiding the user through refining SDRF technical metadata using **techsdrf** —
