@@ -15,10 +15,9 @@ description) followed by a step-by-step workflow in Markdown.
 | Skill Directory | What It Does |
 |----------------|-------------|
 | `sdrf-annotate` | Full annotation workflow: PXD → PRIDE metadata + publication → SDRF draft |
-| `sdrf-metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies against your criteria into a resumable TSV |
-| `sdrf-autoresearch` | Autonomous retained-improvement loop over a dataset or dataset class |
 | `sdrf-adversarial-review` | Independent fresh-context falsification review with hash-bound approval |
 | `sdrf-contribute` | Contribute annotated SDRF to community repo via PR (automated or guided) |
+| `sdrf-campaign` | Screen a class of studies against your criteria into a resumable TSV, then loop annotate over the included ones |
 
 ## Specification Data
 
@@ -59,3 +58,12 @@ Fix validation errors in the two tables and rebuild; never edit the SDRF by hand
 5. All ontology terms: label + accession (e.g., "breast carcinoma" EFO:0000305)
 6. Modification format: NT=;AC=UNIMOD:;TA=;MT= (watch UNIMOD:1↔21 swap)
 7. Build the SDRF with `sdrf-tools build` from `samples.tsv` + `technical.tsv`; never hand-write its structure; validate with `parse_sdrf validate-sdrf -s X -t T1 [-t T2 ...]`, at most two rounds, fixing values in the tables and rebuilding
+
+## The review gate on this platform
+
+Every annotation must end with `sdrf-adversarial-review` run in a context that never saw the producer's
+reasoning. Claude Code dispatches it automatically at annotate's Step 9.5. Here, open a **separate session**,
+give it only the SDRF path, the evidence manifest, the spec revision and the validation output, and have it
+follow `skills/sdrf-adversarial-review/SKILL.md`; then enforce the receipt with
+`sdrf-tools review-gate gate --cwd <repo-root>` (exit 1 = review still pending). Never let the session that
+wrote the file approve it.

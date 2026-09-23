@@ -34,10 +34,9 @@ seventeen `references/` it reads on demand:
 | Skill | Purpose |
 |-------|---------|
 | sdrf-annotate | Full annotation: PXD → PRIDE + paper → draft SDRF |
-| sdrf-metascreen | Shortlist PRIDE / MassIVE / ProteomeXchange studies → resumable TSV |
-| sdrf-autoresearch | Autonomous retained-improvement loop over one dataset, a manifest, or a dataset class |
 | sdrf-adversarial-review | Independent fresh-context falsification review with hash-bound approval |
 | sdrf-contribute | Contribute annotation via PR to community repo |
+| sdrf-campaign | Screen a class of studies against your criteria, then annotate the included ones |
 
 ## Bundled tools: contract and build
 
@@ -70,10 +69,19 @@ When annotating SDRF files, follow the workflow in skills/sdrf-annotate/SKILL.md
 For autonomous loops, reference:
 
 ```text
-Use the workflow in skills/sdrf-autoresearch/SKILL.md with target, profile, objective, evidence, stop, and write settings.
+Use the workflow in skills/sdrf-campaign/SKILL.md with target, criteria, profile, focus_fields, budget, stop and write settings.
 ```
 
 ## Prerequisites
 
 These skills reference external APIs (OLS, PRIDE, PubMed) for ontology validation
 and metadata retrieval. Configure appropriate API access in your Codex environment.
+
+## The review gate on this platform
+
+Every annotation must end with `sdrf-adversarial-review` run in a context that never saw the producer's
+reasoning. Claude Code dispatches it automatically at annotate's Step 9.5. Here, open a **separate session**,
+give it only the SDRF path, the evidence manifest, the spec revision and the validation output, and have it
+follow `skills/sdrf-adversarial-review/SKILL.md`; then enforce the receipt with
+`sdrf-tools review-gate gate --cwd <repo-root>` (exit 1 = review still pending). Never let the session that
+wrote the file approve it.
