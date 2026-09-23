@@ -52,8 +52,10 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 
 **Three layers, loosely coupled — the coupling gaps matter more than the layers:**
 
-1. `skills/` — 5 SKILL.md workflows. `sdrf-annotate` is a ~3k-word core plus seven `references/`
-   files it reads on demand (the full text of Steps 0.5, 1, 4, 5, 6.1, 8.5 and the planning mode);
+1. `skills/` — 5 SKILL.md workflows. `sdrf-annotate` is a ~3.7k-word core plus seventeen `references/`
+   files it reads on demand (gathering, sample and technical values, templates, validation, fix
+   patterns, cellline, techrefine, review checks, reconcile, format rules, explaining, OLS lookup,
+   setup, planning);
    `references/format-rules.md` is the single canonical copy of the format rules; the two review-gate skills ship `references/review-contract.md` and
    `agents/openai.yaml`. A SKILL.md is resident every turn once invoked, so its length is a per-turn
    cost - keep cores short and put detail in `references/`.

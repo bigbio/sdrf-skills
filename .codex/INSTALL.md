@@ -28,7 +28,8 @@ cp -r tools/ ~/.agents/skills/sdrf-skills/tools/
 
 ## What it provides
 
-20 structured workflows (SKILL.md files) that encode expert-level SDRF annotation methodology:
+Five skills (SKILL.md files) that encode expert-level SDRF annotation methodology; `sdrf-annotate` carries
+seventeen `references/` it reads on demand:
 
 | Skill | Purpose |
 |-------|---------|
@@ -40,8 +41,9 @@ cp -r tools/ ~/.agents/skills/sdrf-skills/tools/
 
 ## Bundled tools: contract and build
 
-Two deterministic helpers keep annotation short and structurally valid. Run them with `sdrf-tools ...` (the
-directory that holds `tools/`); `sdrf-pipelines` must be installed:
+Install the helpers once: `pip install -e <sdrf-skills checkout>` (brings `sdrf-pipelines`), then `sdrf-tools doctor`.
+
+Two deterministic helpers keep annotation short and structurally valid. Run them as `sdrf-tools ...`:
 
 - `sdrf-tools contract -t ms-proteomics [-t human ...]` — prints the column contract of the
   template union: every column in order, required/optional/multiple, value form, permitted reserved
