@@ -13,8 +13,61 @@ argument-hint: "[PXD accession or experiment description]"
 > on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
 > Files the user is annotating stay relative to the working directory.
 
-You are performing a complete SDRF annotation. Follow these steps IN ORDER.
-Do not skip steps. Do not guess — use MCP tools to verify everything.
+You are performing a complete SDRF annotation. Work through the steps in order, but
+settle **Step 0 first**: it decides which of the later steps apply at all. Do not guess a
+value — verify it, against the record when you have network tools and against the files in
+front of you when you do not.
+
+## Step 0: Settle the operating mode, then stop looking around
+
+Answer both questions below **before any other tool call**. Getting them wrong is what turns
+a ten-turn annotation into a fifty-turn one, because the workflow below assumes lookups that
+may not exist here and you will spend turns discovering that one failed call at a time.
+
+**1. Is the record already on disk?** If the working directory holds an `evidence/`
+directory, or the user handed you the PRIDE record, file list and paper as files, then the
+gathering is already done. You are in **offline mode**:
+
+- Read those files, and treat them as the whole of the available record.
+- **Skip Steps 0.5, 1.1, 1.2 and 1.3 entirely.** There is nothing to fetch, and no
+  community repository to consult.
+- Do not call MCP tools, do not search the web, and do not ask the user a question. Where
+  the evidence is silent, write an explicit reserved word (below) rather than inferring a
+  value from what is typical.
+
+**2. Which lookups do you actually have?** Check once, in a single turn, and remember the
+answer: MCP tools for PRIDE/Europe PMC/OLS, and `parse_sdrf` on the PATH. Do not re-probe
+later. If a class of lookup is missing, use the offline substitute named below instead of
+retrying it.
+
+If `parse_sdrf` is missing and you can reach the user, point them at
+`/sdrf-skills:sdrf-setup` (or `pip install sdrf-pipelines`) and ask whether to wait or
+continue with structural checks only. If you cannot ask, continue and say plainly in your
+final report that the file was not machine-validated.
+
+### Facts you do not need to go looking for
+
+These are fixed. Do **not** grep the installed `sdrf_pipelines` package, glob for its
+source, or re-derive them from a template file:
+
+- **Validate with:** `parse_sdrf validate-sdrf -s <file> -t <template> [-t <template> ...]`
+  (`-s`/`-t` are the short forms of `--sdrf_file`/`--template`). Add `--use_ols_cache_only`
+  when you have no network, and `--skip-ontology` only for a fast structural check. A full
+  ontology run peaks near 1.9GB of RSS, so run one at a time.
+- **Column order:** `source name` first; all `characteristics[...]` next; then `assay name`
+  and `technology type`; then all `comment[...]`; and every `factor value[...]` **last**,
+  closing the file. Repeated column names are legal and meaningful — never de-duplicate them
+  by appending a suffix.
+- **Controlled terms without a network:** `$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`
+  is the authoritative offline table. It gives each term's type, the templates that use it,
+  the permitted values, and — per term — whether `not available` and `not applicable` are
+  allowed. Consult it instead of OLS when OLS is unreachable.
+- **Reserved words:** exactly `not available` and `not applicable`, and only for terms whose
+  `allow_not_available` / `allow_not_applicable` column in TERMS.tsv is true.
+- **Sample properties carry the bare value.** Write `characteristics[...]` as the value
+  alone (`HeLa`, `Homo sapiens`); do not wrap it as `NT=<name>;AC=<accession>`. Accession-
+  shaped values such as a Cellosaurus `CVCL_0030` are written as they are. `comment[...]`
+  columns do take `NT=;AC=` where the term is ontology-backed.
 
 ## Step 0a: Isolate this dataset's working files (required)
 
@@ -39,14 +92,10 @@ by an unrelated paper).
    PMC `supplementaryFiles` has returned another paper's `mmc*.xlsx`; `efetch`
    with `id=PMC…` silently returns a different article — use the numeric id.)
 
-## Step 0: Check parse_sdrf availability
-
-Before starting, verify that `parse_sdrf` is available (run `parse_sdrf --version` or `which parse_sdrf`). If it is not installed:
-- Inform the user that programmatic validation will be skipped
-- Suggest `/sdrf-skills:sdrf-setup` or `conda env create -f environment.yml && conda activate sdrf-skills` (or `pip install -r requirements.txt`)
-- Offer to continue with manual checks only, or wait for the user to install and retry
-
 ## Step 0.5: Check whether the dataset is ALREADY annotated — STOP GATE
+
+> **Offline mode (Step 0):** skip this step — the community repository is not reachable, so there is nothing to check against.
+
 
 **Do this before any annotation work.** Annotating a dataset that is already
 annotated is not free: if the existing file is fine you have wasted the effort and
@@ -186,6 +235,9 @@ reviewer can check the claim rather than take it on trust.
 If a **PXD accession** is provided:
 
 ### 1.1 Get PRIDE project metadata
+
+> **Offline mode (Step 0):** skip this step — the PRIDE record is already in `evidence/pride.json`; read that instead.
+
 ```text
 Tool: get_project_details(project_accession="PXD######")
 Extract: title, description, sample_processing_protocol, data_processing_protocol,
@@ -228,6 +280,9 @@ and instrument acquisition — read them BEFORE the publication.
 >   HTTP range request rather than downloading a multi-GB archive.
 
 ### 1.2 Get the file list
+
+> **Offline mode (Step 0):** skip this step — the run's file list is already in `evidence/files.json`; read that instead.
+
 ```text
 Tool: get_project_files(project_accession="PXD######")
 Extract: raw_file_names (for comment[data file]), rawfile_count,
@@ -262,6 +317,9 @@ timepoints, or cohort aliases that are not recoverable from PRIDE metadata
 alone.
 
 ### 1.3 Find and read the publication
+
+> **Offline mode (Step 0):** skip this step — the paper, if one is available, is already in `evidence/manuscript.txt`; if that file is absent there is no paper to find — do not search for one.
+
 
 For each record in `publications` (Step 1.1), pick exactly ONE tool:
 
@@ -473,6 +531,9 @@ For EACH unique value that goes into a characteristics column:
 - Do NOT send full manuscript sentences to OLS or ZOOMA unless you are debugging a failed lookup.
 
 ### 4.2 Search OLS lexically first
+
+> **Offline mode (Step 0):** skip this step — use `spec/sdrf-proteomics/TERMS.tsv` for permitted values instead of OLS.
+
 ```text
 Use: searchClasses(query="breast carcinoma", ontologyId="mondo")
 Or:  search(query="Homo sapiens")       # only when the target ontology is unknown
@@ -506,6 +567,9 @@ Override only when necessary:
   exploring close neighbours.
 
 ### 4.3 Use embeddings and ZOOMA only when needed
+
+> **Offline mode (Step 0):** skip this step — there is no embedding or ZOOMA service offline.
+
 Trigger OLS embedding search when:
 - lexical search returns no result
 - the mention is abbreviation-like (`HCC`, `PDAC`, `GBM`, `TNBC`)
