@@ -894,7 +894,10 @@ values last. Every file in `files.json` should be claimed by exactly one source 
 multiplexed, by one row per channel).
 
 If `build` refuses, it names the table and row. Fix that row and run it again. It refuses,
-rather than guesses, an incomplete channel map:
+rather than guesses, an incomplete channel map (6.1). **If `build` cannot be run at all** — the
+command is denied or the tools are missing — stop, keep `samples.tsv` and `technical.tsv`, and say
+so in the report. Do not write `output.sdrf.tsv` by hand: a hand-written file is exactly what
+this step exists to prevent, and on a large dataset it will not even fit in one response.
 
 ### 6.1 Multiplexed: exhaust every source of the channel→sample map before BLOCKING
 For TMT / TMTpro / plexDIA / dimethyl, each of the N rows per file needs a sample

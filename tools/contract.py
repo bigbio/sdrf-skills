@@ -163,6 +163,8 @@ def template_contract(templates: list[str], terms_path: str | Path | None = None
         "Repeated column names are legal for 'multiple' columns; never suffix them.",
         "Sample properties (characteristics) carry the bare value; ontology-backed comments take NT=<name>;AC=<accession>.",
         "'not available' / 'not applicable' only where the column permits it (flags below).",
+        "comment[label] is 'label free sample' or ONE channel (TMT126, TMT127N, iTRAQ114, SILAC heavy); "
+        "a plex name such as TMT10 or TMT11plex is not a label.",
     ]
     return Contract(templates=list(templates), versions=versions, columns=columns, rules=rules,
                     technology_type=MS_TECHNOLOGY_TYPE if ms else None)
