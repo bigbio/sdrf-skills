@@ -35,8 +35,8 @@ ruff check tools/ tests/
 git submodule update --init --recursive     # restore pinned state (what you usually want)
 git submodule update --remote --recursive   # advance to upstream tip; leaves a dirty gitlink
 
-# tools CLI (no console_scripts; requires cwd == repo root)
-python -m tools --help   # check, structure, contract, build, score, fix, benchmark, massive-files,
+# tools CLI: `sdrf-tools` console script after `pip install -e .`; `python -m tools` also works from the repo root
+sdrf-tools --help   # check, structure, contract, build, score, fix, benchmark, massive-files,
                          # verify, cellline, review-gate, reconcile, audit-existing, bruker-dia
 ```
 
@@ -85,7 +85,7 @@ background for all skills.
 **Bundled paths resolve against the plugin root, not the cwd.** The spec references in `skills/`
 are still written bare (`spec/sdrf-proteomics/TERMS.tsv`), so every skill that reads one opens with a
 **Bundle paths** blockquote telling the agent to resolve them against `$CLAUDE_PLUGIN_ROOT` and to
-run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`. On the Python side,
+run the helpers as `sdrf-tools …`. On the Python side,
 `resolve_terms_tsv()` finds the bundled `TERMS.tsv` from `__file__` before falling back to a
 cwd-relative path. Keep both when adding a skill: installed as a plugin, the cwd is the user's
 project, and a cwd-relative read silently misses (degrading to the hardcoded fallback map).
@@ -249,7 +249,7 @@ reimplementing merge semantics.
    concurrent `parse_sdrf` jobs ≤ 2.
 8. **A producer must never approve its own SDRF.** For changed SDRFs, require a passing receipt from
    `sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.
-   Enforced by `python -m tools review-gate` (`track`, `pending`, `status`, `gate`, `approve`), which
+   Enforced by `sdrf-tools review-gate` (`track`, `pending`, `status`, `gate`, `approve`), which
    discovers changed artifacts from git and binds each receipt to the artifact's SHA-256, so an
    approval cannot outlive the content it describes. `gate` exits 1 while review is pending.
    Enforcement lives in the CLI, not the Stop hook, because four of the five platforms this repo

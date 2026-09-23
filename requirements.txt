@@ -22,3 +22,4 @@ defusedxml>=0.7
 # get_article_metadata, get_pdf_by_unpaywall, search, searchClasses, getChildren).
 fastmcp>=3.4
 httpx>=0.28
+-e .   # sdrf-tools console script (contract, build, check, fix, review gate)

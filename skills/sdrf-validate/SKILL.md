@@ -10,7 +10,7 @@ argument-hint: "[file path or paste SDRF content]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are validating an SDRF file. Perform systematic checks in order.
@@ -277,7 +277,7 @@ Run the deterministic structural checks first — they decide from the file alon
 re-reason about what they cover:
 
 ```bash
-PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools structure <file.sdrf.tsv>
+sdrf-tools structure <file.sdrf.tsv>
 ```
 
 Exit 0 means clean; exit 1 lists one line per violated invariant. It catches things `parse_sdrf`

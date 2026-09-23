@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sdrf-skills-tools"
+version = "0.1.0"
+description = "Deterministic helpers behind the sdrf-skills workflows: contract, build, check, fix, cellline, review gate"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["requests", "sdrf-pipelines[ontology]"]
+
+[project.scripts]
+sdrf-tools = "tools.cli:main"
+
+[tool.setuptools]
+packages = ["tools"]

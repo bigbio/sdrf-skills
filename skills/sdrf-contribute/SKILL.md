@@ -10,7 +10,7 @@ argument-hint: "[PXD accession and SDRF file path]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are helping the user contribute an annotated SDRF file back to the community repository
@@ -68,7 +68,7 @@ url=$(gh api "repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD}/{FILE
 curl -fsSL "$url" -o existing.sdrf.tsv
 [ -s existing.sdrf.tsv ] || { echo "empty download — abort"; exit 1; }
 
-python -m tools audit-existing existing.sdrf.tsv --accession {PXD} \
+sdrf-tools audit-existing existing.sdrf.tsv --accession {PXD} \
   --runs deposited_runs.txt --organism "<each organism PRIDE registers>"
 ```
 

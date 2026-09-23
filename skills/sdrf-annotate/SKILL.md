@@ -10,7 +10,7 @@ argument-hint: "[PXD accession or experiment description]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are performing a complete SDRF annotation. Work through the steps in order, but
@@ -150,7 +150,7 @@ url=$(gh api "repos/bigbio/sdrf-annotated-datasets/contents/datasets/{PXD}/{FILE
 curl -fsSL "$url" -o existing.sdrf.tsv
 [ -s existing.sdrf.tsv ] || { echo "empty download — abort, do NOT audit"; exit 1; }
 
-python -m tools audit-existing existing.sdrf.tsv --accession {PXD} \
+sdrf-tools audit-existing existing.sdrf.tsv --accession {PXD} \
   --runs deposited_runs.txt --organism "<each organism PRIDE registers>"
 ```
 
@@ -303,8 +303,8 @@ If this endpoint returns `0` files for a valid PXD hosted through
 For MassIVE-backed datasets, use the helper in this repo to recover raw
 file names from ProteomeCentral + MassIVE JSON + MassIVE FTP:
 ```bash
-python -m tools massive-files PXD016117 --mode raw
-python -m tools massive-files PXD016117 --mode acquisition --format tsv
+sdrf-tools massive-files PXD016117 --mode raw
+sdrf-tools massive-files PXD016117 --mode acquisition --format tsv
 ```
 This is the preferred fallback when you need `comment[data file]` values for a
 MassIVE-hosted PXD and PRIDE does not expose the archive file list. The helper
@@ -489,7 +489,7 @@ annotation short: no spec reading beyond one command, no editing the SDRF, no re
 ### 3.1 Print the contract (once)
 
 ```bash
-PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools contract -t <template1> [-t <template2> ...]
+sdrf-tools contract -t <template1> [-t <template2> ...]
 ```
 
 It lists every column of the template union in order, whether it is required, whether it
@@ -654,7 +654,7 @@ full-database script. The skill owns the decision rules; tools are only helpers.
 Use this order:
 
 1. `/sdrf-skills:sdrf-cellline <name or CVCL_XXXX>` for the full translation workflow
-2. `python -m tools cellline lookup <name>` for the curated offline helper
+2. `sdrf-tools cellline lookup <name>` for the curated offline helper
 3. https://www.cellosaurus.org/search when you need manual confirmation
 
 The goal is to recover:
@@ -870,7 +870,7 @@ mass tolerances, and undeclared or incorrect modifications.
 `analysis.tdf` inside a `.d` archive is a SQLite database, so one member of the ZIP
 can be range-fetched (14.7 MB rather than a 2.5 GB download) and read directly:
 ```bash
-python -m tools bruker-dia "<url of the .d.zip>"
+sdrf-tools bruker-dia "<url of the .d.zip>"
 ```
 It reports the isolation windows, m/z coverage and CE ramp. Fill
 `comment[isolation window width]` from it and **only** from it: diaPASEF windows are
@@ -882,7 +882,7 @@ passing both the regex and `parse_sdrf`. When the widths vary, the honest value 
 ## Step 6: Build the SDRF
 
 ```bash
-PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools build \
+sdrf-tools build \
   --samples samples.tsv --technical technical.tsv --files evidence/files.json \
   -t <template1> [-t <template2> ...] -o output.sdrf.tsv
 ```
@@ -995,7 +995,7 @@ usually in the same JSON — in the title.
 Run the reconciler over the finished file before validating it:
 
 ```bash
-python -m tools reconcile <file.sdrf.tsv> --record <project.json> --accession <PXD>
+sdrf-tools reconcile <file.sdrf.tsv> --record <project.json> --accession <PXD>
 ```
 
 It reports a finding whenever the prose, the title or the run names disagree with what was
