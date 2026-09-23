@@ -267,7 +267,16 @@ def test_roundtrip_aligns_with_reference_on_file_and_label(acc, tmp_path):
     assert not fv or fv == list(range(len(oh) - len(fv), len(oh)))
 
 
-@pytest.mark.skipif(shutil.which("parse_sdrf") is None, reason="parse_sdrf not installed")
+def _ols_available() -> bool:
+    try:
+        from sdrf_pipelines.sdrf.validators import OLS_AVAILABLE
+        return bool(OLS_AVAILABLE)
+    except ImportError:
+        return False
+
+
+@pytest.mark.skipif(shutil.which("parse_sdrf") is None or not _ols_available(),
+                    reason="parse_sdrf with the [ontology] extra is not installed")
 @pytest.mark.parametrize("acc", sorted(REFS))
 def test_roundtrip_validates_with_parse_sdrf(acc, tmp_path):
     s, t, f = tables_from_reference(acc, tmp_path)

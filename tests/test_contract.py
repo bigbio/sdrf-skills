@@ -24,8 +24,25 @@ def test_contract_flags_required_and_multiple():
     assert by["comment[label]"].multiple is False
 
 
-def test_contract_reads_reserved_word_permissions_from_terms():
-    c = template_contract(["ms-proteomics", "human"])
+TERMS_FIXTURE = (  # the spec file's shape: CRLF-terminated, a trailing blank row
+    "term\ttype\tontology_term_accession\tusage\tvalues\tdescription\tallow_not_available\tallow_not_applicable\tallow_pooled\r\n"
+    "organism part\tcharacteristics\t\tms-proteomics\tUBERON, BTO\t\ttrue\ttrue\tfalse\r\n"
+    "disease\tcharacteristics\t\tms-proteomics\tMONDO, EFO, DOID\t\ttrue\ttrue\tfalse\r\n"
+    "label\tcomment\t\tms-proteomics\tMS\t\tfalse\tfalse\tfalse\r\n"
+    "fraction identifier\tcomment\t\tms-proteomics\tinteger\t\tfalse\tfalse\tfalse\r\n"
+    "\r\n"
+)
+
+
+@pytest.fixture
+def terms_path(tmp_path):
+    p = tmp_path / "TERMS.tsv"
+    p.write_bytes(TERMS_FIXTURE.encode())
+    return p
+
+
+def test_contract_reads_reserved_word_permissions_from_terms(terms_path):
+    c = template_contract(["ms-proteomics", "human"], terms_path=terms_path)
     by = {col.name: col for col in c.columns}
     assert by["characteristics[organism part]"].allow_not_available is True
     assert by["comment[label]"].allow_not_available is False
@@ -45,8 +62,8 @@ def test_contract_fixes_technology_type_for_ms_unions():
     assert template_contract(["affinity-proteomics"]).technology_type is None
 
 
-def test_contract_carries_ontology_hint_from_terms():
-    c = template_contract(["ms-proteomics", "human"])
+def test_contract_carries_ontology_hint_from_terms(terms_path):
+    c = template_contract(["ms-proteomics", "human"], terms_path=terms_path)
     by = {col.name: col for col in c.columns}
     assert "MONDO" in by["characteristics[disease]"].ontologies
     assert "<- " in render_text(c)
@@ -75,8 +92,8 @@ def test_render_json_roundtrips_names():
     assert [x["name"] for x in data["columns"]] == [col.name for col in c.columns]
 
 
-def test_load_terms_keys_are_inner_names():
-    terms = load_terms()
+def test_load_terms_keys_are_inner_names(terms_path):
+    terms = load_terms(terms_path)
     assert "fraction identifier" in terms
     assert "label" in terms
     assert terms["organism part"]["allow_not_available"] is True
