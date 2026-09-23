@@ -10,7 +10,7 @@ is **not** stored here; it is read at runtime from the `spec/` git submodule.
 
 Skills are auto-discovered — `.claude-plugin/plugin.json` carries no `skills` key, so Claude Code
 scans the `skills/` directory automatically. Each SKILL.md declares its own name and routing
-description in frontmatter. Currently 5: `sdrf-annotate`, `sdrf-contribute`, `sdrf-metascreen`, `sdrf-autoresearch` (invoked as
+description in frontmatter. Currently 4: `sdrf-annotate`, `sdrf-contribute`, `sdrf-campaign` (invoked as
 `/sdrf-skills:sdrf-annotate` etc. once installed as a marketplace plugin) plus `sdrf-adversarial-review`,
 which `sdrf-annotate` dispatches into a fresh context at Step 9.5 and which is never typed.
 `sdrf-annotate` is the one entry point for everything about one SDRF - create (review always
@@ -52,7 +52,7 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 
 **Three layers, loosely coupled — the coupling gaps matter more than the layers:**
 
-1. `skills/` — 5 SKILL.md workflows. `sdrf-annotate` is a ~3.7k-word core plus seventeen `references/`
+1. `skills/` — 4 SKILL.md workflows. `sdrf-annotate` is a ~3.7k-word core plus seventeen `references/`
    files it reads on demand (gathering, sample and technical values, templates, validation, fix
    patterns, cellline, techrefine, review checks, reconcile, format rules, explaining, OLS lookup,
    setup, planning);
@@ -74,8 +74,7 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 **Skill dependency graph.** `sdrf-annotate` is the hub: it calls `cellline` and `techrefine` while
 annotating, ends every annotation with a fresh-context `sdrf-adversarial-review` (Step 9.5: manifest,
 track, dispatch, repair, re-review, gate), and in review mode does what `sdrf-review` and
-`sdrf-annotate-reviewed` used to. `sdrf-metascreen` screens a class of studies and hands the included ones to
-`sdrf-autoresearch`, which loops `annotate` over them. `contribute` runs `sdrf-tools review-gate gate` before publishing. `sdrf-tools doctor` replaces `setup`; validate, fix, knowledge, techrefine and cellline are
+`sdrf-annotate-reviewed` used to. `sdrf-campaign` screens a class of studies and loops `annotate` over the included ones. `contribute` runs `sdrf-tools review-gate gate` before publishing. `sdrf-tools doctor` replaces `setup`; validate, fix, knowledge, techrefine and cellline are
 references and tool commands now. Removed 2026-09-23: `sdrf-review`, `sdrf-annotate-reviewed`, `sdrf-design` (folded into
 annotate's review mode and `references/review-checks.md`), `sdrf-templates` (now
 `sdrf-annotate/references/templates.md`), `sdrf-convert` (a README block). None of this routing is covered by CI
@@ -114,7 +113,7 @@ it points at the directory.
 Domain policy (value encoding, reserved words, modification syntax, UNIMOD swaps, label types, row
 identity) exists once, in `skills/sdrf-annotate/references/format-rules.md`; `sdrf-annotate` and
 `sdrf-annotate`'s core and references point to it. Do not paste rules back into a skill. The plasma heuristic is still ~40
-near-identical lines in both `sdrf-annotate/references/gather-context.md` and `sdrf-autoresearch`.
+near-identical lines in both `sdrf-annotate/references/gather-context.md` and `sdrf-campaign`.
 
 ## MCP
 
@@ -222,7 +221,7 @@ reimplementing merge semantics.
    table: when NT= names a known modification, the accession is treated as the typo. **Verify any
    new row against OLS before adding it** — a wrong entry here is invisible by construction.
 3. **Reserved words**: `not available` / `not applicable` — never `N/A`, `NA`, `unknown`. Gated
-   per-column by TERMS.tsv's `allow_*` booleans. Exception: `sdrf-metascreen` emits a curation TSV, not
+   per-column by TERMS.tsv's `allow_*` booleans. Exception: `sdrf-campaign`'s screening phase emits a curation TSV, not
    an SDRF, and uses **neither** reserved word — it mandates `unclear` for any undetermined `extract`
    field and `uncertain` in the `label` column (legal values: `include`/`exclude`/`uncertain`). The two
    tokens are not interchangeable, and neither belongs in an SDRF.

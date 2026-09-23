@@ -22,15 +22,14 @@ lives in a git submodule and is read at runtime, so the skills stay current as t
 
 ## Available skills
 
-Five skills. Four are slash commands under `/sdrf-skills:`; `sdrf-adversarial-review` is dispatched by
+Four skills. Three are slash commands under `/sdrf-skills:`; `sdrf-adversarial-review` is dispatched by
 `sdrf-annotate` into a fresh context and is never typed as a command:
 
 | Skill | What it does |
 |-------|-------------|
 | `/sdrf-skills:sdrf-annotate` | Everything about one SDRF. A PXD: record + paper → `samples.tsv` + `technical.tsv` → `sdrf-tools build` → validate → **independent review, always**. An existing `.sdrf.tsv`: review it (validate, structure, check, reconcile, cross-reference, score, then the independent review). A question: explain the format, look up a term, or plan what to capture. A short core plus `references/` it reads only when a step needs them |
 | `/sdrf-skills:sdrf-contribute` | Contribute a reviewed SDRF back to sdrf-annotated-datasets via PR, behind the review gate |
-| `/sdrf-skills:sdrf-metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies against your criteria → resumable TSV |
-| `/sdrf-skills:sdrf-autoresearch` | Loop `sdrf-annotate` over a manifest or a dataset class, keeping evidence-backed improvements |
+| `/sdrf-skills:sdrf-campaign` | Screen a class of studies against your criteria into a resumable TSV, then loop `sdrf-annotate` over the included ones, keeping only evidence-backed improvements |
 | `sdrf-adversarial-review` (dispatched, not typed) | Independent review of an SDRF in a fresh context, checked against the evidence, with a verdict bound to the file's hash |
 
 ## Installation
