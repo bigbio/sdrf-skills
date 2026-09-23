@@ -10,7 +10,7 @@ argument-hint: "[file path, PXD accession, or GitHub PR URL]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are performing a comprehensive quality review of an SDRF file — like a peer reviewer
@@ -90,7 +90,7 @@ If PRIDE exposes no raw files and the dataset is hosted by MassIVE, use the
 deterministic helper:
 
 ```bash
-python -m tools massive-files PXD016117 --mode raw --format tsv
+sdrf-tools massive-files PXD016117 --mode raw --format tsv
 ```
 
 Treat this as a fallback for reconstructing defensible `comment[data file]`

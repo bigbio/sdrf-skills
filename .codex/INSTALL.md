@@ -49,13 +49,13 @@ cp -r tools/ ~/.agents/skills/sdrf-skills/tools/
 
 ## Bundled tools: contract and build
 
-Two deterministic helpers keep annotation short and structurally valid. Run them with `PYTHONPATH=~/.agents/skills/sdrf-skills python3 -m tools ...` (the
+Two deterministic helpers keep annotation short and structurally valid. Run them with `sdrf-tools ...` (the
 directory that holds `tools/`); `sdrf-pipelines` must be installed:
 
-- `python3 -m tools contract -t ms-proteomics [-t human ...]` — prints the column contract of the
+- `sdrf-tools contract -t ms-proteomics [-t human ...]` — prints the column contract of the
   template union: every column in order, required/optional/multiple, value form, permitted reserved
   words and the ontologies to search. Read this instead of `TERMS.tsv` and the template YAMLs.
-- `python3 -m tools build --samples samples.tsv --technical technical.tsv --files files.json
+- `sdrf-tools build --samples samples.tsv --technical technical.tsv --files files.json
   -t ms-proteomics [-t ...] -o output.sdrf.tsv` — expands a sample table (one row per source and
   replicate; `files` = the fractions of one injection; `label` = `label free sample` or one channel)
   plus a technical table (run-level `comment[...]` values, `|` between multiple values) into the SDRF:

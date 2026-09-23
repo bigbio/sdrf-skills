@@ -8,7 +8,7 @@ description: Independently falsify and review a created, modified, or proposed S
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 Review the artifact from fresh context. Try to disprove its correctness; do not
@@ -57,16 +57,16 @@ during review, discard the review and start again.
 Run official `parse_sdrf validate-sdrf` for every active template. Also run:
 
 ```bash
-python3 -m tools check <artifact>
-python3 -m tools score <artifact>
+sdrf-tools check <artifact>
+sdrf-tools score <artifact>
 ```
 
 If the repository tools are not importable from the target project, invoke them
 from the loaded plugin:
 
 ```bash
-PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools check <artifact>
-PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools score <artifact>
+sdrf-tools check <artifact>
+sdrf-tools score <artifact>
 ```
 
 Do not mark `deterministic_validation` as passing when required validation

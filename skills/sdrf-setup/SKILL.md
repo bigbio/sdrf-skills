@@ -10,7 +10,7 @@ argument-hint: "[optional: conda | pip | check]"
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
 > directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
 > Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. Run the helpers as `PYTHONPATH="$CLAUDE_PLUGIN_ROOT" python3 -m tools …`.
+> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are guiding the user through installing SDRF skills dependencies. Follow these steps.
@@ -42,6 +42,7 @@ Based on what's available, output the exact commands the user should run.
 # From the sdrf-skills project directory:
 conda env create -f environment.yml
 conda activate sdrf-skills
+pip install -e .            # the sdrf-tools console script (contract, build, check, fix, ...)
 ```
 
 If using **mamba** (faster):
@@ -57,7 +58,11 @@ conda activate sdrf-skills
 python -m venv .venv
 source .venv/bin/activate   # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+pip install -e .            # the sdrf-tools console script (contract, build, check, fix, ...)
 ```
+
+Afterwards `sdrf-tools --help` must work from any directory; the skills call it that way, with no
+`PYTHONPATH` and no plugin-root variable.
 
 **Note**: With pip, thermorawfileparser is not available (not on PyPI). For Thermo .raw files, use conda.
 
