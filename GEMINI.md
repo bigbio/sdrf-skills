@@ -26,6 +26,8 @@ Skills reference these files at runtime. Never hardcode specification data.
 
 ## Bundled tools: contract and build
 
+Install the helpers once: `pip install -e <sdrf-skills checkout>` (brings `sdrf-pipelines`), then `sdrf-tools doctor`.
+
 Two deterministic helpers keep annotation short and structurally valid. Run them from the
 sdrf-skills checkout (`sdrf-tools ...`; Claude Code sets
 `$CLAUDE_PLUGIN_ROOT` for this):

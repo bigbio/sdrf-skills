@@ -23,6 +23,8 @@ When working with SDRF files, proteomics metadata, or when the user asks to **in
 - **Plan metadata**: `skills/sdrf-annotate/SKILL.md` — pre-annotation strategy
 - **Adversarial review**: `skills/sdrf-adversarial-review/SKILL.md` — require a fresh reviewer and hash-bound receipt
 - **Contribute**: `skills/sdrf-contribute/SKILL.md` — PR to community repository
+- **Screen studies**: `skills/sdrf-metascreen/SKILL.md` — shortlist PRIDE / MassIVE / ProteomeXchange studies against your criteria
+- **Loop over many**: `skills/sdrf-autoresearch/SKILL.md` — run annotate over a manifest or dataset class, keeping evidence-backed improvements
 
 ## Key Rules
 
@@ -34,6 +36,8 @@ When working with SDRF files, proteomics metadata, or when the user asks to **in
 6. Modification parameters must follow NT=;AC=;TA=;MT= format with correct UNIMOD accessions
 
 ## Bundled tools: contract and build
+
+Install the helpers once: `pip install -e <sdrf-skills checkout>` (brings `sdrf-pipelines`), then `sdrf-tools doctor`.
 
 Two deterministic helpers keep annotation short and structurally valid. Run them from the
 sdrf-skills checkout (`sdrf-tools ...`; Claude Code sets
@@ -63,6 +67,6 @@ The SDRF specification lives in the `spec/` git submodule:
 ## Important References
 
 - Column-to-ontology mapping: the contract prints it per column (`<- NCBITaxon`, `<- UBERON, BTO`); TERMS.tsv `values` is its source
-- Template layers: `skills/sdrf-templates/SKILL.md` (Template Layers section)
+- Template layers and the selection decision tree: `skills/sdrf-annotate/references/templates.md`
 - Common UNIMOD IDs: Acetyl=1, Phospho=21, Carbamidomethyl=4, Oxidation=35, TMT6plex=737
 - Common error: UNIMOD:1 (Acetyl) ↔ UNIMOD:21 (Phospho) swap — most frequent mistake

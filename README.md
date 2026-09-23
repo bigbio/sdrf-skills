@@ -9,7 +9,7 @@
 [![OpenCode](https://img.shields.io/badge/OpenCode-Skill-purple)](https://opencode.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![SDRF Spec](https://img.shields.io/badge/SDRF-proteomics--metadata--standard-orange)](https://github.com/bigbio/proteomics-metadata-standard)
-[![Skills](https://img.shields.io/badge/skills-16-informational)](#available-skills)
+[![Skills](https://img.shields.io/badge/skills-5-informational)](#available-skills)
 
 > **Pick a dataset → the agent fetches PRIDE + paper → you review a validated SDRF.**
 
@@ -33,25 +33,9 @@ Five skills. Four are slash commands under `/sdrf-skills:`; `sdrf-adversarial-re
 | `/sdrf-skills:sdrf-autoresearch` | Loop `sdrf-annotate` over a manifest or a dataset class, keeping evidence-backed improvements |
 | `sdrf-adversarial-review` (dispatched, not typed) | Independent review of an SDRF in a fresh context, checked against the evidence, with a verdict bound to the file's hash |
 
-**Where the old commands went.** The skills below were folded into `sdrf-annotate` on 2026-09-23;
-nothing they did is gone, it is just not a separate command any more.
-
-| Before | Now |
-|---|---|
-| `/sdrf-skills:sdrf-setup` | `sdrf-tools doctor` reports what is missing; [Installation](#installation) below says how to install it |
-| `/sdrf-skills:sdrf-knowledge` | ask `/sdrf-skills:sdrf-annotate` the question; the rules live in `skills/sdrf-annotate/references/format-rules.md` |
-| `/sdrf-skills:sdrf-templates` | `skills/sdrf-annotate/references/templates.md`; `sdrf-tools contract` derives the columns |
-| `/sdrf-skills:sdrf-validate` | `/sdrf-skills:sdrf-annotate file.sdrf.tsv` (review mode), or `parse_sdrf validate-sdrf` + `sdrf-tools structure` directly |
-| `/sdrf-skills:sdrf-fix` | `sdrf-tools fix file.sdrf.tsv -o out.tsv`; the review lists what it can repair |
-| `/sdrf-skills:sdrf-review`, `sdrf-annotate-reviewed` | `/sdrf-skills:sdrf-annotate file.sdrf.tsv`; every annotation now ends with the independent review |
-| `/sdrf-skills:sdrf-techrefine` | Step 5.6 of annotate (`references/techrefine.md`), `techsdrf` |
-| `/sdrf-skills:sdrf-cellline` | Step 4.5 of annotate (`references/cellline.md`), `sdrf-tools cellline lookup` |
-| `/sdrf-skills:sdrf-design` | the design checks of the review mode (`references/review-checks.md`) |
-| `/sdrf-skills:sdrf-convert` | see *Feeding a pipeline* under Python tools |
-
 ## Installation
 
-After installing, `sdrf-tools doctor` checks `parse_sdrf`, `sdrf-tools`, the spec submodule and `techsdrf`,
+Then `pip install -e .` from the checkout gives you the `sdrf-tools` command, and `sdrf-tools doctor` checks `parse_sdrf`, `sdrf-tools`, the spec submodule and `techsdrf`,
 and says what to install for anything missing.
 
 **Claude Code, in two lines** — no clone needed; the marketplace install fetches the `spec/`
@@ -62,8 +46,8 @@ submodules with it:
 /plugin install sdrf-skills@sdrf-skills
 ```
 
-Then run ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`, which installs the helper tools (`parse_sdrf`, `techsdrf`) and
-tells you where the plugin lives. The skills resolve `spec/`, `tools/` and `data/` against
+Then run `sdrf-tools doctor`; if it reports something missing, `skills/sdrf-annotate/references/setup.md` has the
+install steps for `parse_sdrf` and `techsdrf`.
 `$CLAUDE_PLUGIN_ROOT`, so you can work from any directory.
 
 **From a checkout** (for development, or for the other platforms below):
