@@ -139,6 +139,9 @@ python -m tools score  file.sdrf.tsv          # quality score (0-100, 5 dimensio
 python -m tools fix    file.sdrf.tsv -o out.tsv
 python -m tools verify UNIMOD:1 --label Acetyl
 python -m tools review-gate gate              # enforce independent-review receipts
+python -m tools contract -t ms-proteomics -t human          # column contract of a template union
+python -m tools build --samples samples.tsv --technical technical.tsv \
+  --files files.json -t ms-proteomics -t human -o out.sdrf.tsv  # SDRF from a sample table, deterministically
 ```
 
 **Adversarial review gate.** Changed SDRFs are identified by SHA-256; a passing receipt is valid only

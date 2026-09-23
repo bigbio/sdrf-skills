@@ -36,8 +36,8 @@ git submodule update --init --recursive     # restore pinned state (what you usu
 git submodule update --remote --recursive   # advance to upstream tip; leaves a dirty gitlink
 
 # tools CLI (no console_scripts; requires cwd == repo root)
-python -m tools --help   # check, score, fix, benchmark, massive-files, verify, cellline,
-                         # review-gate, audit-existing, bruker-dia
+python -m tools --help   # check, structure, contract, build, score, fix, benchmark, massive-files,
+                         # verify, cellline, review-gate, reconcile, audit-existing, bruker-dia
 ```
 
 `python` is an alias to `python3` here, not a binary — skills invoke bare `python`, assuming an
@@ -52,8 +52,10 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 1. `skills/` — 16 SKILL.md workflows. Most are single-file; only the two review-gate skills ship
    supporting files (`references/review-contract.md`, `agents/openai.yaml`). Everything else reaches
    shared machinery at repo root by relative path.
-2. `tools/` — offline-first Python. Only `massive-files` (annotate, review) and `cellline lookup`
-   (annotate) are ever called by a skill. `check`, `score`, `fix`, `benchmark`, and `verify` are called
+2. `tools/` — offline-first Python. `contract` and `build` are what `sdrf-annotate` runs (Steps 3
+   and 6: the column contract of a template union, and the deterministic SDRF expander from
+   `samples.tsv` + `technical.tsv`); `massive-files` (annotate, review) and `cellline lookup`
+   (annotate) are the other helpers a skill calls. `check`, `score`, `fix`, `benchmark`, and `verify` are called
    by **no skill** — reachable only by hand or from CI, which smoke-tests all subcommands.
    `massive-files` asks MassIVE's PROXI record for the dataset's FTP root and tries it first
    (`proxi_ftp_url`): a bare MSV yielded no root at all, and the ProteomeCentral route yields one with
@@ -235,11 +237,11 @@ reimplementing merge semantics.
    `tools/sdrf_parser.py` disambiguates with `__N` keys; keying rows by raw name silently reads only
    the first occurrence.
 7. **Validate before presenting any SDRF**: `parse_sdrf validate-sdrf --sdrf_file X --template Y`,
-   after refreshing the submodule. **`--template` is a single-value option, so a call with several
-   `--template` flags validates against only the LAST one** (verified 2026-07-17 on PXD061710:
-   `cell-lines` last → ERROR on the tissue rows, `cell-lines` first → passes). Run `parse_sdrf`
-   **once per declared template** (each against the rows that declare it) and require every run to
-   pass; do not trust a single multi-`--template` invocation. For the authoritative multi-template
+   after refreshing the submodule. Several `-t`/`--template` flags validate against the **union** of
+   those templates (the `--help` says so and `tests/test_build.py` proves it on three curated
+   references, 2026-09-23); the older behaviour where only the last `--template` counted
+   (observed 2026-07-17 on PXD061710) is gone from current `sdrf-pipelines`. If you are on an old
+   install, run once per declared template. For the authoritative multi-template
    constraint set (column licensing + reserved-word `allow_*`), resolve with
    `spec/scripts/resolve_templates.py` — parse_sdrf enforces neither. `parse_sdrf` ships in
    `sdrf-pipelines` and is **not installed by default** (CI installs only `requests`, `pytest`,

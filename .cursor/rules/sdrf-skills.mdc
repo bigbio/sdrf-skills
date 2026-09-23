@@ -46,6 +46,26 @@ When working with SDRF files, proteomics metadata, or when the user asks to **in
 5. All ontology terms must include both label AND accession (e.g., "breast carcinoma" with EFO:0000305)
 6. Modification parameters must follow NT=;AC=;TA=;MT= format with correct UNIMOD accessions
 
+## Bundled tools: contract and build
+
+Two deterministic helpers keep annotation short and structurally valid. Run them from the
+sdrf-skills checkout (`PYTHONPATH=<checkout> python3 -m tools ...`; Claude Code sets
+`$CLAUDE_PLUGIN_ROOT` for this):
+
+- `python3 -m tools contract -t ms-proteomics [-t human ...]` — prints the column contract of the
+  template union: every column in order, required/optional/multiple, value form, permitted reserved
+  words and the ontologies to search. Read this instead of `TERMS.tsv` and the template YAMLs.
+- `python3 -m tools build --samples samples.tsv --technical technical.tsv --files files.json
+  -t ms-proteomics [-t ...] -o output.sdrf.tsv` — expands a sample table (one row per source and
+  replicate; `files` = the fractions of one injection; `label` = `label free sample` or one channel)
+  plus a technical table (run-level `comment[...]` values, `|` between multiple values) into the SDRF:
+  fractions, technical replicates, channel rows, repeated columns and column order are decided by
+  code. It refuses, and writes nothing, on a file outside `files.json`, a file claimed twice, two rows
+  sharing a (source, biological replicate, technical replicate, fraction) coordinate, or an incomplete
+  channel map — it never fills a channel in.
+
+Fix validation errors in the two tables and rebuild; never edit the SDRF by hand.
+
 ## Specification Data
 
 The SDRF specification lives in the `spec/` git submodule:
@@ -55,7 +75,7 @@ The SDRF specification lives in the `spec/` git submodule:
 
 ## Important References
 
-- Column-to-ontology mapping: read TERMS.tsv `values` field for each column
+- Column-to-ontology mapping: the contract prints it per column (`<- NCBITaxon`, `<- UBERON, BTO`); TERMS.tsv `values` is its source
 - Template layers: `skills/sdrf-templates/SKILL.md` (Template Layers section)
 - Common UNIMOD IDs: Acetyl=1, Phospho=21, Carbamidomethyl=4, Oxidation=35, TMT6plex=737
 - Common error: UNIMOD:1 (Acetyl) ↔ UNIMOD:21 (Phospho) swap — most frequent mistake
