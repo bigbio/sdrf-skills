@@ -48,6 +48,24 @@ class Contract:
     versions: dict[str, str]
     columns: list[ColumnSpec]
     rules: list[str] = field(default_factory=list)
+    technology_type: str | None = None  # fixed by the technology template when it is MS; else the model's call
+
+
+MS_TECHNOLOGY_TYPE = "proteomic profiling by mass spectrometry"  # TERMS.tsv: fixed value for MS templates
+
+
+def _extends_chain(registry, name: str) -> list[str]:
+    """The template and every ancestor it extends, e.g. dia-acquisition -> ms-proteomics -> ..."""
+    chain, seen = [], set()
+    while name and name not in seen:
+        seen.add(name)
+        chain.append(name)
+        schema = registry.get_schema(name)
+        parent = getattr(schema, "extends", None) if schema else None
+        if isinstance(parent, list):
+            parent = parent[0] if parent else None
+        name = str(parent).split("@")[0].strip() if parent else ""
+    return chain
 
 
 def _truthy(s: str | None) -> bool:
@@ -136,6 +154,7 @@ def template_contract(templates: list[str], terms_path: str | Path | None = None
         ))
     columns.sort(key=lambda c: SECTION_ORDER.index(c.section))  # stable: keeps registry order within a section
     versions = {t: str(registry.get_schema(t).version) for t in templates}
+    ms = any("ms-proteomics" in _extends_chain(registry, t) for t in templates)
     rules = [
         "source name first; characteristics[...]; assay name, technology type; comment[...]; factor value[...] last.",
         "(source name, assay name, comment[label]) must be unique per row.",
@@ -143,7 +162,8 @@ def template_contract(templates: list[str], terms_path: str | Path | None = None
         "Sample properties (characteristics) carry the bare value; ontology-backed comments take NT=<name>;AC=<accession>.",
         "'not available' / 'not applicable' only where the column permits it (flags below).",
     ]
-    return Contract(templates=list(templates), versions=versions, columns=columns, rules=rules)
+    return Contract(templates=list(templates), versions=versions, columns=columns, rules=rules,
+                    technology_type=MS_TECHNOLOGY_TYPE if ms else None)
 
 
 def render_text(c: Contract) -> str:

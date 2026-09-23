@@ -40,6 +40,11 @@ def test_contract_value_forms():
     assert by["comment[instrument]"].value_form == "NT=<name>;AC=<accession>"
 
 
+def test_contract_fixes_technology_type_for_ms_unions():
+    assert template_contract(["ms-proteomics", "human"]).technology_type == "proteomic profiling by mass spectrometry"
+    assert template_contract(["affinity-proteomics"]).technology_type is None
+
+
 def test_contract_unknown_template_names_known_ones():
     with pytest.raises(ValueError) as e:
         template_contract(["ms-proteomics", "not-a-template"])

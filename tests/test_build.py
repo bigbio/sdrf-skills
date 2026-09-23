@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import json
+import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
 
-from tools.build import (BuildError, Sample, check_channels, check_coordinates, check_files, expand,
-                         is_channel, parse_samples, parse_technical, read_table, write_sdrf)
+from tools.build import (BuildError, Sample, build, check_channels, check_coordinates, check_files,
+                         expand, is_channel, parse_samples, parse_technical, read_table, write_sdrf)
 from tools.contract import template_contract
 
 FIX = Path(__file__).parent / "fixtures" / "references"
@@ -46,8 +49,11 @@ def test_is_channel():
     assert is_channel("TMT126")
     assert is_channel("TMT127N")
     assert is_channel("iTRAQ114")
+    assert is_channel("SILAC heavy")
     assert not is_channel("label free sample")
     assert not is_channel("NT=label free sample;AC=MS:1002038")
+    assert not is_channel("TMT10")  # a plex name, not a channel: the collapsed-plex defect
+    assert not is_channel("NT=TMT11plex")
 
 
 # ---------- refusals ----------
@@ -158,7 +164,137 @@ def test_expand_sets_template_columns_from_registry():
                                        f"NT=human;VV=v{c.versions['human']}"}
 
 
+def test_expand_fills_technology_type_from_contract_unless_given():
+    c = template_contract(["ms-proteomics"])
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1, {})]
+    header, rows = expand(s, {}, c)
+    assert rows[0][header.index("technology type")] == "proteomic profiling by mass spectrometry"
+    header, rows = expand(s, {"technology type": ["something else"]}, c)
+    assert rows[0][header.index("technology type")] == "something else"
+
+
 def test_write_sdrf_keeps_repeated_headers(tmp_path):
     out = tmp_path / "o.sdrf.tsv"
     write_sdrf(["source name", "comment[x]", "comment[x]"], [["a", "1", "2"]], out)
     assert out.read_text().splitlines()[0] == "source name\tcomment[x]\tcomment[x]"
+
+
+# ---------- round trip against curated references ----------
+
+REFS = {  # accession -> templates the reference declares
+    "PXD022949": ["ms-proteomics", "human", "immunopeptidomics"],
+    "PXD000878": ["ms-proteomics"],
+    "PXD014871": ["ms-proteomics", "human"],
+}
+STRUCTURAL_OUT = {"assay name", "comment[data file]", "comment[label]", "comment[fraction identifier]",
+                  "comment[technical replicate]", "comment[sdrf template]", "technology type"}
+
+
+def _read_ref(acc: str) -> tuple[list[str], list[list[str]]]:
+    lines = (FIX / f"{acc}.reference.tsv").read_text().splitlines()
+    return lines[0].split("\t"), [line.split("\t") for line in lines[1:] if line.strip()]
+
+
+def tables_from_reference(acc: str, tmp_path: Path) -> tuple[Path, Path, Path]:
+    """Derive samples.tsv / technical.tsv / files.json from a curated reference.
+
+    One sample row per (source, label, biological replicate, technical replicate) - the row
+    coordinate - with that row's files listed in fraction order; comments constant across the
+    whole file go to technical.tsv."""
+    header, rows = _read_ref(acc)
+    idx: dict[str, list[int]] = {}
+    for i, h in enumerate(header):
+        idx.setdefault(h, []).append(i)
+
+    def g(r, h):
+        return r[idx[h][0]] if h in idx and idx[h][0] < len(r) else ""
+
+    groups: dict[tuple[str, str, str, str], list[list[str]]] = {}
+    for r in rows:
+        key = (g(r, "source name"), g(r, "comment[label]"),
+               g(r, "characteristics[biological replicate]"), g(r, "comment[technical replicate]") or "1")
+        groups.setdefault(key, []).append(r)
+    char_cols = [h for h in header if h.startswith("characteristics[") or h.startswith("factor value[")]
+    sample_header = ["source name", "files", "label", "assay name", "technical replicate"] + char_cols
+    sample_rows = []
+    for (src, label, _bio, trep), rs in groups.items():
+        rs = sorted(rs, key=lambda r: int(g(r, "comment[fraction identifier]") or 1))
+        files = ", ".join(g(r, "comment[data file]") for r in rs)
+        assay = g(rs[0], "assay name") if len(rs) == 1 else ""
+        sample_rows.append([src, files, label, assay, trep] + [g(rs[0], c) for c in char_cols])
+    # a run that uses fewer channels than the plex gets an explicit unused row per missing channel,
+    # which is what build asks of the model; the reference itself simply omits them
+    channels = sorted({label for (_s, label, _b, _t) in groups if is_channel(label)})
+    if channels:
+        per_run: dict[str, set[str]] = {}
+        for (_s, label, _b, _t), rs in groups.items():
+            if is_channel(label):
+                for r in rs:
+                    per_run.setdefault(g(r, "comment[data file]"), set()).add(label)
+        for run, used in per_run.items():
+            for ch in channels:
+                if ch not in used:
+                    sample_rows.append(["", run, ch, "", "1"] + [""] * len(char_cols))
+    files = sorted({g(r, "comment[data file]") for r in rows})
+    tech_rows = []
+    for h, cols in idx.items():
+        if not h.startswith("comment[") or h in STRUCTURAL_OUT:
+            continue
+        vals = ["|".join(r[i] for i in cols if i < len(r)) for r in rows]
+        if len(set(vals)) == 1:
+            tech_rows.append([h, vals[0]])
+    s = _tsv(tmp_path / "samples.tsv", sample_header, sample_rows)
+    t = _tsv(tmp_path / "technical.tsv", ["column", "value"], tech_rows)
+    f = tmp_path / "files.json"
+    f.write_text(json.dumps(files))
+    return s, t, f
+
+
+@pytest.mark.parametrize("acc", sorted(REFS))
+def test_roundtrip_aligns_with_reference_on_file_and_label(acc, tmp_path):
+    s, t, f = tables_from_reference(acc, tmp_path)
+    out = tmp_path / "out.sdrf.tsv"
+    assert build(s, t, f, REFS[acc], out) == 0
+    header, rows = _read_ref(acc)
+    ref_keys = sorted((r[header.index("comment[data file]")], r[header.index("comment[label]")]) for r in rows)
+    lines = out.read_text().splitlines()
+    oh = lines[0].split("\t")
+    out_keys = sorted((r.split("\t")[oh.index("comment[data file]")], r.split("\t")[oh.index("comment[label]")])
+                      for r in lines[1:])
+    assert out_keys == ref_keys
+    assert oh[0] == "source name"
+    fv = [i for i, h in enumerate(oh) if h.startswith("factor value[")]
+    assert not fv or fv == list(range(len(oh) - len(fv), len(oh)))
+
+
+@pytest.mark.skipif(shutil.which("parse_sdrf") is None, reason="parse_sdrf not installed")
+@pytest.mark.parametrize("acc", sorted(REFS))
+def test_roundtrip_validates_with_parse_sdrf(acc, tmp_path):
+    s, t, f = tables_from_reference(acc, tmp_path)
+    out = tmp_path / "out.sdrf.tsv"
+    build(s, t, f, REFS[acc], out)
+    cmd = ["parse_sdrf", "validate-sdrf", "-s", str(out), "--use_ols_cache_only"]
+    for tpl in REFS[acc]:
+        cmd += ["-t", tpl]
+    p = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
+    errors = [line for line in (p.stdout + p.stderr).splitlines() if "ERROR" in line.upper()]
+    assert p.returncode == 0, "\n".join(errors[:20])
+
+
+def test_cli_build_smoke(tmp_path, capsys):
+    import sys
+
+    from tools.cli import main
+    s, t, f = tables_from_reference("PXD000878", tmp_path)
+    out = tmp_path / "o.sdrf.tsv"
+    argv = sys.argv
+    sys.argv = ["tools", "build", "--samples", str(s), "--technical", str(t), "--files", str(f),
+                "-t", "ms-proteomics", "-o", str(out)]
+    try:
+        with pytest.raises(SystemExit) as e:
+            main()
+        assert e.value.code == 0
+    finally:
+        sys.argv = argv
+    assert out.exists()
+    assert "70 rows" in capsys.readouterr().out

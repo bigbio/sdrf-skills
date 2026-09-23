@@ -70,6 +70,15 @@ def cmd_contract(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build(args: argparse.Namespace) -> int:
+    from tools.build import BuildError, build
+    try:
+        return build(args.samples, args.technical, args.files, args.templates, args.output)
+    except (BuildError, ValueError) as e:
+        print(f"build refused: {e}")
+        return 2
+
+
 def cmd_score(args: argparse.Namespace) -> int:
     from tools.completeness import score_sdrf
     report = score_sdrf(args.sdrf_file)
@@ -309,6 +318,17 @@ def main() -> None:
     p.add_argument("--terms", default=None, help="Path to TERMS.tsv (default: bundled spec)")
     p.add_argument("--json", action="store_true", help="Machine-readable output")
 
+    # build
+    p = subparsers.add_parser(
+        "build",
+        help="Expand samples.tsv + technical.tsv into a structurally valid SDRF (never guesses a channel map)",
+    )
+    p.add_argument("--samples", required=True, help="One row per source: source name, files, label, characteristics...")
+    p.add_argument("--technical", default=None, help="Two columns 'column','value'; '|' separates multiple values")
+    p.add_argument("--files", required=True, help="files.json: the raw file names in scope")
+    p.add_argument("-t", "--template", dest="templates", action="append", required=True)
+    p.add_argument("-o", "--output", required=True)
+
     # score
     p = subparsers.add_parser("score", help="Score SDRF quality (0-100)")
     p.add_argument("sdrf_file")
@@ -412,6 +432,7 @@ def main() -> None:
         "check": cmd_check,
         "structure": cmd_structure,
         "contract": cmd_contract,
+        "build": cmd_build,
         "score": cmd_score,
         "fix": cmd_fix,
         "benchmark": cmd_benchmark,

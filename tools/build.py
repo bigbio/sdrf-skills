@@ -18,7 +18,8 @@ from pathlib import Path
 
 from tools.contract import Contract, template_contract
 
-CHANNEL_RE = re.compile(r"^(TMT|iTRAQ|SILAC)", re.I)
+# a single reporter channel or SILAC state - not a plex name such as TMT10 or TMT11plex
+CHANNEL_RE = re.compile(r"^(TMT1(2[6-9]|3[0-5])[NC]?|iTRAQ1(1[3-9]|2[01])|SILAC (light|medium|heavy))$", re.I)
 MULTI_SEP = "|"
 STRUCTURAL = {"source name", "files", "label", "assay name", "technical replicate"}
 BIO_REP = "characteristics[biological replicate]"
@@ -173,6 +174,9 @@ def expand(samples: list[Sample], technical: dict[str, list[str]], contract: Con
                 "comment[fraction identifier]": str(k),
                 "comment[technical replicate]": str(s.technical_replicate),
             }
+            if contract.technology_type and not s.values.get("technology type") \
+                    and not technical.get("technology type", [""])[0]:
+                fixed["technology type"] = contract.technology_type
             row: list[str] = []
             multi_i: dict[str, int] = {}
             tmpl_i = 0
