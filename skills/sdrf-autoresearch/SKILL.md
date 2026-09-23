@@ -296,7 +296,7 @@ For each dataset:
 6. Run `/sdrf-skills:sdrf-fix`
    - apply safe corrections to known SDRF error patterns
 
-7. Run `/sdrf-skills:sdrf-review`
+7. Review: `/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode)
    - rescore completeness, specificity, consistency, standards, and design
 
 8. Keep or discard

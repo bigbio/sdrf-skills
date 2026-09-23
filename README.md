@@ -22,24 +22,19 @@ lives in a git submodule and is read at runtime, so the skills stay current as t
 
 ## Available skills
 
-Sixteen skills. Fourteen are slash commands under `/sdrf-skills:`; two are review-gate skills that other
-skills dispatch into a fresh context and that are never typed as a command:
+Twelve skills. Eleven are slash commands under `/sdrf-skills:`; `sdrf-adversarial-review` is dispatched by
+`sdrf-annotate` into a fresh context and is never typed as a command:
 
 | Skill | What it does |
 |-------|-------------|
 | `/sdrf-skills:sdrf-setup` | Guided dependency install (parse_sdrf, techsdrf) — conda or pip |
 | `/sdrf-skills:sdrf-knowledge` | Explains the SDRF format in plain language; holds the one canonical copy of the format rules (`references/format-rules.md`) that every other skill points to |
-| `/sdrf-skills:sdrf-templates` | Template selection, layers, and selection rules |
+| `/sdrf-skills:sdrf-annotate` | The one entry point. A PXD: record + paper → `samples.tsv` + `technical.tsv` → `sdrf-tools build` → validate → **independent review, always**. An existing `.sdrf.tsv`: review it against the record and the spec. A question: plan. A short core plus `references/` it reads only when a step needs them |
 | `/sdrf-skills:sdrf-metascreen` | Shortlist PRIDE / MassIVE / ProteomeXchange studies → resumable TSV |
 | `/sdrf-skills:sdrf-autoresearch` | Autonomous retained-improvement loop over a dataset or dataset class |
-| `/sdrf-skills:sdrf-annotate` | Full workflow: PXD → record + paper → `samples.tsv` + `technical.tsv` → `sdrf-tools build` → validate. A short core plus `references/` files it reads only when a step needs them |
 | `/sdrf-skills:sdrf-validate` | Systematic validation against templates + OLS ontology checking |
 | `/sdrf-skills:sdrf-fix` | Auto-fix common errors (UNIMOD swaps, case, format, artifacts) |
-| `/sdrf-skills:sdrf-review` | Comprehensive quality review + 5-dimension quality score cross-referenced to paper + PRIDE |
 | `sdrf-adversarial-review` (dispatched, not typed) | Independent review of an SDRF in a fresh context, checked against the evidence, with a verdict bound to the file's hash |
-| `sdrf-annotate-reviewed` (dispatched, not typed) | Runs annotate, then the adversarial review, then repair and a mandatory re-review |
-| `/sdrf-skills:sdrf-convert` | Choose and configure analysis pipelines from SDRF |
-| `/sdrf-skills:sdrf-design` | Detect batch effects, confounders, replication issues |
 | `/sdrf-skills:sdrf-contribute` | Contribute an annotated SDRF back to sdrf-annotated-datasets via PR |
 | `/sdrf-skills:sdrf-techrefine` | Verify/refine technical metadata from raw files via techsdrf |
 | `/sdrf-skills:sdrf-cellline` | Translate Cellosaurus records into SDRF cell-line columns |
@@ -122,7 +117,8 @@ For full annotation, configure the **OLS**, **PRIDE**, **PubMed**, and **bioRxiv
 ## Usage
 
 ```text
-/sdrf-skills:sdrf-annotate PXD045678     → record + paper → templates → sample and technical tables → sdrf-tools build → validate
+/sdrf-skills:sdrf-annotate PXD045678     → record + paper → tables → sdrf-tools build → validate → independent review
+/sdrf-skills:sdrf-annotate file.sdrf.tsv → review an existing SDRF against its record and the spec
 /sdrf-skills:sdrf-validate file.sdrf.tsv → template + ontology validation
 /sdrf-skills:sdrf-fix file.sdrf.tsv      → repair UNIMOD swaps, case, formats, artifacts (with changelog)
 /sdrf-skills:sdrf-contribute PXD045678   → open a PR to bigbio/sdrf-annotated-datasets
@@ -144,6 +140,10 @@ sdrf-tools contract -t ms-proteomics -t human          # column contract of a te
 sdrf-tools build --samples samples.tsv --technical technical.tsv \
   --files files.json -t ms-proteomics -t human -o out.sdrf.tsv  # SDRF from a sample table, deterministically
 ```
+
+**Feeding a pipeline.** quantms reads SDRF natively (`nextflow run bigbio/quantms --input file.sdrf.tsv --fasta proteins.fasta`).
+For the others, `sdrf-pipelines` converts: `parse_sdrf convert-maxquant --sdrf file.sdrf.tsv --fastafilepath proteins.fasta`,
+`convert-openms --sdrf file.sdrf.tsv --onetable`, `convert-diann --sdrf file.sdrf.tsv`, `convert-msstats`, `convert-normalyzerde`.
 
 **Adversarial review gate.** Changed SDRFs are identified by SHA-256; a passing receipt is valid only
 for that exact content, and any edit makes it pending again. Changed artifacts are discovered from git

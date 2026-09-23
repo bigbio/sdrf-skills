@@ -1,8 +1,8 @@
 ---
 name: sdrf-annotate
-description: Use when the user wants to create or annotate an SDRF file for a proteomics dataset. Also use to plan what metadata to capture and discuss experimental design/strategy before creating the file. Triggers on PXD accessions, requests to create SDRF, planning/strategy questions, or annotation tasks.
+description: Use when the user wants to create, review, or improve an SDRF file for a proteomics dataset. Given a PXD accession it annotates and then always has the result independently reviewed; given an existing .sdrf.tsv it reviews that file against the record and the specification. Also use to plan what metadata to capture before there is a file. Triggers on PXD accessions, SDRF file paths, requests to create/review/check/score an SDRF, or planning questions.
 user-invocable: true
-argument-hint: "[PXD accession or experiment description]"
+argument-hint: "[PXD accession | path/to/file.sdrf.tsv | experiment description]"
 ---
 
 # SDRF Annotation Workflow
@@ -69,6 +69,15 @@ source, or re-derive them from a template file:
   shaped values such as a Cellosaurus `CVCL_0030` are written as they are. `comment[...]`
   columns do take `NT=;AC=` where the term is ontology-backed.
 
+## Which mode?
+
+- **A PXD accession (or a description of an experiment)** → annotate: Steps 0a–11 below, ending
+  with the independent review in Step 9.5. Review is not optional; an annotation that has not been
+  independently reviewed is a draft.
+- **A path to an existing `.sdrf.tsv`** → review it: skip to **Reviewing an existing SDRF** at the
+  end of this file. Do not re-annotate a file you were asked to review.
+- **A question about what to capture, before there is a file** → planning: see the last section.
+
 ## Step 0a: Isolate this dataset's working files (required)
 
 When annotators run concurrently they collide through a **shared scratchpad**:
@@ -117,7 +126,8 @@ what to extract, and the traps.
 
 ## Step 2: Select Templates
 
-Use the sdrf:templates decision tree. Based on the gathered context:
+Read [references/templates.md](references/templates.md) — layers, exclusivity, the decision
+tree. Based on the gathered context:
 
 1. **Technology**: MS → `ms-proteomics`. Affinity → `affinity-proteomics`
 2. **Organism**: Human → `human`. Mouse/rat → `vertebrates`. Drosophila → `invertebrates`. Plant → `plants`. Microbiome → `metaproteomics` + child
@@ -303,6 +313,32 @@ If it reports errors:
 If `parse_sdrf` is not installed, say so in the report and point at
 `/sdrf-skills:sdrf-setup` (or `pip install sdrf-pipelines`).
 
+## Step 9.5: Independent review — always
+
+Validation by the producer is not review, and a producer must never approve its own SDRF.
+Before Step 10:
+
+1. **Write the evidence manifest** using the schema in
+   [../sdrf-adversarial-review/references/review-contract.md](../sdrf-adversarial-review/references/review-contract.md):
+   exact source URLs or local paths, each claim mapped to a column or row, unavailable evidence
+   marked as such. Do not invent citations.
+2. **Track the artifact**: `sdrf-tools review-gate track <file.sdrf.tsv> --cwd <repo-root>`.
+3. **Dispatch a fresh, isolated context** (subagent, hook agent, or equivalent) with only: the
+   original request, the SDRF path, the manifest path, the spec root and revision, the
+   deterministic validation output, and the path to `sdrf-adversarial-review/SKILL.md`. Do not pass
+   your transcript, reasoning, suspected issues or a proposed verdict. If the platform cannot create
+   an isolated context, say the adversarial gate is unavailable — never substitute self-review and
+   never claim a pass.
+4. **Repair and re-review.** Evaluate each blocker or important finding against the evidence; push
+   back only with concrete counter-evidence. Fix in `samples.tsv` / `technical.tsv`, rebuild,
+   re-validate, then dispatch a **new** fresh reviewer — never ask the previous one to reuse its
+   verdict. Escalate to the user after two failed rounds, or when a finding needs scientific
+   judgement the evidence does not contain.
+5. **Enforce the gate**: `sdrf-tools review-gate gate --cwd <repo-root>` must exit 0 with the
+   current hash approved before Step 10, before any commit, and before contribution. Report the
+   reviewer identity, the hash, the validation commands, remaining minor findings, and evidence
+   limitations.
+
 ## Step 10: Present Results
 
 Present the validated SDRF as a TSV code block and explain:
@@ -335,6 +371,32 @@ Read it once per annotation. On top of them:
   ("chymotrypsin-like activity" is an assay, not a digest; `icat` matches inside "quantifi(cat)ion")
 - NEVER fabricate accessions, guess file names, or invent sample information
 - Always distinguish: extracted from the paper vs inferred vs assumed
+
+## Reviewing an existing SDRF
+
+You were given a `.sdrf.tsv`, not an accession. Review it; do not rebuild it.
+
+1. **Load the record.** Read the file; read its declared templates from `comment[sdrf template]`
+   (do not upgrade versions — report a newer one as an optional migration). If a PXD is known, gather
+   the record as in Step 1 (offline: whatever is in `evidence/`). If this is a pull request, read the
+   diff to see what changed.
+2. **Validate.** `parse_sdrf validate-sdrf -s <file> -t <t1> [-t ...] --use_ols_cache_only`, then
+   `sdrf-tools structure <file>` and `sdrf-tools check <file> --offline`. Collect every error and
+   warning; do not fix anything yet.
+3. **Reconcile and cross-reference.** `sdrf-tools reconcile <file> --record <project.json>
+   --accession <PXD>` (Step 8.5), then the checks in
+   [references/review-checks.md](references/review-checks.md): sample counts, conditions,
+   instruments, demographics and tissues against the paper; file names, organism and instrument
+   against PRIDE; batch effects, confounders and replication in the design. Write each disagreement
+   as a `DISCREPANCY:` line with the evidence on both sides.
+4. **Score.** `sdrf-tools score <file>` (completeness, specificity, consistency, standards, design).
+5. **Independent review.** Step 9.5 applies unchanged: manifest, track, fresh-context
+   `sdrf-adversarial-review`, gate. If **this context edited the file**, everything above is
+   advisory — the verdict comes only from the isolated reviewer.
+6. **Report**: verdict (valid / needs minor fixes / needs major fixes / invalid), the errors and
+   discrepancies in priority order, what `/sdrf-skills:sdrf-fix` can repair deterministically, what
+   needs a human, and — for a ProteomeXchange dataset with a clean verdict — the offer to contribute
+   (Step 11).
 
 ## Planning instead of annotating
 

@@ -1,53 +1,8 @@
----
-name: sdrf-templates
-description: Use when the user asks about SDRF templates, wants to select templates for an experiment, or needs to understand template layers, inheritance, mutual exclusivity, and selection rules.
-user-invocable: true
-argument-hint: "[experiment description or template name]"
----
+# Reference: choosing templates (Step 2 of sdrf-annotate)
 
-# SDRF Template System
-
-> **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
-> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
-> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by `/sdrf-skills:sdrf-setup`; no `PYTHONPATH` or plugin-root variable is needed to run them.
-> Files the user is annotating stay relative to the working directory.
-
-Templates define which columns are required for a given experiment type.
-Each SDRF can declare one or more templates via `comment[sdrf template]` columns.
-
-## Specification Data (always read from source)
-
-The authoritative source for all template information is in the `spec/` submodule:
-
-- **Template manifest**: Read `spec/sdrf-proteomics/sdrf-templates/templates.yaml`
-- **Individual templates**: Read `spec/sdrf-proteomics/sdrf-templates/{name}/{version}/{name}.yaml`
-- **Column definitions**: Read `spec/sdrf-proteomics/TERMS.tsv` (the `usage` field shows which templates include each column)
-
-Always read `templates.yaml` when answering questions about templates, versions, inheritance,
-or mutual exclusivity. Never rely on memorized template data — the spec evolves.
-
-### How to Read templates.yaml
-
-The manifest file lists every template with these fields:
-- `name` — template identifier (e.g., `ms-proteomics`, `human`)
-- `version` — current version (e.g., `1.1.0`)
-- `extends` — parent template with version constraint (e.g., `sample-metadata@>=1.0.0`)
-- `description` — what the template adds
-- `usable_alone` — whether it can be used without other templates (only `ms-proteomics` and `affinity-proteomics`)
-- `excludes` — templates that are mutually exclusive with this one
-- `layer` — which selection layer it belongs to
-
-### How to Read Individual Template YAMLs
-
-Each template has a YAML file at `spec/sdrf-proteomics/sdrf-templates/{name}/{version}/{name}.yaml`.
-These define the columns the template adds, with requirement levels (required/recommended/optional).
-
-### How to Find Columns for a Template
-
-Two ways:
-1. Read the individual template YAML → lists columns with requirement levels
-2. Read TERMS.tsv → filter rows where `usage` contains the template name
+The layers, the exclusivity rules, the decision tree, inheritance, common combinations, and how
+to read the templates a file already declares. `sdrf-tools contract -t ...` then prints the
+columns the chosen set implies; `parse_sdrf list-templates` lists what is installed.
 
 ## Template Layers (Methodology — stable across versions)
 
@@ -163,22 +118,3 @@ When an SDRF file already exists, detect templates from:
 10. **Oncology columns**: `characteristics[tumor grading]` → oncology-metadata
 11. **Olink columns**: `comment[panel name]` (or legacy `comment[olink panel]`) → olink
 12. **SomaScan columns**: `comment[somascan menu]` → somascan
-
-## How to Respond to User Queries
-
-### If they describe an experiment:
-1. Walk through the decision tree and recommend a specific template combination
-2. Read `templates.yaml` to confirm templates exist and get current versions
-3. Read TERMS.tsv to list the columns the combination adds
-4. Explain WHY each template was chosen
-
-### If they ask about a specific template:
-1. Read its entry in `templates.yaml` for version, extends, excludes, description
-2. Read its individual YAML for the columns it adds (with requirement levels)
-3. Explain when to use it, what it inherits from, and what it's mutually exclusive with
-
-### If they ask about differences between templates:
-Compare side by side — read both template YAMLs for their column lists.
-
-### If they provide an SDRF and ask "what templates should this use?":
-Auto-detect from the content using the detection rules above.

@@ -272,7 +272,7 @@ When the input is a `.sdrf.tsv` file:
 4. For each row, fill empty / `not available` Cellosaurus-derivable columns.
    **Do not overwrite** existing values that disagree with Cellosaurus —
    instead, surface them as conflicts and ask the user, exactly the way
-   `/sdrf-skills:sdrf-review` does.
+   `/sdrf-skills:sdrf-annotate <file.sdrf.tsv> (review mode)` does.
 5. If the SDRF lacks a needed column entirely (e.g.
    `characteristics[cellosaurus accession]`), insert it adjacent to
    `characteristics[cell line]` and re-emit the full TSV.
