@@ -1,0 +1,23 @@
+# MSFragger closed-search defaults (FragPipe LFQ-MBR workflow)
+num_threads = 0
+precursor_mass_lower = -20
+precursor_mass_upper = 20
+precursor_mass_units = 1			# 0=Daltons, 1=PPM
+precursor_true_tolerance = 20
+precursor_true_units = 1
+fragment_mass_tolerance = 20
+fragment_mass_units = 1			# 0=Daltons, 1=PPM
+search_enzyme_name_1 = stricttrypsin
+search_enzyme_cut_1 = KR
+search_enzyme_nocut_1 =
+search_enzyme_sense_1 = C
+allowed_missed_cleavage_1 = 2
+variable_mod_01 = 15.9949 M 3
+variable_mod_02 = 42.0106 [^ 1
+variable_mod_03 = 79.96633 STY 3
+variable_mod_04 = -17.0265 nQ 1
+variable_mod_05 = 12.3456 K 1
+add_Cterm_peptide = 0.000000
+add_Nterm_peptide = 0.000000
+add_C_cysteine = 57.021464
+add_K_lysine = 229.162932

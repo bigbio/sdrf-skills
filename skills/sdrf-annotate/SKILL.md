@@ -231,8 +231,10 @@ embeddings/ZOOMA fallbacks, and the specificity and reserved-word rules.
 
 Instrument, cleavage agent, modifications, labels, acquisition method, tolerances, and the
 run-level settings, each as `NT=<name>;AC=<accession>` where the contract says so. Read the
-modifications **out of the deposited search results** (MaxQuant `parameters.txt`, `.msf`,
-mzIdentML), never infer them from the paper; the acquisition method is a descendant of
+modifications **out of the deposited search results**, never infer them from the paper:
+`sdrf-tools search-params <file>` reads a MaxQuant `mqpar.xml`/`summary.txt`, a FragPipe
+`fragger.params`, a DIA-NN log or a PD `.msf`/`.pdResult` and prints `technical.tsv` rows,
+plus what it could not map (look those up, do not guess); the acquisition method is a descendant of
 `PRIDE:0000659`, PRIDE-first. Read
 [references/technical-values.md](references/technical-values.md) for where each value lives
 in the deposit, and [references/techrefine.md](references/techrefine.md) to verify it from the raw

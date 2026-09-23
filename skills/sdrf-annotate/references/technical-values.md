@@ -38,6 +38,21 @@ Methods > PRIDE fields**. Open the search files *before* writing the columns —
 files you open for the channel→sample map (Step 1.1) carry the modifications, so read
 both out in one pass.
 
+**Run the reader, do not write a parser.** Download the small search file (they are KB, not
+GB - except PD, below) and run:
+
+```bash
+sdrf-tools search-params mqpar.xml        # or summary.txt, fragger.params, report.log.txt, x.msf
+```
+
+It prints `column<TAB>value` rows for `comment[modification parameters]` (one ` | `-separated
+row, `PP=` for terminal mods), `comment[cleavage agent details]` and both tolerances, then
+`# unmapped` (look each up in OLS; never guess the accession) and `# notes` (e.g. MaxQuant's
+per-analyzer MS/MS tolerance: pick the instrument's MS2 analyzer). MaxQuant also yields the
+file → experiment/fraction map, and TMT/iTRAQ/SILAC labels from `mqpar.xml`. MaxQuant 2.x
+`parameters.txt` has **no** modifications - use `summary.txt` or `mqpar.xml`.
+The table below is where each engine keeps them, for a file the reader does not cover.
+
 | Search engine | Deposited file | Where the modifications are |
 |---|---|---|
 | Proteome Discoverer | `.msf`, `.pdStudy`, `.pdResult` (SQLite) | `Workflows` table → processing-node XML |
@@ -46,8 +61,9 @@ both out in one pass.
 | DIA-NN | `report.log.txt` / logged command line | `--fixed-mod`, `--var-mod` (`--unimod4` = fixed Carbamidomethyl) |
 | Spectronaut / SpectroMine | `.psar`, exported settings (UTF-16 strings) | modification list in the settings block |
 
-**Proteome Discoverer `.msf` — read it, never download it.** `.msf`/`.pdResult` are SQLite
-databases and routinely multi-GB (10.5 GB in the case below). Read them with HTTP
+**Proteome Discoverer `.msf` — read it, never download a multi-GB one.** `.msf`/`.pdResult` are SQLite
+databases and routinely multi-GB (10.5 GB in the case below). A small one (tens of MB):
+download it and run `sdrf-tools search-params`. A large one: read it with HTTP
 byte-range requests over the SQLite pages, the same way you range-read a ZIP central
 directory. The `Workflows` table stores each processing node's XML, which names every
 modification verbatim with its purpose, its UNIMOD id and its target:

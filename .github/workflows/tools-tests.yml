@@ -46,6 +46,7 @@ jobs:
           python -m tools check --help
           python -m tools contract --help
           python -m tools build --help
+          python -m tools search-params --help
           python -m tools score --help
           python -m tools fix --help
           python -m tools benchmark --help

@@ -133,6 +133,7 @@ sdrf-tools fix    file.sdrf.tsv -o out.tsv
 sdrf-tools verify UNIMOD:1 --label Acetyl
 sdrf-tools review-gate gate              # enforce independent-review receipts
 sdrf-tools doctor                        # is everything installed?
+sdrf-tools search-params mqpar.xml       # mods, enzyme, tolerances from a deposited search file
 sdrf-tools contract -t ms-proteomics -t human          # column contract of a template union
 sdrf-tools build --samples samples.tsv --technical technical.tsv \
   --files files.json -t ms-proteomics -t human -o out.sdrf.tsv  # SDRF from a sample table, deterministically

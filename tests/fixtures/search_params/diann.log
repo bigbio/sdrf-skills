@@ -1,0 +1,5 @@
+DIA-NN 2.5.1 Academia  (Data-Independent Acquisition by Neural Networks)
+Modification Carbamidomethyl with mass delta 57.0215 at C will be considered as fixed
+Modification Oxidation with mass delta 15.9949 at M will be considered as variable
+Modification Acetyl with mass delta 42.0106 at *n will be considered as variable
+DIA-NN will automatically optimise the mass accuracy for the first run of the experiment, use this mode for preliminary analyses only
