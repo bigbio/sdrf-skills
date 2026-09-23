@@ -49,9 +49,12 @@ activated env. Supported: Python 3.10/3.11/3.12 (CI matrix); `environment.yml` p
 
 **Three layers, loosely coupled — the coupling gaps matter more than the layers:**
 
-1. `skills/` — 16 SKILL.md workflows. Most are single-file; only the two review-gate skills ship
-   supporting files (`references/review-contract.md`, `agents/openai.yaml`). Everything else reaches
-   shared machinery at repo root by relative path.
+1. `skills/` — 16 SKILL.md workflows. `sdrf-annotate` is a ~3k-word core plus seven `references/`
+   files it reads on demand (the full text of Steps 0.5, 1, 4, 5, 6.1, 8.5 and the planning mode);
+   `sdrf-knowledge` holds the single canonical `references/format-rules.md` that annotate, fix and
+   knowledge all point to; the two review-gate skills ship `references/review-contract.md` and
+   `agents/openai.yaml`. A SKILL.md is resident every turn once invoked, so its length is a per-turn
+   cost - keep cores short and put detail in `references/`.
 2. `tools/` — offline-first Python. `contract` and `build` are what `sdrf-annotate` runs (Steps 3
    and 6: the column contract of a template union, and the deterministic SDRF expander from
    `samples.tsv` + `technical.tsv`); `massive-files` (annotate, review) and `cellline lookup`
@@ -112,10 +115,10 @@ Nothing in CI or the tests checks this, which is why the copies have already rot
 `.cursor/rules/sdrf-skills.mdc`, `.codex/INSTALL.md`. `.claude-plugin/plugin.json` needs **no** edit —
 it points at the directory.
 
-Domain policy is likewise duplicated: the UNIMOD table, reserved words, and row-count formula appear
-verbatim in both `sdrf-knowledge` and `sdrf-annotate` (error patterns a third time in `sdrf-fix`); the
-plasma heuristic is ~40 near-identical lines in both `sdrf-annotate` and `sdrf-autoresearch`. Edit one
-copy and the others desync silently.
+Domain policy (value encoding, reserved words, modification syntax, UNIMOD swaps, label types, row
+identity) exists once, in `skills/sdrf-knowledge/references/format-rules.md`; `sdrf-annotate` and
+`sdrf-fix` point to it. Do not paste rules back into a skill. The plasma heuristic is still ~40
+near-identical lines in both `sdrf-annotate/references/gather-context.md` and `sdrf-autoresearch`.
 
 ## MCP
 
