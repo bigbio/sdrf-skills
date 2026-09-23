@@ -113,11 +113,11 @@ class SearchParams:
     def add(self, mod: Modification | None) -> None:
         if mod is None:
             return
-        if not mod.accession:
-            self.unmapped.append(f"modification '{mod.source}'")
         key = (mod.name, mod.residues, mod.position, mod.fixed)
         if all((m.name, m.residues, m.position, m.fixed) != key for m in self.modifications):
             self.modifications.append(mod)
+            if not mod.accession:
+                self.unmapped.append(f"modification '{mod.source}'")
 
 
 # --- names, masses, targets -------------------------------------------------------------
@@ -231,7 +231,7 @@ def mq_fragment_note(p: SearchParams, per_analyzer: dict[str, str]) -> None:
 
 
 def parse_mqpar(path: Path) -> SearchParams:
-    root = ET.parse(path).getroot()
+    root = _xml(path.read_text(encoding="utf-8-sig", errors="replace"))
     p = SearchParams("MaxQuant")
     for pg in root.iter("parameterGroup"):
         for tag, fixed in (("fixedModifications", True), ("variableModifications", False)):
@@ -273,6 +273,14 @@ def parse_mqpar(path: Path) -> SearchParams:
     return p
 
 
+def _xml(text: str) -> ET.Element:
+    """Parse a deposited XML document; a search config never needs a DTD, so refuse one
+    rather than expand its entities."""
+    if "<!DOCTYPE" in text[:4096] or "<!ENTITY" in text:
+        raise ValueError("XML with a DTD/entity declarations is not a search config; refusing to parse it")
+    return ET.fromstring(text)
+
+
 def _num(text: str) -> str:
     v = float(text)
     return str(int(v)) if v.is_integer() else str(v)
@@ -294,6 +302,8 @@ def parse_mq_table(path: Path) -> SearchParams:
     p = SearchParams("MaxQuant")
     with open(path, newline="", encoding="utf-8-sig") as fh:
         rows = list(csv.reader(fh, delimiter="\t"))
+    if not rows:
+        raise ValueError(f"'{path.name}' is empty")
     if rows and [c.strip() for c in rows[0][:2]] == ["Parameter", "Value"]:
         kv = {r[0].strip(): r[1].strip() for r in rows[1:] if len(r) >= 2}
         per_row = [kv]
@@ -356,9 +366,12 @@ def parse_fragger(path: Path) -> SearchParams:
                        "reported precursor_true_tolerance instead")
     if kv.get("fragment_mass_tolerance"):
         p.fragment_tolerance = f"{_num(kv['fragment_mass_tolerance'])} {units.get(kv.get('fragment_mass_units', '1'), 'ppm')}"
-    enz = kv.get("search_enzyme_name_1", "")
-    if enz.lower() in ("trypsin", "stricttrypsin") and kv.get("search_enzyme_cut_1", "").upper() == "KR":
-        enz = "Trypsin" if kv.get("search_enzyme_nocut_1", "").upper() == "P" else "Trypsin/P"
+    # search_enzyme_name_1/cut_1/nocut_1 since MSFragger 3.x; name/cutafter/butnotafter before
+    enz = kv.get("search_enzyme_name_1") or kv.get("search_enzyme_name", "")
+    cut = kv.get("search_enzyme_cut_1") or kv.get("search_enzyme_cutafter", "")
+    nocut = kv.get("search_enzyme_nocut_1") if "search_enzyme_cut_1" in kv else kv.get("search_enzyme_butnotafter", "")
+    if enz.lower() in ("trypsin", "stricttrypsin") and cut.upper() == "KR":
+        enz = "Trypsin" if (nocut or "").upper() == "P" else "Trypsin/P"
     p.enzyme = enz or None
     for k in sorted(kv):
         if re.match(r"^variable_mod_\d+$", k) and kv[k]:
@@ -504,8 +517,8 @@ def parse_pd(path: Path) -> SearchParams:
 
 def _pd_workflow_xml(p: SearchParams, text: str) -> None:
     try:
-        root = ET.fromstring(text)
-    except ET.ParseError:
+        root = _xml(text)
+    except (ET.ParseError, ValueError):
         return
     for el in root.iter():
         purpose_attr = el.get("IntendedPurpose") or ""
@@ -530,25 +543,23 @@ def extract(path: str | Path) -> SearchParams:
     if not path.is_file():
         raise FileNotFoundError(f"no such file: {path}")
     name = path.name.lower()
-    if name.endswith((".msf", ".pdresult", ".pdstudy")):
+    with open(path, "rb") as fh:
+        raw = fh.read(4096)
+    head = raw.decode("utf-8-sig", "replace")
+    # the content decides, not the extension: a PRIDE deposit also holds pep.xml, prot.xml, comet.params
+    if raw.startswith(b"SQLite format 3\0") and name.endswith((".msf", ".pdresult", ".pdstudy")):
         p = parse_pd(path)
-    elif name.endswith(".xml"):
+    elif "<MaxQuantParams" in head:
         p = parse_mqpar(path)
-    elif name.endswith(".params"):
+    elif "precursor_mass_lower" in head or "search_enzyme_name" in head:
         p = parse_fragger(path)
-    elif name in ("summary.txt", "parameters.txt"):
+    elif name in ("summary.txt", "parameters.txt") and head.startswith(("Raw file\t", "Parameter\tValue")):
         p = parse_mq_table(path)
+    elif "DIA-NN" in head or "diann" in head.lower():
+        p = parse_diann(path)
     else:
-        head = path.read_bytes()[:4096].decode("utf-8", "replace")
-        if "DIA-NN" in head or "diann" in head.lower():
-            p = parse_diann(path)
-        elif "<MaxQuantParams" in head:
-            p = parse_mqpar(path)
-        elif "precursor_mass_lower" in head or "search_enzyme_name" in head:
-            p = parse_fragger(path)
-        else:
-            raise ValueError(f"unrecognised search file '{path.name}' (expected mqpar.xml, summary.txt, "
-                             "parameters.txt, fragger.params, a DIA-NN log, or a PD .msf/.pdResult)")
+        raise ValueError(f"unrecognised search file '{path.name}' (expected mqpar.xml, summary.txt, "
+                         "parameters.txt, fragger.params, a DIA-NN log, or a PD .msf/.pdResult)")
     if p.enzyme and p.enzyme.lower() not in ENZYMES:
         p.unmapped.append(f"enzyme '{p.enzyme}'")
     return p

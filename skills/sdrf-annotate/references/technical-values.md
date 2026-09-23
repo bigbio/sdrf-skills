@@ -56,7 +56,7 @@ The table below is where each engine keeps them, for a file the reader does not 
 | Search engine | Deposited file | Where the modifications are |
 |---|---|---|
 | Proteome Discoverer | `.msf`, `.pdStudy`, `.pdResult` (SQLite) | `Workflows` table → processing-node XML |
-| MaxQuant | `parameters.txt`, `mqpar.xml` | `Fixed modifications` / `Variable modifications` |
+| MaxQuant | `mqpar.xml`, `summary.txt` (`parameters.txt` in 1.x only) | `Fixed modifications` / `Variable modifications` |
 | FragPipe / MSFragger | `fragger.params` | `table.fix-mods` / `table.var-mods` |
 | DIA-NN | `report.log.txt` / logged command line | `--fixed-mod`, `--var-mod` (`--unimod4` = fixed Carbamidomethyl) |
 | Spectronaut / SpectroMine | `.psar`, exported settings (UTF-16 strings) | modification list in the settings block |

@@ -176,3 +176,38 @@ def test_cli_exit_codes(tmp_path, capsys):
     junk.write_text("nothing here\n")
     assert _cli([str(junk)]) == 2
     assert _cli([str(tmp_path / "missing.xml")]) == 2
+
+
+def test_other_xml_and_params_files_are_refused_not_read_as_empty(tmp_path):
+    pep = tmp_path / "interact.pep.xml"
+    pep.write_text('<?xml version="1.0"?><msms_pipeline_analysis/>')
+    comet = tmp_path / "comet.params"
+    comet.write_text("# comet_version 2019.01\npeptide_mass_tolerance = 20\nadd_C_cysteine = 57.021464\n")
+    for f in (pep, comet):
+        with pytest.raises(ValueError):
+            extract(f)
+
+
+def test_corrupt_inputs_exit_2(tmp_path):
+    partial = tmp_path / "big.msf"
+    partial.write_bytes(b"SQLite format 3\0" + b"\0" * 50)  # a truncated download
+    bomb = tmp_path / "mqpar.xml"
+    bomb.write_text('<?xml version="1.0"?><!DOCTYPE x [<!ENTITY a "aaaa">]><MaxQuantParams>&a;</MaxQuantParams>')
+    empty = tmp_path / "summary.txt"
+    empty.write_text("")
+    for f in (partial, bomb, empty):
+        assert _cli([str(f)]) == 2
+
+
+def test_unmapped_mod_listed_once_across_raw_files(tmp_path):
+    f = tmp_path / "summary.txt"
+    f.write_text("Raw file\tFixed modifications\tVariable modifications\n"
+                 "a\tCarbamidomethyl (C)\tMadeUpMod (K)\nb\tCarbamidomethyl (C)\tMadeUpMod (K)\n")
+    assert extract(f).unmapped == ["modification 'MadeUpMod (K)'"]
+
+
+def test_fragger_pre_3x_enzyme_keys(tmp_path):
+    f = tmp_path / "fragger.params"
+    f.write_text("precursor_mass_lower = -10\nprecursor_mass_upper = 10\nsearch_enzyme_name = Trypsin\n"
+                 "search_enzyme_cutafter = KR\nsearch_enzyme_butnotafter = P\n")
+    assert extract(f).enzyme == "Trypsin"

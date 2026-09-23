@@ -312,11 +312,13 @@ def cmd_reconcile(args: argparse.Namespace) -> int:
 
 def cmd_search_params(args: argparse.Namespace) -> int:
     """Extract search parameters from a deposited search-engine config file."""
+    import sqlite3
+
     from tools.search_params import extract, render_json, render_text
 
     try:
         params = extract(args.path)
-    except (FileNotFoundError, ValueError) as e:
+    except (OSError, ValueError, SyntaxError, sqlite3.DatabaseError) as e:  # SyntaxError: XML ParseError
         print(f"error: {e}")
         return 2
     print(render_json(params) if args.json else render_text(params))
