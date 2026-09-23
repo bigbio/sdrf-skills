@@ -40,6 +40,7 @@ class ColumnSpec:
     allow_not_available: bool
     allow_not_applicable: bool
     value_form: str
+    ontologies: str = ""  # TERMS.tsv 'values': which ontologies to search, or a fixed list
 
 
 @dataclass
@@ -151,6 +152,7 @@ def template_contract(templates: list[str], terms_path: str | Path | None = None
             allow_not_available=bool(d.get("allow_not_available")) or bool(term.get("allow_not_available")),
             allow_not_applicable=bool(d.get("allow_not_applicable")) or bool(term.get("allow_not_applicable")),
             value_form=value_form(name, section),
+            ontologies=str(term.get("values") or "")[:70],
         ))
     columns.sort(key=lambda c: SECTION_ORDER.index(c.section))  # stable: keeps registry order within a section
     versions = {t: str(registry.get_schema(t).version) for t in templates}
@@ -177,7 +179,8 @@ def render_text(c: Contract) -> str:
         if col.allow_not_applicable:
             flags.append("not applicable")
         mult = " [multiple]" if col.multiple else ""
-        lines.append(f"  {col.name}  [{col.requirement[:3]}]{mult}  {col.value_form} | {', '.join(flags) or '-'}")
+        onto = f"  <- {col.ontologies}" if col.ontologies and col.section in ("characteristics", "comment") else ""
+        lines.append(f"  {col.name}  [{col.requirement[:3]}]{mult}  {col.value_form} | {', '.join(flags) or '-'}{onto}")
     lines.append("")
     lines.append("factor value[...] last: add one column per experimental variable you set, after every comment column.")
     return "\n".join(lines)

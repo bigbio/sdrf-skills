@@ -45,6 +45,13 @@ def test_contract_fixes_technology_type_for_ms_unions():
     assert template_contract(["affinity-proteomics"]).technology_type is None
 
 
+def test_contract_carries_ontology_hint_from_terms():
+    c = template_contract(["ms-proteomics", "human"])
+    by = {col.name: col for col in c.columns}
+    assert "MONDO" in by["characteristics[disease]"].ontologies
+    assert "<- " in render_text(c)
+
+
 def test_contract_unknown_template_names_known_ones():
     with pytest.raises(ValueError) as e:
         template_contract(["ms-proteomics", "not-a-template"])
