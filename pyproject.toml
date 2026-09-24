@@ -9,7 +9,7 @@ description = "Deterministic helpers behind the sdrf-skills workflows: contract,
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-dependencies = ["requests", "sdrf-pipelines[ontology]"]
+dependencies = ["requests", "sdrf-pipelines[ontology]", "pyarrow>=14.0"]
 
 [project.scripts]
 sdrf-tools = "tools.cli:main"

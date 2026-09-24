@@ -13,12 +13,14 @@ Usage:
   python -m tools audit-existing <file.sdrf.tsv>    # audit an already-annotated dataset
   python -m tools bruker-dia <url|path>             # DIA windows from Bruker analysis.tdf
   python -m tools search-params <path> [--json]     # extract search parameters from engine config
+  python -m tools npx-to-sdrf <file.parquet>        # Olink NPX parquet → SDRF AP
 """
 
 from __future__ import annotations
 
 import argparse
 import sys
+from pathlib import Path
 
 
 def cmd_check(args: argparse.Namespace) -> int:
@@ -325,6 +327,43 @@ def cmd_search_params(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_npx_to_sdrf(args: argparse.Namespace) -> int:
+    from tools.NPXtoSDRF import run_cli
+
+    argv = [args.npx_file]
+    if args.output:
+        argv.extend(["-o", args.output])
+    for template in args.template or []:
+        argv.extend(["--template", template])
+    if args.organism:
+        argv.extend(["--organism", args.organism])
+    if args.organism_part:
+        argv.extend(["--organism-part", args.organism_part])
+    if args.disease:
+        argv.extend(["--disease", args.disease])
+    if args.sample_matrix:
+        argv.extend(["--sample-matrix", args.sample_matrix])
+    if args.age:
+        argv.extend(["--age", args.age])
+    if args.sex:
+        argv.extend(["--sex", args.sex])
+    if args.platform:
+        argv.extend(["--platform", args.platform])
+    if args.data_file:
+        argv.extend(["--data-file", args.data_file])
+    if args.sample_metadata:
+        argv.extend(["--sample-metadata", args.sample_metadata])
+    if args.templates_dir:
+        argv.extend(["--templates-dir", str(args.templates_dir)])
+    if args.inspect:
+        argv.append("--inspect")
+    if args.no_clinical:
+        argv.append("--no-clinical")
+    if args.quiet:
+        argv.append("-q")
+    return run_cli(argv)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="python -m tools",
@@ -469,6 +508,33 @@ def main() -> None:
     p.add_argument("path", help="File path: mqpar.xml, parameters.txt, fragger.params, .msf, or DIA-NN log")
     p.add_argument("--json", action="store_true", help="Machine-readable output")
 
+    # npx-to-sdrf
+    p = subparsers.add_parser(
+        "npx-to-sdrf",
+        help="Convert Olink NPX parquet exports to SDRF affinity-proteomics format",
+    )
+    p.add_argument("npx_file", help="Path to Olink NPX parquet file")
+    p.add_argument("-o", "--output", help="Output SDRF TSV path")
+    p.add_argument(
+        "--template",
+        action="append",
+        default=["human"],
+        help="Organism/add-on template (repeatable; use 'none' for technology only)",
+    )
+    p.add_argument("--organism", default="not available")
+    p.add_argument("--organism-part", default="not available")
+    p.add_argument("--disease", default="not available")
+    p.add_argument("--sample-matrix", default="not available")
+    p.add_argument("--age", default="not available")
+    p.add_argument("--sex", default="not available")
+    p.add_argument("--platform", default=None)
+    p.add_argument("--data-file", default=None)
+    p.add_argument("--sample-metadata", default=None)
+    p.add_argument("--templates-dir", default=None, type=Path)
+    p.add_argument("--inspect", action="store_true")
+    p.add_argument("--no-clinical", action="store_true")
+    p.add_argument("-q", "--quiet", action="store_true")
+
     args = parser.parse_args()
 
     # Set default db path for cellline commands
@@ -493,6 +559,7 @@ def main() -> None:
         "bruker-dia": cmd_bruker_dia,
         "reconcile": cmd_reconcile,
         "search-params": cmd_search_params,
+        "npx-to-sdrf": cmd_npx_to_sdrf,
     }
 
     sys.exit(commands[args.command](args))

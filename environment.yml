@@ -15,6 +15,7 @@ dependencies:
   - sdrf-pipelines      # parse_sdrf CLI for validation and pipeline conversion
   - thermorawfileparser # for Thermo .raw files (optional; techsdrf skips .raw without it)
   - defusedxml          # hardened XML parsing for scripts/europepmc_fulltext.py
+  - pyarrow             # tools/NPXtoSDRF.py
   - pip                 # explicit: conda warns if pip deps are listed without it
   - pip:
     - -e .               # sdrf-tools console script: contract, build, check, fix, review gate
