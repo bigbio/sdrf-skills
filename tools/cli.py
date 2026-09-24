@@ -12,6 +12,7 @@ Usage:
   python -m tools review-gate <command>             # independent-review receipt gate
   python -m tools audit-existing <file.sdrf.tsv>    # audit an already-annotated dataset
   python -m tools bruker-dia <url|path>             # DIA windows from Bruker analysis.tdf
+  python -m tools search-params <path> [--json]     # extract search parameters from engine config
 """
 
 from __future__ import annotations
@@ -309,6 +310,21 @@ def cmd_reconcile(args: argparse.Namespace) -> int:
     return 1 if report.blockers else 0
 
 
+def cmd_search_params(args: argparse.Namespace) -> int:
+    """Extract search parameters from a deposited search-engine config file."""
+    import sqlite3
+
+    from tools.search_params import extract, render_json, render_text
+
+    try:
+        params = extract(args.path)
+    except (OSError, ValueError, SyntaxError, sqlite3.DatabaseError) as e:  # SyntaxError: XML ParseError
+        print(f"error: {e}")
+        return 2
+    print(render_json(params) if args.json else render_text(params))
+    return 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="python -m tools",
@@ -445,6 +461,14 @@ def main() -> None:
     )
     p.add_argument("--json", action="store_true", help="machine-readable output")
 
+    # search-params
+    p = subparsers.add_parser(
+        "search-params",
+        help="Extract search parameters from a deposited search-engine config file",
+    )
+    p.add_argument("path", help="File path: mqpar.xml, parameters.txt, fragger.params, .msf, or DIA-NN log")
+    p.add_argument("--json", action="store_true", help="Machine-readable output")
+
     args = parser.parse_args()
 
     # Set default db path for cellline commands
@@ -468,6 +492,7 @@ def main() -> None:
         "audit-existing": cmd_audit_existing,
         "bruker-dia": cmd_bruker_dia,
         "reconcile": cmd_reconcile,
+        "search-params": cmd_search_params,
     }
 
     sys.exit(commands[args.command](args))

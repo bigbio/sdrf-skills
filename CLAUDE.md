@@ -40,7 +40,8 @@ git submodule update --remote --recursive   # advance to upstream tip; leaves a 
 
 # tools CLI: `sdrf-tools` console script after `pip install -e .`; `python -m tools` also works from the repo root
 sdrf-tools --help   # check, structure, contract, build, score, fix, benchmark, massive-files,
-                         # verify, cellline, review-gate, reconcile, audit-existing, bruker-dia
+                         # verify, cellline, review-gate, reconcile, audit-existing, bruker-dia,
+                         # search-params
 ```
 
 `python` is an alias to `python3` here, not a binary — skills invoke bare `python`, assuming an

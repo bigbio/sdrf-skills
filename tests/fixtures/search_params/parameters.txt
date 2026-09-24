@@ -1,0 +1,8 @@
+Parameter	Value
+Version	2.7.4.0
+Modifications included in protein quantification	Oxidation (M);Acetyl (Protein N-term)
+MS/MS tol. (FTMS)	20 ppm
+MS/MS tol. (ITMS)	0.5 Da
+MS/MS tol. (TOF)	25 ppm
+MS/MS tol. (ASTRAL)	25 ppm
+MS/MS tol. (UNKNOWN)	20 ppm

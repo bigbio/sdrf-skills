@@ -1,0 +1,2 @@
+DIA-NN 1.8.1 (Data-Independent Acquisition by Neural Networks)
+diann --lib empirical_library.parquet --fasta human.fasta --f a.raw --f b.raw --fixed-mod Carbamidomethyl,57.021464,C --var-mod Oxidation,15.994915,M --var-mod UniMod:1,42.010565,*n --cut K*,R* --mass-acc 20 --mass-acc-ms1 10
