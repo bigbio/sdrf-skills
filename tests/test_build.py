@@ -127,8 +127,22 @@ def test_expand_channel_rows_and_unused_channel_emits_nothing():
     header, rows = expand(s, {}, c)
     col = {h: i for i, h in enumerate(header)}
     assert len(rows) == 1
-    assert rows[0][col["assay name"]] == "run1-TMT126"
+    assert rows[0][col["assay name"]] == "run1"
     assert rows[0][col["comment[label]"]] == "TMT126"
+
+
+def test_expand_channels_of_one_run_share_its_assay_name():
+    c = template_contract(["ms-proteomics"])
+    s = [Sample("ctrl", ["mix_f1.raw", "mix_f2.raw"], "SILAC light", None, 1, {}),
+         Sample("ref", ["mix_f1.raw", "mix_f2.raw"], "SILAC heavy", None, 1, {})]
+    header, rows = expand(s, {}, c)
+    col = {h: i for i, h in enumerate(header)}
+    by_file: dict[str, set[str]] = {}
+    for r in rows:
+        by_file.setdefault(r[col["comment[data file]"]], set()).add(r[col["assay name"]])
+    assert by_file == {"mix_f1.raw": {"mix_f1"}, "mix_f2.raw": {"mix_f2"}}
+    keys = {(r[col["source name"]], r[col["assay name"]], r[col["comment[label]"]]) for r in rows}
+    assert len(keys) == len(rows)
 
 
 def test_expand_repeats_multiple_columns_and_orders_factor_last():

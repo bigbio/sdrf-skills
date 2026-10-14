@@ -168,7 +168,9 @@ def expand(samples: list[Sample], technical: dict[str, list[str]], contract: Con
         for k, f in enumerate(s.files, start=1):
             fixed = {
                 "source name": s.source,
-                "assay name": s.assay or (f"{_stem(f)}-{s.label}" if is_channel(s.label) else _stem(f)),
+                # one assay per data file: the channels of a multiplexed run share it, and
+                # comment[label] tells them apart (spec: "Uniqueness constraints")
+                "assay name": s.assay or _stem(f),
                 "comment[data file]": f,
                 "comment[label]": s.label,
                 "comment[fraction identifier]": str(k),
