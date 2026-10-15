@@ -211,3 +211,38 @@ def test_fragger_pre_3x_enzyme_keys(tmp_path):
     f.write_text("precursor_mass_lower = -10\nprecursor_mass_upper = 10\nsearch_enzyme_name = Trypsin\n"
                  "search_enzyme_cutafter = KR\nsearch_enzyme_butnotafter = P\n")
     assert extract(f).enzyme == "Trypsin"
+
+
+def test_mqpar_mq15_root_level_fixed_mods_and_attribute_msms_params():
+    # MaxQuant 1.5.3.17 (PXD021203): fixedModifications sit at the root, msmsParams carry
+    # Name/MatchToleranceInPpm as attributes
+    p = extract(FIX / "mqpar_mq15.xml")
+    m = mods(p)
+    assert m["Carbamidomethyl"].fixed and m["Carbamidomethyl"].residues == "C"
+    assert {"Oxidation", "Acetyl", "Label:13C(6)", "Label:2H(4)", "Label:13C(6)15N(4)",
+            "Label:13C(6)15N(2)"} <= set(m)
+    assert p.label == "SILAC" and p.precursor_tolerance == "4.5 ppm"
+    assert any("FTMS 20 ppm" in n and "ITMS 0.5 Da" in n for n in p.notes)
+
+
+def test_mq15_summary_says_where_the_fixed_mods_are():
+    # MaxQuant 1.5.3.30 (PXD034358): summary.txt has no 'Fixed modifications' column,
+    # parameters.txt does
+    p = extract(FIX / "mq15" / "summary.txt")
+    assert "Carbamidomethyl" not in mods(p)
+    assert any("Fixed modifications" in n and "parameters.txt" in n for n in p.notes)
+    q = extract(FIX / "mq15" / "parameters.txt")
+    assert mods(q)["Carbamidomethyl"].fixed
+
+
+def test_andromeda_apar_tolerances_and_silac_state():
+    # combined/andromeda/*.apar (PXD034358): the only deposited file with the precursor tolerance
+    p = extract(FIX / "andromeda" / "allSpectra.HCD.FTMS.sil1.apar")
+    assert p.precursor_tolerance == "4.5 ppm" and p.fragment_tolerance == "20 ppm"
+    assert p.enzyme == "Trypsin/P"
+    m = mods(p)
+    assert m["Carbamidomethyl"].fixed
+    assert not m["Label:13C(6)15N(4)"].fixed and m["Label:13C(6)15N(4)"].residues == "R"
+    assert m["Label:13C(6)15N(2)"].residues == "K" and p.label == "SILAC"
+    light = extract(FIX / "andromeda" / "allSpectra.HCD.FTMS.sil0.apar")
+    assert light.label is None and "Label:13C(6)15N(4)" not in mods(light)
