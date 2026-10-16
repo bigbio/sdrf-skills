@@ -146,11 +146,11 @@ being reported as complete. PRIDE's historical bare-keyword 100-cap (#28) no lon
 verified 2026-08-19, v2 and v3 both paginate — which is why the partitioning is a detector, not an
 unconditional workaround.
 
-**Article identifiers must be BARE — silent-corruption class.** `get_article_metadata` and
-`get_pdf_by_unpaywall` classify with `_classify_article_id` / `_parse_identifier`, which accept a bare
-PMID (`35695565`), `PMC…`, or a bare DOI matching `^10\.\d{4,9}/…`. A prefixed `PMID:35695565` or
-`doi:10.…` is rejected and yields an **error record, not an exception** — so a skill that documents the
-prefixed form degrades every lookup to "no evidence" and reports it as low confidence. Pinned by
+**Article identifiers: one parser — silent-corruption class.** Every article tool classifies its
+input with `_parse_article_id`: bare forms, `PMID:` / `PMCID:` / `doi:` prefixes, and doi.org / PubMed /
+PMC / Europe PMC URLs. Bare digits are a PMID everywhere; the full-text tools resolve a PMID or DOI to
+its PMCID. Unrecognised input still yields an **error record, not an exception**, which a skill reads
+as "no evidence" — so teach the parser a new spelling rather than adding a rule to a skill. Pinned by
 `tests/test_mcp_pride.py`.
 
 **`get_project_details` / `search_projects` span PRIDE *and* MassIVE.** `MSV…` routes to MassIVE's
