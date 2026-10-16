@@ -9,6 +9,25 @@ parse_sdrf validate-sdrf -s <file.sdrf.tsv> -t <template1> [-t <template2> ...] 
 Several `-t` flags validate against their union. Add `--use_ols_cache_only` when offline;
 `--skip-ontology` only for a fast structural pass. Collect every ERROR and WARNING.
 
+## Will quantms read it?
+
+```bash
+cd "$(mktemp -d)" && parse_sdrf convert-openms -s <file.sdrf.tsv> -t2   # writes openms.tsv here
+```
+
+`validate-sdrf` checks the format; the conversion quantms runs before reprocessing is stricter,
+and two failures pass validation and the repository CI alike:
+
+- **One technical replicate per data file.** All rows of one run - the SILAC/TMT channels
+  injected together - carry the same `comment[technical replicate]`. A shared reference or
+  control measured in several runs gets one source name per run, not a replicate counter.
+  `sdrf-tools structure` reports this as `technical-replicate-varies-within-file`.
+- **Readable tolerances.** `comment[precursor mass tolerance]` = `not available` is legal SDRF,
+  but the converter stops on it. Before settling for the sentinel, look for the value in the
+  deposited search output (`sdrf-tools search-params` on `mqpar.xml`, `summary.txt`,
+  `parameters.txt` or `combined/andromeda/*.apar`); if it is truly unrecorded, keep the sentinel
+  and say in the report that the file cannot be converted as is.
+
 ## Step 0.5: Protect the Machine During Validation
 
 Validation can be expensive because `parse_sdrf` may trigger ontology lookups,

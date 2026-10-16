@@ -40,6 +40,7 @@ REPLICATE_COLUMN = "comment[technical replicate]"
 BIO_REPLICATE_COLUMN = "characteristics[biological replicate]"
 FRACTION_COLUMN = "comment[fraction identifier]"
 DATA_FILE_COLUMN = "comment[data file]"
+TECHNOLOGY_COLUMN = "technology type"
 #: NT=/AC= key-value form. Belongs to comment[...]; sample properties are bare.
 NT_AC_RE = re.compile(r"\b(NT|AC)=", re.I)
 
@@ -297,6 +298,39 @@ def check_technical_replicates_have_distinct_files(sdrf: SDRFFile) -> list[Findi
     ]
 
 
+def check_one_technical_replicate_per_file(sdrf: SDRFFile) -> list[Finding]:
+    """Every row of one data file carries the same technical replicate.
+
+    A technical replicate is a re-injection, so it is a property of the run: the light and heavy
+    channels of one SILAC run, or the channels of one plex, were injected together. Different
+    values within one file usually mean the column is being used to keep two rows of a shared
+    sample apart; quantms' converter (parse_sdrf convert-openms) refuses such a file.
+    """
+    if not sdrf.all_keys_for_name(REPLICATE_COLUMN) or not sdrf.all_keys_for_name(DATA_FILE_COLUMN):
+        return []
+    has_technology = bool(sdrf.all_keys_for_name(TECHNOLOGY_COLUMN))
+    by_file: dict[str, set[str]] = defaultdict(set)
+    for row in sdrf.rows:
+        # an affinity assay (SomaScan .adat, Olink .npx) holds every sample in one data file;
+        # its replicate column numbers samples, not injections
+        if has_technology and "mass spectrometry" not in _row_value(sdrf, row, TECHNOLOGY_COLUMN).lower():
+            continue
+        by_file[_row_value(sdrf, row, DATA_FILE_COLUMN)].add(_row_value(sdrf, row, REPLICATE_COLUMN))
+    offenders = sorted((f, sorted(v)) for f, v in by_file.items() if len(v) > 1)
+    if not offenders:
+        return []
+    shown = "; ".join(f"{f!r} has {v}" for f, v in offenders[:3])
+    return [
+        Finding(
+            "technical-replicate-varies-within-file",
+            f"{len(offenders)} data file(s) carry more than one technical replicate value "
+            f"({shown}{'; ...' if len(offenders) > 3 else ''}); every row of one run shares its "
+            "injection, so give a sample that two runs share one source name per run instead",
+            REPLICATE_COLUMN,
+        )
+    ]
+
+
 def check_row_coordinate_unique(sdrf: SDRFFile) -> list[Finding]:
     """(source name, biological replicate, technical replicate, fraction identifier) is unique.
 
@@ -369,6 +403,7 @@ CHECKS = (
     check_reserved_words_allowed,
     check_technical_replicate_indices,
     check_technical_replicates_have_distinct_files,
+    check_one_technical_replicate_per_file,
     check_row_coordinate_unique,
     check_characteristics_are_bare,
 )

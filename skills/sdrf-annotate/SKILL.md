@@ -179,7 +179,7 @@ the evidence:
 | `source name` | yes | the sample identifier you choose; never generated for you |
 | `files` | yes | the **fractions of one injection**, comma-separated, in fraction order (one file if unfractionated) |
 | `label` | yes | `label free sample`, or one channel (`TMT126`, `TMT127N`, `iTRAQ114`, `SILAC heavy`) — never a plex name like `TMT10` |
-| `assay name` | no | only to override the default (file stem; `<stem>-<channel>` when multiplexed) |
+| `assay name` | no | only to override the default (the file stem, shared by every channel of a multiplexed run) |
 | `technical replicate` | no | integer; default 1 |
 | `characteristics[...]` | as evidenced | bare values; `not available` only where the contract allows it |
 | `factor value[...]` | as designed | the variable(s) the study compares |
@@ -314,7 +314,10 @@ Read [references/reconcile.md](references/reconcile.md) for the reasoning and th
 parse_sdrf validate-sdrf -s output.sdrf.tsv -t <template1> [-t <template2> ...]
 ```
 Add `--use_ols_cache_only` when there is no network. Use the templates from Step 2; several
-`-t` flags validate against their union.
+`-t` flags validate against their union. Then run `sdrf-tools structure output.sdrf.tsv` and
+`parse_sdrf convert-openms -s output.sdrf.tsv -t2` in a scratch directory: the conversion
+quantms performs rejects files that validate cleanly (see
+[references/validation.md](references/validation.md)).
 
 If it reports errors:
 1. Change the offending **value in `samples.tsv` or `technical.tsv`** — never `Edit`

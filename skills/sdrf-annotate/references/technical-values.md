@@ -42,7 +42,7 @@ both out in one pass.
 GB - except PD, below) and run:
 
 ```bash
-sdrf-tools search-params mqpar.xml        # or summary.txt, fragger.params, report.log.txt, x.msf
+sdrf-tools search-params mqpar.xml        # or summary.txt, *.apar, fragger.params, report.log.txt, x.msf
 ```
 
 It prints `column<TAB>value` rows for `comment[modification parameters]` (one ` | `-separated
@@ -50,13 +50,17 @@ row, `PP=` for terminal mods), `comment[cleavage agent details]` and both tolera
 `# unmapped` (look each up in OLS; never guess the accession) and `# notes` (e.g. MaxQuant's
 per-analyzer MS/MS tolerance: pick the instrument's MS2 analyzer). MaxQuant also yields the
 file → experiment/fraction map, and TMT/iTRAQ/SILAC labels from `mqpar.xml`. MaxQuant 2.x
-`parameters.txt` has **no** modifications - use `summary.txt` or `mqpar.xml`.
+`parameters.txt` has **no** modifications - use `summary.txt` or `mqpar.xml`; MaxQuant ≤ 1.5
+`summary.txt` has **no** fixed modifications - use `parameters.txt` or `mqpar.xml`. When neither
+`mqpar.xml` nor a tolerance is deposited, a `combined.zip` usually still holds
+`combined/andromeda/*.apar` (precursor and fragment tolerance, mods, enzyme); range-read it out of
+the ZIP and run the reader on it.
 The table below is where each engine keeps them, for a file the reader does not cover.
 
 | Search engine | Deposited file | Where the modifications are |
 |---|---|---|
 | Proteome Discoverer | `.msf`, `.pdStudy`, `.pdResult` (SQLite) | `Workflows` table → processing-node XML |
-| MaxQuant | `mqpar.xml`, `summary.txt` (`parameters.txt` in 1.x only) | `Fixed modifications` / `Variable modifications` |
+| MaxQuant | `mqpar.xml`, `summary.txt` (`parameters.txt` in 1.x only), `combined/andromeda/*.apar` | `Fixed modifications` / `Variable modifications` |
 | FragPipe / MSFragger | `fragger.params` | `table.fix-mods` / `table.var-mods` |
 | DIA-NN | `report.log.txt` / logged command line | `--fixed-mod`, `--var-mod` (`--unimod4` = fixed Carbamidomethyl) |
 | Spectronaut / SpectroMine | `.psar`, exported settings (UTF-16 strings) | modification list in the settings block |

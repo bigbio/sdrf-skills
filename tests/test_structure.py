@@ -4,6 +4,7 @@ from tools.structure import (
     check_characteristics_are_bare,
     acquisition_family,
     check_factor_values_last,
+    check_one_technical_replicate_per_file,
     check_one_template_per_cell,
     check_reserved_words_allowed,
     check_row_coordinate_unique,
@@ -323,3 +324,32 @@ class TestCharacteristicsAreBare:
         findings = check_characteristics_are_bare(parse_sdrf(content))
         assert len(findings) == 1
         assert "2 value(s)" in findings[0].message
+
+
+class TestOneTechnicalReplicatePerFile:
+    COLUMNS = ["source name", "characteristics[biological replicate]", "comment[label]",
+               "comment[technical replicate]", "comment[data file]"]
+
+    def test_shared_control_counted_as_a_second_injection_is_reported(self):
+        """PXD066753: one shCONT light lysate in two SILAC mixes, written as technical
+        replicates 1 and 2, gave mix 2's file both 2 (light) and 1 (heavy); parse_sdrf
+        convert-openms refused it."""
+        rows = [["shCONT", "1", "SILAC light", "1", "mix1.raw"],
+                ["KD1", "1", "SILAC heavy", "1", "mix1.raw"],
+                ["shCONT", "1", "SILAC light", "2", "mix2.raw"],
+                ["KD2", "2", "SILAC heavy", "1", "mix2.raw"]]
+        findings = check_one_technical_replicate_per_file(parse_sdrf(build(self.COLUMNS, rows)))
+        assert [f.rule for f in findings] == ["technical-replicate-varies-within-file"]
+        assert "mix2.raw" in findings[0].message
+
+    def test_channels_sharing_their_run_replicate_are_fine(self):
+        rows = [["ctrl", "1", "SILAC light", "1", "a.raw"], ["kd", "1", "SILAC heavy", "1", "a.raw"],
+                ["ctrl", "1", "SILAC light", "2", "b.raw"], ["kd", "1", "SILAC heavy", "2", "b.raw"]]
+        assert check_one_technical_replicate_per_file(parse_sdrf(build(self.COLUMNS, rows))) == []
+
+    def test_affinity_assay_with_one_data_file_is_not_checked(self):
+        """PAD000020: a SomaScan .adat holds every sample, numbered by its replicate column."""
+        columns = ["source name", "technology type", "comment[technical replicate]", "comment[data file]"]
+        rows = [[f"s{i}", "protein expression profiling by aptamer array", str(i), "all.adat"]
+                for i in (1, 2)]
+        assert check_one_technical_replicate_per_file(parse_sdrf(build(columns, rows))) == []

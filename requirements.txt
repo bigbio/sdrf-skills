@@ -23,3 +23,6 @@ defusedxml>=0.7
 fastmcp>=3.4
 httpx>=0.28
 -e .   # sdrf-tools console script (contract, build, check, fix, review gate)
+
+# Olink NPX parquet → SDRF (tools/NPXtoSDRF.py)
+pyarrow>=14.0

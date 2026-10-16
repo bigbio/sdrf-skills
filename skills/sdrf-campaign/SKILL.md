@@ -2,7 +2,7 @@
 name: sdrf-campaign
 description: Use when the user wants to run an SDRF annotation campaign over a class of studies rather than one dataset — screen or shortlist proteomics studies from PRIDE, MassIVE or ProteomeXchange against user-defined inclusion criteria and write an evidence-backed resumable TSV, then annotate the included datasets as an autonomous retained-improvement loop. Covers both halves: use stop_after="screen" for screening only, or target a manifest to skip straight to annotation.
 user-invocable: true
-argument-hint: 'target="<all <category>|accessions:PXD...,MSV...|path/to/list.txt|manifest.tsv>" [criteria="<md|txt|inline>"] [extract="<cols|txt|md>"] [output="screen.tsv"] [dig_passes=1] [stop_after="screen|annotate"] [profile="<preset>"] [objective="<metric>"] [focus_fields="<f1,f2>"] [stop="<rule>"] [write="<sandbox|branch|report-only>"]'
+argument-hint: 'target="<all <category>|accessions:PXD...,MSV...|path/to/list.txt|manifest.tsv>" [criteria="<md|txt|inline>"] [stop_after="screen|annotate"] [profile="<preset>"] [objective="<metric>"] [focus_fields="<f1,f2>"] [stop="<rule>"] [write="<sandbox|branch|report-only>"]'
 ---
 
 # SDRF Campaign Protocol
@@ -17,10 +17,8 @@ loop.
 
 Do not guess. Verify every field against a source.
 
-**The criteria and the extract fields come from the user, not from this file.**
-Nothing here is specific to any one research question — the PRIDE fields named
-in Phase 2 are a worked example of "pre-filter on whatever structured fields the
-criteria actually constrain", not a fixed list.
+**The criteria come from the user, not from this file.** Nothing here is specific
+to any one research question.
 
 ---
 
@@ -54,6 +52,11 @@ For technical metadata only, deposited search outputs (MaxQuant `parameters.txt`
 FragPipe `fragger.params`, PD `.msf`, DIA-NN logs) outrank the manuscript, since
 they record what the search actually did.
 
+The screen reads curated SDRFs from `bigbio/sdrf-annotated-datasets` first
+because they are fast, not because they outrank anything: a curated SDRF is
+someone's reading of these same sources, and where it disagrees with them, the
+order above decides.
+
 ---
 
 # Phase 1: Parse the request
@@ -63,51 +66,32 @@ Normalize into these fields. State the resolved config before any work begins.
 ## Screening arguments
 
 ### `target`
-- `accessions:PXD001234,MSV000078958` — comma/whitespace-separated list. Do not
-  put file paths after `accessions:`. `get_project_details` routes PXD and MSV
-  to the right repository on its own.
-- Any file path (`.txt`, `.tsv`, `.csv`) — resolve by extension:
-  - `.txt` — one accession per line, strip whitespace, skip blanks
-  - `.tsv`/`.csv` — first available accession column from `id`, `accession`,
-    `project_accession`, `project`, or the first column
+- `accessions:PXD001234,MSV000078958` — comma/whitespace-separated list.
+  `get_project_details` routes PXD and MSV to the right repository on its own.
+- `.txt` — one accession per line; strip whitespace, skip blanks.
+- `.tsv`/`.csv` — if the header is exactly the screen TSV's (Phase 4), the file
+  *is* a finished screen: skip Phases 2–4 and annotate its `include` rows.
+  Otherwise take the first available column of `id`, `accession`,
+  `project_accession`, `project`, or the first column, and ignore the rest.
 - `all <category> datasets` — discover via search (Phase 2).
 
-`search_projects` covers **PRIDE and MassIVE together**. A repository name inside
-the category phrase ("all PRIDE …") is ordinary habit, not a scoping
-instruction — search both. Pass `repository="pride"` or `"massive"` only when the
-user names it *as an exclusion*: "PRIDE only", "skip MassIVE".
-
-If a manifest carries previous labels or scores, use only the accession column
-unless the user asks to reuse them.
+Search covers **PRIDE and MassIVE together**. A repository name inside the
+category phrase ("all PRIDE …") is ordinary habit, not a scoping instruction —
+search both. Pass `repository="pride"` or `"massive"` only when the user names it
+*as an exclusion*: "PRIDE only", "skip MassIVE".
 
 ### `criteria`
-Path to `.md`/`.txt`, inline text, or omitted (no filtering; label all `include`).
+Path to `.md`/`.txt`, or inline text. Number the rules as you read them, in
+order; `failed_criterion` reports these numbers, so they must stay stable for the
+whole run and be unique across inclusion and exclusion rules. If the file already
+numbers its rules that way, reuse its numbers.
 
-Number the rules as you read them, in order. Those numbers are what
-`failed_criterion` reports, so they must stay stable for the whole run. If the
-file already numbers its rules, reuse its numbers.
-
-### `extract`
-Comma-separated names, a `.txt` (one per line), or a `.md` (field names plus
-per-field extraction instructions — follow those instructions exactly). When
-`extract` and `criteria` are the same `.md`, parse both from it.
-
-Always include `id`, `repository`, `label`, `reason`, `failed_criterion`,
-`evidence`. Append requested columns after those. **Discard any `extract` name
-colliding with a required column** (case-insensitive) and report each drop.
-
-### `output`
-Screening TSV path. Default `sdrf_campaign_screen.tsv`.
-
-### `dig_passes`
-Integer, default `1`. Extra evidence rounds (Phase 3.5) spent on a row heading
-for `uncertain` or an `unclear` field. `0` finalizes on the first pass. Negative
-is invalid; treat as `0`. Each round costs several tool calls per affected
-accession and multiplies across the set — if the user asks for more than `5`,
-confirm rather than silently burning calls on a typo.
+Omitted → no filtering: every accession is `include`. Skip the curated lookup;
+Phase 3 fetches only the repository record (3.2).
 
 ### `stop_after`
-`screen` or `annotate` (default). `screen` writes the TSV and log, then stops.
+`screen` or `annotate` (default). `screen` writes the TSV and its summary, then
+stops.
 
 ## Annotation arguments
 
@@ -146,9 +130,7 @@ Infer anything unspecified conservatively and state the inference.
 ```text
 Target      : <resolved description>
 Criteria    : <source or "none">
-Extract     : <resolved column list>
-Output      : <path>
-Dig passes  : <N>
+Screen TSV  : <path>
 Stop after  : <screen|annotate>
 Profile     : <preset>      Focus     : <fields>
 Budget      : <rounds,cost> Stop rule : <rule>
@@ -160,286 +142,193 @@ Resuming    : <N already screened | fresh run>
 
 # Phase 2: Resolve the target set
 
-## Fixed lists and manifests
-Resolve directly, keeping original order. Deduplicate and report the count
-removed, unless the user asks to preserve duplicates.
+## Fixed lists
+Keep the original order; deduplicate and report the count removed.
 
 ## Category discovery
 
-**1. Break the category into SHORT keywords and sweep them.** PRIDE ANDs the
-terms in a keyword then RANKS rather than filters, so a whole category sentence
-collapses recall — measured: `metaproteomics` returns 100+ hits, `human gut
-metaproteomics` returns 2. And no single term covers a field: `nanoPOTS` (11)
-and `proteoCHIP` (11) union to 22 single-cell datasets with zero overlap, and
-neither is returned by `single-cell proteomics`.
+**1. Sweep SHORT keywords.** PRIDE ANDs the terms in a keyword then RANKS rather
+than filters, so a whole category sentence collapses recall — `metaproteomics`
+returns 100+ hits, `human gut metaproteomics` 2 — and no single term covers a
+field: `nanoPOTS` (11) and `proteoCHIP` (11) union to 22 single-cell datasets
+with zero overlap, and `single-cell proteomics` returns neither.
 
 ```text
 Tool: search_extensive(keywords=["metaproteomics", "gut microbiome proteomics", ...])
 ```
 
-`search_extensive` pages every keyword to exhaustion, unions and dedupes on
-`all_accessions`, and reports `per_keyword.new` — what each keyword contributed
-that no earlier one had. A keyword with `new: 0` was redundant for this sweep.
-Put the whole `per_keyword` block in the run log: it is the evidence the sweep
-was wide enough.
+It pages every keyword to exhaustion, unions and dedupes on `all_accessions`,
+and reports `per_keyword.new` — what each keyword added that no earlier one had.
+A keyword with `new: 0` was redundant.
 
-Use `search_projects(keyword=..., page_size=100, page=0)` for a single probe or
-a manual page walk.
+**2. Never report a truncated sweep as complete.** A non-empty `truncated` means
+the union is a floor, not the result set. A non-empty `errors` means a page was
+lost, not empty — retry, and if it still fails, say so. Both go in the report.
 
-**2. Never report a truncated sweep as complete.** Exhaustion is proven ONLY by
-a page shorter than `page_size`. An empty page after a full one is ambiguous
-(PRIDE has capped a bare keyword and served an empty next page, indistinguishable
-from the end), so `search_extensive` retries partitioned by submission year and
-reports what remains in `truncated`.
-- `truncated` non-empty → the union is a **floor, not the result set**. Say so in
-  the log and the final report.
-- `errors` non-empty → that page was **lost, not empty**. Retry; if it still
-  fails, log it rather than reporting the screen complete.
+**3. Pre-filter on the structured fields the criteria constrain.** Every hit
+already carries `organism`, `organism_parts`, `instruments`, `experiment_types`,
+`quantification_methods` and `keywords`, so this costs no calls. Write each clear
+mismatch as an `exclude` row (Phase 4) with evidence `repository structured
+fields`; a criterion no structured field covers waits for Phase 3.
 
-**3. Fast pre-filter on the structured fields the criteria constrain.** Before
-fetching any publication, discard obvious mismatches — `search_projects` returns
-these on every hit, so it costs no extra calls:
+- These fields are submitter-supplied and often empty. **An empty field is not a
+  failed check** — carry the candidate forward. MassIVE publishes almost none of
+  them, so nearly every MassIVE candidate is decided in Phase 3; never exclude
+  one for thin metadata.
+- **Match values exactly, never by substring.** `"Data-independent acquisition"`
+  contains `"dependent"`, so a substring test for DDA silently admits every DIA
+  study.
 
-| Field | Filters on |
-|---|---|
-| `organism` | species |
-| `organism_parts` | tissue / sample type |
-| `instruments` | instrument model or family |
-| `experiment_types` | acquisition mode |
-| `quantification_methods` | labelling strategy |
-| `keywords` | submitter topic terms |
+## Curated SDRFs
 
-Filter only on fields the criteria actually constrain. If the criteria constrain
-something with no structured field, that check belongs in Phase 3.
+Look up every accession not yet in the screen TSV, with each hit's
+`all_accessions`, in one call:
 
-These fields are submitter-supplied and often **empty**. An empty field is not a
-failed check: never exclude on a missing value — carry the candidate forward and
-decide from the publication.
+```bash
+sdrf-tools curated PXD001234 MSV000078958 ... > <scratch>/curated.json
+```
 
-**How much pre-filtering you get depends on the repository.** Measured over 100
-datasets each:
+Each accession maps to its curated files, each with a row count and the distinct
+values of every `characteristics[…]`, `comment[…]` and `factor value[…]` column;
+`[]` means nothing is curated. Read one accession's entry when you screen it
+(`jq '.["PXD001234"]' <scratch>/curated.json`). Exit 2 means the lookup failed,
+not that nothing is curated: say so in the report and screen without it.
 
-| Field | PRIDE | MassIVE |
-|---|---|---|
-| `instruments` | 100% | 3% |
-| `experiment_types` | 100% | never published |
-| `quantification_methods` | 14% | never published |
-| `organism` | high | 16% |
-
-Instrument and acquisition pre-filter well in PRIDE; **labelling strategy almost
-never does, in either repository**, and for MassIVE the structured pre-filter
-barely applies. Expect nearly every MassIVE candidate to reach Phase 3 and be
-decided from the publication. That is correct — do not compensate by excluding
-MassIVE records for thin metadata.
-
-**Match values exactly, never by substring.** `"Data-independent acquisition"`
-contains `"dependent"`, so a substring test for DDA silently admits every DIA
-study — an inclusion error that survives to the final table because nothing
-downstream re-checks it.
-
-**4. Report the counts** — this is the title/abstract stage of the screen:
 ```text
 Discovered  : N unique datasets across K keyword searches
-Pre-filtered: N remaining after structured-field check (M dropped)
+Pre-filtered: N remaining (M excluded on structured fields)
+Curated     : N of M have a curated SDRF
 ```
 
 ---
 
 # Phase 3: Screen each candidate
 
-Process each accession independently.
+Process each accession not yet in the screen TSV, independently. Read the
+sources in this order and stop as soon as every rule is settled: the curated
+SDRF is fast and the publication is slow. Reading order is not authority — on a
+conflict, the evidence precedence above decides.
 
-## 3.1 Fetch repository metadata
+## 3.1 Curated SDRF
+
+If the accession has curated files, check each rule against their summary,
+taking all of its files together. A rule is **settled** when the values decide
+it, and **open** when no column covers it or the column holds only `not
+available` / `not applicable`.
+
+## 3.2 Repository record
 
 ```text
 Tool: get_project_details(project_accession="PXDXXXXXX")
 ```
 
-Works for `PXD…` and `MSV…`. Falls back to MassIVE for PXD accessions PRIDE does
-not hold — MassIVE-hosted ProteomeXchange datasets 404 in PRIDE (e.g.
-`PXD003626`), so a PXD is **not** evidence the record is in PRIDE. Each result
-reports its `repository`; `all_accessions` carries both identifiers when a
-dataset has an MSV and a PXD. Record `repository` in its own column and use
-`all_accessions` to avoid screening one study twice.
+Always fetch it: it gives the `repository` column and `all_accessions`.
 
-Read every field returned, not just the pre-filter table above.
-`sample_processing_protocol` and `data_processing_protocol` are free text but are
-often the highest-signal source for anything the structured fields omit.
-**MassIVE records have far fewer structured fields and no protocol text** — go
-straight to 3.2 for those.
+- PXD accessions PRIDE does not hold fall back to MassIVE (e.g. `PXD003626`), so
+  a PXD is **not** evidence the record is in PRIDE.
+- Use `all_accessions` to avoid screening one study twice. If it names an
+  accession the curated lookup did not cover, run `sdrf-tools curated` for it.
+- Read every field, not just the pre-filter ones. `sample_processing_protocol`
+  and `data_processing_protocol` are free text and often the highest-signal
+  source. MassIVE records have no protocol text.
+- A field that contradicts the curated SDRF on a rule reopens that rule.
+- An `error` key means the accession is in neither repository. Do not retry and
+  do not invent metadata: go to 3.3, and if there is no publication either, label
+  `uncertain` and say the record was unreachable.
 
-If the tool returns an `error` key, the accession is in neither repository. Do
-not retry and do not invent metadata: screen from the publication alone, and if
-there is none, label `uncertain` and say the record was unreachable.
+Settle open rules the record decides unambiguously. Once a rule clearly fails or
+every rule is settled, with nothing in conflict, go to 3.4.
 
-## 3.2 Fetch the publication
+## 3.3 Publication
 
-`get_project_details` returns `publications` as
-`{pmid, pmcid, doi, is_open_access, reference}`.
-
-**Open access with a PMCID — prefer this.** Returns section-scoped JATS text,
-defaulting to methods/materials/sample-prep and excluding Results/Discussion:
+Only for rules still open. `publications` lists `{pmid, pmcid, doi,
+is_open_access, reference}`; every article tool accepts any of those ids.
 
 ```text
-Tool: get_full_text_article(pmc_ids=["PMC9174028"])
-Tool: get_full_text_section(pmc_id="PMC9174028", section="methods")
+Tool: get_full_text_article(pmc_ids=["PMC9174028"])                    # Methods and sample prep
+Tool: get_full_text_article(pmc_ids=["PMC9174028"], mode="toc")        # long paper: list sections
+Tool: get_full_text_section(pmc_id="PMC9174028", section="<name>")     # then fetch one
+Tool: get_article_metadata(ids=["35695565"])                           # abstract only
 ```
 
-**Otherwise metadata only:** `get_article_metadata(ids=["35695565"])`.
-
-**Identifiers must be BARE.** A prefixed `PMID:35695565` or `doi:10.1038/...` is
-rejected and returns an error record, not an article — which then looks like
-missing evidence. Same for `get_pdf_by_unpaywall`.
-
-**`is_open_access: false` means "try harder", not "abstract only".** Both PRIDE
-and Europe PMC have reported gold-OA CC-BY papers as closed, and `fullTextXML`
-sometimes 404s for papers that are in fact open. Before falling back to
-abstract-only, exhaust: Unpaywall by DOI, the PMC HTML render, NCBI eutils, and
-a Europe PMC free-text search on **the accession itself**.
-
-If the record carries no publication identifier, search by title and authors. If
-that fails, screen from repository metadata alone and say so in `evidence`.
+**`is_open_access: false` means "try harder", not "abstract only".** PRIDE and
+Europe PMC have both reported gold-OA CC-BY papers as closed, and the full-text
+fetch sometimes 404s for papers that are open. Before settling for the abstract,
+exhaust `get_pdf_by_unpaywall`, the PMC HTML render, NCBI eutils, and a Europe
+PMC search on **the accession itself**. If the record lists no publication,
+search by title and authors; if that fails, decide from the repository record
+alone and say so in `evidence`.
 
 A paper that merely *cites* an accession may only be reusing the data. Signals of
-reuse: the accession appears in a data-availability list among many; the paper is
-a benchmark, meta-analysis or reanalysis; it postdates the deposit by years.
+reuse: the accession appears in a data-availability list among many; the paper
+is a benchmark, meta-analysis or reanalysis; it postdates the deposit by years.
 Signals of origin: "data have been deposited"; organism, instrument and sample
 counts match; contemporaneous with submission. A dataset attached to the wrong
-paper silently corrupts every field derived from it.
+paper silently corrupts every decision derived from it.
 
-If no full text is available, do not infer eligibility from vague title or
-keyword matches. Use `uncertain`.
+Never infer eligibility from vague title or keyword matches.
 
-## 3.3 Apply the inclusion criteria
+## 3.4 Label and append
 
-Apply each rule in order by its Phase 1 number:
-- `include` — all inclusion rules pass, no exclusion rule applies
-- `exclude` — an exclusion rule clearly applies. Record the **first** failed
-  rule's number in `failed_criterion` and its one-sentence decisive factor in
-  `reason`. Stop at the first failure.
-- `uncertain` — may be relevant, but the evidence cannot decide. Put the
-  unsettled rule number in `failed_criterion` and state what evidence is missing.
+Apply each rule in order by its number:
+- `include` — all inclusion rules pass and no exclusion rule applies.
+- `exclude` — a rule clearly fails. Record the **first** failed rule's number in
+  `failed_criterion` and its one-sentence decisive factor in `reason`.
+- `uncertain` — a rule is still open after 3.3. Record its number in
+  `failed_criterion` and the missing evidence in `reason`.
 
-Only these lowercase labels: `include`, `exclude`, `uncertain`. Leave
-`failed_criterion` empty for `include`. Prefer `uncertain` over guessing.
+Prefer `uncertain` over guessing. `uncertain` means **needs a human** — it is not
+a soft include. Only `include` rows proceed to Phase 5.
 
-`uncertain` means **needs a human** — it is not a soft include. Only `include`
-rows proceed to Phase 5.
-
-## 3.4 Extract the requested fields
-
-Follow per-field instructions when the `extract` source gave them; otherwise
-infer from the field name and available evidence. Use `unclear` when the value
-cannot be determined. Keep values short and analysis-ready — never paste
-abstracts or methods text into a metadata field.
-
-Extract fields for `exclude` rows when the evidence is already in hand; it costs
-nothing and makes the exclusion tally analysable. Never fetch extra publications
-to fill fields on an excluded row.
-
-## 3.4b Feasibility fields are not inclusion criteria
-
-Some fields describe whether a study **can be used downstream** — whether a
-multiplexed study records which channel held which sample, whether per-sample
-metadata exists at row resolution, whether raw files are deposited.
-
-- **Never let a feasibility field move `label`.** A study squarely in scope but
-  impossible to annotate is still `include`; demoting it corrupts what the labels
-  mean and hides it from the tally it belongs in. Record the blocker in its own
-  column and let the caller filter.
-- **Decide it from evidence already in hand.** Do not spend extra fetches beyond
-  `dig_passes`.
-
-The tells look like data. For a channel→sample map, Proteome Discoverer writes
-every channel as `"Sample, n/a"` and `StudyInformation.txt` as a bare `"Sample"`
-with empty groups; SpectroMine does the same. A generic placeholder repeated
-across all channels of all files means **no map**, not a map you failed to read.
-
-## 3.5 Dig deeper before settling for uncertain or unclear
-
-Applies only when the row has `label: uncertain` or an `unclear` field, and only
-when the label is not `exclude`. Spend up to `dig_passes` rounds:
-
-- Re-read the full repository record field by field, and the complete protocol
-  text — do not skim past a sentence because it looked like boilerplate.
-- If 3.2 only fetched default methods-filtered sections, call
-  `get_full_text_article(pmc_ids=[pmcid], mode="toc")` for the section list, then
-  `get_full_text_section` on any section that could hold the missing evidence.
-- If there is a DOI or PMID but no PMCID full text was tried, try
-  `get_pdf_by_unpaywall`.
-
-Redo 3.3 and 3.4 with whatever turned up. Then finalize — do not retry a source
-already exhausted (a full-text fetch that errored), which spends budget with no
-chance of new evidence.
-
-## 3.6 Append and report
-
-Append the row **now** (Phase 4) — do not accumulate in memory. Then print:
-```text
-[N/total] PXD###### → LABEL
-```
+Append the row **now** (Phase 4) — do not accumulate in memory — then print
+`[N/total] PXD###### → LABEL`.
 
 ---
 
-# Phase 4: Write the screening TSV and log
+# Phase 4: The screen TSV
 
-Write incrementally, one row per accession.
+The screen TSV is a **decision record, not a metadata export**: one row per
+accession, six fixed columns, in this order. Never add columns for organism,
+instrument, sample counts or anything else — read those from the SDRF or the
+repository when they are needed.
 
-**On startup**, if the output exists with a header: read its `id` column, skip
-those accessions, append, and report the count as `Resuming`. If the existing
-header does not match what this run would write, stop and ask rather than
-appending mismatched rows.
+| Column | Value |
+|---|---|
+| `id` | the accession |
+| `repository` | `PRIDE`, `MassIVE`, or `unclear` |
+| `label` | `include`, `exclude` or `uncertain` — nothing else |
+| `failed_criterion` | the rule number; empty for `include` |
+| `reason` | one sentence: the decisive factor, or the missing evidence |
+| `evidence` | the deciding sources, briefly: `curated SDRF <file>`, `repository structured fields`, `PRIDE protocol`, `paper methods`, `abstract`, `title/keywords only` |
 
-Format:
-- First row headers, `id` always first
-- Required columns in order: `id`, `repository`, `label`, `reason`,
-  `failed_criterion`, `evidence`
-- `repository` is `PRIDE`, `MassIVE`, or `unclear`
-- Tab-separated, UTF-8
-- **Sanitize every value**: replace tab, CR and LF with a single space before
-  writing. Free text from paper methods routinely contains them, and one stray
-  tab silently shifts every column in that row without erroring.
-- `unclear` for any undetermined extract field
-- In `evidence`, cite the source briefly: `PRIDE structured fields`,
-  `PRIDE protocol`, `paper methods`, `abstract`, `title/keywords only`
+**Path:** `screen_<criteria file stem>_<first 8 hex of the criteria's SHA-256>.tsv`
+in the working directory — stem `inline` for inline criteria, and
+`screen_all.tsv` with no criteria. Re-running the same criteria resumes the same
+file; edited criteria start a new one, because their rule numbers may have moved.
+
+- Tab-separated, UTF-8, header first.
+- **Sanitize every value**: replace tab, CR and LF with a single space. Free text
+  from paper methods routinely contains them, and one stray tab silently shifts
+  every column in that row.
+- **Resume**: if the file exists, its header must be exactly these six columns —
+  otherwise stop and ask. Skip every `id` already in it.
+
+When the set is done, report:
 
 ```text
-Saved N records to <output>
+Saved N records to <path>
 include:   N
 exclude:   N
 uncertain: N
 ```
 
-Write a sidecar `<output>.log` so the screen is reproducible as a PRISMA-style
-flow:
-
-```text
-run_date        : <ISO 8601>
-target          : <verbatim target argument>
-criteria_source : <path or "inline">
-criteria_sha256 : <sha256 of the criteria file, or "n/a">
-dig_passes      : <N>  (recovered: N rows where digging changed a label or field)
-repositories    : <PRIDE+MassIVE | PRIDE | MassIVE>
-keywords        : <the keyword searches issued>
-discovered      : N  (PRIDE N, MassIVE N)
-pre_filtered    : N  (M dropped: <field=value counts>)
-screened        : N
-include         : N  (PRIDE N, MassIVE N)
-exclude         : N
-uncertain       : N
-lost_pages      : <none | pages that errored and stayed incomplete>
-truncated       : <none | search_extensive `truncated` entries — coverage is a floor>
-per_keyword     : <hits / new per keyword>
-exclusions_by_criterion:
-  rule 2 (Orbitrap instrument) : N
-  rule 3 (DDA acquisition)     : N
-```
-
-Build `exclusions_by_criterion` by grouping `failed_criterion`. That is why the
-column holds a rule number and not prose.
-
-Then list every `uncertain` accession with what evidence was missing, so a human
-knows what to go find.
+- exclusions by rule: `awk -F'\t' 'NR>1 && $3=="exclude" {print $4}' <path> | sort | uniq -c`
+  — that is why `failed_criterion` holds a number, not prose
+- for category discovery: the keywords swept, `per_keyword`, and any `truncated`
+  or lost pages
+- whether the curated lookup ran
+- every `uncertain` accession with the evidence that was missing, so a human knows
+  what to go find
 
 **If `stop_after="screen"`, stop here.**
 
@@ -533,7 +422,7 @@ continuing.
 # Phase 6: Report
 
 - resolved target set and config
-- screening counts (include / exclude / uncertain) and the log path
+- screening counts (include / exclude / uncertain) and the screen TSV path
 - per dataset: rounds retained and discarded with the reason for each, `reconcile` findings, the
   final score, the review-gate status (hash approved / pending / gate unavailable)
 - the stopping condition per dataset (no gain, budget, manual)
@@ -549,10 +438,10 @@ writing SDRFs.
 
 ```text
 # Full campaign: discover, screen, then annotate
-/sdrf-skills:sdrf-campaign target="all human gut metaproteomics datasets" criteria="criteria/gut.md" extract="criteria/gut.md" output="results/gut_screen.tsv" profile="general-proteomics" write="sandbox"
+/sdrf-skills:sdrf-campaign target="all human gut metaproteomics datasets" criteria="criteria/gut.md" profile="general-proteomics" write="sandbox"
 
 # Screening only
-/sdrf-skills:sdrf-campaign target="data/accessions.txt" criteria="criteria/eligibility.md" extract="instrument,acquisition,sex,age" output="results/screen.tsv" stop_after="screen"
+/sdrf-skills:sdrf-campaign target="data/accessions.txt" criteria="criteria/eligibility.md" stop_after="screen"
 
 # Annotation only, from an existing manifest
 /sdrf-skills:sdrf-campaign target="data/cell_line_manifest.tsv" profile="cell-line" focus_fields="cell line,disease,organism part,treatment" budget="3,$3" write="sandbox"
@@ -568,16 +457,5 @@ writing SDRFs.
 
 # Notes
 
-- **MassIVE is fully in scope.** `search_projects` and `get_project_details`
-  both cover it. MassIVE records are metadata-poor, not second-class: screen them
-  from the publication on the same criteria as PRIDE records. Their publications
-  usually still resolve to an open-access PMCID, which is the main way a MassIVE
-  candidate gets decided.
-- A dataset can hold both an `MSV…` and a `PXD…` accession — deduplicate on
-  `all_accessions` (3.1).
 - Never fill a field with a value not supported by evidence.
-- `unclear` (extract fields) and `uncertain` (label) are not interchangeable, and
-  neither is an SDRF reserved word. Phase 4 emits a curation TSV, not an SDRF:
-  never write `not applicable` or `not available` there, even for a question that
-  genuinely does not arise — give that case its own vocabulary word.
 - Screening does not create, validate, fix or improve SDRF files. That is Phase 5.
