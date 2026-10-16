@@ -10,6 +10,7 @@ from __future__ import annotations
 from tools.record_reconcile import (
     BLOCKER,
     MAJOR,
+    MINOR,
     acquisition_from_run_name,
     check_acquisition,
     check_cleavage_agent,
@@ -368,3 +369,59 @@ class TestReconcileEntryPoint:
 
     def test_empty_rows_are_safe(self):
         assert reconcile(rec(), [], "PXD000003").clean
+
+
+class TestCellLineDeposits:
+    """Cell-line SDRFs: the tissue of origin and the line's disease are properties of the line."""
+
+    def test_tryptic_peptides_name_the_digest(self):
+        """PXD061537: 'subjected to in-gel digestion' and 'Tryptic peptides were desalted' are
+        two sentences; neither alone paired the enzyme with a digest cue."""
+        r = rec(sampleProcessingProtocol=("The gel was stained and subjected to in-gel digestion. "
+                                          "Tryptic peptides were desalted with C18 tips."))
+        assert check_cleavage_agent(r, ["NT=Trypsin;AC=MS:1001251"]) == []
+
+    def test_silent_record_is_minor_not_a_blocker(self):
+        """PXD067012: the PRIDE protocol never describes the digest; the paper does."""
+        r = rec(sampleProcessingProtocol="Samples were prepared with a click-chemistry protocol.")
+        f = check_cleavage_agent(r, ["NT=Trypsin;AC=MS:1001251"])
+        assert [x.code for x in f] == ["cleavage_agent_unsupported"] and f[0].severity == MINOR
+
+    def test_undigested_study_stays_a_blocker(self):
+        r = rec(sampleProcessingProtocol="Intact proteins were analysed by top-down MS.")
+        f = check_cleavage_agent(r, ["NT=Trypsin;AC=MS:1001251"])
+        assert f and f[0].severity == BLOCKER
+
+    def test_repeated_cleavage_columns_are_both_read(self):
+        """PXD014764: Trypsin and Lys-C in two columns, joined with '|' by the CLI."""
+        r = rec(sampleProcessingProtocol=("Proteins were digested with Lys-C for 1 hour and then "
+                                          "with trypsin overnight at 37 C."))
+        rows = [{"comment[cleavage agent details]": "NT=Trypsin;AC=MS:1001251|NT=Lys-C;AC=MS:1001309",
+                 "assay name": "run1", "comment[data file]": "run1.raw"}]
+        assert not [f for f in reconcile(r, rows).findings if f.code.startswith("cleavage")]
+
+    def test_tissue_of_origin_of_a_declared_cell_line(self):
+        """PXD008132: 'castration resistant prostate cancer cell line, DU145' - the spec allows
+        the tissue of origin in organism part (SAMPLE-GUIDELINES: cervix for HeLa)."""
+        r = rec(projectDescription="We quantified proteins in the prostate cancer cell line DU145.")
+        assert check_organism_part(r, "prostate gland", cell_line="DU 145") == []
+        flagged = check_organism_part(r, "prostate gland")
+        assert any(x.code == "organism_part_from_cultured_material" for x in flagged)
+
+    def test_ipsc_derived_material_is_still_flagged_with_a_cell_line(self):
+        r = rec(title="Proteome of hiPSC-derived cardiomyocytes")
+        assert any(x.code == "organism_part_from_cultured_material"
+                   for x in check_organism_part(r, "heart", cell_line="KOLF2.1J"))
+
+    def test_cell_line_named_in_runs_of_a_cell_line_sdrf(self):
+        runs = ["HepG2_ctrl_1", "HepG2_kd_1"]
+        assert check_organism_part(rec(), "liver", runs, cell_line="HepG2") == []
+
+    def test_control_arm_of_a_cell_line_keeps_the_line_disease(self):
+        """PXD012927: HepG2 HULC-J6f1 vs J6f1-vector HepG2 'control sample'."""
+        r = rec(sampleProcessingProtocol="The pull-down was mixed with the control sample.")
+        runs = ["RChen_HULC1_1", "RChen_HULC1_2"]
+        assert check_disease(r, "hepatoblastoma", runs, cell_line="HepG2") == []
+        assert check_disease(r, "hepatoblastoma", ["ctrl_1", "kd_1"], cell_line="HepG2") == []
+        assert any(x.code == "disease_with_control_arm_in_record"
+                   for x in check_disease(r, "hepatoblastoma", runs))

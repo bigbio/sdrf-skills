@@ -571,3 +571,35 @@ class TestBundledSpecResolution:
         monkeypatch.setattr("tools.column_ontology_map.BUNDLED_TERMS_TSV",
                             tmp_path / "nope" / "TERMS.tsv")
         assert resolve_terms_tsv() is None
+
+
+class TestCellLineLabels:
+    """CLO/BTO label cell lines '<name> cell'; the SDRF carries the bare Cellosaurus name."""
+
+    def _report(self, value, terms):
+        mock_client = MagicMock(spec=OLSClient)
+        mock_client.search_term.return_value = terms
+        content = f"source name\tcharacteristics[cell line]\ns1\t{value}\n"
+        return detect_hallucinations(content, ols_client=mock_client, verify_online=True)
+
+    def test_cellosaurus_name_matches_clo_cell_label(self):
+        """PXD019369 / PXD066753: 'NALM-6' and 'U-251MG' were reported as hallucinated."""
+        term = OLSTerm(iri="http://purl.obolibrary.org/obo/CLO_0007938", label="NALM-6 cell",
+                       short_form="CLO:0007938", ontology_name="clo")
+        report = self._report("NALM-6", [term])
+        assert not report.hallucinated and report.verified[0].label == "NALM-6"
+
+    def test_unknown_line_is_still_hallucinated(self):
+        """PXD043814: 'A617' is in no ontology and not in Cellosaurus."""
+        term = OLSTerm(iri="http://purl.obolibrary.org/obo/CLO_0001", label="A6 cell",
+                       short_form="CLO:0001", ontology_name="clo")
+        assert len(self._report("A617", [term]).hallucinated) == 1
+
+    def test_cell_suffix_does_not_apply_to_other_columns(self):
+        term = OLSTerm(iri="http://purl.obolibrary.org/obo/CL_0000057", label="fibroblast cell",
+                       short_form="CL:0000057", ontology_name="cl")
+        mock_client = MagicMock(spec=OLSClient)
+        mock_client.search_term.return_value = [term]
+        content = "source name\tcharacteristics[cell type]\ns1\tfibroblast\n"
+        report = detect_hallucinations(content, ols_client=mock_client, verify_online=True)
+        assert len(report.hallucinated) == 1
