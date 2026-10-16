@@ -113,8 +113,7 @@ it points at the directory.
 
 Domain policy (value encoding, reserved words, modification syntax, UNIMOD swaps, label types, row
 identity) exists once, in `skills/sdrf-annotate/references/format-rules.md`; `sdrf-annotate` and
-`sdrf-annotate`'s core and references point to it. Do not paste rules back into a skill. The plasma heuristic is still ~40
-near-identical lines in both `sdrf-annotate/references/gather-context.md` and `sdrf-campaign`.
+`sdrf-annotate`'s core and references point to it. Do not paste rules back into a skill.
 
 ## MCP
 
@@ -222,10 +221,9 @@ reimplementing merge semantics.
    table: when NT= names a known modification, the accession is treated as the typo. **Verify any
    new row against OLS before adding it** — a wrong entry here is invisible by construction.
 3. **Reserved words**: `not available` / `not applicable` — never `N/A`, `NA`, `unknown`. Gated
-   per-column by TERMS.tsv's `allow_*` booleans. Exception: `sdrf-campaign`'s screening phase emits a curation TSV, not
-   an SDRF, and uses **neither** reserved word — it mandates `unclear` for any undetermined `extract`
-   field and `uncertain` in the `label` column (legal values: `include`/`exclude`/`uncertain`). The two
-   tokens are not interchangeable, and neither belongs in an SDRF.
+   per-column by TERMS.tsv's `allow_*` booleans. Exception: `sdrf-campaign`'s screening phase emits a
+   six-column decision TSV, not an SDRF — `label` is `include`/`exclude`/`uncertain`, never a reserved
+   word, and `uncertain` never belongs in an SDRF.
 4. **Modification format**: `NT=name;AC=UNIMOD:id;TA=aa;MT=Fixed|Variable`. A positional value
    (`Protein N-term`) belongs in `PP=`, not `TA=`.
 5. **All ontology terms carry label + accession** (e.g. "breast carcinoma" / MONDO:0007254). This file
