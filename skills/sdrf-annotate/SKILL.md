@@ -179,7 +179,7 @@ the evidence:
 | `source name` | yes | the sample identifier you choose; never generated for you |
 | `files` | yes | the **fractions of one injection**, comma-separated, in fraction order (one file if unfractionated) |
 | `label` | yes | `label free sample`, or one channel (`TMT126`, `TMT127N`, `iTRAQ114`, `SILAC heavy`) — never a plex name like `TMT10` |
-| `assay name` | no | only to override the default (file stem; `<stem>-<channel>` when multiplexed) |
+| `assay name` | no | only to override the default (the file stem, shared by every channel of a multiplexed run) |
 | `technical replicate` | no | integer; default 1 |
 | `characteristics[...]` | as evidenced | bare values; `not available` only where the contract allows it |
 | `factor value[...]` | as designed | the variable(s) the study compares |
