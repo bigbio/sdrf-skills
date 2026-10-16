@@ -248,6 +248,23 @@ def cmd_audit_existing(args: argparse.Namespace) -> int:
     return 1 if report.blockers else 0
 
 
+def cmd_curated(args: argparse.Namespace) -> int:
+    """Summarise the community-curated SDRFs for accessions, as JSON."""
+    import json
+
+    from tools.existing_annotation import curated_files, fetch_curated, summarize
+
+    try:
+        found = curated_files(args.accessions)
+        out = {acc: [{"file": p, **summarize(fetch_curated(p))} for p in paths]
+               for acc, paths in found.items()}
+    except Exception as e:  # noqa: BLE001 — any failure means "unknown", never "not curated"
+        print(f"curated lookup failed: {e}", file=sys.stderr)
+        return 2
+    print(json.dumps(out, indent=1))
+    return 0
+
+
 def cmd_bruker_dia(args: argparse.Namespace) -> int:
     """Read DIA isolation windows out of a Bruker .d archive without downloading it."""
     import json
@@ -489,6 +506,14 @@ def main() -> None:
     p.add_argument("--organism", action="append", default=None,
                    help="organism registered in PRIDE (repeatable); omitted = organism check skipped")
 
+    # curated
+    p = subparsers.add_parser(
+        "curated",
+        help="Summarise the SDRFs bigbio/sdrf-annotated-datasets holds for accessions "
+             "(JSON; exit 2 = lookup failed, which is NOT 'not curated')",
+    )
+    p.add_argument("accessions", nargs="+", help="PXD / MSV accessions")
+
     # bruker-dia
     p = subparsers.add_parser(
         "bruker-dia",
@@ -556,6 +581,7 @@ def main() -> None:
         "verify": cmd_verify,
         "review-gate": cmd_review_gate,
         "audit-existing": cmd_audit_existing,
+        "curated": cmd_curated,
         "bruker-dia": cmd_bruker_dia,
         "reconcile": cmd_reconcile,
         "search-params": cmd_search_params,
