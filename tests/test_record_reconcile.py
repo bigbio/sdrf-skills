@@ -153,6 +153,13 @@ class TestCleavageAgent:
         assert check_cleavage_agent(
             r, ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]) == []
 
+    def test_repeated_column_joined_by_the_cli_is_clean(self):
+        """cmd_reconcile joins repeated cleavage-agent columns with '|'."""
+        r = rec(sampleProcessingProtocol=(
+            "Protein was digested with Lys-C for 4 h and subsequently with trypsin overnight."))
+        assert check_cleavage_agent(
+            r, ["NT=Trypsin;AC=MS:1001251|NT=Lys-C;AC=MS:1001309"]) == []
+
 
 class TestOrganism:
     def test_declared_species_absent_from_the_record(self):
@@ -369,6 +376,26 @@ class TestReconcileEntryPoint:
 
     def test_empty_rows_are_safe(self):
         assert reconcile(rec(), [], "PXD000003").clean
+
+
+def test_cli_reads_both_repeated_cleavage_columns(tmp_path, capsys):
+    """PXD014175 / PXD033171: a Lys-C/trypsin co-digest in two cleavage-agent columns."""
+    import argparse
+    import json
+
+    from tools.cli import cmd_reconcile
+
+    record = tmp_path / "project.json"
+    record.write_text(json.dumps({"sampleProcessingProtocol": (
+        "Proteins were digested with Lys-C for 2 h and then with trypsin for 16 h.")}))
+    sdrf = tmp_path / "x.sdrf.tsv"
+    sdrf.write_text(
+        "source name\tcomment[cleavage agent details]\tcomment[cleavage agent details]\n"
+        "s1\tNT=Trypsin;AC=MS:1001251\tNT=Lys-C;AC=MS:1001309\n")
+    args = argparse.Namespace(record=str(record), sdrf_file=str(sdrf), accession="PXD000000")
+    assert cmd_reconcile(args) == 0
+    out = capsys.readouterr().out
+    assert "cleavage_agent_incomplete" not in out
 
 
 class TestCellLineDeposits:

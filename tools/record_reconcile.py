@@ -431,8 +431,13 @@ def proteases_in_record(record: dict) -> list[str]:
 
 
 def check_cleavage_agent(record: dict, declared: Iterable[str]) -> list[Finding]:
-    """Flag a protease the record does not support, or a co-digest reduced to one enzyme."""
-    written = [term_name(d) for d in declared]
+    """Flag a protease the record does not support, or a co-digest reduced to one enzyme.
+
+    The CLI joins a repeated column with ``|`` (one cell per enzyme), so each declared
+    value is split before reading its NT= name; otherwise only the first enzyme of a
+    Lys-C/trypsin co-digest is seen and the second is reported as missing.
+    """
+    written = [term_name(p) for d in declared for p in d.split("|")]
     written = [w for w in written if w]
     supported = proteases_in_record(record)
     out: list[Finding] = []

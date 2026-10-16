@@ -39,7 +39,12 @@ def test_parse_article_id_accepts_every_common_spelling(raw, expected):
     assert server._parse_article_id(raw) == expected
 
 
-@pytest.mark.parametrize("raw", ["", "0", "not an id", "doi:123", "https://www.nature.com/articles/s41467"])
+@pytest.mark.parametrize("raw", [
+    "", "0", "not an id", "doi:123", "https://www.nature.com/articles/s41467",
+    "https://doi.org.attacker.example/10.1038/x-y",
+    "https://attacker.example/?next=doi.org/10.1038/x-y",
+    "https://[invalid",
+])
 def test_parse_article_id_rejects_unrecognised(raw):
     assert server._parse_article_id(raw) is None
 

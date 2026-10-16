@@ -939,12 +939,25 @@ def _parse_article_id(raw: str) -> tuple[str, str] | None:
     nothing is recognised.
     """
     s = str(raw or "").strip()
-    low = s.lower()
-    if "doi.org/" in low:
-        s = s[low.index("doi.org/") + len("doi.org/"):]
-    elif "://" in s:
-        # PubMed / PMC / Europe PMC article URL: the id is the last path segment
-        s = s.split("?", 1)[0].rstrip("/").rsplit("/", 1)[-1]
+    if "://" in s:
+        try:
+            url = urllib.parse.urlsplit(s)
+            host = (url.hostname or "").lower()
+        except ValueError:
+            return None
+        if host in {"doi.org", "www.doi.org"}:
+            s = url.path.lstrip("/")
+        elif host in {
+            "europepmc.org", "www.europepmc.org",
+            "ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
+            "pubmed.gov", "www.pubmed.gov", "pubmed.ncbi.nlm.nih.gov",
+        }:
+            # PubMed / PMC / Europe PMC article URL: the id is the last path segment
+            s = url.path.rstrip("/").rsplit("/", 1)[-1]
+        else:
+            return None
+    elif re.match(r"^(?:www\.)?doi\.org/", s, re.IGNORECASE):
+        s = s.split("/", 1)[1]
     s = s.split("?", 1)[0].strip().strip("/")
     m = _ID_PREFIX.match(s)
     hint = m.group(1).lower() if m else None
