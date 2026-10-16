@@ -314,7 +314,10 @@ Read [references/reconcile.md](references/reconcile.md) for the reasoning and th
 parse_sdrf validate-sdrf -s output.sdrf.tsv -t <template1> [-t <template2> ...]
 ```
 Add `--use_ols_cache_only` when there is no network. Use the templates from Step 2; several
-`-t` flags validate against their union.
+`-t` flags validate against their union. Then run `sdrf-tools structure output.sdrf.tsv` and
+`parse_sdrf convert-openms -s output.sdrf.tsv -t2` in a scratch directory: the conversion
+quantms performs rejects files that validate cleanly (see
+[references/validation.md](references/validation.md)).
 
 If it reports errors:
 1. Change the offending **value in `samples.tsv` or `technical.tsv`** — never `Edit`
