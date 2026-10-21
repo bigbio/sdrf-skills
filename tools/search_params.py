@@ -14,6 +14,8 @@ Supported, each checked against a real deposited file:
   DIA-NN      the log (report.log.txt, diann.log, *summary.log)
   PD          .msf / .pdResult / .pdStudy on local disk (SQLite): PD 1.x ProcessingNodeParameters
               and PD 2.x Workflows XML
+  Spectronaut the *_ExperimentSetupOverview_*.txt (BGS/Biognosys settings tree) or the
+              AnalysisLog.txt of a directDIA/DIA search
 
 It reports, it does not decide: a modification it cannot name with certainty goes to
 `unmapped`, and a value that depends on the instrument (MaxQuant keeps one MS/MS tolerance per
@@ -576,6 +578,104 @@ def _pd_workflow_xml(p: SearchParams, text: str) -> None:
         _pd_apply(p, purpose, value, f"UNIMOD:{acc.group(1)}" if acc else None)
 
 
+# --- Spectronaut ---------------------------------------------------------------------------
+
+_SN_TREE_ITEM = re.compile(r"^\s*(?:│\s*)?(?:├─|└─)\s*(.+)$")
+# Top-level entries are unboxed ("Run: sample1.d", "Analysis Mode: UI") unlike the
+# settings/setup tree leaves, which carry the │/├─/└─ markers.
+_SN_PLAIN_ITEM = re.compile(r"^\s*([A-Za-z][A-Za-z0-9 /()\-]*):\s*(.+)$")
+
+
+def _sn_key_values(path: Path) -> tuple[list[tuple[str, str]], list[str]]:
+    """The settings/setup tree as (key, value) pairs plus bare leaf lines (e.g. FASTA names).
+
+    A leaf line is ``└─ Key:\tValue`` (``Fixed Modifications::\tCarbamidomethyl (C)``;
+    note the stray double colon Spectronaut writes). Bare leaves without a key-value
+    separator are collected separately so a FASTA name can be told apart from a setting.
+    """
+    pairs: list[tuple[str, str]] = []
+    bare: list[str] = []
+    for line in path.read_text(encoding="utf-8-sig", errors="replace").splitlines():
+        m = _SN_TREE_ITEM.match(line)
+        if not m:
+            plain = _SN_PLAIN_ITEM.match(line)
+            if plain:
+                pairs.append((plain.group(1).strip(), plain.group(2).strip()))
+            continue
+        item = m.group(1).strip()
+        if ":" in item:
+            key, _, value = item.partition(":")
+            key = key.strip().rstrip(":").strip()
+            # Spectronaut writes a stray second colon after some keys
+            # ("Fixed Modifications::\t..."): strip it from the value, not the key.
+            value = value.lstrip(":\t ")
+            if key:
+                pairs.append((key, value))
+        elif item and not item.endswith("\\"):
+            bare.append(item)
+    return pairs, bare
+
+
+def parse_spectronaut(path: Path) -> SearchParams:
+    """Spectronaut's ``*_ExperimentSetupOverview_*.txt`` (BGS/Biognosys export).
+
+    The settings tree carries the Pulsar search section with the same
+    ``Name (residues)`` modification spelling as MaxQuant, the cleavage rule, the FDR
+    cutoffs, and one ``Run:`` block per raw file with the vendor and the FASTA databases.
+    Tolerances are usually ``Dynamic`` (system default), which this reports as a note
+    rather than inventing a number.
+    """
+    p = SearchParams("Spectronaut")
+    pairs, bare = _sn_key_values(path)
+    kv: dict[str, list[str]] = {}
+    for key, value in pairs:
+        kv.setdefault(key, []).append(value)
+    first = {k: v[0] for k, v in kv.items()}
+
+    for key, fixed in (("Fixed Modifications", True), ("Variable Modifications", False)):
+        joined = ", ".join(kv.get(key, []))
+        # Spectronaut separates modifications with ", " while residue lists keep bare
+        # commas ("Phospho (S,T,Y)"), so split only before a capitalised next name.
+        for mod in re.split(r",\s+(?=[A-Z])", joined):
+            p.add(mq_mod(mod, fixed))
+    enzyme = first.get("Enzymes / Cleavage Rules", "").strip()
+    if enzyme:
+        p.enzyme = enzyme
+
+    fdrs = [first.get(k) for k in ("PSM FDR", "Peptide FDR", "Protein Group FDR") if first.get(k)]
+    if fdrs:
+        p.notes.append(f"FDR cutoffs: {'/'.join(fdrs)} (PSM/peptide/protein group)")
+    if first.get("Precursor Qvalue Cutoff"):
+        p.notes.append(f"precursor qvalue cutoff: {first['Precursor Qvalue Cutoff']}")
+
+    channels = [v for k, v in pairs if re.match(r"^Channel \d+$", k) and v and v.lower() != "false"]
+    if channels:
+        p.label = "isobaric"
+        p.notes.append(f"Spectronaut channels: {', '.join(channels)} (map them to TMT/iTRAQ tags from the paper)")
+
+    dynamic = [k for k, v in pairs if k in ("Main Search", "Calibration Search") and v.lower() == "dynamic"]
+    if dynamic:
+        p.notes.append("mass tolerances are Dynamic (system default); the file carries no fixed ppm/Da")
+
+    fastas: list[str] = []
+    for leaf in bare:
+        if leaf.lower().endswith((".fasta", ".fas")):
+            fastas.append(leaf)
+    if fastas:
+        p.notes.append(f"FASTA: {', '.join(dict.fromkeys(fastas))}")
+
+    current_run: str | None = None
+    for key, value in pairs:
+        if key == "Run":
+            current_run = value
+            p.file_map.append({"file": value})
+        elif key == "Vendor" and current_run and p.file_map and "vendor" not in p.file_map[-1]:
+            p.file_map[-1]["vendor"] = value
+    if not p.modifications and not p.enzyme and not p.file_map:
+        raise ValueError("no Spectronaut settings tree found in this file")
+    return p
+
+
 # --- entry ----------------------------------------------------------------------------------
 
 def extract(path: str | Path) -> SearchParams:
@@ -599,9 +699,12 @@ def extract(path: str | Path) -> SearchParams:
         p = parse_apar(path)
     elif "DIA-NN" in head or "diann" in head.lower():
         p = parse_diann(path)
+    elif "[BEGIN-SETTINGS]" in head or "experimentsetupoverview" in name or "analysislog" in name:
+        p = parse_spectronaut(path)
     else:
         raise ValueError(f"unrecognised search file '{path.name}' (expected mqpar.xml, summary.txt, "
-                         "parameters.txt, an Andromeda .apar, fragger.params, a DIA-NN log, or a PD .msf/.pdResult)")
+                         "parameters.txt, an Andromeda .apar, fragger.params, a DIA-NN log, a PD "
+                         ".msf/.pdResult, or a Spectronaut ExperimentSetupOverview/AnalysisLog)")
     if p.enzyme and p.enzyme.lower() not in ENZYMES:
         p.unmapped.append(f"enzyme '{p.enzyme}'")
     return p

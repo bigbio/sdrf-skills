@@ -63,7 +63,7 @@ The table below is where each engine keeps them, for a file the reader does not 
 | MaxQuant | `mqpar.xml`, `summary.txt` (`parameters.txt` in 1.x only), `combined/andromeda/*.apar` | `Fixed modifications` / `Variable modifications` |
 | FragPipe / MSFragger | `fragger.params` | `table.fix-mods` / `table.var-mods` |
 | DIA-NN | `report.log.txt` / logged command line | `--fixed-mod`, `--var-mod` (`--unimod4` = fixed Carbamidomethyl) |
-| Spectronaut / SpectroMine | `.psar`, exported settings (UTF-16 strings) | modification list in the settings block |
+| Spectronaut / SpectroMine | `*_ExperimentSetupOverview_*.txt` (BGS/Biognosys export), `*_AnalysisLog.txt`; `.psar` / exported settings (UTF-16 strings) | `Pulsar Search\Modifications` block: `Fixed Modifications::` / `Variable Modifications: :` (same `Name (residues)` spelling as MaxQuant) |
 
 **Proteome Discoverer `.msf` — read it, never download a multi-GB one.** `.msf`/`.pdResult` are SQLite
 databases and routinely multi-GB (10.5 GB in the case below). A small one (tens of MB):
