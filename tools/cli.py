@@ -9,6 +9,7 @@ Usage:
   python -m tools verify <ACCESSION> [--label L]   # verify single term
   python -m tools cellline lookup <name>           # curated cell line lookup
   python -m tools massive-files <PXD|MSV|task>     # MassIVE raw/acquisition file resolver
+  python -m tools iprox-files <PXD|IPX>            # iProX raw file resolver
   python -m tools review-gate <command>             # independent-review receipt gate
   python -m tools audit-existing <file.sdrf.tsv>    # audit an already-annotated dataset
   python -m tools bruker-dia <url|path>             # DIA windows from Bruker analysis.tdf
@@ -172,6 +173,26 @@ def cmd_massive_files(args: argparse.Namespace) -> int:
         argv.extend(["--ftp-url", args.ftp_url])
     if args.summary_only:
         argv.append("--summary-only")
+    return run_cli(argv)
+
+
+def cmd_iprox_files(args: argparse.Namespace) -> int:
+    from tools.iprox_raw_files import run_cli
+
+    argv = [args.accession]
+    if args.mode:
+        argv.extend(["--mode", args.mode])
+    if args.format:
+        argv.extend(["--format", args.format])
+    if args.subproject:
+        for sub in args.subproject:
+            argv.extend(["--subproject", sub])
+    if args.record:
+        argv.extend(["--record", args.record])
+    if args.px_xml:
+        argv.extend(["--px-xml", args.px_xml])
+    if args.timeout:
+        argv.extend(["--timeout", str(args.timeout)])
     return run_cli(argv)
 
 
@@ -458,6 +479,30 @@ def main() -> None:
     p.add_argument("--ftp-url")
     p.add_argument("--summary-only", action="store_true")
 
+    # iprox-files
+    p = subparsers.add_parser(
+        "iprox-files",
+        help="Resolve/list iProX raw or deposited files for an IPX project or PXD accession",
+    )
+    p.add_argument("accession", help="iProX project/subproject id (IPX##########) or PXD accession")
+    p.add_argument(
+        "--mode",
+        choices=("raw", "all"),
+        default="raw",
+    )
+    p.add_argument(
+        "--format",
+        choices=("text", "tsv", "json"),
+        default="text",
+    )
+    p.add_argument("--subproject", action="append", default=None,
+                   help="only emit files of this subproject id (repeatable)")
+    p.add_argument("--record", default=None,
+                   help="also write a reconcile-compatible record JSON to this path")
+    p.add_argument("--px-xml", default=None,
+                   help="PX XML to parse (path, URL, or 'auto' for the canonical location)")
+    p.add_argument("--timeout", type=int, default=None)
+
     # verify
     p = subparsers.add_parser("verify", help="Verify a single ontology accession")
     p.add_argument("accession", help="e.g. UNIMOD:1, MS:1001911")
@@ -577,6 +622,7 @@ def main() -> None:
         "fix": cmd_fix,
         "benchmark": cmd_benchmark,
         "massive-files": cmd_massive_files,
+        "iprox-files": cmd_iprox_files,
         "cellline": cmd_cellline,
         "verify": cmd_verify,
         "review-gate": cmd_review_gate,

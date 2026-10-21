@@ -246,3 +246,37 @@ def test_andromeda_apar_tolerances_and_silac_state():
     assert m["Label:13C(6)15N(2)"].residues == "K" and p.label == "SILAC"
     light = extract(FIX / "andromeda" / "allSpectra.HCD.FTMS.sil0.apar")
     assert light.label is None and "Label:13C(6)15N(4)" not in mods(light)
+
+
+def test_spectronaut_setup_mods_enzyme_and_runs():
+    p = extract(FIX / "spectronaut_setup.txt")
+    m = mods(p)
+    assert m["Carbamidomethyl"].fixed and m["Carbamidomethyl"].residues == "C"
+    assert not m["Acetyl"].fixed and m["Acetyl"].position == "Protein N-term"
+    assert m["Oxidation"].residues == "M" and m["Phospho"].residues == "S,T,Y"
+    assert p.enzyme == "Trypsin/P"
+    assert [e["file"] for e in p.file_map] == ["sample1.d", "sample2.d"]
+    assert p.file_map[0]["vendor"] == "Bruker"
+    assert any("0.01/0.01/0.01" in n for n in p.notes)
+    assert any("homo_sapiens_UP000005640_9606_2022.fasta" in n for n in p.notes)
+    assert any("Dynamic" in n for n in p.notes)
+
+
+def test_spectronaut_channels_are_reported_not_guessed():
+    from tools.search_params import parse_spectronaut
+
+    p = parse_spectronaut(FIX / "spectronaut_setup.txt")
+    assert p.label == "isobaric"
+    assert any("127N" in n for n in p.notes)
+
+
+def test_spectronaut_parse_rejects_a_non_tree_file():
+    import tools.search_params as sp
+
+    bogus = FIX / "spectronaut_setup.txt.bogus"
+    bogus.write_text("not a settings tree", encoding="utf-8")
+    try:
+        with pytest.raises(ValueError):
+            sp.parse_spectronaut(bogus)
+    finally:
+        bogus.unlink()

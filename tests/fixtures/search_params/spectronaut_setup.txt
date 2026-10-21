@@ -1,0 +1,38 @@
+Spectronaut 18.1.230626.50606
+Analysis Type: directDIA
+
+[BEGIN-SETTINGS]
+Settings Used: BGS Factory Settings
+   ├─ DIA Analysis\Identification
+   │  ├─ Precursor Qvalue Cutoff:	0.01
+   │  ├─ Protein Qvalue Cutoff (Experiment):	0.01
+   ├─ Pulsar Search\Identification
+   │  ├─ PSM FDR:	0.01
+   │  ├─ Peptide FDR:	0.01
+   │  ├─ Protein Group FDR:	0.01
+   ├─ Pulsar Search\Labeling
+   │  └─ Channels:	
+   │     ├─ Channel 1:	False
+   │     └─ Channel 2:	127N
+   ├─ Pulsar Search\Modifications
+   │  ├─ Max Variable Modifications:	5
+   │  └─ Select Modifications:	
+   │     ├─ Fixed Modifications::	Carbamidomethyl (C)
+   │     └─ Variable Modifications: :	Acetyl (Protein N-term), Oxidation (M), Phospho (S,T,Y)
+   ├─ Pulsar Search\Peptides
+   │  ├─ Enzymes / Cleavage Rules:	Trypsin/P
+   ├─ Pulsar Search\Tolerances
+   │  └─ Tolerance Parameters:	
+   │     └─ TOF:	
+   │        └─ Main Search:	Dynamic
+[END-SETTINGS]
+
+[BEGIN-SETUP]
+Run: sample1.d
+   ├─ Vendor: Bruker
+   ├─ Protein Databases Used
+   │  ├─ homo_sapiens_UP000005640_9606_2022.fasta
+   │  └─ contaminants2021.fasta
+Run: sample2.d
+   ├─ Vendor: Bruker
+[END-SETUP]

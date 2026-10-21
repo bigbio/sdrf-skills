@@ -90,6 +90,46 @@ channel-to-sample mapping, pooled-reference channels, blanks, longitudinal
 timepoints, or cohort aliases that are not recoverable from PRIDE metadata
 alone.
 
+For iProX-backed datasets, use the helper in this repo to recover the deposited
+file list from the iProX project API (the project page's own endpoints, not the
+full browse tree):
+
+```bash
+sdrf-tools iprox-files IPX0000000000 --mode raw
+sdrf-tools iprox-files PXD047633 --format json
+```
+
+The helper resolves a PXD through ProteomeCentral when the dataset is released;
+unreleased iProX datasets are absent from ProteomeCentral, so pass the IPX
+project id shown on the dataset page instead. iProX marks vendor raw files with
+`fileType == "RAW"` — Bruker `.d` folders are usually deposited as renamed
+`.zip`/`.rar` archives, Thermo `.raw` files are bare — and search outputs / PX XML
+files are `SEARCH` / `XML` / `PRIDEXML`, which `--mode raw` excludes. A subproject
+id works too (10-digit IPX ids are ambiguous between project and subproject, so the
+helper falls back to a single-subproject lookup). The file lists are per
+subproject; iProX datasets commonly split one paper into several subprojects (e.g.
+proteome / phosphoproteome / TMT / PRM), so check every subproject's title before
+deciding the annotation scope.
+
+Multi-subproject annotations get three more flags:
+
+```bash
+sdrf-tools iprox-files IPX0000000000 --subproject IPX...001 --mode raw   # one SDRF per subproject
+sdrf-tools iprox-files IPX0000000000 --record evidence/record.json       # reconcile-compatible record
+sdrf-tools iprox-files IPX0000000000 --px-xml auto --format json         # species/instruments + orphan entries
+```
+
+`--record` writes the PRIDE-`/projects/{acc}`-shaped prose record (title,
+description, the subprojects' sample/data-processing protocols, and their titles as
+quantificationMethods) so `sdrf-tools reconcile` can check the SDRF against the
+iProX deposit. `--px-xml auto` fetches the project PX XML plus every subproject XML:
+the species/instrument lists come back in `px_xml`, and file entries the API list
+does not know (an original acquisition name the deposit renamed, like a Bruker
+`YS20220223_..._Slot...d.zip` listed beside the renamed archive) are reported as
+`orphan_entries` with their same-size deposited candidates — hints, not claims:
+DIA deposits contain distinct files of identical size, so a size-based rename is
+never assumed.
+
 ### 1.3 Find and read the publication
 
 > **Offline mode (Step 0):** skip this step — the paper, if one is available, is already in `evidence/manuscript.txt`; if that file is absent there is no paper to find — do not search for one.

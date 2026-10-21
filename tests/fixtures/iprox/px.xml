@@ -1,0 +1,20 @@
+<iProXDataset id="IPX0006823000" formatVersion="2.0">
+  <SpeciesList>
+    <Species>
+      <cvParam cvRef="MS" accession="MS:1001469" name="taxonomy: scientific name" value="Homo sapiens"/>
+    </Species>
+  </SpeciesList>
+  <InstrumentList>
+    <Instrument id="Instrument_1">
+      <cvParam cvRef="MS" accession="MS:1003005" name="timsTOF Pro"/>
+    </Instrument>
+  </InstrumentList>
+  <DatasetFileList>
+    <DatasetFile id="FILE_0" name="YS20220223_28_Slot2-33_1_12137.d.zip">
+      <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="http://download.iprox.org/IPX0006823000/IPX0006823001/YS20220223_28_Slot2-33_1_12137.d.zip" filesize="4730.88MB"/>
+    </DatasetFile>
+    <DatasetFile id="FILE_1" name="B-1.zip">
+      <cvParam cvRef="MS" accession="MS:1002846" name="Associated raw file URI" value="http://download.iprox.org/IPX0006823000/IPX0006823001/B-1.zip" filesize="3676.16MB"/>
+    </DatasetFile>
+  </DatasetFileList>
+</iProXDataset>
