@@ -48,3 +48,10 @@ because a downstream consumer has no way to tell it is wrong.
 4. **Check the file format against the instrument vendor.** A Bruker instrument writes `.d`,
    a Thermo writes `.raw`, a SCIEX writes `.wiff`. An instrument that cannot have produced
    the deposited files is a contradiction that needs no judgement at all.
+
+**Cell lines are the exception to 2 and 3.** When `characteristics[cell line]` is declared, the
+organism part is the line's tissue of origin (the spec's own example: `cervix` for HeLa) and the
+disease is a property of the line, so the empty-vector or scrambled-shRNA control is still the
+line's disease. The tool skips those checks for a declared cell line; iPSC/ES-derived material
+is still flagged. A record that never describes the digest yields only a MINOR
+`cleavage_agent_unsupported` — take the enzyme from the paper or the search output.

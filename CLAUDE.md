@@ -40,8 +40,8 @@ git submodule update --remote --recursive   # advance to upstream tip; leaves a 
 
 # tools CLI: `sdrf-tools` console script after `pip install -e .`; `python -m tools` also works from the repo root
 sdrf-tools --help   # check, structure, contract, build, score, fix, benchmark, massive-files,
-                         # verify, cellline, review-gate, reconcile, audit-existing, bruker-dia,
-                         # search-params
+                         # verify, cellline, review-gate, reconcile, audit-existing, curated,
+                         # bruker-dia, search-params
 ```
 
 `python` is an alias to `python3` here, not a binary — skills invoke bare `python`, assuming an
@@ -113,8 +113,7 @@ it points at the directory.
 
 Domain policy (value encoding, reserved words, modification syntax, UNIMOD swaps, label types, row
 identity) exists once, in `skills/sdrf-annotate/references/format-rules.md`; `sdrf-annotate` and
-`sdrf-annotate`'s core and references point to it. Do not paste rules back into a skill. The plasma heuristic is still ~40
-near-identical lines in both `sdrf-annotate/references/gather-context.md` and `sdrf-campaign`.
+`sdrf-annotate`'s core and references point to it. Do not paste rules back into a skill.
 
 ## MCP
 
@@ -146,11 +145,11 @@ being reported as complete. PRIDE's historical bare-keyword 100-cap (#28) no lon
 verified 2026-08-19, v2 and v3 both paginate — which is why the partitioning is a detector, not an
 unconditional workaround.
 
-**Article identifiers must be BARE — silent-corruption class.** `get_article_metadata` and
-`get_pdf_by_unpaywall` classify with `_classify_article_id` / `_parse_identifier`, which accept a bare
-PMID (`35695565`), `PMC…`, or a bare DOI matching `^10\.\d{4,9}/…`. A prefixed `PMID:35695565` or
-`doi:10.…` is rejected and yields an **error record, not an exception** — so a skill that documents the
-prefixed form degrades every lookup to "no evidence" and reports it as low confidence. Pinned by
+**Article identifiers: one parser — silent-corruption class.** Every article tool classifies its
+input with `_parse_article_id`: bare forms, `PMID:` / `PMCID:` / `doi:` prefixes, and doi.org / PubMed /
+PMC / Europe PMC URLs. Bare digits are a PMID everywhere; the full-text tools resolve a PMID or DOI to
+its PMCID. Unrecognised input still yields an **error record, not an exception**, which a skill reads
+as "no evidence" — so teach the parser a new spelling rather than adding a rule to a skill. Pinned by
 `tests/test_mcp_pride.py`.
 
 **`get_project_details` / `search_projects` span PRIDE *and* MassIVE.** `MSV…` routes to MassIVE's
@@ -222,10 +221,9 @@ reimplementing merge semantics.
    table: when NT= names a known modification, the accession is treated as the typo. **Verify any
    new row against OLS before adding it** — a wrong entry here is invisible by construction.
 3. **Reserved words**: `not available` / `not applicable` — never `N/A`, `NA`, `unknown`. Gated
-   per-column by TERMS.tsv's `allow_*` booleans. Exception: `sdrf-campaign`'s screening phase emits a curation TSV, not
-   an SDRF, and uses **neither** reserved word — it mandates `unclear` for any undetermined `extract`
-   field and `uncertain` in the `label` column (legal values: `include`/`exclude`/`uncertain`). The two
-   tokens are not interchangeable, and neither belongs in an SDRF.
+   per-column by TERMS.tsv's `allow_*` booleans. Exception: `sdrf-campaign`'s screening phase emits a
+   six-column decision TSV, not an SDRF — `label` is `include`/`exclude`/`uncertain`, never a reserved
+   word, and `uncertain` never belongs in an SDRF.
 4. **Modification format**: `NT=name;AC=UNIMOD:id;TA=aa;MT=Fixed|Variable`. A positional value
    (`Protein N-term`) belongs in `PP=`, not `TA=`.
 5. **All ontology terms carry label + accession** (e.g. "breast carcinoma" / MONDO:0007254). This file

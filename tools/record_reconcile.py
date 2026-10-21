@@ -63,6 +63,11 @@ def prose(record: dict, *keys: str) -> str:
     return " ".join(str(record.get(k) or "") for k in (keys or _PROSE_KEYS))
 
 
+def _declared(value: str) -> bool:
+    """A real value, not empty and not a reserved word."""
+    return bool(value) and value.strip().lower() not in ("not available", "not applicable")
+
+
 def sentences(text: str) -> list[str]:
     """Split into sentences without breaking on decimals, temperatures or 'e.g.'."""
     for pat, rep in _ABBR:
@@ -138,8 +143,12 @@ _TITLE_TISSUE = [
 # Material with an anatomical *identity* but no anatomical *source*. An iPSC-derived
 # cardiomyocyte was never part of a heart; a purified recombinant protein was never a tissue.
 _NO_SOURCE = re.compile(
-    r"\bhiPSC|\biPSC\b|induced pluripotent|\bhPSC\b|embryonic stem cell|immortali[sz]ed|"
-    r"\bcell line\b|recombinant|purified\s+\w+\s+protein", re.IGNORECASE)
+    r"\bhiPSC|\biPSC\b|induced pluripotent|\bhPSC\b|embryonic stem cell|"
+    r"recombinant|purified\s+\w+\s+protein", re.IGNORECASE)
+# An established cell line does have an anatomical source, its tissue of origin, which the
+# spec allows in organism part (SAMPLE-GUIDELINES: "cervix for HeLa"). These words are only
+# evidence of a problem when the SDRF does not declare the cell line.
+_CELL_LINE_WORDS = re.compile(r"immortali[sz]ed|\bcell line\b", re.IGNORECASE)
 # Run-name tokens that name the material directly.
 _RUN_TISSUE = [
     (r"(^|[_\-. ])aorta", "aorta"), (r"(^|[_\-. ])(carotid|plaque)", "carotid artery"),
@@ -154,11 +163,16 @@ _CELL_LINE_RUN = re.compile(
 
 
 def check_organism_part(record: dict, declared: str,
-                        run_names: Sequence[str] = ()) -> list[Finding]:
-    """Flag an organism part the title, the material class or the run names contradict."""
+                        run_names: Sequence[str] = (), cell_line: str = "") -> list[Finding]:
+    """Flag an organism part the title, the material class or the run names contradict.
+
+    ``cell_line`` is the SDRF's ``characteristics[cell line]``. When it is declared, the
+    organism part is that line's tissue of origin, so cell-line wording in the title and
+    cell-line names in the run names are expected rather than evidence of a wrong tissue."""
     out: list[Finding] = []
     if not declared or declared.lower() in ("not available", "not applicable"):
         return out
+    is_cell_line = _declared(cell_line)
     title = prose(record, "title", "projectDescription")
     for pat, what in _TITLE_TISSUE:
         if re.search(pat, title, re.IGNORECASE):
@@ -168,14 +182,14 @@ def check_organism_part(record: dict, declared: str,
                                f"the title names {what}, but the annotation says {declared!r}",
                                m.group(0).strip()))
             break
-    if _NO_SOURCE.search(title):
-        m = _NO_SOURCE.search(title)
+    m = _NO_SOURCE.search(title) or (None if is_cell_line else _CELL_LINE_WORDS.search(title))
+    if m:
         out.append(Finding("organism_part_from_cultured_material", MAJOR,
                            "characteristics[organism part]",
                            "cultured, engineered or purified material has an anatomical "
                            "identity but no anatomical source",
                            m.group(0).strip()))
-    lines = [n for n in run_names if _CELL_LINE_RUN.search(n)]
+    lines = [] if is_cell_line else [n for n in run_names if _CELL_LINE_RUN.search(n)]
     if lines:
         out.append(Finding("run_names_name_a_cell_line", BLOCKER,
                            "characteristics[organism part]",
@@ -276,8 +290,12 @@ NON_DISEASE = {"inflammation", "mixed disorder as reaction to stress"}
 
 
 def check_disease(record: dict, declared: str,
-                  run_names: Sequence[str] = ()) -> list[Finding]:
-    """Flag a project-level diagnosis asserted per sample, on controls, or not a disease."""
+                  run_names: Sequence[str] = (), cell_line: str = "") -> list[Finding]:
+    """Flag a project-level diagnosis asserted per sample, on controls, or not a disease.
+
+    The control-arm checks do not apply when ``cell_line`` is declared: a cell line's disease
+    is a property of the line, so the empty-vector or scrambled-shRNA control of a HepG2
+    experiment is still hepatoblastoma."""
     out: list[Finding] = []
     value = (declared or "").strip().lower()
     if not value or value in ("not available", "not applicable", "normal"):
@@ -290,6 +308,8 @@ def check_disease(record: dict, declared: str,
         out.append(Finding("generic_disease_bucket", MINOR, "characteristics[disease]",
                            f"{declared!r} is a registry bucket, not a diagnosis; the record "
                            f"title usually names the actual condition"))
+    if _declared(cell_line):
+        return out
     controls = [n for n in run_names if _CONTROL_RUN.search(n)]
     if controls:
         out.append(Finding("disease_on_control_runs", BLOCKER, "characteristics[disease]",
@@ -367,7 +387,14 @@ _DIGEST_CUE = re.compile(
     # "overnight at 37" alone missed every record that gives the time in hours.
     r"at\s*37\s*\u00b0?\s*C\s*(for|,)\s*\d+|"
     r"enzyme\s+(specificity|was|used)|specificity\s+(was|of)|enzymes?\s+such as|"
-    r"as the (proteolytic )?enzyme|cleav\w+\s+(agent|specificity)", re.IGNORECASE)
+    r"as the (proteolytic )?enzyme|cleav\w+\s+(agent|specificity)|"
+    # "Tryptic peptides were desalted" names the digest product, so it is evidence on its own
+    r"\btryptic\s+(peptides?|digests?|fragments?)", re.IGNORECASE)
+# The record says nothing was digested. Only then is a declared protease a contradiction
+# rather than a value the record is merely silent about.
+_NO_DIGEST = re.compile(
+    r"top-?down|intact\s+(proteins?|mass)|undigested|native\s+(MS|mass spectrometry)|"
+    r"without\s+(enzymatic\s+|proteolytic\s+)?digestion", re.IGNORECASE)
 # The protease name is the analyte, a proteasome activity readout, an inhibitor or a
 # contaminant-database entry rather than the reagent that produced the peptides.
 _PROTEASE_ROLE_EXCLUDE = re.compile(
@@ -404,18 +431,29 @@ def proteases_in_record(record: dict) -> list[str]:
 
 
 def check_cleavage_agent(record: dict, declared: Iterable[str]) -> list[Finding]:
-    """Flag a protease the record does not support, or a co-digest reduced to one enzyme."""
-    written = [term_name(d) for d in declared]
+    """Flag a protease the record does not support, or a co-digest reduced to one enzyme.
+
+    The CLI joins a repeated column with ``|`` (one cell per enzyme), so each declared
+    value is split before reading its NT= name; otherwise only the first enzyme of a
+    Lys-C/trypsin co-digest is seen and the second is reported as missing.
+    """
+    written = [term_name(p) for d in declared for p in d.split("|")]
     written = [w for w in written if w]
     supported = proteases_in_record(record)
     out: list[Finding] = []
     if not supported:
         if written:
-            out.append(Finding("cleavage_agent_unsupported", BLOCKER,
+            text = prose(record)
+            silent = not _DIGEST_CUE.search(text) and not _NO_DIGEST.search(text)
+            # a record that never describes sample preparation is no evidence against the
+            # paper's or the search output's enzyme; one that describes a digest without it is
+            out.append(Finding("cleavage_agent_unsupported", MINOR if silent else BLOCKER,
                                "comment[cleavage agent details]",
                                f"the record never names {', '.join(written)} as a digest "
-                               f"reagent; the annotation may have matched the enzyme in "
-                               f"another role"))
+                               f"reagent; " + ("it does not describe the digest at all, so "
+                                               "cite the paper or the search output" if silent
+                                               else "the annotation may have matched the enzyme "
+                                                    "in another role")))
         return out
     for w in written:
         if w.lower() not in {s.lower() for s in supported}:
@@ -516,8 +554,9 @@ def reconcile(record: dict, rows: Sequence[dict], accession: str = "") -> Reconc
         if found:
             report.findings.append(found)
 
+    cell_line = next((v for v in col("characteristics[cell line]") if _declared(v)), "")
     part = next((v for v in col("characteristics[organism part]") if v), "")
-    report.findings += check_organism_part(record, part, runs)
+    report.findings += check_organism_part(record, part, runs, cell_line)
 
     instrument = next((v for v in col("comment[instrument]") if v), "")
     if instrument:
@@ -525,12 +564,13 @@ def reconcile(record: dict, rows: Sequence[dict], accession: str = "") -> Reconc
         report.findings += check_instrument(record, model, files)
 
     disease = next((v for v in col("characteristics[disease]") if v), "")
-    report.findings += check_disease(record, disease, runs)
+    report.findings += check_disease(record, disease, runs, cell_line)
 
     report.findings += check_acquisition(
         col("comment[proteomics data acquisition method]"), runs)
 
-    cleavage = [v for v in col("comment[cleavage agent details]") if v]
+    # the CLI joins a repeated column's values with '|' (Trypsin and Lys-C in two columns)
+    cleavage = [part for v in col("comment[cleavage agent details]") for part in v.split("|") if part]
     if cleavage:
         report.findings += check_cleavage_agent(record, set(cleavage))
 

@@ -517,6 +517,14 @@ def _check_structured_column(
                 ))
 
 
+def _label_matches(value: str, term, cell_line: bool) -> bool:
+    """CLO and BTO name a cell line '<name> cell' ('NALM-6 cell', 'U-251MG cell'), so the
+    Cellosaurus name the SDRF carries is only ever a match once that suffix is allowed."""
+    if _labels_match(value, term.label, term.synonyms):
+        return True
+    return cell_line and _labels_match(f"{value} cell", term.label, term.synonyms)
+
+
 def _check_ontology_column(
     sdrf: SDRFFile,
     col_name: str,
@@ -532,6 +540,7 @@ def _check_ontology_column(
     not accession-structured values. We verify the label resolves to a real
     term in the expected ontology.
     """
+    cell_line = inner_name.lower() == "cell line"
     value_rows: dict[str, list[int]] = {}
     for i, row in enumerate(sdrf.rows):
         val = row.get(col_name, "").strip()
@@ -549,7 +558,7 @@ def _check_ontology_column(
         for ont in expected_onts:
             terms = ols_client.search_term(value, ontology_id=ont, exact=True, rows=10)
             for term in terms:
-                if _labels_match(value, term.label, term.synonyms):
+                if _label_matches(value, term, cell_line):
                     report.verified.append(VerifiedTerm(
                         column=col_name,
                         accession=term.short_form,
@@ -565,7 +574,7 @@ def _check_ontology_column(
             # Try broad exact search across all ontologies
             terms = ols_client.search_term(value, exact=True, rows=10)
             for term in terms:
-                if _labels_match(value, term.label, term.synonyms):
+                if _label_matches(value, term, cell_line):
                     prefix = term.short_form.split(":")[0].upper() if ":" in term.short_form else ""
                     if prefix and prefix not in [o.upper() for o in expected_onts]:
                         report.wrong_ontology.append(WrongOntologyTerm(
@@ -591,7 +600,7 @@ def _check_ontology_column(
             # that exist in OLS but aren't caught by exact matching
             terms = ols_client.search_term(value, rows=10)
             for term in terms:
-                if _labels_match(value, term.label, term.synonyms):
+                if _label_matches(value, term, cell_line):
                     prefix = term.short_form.split(":")[0].upper() if ":" in term.short_form else ""
                     if prefix and prefix not in [o.upper() for o in expected_onts]:
                         report.wrong_ontology.append(WrongOntologyTerm(

@@ -2,6 +2,12 @@
 
 from __future__ import annotations
 
+import argparse
+import json
+
+import pytest
+
+from tools import existing_annotation as ea
 from tools.existing_annotation import BLOCKER, MAJOR, MINOR, audit
 
 HEADER = (
@@ -305,3 +311,60 @@ class TestRunNameSuffixMismatch:
                        deposited_runs=["x.d.zip", "x.d.zip.zip"])
         codes = [f.code for f in report.findings]
         assert "run_name_suffix_mismatch" not in codes
+
+
+# --- lookup in the community repository ------------------------------------
+
+_TREE = {"truncated": False, "tree": [
+    {"path": "datasets/PXD1/PXD1-tmt.sdrf.tsv"},
+    {"path": "datasets/PXD1/PXD1-silac.sdrf.tsv"},
+    {"path": "datasets/PXD1/README.md"},
+    {"path": "datasets/PXD12/PXD12.sdrf.tsv"},
+    {"path": "datasets/PXD2.sdrf.tsv"},
+]}
+
+
+def _serve(monkeypatch, body: bytes):
+    monkeypatch.setattr(ea, "_http_get", lambda url: body)
+
+
+def test_curated_files_matches_suffixed_and_flat_files_by_exact_accession(monkeypatch):
+    _serve(monkeypatch, json.dumps(_TREE).encode())
+    assert ea.curated_files(["PXD1", "pxd2", "PXD3"]) == {
+        "PXD1": ["datasets/PXD1/PXD1-tmt.sdrf.tsv", "datasets/PXD1/PXD1-silac.sdrf.tsv"],
+        "PXD2": ["datasets/PXD2.sdrf.tsv"],
+        "PXD3": [],
+    }
+
+
+def test_curated_files_refuses_a_truncated_listing(monkeypatch):
+    _serve(monkeypatch, json.dumps({**_TREE, "truncated": True}).encode())
+    with pytest.raises(RuntimeError):
+        ea.curated_files(["PXD1"])
+
+
+@pytest.mark.parametrize("body", [b"", b"<!DOCTYPE html><html>rate limited</html>"])
+def test_fetch_curated_rejects_a_body_that_is_not_an_sdrf(monkeypatch, body):
+    _serve(monkeypatch, body)
+    with pytest.raises(ValueError):
+        ea.fetch_curated("datasets/PXD1/PXD1.sdrf.tsv")
+
+
+def test_summarize_reports_distinct_values_and_skips_run_columns():
+    summary = ea.summarize(GOOD)
+    assert summary["rows"] == 3
+    assert summary["columns"]["characteristics[organism]"] == ["Homo sapiens"]
+    assert summary["columns"]["factor value[phenotype]"] == ["control", "treated"]
+    assert "comment[data file]" not in summary["columns"]
+    assert "assay name" not in summary["columns"]
+
+
+def test_cli_curated_exits_2_when_the_lookup_fails(monkeypatch):
+    """A failed lookup must never read as "not curated"."""
+    from tools.cli import cmd_curated
+
+    def down(url):
+        raise OSError("network down")
+
+    monkeypatch.setattr(ea, "_http_get", down)
+    assert cmd_curated(argparse.Namespace(accessions=["PXD1"])) == 2

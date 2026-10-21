@@ -7,7 +7,9 @@ reader, every annotation run re-derives a parser from prose; this does it once, 
 
 Supported, each checked against a real deposited file:
   MaxQuant    mqpar.xml, summary.txt, parameters.txt (MaxQuant 2.x writes no modifications
-              into parameters.txt - use summary.txt or mqpar.xml)
+              into parameters.txt - use summary.txt or mqpar.xml; MaxQuant <= 1.5 writes no fixed
+              modifications into summary.txt - use parameters.txt or mqpar.xml), and the Andromeda
+              combined/andromeda/*.apar files
   FragPipe    fragger.params
   DIA-NN      the log (report.log.txt, diann.log, *summary.log)
   PD          .msf / .pdResult / .pdStudy on local disk (SQLite): PD 1.x ProcessingNodeParameters
@@ -253,11 +255,17 @@ def parse_mqpar(path: Path) -> SearchParams:
         states = [s.text or "" for s in pg.findall("labelMods/string")]
         if len(states) > 1 and not p.label:
             mq_silac(p, states)
+    # MaxQuant <= 1.5 keeps the modifications at the root, not per parameter group
+    for tag, fixed in (("fixedModifications", True), ("variableModifications", False)):
+        for s in root.findall(f"{tag}/string"):
+            p.add(mq_mod(s.text or "", fixed))
     per_analyzer = {}
     for mp in root.iter("msmsParams"):
-        name, tol = mp.findtext("Name"), mp.findtext("MatchTolerance")
+        # 1.6+ writes Name/MatchToleranceInPpm as child elements, 1.5 as attributes
+        name = mp.findtext("Name") or mp.get("Name")
+        tol = mp.findtext("MatchTolerance")
         if name and tol:
-            ppm = (mp.findtext("MatchToleranceInPpm") or "").strip().lower() == "true"
+            ppm = (mp.findtext("MatchToleranceInPpm") or mp.get("MatchToleranceInPpm") or "").strip().lower() == "true"
             per_analyzer[name] = f"{_num(tol)} {'ppm' if ppm else 'Da'}"
     mq_fragment_note(p, per_analyzer)
     files = [s.text or "" for s in root.findall("filePaths/string")]
@@ -332,6 +340,38 @@ def parse_mq_table(path: Path) -> SearchParams:
     if path.name.lower() == "parameters.txt" and not p.modifications:
         p.notes.append("MaxQuant 2.x writes no fixed/variable modifications into parameters.txt; "
                        "read summary.txt or mqpar.xml from the same search")
+    if path.name.lower() == "summary.txt" and "Fixed modifications" not in first:
+        p.notes.append("this summary.txt has no 'Fixed modifications' column (MaxQuant <= 1.5); "
+                       "read the fixed modifications from parameters.txt or mqpar.xml of the same search")
+    return p
+
+
+# --- Andromeda -------------------------------------------------------------------------------
+
+def parse_apar(path: Path) -> SearchParams:
+    """combined/andromeda/*.apar: the key=value file MaxQuant hands Andromeda, one per spectrum
+    type and SILAC state. The only place some deposits keep the precursor tolerance."""
+    p = SearchParams("MaxQuant (Andromeda .apar)")
+    kv = {}
+    for line in path.read_text(encoding="utf-8-sig", errors="replace").splitlines():
+        if "=" in line:
+            k, v = line.split("=", 1)
+            kv[k.strip().lower()] = v.strip()
+    labels = []
+    for key, fixed in (("fixed modifications", True), ("variable modifications", False)):
+        for mod in (kv.get(key) or "").split(","):
+            mod = mod.strip()
+            if re.fullmatch(r"(Arg|Lys)\d+", mod):  # a SILAC state's labels, written as fixed mods
+                labels.append(mod)
+            else:
+                p.add(mq_mod(mod, fixed))
+    if labels:
+        mq_silac(p, ["", ";".join(labels)])
+        p.notes.append("an .apar holds one SILAC state; read the sibling sil0/sil1/sil2 files for the others")
+    p.enzyme = (kv.get("enzymes") or "").split(",")[0].strip() or None
+    for key, attr in (("peptide mass tolerance", "precursor_tolerance"), ("fragment mass tolerance", "fragment_tolerance")):
+        if kv.get(key):
+            setattr(p, attr, _tol(f"{kv[key]} {kv.get(key + ' unit', 'ppm')}"))
     return p
 
 
@@ -555,11 +595,13 @@ def extract(path: str | Path) -> SearchParams:
         p = parse_fragger(path)
     elif name in ("summary.txt", "parameters.txt") and head.startswith(("Raw file\t", "Parameter\tValue")):
         p = parse_mq_table(path)
+    elif name.endswith(".apar") and "peptide mass tolerance=" in head:
+        p = parse_apar(path)
     elif "DIA-NN" in head or "diann" in head.lower():
         p = parse_diann(path)
     else:
         raise ValueError(f"unrecognised search file '{path.name}' (expected mqpar.xml, summary.txt, "
-                         "parameters.txt, fragger.params, a DIA-NN log, or a PD .msf/.pdResult)")
+                         "parameters.txt, an Andromeda .apar, fragger.params, a DIA-NN log, or a PD .msf/.pdResult)")
     if p.enzyme and p.enzyme.lower() not in ENZYMES:
         p.unmapped.append(f"enzyme '{p.enzyme}'")
     return p

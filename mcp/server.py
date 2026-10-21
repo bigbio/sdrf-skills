@@ -924,22 +924,50 @@ def _empty_article_record(**known: Any) -> dict:
 
 # DOI 基本形状：10.<registrant>/<suffix>，其中 suffix 里允许 [-._;()/:A-Za-z0-9]
 _DOI_REGEX = re.compile(r"^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$")
+_ID_PREFIX = re.compile(r"^(pmid|pmcid|doi)\s*:\s*", re.IGNORECASE)
+# Europe PMC search field for each identifier kind
+_EPMC_FIELD = {"pmid": "EXT_ID", "pmcid": "PMCID", "doi": "DOI"}
 
 
-def _classify_article_id(raw: str) -> tuple[str, str] | None:
+def _parse_article_id(raw: str) -> tuple[str, str] | None:
     """
-    Classify a free-form article identifier into ('pmid'|'pmcid'|'doi', normalised).
-    Returns None if the string is empty or not recognised.
+    Classify an article identifier into ('pmid'|'pmcid'|'doi', normalised).
+
+    The one parser behind every article tool, so they all accept the same
+    spellings: bare forms, a `PMID:` / `PMCID:` / `doi:` prefix, and doi.org,
+    PubMed, PMC or Europe PMC URLs. Bare digits are a PMID. Returns None when
+    nothing is recognised.
     """
-    s = str(raw).strip()
+    s = str(raw or "").strip()
+    if "://" in s:
+        try:
+            url = urllib.parse.urlsplit(s)
+            host = (url.hostname or "").lower()
+        except ValueError:
+            return None
+        if host in {"doi.org", "www.doi.org"}:
+            s = url.path.lstrip("/")
+        elif host in {
+            "europepmc.org", "www.europepmc.org",
+            "ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
+            "pubmed.gov", "www.pubmed.gov", "pubmed.ncbi.nlm.nih.gov",
+        }:
+            # PubMed / PMC / Europe PMC article URL: the id is the last path segment
+            s = url.path.rstrip("/").rsplit("/", 1)[-1]
+        else:
+            return None
+    elif re.match(r"^(?:www\.)?doi\.org/", s, re.IGNORECASE):
+        s = s.split("/", 1)[1]
+    s = s.split("?", 1)[0].strip().strip("/")
+    m = _ID_PREFIX.match(s)
+    hint = m.group(1).lower() if m else None
+    s = s[m.end():] if m else s
     if not s or s == "0":
         return None
-    su = s.upper()
-    if su.startswith("PMC") and su[3:].isdigit():
-        return ("pmcid", su)
-    if s.isdigit():
-        return ("pmid", s)
-    # DOI (strict)
+    if s.isdigit() and hint != "doi":
+        return ("pmcid", f"PMC{s}") if hint == "pmcid" else ("pmid", s)
+    if s.upper().startswith("PMC") and s[3:].isdigit():
+        return ("pmcid", s.upper())
     if _DOI_REGEX.match(s):
         return ("doi", s)
     # Defensive: sometimes PRIDE/user strips the "10." prefix
@@ -948,15 +976,25 @@ def _classify_article_id(raw: str) -> tuple[str, str] | None:
     return None
 
 
+def _to_pmcid(raw: str) -> str | None:
+    """Any PMID / PMCID / DOI spelling → 'PMC…', resolved via Europe PMC when needed."""
+    parsed = _parse_article_id(raw)
+    if parsed is None:
+        return None
+    kind, val = parsed
+    if kind == "pmcid":
+        return val
+    hit = _europe_pmc_lookup(f"{_EPMC_FIELD[kind]}:{val}")
+    return hit.get("pmcid") if hit else None
+
+
 # --- 1.3 Get article metadata (unified: PMID / PMCID / DOI) ---
 @mcp.tool()
 def get_article_metadata(ids: list[str]) -> list[dict]:
     """
-    Get article metadata via Europe PMC for any mix of PMID / PMCID / DOI.
-    Each element of `ids` is auto-classified:
-      - all digits              → PMID   (query EXT_ID:<id>)
-      - starts with 'PMC'+digits → PMCID (query PMCID:<id>)
-      - matches DOI regex       → DOI   (query DOI:<id>)
+    Get article metadata via Europe PMC for any mix of PMID / PMCID / DOI, in
+    any common spelling: bare, `PMID:` / `PMCID:` / `doi:` prefixed, or a
+    doi.org / PubMed / PMC URL. Bare digits are a PMID.
     Unrecognised identifiers yield a record with an `error` field.
 
     Returns one record per input with:
@@ -965,7 +1003,7 @@ def get_article_metadata(ids: list[str]) -> list[dict]:
     """
     results: list[dict] = []
     for raw in ids:
-        cls = _classify_article_id(raw)
+        cls = _parse_article_id(raw)
         if cls is None:
             rec = _empty_article_record()
             rec["input"] = raw
@@ -973,14 +1011,7 @@ def get_article_metadata(ids: list[str]) -> list[dict]:
             results.append(rec)
             continue
         kind, val = cls
-        if kind == "pmid":
-            query = f"EXT_ID:{val}"
-        elif kind == "pmcid":
-            query = f"PMCID:{val}"
-        else:  # doi
-            query = f"DOI:{val}"
-
-        hit = _europe_pmc_lookup(query)
+        hit = _europe_pmc_lookup(f"{_EPMC_FIELD[kind]}:{val}")
         if hit is None:
             rec = _empty_article_record(**{kind: val})
             if kind == "pmid":
@@ -1005,44 +1036,6 @@ def get_article_metadata(ids: list[str]) -> list[dict]:
             rec["doi_url"] = rec.get("doi_url") or f"https://doi.org/{val}"
         results.append(rec)
     return results
-
-
-def _looks_like_doi(s: str) -> bool:
-    return bool(_DOI_REGEX.match(s))
-
-
-def _parse_identifier(s: str) -> tuple[str, str] | None:
-    """解析 identifier，返回 (type, value) 或 None（如果无法识别）。
-    支持：DOI、PMID、pubmed URL、doi.org URL。非法字符串返回 None。"""
-    s = str(s).strip()
-    if not s:
-        return None
-    s_lower = s.lower()
-
-    if "doi.org/" in s_lower:
-        idx = s_lower.find("doi.org/")
-        doi = s[idx + len("doi.org/") :].split("?", 1)[0].strip("/")
-        return ("doi", doi) if _looks_like_doi(doi) else None
-
-    if "pubmed.ncbi.nlm.nih.gov" in s_lower or "pubmed.gov" in s_lower:
-        parts = s.replace("?", "/").rstrip("/").split("/")
-        for p in reversed(parts):
-            if p.isdigit():
-                return ("pmid", p)
-        return None
-
-    if s.isdigit():
-        return ("pmid", s)
-
-    if s.upper().startswith("PMC"):
-        return None  # PMCID 不在本函数处理范围
-
-    # Candidate DOI: strip query string, then strict regex test
-    candidate = s.split("?", 1)[0]
-    if _looks_like_doi(candidate):
-        return ("doi", candidate)
-
-    return None  # 严格模式：不认识的字符串一律拒
 
 
 def _doi_to_subdir_name(doi: str) -> str:
@@ -1127,8 +1120,9 @@ def _pick_oa_location(uw: dict) -> tuple[dict, str | None, int]:
 @mcp.tool()
 def get_pdf_by_unpaywall(identifiers: list[str], output_dir: str | None = None) -> list[dict]:
     """
-    Find OA PDF via Unpaywall and download to local. Accepts DOI, PMID, doi_url, or pubmed_url.
-    For PMID: resolves to DOI via Europe PMC first. The PDF URL comes from best_oa_location,
+    Find OA PDF via Unpaywall and download to local. Accepts a PMID, PMCID or DOI in any
+    spelling get_article_metadata accepts. A PMID or PMCID resolves to its DOI via Europe PMC
+    first. The PDF URL comes from best_oa_location,
     then from the first oa_locations[] entry exposing url_for_pdf (a repository copy often does
     when the publisher landing page does not); the returned license/host_type describe the
     location actually used. Falls back to the Europe PMC PDF last. Downloaded files are validated against the PDF magic bytes; non-PDF
@@ -1146,10 +1140,10 @@ def get_pdf_by_unpaywall(identifiers: list[str], output_dir: str | None = None) 
     client = _get_client()
 
     for raw in identifiers:
-        parsed = _parse_identifier(raw)
+        parsed = _parse_article_id(raw)
         if not parsed:
             results.append(_unpaywall_result(
-                raw, error="Could not parse identifier (need DOI or PMID/URL)"))
+                raw, error="Could not parse identifier (need PMID / PMCID / DOI)"))
             continue
 
         typ, val = parsed
@@ -1157,17 +1151,17 @@ def get_pdf_by_unpaywall(identifiers: list[str], output_dir: str | None = None) 
         doi: str | None = val if typ == "doi" else None
         pmid: str | None = val if typ == "pmid" else None
 
-        # PMID → DOI via cached Europe PMC lookup
-        if typ == "pmid":
-            hit = _europe_pmc_lookup(f"EXT_ID:{val}")
+        # PMID / PMCID → DOI via cached Europe PMC lookup
+        if typ != "doi":
+            hit = _europe_pmc_lookup(f"{_EPMC_FIELD[typ]}:{val}")
             if hit is None:
                 results.append(_unpaywall_result(
-                    raw, pmid=val, error="PMID not found in Europe PMC"))
+                    raw, pmid=pmid, error=f"{typ.upper()} not found in Europe PMC"))
                 continue
             doi = hit.get("doi")
             if not doi:
                 results.append(_unpaywall_result(
-                    raw, pmid=val, error="No DOI for this PMID"))
+                    raw, pmid=pmid, error=f"No DOI for this {typ.upper()}"))
                 continue
 
         if not doi:
@@ -1633,12 +1627,7 @@ def _parse_jats_sections(xml_text: str, keywords: list[str] | None = None) -> di
     }
 
 
-def _normalize_pmcid(raw: str) -> str:
-    """Normalize input to canonical 'PMC<digits>' form."""
-    v = str(raw).strip().upper()
-    if not v:
-        return ""
-    return v if v.startswith("PMC") else f"PMC{v}"
+_NO_PMCID = "No PMCID: unrecognised identifier, or the article is not in PMC"
 
 
 def _fetch_jats_xml(pmc_id: str) -> tuple[str | None, str, str | None]:
@@ -1694,7 +1683,8 @@ def get_full_text_article(
     Fetch full-text JATS XML from Europe PMC (OA subset only) and extract sections.
 
     Args:
-      pmc_ids: list of PMCIDs (with or without the 'PMC' prefix).
+      pmc_ids: PMCIDs, or any PMID / DOI spelling get_article_metadata accepts
+               (resolved to a PMCID via Europe PMC). Bare digits are a PMID.
       sections: case-insensitive keywords matched against each <sec>'s sec-type
                 or title. Default targets SDRF-relevant sections only (methods,
                 materials, experimental procedures, sample processing/preparation).
@@ -1731,8 +1721,9 @@ def get_full_text_article(
 
     out: list[dict] = []
     for raw in pmc_ids:
-        v = _normalize_pmcid(raw)
+        v = _to_pmcid(raw)
         if not v:
+            out.append({"input": raw, "error": _NO_PMCID})
             continue
         xml_text, url, err = _fetch_jats_xml(v)
         if err:
@@ -1756,7 +1747,7 @@ def get_full_text_section(pmc_id: str, section: str) -> dict:
     specific section by name without pulling the entire paper.
 
     Args:
-      pmc_id: PMCID with or without the 'PMC' prefix.
+      pmc_id: a PMCID, or any PMID / DOI spelling (resolved via Europe PMC).
       section: case-insensitive substring matched against each <sec>'s
                sec-type or <title>. First match wins.
 
@@ -1765,9 +1756,9 @@ def get_full_text_section(pmc_id: str, section: str) -> dict:
       Miss     : {pmcid, section, error: "section not found", available: [...]}
       Fetch err: {pmcid, raw_xml_url, error: "<http/network error>"}
     """
-    v = _normalize_pmcid(pmc_id)
+    v = _to_pmcid(pmc_id)
     if not v:
-        return {"error": "pmc_id is required"}
+        return {"input": pmc_id, "error": _NO_PMCID}
     if not section or not section.strip():
         return {"pmcid": v, "error": "section name is required"}
 

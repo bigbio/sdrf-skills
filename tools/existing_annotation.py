@@ -24,7 +24,10 @@ from __future__ import annotations
 
 import csv
 import io
+import json
 import re
+import urllib.parse
+import urllib.request
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, field
 
@@ -290,3 +293,73 @@ def audit(
                     min(srcs)))
 
     return report
+
+
+# ---------------------------------------------------------------------------
+# Lookup in the community repository
+# ---------------------------------------------------------------------------
+
+CURATED_REPO = "bigbio/sdrf-annotated-datasets"
+_TREE_URL = f"https://api.github.com/repos/{CURATED_REPO}/git/trees/HEAD?recursive=1"
+_RAW_URL = f"https://raw.githubusercontent.com/{CURATED_REPO}/HEAD/"
+
+# Columns that name runs rather than describe samples or methods.
+_NOT_SUMMARISED = {"comment[data file]", "comment[file uri]"}
+_SUMMARY_CAP = 20
+
+
+def _http_get(url: str) -> bytes:
+    """GET a URL. Raises on any HTTP or network error."""
+    req = urllib.request.Request(url, headers={"User-Agent": "sdrf-skills"})
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        return resp.read()
+
+
+def curated_files(accessions: Iterable[str]) -> dict[str, list[str]]:
+    """Map each accession to its SDRF paths in the community repository.
+
+    One listing of the whole repository covers every accession. An accession owns
+    every SDRF in its directory (suffixed variants such as `-tmt`, `-celllines`)
+    plus the few files stored flat in `datasets/`. Raises on any failure, so a
+    failed lookup is never mistaken for "not curated".
+    """
+    tree = json.loads(_http_get(_TREE_URL))
+    # ponytail: one recursive listing; GitHub truncates past 100k entries (24,550
+    # in 2026-10). If it ever does, list datasets/<ACC> per accession instead.
+    if tree.get("truncated"):
+        raise RuntimeError(f"GitHub truncated the {CURATED_REPO} listing")
+    found: dict[str, list[str]] = {a.strip().upper(): [] for a in accessions}
+    for item in tree.get("tree", []):
+        parts = item.get("path", "").split("/")
+        if parts[0] != "datasets" or not parts[-1].endswith(".sdrf.tsv"):
+            continue
+        owner = parts[-2] if parts[-2] != "datasets" else parts[-1].split(".")[0].split("-")[0]
+        if owner in found:
+            found[owner].append(item["path"])
+    return found
+
+
+def fetch_curated(path: str) -> str:
+    """Download one curated SDRF. Raises unless the body is an SDRF table."""
+    text = _http_get(_RAW_URL + urllib.parse.quote(path)).decode("utf-8", errors="replace")
+    header, _ = _read(text)
+    if not header or header[0].strip().lower() != "source name":
+        raise ValueError(f"{path}: download is not an SDRF (empty, or an error page)")
+    return text
+
+
+def summarize(sdrf_text: str) -> dict:
+    """Row count plus the distinct values of every characteristics / comment /
+    factor value column: what a screen checks its criteria against, in a few
+    lines per file instead of every row."""
+    header, rows = _read(sdrf_text)
+    columns: dict[str, list[str]] = {}
+    for name in dict.fromkeys(h.strip() for h in header):
+        low = name.lower()
+        if low in _NOT_SUMMARISED or not low.startswith(
+                ("characteristics[", "comment[", "factor value[")):
+            continue
+        values = sorted(_values(rows, _cols(header, name)))
+        extra = len(values) - _SUMMARY_CAP
+        columns[name] = values[:_SUMMARY_CAP] + ([f"... {extra} more"] if extra > 0 else [])
+    return {"rows": len(rows), "columns": columns}

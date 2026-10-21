@@ -1,7 +1,7 @@
 """Contract tests for mcp/server.py PRIDE + article-identifier tools.
 
-Offline: PRIDE responses are stubbed. These pin the exact call formats that
-skills/sdrf-metascreen/SKILL.md documents — the failure mode they guard is
+Offline: PRIDE responses are stubbed. These pin the call formats that
+skills/sdrf-campaign/SKILL.md relies on — the failure mode they guard is
 silent, because a rejected identifier degrades to "no evidence" rather than
 raising, which a screening skill then reports as `uncertain`.
 """
@@ -20,30 +20,47 @@ import server  # noqa: E402
 
 # --- identifier formats -------------------------------------------------
 
-@pytest.mark.parametrize("raw", ["35695565", "PMC9174028", "10.1038/s41467-022-30310-x"])
-def test_classify_article_id_accepts_bare_forms(raw):
-    assert server._classify_article_id(raw) is not None
+@pytest.mark.parametrize("raw, expected", [
+    ("35695565", ("pmid", "35695565")),
+    ("PMID:35695565", ("pmid", "35695565")),
+    ("pmid: 35695565", ("pmid", "35695565")),
+    ("https://pubmed.ncbi.nlm.nih.gov/35695565/", ("pmid", "35695565")),
+    ("PMC9174028", ("pmcid", "PMC9174028")),
+    ("pmcid:9174028", ("pmcid", "PMC9174028")),
+    ("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9174028/", ("pmcid", "PMC9174028")),
+    ("https://europepmc.org/article/PMC/PMC9174028", ("pmcid", "PMC9174028")),
+    ("10.1038/s41467-022-30310-x", ("doi", "10.1038/s41467-022-30310-x")),
+    ("doi:10.1038/s41467-022-30310-x", ("doi", "10.1038/s41467-022-30310-x")),
+    ("https://doi.org/10.1038/x-y", ("doi", "10.1038/x-y")),
+])
+def test_parse_article_id_accepts_every_common_spelling(raw, expected):
+    """One parser behind every article tool. A prefixed id used to come back as
+    an error record that read as missing evidence."""
+    assert server._parse_article_id(raw) == expected
 
 
-@pytest.mark.parametrize("raw", ["PMID:35695565", "pmid:35695565", "doi:10.1038/x"])
-def test_classify_article_id_rejects_prefixed_forms(raw):
-    """get_article_metadata takes BARE ids. Prefixed forms yield an error record."""
-    assert server._classify_article_id(raw) is None
+@pytest.mark.parametrize("raw", [
+    "", "0", "not an id", "doi:123", "https://www.nature.com/articles/s41467",
+    "https://doi.org.attacker.example/10.1038/x-y",
+    "https://attacker.example/?next=doi.org/10.1038/x-y",
+    "https://[invalid",
+])
+def test_parse_article_id_rejects_unrecognised(raw):
+    assert server._parse_article_id(raw) is None
 
 
 def test_get_article_metadata_flags_unrecognised_instead_of_raising():
-    [rec] = server.get_article_metadata(["PMID:35695565"])
+    [rec] = server.get_article_metadata(["not an id"])
     assert "Unrecognised identifier" in rec["error"]
 
 
-@pytest.mark.parametrize("raw", ["10.1038/s41467-022-30310-x", "https://doi.org/10.1038/x-y", "35695565"])
-def test_parse_identifier_accepts_unpaywall_forms(raw):
-    assert server._parse_identifier(raw) is not None
-
-
-def test_parse_identifier_rejects_doi_prefix():
-    """get_pdf_by_unpaywall takes a BARE DOI; the 'doi:' prefix fails the regex."""
-    assert server._parse_identifier("doi:10.1038/s41467-022-30310-x") is None
+def test_full_text_tools_read_bare_digits_as_a_pmid(monkeypatch):
+    """Bare digits are a PMID everywhere; the full-text tools resolve it to a PMCID."""
+    queries = []
+    monkeypatch.setattr(server, "_europe_pmc_lookup",
+                        lambda q: queries.append(q) or {"pmcid": "PMC9174028"})
+    assert server._to_pmcid("35695565") == "PMC9174028"
+    assert queries == ["EXT_ID:35695565"]
 
 
 # --- PRIDE project details ---------------------------------------------
