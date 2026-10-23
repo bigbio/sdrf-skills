@@ -68,11 +68,28 @@ def calculate_deepinfra_cost(
     reasoning_tokens: int = 0,
 ) -> Optional[float]:
     """Calculate exact DeepInfra cost using published per-1M token rates."""
-    rates = DEEPINFRA_PRICING.get(model_id)
+    if not model_id or not model_id.strip():
+        return None
+
+    norm_model = model_id.strip()
+    rates = DEEPINFRA_PRICING.get(norm_model)
     if not rates:
-        # Fallback to general prefix matching
+        # Exact match (case-insensitive)
         for k, v in DEEPINFRA_PRICING.items():
-            if k.lower() in model_id.lower() or model_id.lower() in k.lower():
+            if k.lower() == norm_model.lower():
+                rates = v
+                break
+    if not rates:
+        # Match with deepinfra/ prefix added if missing
+        cand = f"deepinfra/{norm_model}" if not norm_model.lower().startswith("deepinfra/") else norm_model
+        for k, v in DEEPINFRA_PRICING.items():
+            if k.lower() == cand.lower():
+                rates = v
+                break
+    if not rates:
+        # Match by model name suffix requiring path separator boundary
+        for k, v in DEEPINFRA_PRICING.items():
+            if k.lower().endswith("/" + norm_model.lower()):
                 rates = v
                 break
     if not rates:
@@ -94,11 +111,9 @@ def resolve_model_name(model_arg: str) -> str:
     key = model_arg.strip().lower()
     if key in MODEL_ALIASES:
         return MODEL_ALIASES[key]
-    if not model_arg.startswith("deepinfra/") and not ("/" in model_arg and not model_arg.startswith("deepinfra")):
-        # Check if deepinfra/<model_arg> is intended
-        candidate = f"deepinfra/{model_arg}"
-        return candidate
-    return model_arg
+    if model_arg.startswith("deepinfra/"):
+        return model_arg
+    return f"deepinfra/{model_arg}"
 
 
 def list_deepinfra_models(opencode_bin: str = "opencode") -> List[str]:
@@ -263,13 +278,16 @@ def parse_opencode_event_stream(process: subprocess.Popen, quiet: bool = False) 
                     if text_chunk:
                         sys.stdout.write(text_chunk)
                         sys.stdout.flush()
-                elif ev_type == "tool_call":
-                    tool = event.get("part", {}).get("tool", "")
-                    tool_input = event.get("part", {}).get("input", "")
-                    print(f"\n[Tool Call] {tool}: {json.dumps(tool_input) if isinstance(tool_input, (dict, list)) else tool_input}", flush=True)
-                elif ev_type == "tool_result":
-                    tool = event.get("part", {}).get("tool", "")
-                    print(f"[Tool Result] {tool} completed", flush=True)
+                elif ev_type == "tool_use":
+                    part = event.get("part", {})
+                    tool = part.get("tool", "")
+                    tool_input = part.get("state", {}).get("input", "")
+                    print(f"\n[Tool] {tool}: {json.dumps(tool_input) if isinstance(tool_input, (dict, list)) else tool_input}", flush=True)
+                elif ev_type in ("tool_call", "tool_result"):
+                    part = event.get("part", {})
+                    tool = part.get("tool", "")
+                    tool_input = part.get("input", "")
+                    print(f"\n[{ev_type}] {tool}: {json.dumps(tool_input) if isinstance(tool_input, (dict, list)) else tool_input}", flush=True)
                 elif ev_type == "error":
                     err_msg = event.get("error", {}).get("message", str(event))
                     print(f"\n[Error] {err_msg}", file=sys.stderr, flush=True)
@@ -417,8 +435,11 @@ def evaluate_sdrf_quality(sdrf_path: str, env: Dict[str, str]) -> Dict[str, Any]
             text=True,
             env=env,
         )
+        results["score_returncode"] = proc.returncode
         results["score_output"] = proc.stdout.strip()
+        results["score_stderr"] = proc.stderr.strip()
     except Exception as e:
+        results["score_returncode"] = -1
         results["score_error"] = str(e)
 
     try:
@@ -428,8 +449,11 @@ def evaluate_sdrf_quality(sdrf_path: str, env: Dict[str, str]) -> Dict[str, Any]
             text=True,
             env=env,
         )
+        results["check_returncode"] = proc.returncode
         results["check_output"] = proc.stdout.strip()
+        results["check_stderr"] = proc.stderr.strip()
     except Exception as e:
+        results["check_returncode"] = -1
         results["check_error"] = str(e)
 
     return results
@@ -603,7 +627,7 @@ Examples:
     # Dry-run handling
     if args.dry_run:
         print("\n=== DRY RUN MODE ===")
-        print(f"Command        : {' '.join(cmd[:5])} '<prompt>'")
+        print(f"Command        : {' '.join(cmd[:-1])} '<prompt>'")
         print(f"Model          : {resolved_model}")
         print(f"Conda Env      : {args.conda_env} (Prefix: {env.get('CONDA_PREFIX', 'N/A')})")
         print(f"Output Dir     : {run_dir.resolve()}")
@@ -621,28 +645,38 @@ Examples:
     start_time = time.time()
     session_id = None
     events = []
+    opencode_exit_code = 0
+    stderr_content = ""
 
+    stderr_path = run_dir / "opencode_stderr.log"
     try:
-        proc = subprocess.Popen(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            bufsize=1,
-            env=env,
-        )
+        with open(stderr_path, "w+") as stderr_fh:
+            proc = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=stderr_fh,
+                text=True,
+                bufsize=1,
+                env=env,
+            )
 
-        session_id, events = parse_opencode_event_stream(proc, quiet=args.quiet)
-        proc.wait()
-        elapsed_time = time.time() - start_time
+            session_id, events = parse_opencode_event_stream(proc, quiet=args.quiet)
+            proc.wait()
+            elapsed_time = time.time() - start_time
+            opencode_exit_code = proc.returncode
 
-        if proc.returncode != 0:
-            stderr_out = proc.stderr.read() if proc.stderr else ""
-            print(f"\n[Warning] OpenCode process exited with code {proc.returncode}. Stderr: {stderr_out}", file=sys.stderr)
+            stderr_fh.seek(0)
+            stderr_content = stderr_fh.read()
+
+        if proc.stdout:
+            proc.stdout.close()
+
+        if opencode_exit_code != 0:
+            print(f"\n[Warning] OpenCode process exited with code {opencode_exit_code}. Stderr: {stderr_content}", file=sys.stderr)
 
     except KeyboardInterrupt:
         print("\n[OpenCode] Interrupted by user.", file=sys.stderr)
-        if 'proc' in locals():
+        if 'proc' in locals() and proc.poll() is None:
             proc.terminate()
         return 130
     except Exception as e:
@@ -682,6 +716,10 @@ Examples:
             "duration_seconds": round(elapsed_time, 2),
         }
 
+    summary_data["exit_code"] = opencode_exit_code
+    if opencode_exit_code != 0 and stderr_content:
+        summary_data["stderr"] = stderr_content
+
     # Print summary
     print_usage_summary(summary_data)
 
@@ -696,10 +734,14 @@ Examples:
         print(f"[Score] Evaluating generated SDRF: {expected_sdrf}")
         eval_results = evaluate_sdrf_quality(expected_sdrf, env=env)
         summary_data["sdrf_evaluation"] = eval_results
-        if "score_output" in eval_results:
+        if eval_results.get("score_output"):
             print(f"\n--- SDRF Quality Score ---\n{eval_results['score_output']}\n")
-        if "check_output" in eval_results:
+        if eval_results.get("score_stderr"):
+            print(f"\n--- SDRF Score Stderr ---\n{eval_results['score_stderr']}\n", file=sys.stderr)
+        if eval_results.get("check_output"):
             print(f"\n--- SDRF Checks ---\n{eval_results['check_output']}\n")
+        if eval_results.get("check_stderr"):
+            print(f"\n--- SDRF Check Stderr ---\n{eval_results['check_stderr']}\n", file=sys.stderr)
 
     # Write summary JSON
     summary_json_path = args.output_json if args.output_json else (run_dir / "usage_summary.json")
@@ -707,6 +749,8 @@ Examples:
         json.dump(summary_data, f, indent=2)
 
     print(f"[OpenCode] Complete report saved to: {summary_json_path.resolve()}")
+    if opencode_exit_code != 0:
+        return opencode_exit_code
     return 0
 
 
