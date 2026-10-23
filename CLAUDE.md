@@ -81,10 +81,13 @@ annotate's review mode and `references/review-checks.md`), `sdrf-templates` (now
 `sdrf-annotate/references/templates.md`), `sdrf-convert` (a README block). None of this routing is covered by CI
 (`tools-tests.yml` ignores `skills/**`).
 
-**Bundled paths resolve against the plugin root, not the cwd.** The spec references in `skills/`
+**Bundled paths resolve against the bundle root, not the cwd.** The spec references in `skills/`
 are still written bare (`spec/sdrf-proteomics/TERMS.tsv`), so every skill that reads one opens with a
-**Bundle paths** blockquote telling the agent to resolve them against `$CLAUDE_PLUGIN_ROOT` and to
-run the helpers as `sdrf-tools …`. On the Python side,
+**Bundle paths** blockquote telling the agent to resolve them against
+`${SDRF_SKILLS_ROOT:-${CLAUDE_PLUGIN_ROOT}}` (else the sdrf-skills checkout) and to
+run the helpers as `sdrf-tools …`. `.mcp.json`, `hooks/hooks.json` and the plugin venv commands in
+`setup.md` stay on `CLAUDE_PLUGIN_ROOT`: only Claude Code reads them. `hooks/check-deps.sh` reads
+`SDRF_SKILLS_ROOT`, then `CLAUDE_PLUGIN_ROOT`, then falls back to `.`. On the Python side,
 `resolve_terms_tsv()` finds the bundled `TERMS.tsv` from `__file__` before falling back to a
 cwd-relative path. Keep both when adding a skill: installed as a plugin, the cwd is the user's
 project, and a cwd-relative read silently misses (degrading to the hardcoded fallback map).
@@ -242,7 +245,7 @@ reimplementing merge semantics.
    constraint set (column licensing + reserved-word `allow_*`), resolve with
    `spec/scripts/resolve_templates.py` — parse_sdrf enforces neither. `parse_sdrf` ships in
    `sdrf-pipelines` and is **not installed by default** (CI installs only `requests`, `pytest`,
-   `fastmcp`, `httpx` — not `sdrf-pipelines[ontology]`, which is heavy) — run ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`. Keep
+   `fastmcp`, `httpx` — not `sdrf-pipelines[ontology]`, which is heavy) — run `sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`). Keep
    concurrent `parse_sdrf` jobs ≤ 2.
 8. **A producer must never approve its own SDRF.** For changed SDRFs, require a passing receipt from
    `sdrf-adversarial-review`; any edit invalidates the receipt and requires a fresh reviewer.
@@ -281,7 +284,6 @@ reimplementing merge semantics.
   byte-for-byte equal `f"{base_url}{endpoint}|{params}"`. Any mismatch issues a **live** request to
   Cellosaurus/UniProt/EBI instead of failing. Prefer `MagicMock(spec=OLSClient)` injection, as
   `tests/test_hallucination.py` does.
-- **Dead code**: `tools/services.py` is imported only by its own test; `hooks/check-deps.sh` is dead —
-  `hooks/hooks.json` inlines the same logic, so both must be edited in lockstep.
+- **Dead code**: `tools/services.py` is imported only by its own test.
 - `tools/sdrf_fixer.py` implements **7** fix patterns, not the 10 its own docstring and the README
   claim (comments number them 1,3,4,5,6,7,9).

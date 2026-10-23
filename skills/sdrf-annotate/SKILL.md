@@ -8,9 +8,9 @@ argument-hint: "[PXD accession | path/to/file.sdrf.tsv | experiment description]
 # SDRF Annotation Workflow
 
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
-> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
-> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`; no `PYTHONPATH` or plugin-root variable is needed to run them.
+> directory. Resolve every such path below against the bundle root (`SDRF_SKILLS_ROOT`, else
+> `CLAUDE_PLUGIN_ROOT`, else your sdrf-skills checkout): `${SDRF_SKILLS_ROOT:-${CLAUDE_PLUGIN_ROOT}}/spec/sdrf-proteomics/TERMS.tsv`.
+> The helpers are the `sdrf-tools` command (install notes: `sdrf-annotate/references/setup.md`; check with `sdrf-tools doctor`); no `PYTHONPATH` or bundle-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are performing a complete SDRF annotation. Work through the steps in order, but
@@ -58,7 +58,7 @@ source, or re-derive them from a template file:
   and `technology type`; then all `comment[...]`; and every `factor value[...]` **last**,
   closing the file. Repeated column names are legal and meaningful — never de-duplicate them
   by appending a suffix.
-- **Controlled terms without a network:** `$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`
+- **Controlled terms without a network:** `${SDRF_SKILLS_ROOT:-${CLAUDE_PLUGIN_ROOT}}/spec/sdrf-proteomics/TERMS.tsv`
   is the authoritative offline table. It gives each term's type, the templates that use it,
   the permitted values, and — per term — whether `not available` and `not applicable` are
   allowed. Consult it instead of OLS when OLS is unreachable.

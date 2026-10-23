@@ -6,9 +6,9 @@ description: Independently falsify and review a created, modified, or proposed S
 # SDRF Adversarial Review
 
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
-> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
-> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`; no `PYTHONPATH` or plugin-root variable is needed to run them.
+> directory. Resolve every such path below against the bundle root (`SDRF_SKILLS_ROOT`, else
+> `CLAUDE_PLUGIN_ROOT`, else your sdrf-skills checkout): `${SDRF_SKILLS_ROOT:-${CLAUDE_PLUGIN_ROOT}}/spec/sdrf-proteomics/TERMS.tsv`.
+> The helpers are the `sdrf-tools` command (install notes: `sdrf-annotate/references/setup.md`; check with `sdrf-tools doctor`); no `PYTHONPATH` or bundle-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 Review the artifact from fresh context. Try to disprove its correctness; do not
@@ -107,12 +107,12 @@ blocker or important finding remains. Write the report JSON, then bind approval
 to the current artifact hash:
 
 ```bash
-python3 "$CLAUDE_PLUGIN_ROOT/tools/review_gate.py" approve <artifact> \
+python3 "${SDRF_SKILLS_ROOT:-${CLAUDE_PLUGIN_ROOT:?set SDRF_SKILLS_ROOT to the sdrf-skills checkout}}/tools/review_gate.py" approve <artifact> \
   --report <report.json> --reviewer independent-hook-agent --cwd <repo-root>
 ```
 
-Outside Claude Code, replace `$CLAUDE_PLUGIN_ROOT` with the installed
-`sdrf-skills` root. A producer agent must never run `approve` for its own work.
+Outside Claude Code, set `SDRF_SKILLS_ROOT` to the installed `sdrf-skills`
+root. A producer agent must never run `approve` for its own work.
 
 After any producer edit, repeat this skill in a new reviewer context; the old
 receipt is intentionally stale.

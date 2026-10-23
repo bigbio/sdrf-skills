@@ -31,9 +31,10 @@ Skills read these files at runtime. Never hardcode specification data.
 
 Install the helpers once: `pip install -e <sdrf-skills checkout>` (brings `sdrf-pipelines`), then `sdrf-tools doctor`.
 
-Two deterministic helpers keep annotation short and structurally valid. Run them from the
-sdrf-skills checkout (`sdrf-tools ...`; Claude Code sets
-`$CLAUDE_PLUGIN_ROOT` for this):
+Set `SDRF_SKILLS_ROOT` to the sdrf-skills checkout: the skills resolve `spec/`, `tools/` and `data/`
+against it (Claude Code sets `CLAUDE_PLUGIN_ROOT` instead).
+
+Two deterministic helpers keep annotation short and structurally valid. Run them as `sdrf-tools ...`:
 
 - `sdrf-tools contract -t ms-proteomics [-t human ...]` — prints the column contract of the
   template union: every column in order, required/optional/multiple, value form, permitted reserved

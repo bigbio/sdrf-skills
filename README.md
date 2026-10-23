@@ -46,7 +46,7 @@ submodules with it:
 ```
 
 Then run `sdrf-tools doctor`; if it reports something missing, `skills/sdrf-annotate/references/setup.md` has the
-install steps for `parse_sdrf` and `techsdrf`.
+install steps for `parse_sdrf` and `techsdrf`. The skills resolve `spec/`, `tools/` and `data/` against
 `$CLAUDE_PLUGIN_ROOT`, so you can work from any directory.
 
 **From a checkout** (for development, or for the other platforms below):
@@ -60,6 +60,10 @@ git clone --recurse-submodules https://github.com/bigbio/sdrf-skills
 conda env create -f environment.yml && conda activate sdrf-skills
 # pip alternative (thermorawfileparser not on PyPI):
 #   pip install -r requirements.txt && pip install git+https://github.com/bigbio/techsdrf.git
+
+# 3. Point the skills at this checkout (they resolve spec/, tools/ and data/ against it).
+#    Put this in your shell profile (or ENV in a container image) so later shells and agents see it:
+export SDRF_SKILLS_ROOT="$PWD"
 ```
 
 Update the bundled spec any time with `git submodule update --remote --recursive`.
@@ -75,8 +79,10 @@ Update the bundled spec any time with `git submodule update --remote --recursive
 ```
 Claude Code clones the repository with its submodules, so the SDRF spec data comes with the plugin.
 Skills resolve bundled paths through `$CLAUDE_PLUGIN_ROOT`, so any working directory is fine — your
-SDRF files stay where they are. Run ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)` once for `parse_sdrf`/`techsdrf`, then
-`/sdrf-skills:sdrf-annotate PXD######` or ``/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode) your_file.sdrf.tsv`.
+SDRF files stay where they are. Setting `SDRF_SKILLS_ROOT` overrides the plugin's own copy for the
+skills; the hooks and the MCP server still run from the plugin copy, so keep both at the same version.
+Run `sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`) once for `parse_sdrf`/`techsdrf`, then
+`/sdrf-skills:sdrf-annotate PXD######` or `/sdrf-skills:sdrf-annotate <file.sdrf.tsv>` (review mode).
 
 **From a working tree (development)**
 ```bash
@@ -85,7 +91,7 @@ cd sdrf-skills && claude --plugin-dir .   # loads skills from the working tree
 
 **Bundled MCP server (optional).** `.mcp.json` wires `mcp/server.py` (PRIDE + Europe PMC + OLS
 helpers) and expects a virtualenv *next to the plugin*, so create it inside the plugin directory —
-``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)` prints the exact path for your install:
+`sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`) prints the exact path for your install:
 
 ```bash
 uv venv "$PLUGIN_ROOT/.venv" && uv pip install --python "$PLUGIN_ROOT/.venv/bin/python" -r "$PLUGIN_ROOT/requirements.txt"

@@ -8,9 +8,9 @@ argument-hint: "[PXD accession and SDRF file path]"
 # SDRF Contribution Workflow
 
 > **Bundle paths.** `spec/`, `tools/` and `data/` ship with this skill, not with your working
-> directory. Resolve every such path below against the bundle root — `$CLAUDE_PLUGIN_ROOT` under
-> Claude Code (`$CLAUDE_PLUGIN_ROOT/spec/sdrf-proteomics/TERMS.tsv`), or your sdrf-skills checkout
-> on other platforms. The helpers are the `sdrf-tools` command, installed by ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)`; no `PYTHONPATH` or plugin-root variable is needed to run them.
+> directory. Resolve every such path below against the bundle root (`SDRF_SKILLS_ROOT`, else
+> `CLAUDE_PLUGIN_ROOT`, else your sdrf-skills checkout): `${SDRF_SKILLS_ROOT:-${CLAUDE_PLUGIN_ROOT}}/spec/sdrf-proteomics/TERMS.tsv`.
+> The helpers are the `sdrf-tools` command (install notes: `sdrf-annotate/references/setup.md`; check with `sdrf-tools doctor`); no `PYTHONPATH` or bundle-root variable is needed to run them.
 > Files the user is annotating stay relative to the working directory.
 
 You are helping the user contribute an annotated SDRF file back to the community repository
