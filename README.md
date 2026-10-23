@@ -131,6 +131,8 @@ sdrf-tools check  file.sdrf.tsv          # hallucinated terms / UNIMOD swaps
 sdrf-tools score  file.sdrf.tsv          # quality score (0-100, 5 dimensions)
 sdrf-tools fix    file.sdrf.tsv -o out.tsv
 sdrf-tools verify UNIMOD:1 --label Acetyl
+sdrf-tools ols "breast carcinoma" --ontology mondo  # label -> accession
+sdrf-tools fetch PXD000001               # PRIDE record, raw file list, paper -> evidence/ (no MCP needed)
 sdrf-tools review-gate gate              # enforce independent-review receipts
 sdrf-tools doctor                        # is everything installed?
 sdrf-tools search-params mqpar.xml       # mods, enzyme, tolerances from a deposited search file

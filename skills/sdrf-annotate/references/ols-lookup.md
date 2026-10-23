@@ -26,7 +26,8 @@ Always read TERMS.tsv rather than relying on memorized ontology mappings — the
 
 ## Step 2: Search OLS
 
-Use the OLS MCP tools to find the term:
+Use the OLS MCP tools to find the term. Without them, run `sdrf-tools ols "<user term>" --ontology <ontology>`
+(label to accession) and `sdrf-tools verify <accession>` (accession to label):
 
 ```text
 Primary search:
