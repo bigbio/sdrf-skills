@@ -1100,6 +1100,9 @@ UPCI-SCC-116	UPCI-SCC-116	CVCL_2228	not available	Homo Sapiens	Alveolar Ridge	Al
 UPCI-SCC-131	UPCI-SCC-131	CVCL_2229	not available	Homo Sapiens	Mouth	Floor of mouth	73Y	Elderly	Male	Caucasian	Floor of mouth squamous cell carcinoma	not available	cell	SCC131; UPCI:SCC131; UPCISCC131	curated
 UPCI-SCC-154	UPCI-SCC-154	CVCL_2230	not available	Homo Sapiens	Mouth	Tongue	54Y	Adult	Male	Caucasian	Tongue squamous cell carcinoma	not available	cell	UPCISCC154; SCC154; UPCI:SCC154	curated
 UPCI-SCC-200	UPCI-SCC-200	CVCL_2232	not available	Homo Sapiens	Mouth	Mouth	74Y	Elderly	Male	Caucasian	Oral cavity squamous cell carcinomay carcinoma	not available	cell	UPCI:SCC200; SCC200	curated
+UPMD-2	UPMD2	CVCL_C298	not available	Homo Sapiens	Eye	Uvea	not available	not available	not available	not available	Uveal melanoma	not available	cell	UPMD-2; Uveal Primary Melanoma with Disomy-3 2	curated
+UPMM-2	UPMM2	CVCL_C294	not available	Homo Sapiens	Eye	Uvea	not available	not available	not available	not available	Uveal melanoma	not available	cell	UPMM-2; Uveal Primary Melanoma with Monosomy-3 2	curated
+UPMM-3	UPMM3	CVCL_C295	not available	Homo Sapiens	Eye	Uvea	not available	not available	not available	not available	Uveal melanoma	not available	cell	UPMM-3; Uveal Primary Melanoma with Monosomy-3 3	curated
 UT-7	UT-7	CVCL_2233	UT-7 cell	Homo Sapiens	Bone Marrow	Bone marrow	64Y	Adult	Male	Japanese	Adult acute megakaryoblastic leukemia	not available	cell	UT7	curated
 VCaP	VCaP	CVCL_2235	VCaP cell	Homo Sapiens	Prostate	Bone; Vertebral bone; Vertebra	59Y	Adult	Male	Caucasian	Prostate carcinoma	not available	cell	NAN; VCAP; VERTEBRAL CANCER OF THE PROSTATE	curated
 C-4-I	C-4-I	CVCL_2253	C-4-I cell	Homo Sapiens	Cervix	Uterus	41Y	Adult	Female	Caucasian	Human papillomavirus-related squamous cell carcinoma	not available	cell	HS 636 T; C-4 I; C-4I; C4-1; C41; C-4I CELL; HS 636.T; C4I CELL; C4I; C-4 I CELL; C4-1 CELL; C4 I; C-4-I; C41 CELL; C4-I	curated
@@ -1954,7 +1957,7 @@ PGA-1	PGA-1	CVCL_Y545	not available	Homo Sapiens	Haematopoietic and Lymphoid	not
 HG-3	HG-3	CVCL_Y547	not available	Homo Sapiens	Blood	Peripheral blood	70Y	Elderly	Male	White	Chronic lymphocytic leukemia	not available	cell	HG3	curated
 WA-OSEL	WA-OSEL	CVCL_Y549	not available	Homo Sapiens	Blood	Peripheral blood	not available	Adult	Male	not available	Chronic lymphocytic leukemia	not available	cell	WA-OSEL; WA OSEL; WAOSEL4	curated
 PG-B95-8	PG/B95-8	CVCL_Y555	not available	Homo Sapiens	Blood	Peripheral blood	not available	not available	Male	Caucasian	Non-cancerous	not available	cell	PG-EBV; PG-B95-8	curated
-92-1	not available	not available	not available	Homo Sapiens	Eye	Right orbit	76Y	Elderly	Female	not available	Melanoma	not available	cell	92-1	curated
+92-1	92-1 [Human uveal melanoma]	CVCL_8607	not available	Homo Sapiens	Eye	Uvea	76Y	Elderly	Female	not available	Uveal melanoma	not available	cell	92_1; 92.1; 921	curated
 P2UR_K-562	not available	not available	not available	Homo Sapiens	Haematopoietic and Lymphoid	not available	53Y	Adult	Female	not available	Chronic myelogenous leukemia	not available	cell	P2UR_K-562	curated
 MYLA	not available	not available	not available	Homo Sapiens	Haematopoietic and Lymphoid	not available	not available	not available	not available	not available	T-cell non-hodgkin's lymphoma	not available	cell	MYLA	curated
 JVE-127	not available	not available	not available	Homo Sapiens	Large Intestine	Ascending colon	60Y	Adult	Male	not available	Colorectal carcinoma	not available	cell	JVE-127	curated
