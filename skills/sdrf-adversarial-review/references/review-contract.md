@@ -70,7 +70,10 @@ it does not match the artifact on disk: that mismatch means the content changed
 after you read it, so the review no longer describes what would be approved.
 
 Allowed finding severities are `blocker`, `important`, and `minor`. A passing
-report may contain minor findings only. Every required check needs concrete
+report may contain minor findings only. A failing report, written when a caller
+ran the review directly, uses the same schema with `"verdict": "FAIL"`, status
+`fail` on each check that failed or could not run, and every blocking finding
+listed; the gate never accepts it. Every required check needs concrete
 evidence; `source_evidence`, `file_mapping`, and `design_consistency` may use
 `not_applicable` with an explanation. Specification compliance, ontology
 integrity, omission safety, and deterministic validation must pass.

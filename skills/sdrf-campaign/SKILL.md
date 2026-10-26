@@ -311,7 +311,8 @@ file; edited criteria start a new one, because their rule numbers may have moved
   from paper methods routinely contains them, and one stray tab silently shifts
   every column in that row.
 - **Resume**: if the file exists, its header must be exactly these six columns —
-  otherwise stop and ask. Skip every `id` already in it.
+  otherwise stop and ask (unattended: stop without writing and report the mismatch). Skip
+  every `id` already in it.
 
 When the set is done, report:
 
@@ -370,6 +371,7 @@ cohort description; per-sample `age`, `sex` and `ethnicity` need an individual-l
    cell-line lookup, raw-file verification with `techsdrf`, validation (at most two rounds),
    `reconcile`, and — always — the fresh-context `sdrf-adversarial-review` with a hash-bound
    receipt (its Step 9.5). The result of round one is a reviewed file, or a report saying why not.
+   An unattended campaign (sdrf-annotate Step 0 defines the mode) starts annotate in unattended mode.
 3. **Later rounds edit the tables, never the SDRF.** A refinement is a change to `samples.tsv` or
    `technical.tsv` followed by `sdrf-tools build`, validation and `reconcile`. Editing
    `output.sdrf.tsv` directly is the structure-breaking path the build step exists to prevent.

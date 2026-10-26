@@ -110,7 +110,9 @@ column they check, the audit reports that as a blocker rather than a skip.
 
 ### 0.5.3 Report and let the USER decide
 
-Present the finding and stop. Do not pick for them:
+Present the finding and stop. Do not pick for them. In unattended mode (SKILL.md Step 0),
+a request that does not already choose `fix` or `reannotate` gets `leave`: report the audit
+and stop. No manifest exists yet at this point, so the report is the only record.
 
 ```text
 {PXD} is already annotated in the community repository ({N} rows).

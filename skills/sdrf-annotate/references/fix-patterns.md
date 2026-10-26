@@ -163,3 +163,6 @@ benchmark dataset with no such comparison correctly has no factor value at all (
   instead of the compared variable is fixable per rule 13, not a design decision to preserve.
 - Cell line names (need Cellosaurus verification)
 - Organism names that might be intentional (e.g., hybrid organisms)
+
+In unattended mode (SKILL.md Step 0), leave every case above unchanged, record it under
+`limitations`, and report it as needing a human; do not ask.

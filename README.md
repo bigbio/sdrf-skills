@@ -23,7 +23,8 @@ lives in a git submodule and is read at runtime, so the skills stay current as t
 ## Available skills
 
 Four skills. Three are slash commands under `/sdrf-skills:`; `sdrf-adversarial-review` is dispatched by
-`sdrf-annotate` into a fresh context and is never typed as a command:
+`sdrf-annotate` into a fresh context and is never typed as a command (a pipeline can also run it
+directly as a separate task):
 
 | Skill | What it does |
 |-------|-------------|
@@ -63,6 +64,11 @@ conda env create -f environment.yml && conda activate sdrf-skills
 ```
 
 Update the bundled spec any time with `git submodule update --remote --recursive`.
+
+Running without a human (a pipeline or batch agent)? Set `SDRF_UNATTENDED=1`, or say so in the
+request: `sdrf-annotate` then never asks a question and records each open point in the evidence
+manifest's `limitations` and its final report. The review still runs inside the task. To hand it to
+a separate reviewer task, say so in the request; only the request can choose that hand-off.
 
 ## Setup by AI platform
 

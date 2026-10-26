@@ -60,8 +60,10 @@ Fix validation errors in the two tables and rebuild; never edit the SDRF by hand
 ## The review gate on this platform
 
 Every annotation must end with `sdrf-adversarial-review` run in a context that never saw the producer's
-reasoning. Claude Code dispatches it automatically at annotate's Step 9.5. Here, open a **separate session**,
-give it only the SDRF path, the evidence manifest, the spec revision and the validation output, and have it
-follow `skills/sdrf-adversarial-review/SKILL.md`; then enforce the receipt with
+reasoning. Claude Code dispatches it automatically at annotate's Step 9.5. Here, tell the annotating session
+that an external reviewer runs the review, so it writes the evidence manifest and stops (Step 9.5). Then open
+a **separate session**, give it only the SDRF path, the evidence manifest, the spec revision and the
+validation output, and have it follow `skills/sdrf-adversarial-review/SKILL.md` and run `approve` on a PASS;
+then enforce the receipt with
 `sdrf-tools review-gate gate --cwd <repo-root>` (exit 1 = review still pending). Never let the session that
 wrote the file approve it.
