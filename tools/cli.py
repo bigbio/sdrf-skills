@@ -333,6 +333,7 @@ def cmd_manifest_coverage(args: argparse.Namespace) -> int:
 
 def cmd_audit_existing(args: argparse.Namespace) -> int:
     """Audit an SDRF that already exists for a dataset, before re-annotating it."""
+    import json
     from pathlib import Path
 
     from tools.existing_annotation import audit
@@ -340,7 +341,11 @@ def cmd_audit_existing(args: argparse.Namespace) -> int:
     runs = None
     if args.runs:
         runs_text = Path(args.runs).read_text(encoding="utf-8-sig")
-        runs = [ln.strip() for ln in runs_text.splitlines() if ln.strip()]
+        if runs_text.lstrip().startswith("{"):
+            # files.json from `sdrf-tools fetch`: the run names are under "files"
+            runs = list(json.loads(runs_text)["files"])
+        else:
+            runs = [ln.strip() for ln in runs_text.splitlines() if ln.strip()]
     organisms = args.organism or None
 
     report = audit(
@@ -349,6 +354,9 @@ def cmd_audit_existing(args: argparse.Namespace) -> int:
         pride_organisms=organisms,
         accession=args.accession or "",
     )
+    if args.json:
+        print(json.dumps(report.to_dict(), indent=1))
+        return 1 if report.blockers else 0
     print(report.render())
     print(f"\nsuggested action: {report.recommendation}")
     if not args.runs or not organisms:
@@ -675,9 +683,12 @@ def main() -> None:
     p.add_argument("sdrf_file", help="the EXISTING SDRF (e.g. from the community repo)")
     p.add_argument("--accession", default=None, help="PXD accession, enables convention checks")
     p.add_argument("--runs", default=None,
-                   help="file with one deposited run filename per line; omitted = coverage check skipped")
+                   help="file with one deposited run filename per line, or the files.json that "
+                        "`sdrf-tools fetch` writes; omitted = coverage check skipped")
     p.add_argument("--organism", action="append", default=None,
                    help="organism registered in PRIDE (repeatable); omitted = organism check skipped")
+    p.add_argument("--json", action="store_true",
+                   help="print the report as JSON, with run coverage counts")
 
     # curated
     p = subparsers.add_parser(

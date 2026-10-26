@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 
 import pytest
 
@@ -368,3 +369,64 @@ def test_cli_curated_exits_2_when_the_lookup_fails(monkeypatch):
 
     monkeypatch.setattr(ea, "_http_get", down)
     assert cmd_curated(argparse.Namespace(accessions=["PXD1"])) == 2
+
+
+class TestCoverageCounts:
+    def test_counts_matched_missing_and_invented_runs(self):
+        report = audit(GOOD, deposited_runs=["r1.raw", "r2.raw", "r4.raw", "r5.raw"], accession="PXD1")
+        assert report.coverage == {
+            "deposited_runs": 4,
+            "annotated_runs": 3,
+            "matched_runs": 2,
+            "fraction": 0.5,
+            "missing": ["r4.raw", "r5.raw"],
+            "invented": ["r3.raw"],
+        }
+
+    def test_no_runs_supplied_gives_no_coverage(self):
+        assert audit(GOOD, accession="PXD1").coverage is None
+
+    def test_archive_suffix_counts_as_matched(self):
+        report = audit(GOOD, deposited_runs=["r1.raw.zip", "r2.raw.zip", "r3.raw.zip"], accession="PXD1")
+        assert report.coverage["matched_runs"] == 3
+        assert report.coverage["fraction"] == 1.0
+
+    def test_to_dict_carries_recommendation_and_findings(self):
+        out = audit(GOOD, deposited_runs=["r1.raw"], accession="PXD1").to_dict()
+        assert out["recommendation"] == "reannotate"
+        assert {f["code"] for f in out["findings"]} == {"invented_runs"}
+
+
+class TestAuditCli:
+    def _run(self, tmp_path, monkeypatch, capsys, runs_text, *extra):
+        import json
+
+        from tools import cli
+
+        sdrf = tmp_path / "x.sdrf.tsv"
+        sdrf.write_text(GOOD, encoding="utf-8")
+        runs = tmp_path / "runs"
+        runs.write_text(runs_text, encoding="utf-8")
+        monkeypatch.setattr(sys, "argv", ["sdrf-tools", "audit-existing", str(sdrf), "--runs", str(runs), "--json", *extra])
+        with pytest.raises(SystemExit) as exc:
+            cli.main()
+        return exc.value.code, json.loads(capsys.readouterr().out)
+
+    def test_reads_files_json_from_fetch(self, tmp_path, monkeypatch, capsys):
+        code, out = self._run(tmp_path, monkeypatch, capsys,
+                              '{"files": ["r1.raw", "r2.raw", "r3.raw"], "other_files": [], "urls": {}}')
+        assert code == 0
+        assert out["coverage"]["fraction"] == 1.0
+
+    def test_reads_plain_run_list(self, tmp_path, monkeypatch, capsys):
+        code, out = self._run(tmp_path, monkeypatch, capsys, "r1.raw\nr2.raw\n")
+        assert code == 1
+        assert out["coverage"]["invented"] == ["r3.raw"]
+
+    def test_coverage_matches_the_review_report_schema(self, tmp_path, monkeypatch, capsys):
+        from tools.json_schema import load_schema, schema_errors
+
+        coverage_schema = load_schema("review-report")["properties"]["coverage"]
+        _, out = self._run(tmp_path, monkeypatch, capsys, "r1.raw\nr2.raw\nr4.raw\n")
+        assert schema_errors(coverage_schema, out["coverage"]) == []
+        assert set(out["coverage"]) == set(coverage_schema["properties"])

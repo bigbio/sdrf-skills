@@ -54,6 +54,8 @@ class AuditReport:
     accession: str
     n_rows: int = 0
     findings: list[Finding] = field(default_factory=list)
+    # Run counts against the deposit; None when no deposited runs were supplied.
+    coverage: dict | None = None
 
     @property
     def blockers(self) -> list[Finding]:
@@ -71,6 +73,15 @@ class AuditReport:
         if self.blockers:
             return "reannotate"
         return "fix"
+
+    def to_dict(self) -> dict:
+        return {
+            "accession": self.accession,
+            "rows": self.n_rows,
+            "recommendation": self.recommendation,
+            "coverage": self.coverage,
+            "findings": [vars(f) for f in self.findings],
+        }
 
     def render(self) -> str:
         if self.clean:
@@ -193,6 +204,17 @@ def audit(
                  f"(e.g. {sorted(annotated)[0]}), not the archive PRIDE ships "
                  f"(e.g. {sorted(deposited)[0]})")))
             missing = invented = set()
+
+        dep_names = {_strip_archive_suffix(n) for n in deposited}
+        matched = dep_names & {_strip_archive_suffix(n) for n in annotated}
+        report.coverage = {
+            "deposited_runs": len(deposited),
+            "annotated_runs": len(annotated),
+            "matched_runs": len(matched),
+            "fraction": round(len(matched) / len(dep_names), 4) if dep_names else None,
+            "missing": sorted(missing),
+            "invented": sorted(invented),
+        }
 
         if missing:
             report.findings.append(Finding(
