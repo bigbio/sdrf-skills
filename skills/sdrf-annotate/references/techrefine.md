@@ -41,9 +41,15 @@ pip install git+https://github.com/bigbio/techsdrf.git
 If converters are missing, inform the user which file types cannot be processed
 and suggest installation commands. techsdrf will skip files it cannot convert.
 
+In unattended mode (SKILL.md Step 0), install nothing. If techsdrf or a needed converter is
+missing, skip this workflow and record that under `limitations`.
+
 ## Step 2: Choose Refinement Mode
 
-Present the three modes and help the user choose:
+Present the three modes and help the user choose. In unattended mode (SKILL.md Step 0),
+use Mode B when the raw files are already local, Mode A only when the request asks for raw-file
+verification, and otherwise skip this workflow and note under `limitations` that technical
+values were not verified from raw files.
 
 ### Mode A — Refine from PRIDE (recommended for PXD datasets)
 Downloads raw files from PRIDE, analyzes them, and refines the SDRF.
@@ -68,7 +74,8 @@ techsdrf info -s input.sdrf.tsv
 
 ## Step 3: Configure Analysis
 
-Help the user set the right options for their analysis:
+Help the user set the right options for their analysis (in unattended mode, keep the
+defaults):
 
 ### 3.1 Number of files to analyze
 - `-n 3` (default): Analyze 3 representative files — fast, usually sufficient
@@ -117,7 +124,8 @@ The techsdrf pipeline runs these stages:
 6. **Refine** — Produces a refined SDRF with corrected/added technical metadata
 
 ### 4.3 The user runs the command
-The user executes the command in their terminal. techsdrf produces:
+The user executes the command in their terminal (in unattended mode, run it yourself).
+techsdrf produces:
 - Console output with detected parameters and comparison results
 - A refined SDRF file (if `-o` was specified)
 
@@ -215,6 +223,13 @@ For each changed column:
 - Explain WHY techsdrf made this change (what evidence from raw data)
 - Let the user approve or reject the individual change
 
+In unattended mode (SKILL.md Step 0), accept a change only when it fills an empty or
+`not available` cell, is not a PTM, and lands on a row whose raw file techsdrf analysed. With
+the default `-n 3`, techsdrf can copy a value to rows it never read. Keep every other declared
+value, and record the proposed change and its evidence under `limitations`. Write an accepted
+value into `technical.tsv` and rebuild (SKILL.md Steps 6 and 9); cite the techsdrf output as its
+source in the manifest.
+
 ### 6.3 If the user is working on an in-memory SDRF from `/sdrf-skills:sdrf-annotate`
 Instead of a file diff, show the corrected values to paste into the SDRF:
 ```text
@@ -236,6 +251,7 @@ This pulls the latest column definitions (`spec/sdrf-proteomics/TERMS.tsv`) and
 template versions (`spec/sdrf-proteomics/sdrf-templates/templates.yaml`).
 Validation against outdated templates may miss new required columns or accept
 deprecated formats.
+In unattended mode (SKILL.md Step 0), skip this update and validate against the bundled spec.
 
 ### 7.2 Validate with sdrf-pipelines
 **Always** run programmatic validation on the refined SDRF before presenting
@@ -321,8 +337,8 @@ the report is what makes the value recoverable later.
 - techsdrf requires actual raw MS files — it cannot refine from metadata alone
 - For Thermo .raw files, ThermoRawFileParser must be installed
 - Detected parameters are empirical — they reflect what's IN the raw data, not what was intended
-- If techsdrf detects a PTM not declared in the SDRF, confirm with the user before adding it (could be a biological signal or an artifact)
-- If techsdrf does NOT detect a declared PTM, it may be at low abundance — do not automatically remove without user confirmation
+- If techsdrf detects a PTM not declared in the SDRF, confirm with the user before adding it (could be a biological signal or an artifact); in unattended mode, do not add it and record it under `limitations`
+- If techsdrf does NOT detect a declared PTM, it may be at low abundance — do not automatically remove without user confirmation; in unattended mode, keep it and record it under `limitations`
 - Always verify instrument ontology terms via OLS after techsdrf detection:
   ```text
   mcp OLS → searchClasses(query="Q Exactive HF-X", ontologyId="ms")

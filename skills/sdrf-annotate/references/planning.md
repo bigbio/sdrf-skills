@@ -14,7 +14,8 @@ This is a collaborative thinking session, not a file generation task.
 
 ## Step 1: Understand the Experiment
 
-Ask the user about (if not already provided):
+Ask the user about (if not already provided). In unattended mode (SKILL.md Step 0), ask
+nothing: plan from what the request gives and list each missing item as an open question.
 1. **What organism?** (human, mouse, rat, plant, microbiome, etc.)
 2. **What technology?** (DDA, DIA, TMT, SILAC, label-free, Olink, SomaScan)
 3. **What is being compared?** (disease vs control, treatment vs untreated, time course)

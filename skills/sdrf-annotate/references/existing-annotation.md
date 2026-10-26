@@ -111,7 +111,12 @@ column they check, the audit reports that as a blocker rather than a skip.
 
 ### 0.5.3 Report and let the USER decide
 
-Present the finding and stop. Do not pick for them:
+Present the finding and stop. Do not pick for them.
+
+In unattended mode (SKILL.md Step 0), the request chooses `leave`, `fix`, `reannotate` or
+`recommended` (the recommendation below), for example `existing annotation: reannotate`. Without a
+choice, `leave`: report the audit and stop. `fix` and `reannotate` write the SDRF to the working
+directory and open no PR.
 
 ```text
 {PXD} is already annotated in the community repository ({N} rows).

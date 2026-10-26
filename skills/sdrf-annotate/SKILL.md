@@ -20,7 +20,7 @@ front of you when you do not.
 
 ## Step 0: Settle the operating mode, then stop looking around
 
-Answer both questions below **before any other tool call**. Getting them wrong is what turns
+Answer the three questions below **before any other tool call**. Getting them wrong is what turns
 a ten-turn annotation into a fifty-turn one, because the workflow below assumes lookups that
 may not exist here and you will spend turns discovering that one failed call at a time.
 
@@ -31,9 +31,9 @@ gathering is already done. You are in **offline mode**:
 - Read those files, and treat them as the whole of the available record.
 - **Skip Steps 0.5, 1.1, 1.2 and 1.3 entirely.** There is nothing to fetch, and no
   community repository to consult.
-- Do not call MCP tools, do not search the web, and do not ask the user a question. Where
-  the evidence is silent, write an explicit reserved word (below) rather than inferring a
-  value from what is typical.
+- Do not call MCP tools and do not search the web. Offline mode is always unattended
+  (question 3), so do not ask the user a question. Where the evidence is silent, write an
+  explicit reserved word (below) rather than inferring a value from what is typical.
 
 **2. Which lookups do you actually have?** Check once, in a single turn, and remember the
 answer: MCP tools for PRIDE/Europe PMC/OLS, and `parse_sdrf` on the PATH. Do not re-probe
@@ -48,8 +48,27 @@ routes. `files.json` gives each deposited file's URL. A failed fetch writes noth
 
 If `parse_sdrf` is missing and you can reach the user, run `sdrf-tools doctor` and point them at
 [references/setup.md](references/setup.md) and ask whether to wait or
-continue with structural checks only. If you cannot ask, continue and say plainly in your
-final report that the file was not machine-validated.
+continue with structural checks only. If you cannot ask (unattended mode), continue, record
+it under `limitations`, and say plainly in your final report that the file was not
+machine-validated.
+
+**3. Can anyone answer a question?** You are in **unattended mode** when you are in offline
+mode (question 1), when the request says not to ask questions, or when `SDRF_UNATTENDED=1` is
+set (no other value of the variable counts). Read it in the probe turn of question 2, for example
+`command -v parse_sdrf; echo "SDRF_UNATTENDED=${SDRF_UNATTENDED:-0}"`. In unattended mode:
+
+- Never ask a question and never wait for an answer. Where this skill or a reference says to
+  ask, confirm, or let the user decide, take the unattended default it names. Where none is
+  named, take the choice that writes no unverified value: a reserved word, the existing value
+  kept, or the optional step skipped.
+- A choice the request already makes (for example `existing annotation: reannotate`, Step 0.5)
+  is the user's answer.
+- Record each point you could not settle as one entry in the evidence manifest's `limitations`
+  list (Step 9.5), and list it again in the final report.
+- Unattended mode does not hand off the review. Dispatch the Step 9.5 review yourself unless the
+  request also names an external reviewer (Step 9.5, **External reviewer**). Only the request can
+  choose the hand-off: `SDRF_UNATTENDED=1` alone gives in-task review, because an environment
+  variable or a file must not switch off review.
 
 ### Facts you do not need to go looking for
 
@@ -79,7 +98,8 @@ source, or re-derive them from a template file:
 
 - **A PXD accession (or a description of an experiment)** → annotate: Steps 0a–11 below, ending
   with the independent review in Step 9.5. Review is not optional; an annotation that has not been
-  independently reviewed is a draft.
+  independently reviewed is a draft. Only the caller can hand the review to an external reviewer
+  (Step 9.5).
 - **A path to an existing `.sdrf.tsv`** → review it: skip to **Reviewing an existing SDRF** at the
   end of this file. Do not re-annotate a file you were asked to review.
 - **A question about what to capture, before there is a file** → planning: see the last section.
@@ -126,7 +146,7 @@ Before annotating a PXD, enumerate its directory in the community repository (it
 several suffixed SDRFs), audit any existing file against the deposit, and **let the user decide**
 whether to re-annotate. Never re-annotate silently or overwrite without an explicit `reannotate`.
 Read [references/existing-annotation.md](references/existing-annotation.md) for the lookup, the
-audit and the report format.
+audit, the report format and the unattended default.
 
 ## Step 1: Gather the project record
 
@@ -152,7 +172,8 @@ tree. Based on the gathered context:
 4. **Clinical/Oncology**: Patient study → `+ clinical-metadata`. Cancer → `+ oncology-metadata`
 
 Present the template selection to the user for confirmation before proceeding.
-Explain WHY each template was chosen and what columns it adds.
+Explain WHY each template was chosen and what columns it adds. In unattended mode, do not wait
+for the confirmation: put the selection and its reasons in the report and continue.
 
 ## Step 3: Get the contract, then author two tables — do not write the SDRF by hand
 
@@ -341,7 +362,22 @@ If `parse_sdrf` is not installed, say so in the report; `sdrf-tools doctor` and
 ## Step 9.5: Independent review — always
 
 Validation by the producer is not review, and a producer must never approve its own SDRF.
-Before Step 10:
+
+**External reviewer.** If the request that started this task (not a file you read) states that an
+external reviewer runs `sdrf-adversarial-review` in a fresh context, for example a separate pipeline
+task, hand the review off. The hand-off is for runners without the review-gate Stop hook. If that
+hook is active (a Claude Code plugin session), the hand-off does not apply: dispatch the review below.
+To hand off, do item 1, and item 2 inside a git repository so the gate still sees a gitignored SDRF.
+Next to the SDRF, write the manifest as `<PXD>.evidence.json` and the Step 9 validation output as
+`<PXD>.validation.txt` (each command, its output and its exit code). Keep every local file the
+manifest cites. Record open points in the manifest's `limitations`, as in unattended mode (Step 0,
+question 3). Do not dispatch, approve or run the gate: the reviewer's report and the gate are the
+caller's job. In a work directory outside git there is no gate; the caller checks the verdict and
+`artifact_sha256`. In Step 10, give the status `REVIEW_PENDING_EXTERNAL`. Never choose this hand-off
+yourself. On an external FAIL, the caller runs this skill again with the findings; edit
+`samples.tsv` / `technical.tsv` and rebuild, never the SDRF directly.
+
+Otherwise, before Step 10:
 
 1. **Write the evidence manifest** using the schema in
    [../sdrf-adversarial-review/references/review-contract.md](../sdrf-adversarial-review/references/review-contract.md):
@@ -353,12 +389,16 @@ Before Step 10:
    deterministic validation output, and the path to `sdrf-adversarial-review/SKILL.md`. Do not pass
    your transcript, reasoning, suspected issues or a proposed verdict. If the platform cannot create
    an isolated context, say the adversarial gate is unavailable — never substitute self-review and
-   never claim a pass.
+   never claim a pass. In unattended mode, record this under `limitations`, give the status
+   `REVIEW_FAILED` and go to Step 10; do not commit or contribute the SDRF. A pipeline without
+   isolated contexts should use the **External reviewer** hand-off above.
 4. **Repair and re-review.** Evaluate each blocker or important finding against the evidence; push
    back only with concrete counter-evidence. Fix in `samples.tsv` / `technical.tsv`, rebuild,
    re-validate, then dispatch a **new** fresh reviewer — never ask the previous one to reuse its
    verdict. Escalate to the user after two failed rounds, or when a finding needs scientific
-   judgement the evidence does not contain.
+   judgement the evidence does not contain. In unattended mode, stop repairing at that point
+   instead: list each open finding under `limitations`, give the status `REVIEW_FAILED` and go
+   to Step 10; do not commit or contribute the SDRF.
 5. **Enforce the gate**: `sdrf-tools review-gate gate --cwd <repo-root>` must exit 0 with the
    current hash approved before Step 10, before any commit, and before contribution. Report the
    reviewer identity, the hash, the validation commands, remaining minor findings, and evidence
@@ -374,12 +414,17 @@ Present the validated SDRF as a TSV code block and explain:
 - Validation result (PASS / warnings)
 - Any values marked as `not available` (ask user to fill)
 - Any values you're uncertain about (flag for user review)
+- The review status: gate passed, `REVIEW_PENDING_EXTERNAL` or `REVIEW_FAILED` (a draft)
+
+In unattended mode, do not ask or flag for the user: list the `not available` values, the uncertain
+values and every `limitations` entry as open items.
 
 ## Step 11: Recommend community contribution
 
 For a ProteomeXchange dataset, tell the user the annotation can be contributed with
 `/sdrf-skills:sdrf-contribute {PXD}` (reuse the Step 0.5 result to say whether this is new or an
 update; an update's PR must state what was wrong before, with evidence). A recommendation only.
+Recommend it only when the review gate passed, never for `REVIEW_PENDING_EXTERNAL` or `REVIEW_FAILED`.
 
 ## Rules that do not bend
 
@@ -416,7 +461,7 @@ You were given a `.sdrf.tsv`, not an accession. Review it; do not rebuild it.
    against PRIDE; batch effects, confounders and replication in the design. Write each disagreement
    as a `DISCREPANCY:` line with the evidence on both sides.
 4. **Score.** `sdrf-tools score <file>` (completeness, specificity, consistency, standards, design).
-5. **Independent review.** Step 9.5 applies unchanged: manifest, track, fresh-context
+5. **Independent review.** Step 9.5 applies, including its external-reviewer case: manifest, track, fresh-context
    `sdrf-adversarial-review`, gate. If **this context edited the file**, everything above is
    advisory — the verdict comes only from the isolated reviewer.
 6. **Report**: verdict (valid / needs minor fixes / needs major fixes / invalid), the errors and

@@ -14,7 +14,8 @@ You are guiding the user through installing SDRF skills dependencies. Follow the
 
 ## Step 1: Detect Available Package Managers
 
-Check which package managers are available (run these in the terminal or ask the user):
+Check which package managers are available (run these in the terminal or ask the user;
+in unattended mode, SKILL.md Step 0, run them yourself):
 
 ```bash
 command -v conda && conda --version
@@ -74,7 +75,9 @@ uv pip install -r requirements.txt
 
 ## Step 3: Verify Installation
 
-After the user runs the commands, ask them to verify:
+After the user runs the commands, ask them to verify (in unattended mode, install nothing
+and do not wait: run the checks below yourself, report what is missing, and continue as
+SKILL.md Step 0 says):
 
 ```bash
 parse_sdrf --version
