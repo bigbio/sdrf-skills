@@ -193,7 +193,8 @@ do NOT search for a paper. Stop and ask the user:
 > PRIDE metadata only and mark affected columns as `not available`."
 
 In unattended mode (SKILL.md Step 0), do not stop: take the second branch (PRIDE metadata
-only, affected columns `not available`) and record the missing paper under `limitations`.
+only) and record the missing paper under `limitations`. Write `not available` only where the term
+allows it (TERMS.tsv `allow_not_available`); list any other affected column under `limitations`.
 
 Rule: whenever Europe PMC full text XML would otherwise be requested, always use
 `scripts/europepmc_fulltext.py` to normalize the article first. Do not pass raw

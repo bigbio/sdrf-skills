@@ -80,11 +80,12 @@ and do not wait: run the checks below yourself, report what is missing, and cont
 SKILL.md Step 0 says):
 
 ```bash
+sdrf-tools --help
 parse_sdrf --version
 techsdrf --version
 ```
 
-If both succeed, setup is complete.
+If all three succeed, setup is complete.
 
 ## Step 4: Optional — Spec Submodule
 

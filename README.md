@@ -64,8 +64,8 @@ conda env create -f environment.yml && conda activate sdrf-skills
 #   pip install -r requirements.txt && pip install git+https://github.com/bigbio/techsdrf.git
 
 # 3. Point the skills at this checkout (they resolve spec/, tools/ and data/ against it).
-#    Put this in your shell profile (or ENV in a container image) so later shells and agents see it:
-export SDRF_SKILLS_ROOT="$PWD"
+#    Run from the checkout; this writes its absolute path to your shell profile (in an image, use ENV):
+echo "export SDRF_SKILLS_ROOT=\"$PWD\"" >> ~/.bashrc
 ```
 
 Update the bundled spec any time with `git submodule update --remote --recursive`.
