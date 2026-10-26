@@ -13,7 +13,7 @@ import pytest
 
 # ---------------------------------------------------------------------------
 # Stub out optional heavy dependencies so the module can be loaded in CI
-# (CI installs only requests + pytest; fastmcp and httpx are not present).
+# (fastmcp and httpx come only with the [mcp] extra).
 # ---------------------------------------------------------------------------
 
 def _make_stub_modules():

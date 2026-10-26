@@ -1,0 +1,18 @@
+# The image copies only pyproject.toml, README.md, LICENSE, tools/, data/,
+# scripts/, spec/ and skills/ (see Dockerfile).
+**/.git
+**/__pycache__
+**/*.py[cod]
+**/*.egg-info
+**/.pytest_cache
+**/.ruff_cache
+.venv
+build
+dist
+results
+runs
+annotations
+examples
+tests
+mcp/pdf
+_upstream
