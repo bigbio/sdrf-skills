@@ -54,6 +54,8 @@ jobs:
           python -m tools benchmark --help
           python -m tools massive-files --help
           python -m tools verify --help
+          python -m tools ols --help
+          python -m tools fetch --help
           python -m tools cellline --help
           python -m tools bruker-dia --help
 

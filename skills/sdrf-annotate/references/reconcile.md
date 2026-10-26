@@ -24,9 +24,9 @@ Run the reconciler over the finished file before validating it:
 sdrf-tools reconcile <file.sdrf.tsv> --record <project.json> --accession <PXD>
 ```
 
-It reports a finding whenever the prose, the title or the run names disagree with what was
-written, and exits non-zero on a blocker. Treat each finding as a question to answer from the
-record, not a value to overwrite blindly.
+Use `--record evidence/pride.json` when it exists. It reports a finding whenever the prose,
+the title or the run names disagree with what was written, and exits non-zero on a blocker.
+Treat each finding as a question to answer from the record, not a value to overwrite blindly.
 
 **What to do with a finding.** Usually the right answer is a sentinel. `not available` is a
 result, not a failure: a wrong specific value is worse for reuse than an honest blank,
