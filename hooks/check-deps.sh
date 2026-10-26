@@ -10,6 +10,6 @@ if command -v parse_sdrf >/dev/null 2>&1; then
 else
   echo "SDRF skills loaded. Install dependencies for full functionality:"
   echo "  conda: conda env create -f \"$root/environment.yml\" && conda activate sdrf-skills"
-  echo "  pip:   pip install -r \"$root/requirements.txt\""
+  echo "  pip:   pip install -e \"$root[mcp]\""
   echo "Run `sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`) for guided installation."
 fi

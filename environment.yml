@@ -18,9 +18,6 @@ dependencies:
   - pyarrow             # tools/NPXtoSDRF.py
   - pip                 # explicit: conda warns if pip deps are listed without it
   - pip:
-    - -e .               # sdrf-tools console script: contract, build, check, fix, review gate
-    - requests>=2.28
-    - fastmcp>=3.4      # bundled MCP server (mcp/server.py), wired up via .mcp.json
-    - httpx>=0.28       # HTTP client used by mcp/server.py
+    - -e .[mcp]          # sdrf-tools console script + the bundled MCP server's deps (see pyproject.toml)
     - git+https://github.com/bigbio/techsdrf.git  # /sdrf:techrefine; not on PyPI or any conda channel
     # fallback if the git URL fails: git clone https://github.com/bigbio/techsdrf.git ../techsdrf && pip install ../techsdrf

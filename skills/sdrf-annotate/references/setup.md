@@ -10,7 +10,7 @@
 
 You are guiding the user through installing SDRF skills dependencies. Follow these steps.
 
-**In Cursor**: The user invokes this by asking "install SDRF dependencies" or similar (no ``sdrf-tools doctor` (install notes: `setup.md`)` slash command). Ensure `environment.yml` and `requirements.txt` exist at the workspace root; if not, suggest cloning the full sdrf-skills repo or copying those files.
+**In Cursor**: The user invokes this by asking "install SDRF dependencies" or similar (no ``sdrf-tools doctor` (install notes: `setup.md`)` slash command). Install from a full sdrf-skills checkout (`git clone --recurse-submodules https://github.com/bigbio/sdrf-skills`). Copying `environment.yml` or `requirements.txt` alone does not work, because both install the package from that checkout.
 
 ## Step 1: Detect Available Package Managers
 
@@ -37,7 +37,6 @@ Based on what's available, output the exact commands the user should run.
 # From the sdrf-skills project directory:
 conda env create -f environment.yml
 conda activate sdrf-skills
-pip install -e .            # the sdrf-tools console script (contract, build, check, fix, ...)
 ```
 
 If using **mamba** (faster):
@@ -52,9 +51,13 @@ conda activate sdrf-skills
 # From the sdrf-skills project directory:
 python -m venv .venv
 source .venv/bin/activate   # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-pip install -e .            # the sdrf-tools console script (contract, build, check, fix, ...)
+pip install -r requirements.txt   # the sdrf-tools console script + the bundled MCP server's deps
 ```
+
+`requirements.txt` installs the package with its `[mcp]` extra (`pip install -e '.[mcp]'`). Without
+the bundled MCP server, for example in a pipeline, `pip install -e .` installs only the core:
+`sdrf-tools`, `sdrf-pipelines` and their dependencies. Keep the install editable: the tools read
+`spec/` and `data/` from the checkout.
 
 Afterwards `sdrf-tools --help` must work from any directory; the skills call it that way, with no
 `PYTHONPATH` and no plugin-root variable.
@@ -100,10 +103,10 @@ not in the user's project. Resolve the directory first and show the user the rea
 ```bash
 echo "$CLAUDE_PLUGIN_ROOT"
 uv venv "$CLAUDE_PLUGIN_ROOT/.venv"
-uv pip install --python "$CLAUDE_PLUGIN_ROOT/.venv/bin/python" -r "$CLAUDE_PLUGIN_ROOT/requirements.txt"
+uv pip install --python "$CLAUDE_PLUGIN_ROOT/.venv/bin/python" -e "$CLAUDE_PLUGIN_ROOT[mcp]"
 ```
 
-(`python -m venv` + `pip install -r` works the same way if `uv` is unavailable.) Tell the user a
+(`python -m venv` + `pip install -e "$CLAUDE_PLUGIN_ROOT[mcp]"` works the same way if `uv` is unavailable.) Tell the user a
 plugin upgrade replaces that directory, so the venv has to be re-created afterwards. Without it the
 `sdrf-pride-pmc` server just fails to connect — the skills fall back to their other sources.
 
