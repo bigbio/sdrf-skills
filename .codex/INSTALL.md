@@ -8,6 +8,9 @@ First, ensure submodules are initialized and install dependencies:
 git submodule update --init --recursive
 conda env create -f environment.yml && conda activate sdrf-skills
 # Or: pip install -r requirements.txt
+# The skills resolve spec/, tools/ and data/ against SDRF_SKILLS_ROOT. Put this in your shell
+# profile (or ENV in a container image) so later shells and the agent see it:
+export SDRF_SKILLS_ROOT="$(pwd)"
 ```
 
 Symlink the skills and spec directories into your Codex agents skills path:
