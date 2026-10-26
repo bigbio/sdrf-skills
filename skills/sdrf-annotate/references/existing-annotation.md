@@ -5,6 +5,7 @@ Read when you have network access and a PXD accession. Skipped in offline mode.
 ## Step 0.5: Check whether the dataset is ALREADY annotated — STOP GATE
 
 > **Offline mode (Step 0):** skip this step — the community repository is not reachable, so there is nothing to check against.
+> Do not skip it after `sdrf-tools fetch`: that mode has the network.
 
 
 **Do this before any annotation work.** Annotating a dataset that is already

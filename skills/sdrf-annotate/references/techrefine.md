@@ -20,8 +20,8 @@ from PRIDE metadata or publications, which may be incomplete or inaccurate.
 ### 1.1 Verify techsdrf is installed
 ```bash
 techsdrf --version
-# If not installed:
-pip install techsdrf
+# If not installed (techsdrf is not on PyPI):
+pip install git+https://github.com/bigbio/techsdrf.git
 ```
 
 ### 1.2 Verify raw file converters (as needed)

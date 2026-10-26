@@ -11,6 +11,8 @@ If a **PXD accession** is provided:
 ### 1.1 Get PRIDE project metadata
 
 > **Offline mode (Step 0):** skip this step — the PRIDE record is already in `evidence/pride.json`; read that instead.
+>
+> **No MCP tools:** `sdrf-tools fetch PXD######` writes that record, the file list and the paper into `evidence/`.
 
 ```text
 Tool: get_project_details(project_accession="PXD######")
@@ -64,7 +66,8 @@ Extract: raw_file_names (for comment[data file]), rawfile_count,
          aspera_root_url (use for high-throughput bulk transfer)
 ```
 
-If MCP access is unavailable or incomplete, prefer the PRIDE Archive REST fallback:
+If MCP access is unavailable, `sdrf-tools fetch` (Step 0) already wrote this list to
+`evidence/files.json`. If MCP access is incomplete, prefer the PRIDE Archive REST fallback:
 ```text
 GET https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD######/files/all
 ```

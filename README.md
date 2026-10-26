@@ -35,7 +35,8 @@ directly as a separate task):
 
 ## Installation
 
-Then `pip install -e .` from the checkout gives you the `sdrf-tools` command, and `sdrf-tools doctor` checks `parse_sdrf`, `sdrf-tools`, the spec submodule and `techsdrf`,
+Then `pip install -e .` from the checkout gives you the `sdrf-tools` command (`pip install -e '.[mcp]'` adds the
+bundled MCP server's dependencies), and `sdrf-tools doctor` checks `parse_sdrf`, `sdrf-tools`, the spec submodule and `techsdrf`,
 and says what to install for anything missing.
 
 **Claude Code, in two lines** — no clone needed; the marketplace install fetches the `spec/`
@@ -65,10 +66,24 @@ conda env create -f environment.yml && conda activate sdrf-skills
 
 Update the bundled spec any time with `git submodule update --remote --recursive`.
 
-Running without a human (a pipeline or batch agent)? Set `SDRF_UNATTENDED=1`, or say so in the
-request: `sdrf-annotate` then never asks a question and records each open point in the evidence
-manifest's `limitations` and its final report. The review still runs inside the task. To hand it to
-a separate reviewer task, say so in the request; only the request can choose that hand-off.
+**Container image.** `ghcr.io/bigbio/sdrf-skills` holds the skills, the `spec/` submodule, `tools/`
+and `data/` at `/opt/sdrf-skills`, with `sdrf-tools`, `parse_sdrf`, `git`, `curl` and `jq` on `PATH`.
+`SDRF_SKILLS_ROOT` and `CLAUDE_PLUGIN_ROOT` point at `/opt/sdrf-skills`. The `parse_sdrf` ontology
+cache is included, so validation works offline and as any user. The image installs the core
+dependencies from `pyproject.toml` without the `[mcp]` extra, and has no `techsdrf`. Tags: `X.Y.Z`,
+`X.Y` and `latest` for each release, `main` for the tip of `main`, and `sha-<commit>` for every build.
+To release, push a tag `vX.Y.Z` that matches the `version` in `.claude-plugin/plugin.json`; the
+workflow refuses any other tag.
+
+```bash
+docker run --rm -v "$PWD":/data ghcr.io/bigbio/sdrf-skills:main sdrf-tools doctor
+docker run --rm -v "$PWD":/data ghcr.io/bigbio/sdrf-skills:main \
+  parse_sdrf validate-sdrf --sdrf_file file.sdrf.tsv --template ms-proteomics --template human
+```
+
+A pipeline can use it as the container of an agent task (Nextflow: `container 'ghcr.io/bigbio/sdrf-skills:<version>'`)
+and load the skills from `/opt/sdrf-skills/skills`, or use it as a base image
+(`FROM ghcr.io/bigbio/sdrf-skills:<version>`) and add the agent runtime. Pin the same version for the skills and the image.
 
 ## Setup by AI platform
 
@@ -94,7 +109,7 @@ helpers) and expects a virtualenv *next to the plugin*, so create it inside the 
 ``sdrf-tools doctor` (install notes: `sdrf-annotate/references/setup.md`)` prints the exact path for your install:
 
 ```bash
-uv venv "$PLUGIN_ROOT/.venv" && uv pip install --python "$PLUGIN_ROOT/.venv/bin/python" -r "$PLUGIN_ROOT/requirements.txt"
+uv venv "$PLUGIN_ROOT/.venv" && uv pip install --python "$PLUGIN_ROOT/.venv/bin/python" -e "$PLUGIN_ROOT[mcp]"
 ```
 
 Without it the server simply fails to connect; the skills fall back to their other sources.
@@ -137,6 +152,8 @@ sdrf-tools check  file.sdrf.tsv          # hallucinated terms / UNIMOD swaps
 sdrf-tools score  file.sdrf.tsv          # quality score (0-100, 5 dimensions)
 sdrf-tools fix    file.sdrf.tsv -o out.tsv
 sdrf-tools verify UNIMOD:1 --label Acetyl
+sdrf-tools ols "breast carcinoma" --ontology mondo  # label -> accession
+sdrf-tools fetch PXD000001               # PRIDE record, raw file list, paper -> evidence/ (no MCP needed)
 sdrf-tools review-gate gate              # enforce independent-review receipts
 sdrf-tools doctor                        # is everything installed?
 sdrf-tools search-params mqpar.xml       # mods, enzyme, tolerances from a deposited search file
