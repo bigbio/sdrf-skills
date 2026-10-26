@@ -3,7 +3,22 @@
 Use one JSON report per SDRF. Store temporary reports outside the worktree when
 possible; the gate copies the passing report into git-local state.
 
+The JSON Schemas in `tools/schemas/` (bundle root) define both files; this page
+explains them. Where the two disagree, the schema is right. Check a file before
+you hand it on:
+
+```bash
+sdrf-tools schema-check <PXD>.evidence.json   # also: every source_ids entry is in sources[].id
+sdrf-tools schema-check <report.json>         # a file with a verdict is a review report
+```
+
+`sdrf-tools schema-check --print-schema evidence-manifest` (or `review-report`)
+prints a schema when the bundle directory is not at hand.
+
 ## Evidence manifest
+
+Schema: `tools/schemas/evidence-manifest.schema.json`. The producer writes it
+next to the SDRF as `<PXD>.evidence.json`.
 
 ```json
 {
@@ -30,6 +45,9 @@ The manifest is provenance, not proof. Re-open cited sources and check that
 they support the stated granularity.
 
 ## Passing report
+
+Schema: `tools/schemas/review-report.schema.json`. `review-gate approve` also
+checks that `artifact` and `artifact_sha256` name the file on disk.
 
 ```json
 {

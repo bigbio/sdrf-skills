@@ -132,6 +132,8 @@ sdrf-tools score  file.sdrf.tsv          # quality score (0-100, 5 dimensions)
 sdrf-tools fix    file.sdrf.tsv -o out.tsv
 sdrf-tools verify UNIMOD:1 --label Acetyl
 sdrf-tools review-gate gate              # enforce independent-review receipts
+sdrf-tools schema-check PXD000001.evidence.json  # evidence manifest against its JSON Schema
+sdrf-tools manifest-coverage file.sdrf.tsv file.evidence.json  # columns with values but no evidence claim
 sdrf-tools doctor                        # is everything installed?
 sdrf-tools search-params mqpar.xml       # mods, enzyme, tolerances from a deposited search file
 sdrf-tools contract -t ms-proteomics -t human          # column contract of a template union

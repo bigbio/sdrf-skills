@@ -11,6 +11,8 @@ Usage:
   python -m tools massive-files <PXD|MSV|task>     # MassIVE raw/acquisition file resolver
   python -m tools iprox-files <PXD|IPX>            # iProX raw file resolver
   python -m tools review-gate <command>             # independent-review receipt gate
+  python -m tools schema-check <file.json>          # evidence manifest / review report vs. its JSON Schema
+  python -m tools manifest-coverage <sdrf> <manifest> # columns with values but no evidence claim
   python -m tools audit-existing <file.sdrf.tsv>    # audit an already-annotated dataset
   python -m tools bruker-dia <url|path>             # DIA windows from Bruker analysis.tdf
   python -m tools search-params <path> [--json]     # extract search parameters from engine config
@@ -176,6 +178,45 @@ def cmd_massive_files(args: argparse.Namespace) -> int:
     return run_cli(argv)
 
 
+def cmd_schema_check(args: argparse.Namespace) -> int:
+    import json
+
+    from tools.json_schema import SCHEMAS, manifest_errors
+    if args.print_schema:
+        if args.file:
+            print("error: --print-schema takes no file; run it on its own")
+            return 2
+        print(SCHEMAS[args.print_schema].read_text(encoding="utf-8"), end="")
+        return 0
+    if not args.file:
+        print("error: give a JSON file to check, or --print-schema <name>")
+        return 2
+    try:
+        document = json.loads(Path(args.file).read_text(encoding="utf-8-sig"))
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"error: cannot read {args.file}: {e}")
+        return 2
+    schema = args.schema or (
+        "review-report" if isinstance(document, dict) and "verdict" in document else "evidence-manifest"
+    )
+    if schema == "review-report":
+        from tools.review_gate import ReviewGateError, report_schema_errors
+        try:
+            errors = report_schema_errors(document)
+        except ReviewGateError as e:
+            print(f"error: {e}")
+            return 2
+    else:
+        errors = manifest_errors(document)
+    if not errors:
+        print(f"{args.file}: valid {schema}")
+        return 0
+    print(f"{args.file}: {len(errors)} problem(s) against the {schema} schema:")
+    for error in errors:
+        print(f"  - {error}")
+    return 1
+
+
 def cmd_iprox_files(args: argparse.Namespace) -> int:
     from tools.iprox_raw_files import run_cli
 
@@ -239,6 +280,20 @@ def cmd_review_gate(args: argparse.Namespace) -> int:
     from tools.review_gate import run_cli
 
     return run_cli(args.review_gate_args)
+
+
+def cmd_manifest_coverage(args: argparse.Namespace) -> int:
+    import json
+
+    from tools.manifest_coverage import check_coverage
+
+    try:
+        report = check_coverage(args.sdrf_file, args.manifest)
+    except (OSError, ValueError) as e:
+        print(f"error: {e}")
+        return 2
+    print(json.dumps(report.to_dict(), indent=2) if args.json else report.render())
+    return 0 if report.is_covered else 1
 
 
 def cmd_audit_existing(args: argparse.Namespace) -> int:
@@ -529,6 +584,26 @@ def main() -> None:
     )
     p.add_argument("review_gate_args", nargs=argparse.REMAINDER)
 
+    # schema-check
+    p = subparsers.add_parser(
+        "schema-check",
+        help="Check an evidence manifest or a review report against its JSON Schema (tools/schemas/)",
+    )
+    p.add_argument("file", nargs="?", help="JSON file to check")
+    p.add_argument("--schema", choices=["evidence-manifest", "review-report"], default=None,
+                   help="Schema to check against (default: review-report if the file has a verdict)")
+    p.add_argument("--print-schema", choices=["evidence-manifest", "review-report"], default=None,
+                   help="Print this schema instead of checking a file")
+
+    # manifest-coverage
+    p = subparsers.add_parser(
+        "manifest-coverage",
+        help="List SDRF columns with non-reserved values that no evidence-manifest claim covers",
+    )
+    p.add_argument("sdrf_file")
+    p.add_argument("manifest", help="Evidence manifest JSON (sdrf-adversarial-review contract)")
+    p.add_argument("--json", action="store_true", help="Machine-readable output")
+
     # reconcile
     p = subparsers.add_parser(
         "reconcile",
@@ -626,6 +701,8 @@ def main() -> None:
         "cellline": cmd_cellline,
         "verify": cmd_verify,
         "review-gate": cmd_review_gate,
+        "schema-check": cmd_schema_check,
+        "manifest-coverage": cmd_manifest_coverage,
         "audit-existing": cmd_audit_existing,
         "curated": cmd_curated,
         "bruker-dia": cmd_bruker_dia,

@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SDRF review report",
+  "description": "The report an independent sdrf-adversarial-review reviewer writes. A FAIL report lists every blocking finding and marks each check that failed or could not run as fail. `sdrf-tools review-gate approve` accepts only a PASS report that matches this schema, names the artifact it approves, and carries that artifact's current SHA-256. Explanation: skills/sdrf-adversarial-review/references/review-contract.md.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact",
+    "artifact_sha256",
+    "verdict",
+    "summary",
+    "reviewer_context",
+    "checks",
+    "findings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "artifact": {
+      "description": "Repository-relative path of the reviewed SDRF.",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "artifact_sha256": {
+      "description": "SHA-256 of the SDRF content frozen at the start of the review (CRLF folded to LF).",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "reviewer_context": {
+      "type": "object",
+      "required": [
+        "independent",
+        "context"
+      ],
+      "properties": {
+        "independent": {
+          "const": true
+        },
+        "context": {
+          "description": "How the reviewer was isolated from the producer.",
+          "type": "string",
+          "pattern": "\\S"
+        }
+      }
+    },
+    "evidence_manifest": {
+      "description": "Path of the evidence manifest the reviewer was given; omit when there was none.",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "checks": {
+      "description": "One entry per falsification pass. Further checks may be added.",
+      "type": "object",
+      "required": [
+        "spec_compliance",
+        "ontology_integrity",
+        "source_evidence",
+        "file_mapping",
+        "design_consistency",
+        "omission_safety",
+        "deterministic_validation"
+      ],
+      "properties": {
+        "spec_compliance": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        },
+        "ontology_integrity": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        },
+        "source_evidence": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "not_applicable",
+                "fail"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        },
+        "file_mapping": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "not_applicable",
+                "fail"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        },
+        "design_consistency": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "not_applicable",
+                "fail"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        },
+        "omission_safety": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        },
+        "deterministic_validation": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        }
+      }
+    },
+    "findings": {
+      "description": "Findings the producer must address. Severity is read case-insensitively by the gate.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "severity",
+          "category",
+          "location",
+          "message",
+          "evidence"
+        ],
+        "properties": {
+          "severity": {
+            "enum": [
+              "blocker",
+              "important",
+              "minor"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "location": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "message": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "evidence": {
+            "type": "string",
+            "pattern": "\\S"
+          }
+        }
+      }
+    }
+  },
+  "if": {
+    "properties": {
+      "verdict": {
+        "const": "PASS"
+      }
+    },
+    "required": [
+      "verdict"
+    ]
+  },
+  "then": {
+    "description": "A PASS report: every required check passes (or is not applicable where allowed), and only minor findings remain.",
+    "properties": {
+      "checks": {
+        "properties": {
+          "spec_compliance": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pass"
+                ]
+              }
+            }
+          },
+          "ontology_integrity": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pass"
+                ]
+              }
+            }
+          },
+          "source_evidence": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pass",
+                  "not_applicable"
+                ]
+              }
+            }
+          },
+          "file_mapping": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pass",
+                  "not_applicable"
+                ]
+              }
+            }
+          },
+          "design_consistency": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pass",
+                  "not_applicable"
+                ]
+              }
+            }
+          },
+          "omission_safety": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pass"
+                ]
+              }
+            }
+          },
+          "deterministic_validation": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pass"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "findings": {
+        "items": {
+          "properties": {
+            "severity": {
+              "enum": [
+                "minor"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

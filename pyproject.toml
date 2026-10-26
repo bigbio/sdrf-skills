@@ -16,3 +16,6 @@ sdrf-tools = "tools.cli:main"
 
 [tool.setuptools]
 packages = ["tools"]
+
+[tool.setuptools.package-data]
+tools = ["schemas/*.json"]

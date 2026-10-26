@@ -13,6 +13,7 @@ keeps it usable from Claude Code, other assistants, CI, and a plain shell alike.
 from __future__ import annotations
 
 import argparse
+import functools
 import hashlib
 import json
 import os
@@ -25,6 +26,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Iterator
 
+if __package__:
+    from .json_schema import load_schema, schema_errors
+else:  # run as a script (the Stop hook): the sibling module, never another installed `tools`
+    from json_schema import load_schema, schema_errors
+
 
 SCHEMA_VERSION = 1
 DELETED_DIGEST = "deleted"
@@ -34,15 +40,6 @@ PLUGIN_ROOT = Path(__file__).resolve().parent.parent
 REVIEWER_SKILL = PLUGIN_ROOT / "skills" / "sdrf-adversarial-review" / "SKILL.md"
 #: Refs tried, in order, when resolving what counts as already-reviewed content.
 BASELINE_CANDIDATES = ("@{upstream}", "origin/HEAD", "origin/main", "origin/master", "main", "master")
-REQUIRED_CHECKS = {
-    "spec_compliance": {"pass"},
-    "ontology_integrity": {"pass"},
-    "source_evidence": {"pass", "not_applicable"},
-    "file_mapping": {"pass", "not_applicable"},
-    "design_consistency": {"pass", "not_applicable"},
-    "omission_safety": {"pass"},
-    "deterministic_validation": {"pass"},
-}
 BLOCKING_SEVERITIES = {"blocker", "important"}
 LOCK_TIMEOUT_SECONDS = 10
 STALE_LOCK_SECONDS = 60
@@ -50,6 +47,31 @@ STALE_LOCK_SECONDS = 60
 
 class ReviewGateError(ValueError):
     """Raised when an artifact path or a submitted report is invalid."""
+
+
+@functools.cache
+def report_schema() -> dict[str, Any]:
+    """The review-report schema, loaded on first use so that only approval depends on it."""
+    try:
+        return load_schema("review-report")
+    except (OSError, ValueError) as exc:
+        raise ReviewGateError(f"Cannot load the review report schema: {exc}") from exc
+
+
+def required_checks() -> dict[str, set[str]]:
+    """Check name -> statuses a PASS report may give it."""
+    schema = report_schema()
+    pass_checks = schema["then"]["properties"]["checks"]["properties"]
+    return {
+        name: set(pass_checks[name]["properties"]["status"]["enum"])
+        for name in schema["properties"]["checks"]["required"]
+    }
+
+
+def __getattr__(name: str) -> Any:
+    if name == "REQUIRED_CHECKS":
+        return required_checks()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 def _utc_now() -> str:
@@ -367,66 +389,39 @@ def review_status(cwd: str | Path | None = None, *, baseline: str | None = None)
     }
 
 
+def report_schema_errors(report: Any) -> list[str]:
+    """Check a review report against tools/schemas/review-report.schema.json."""
+    if isinstance(report, dict) and isinstance(report.get("findings"), list):
+        # Severity is matched case-insensitively, as the gate always has.
+        report = {
+            **report,
+            "findings": [
+                {**f, "severity": f["severity"].lower()}
+                if isinstance(f, dict) and isinstance(f.get("severity"), str) else f
+                for f in report["findings"]
+            ],
+        }
+    return schema_errors(report_schema(), report)
+
+
 def validate_report(report: dict[str, Any], artifact: str, digest: str) -> None:
-    errors: list[str] = []
-    if report.get("schema_version") != SCHEMA_VERSION:
-        errors.append(f"schema_version must be {SCHEMA_VERSION}")
-    if report.get("artifact") != artifact:
-        errors.append(f"artifact must be '{artifact}'")
-    report_digest = str(report.get("artifact_sha256", "")).strip()
-    if not report_digest:
-        errors.append("artifact_sha256 is required and must be the digest of the reviewed content")
-    elif report_digest != digest:
-        errors.append(
-            f"artifact_sha256 {report_digest} is not the current artifact {digest}; "
-            "the artifact changed after review and must be re-reviewed"
-        )
+    errors = report_schema_errors(report)
     if report.get("verdict") != "PASS":
         errors.append("verdict must be PASS")
-    if not str(report.get("summary", "")).strip():
-        errors.append("summary is required")
-
-    reviewer_context = report.get("reviewer_context")
-    if not isinstance(reviewer_context, dict):
-        errors.append("reviewer_context is required")
-    else:
-        if reviewer_context.get("independent") is not True:
-            errors.append("reviewer_context.independent must be true")
-        if not str(reviewer_context.get("context", "")).strip():
-            errors.append("reviewer_context.context is required")
-
+    reported_artifact = report.get("artifact")
+    if isinstance(reported_artifact, str) and reported_artifact.strip() and reported_artifact != artifact:
+        errors.append(f"artifact must be '{artifact}'")
+    report_digest = report.get("artifact_sha256")
+    if isinstance(report_digest, str) and report_digest.strip() and report_digest.strip() != digest:
+        errors.append(
+            f"artifact_sha256 {report_digest.strip()} is not the current artifact {digest}; "
+            "the artifact changed after review and must be re-reviewed"
+        )
     findings = report.get("findings")
-    if not isinstance(findings, list):
-        errors.append("findings must be a list")
-    else:
-        for index, finding in enumerate(findings):
-            if not isinstance(finding, dict):
-                errors.append(f"findings[{index}] must be an object")
-                continue
-            severity = str(finding.get("severity", "")).lower()
-            if severity not in {"blocker", "important", "minor"}:
-                errors.append(f"findings[{index}].severity is invalid")
-            if severity in BLOCKING_SEVERITIES:
-                errors.append(f"findings[{index}] is unresolved {severity}")
-            for field in ("category", "location", "message", "evidence"):
-                if not str(finding.get(field, "")).strip():
-                    errors.append(f"findings[{index}].{field} is required")
-
-    checks = report.get("checks")
-    if not isinstance(checks, dict):
-        errors.append("checks must be an object")
-    else:
-        for name, allowed_statuses in REQUIRED_CHECKS.items():
-            check = checks.get(name)
-            if not isinstance(check, dict):
-                errors.append(f"checks.{name} is required")
-                continue
-            status = str(check.get("status", ""))
-            if status not in allowed_statuses:
-                allowed = ", ".join(sorted(allowed_statuses))
-                errors.append(f"checks.{name}.status must be one of: {allowed}")
-            if not str(check.get("evidence", "")).strip():
-                errors.append(f"checks.{name}.evidence is required")
+    for index, finding in enumerate(findings if isinstance(findings, list) else []):
+        severity = finding.get("severity") if isinstance(finding, dict) else None
+        if isinstance(severity, str) and severity.lower() in BLOCKING_SEVERITIES:
+            errors.append(f"findings[{index}] is unresolved {severity.lower()}")
     if errors:
         raise ReviewGateError("Invalid review report:\n- " + "\n- ".join(errors))
 

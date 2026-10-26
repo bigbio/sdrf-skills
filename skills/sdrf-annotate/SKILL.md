@@ -111,6 +111,24 @@ by an unrelated paper).
    PMC `supplementaryFiles` has returned another paper's `mmc*.xlsx`; `efetch`
    with `id=PMC…` silently returns a different article — use the numeric id.)
 
+## Output files
+
+An annotation of `<PXD>` writes these files to the working directory. `<PXD>` is the dataset
+accession as deposited (`PXD…`, `MSV…`, `IPX…`); without one, use a short name for the study. A
+caller may give other names; then use those everywhere below.
+
+| file | content |
+|---|---|
+| `<PXD>.sdrf.tsv` | the SDRF, written only by `sdrf-tools build` (Step 6) |
+| `<PXD>.validation.txt` | each Step 9 validation command, its output and its exit code |
+| `<PXD>.evidence.json` | the evidence manifest (Step 9.5); schema: `sdrf-tools schema-check --print-schema evidence-manifest` |
+| `<PXD>.report.md` | the final report (Step 10); written also when no SDRF could be built |
+
+`samples.tsv` and `technical.tsv` (Steps 3-5) are working files, not outputs. Keep them until the
+review passes, because every fix edits them and rebuilds. `evidence/` holds the project record
+(`pride.json`, `files.json`, `manuscript.txt`) that the manifest cites. In offline mode it is
+input: do not change it.
+
 ## Step 0.5: Is the dataset already annotated? — STOP GATE
 
 > **Offline mode (Step 0):** skip — the community repository is not reachable.
@@ -245,7 +263,7 @@ files with `techsdrf`.
 ```bash
 sdrf-tools build \
   --samples samples.tsv --technical technical.tsv --files evidence/files.json \
-  -t <template1> [-t <template2> ...] -o output.sdrf.tsv
+  -t <template1> [-t <template2> ...] -o <PXD>.sdrf.tsv
 ```
 
 `build` assigns one row per (source, file); `comment[fraction identifier]` from the position
@@ -257,7 +275,7 @@ multiplexed, by one row per channel).
 If `build` refuses, it names the table and row. Fix that row and run it again. It refuses,
 rather than guesses, an incomplete channel map (6.1). **If `build` cannot be run at all** — the
 command is denied or the tools are missing — stop, keep `samples.tsv` and `technical.tsv`, and say
-so in the report. Do not write `output.sdrf.tsv` by hand: a hand-written file is exactly what
+so in the report. Do not write `<PXD>.sdrf.tsv` by hand: a hand-written file is exactly what
 this step exists to prevent, and on a large dataset it will not even fit in one response.
 
 ### 6.1 Multiplexed: exhaust every source of the channel→sample map before BLOCKING
@@ -311,17 +329,18 @@ Read [references/reconcile.md](references/reconcile.md) for the reasoning and th
 ## Step 9: Validate — at most two rounds, fixes go to the tables
 
 ```bash
-parse_sdrf validate-sdrf -s output.sdrf.tsv -t <template1> [-t <template2> ...]
+parse_sdrf validate-sdrf -s <PXD>.sdrf.tsv -t <template1> [-t <template2> ...]
 ```
 Add `--use_ols_cache_only` when there is no network. Use the templates from Step 2; several
-`-t` flags validate against their union. Then run `sdrf-tools structure output.sdrf.tsv` and
-`parse_sdrf convert-openms -s output.sdrf.tsv -t2` in a scratch directory: the conversion
+`-t` flags validate against their union. Then run `sdrf-tools structure <PXD>.sdrf.tsv` and
+`parse_sdrf convert-openms -s <PXD>.sdrf.tsv -t2` in a scratch directory: the conversion
 quantms performs rejects files that validate cleanly (see
-[references/validation.md](references/validation.md)).
+[references/validation.md](references/validation.md)). Append each command, its output and its
+exit code to `<PXD>.validation.txt`, every round.
 
 If it reports errors:
 1. Change the offending **value in `samples.tsv` or `technical.tsv`** — never `Edit`
-   `output.sdrf.tsv`, and do not read it back; the tables are the source, the SDRF is output.
+   `<PXD>.sdrf.tsv`, and do not read it back; the tables are the source, the SDRF is output.
 2. Run `build` again (Step 6), then validate again.
 3. **Stop after the second validation.** If errors remain, list them verbatim in the report
    (Step 10) with what you tried. Two rounds is the budget; a third rarely converges and the
@@ -335,14 +354,23 @@ If `parse_sdrf` is not installed, say so in the report; `sdrf-tools doctor` and
 Validation by the producer is not review, and a producer must never approve its own SDRF.
 Before Step 10:
 
-1. **Write the evidence manifest** using the schema in
-   [../sdrf-adversarial-review/references/review-contract.md](../sdrf-adversarial-review/references/review-contract.md):
-   exact source URLs or local paths, each claim mapped to a column or row, unavailable evidence
-   marked as such. Do not invent citations.
+1. **Write the evidence manifest** `<PXD>.evidence.json` to the schema that
+   `sdrf-tools schema-check --print-schema evidence-manifest` prints (fields explained in
+   [../sdrf-adversarial-review/references/review-contract.md](../sdrf-adversarial-review/references/review-contract.md)):
+   exact source URLs or local paths, every claim's `location` naming the column header and then
+   the rows, unavailable evidence marked as such. Do not invent citations. Then run two checks:
+   1. `sdrf-tools schema-check <PXD>.evidence.json` must pass. It checks the manifest's shape.
+   2. `sdrf-tools manifest-coverage <file.sdrf.tsv> <PXD>.evidence.json` must exit 0. It lists each
+      column that holds a value other than `not available` / `not applicable` and that no claim
+      names. `pooled` and `anonymized` assert something about the sample, so they need a claim too.
+      The reviewer can fail `omission_safety` on such a gap. For each gap, add a claim that cites the
+      source of the value. Use a reserved word only when no source supports the value. If you change
+      a value, fix it in `samples.tsv` / `technical.tsv`, rebuild (Step 6), re-run Step 9, then
+      re-run both checks.
 2. **Track the artifact**: `sdrf-tools review-gate track <file.sdrf.tsv> --cwd <repo-root>`.
 3. **Dispatch a fresh, isolated context** (subagent, hook agent, or equivalent) with only: the
-   original request, the SDRF path, the manifest path, the spec root and revision, the
-   deterministic validation output, and the path to `sdrf-adversarial-review/SKILL.md`. Do not pass
+   original request, the SDRF path, the manifest path, the spec root and revision,
+   `<PXD>.validation.txt`, and the path to `sdrf-adversarial-review/SKILL.md`. Do not pass
    your transcript, reasoning, suspected issues or a proposed verdict. If the platform cannot create
    an isolated context, say the adversarial gate is unavailable — never substitute self-review and
    never claim a pass.
@@ -358,7 +386,8 @@ Before Step 10:
 
 ## Step 10: Present Results
 
-Present the validated SDRF as a TSV code block and explain:
+Write the report to `<PXD>.report.md` and present the validated SDRF as a TSV code block. The
+report explains:
 - Total rows and columns
 - Sample groups and counts per group
 - Templates applied (with version)
@@ -366,6 +395,9 @@ Present the validated SDRF as a TSV code block and explain:
 - Validation result (PASS / warnings)
 - Any values marked as `not available` (ask user to fill)
 - Any values you're uncertain about (flag for user review)
+
+If no SDRF could be built, the report says why, which sources you exhausted, and what would
+unblock the dataset.
 
 ## Step 11: Recommend community contribution
 
