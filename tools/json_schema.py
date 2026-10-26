@@ -22,13 +22,15 @@ NON_BLANK = r"\S"
 _ANNOTATIONS = {"$schema", "$id", "$comment", "title", "description", "examples"}
 _SUPPORTED = {
     "type", "const", "enum", "properties", "required", "additionalProperties",
-    "items", "minItems", "minLength", "pattern", "if", "then",
+    "items", "minItems", "minLength", "pattern", "if", "then", "minimum", "maximum",
 }
 _TYPES = {
     "object": lambda v: isinstance(v, dict),
     "array": lambda v: isinstance(v, list),
     "string": lambda v: isinstance(v, str),
     "boolean": lambda v: isinstance(v, bool),
+    "integer": lambda v: isinstance(v, int) and not isinstance(v, bool),
+    "number": lambda v: isinstance(v, (int, float)) and not isinstance(v, bool),
     "null": lambda v: v is None,
 }
 
@@ -93,6 +95,11 @@ def schema_errors(schema: dict[str, Any], instance: Any, path: str = "") -> list
         pattern = schema.get("pattern")
         if pattern is not None and not re.search(pattern, instance):
             errors.append(f"{where} must not be blank" if pattern == NON_BLANK else f"{where} must match {pattern}")
+    if isinstance(instance, (int, float)) and not isinstance(instance, bool):
+        if "minimum" in schema and instance < schema["minimum"]:
+            errors.append(f"{where} must be at least {schema['minimum']}")
+        if "maximum" in schema and instance > schema["maximum"]:
+            errors.append(f"{where} must be at most {schema['maximum']}")
     if isinstance(instance, list):
         if len(instance) < schema.get("minItems", 0):
             errors.append(f"{where} must have at least {schema['minItems']} item(s)")

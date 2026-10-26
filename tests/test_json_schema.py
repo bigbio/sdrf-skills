@@ -108,6 +108,10 @@ BAD_REPORTS = {
     "findings not a list": lambda: _with(_report(), {}, "findings"),
     "blank evidence manifest path": lambda: _with(_report(), " ", "evidence_manifest"),
     "null evidence manifest path": lambda: _with(_report(), None, "evidence_manifest"),
+    "confidence above 1": lambda: _with(_report(), 1.5, "confidence"),
+    "boolean confidence": lambda: _with(_report(), True, "confidence"),
+    "coverage without deposited runs": lambda: _with(_report(), {"matched_runs": 3}, "coverage"),
+    "negative matched runs": lambda: _with(_report(), {"deposited_runs": 3, "matched_runs": -1}, "coverage"),
 }
 
 
@@ -172,7 +176,7 @@ def test_unsupported_keyword_is_refused_at_any_depth():
 
 @pytest.mark.parametrize(
     "schema,message",
-    [({"then": {"type": "string"}}, "'then' without 'if'"), ({"type": "integer"}, "Unsupported type")],
+    [({"then": {"type": "string"}}, "'then' without 'if'"), ({"type": "date"}, "Unsupported type")],
 )
 def test_schema_shapes_the_validator_cannot_honour_are_refused(schema, message):
     with pytest.raises(ValueError, match=message):
@@ -304,3 +308,9 @@ def test_cli_schema_check_prints_schema(name, monkeypatch, capsys):
 
 def test_cli_print_schema_refuses_a_file_argument(monkeypatch):
     assert _cli(monkeypatch, "--print-schema", "evidence-manifest", "x.json") == 2
+
+
+def test_optional_confidence_and_coverage_are_valid():
+    report = _with(_report(), 0.9, "confidence")
+    report = _with(report, {"deposited_runs": 4, "matched_runs": 4, "fraction": 1.0, "missing": []}, "coverage")
+    assert schema_errors(load_schema("review-report"), report) == []

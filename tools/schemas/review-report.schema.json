@@ -59,6 +59,54 @@
       "type": "string",
       "pattern": "\\S"
     },
+    "confidence": {
+      "description": "Optional. Support of the verdict by the checked evidence, 0 to 1.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "coverage": {
+      "description": "Optional. The coverage block of `sdrf-tools audit-existing --json`.",
+      "type": "object",
+      "required": [
+        "deposited_runs",
+        "matched_runs"
+      ],
+      "properties": {
+        "deposited_runs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "annotated_runs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "matched_runs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fraction": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "invented": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "checks": {
       "description": "One entry per falsification pass. Further checks may be added.",
       "type": "object",

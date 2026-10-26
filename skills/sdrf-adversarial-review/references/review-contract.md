@@ -49,6 +49,9 @@ they support the stated granularity.
 Schema: `tools/schemas/review-report.schema.json`. `review-gate approve` also
 checks that `artifact` and `artifact_sha256` name the file on disk.
 
+Optional: `confidence` (0 to 1, when the caller asks) and `coverage` (copied from
+`sdrf-tools audit-existing --json`).
+
 ```json
 {
   "schema_version": 1,
