@@ -100,6 +100,16 @@ class TestPRIDEClient:
         assert "Q Exactive" in proj.instruments
         assert proj.sample_count == 12
 
+    def test_raw_record_and_all_files(self):
+        client = PRIDEClient()
+        with patch.object(client, "_get", return_value={"accession": "PXD000001", "sampleProcessingProtocol": "p"}) as get:
+            assert client.get_project_record("PXD000001")["sampleProcessingProtocol"] == "p"
+            get.assert_called_once_with("/projects/PXD000001")
+        for payload in ([{"fileName": "a.raw"}], {"content": [{"fileName": "a.raw"}]}):
+            with patch.object(client, "_get", return_value=payload) as get:
+                assert client.get_all_files("PXD000001") == [{"fileName": "a.raw"}]
+                get.assert_called_once_with("/projects/PXD000001/files/all")
+
     def test_dataclass_defaults(self):
         proj = PRIDEProject(accession="PXD999999")
         assert proj.title == ""

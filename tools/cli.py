@@ -7,6 +7,8 @@ Usage:
   python -m tools fix <file.sdrf.tsv> [-o out]    # auto-fix
   python -m tools benchmark <PXD1> <file2> ...    # benchmark suite
   python -m tools verify <ACCESSION> [--label L]   # verify single term
+  python -m tools ols <query> [--ontology ONT]      # search OLS for a term
+  python -m tools fetch <PXD> [--out evidence]      # PRIDE record, file list, paper -> evidence/
   python -m tools cellline lookup <name>           # curated cell line lookup
   python -m tools massive-files <PXD|MSV|task>     # MassIVE raw/acquisition file resolver
   python -m tools iprox-files <PXD|IPX>            # iProX raw file resolver
@@ -133,6 +135,15 @@ def cmd_benchmark(args: argparse.Namespace) -> int:
 
 
 def cmd_verify(args: argparse.Namespace) -> int:
+    import requests
+    try:
+        return _verify(args)
+    except requests.RequestException as e:
+        print(f"OLS lookup failed: {e}", file=sys.stderr)
+        return 2
+
+
+def _verify(args: argparse.Namespace) -> int:
     from tools.ols_client import OLSClient
     client = OLSClient()
     if args.label:
@@ -159,6 +170,30 @@ def cmd_verify(args: argparse.Namespace) -> int:
             print(f"Accession {args.accession} not found in OLS")
             return 1
     return 0
+
+
+def cmd_ols(args: argparse.Namespace) -> int:
+    import requests
+
+    from tools.ols_client import OLSClient
+    ontology = ",".join(args.ontology) if args.ontology else None
+    try:
+        terms = OLSClient().search_term(args.query, ontology_id=ontology, exact=args.exact, rows=args.rows)
+    except requests.RequestException as e:
+        print(f"OLS search failed: {e}", file=sys.stderr)
+        return 2
+    if not terms:
+        print(f"no OLS match for '{args.query}'" + (f" in {ontology}" if ontology else ""))
+        return 1
+    for t in terms:
+        obsolete = "\tOBSOLETE" if t.is_obsolete else ""
+        print(f"{t.short_form.replace('_', ':', 1)}\t{t.label}\t{t.ontology_name}{obsolete}")
+    return 0
+
+
+def cmd_fetch(args: argparse.Namespace) -> int:
+    from tools.fetch_record import run
+    return run(args.accession, args.out, force=args.force)
 
 
 def cmd_massive_files(args: argparse.Namespace) -> int:
@@ -508,6 +543,24 @@ def main() -> None:
     p.add_argument("accession", help="e.g. UNIMOD:1, MS:1001911")
     p.add_argument("--label", help="Expected label to verify against")
 
+    # ols
+    p = subparsers.add_parser("ols", help="Search OLS for an ontology term (label -> accession)")
+    p.add_argument("query", help="e.g. 'breast carcinoma', 'Q Exactive HF-X'")
+    p.add_argument("--ontology", action="append", default=None,
+                   help="Restrict to an ontology id (repeatable), e.g. --ontology mondo --ontology efo")
+    p.add_argument("--exact", action="store_true", help="Exact label/synonym match only")
+    p.add_argument("--rows", type=int, default=10)
+
+    # fetch
+    p = subparsers.add_parser(
+        "fetch",
+        help="Fetch a PRIDE project record, raw file list and linked paper into evidence/ "
+             "(exit 2 = refused or a lookup failed; nothing was written)",
+    )
+    p.add_argument("accession", help="PXD accession")
+    p.add_argument("--out", default="evidence", help="Output directory (default: evidence)")
+    p.add_argument("--force", action="store_true", help="Replace an existing non-empty output directory")
+
     # cellline
     p = subparsers.add_parser("cellline", help="Cell line metadata lookup and annotation (curated subset)")
     cl_sub = p.add_subparsers(dest="cellline_command", required=True)
@@ -625,6 +678,8 @@ def main() -> None:
         "iprox-files": cmd_iprox_files,
         "cellline": cmd_cellline,
         "verify": cmd_verify,
+        "ols": cmd_ols,
+        "fetch": cmd_fetch,
         "review-gate": cmd_review_gate,
         "audit-existing": cmd_audit_existing,
         "curated": cmd_curated,

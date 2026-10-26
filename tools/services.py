@@ -300,6 +300,15 @@ class PRIDEClient(_BaseClient):
             sample_count=data.get("numAssays", 0),
         )
 
+    def get_project_record(self, accession: str) -> dict:
+        """The raw /projects/{acc} record; raises requests.RequestException on failure."""
+        return self._get(f"/projects/{accession}")
+
+    def get_all_files(self, accession: str) -> list[dict]:
+        """Every deposited file of a project in one call; raises requests.RequestException on failure."""
+        data = self._get(f"/projects/{accession}/files/all")
+        return data if isinstance(data, list) else data.get("content", [])
+
     def list_files(self, accession: str, page_size: int = 100) -> list[PRIDEFile]:
         """List files for a PRIDE project."""
         try:

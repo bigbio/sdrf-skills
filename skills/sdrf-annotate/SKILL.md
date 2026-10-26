@@ -40,6 +40,12 @@ answer: MCP tools for PRIDE/Europe PMC/OLS, and `parse_sdrf` on the PATH. Do not
 later. If a class of lookup is missing, use the offline substitute named below instead of
 retrying it.
 
+**Network but no MCP tools?** Run `sdrf-tools fetch <PXD>` once and read the `evidence/` it
+writes in place of Steps 1.1-1.3. This is not offline mode: you still have the network, so run
+Step 0.5 (`sdrf-tools curated <PXD>`), look terms up with `sdrf-tools ols` and `sdrf-tools verify`,
+and validate with ontology checks. If `manuscript.txt` says `ABSTRACT ONLY`, try the 1.3 recovery
+routes. `files.json` gives each deposited file's URL. A failed fetch writes nothing; follow its message.
+
 If `parse_sdrf` is missing and you can reach the user, run `sdrf-tools doctor` and point them at
 [references/setup.md](references/setup.md) and ask whether to wait or
 continue with structural checks only. If you cannot ask, continue and say plainly in your
@@ -113,7 +119,8 @@ by an unrelated paper).
 
 ## Step 0.5: Is the dataset already annotated? — STOP GATE
 
-> **Offline mode (Step 0):** skip — the community repository is not reachable.
+> **Offline mode (Step 0):** skip — the community repository is not reachable. After
+> `sdrf-tools fetch` you are not offline: run this step.
 
 Before annotating a PXD, enumerate its directory in the community repository (it may hold
 several suffixed SDRFs), audit any existing file against the deposit, and **let the user decide**
@@ -302,8 +309,9 @@ deposit**. Before validating, run
 sdrf-tools reconcile <file.sdrf.tsv> --record <project.json> --accession <PXD>
 ```
 
-and treat each finding as a question to answer from the record. The usual right answer to a
-contradiction is a sentinel: a wrong specific value is worse for reuse than an honest blank.
+(`--record evidence/pride.json` when it exists) and treat each finding as a question to answer
+from the record. The usual right answer to a contradiction is a sentinel: a wrong specific value
+is worse for reuse than an honest blank.
 Read the title and the run names, never broadcast a project-level disease onto control rows,
 and check the file format against the instrument vendor.
 Read [references/reconcile.md](references/reconcile.md) for the reasoning and the four checks.
