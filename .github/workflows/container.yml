@@ -1,0 +1,113 @@
+name: Container Image
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Release tag matches plugin version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          plugin=$(jq -r .version .claude-plugin/plugin.json)
+          if [ "${GITHUB_REF_NAME#v}" != "$plugin" ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match .claude-plugin/plugin.json version $plugin"
+            exit 1
+          fi
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Image tags and labels
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          # v1.2.3 -> 1.2.3, 1.2 and latest; main -> main; every build -> sha-<short>
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha
+
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: VERSION=${{ steps.meta.outputs.version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke test
+        env:
+          IMAGE: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
+        run: |
+          docker run --rm "$IMAGE" sdrf-tools doctor
+          docker run --rm "$IMAGE" parse_sdrf --version
+          docker run --rm --network none -u 1000:1000 "$IMAGE" sdrf-tools cellline lookup HeLa
+          # The example has known errors; validation must still finish offline, as non-root, from the ontology cache.
+          out=$(docker run --rm --network none -u 1000:1000 -v "$PWD/examples:/data:ro" "$IMAGE" \
+            parse_sdrf validate-sdrf --sdrf_file PXD_synthetic.sdrf.tsv --template ms-proteomics --template human 2>&1) || true
+          echo "$out"
+          if grep -qE 'No ontology cache files|PermissionError' <<<"$out"; then exit 1; fi
+          grep -qE 'There were validation errors|Everything seems to be fine' <<<"$out"
+
+      - name: Save image
+        if: github.event_name != 'pull_request'
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
+        run: |
+          mapfile -t tags <<<"$TAGS"
+          docker save -o image.tar "${tags[@]}"
+
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: image
+          path: image.tar
+          retention-days: 1
+
+  push:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: image
+
+      - name: Load image
+        run: docker load -i image.tar
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push
+        env:
+          IMAGE: ghcr.io/${{ github.repository }}
+        run: docker push --all-tags "${IMAGE,,}"

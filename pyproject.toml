@@ -9,7 +9,17 @@ description = "Deterministic helpers behind the sdrf-skills workflows: contract,
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-dependencies = ["requests", "sdrf-pipelines[ontology]", "pyarrow>=14.0"]
+# Core: what tools/ and scripts/ need. A pipeline that does not run the MCP server stops here.
+dependencies = [
+    "requests>=2.28",
+    "sdrf-pipelines[ontology]",
+    "defusedxml>=0.7",   # scripts/europepmc_fulltext.py
+    "pyarrow>=14.0",     # tools/NPXtoSDRF.py
+]
+
+[project.optional-dependencies]
+# Bundled MCP server (mcp/server.py), wired up via .mcp.json
+mcp = ["fastmcp>=3.4", "httpx>=0.28"]
 
 [project.scripts]
 sdrf-tools = "tools.cli:main"

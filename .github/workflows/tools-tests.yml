@@ -9,6 +9,7 @@ on:
       - 'tests/**'
       - 'requirements.txt'
       - 'environment.yml'
+      - 'pyproject.toml'
   push:
     branches: [main]
     paths:
@@ -17,6 +18,7 @@ on:
       - 'tests/**'
       - 'requirements.txt'
       - 'environment.yml'
+      - 'pyproject.toml'
 
 jobs:
   test:
@@ -36,16 +38,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # sdrf-pipelines without the [ontology] extra: contract/build need its template registry only
-          # jsonschema: tests cross-check tools/json_schema.py against the reference validator
-          pip install requests>=2.28 pytest fastmcp>=3.4 httpx>=0.28 sdrf-pipelines jsonschema
+          pip install -e ".[mcp]" pytest
 
       - name: Run tests
         run: |
-          python -m pytest tests/ -v --tb=short
+          # the parse_sdrf round-trip downloads ontology files; keep CI offline
+          python -m pytest tests/ -v --tb=short -k 'not roundtrip_validates_with_parse_sdrf'
 
       - name: Verify CLI help (all subcommands)
         run: |
+          sdrf-tools --help
           python -m tools check --help
           python -m tools contract --help
           python -m tools build --help
@@ -55,6 +57,8 @@ jobs:
           python -m tools benchmark --help
           python -m tools massive-files --help
           python -m tools verify --help
+          python -m tools ols --help
+          python -m tools fetch --help
           python -m tools cellline --help
           python -m tools bruker-dia --help
           python -m tools schema-check --help
