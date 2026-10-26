@@ -55,7 +55,8 @@ set (no other value of the variable counts). Read it in the probe turn of questi
   ask, confirm, or let the user decide, take the unattended default it names. Where none is
   named, take the choice that writes no unverified value: a reserved word, the existing value
   kept, or the optional step skipped.
-- A choice the request already makes (for example `reannotate`) is the user's answer.
+- A choice the request already makes (for example `existing annotation: reannotate`) is the
+  user's answer. Step 0.5 lists the choices for a dataset that is already annotated.
 - Record each point you could not settle as one entry in the evidence manifest's `limitations`
   list (Step 9.5), and list it again in the final report.
 - Unattended mode does not hand off the review. Dispatch the Step 9.5 review yourself unless the

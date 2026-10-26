@@ -110,9 +110,15 @@ column they check, the audit reports that as a blocker rather than a skip.
 
 ### 0.5.3 Report and let the USER decide
 
-Present the finding and stop. Do not pick for them. In unattended mode (SKILL.md Step 0),
-a request that does not already choose `fix` or `reannotate` gets `leave`: report the audit
-and stop. No manifest exists yet at this point, so the report is the only record.
+Present the finding and stop. Do not pick for them.
+
+In unattended mode (SKILL.md Step 0), the caller chooses in the request, for example
+`existing annotation: reannotate`. The choices are `leave`, `fix`, `reannotate`, and
+`recommended`, which takes the recommendation below. A request without a choice gets `leave`:
+report the audit and stop. No manifest exists yet at this point, so the report is the only record.
+In unattended mode, `fix` and `reannotate` write the SDRF to the working directory and do not
+open a PR. Opening a PR is a separate step (`sdrf-contribute`), because a pipeline task must not
+change a shared repository.
 
 ```text
 {PXD} is already annotated in the community repository ({N} rows).
