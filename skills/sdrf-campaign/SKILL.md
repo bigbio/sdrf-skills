@@ -374,7 +374,7 @@ cohort description; per-sample `age`, `sex` and `ethnicity` need an individual-l
    An unattended campaign (sdrf-annotate Step 0 defines the mode) starts annotate in unattended mode.
 3. **Later rounds edit the tables, never the SDRF.** A refinement is a change to `samples.tsv` or
    `technical.tsv` followed by `sdrf-tools build`, validation and `reconcile`. Editing
-   `output.sdrf.tsv` directly is the structure-breaking path the build step exists to prevent.
+   `<PXD>.sdrf.tsv` directly is the structure-breaking path the build step exists to prevent.
 4. **Keep or discard** by 5.1. Record every discarded round and its reason.
 5. **Re-review when something was retained.** A retained round changed the file, so its receipt is
    void: dispatch a new fresh-context `sdrf-adversarial-review` as annotate's Step 9.5 describes.

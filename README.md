@@ -161,6 +161,8 @@ sdrf-tools verify UNIMOD:1 --label Acetyl
 sdrf-tools ols "breast carcinoma" --ontology mondo  # label -> accession
 sdrf-tools fetch PXD000001               # PRIDE record, raw file list, paper -> evidence/ (no MCP needed)
 sdrf-tools review-gate gate              # enforce independent-review receipts
+sdrf-tools schema-check PXD000001.evidence.json  # evidence manifest against its JSON Schema
+sdrf-tools manifest-coverage file.sdrf.tsv file.evidence.json  # columns with values but no evidence claim
 sdrf-tools doctor                        # is everything installed?
 sdrf-tools search-params mqpar.xml       # mods, enzyme, tolerances from a deposited search file
 sdrf-tools contract -t ms-proteomics -t human          # column contract of a template union

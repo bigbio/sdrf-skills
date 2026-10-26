@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "artifact": "PXD074155.sdrf.tsv",
+  "dataset": "PXD074155",
+  "sources": [
+    {"id": "pride", "kind": "repository", "location": "https://www.ebi.ac.uk/pride/archive/projects/PXD074155"},
+    {"id": "paper", "kind": "publication", "location": "PMID:41085630"}
+  ],
+  "claims": [
+    {
+      "location": "characteristics[organism] rows 1-2",
+      "value": "Homo sapiens",
+      "source_ids": ["pride"],
+      "evidence": "Organism in the project record"
+    },
+    {
+      "location": "comment[instrument] rows 1-2",
+      "value": "timsTOF SCP",
+      "source_ids": ["pride", "paper"],
+      "evidence": "Instrument in the project record and Methods"
+    },
+    {
+      "location": "characteristics[organism part], characteristics[cell type] rows 1-2",
+      "value": "blood; monocyte-derived dendritic cell",
+      "source_ids": ["paper"],
+      "evidence": "Methods"
+    },
+    {
+      "location": "characteristics[mhc protein complex], characteristics[immunopeptidome enrichment method], characteristics[antibody enrichment] rows 1-2",
+      "value": "MHC class II protein complex; immunoaffinity purification; HLA-DR",
+      "source_ids": ["paper"],
+      "evidence": "Title and abstract"
+    },
+    {
+      "location": "comment[proteomics data acquisition method], comment[cleavage agent details] rows 1-2",
+      "value": "data-dependent acquisition; unspecific cleavage",
+      "source_ids": ["pride", "paper"],
+      "evidence": "Search output and Methods"
+    },
+    {
+      "location": "comment[modification parameters] rows 1-2",
+      "value": "Oxidation (Variable); Carbamidomethyl (Fixed)",
+      "source_ids": ["pride"],
+      "evidence": "Search output headers"
+    },
+    {
+      "location": "comment[data file], characteristics[biological replicate], comment[technical replicate], comment[fraction identifier], comment[label] rows 1-2",
+      "value": "one unfractionated label-free run per donor",
+      "source_ids": ["pride", "paper"],
+      "evidence": "PRIDE file list and Methods"
+    }
+  ],
+  "limitations": ["Age, sex and donor identifiers are not given per run"]
+}

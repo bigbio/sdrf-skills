@@ -39,7 +39,10 @@ deterministic validation output, and receives the findings and report.
    artifact's accession before you use it — verify identity, not just HTTP 200.
 
 Read [references/review-contract.md](references/review-contract.md) before
-writing the report or recording approval.
+writing the report or recording approval. The report must match
+`tools/schemas/review-report.schema.json`; the evidence manifest follows
+`tools/schemas/evidence-manifest.schema.json`. `sdrf-tools schema-check --print-schema
+<name>` prints either one, and `sdrf-tools schema-check <file>` checks a file against it.
 
 ## Review Workflow
 
