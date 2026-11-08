@@ -117,7 +117,7 @@
     "ols",
     "ipcheck"
    ],
-   "evidence": "Supp: \"HEK293T cells expressing either pRRL or HSP27FLAG\". BTO:0002181 label \"HEK-293T cell\" (campaign precedent PXD023136). No myeloid markers (MPO, ELANE, AZU1) detected, consistent with a non-myeloid line rather than PLB-985."
+   "evidence": "STATED in the Supplementary Methods (\"Interactome analysis of HSP27\"): \"HEK293T cells expressing either pRRL or HSP27FLAG were lysed ... anti-FLAG M2 agarose beads\". BTO:0002181 label \"HEK-293T cell\" (campaign precedent PXD023136). Consistent data: no myeloid markers (MPO, ELANE, AZU1, PRTN3) in any IP, while MPO/AZU1 are abundant in the PLB-985 SILAC data (hsp27_check.txt)."
   },
   {
    "location": "characteristics[organism], characteristics[organism part], characteristics[disease], characteristics[sex], characteristics[developmental stage], characteristics[material type] rows 1-12",

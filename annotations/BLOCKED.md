@@ -1498,3 +1498,93 @@ Before any of the blocked BioID2 raws are unblocked, confirm their identity agai
 - The deposited experiment-915 raws are dated 221119, but MaxQuant searched experiment 915 from files dated 261119; 221119 is experiment 916's date.
 - The experiment-350 raw names in the deposit differ from those in the MaxQuant search.
 - The same pattern already mislabelled the L-363 files (deposited as `HFPlus_136_L6`, actually search experiment 140; see above).
+
+## PXD023790 — HAX1 controls mitochondrial proteostasis (Fan et al., J Clin Invest 2022), 7 pulse-SILAC raws (partial block)
+
+**Blocker: for 7 triple-SILAC raws, the deposited data contradict the sample label (genotype or pulse time).** All evidence comes from `Fan_et_al_triple_SILAC_txt.7z` → `proteinGroups.txt` (MaxQuant 1.6.1.13). The submitter run sheet `SRDF_metadata_Fan_et_al.txt` marks all 7 runs "ok".
+
+| raw file (MaxQuant experiment) | label | contradicting data |
+|---|---|---|
+| `20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw` (2MITO_t6_H1) | HAX1-/- clone H1, mito, 6 h | HAX1 (O00165) identified by MS/MS, 8 peptides, Intensity L/M/H 1.1e9 / 5.2e8 / 1.9e8 (WT level). Clone H1 has HAX1 = 0 in its other 17 runs |
+| `20180612_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_t24_C1.raw` | CLPB-/- C1, cells, 24 h | median log2 H/M −2.78 (t0 level); same-mix 2MITO_t24_C1 −0.29 |
+| `20180612_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_t24_C2.raw` | CLPB-/- C2, cells, 24 h | −2.88; same-mix 2MITO_t24_C2 −0.19 |
+| `20180612_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_t24_C3.raw` | CLPB-/- C3, cells, 24 h | −2.52; same-mix 2MITO_t24_C3 −0.74 |
+| `20180612_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_t24_H3.raw` | HAX1-/- H3, cells, 24 h | −2.69; same-mix 2MITO_t24_H3 −0.28 |
+| `20180614_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_Repeat_t0_W1.raw` | WT W1, cells, 0 h | −0.58 (t24 level); same-mix 2MITO_t0_W1 −2.39 |
+| `20180614_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_Repeat_t0_W2.raw` | WT W2, cells, 0 h | −0.67 (t24 level); same-mix 2MITO_t0_W2 −2.45; 2X_CELLS_t0_W2 −2.61 |
+
+**Why H/M identifies the time point.** The supplementary methods take whole cells and mitochondria from the same heavy-pulsed + light mix at each time point, so a whole-cell run must match its same-mix mitochondria run. In the other 100 runs, including all 54 mitochondria runs, H/M agrees with the labelled time point (t0 ≈ −2.3 to −2.9; t24 ≈ −0.03 to −1.8).
+
+**Also not annotatable.** `20180312_QX8_MaMu_SA_PBL985_MITO_t0_H1` (experiment 1MITO_t0_H1) is in the MaxQuant search, but its raw file was never deposited in `Fan_et_al_Triple_SILAC_basis_raw.7z` (107 members).
+
+**Annotated.** The other 100 raws are in `annotations/PXD023790-silac.sdrf.tsv` (300 rows). The 12 HSP27 FLAG-IP raws are in `annotations/PXD023790-hsp27-ip.sdrf.tsv`.
+
+**Unblocked by:** an author statement, or a corrected sample sheet, giving the true sample and time point of these 7 runs (they may be swapped or re-used file names).
+
+## PXD044779 — Trichothiodystrophy MPLKIP interactome (SILAC GFP-Trap IP, MRC-5), UV and MMC experiments only (partial block)
+
+**Blocker: the light/heavy identities of the 'UV Complex' and 'MMC Complex' SILAC pull-downs are undocumented, and the deposited ratios show they do not follow the published map.**
+
+The 'Basal Complex' experiment (16 RAW, `1802_L_AlexPines_{high,low}_01..08`) is annotated in `annotations/PXD044779.sdrf.tsv` (light = MRC-5 parental, heavy = MRC-5 MPLKIP-GFP knock-in). The 12 `2427_*` RAW are label-free DIA, byte-identical to PXD044434, and are out of scope for this SILAC campaign (not blocked).
+
+| | |
+|---|---|
+| Publication | Theil AF *et al.*, EMBO Mol Med 2023 15(11):e17973, PMID:37800682, PMC10630875, doi:10.15252/emmm.202317973 (PMC OA full text read) |
+| Blocked | `1802_L_AlexPines_high_09` … `_high_24` and `1802_L_AlexPines_low_09` … `_low_24` (32 RAW, Orbitrap Fusion Lumos; MaxQuant 1.5.4.1 multiplicity 2, Labels1 Arg10;Lys8; experiments 'UV Complex' = 09-16, 'MMC Complex' = 17-24) |
+
+**What each source says:**
+
+| source | channel map |
+|---|---|
+| Paper Results, Fig 3A legend, Methods, PRIDE protocol | one SILAC experiment: light = MRC-5 parental (CTR), heavy = MRC-5 MPLKIP-GFP; no UV or MMC (mitomycin C?) treatment of SILAC cells is described anywhere |
+| `1802_summary.txt` | experiment names 'UV Complex' / 'MMC Complex' only; no channel or treatment description |
+| `1802_proteinGroups.txt`, Ratio H/L normalized | Basal: MPLKIP 21.4, DBR1 22.7, XAB2 21.6, ISY1 23.7 (heavy = bait, matches paper). UV: MPLKIP 0.64, DBR1 0.82, XAB2 0.47, ISY1 0.46. MMC: MPLKIP 0.97, DBR1 0.97, XAB2 7.3, ISY1 8.1. The bait is not enriched in heavy in either, so both channels likely carry MPLKIP-GFP (e.g. treated vs untreated) or a different control; which channel got which treatment, dose and time are unstated. |
+
+Sources checked: paper (full text incl. Methods, figure legends, Data availability), PRIDE v3 record and paginated file list (63 entries; no sample sheet, no mqpar/parameters), `1802_summary.txt`, `1802_proteinGroups.txt`, raw headers (instrument method only).
+
+**Unblocked by:** the authors stating, per experiment, the cell line, treatment (UV dose/time, MMC concentration/time) and SILAC label of each channel. The 32 runs (64 rows) would then be added to `PXD044779.sdrf.tsv` with the same search parameters as the Basal experiment.
+
+## PXD029618 — Podocyte injury in Fabry nephropathy (triple-SILAC GLA-KO vs WT podocytes), 20 raws of mixtures CFP910 / CFP911 (partial block)
+
+**Blocker: channel use and orientation of `20160120_VD_CFP910_sample_1_1..10.RAW` and `20160112_VD_CFP_911_2_01..10.raw` are undocumented.**
+
+| source | what it says |
+|---|---|
+| `txt.zip` (MaxQuant 1.4.1.2) `summary.txt` / `proteinGroups.txt` | only experiments #867_sample1/2 and #899_sample1/2 (40 raws); CFP910/CFP911 were not searched |
+| Paper Fig. 2A | 6 label-swap mixtures (KO vs WT clones, Arg6Lys4 vs Arg10Lys8), not tied to file names; its label identity already conflicts with the data for #899 (light+heavy, not medium+heavy) |
+| Paper Fig. 2B | 6 replicate columns; columns 1-4 match the four searched experiments; columns 5/6 presumably CFP910/CFP911, but which label carries KO, and whether light or medium was used, is not stated |
+| PRIDE protocol, supplementary PDF/xlsx | no label key or sample sheet |
+
+The 40 searched raws are annotated in `annotations/PXD029618.sdrf.tsv` (80 rows).
+
+**Unblocked by:** a MaxQuant search of the 20 raws (same parameters: Multiplicity 3, Arg6;Lys4 / Arg10;Lys8, Trypsin/P, Carbamidomethyl fixed, Oxidation + Acetyl N-term variable), then: channel intensity shares to find the two used labels, and the Fig. 2B column 5/6 match (scripts in the b5-PXD029618 scratch dir) for the KO/WT orientation. Or an author statement of the label per mixture.
+
+## PXD023136 — TMEM126A / complex I ND4-module (Formosa et al., PNAS 2021), 36 pulse-chase SILAC raws (partial block)
+
+**Blocker: per-run sample identity of the Fig 3F/3G pulse-chase SILAC runs `201119_Daniella_DH-1445_01.raw` … `_36.raw` is undocumented in every retrievable source.**
+
+| source | what it says |
+|---|---|
+| `Figure_3F_3G_TMEM126A_pulse_chaseSILAC.zip` (MaxQuant 1.6.10.43) `summary.txt` | Multiplicity 2, Labels1 Arg10;Lys8; experiment names are only `01` … `36` (one per raw); no cell line, time point or IP/input label. No mqpar/experimentalDesign in the zip. |
+| PRIDE dataProcessingProtocol | heavy intensities "normalised to the maximum value detected in the WT cell line at 4h pulse ... means plotted over time" — names a WT line and a time course, not which run is which |
+| bioRxiv v1 preprint (10.1101/2020.09.18.303255) | predates the experiment (raws acquired 2020-11-19; D.H. Hock is not an author of v1); no pulse-chase MS described |
+| PNAS 2021 (PMC8092609) full text, Fig 3F/3G legend, SI | not retrievable: PMC body not open access (efetch front matter only), Europe PMC fullTextXML HTTP 500, pnas.org and pmc.ncbi.nlm.nih.gov served bot checks (not bypassed), Unpaywall points only to the preprint |
+| raw headers | Orbitrap Eclipse, targeted method `Dani Target.meth` with heavy/light inclusion list of mtDNA-encoded peptides — instrument only |
+
+The other 9 raws are annotated: `annotations/PXD023136-silac.sdrf.tsv` (Fig 1B SILAC, 3 runs × 2 channels) and `annotations/PXD023136-aems-lfq.sdrf.tsv` (Fig 3B label-free Flag AE-MS, 6 runs).
+
+**Unblocked by:** the PNAS Fig 3F/3G legend + SI Methods (or an author sample sheet) mapping run 01–36 to cell line (WT / TMEM126A KO / Flag line), pulse or chase time and replicate (and whether runs are Flag eluates or whole mitochondria). Rows would then be one light (pre-existing) + one heavy (newly synthesised) row per run, as in PXD028934, with MaxQuant 1.6.10.43 search parameters (Carbamidomethyl fixed; Oxidation, Acetyl N-term variable; Arg10/Lys8 labels; FTMS 20 ppm).
+
+## PXD004666 — Accessory subunits of human mitochondrial complex I (HEK293T knockouts, SILAC + FLAG AP-MS), ACPOE runs only (partial block)
+
+**Blocked runs (6 of 489 RAW):** `091QEP120_O-171-ACPOE-LH_T1.raw`, `091QEP120_O-171-ACPOE-LH_T2.raw`, `092QEP120_O-172-ACPOE-LH_T1.raw`, `092QEP120_O-172-ACPOE-LH_T2.raw`, `093QEP120_O-173-ACPOE-LH_T1.raw`, `093QEP120_O-173-ACPOE-LH_T2.raw` (mitochondria, Q Exactive Plus, searched in `combined.zip` as experiments O-171/172/173-ACPOE-LH).
+
+**Blocker: the identity of the "ACPOE" cell line is not defined anywhere available.** The label orientation is documented (LH = the named line light, HEK293T control heavy; Supp Data column definitions and AP-MS headers), but the sample in the light channel is not:
+- Stroud et al., Nature 2016 (PMID 27626371): figure and Extended Data legends never mention ACPOE; the Methods are paywalled (not read).
+- Supplementary Data xlsx: only a 'Mean Log2 ratio ACPOE' column and 'Log2 Ratio H/L O.171/172/173.ACPOE.LH' columns in Table S5, with no definition.
+- Supplementary Information Table 1: NDUFAB1 knockout clones 'ACP1-1' and 'ACP1-3' labelled 'KO (NDUFAB1)' — these are knockout lines, while the ACPOE data show normal NDUFAB1.
+- Data (proteinGroups.txt): human NDUFAB1 H/L 1.17/1.13/1.12 (unchanged); yeast ACP1 (P32463) H/L 0.074 in O-172 (present only in the ACPOE channel). This suggests HEK293T over-expressing yeast ACP1 ("ACP over-expression"), but that is inference, not a statement.
+
+**Unblocked by:** the paper Methods or an author statement defining ACPOE (e.g. "HEK293T expressing yACP1Flag"); the rows would then be added to `PXD004666-knockout.sdrf.tsv` as light = ACPOE line, heavy = HEK293T wild type, with the same technical values as the other QEP120 runs.
+
+Also noted (not blocked, no files): `combined.zip` experimentalDesignTemplate.txt lists `124ELITE180_K-117/118/119-NDUFV1` T1/T2 runs that were neither deposited nor searched.

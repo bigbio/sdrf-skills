@@ -64,19 +64,24 @@
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/ratio_check.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/scripts/ratio_check.py): per-experiment median log2 M/L, H/L; pairwise Pearson r of protein log2 M/L and H/L; round assignment by mean M/L correlation to round-1 vs round-2 experiments"
   },
   {
-   "id": "clone_sig",
-   "kind": "derived",
-   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/clone_sig_H.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/clone_sig_C.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/scripts/clone_sig.py, clone_sig_C.py): clone signature = correlation of per-protein-centred log2 light intensities between runs of one genotype (whole-cell runs)"
-  },
-  {
    "id": "cellosaurus",
    "kind": "database",
    "location": "https://api.cellosaurus.org/cell-line/CVCL_2162?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/cello_CVCL_2162.txt)"
+  },
+  {
+   "id": "hm_check",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/hm_check.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/scripts/hm_check.py): median log2 Ratio H/M per MaxQuant experiment (proteinGroups.txt, no contaminants/reverse) and each whole-cell run paired with its same-mix mitochondria run"
+  },
+  {
+   "id": "acq_order",
+   "kind": "repository",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/acq_order_round2_cells.txt: creation times of the round-2 whole-cell .raw members in the 7z header of Fan_et_al_Triple_SILAC_basis_raw.7z (py7zr), i.e. acquisition order"
   }
  ],
  "claims": [
   {
-   "location": "source name rows 1-318",
+   "location": "source name rows 1-300",
    "value": "PLB985_<genotype>_round<1|2>_clone<n>_<cells|mito>_<t>h_<light-reference|pulsed-preexisting|pulsed-newlysynthesized>",
    "source_ids": [
     "mq",
@@ -84,12 +89,13 @@
     "supp",
     "submitter_meta",
     "geno_check",
-    "clone_sig"
+    "acq_order",
+    "hm_check"
    ],
    "evidence": "One source per culture (genotype x clone x SILAC round x compartment x time point) and per channel role. MaxQuant experiment names encode round (1/2/2X), compartment (CELLS/MITO), time point (t0/t6/t24), genotype letter (W/H/C) and clone number (1-3). Supp Methods: \"Data were obtained in three independent cell clones per genotype in two entirely independent biological replicates corresponding to two rounds of SILAC labeling.\" Pulsed medium and heavy channels from one lysate are separate sources (precedent PXD028934). Three runs filed as W1-3 are CLPB KO with clone number unconfirmed (\"clone-unconfirmed-fileWn\"); one run filed as experiment \"2CELLS_t0_H\" has clone 3 inferred (\"clone3-inferred-fileH\")."
   },
   {
-   "location": "comment[label] rows 1-318",
+   "location": "comment[label] rows 1-300",
    "value": "SILAC light / SILAC medium / SILAC heavy",
    "source_ids": [
     "mq",
@@ -101,7 +107,7 @@
    "evidence": "summary.txt: Multiplicity 3, Labels0 empty (light), Labels1 Arg6;Lys4 (medium), Labels2 Arg10;Lys8 (heavy) for all 108 searched runs. Paper: \"cultured in medium containing ... light [L] or ... medium [M] ... Then, M-labeled cells were subjected to medium containing ... heavy, H to initiate pulse labeling ... ratios of H/L and M/L reflect different prote[in synthesis and persistence]\". Supp: \"Pulsed cells were mixed with the same number of light labeled cells\". Hence light = unpulsed light-cultured reference cells, medium = pre-existing proteome of pulsed cells, heavy = proteins synthesised during the pulse. PRIDE:0000326/0000327/0000325 verified."
   },
   {
-   "location": "characteristics[genotype], factor value[genotype] rows 1-318",
+   "location": "characteristics[genotype], factor value[genotype] rows 1-300",
    "value": "wild type / HAX1 knockout / CLPB knockout",
    "source_ids": [
     "mq",
@@ -113,7 +119,7 @@
    "evidence": "Paper: \"PLB-985 cells (WT, HAX1-/-, and CLPB-/-)\". Letter code from MaxQuant experiment names, verified on data (genotype_check.txt): H runs have HAX1 Intensity 0 in L, M and H (except anomalies below); C runs have CLPB Intensity 0 in M and H; W runs have both. The light channel carries the same KO as the pulsed cells, so the light reference cells are of the same genotype (consistent with the paper's WT vs HAX1-/- light-LFQ volcano, \"n = 18 each, 2 replicates\"). 2CELLS_t6_W1/W2/W3 runs: submitter sheet \"CLPB ko, not wt\"; CLPB = 0 in all channels -> CLPB knockout."
   },
   {
-   "location": "characteristics[cellular component], factor value[cellular component] rows 1-318",
+   "location": "characteristics[cellular component], factor value[cellular component] rows 1-300",
    "value": "cell / mitochondrion",
    "source_ids": [
     "mq",
@@ -124,7 +130,7 @@
    "evidence": "Experiment names CELLS vs MITO. Supp: \"1 x 10^6 heavy-pulsed + light cells were washed with PBS and pelleted ... 3 x 10^6 heavy-pulsed + light cells were further processed for the isolation of mitochondria\". Paper: \"we isolated either whole cells or mitochondria\". GO:0005739 mitochondrion; \"cell\" (GO cellular component label, as curated precedent PXD070730). Custom characteristics column (batch rule 16)."
   },
   {
-   "location": "characteristics[sampling time], factor value[sampling time] rows 1-318",
+   "location": "characteristics[sampling time], factor value[sampling time] rows 1-300",
    "value": "0 hour / 6 hour / 24 hour",
    "source_ids": [
     "mq",
@@ -133,39 +139,42 @@
    "evidence": "Supp: \"At time 0, 6 hours and 24 hours, pulsed cells were collected\"; experiment names t0/t6/t24. The value is the heavy-pulse duration of the mix; the light reference rows carry the time point of the mix they were combined into (they were mixed at that time point: \"pulsed cells were collected and counted ... mixed with the same number of cells cultured in light medium\")."
   },
   {
-   "location": "characteristics[biological replicate] rows 1-318",
+   "location": "characteristics[biological replicate] rows 1-300",
    "value": "(round-1)*3 + clone number (1-6), shared by the three channel rows of one culture",
    "source_ids": [
     "supp",
     "mq",
     "ratio_check",
-    "clone_sig"
+    "acq_order",
+    "hm_check"
    ],
-   "evidence": "Supp: three independent clones per genotype x two rounds of SILAC labelling = 6 cultures per genotype; paper: \"n = 6 per genotype\". Round from the experiment prefix; 2X_ experiments (raw files dated 20180312 on QX0) are round 2: mean M/L correlation to round-2 runs 0.43-0.60 vs -0.17 to -0.56 to round-1 runs (ratio_check.txt); 107/108 experiments match their prefix (2MITO_t24_H1 borderline 0.21 vs 0.25, kept as named). CLPB-KO fileW1/W2/W3 get 4/5/6 in file order (clone identity unconfirmed; clone signature supports W1->C1, weakly W3->C3). fileH gets 6 (clone 3): its light-channel clone signature is reciprocal-best with 2CELLS_t24_H3 (r=0.33) and 2CELLS_t6_H3 (0.23), and round-2 cells t0 otherwise lacks H3 while 2X_CELLS_t0_H1 supplies H1."
+   "evidence": "Supp: three independent clones per genotype x two rounds of SILAC labelling = 6 cultures per genotype; paper: \"n = 6 per genotype\". Round from the experiment prefix; 2X_ experiments (raw files dated 20180312 on QX0) are round 2: mean M/L correlation to round-2 runs 0.43-0.60 vs -0.17 to -0.56 to round-1 runs (ratio_check.txt); 107/108 experiments match their prefix (2MITO_t24_H1 borderline 0.21 vs 0.25, kept as named). CLPB-KO fileW1/W2/W3 get 4/5/6 in file order (clone kept as unconfirmed in the source name; supporting evidence: in acquisition order they follow t6_H1-3, i.e. the C slot of the W1-3/H1-3/C1-3 order used in every block (acq_order), and their median log2 H/M -2.16/-2.45/-2.24 matches same-mix 2MITO_t6_C1/C2/C3 -2.14/-2.43/-2.28 (hm_check); the Xcalibur timestamp suffix shows files named CELLS_t6_W1-3 already existed, i.e. the real round-2 WT cells-6h runs were not deposited). fileH gets 6 (clone 3) from acquisition order: round-2 cells t0 was acquired W2, W3, H1 (the 2X_ files, 2018-06-13 10:02-14:04), H2 (16:06), H (18:07), C1, C2, C3, so H sits in the H3 slot; HAX1 = 0 confirms the knockout. (The earlier light-intensity clone-signature argument is withdrawn: it groups runs by time point.) 2X_ round 2 is also confirmed by acquisition date: the 7z member times of the three 2X files are 2018-06-13 within the round-2 QX0 sequence, while round-1 QX8 runs date 2018-03-13..18; the 20180312 file prefix is a reused name."
   },
   {
-   "location": "comment[technical replicate] rows 1-318",
-   "value": "1; 2 for the second run of the same culture (round-2 cells t0 WT clones 2 and 3: 2X_ then Repeat_; HAX1-KO clone 2 cells 24h: t24_H2 then Repeat_t24_H2)",
+   "location": "comment[technical replicate] rows 1-300",
+   "value": "1; 2 for the second run of the same culture (round-2 cells t0 WT clone 3: 2X_t0_W3 then Repeat_t0_W3; HAX1-KO clone 2 cells 24h: t24_H2 then Repeat_t24_H2)",
    "source_ids": [
     "mq",
     "supp",
-    "ratio_check"
+    "ratio_check",
+    "hm_check"
    ],
-   "evidence": "Only two SILAC rounds exist (supp), and ratio_check assigns the Repeat_ and 2X_ runs to round 2, so a second run of the same genotype/clone/round/compartment/time is a repeat measurement or re-preparation of the same culture, not a new culture. Repeat_t24_H2 vs t24_H2: M/L r=0.75, H/L r=0.80 (highest pair)."
+   "evidence": "Only two SILAC rounds exist (supp), and ratio_check assigns the Repeat_ and 2X_ runs to round 2, so a second run of the same genotype/clone/round/compartment/time is a repeat measurement or re-preparation of the same culture, not a new culture. Repeat_t24_H2 vs t24_H2: M/L r=0.75, H/L r=0.80 (highest pair), median log2 H/M -0.20 vs -0.34; Repeat_t0_W3 vs 2X_t0_W3: H/M -2.77 vs -2.88 (both t0 level, same-mix 2MITO_t0_W3 -2.49)."
   },
   {
-   "location": "comment[data file], assay name rows 1-318",
-   "value": "106 of the 107 deposited .raw files, one assay per file, 3 channel rows each",
+   "location": "comment[data file], assay name rows 1-300",
+   "value": "100 of the 107 deposited .raw files, one assay per file, 3 channel rows each",
    "source_ids": [
     "raw7z",
     "mq",
     "submitter_meta",
-    "geno_check"
+    "geno_check",
+    "hm_check"
    ],
-   "evidence": "The raw archive holds 107 .raw files; summary.txt lists 108: 20180312_QX8_MaMu_SA_PBL985_MITO_t0_H1 was searched but its raw file is not in the deposit (not annotated). 20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw is BLOCKED (sample identity contradicted: HAX1 quantified by MS/MS with 8 peptides at WT-level intensity in L, M and H while clone H1 is HAX1-null in all its other runs). Remaining 106 annotated."
+   "evidence": "The raw archive holds 107 .raw files; summary.txt lists 108: 20180312_QX8_MaMu_SA_PBL985_MITO_t0_H1 was searched but its raw file is not in the deposit (not annotated). 20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw is BLOCKED (sample identity contradicted: HAX1 quantified by MS/MS with 8 peptides at WT-level intensity in L, M and H while clone H1 is HAX1-null in all its other runs). Six round-2 whole-cell raws are BLOCKED because their heavy incorporation contradicts their time point (hm_check): 20180612_..._CELLS_t24_C1/C2/C3/H3 (median log2 H/M -2.78/-2.88/-2.52/-2.69 = t0 level; same-mix 2MITO_t24 runs -0.29/-0.19/-0.74/-0.28) and 20180614_..._CELLS_Repeat_t0_W1/W2 (-0.58/-0.67 = t24 level; same-mix 2MITO_t0_W1/W2 -2.39/-2.45). Remaining 100 annotated; all other 100 runs agree with their time point."
   },
   {
-   "location": "comment[fraction identifier] rows 1-318",
+   "location": "comment[fraction identifier] rows 1-300",
    "value": "1",
    "source_ids": [
     "supp",
@@ -174,7 +183,7 @@
    "evidence": "Single-shot runs: supp describes StageTip clean-up and one 100-min gradient per sample, no fractionation; one raw file per MaxQuant experiment."
   },
   {
-   "location": "characteristics[organism] rows 1-318",
+   "location": "characteristics[organism] rows 1-300",
    "value": "Homo sapiens",
    "source_ids": [
     "pride",
@@ -184,7 +193,7 @@
    "evidence": "PRIDE organisms NEWT:9606; Cellosaurus CVCL_2162 OX NCBI_TaxID=9606; human UniProt FASTA (UP000005640_9606)."
   },
   {
-   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-318",
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-300",
    "value": "PLB985 / CVCL_2162 / PLB-985",
    "source_ids": [
     "paper",
@@ -195,7 +204,7 @@
    "evidence": "Paper: \"We decided to use the human promyelocytic leukemic PLB-985 cell line for the SILAC-based proteomics analysis\"; raw names PBL985/PLB985. EFO:0002313 label \"PLB985\". Cellosaurus CVCL_2162 PLB-985 (caution: shown to be an HL-60 derivative, HI CVCL_0002). The CRISPR KO clones are not in Cellosaurus; genotype is in characteristics[genotype]."
   },
   {
-   "location": "characteristics[organism part] rows 1-318",
+   "location": "characteristics[organism part] rows 1-300",
    "value": "blood",
    "source_ids": [
     "cellosaurus",
@@ -204,7 +213,7 @@
    "evidence": "Cellosaurus CVCL_2162 \"Derived from site: In situ; Peripheral blood; UBERON=UBERON_0000178\" (UBERON:0000178 label blood)."
   },
   {
-   "location": "characteristics[disease] rows 1-318",
+   "location": "characteristics[disease] rows 1-300",
    "value": "acute myeloblastic leukemia with maturation",
    "source_ids": [
     "cellosaurus",
@@ -213,7 +222,7 @@
    "evidence": "Cellosaurus CVCL_2162 DI NCIt C7961 Adult acute myeloid leukemia with maturation; ORDO Orphanet_98834 Acute myeloblastic leukemia with maturation -> MONDO:0020320 (verified). PRIDE \"neutropenia\" is the patients' disease the study models, not the cell line's disease."
   },
   {
-   "location": "characteristics[material type] rows 1-318",
+   "location": "characteristics[material type] rows 1-300",
    "value": "cell line",
    "source_ids": [
     "paper",
@@ -222,7 +231,7 @@
    "evidence": "Cultured PLB-985 cell line clones (paper)."
   },
   {
-   "location": "characteristics[ancestry category], characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[individual] rows 1-318",
+   "location": "characteristics[ancestry category], characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[individual] rows 1-300",
    "value": "European ancestry / 36Y / female / adult / HL-60_donor",
    "source_ids": [
     "cellosaurus",
@@ -231,7 +240,7 @@
    "evidence": "Cellosaurus CVCL_2162: \"Population: Caucasian\" (HANCESTRO:0005 European ancestry), AG 36Y, SX Female, HI CVCL_0002 HL-60 (PLB-985 is an HL-60 derivative, so the donor is the HL-60 donor). adult (EFO:0001272) since 36Y >= 20Y (batch rule 9)."
   },
   {
-   "location": "characteristics[culture medium] rows 1-318",
+   "location": "characteristics[culture medium] rows 1-300",
    "value": "Roswell Park Memorial Institute 1640 Medium",
    "source_ids": [
     "paper",
@@ -242,7 +251,7 @@
    "evidence": "Paper: \"PLB-985 cells were cultured in SILAC RPMI medium (Gibco) lacking arginine and lysine and containing 10% (vol/vol) dialyzed FBS\"; NCIT:C178973 verified."
   },
   {
-   "location": "comment[instrument] rows 1-318",
+   "location": "comment[instrument] rows 1-300",
    "value": "NT=Q Exactive HF-X;AC=MS:1002877",
    "source_ids": [
     "raw",
@@ -253,7 +262,7 @@
    "evidence": "Raw headers of 4 runs (both QX0 and QX8 instruments, both rounds): \"Q Exactive HF-X - Orbitrap MS\". Supp/PRIDE protocol: \"Q Exactive HF-X mass spectrometer\". PRIDE instruments field says Q Exactive HF (MS:1002523) - overridden by raw + protocol."
   },
   {
-   "location": "comment[proteomics data acquisition method] rows 1-318",
+   "location": "comment[proteomics data acquisition method] rows 1-300",
    "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
    "source_ids": [
     "raw",
@@ -262,16 +271,16 @@
    "evidence": "Method header \"dd-MS2 ... TopN 15\"; supp \"switched between a full scan and 15 data-dependent MS/MS scans\"."
   },
   {
-   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-318",
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-300",
    "value": "HCD (MS:1000422) / 27 NCE / orbitrap (MS:1000484) / 300m/z-1650m/z",
    "source_ids": [
     "raw",
     "ols"
    ],
-   "evidence": "Q Exactive HF-X method header in all 4 read runs: Full MS scan range 300 to 1650 m/z, resolution 60,000; dd-MS2 resolution 15,000, \"(N)CE / stepped (N)CE nce: 27\" (Q Exactive dd-MS2 = HCD in the Orbitrap). The other 102 headers were not read; all runs belong to one study and the four sampled span both instruments and both rounds."
+   "evidence": "Q Exactive HF-X method header in all 4 read runs: Full MS scan range 300 to 1650 m/z, resolution 60,000; dd-MS2 resolution 15,000, \"(N)CE / stepped (N)CE nce: 27\" (Q Exactive dd-MS2 = HCD in the Orbitrap). The other 96 annotated headers were not read; all runs belong to one study and the four sampled span both instruments and both rounds."
   },
   {
-   "location": "comment[cleavage agent details] (two columns) rows 1-318",
+   "location": "comment[cleavage agent details] (two columns) rows 1-300",
    "value": "NT=Trypsin;AC=MS:1001251 and NT=Lys-C;AC=MS:1001309",
    "source_ids": [
     "supp",
@@ -281,7 +290,7 @@
    "evidence": "Supp \"Lysis and protein digestion\": \"10 ug of protein were digested in LYSE with 1 ug of endoproteinase LysC and 1 ug of trypsin at 37C overnight\". summary.txt Enzyme Trypsin/P (search rule, batch rule 2). Second column inserted by the scripted post-build step (scripts/postbuild.py)."
   },
   {
-   "location": "comment[modification parameters] rows 1-318",
+   "location": "comment[modification parameters] rows 1-300",
    "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:2H(4) K, Label:13C(6) R, Label:13C(6)15N(2) K, Label:13C(6)15N(4) R Variable",
    "source_ids": [
     "mq",
@@ -291,7 +300,7 @@
    "evidence": "summary.txt (all 108 runs): Fixed modifications Carbamidomethyl (C); Variable modifications Oxidation (M);Acetyl (Protein N-term); Labels1 Arg6;Lys4; Labels2 Arg10;Lys8. Lys4 = l-lysine-2H4 per the paper (\"l-arginine-13C614N4 and l-lysine-2H4 (medium [M])\") -> UNIMOD:481 Label:2H(4); Arg6 -> UNIMOD:188; Lys8 (13C6 15N2) -> UNIMOD:259; Arg10 (13C6 15N4) -> UNIMOD:267 (batch rule 11, MT=Variable). The PRIDE/supp text \"13C4-Lysine (Lys4)\" is a typo (13C4 Lys is not the MaxQuant Lys4 label)."
   },
   {
-   "location": "comment[fragment mass tolerance] rows 1-318",
+   "location": "comment[fragment mass tolerance] rows 1-300",
    "value": "20 ppm",
    "source_ids": [
     "mq",
@@ -300,7 +309,7 @@
    "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"; MS2 spectra are Orbitrap (FTMS). The paper's \"fragment mass deviation of 10 ppm\" is contradicted by the deposited search parameters; the search output wins."
   },
   {
-   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-318",
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-300",
    "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
    "source_ids": [
     "templates"
@@ -309,16 +318,17 @@
   }
  ],
  "limitations": [
-  "Scope: 106 of 107 deposited triple-SILAC raw files annotated (318 rows). BLOCKED: 20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw - labelled HAX1-/- clone H1, but HAX1 is identified by MS/MS (8 peptides) at WT-level intensity in the L, M and H channels while clone H1 has HAX1 = 0 in its other runs; sample identity contradicted by the data (BLOCKED.md). Not deposited: 20180312_QX8_MaMu_SA_PBL985_MITO_t0_H1.raw (in summary.txt, absent from the raw archive).",
+  "Scope: 100 of 107 deposited triple-SILAC raw files annotated (300 rows). BLOCKED (all listed in BLOCKED.md, section PXD023790): (a) 20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw - labelled HAX1-/- clone H1, but HAX1 is identified by MS/MS (8 peptides) at WT-level intensity in the L, M and H channels while clone H1 has HAX1 = 0 in its other runs; (b) 20180612_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_t24_{C1,C2,C3,H3}.raw and 20180614_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_Repeat_t0_{W1,W2}.raw - median log2 H/M contradicts the labelled pulse time versus the same-mix mitochondria run (t24-labelled at t0 level, t0-labelled at t24 level; hm_check.txt). Consequence: cells/CLPB KO/24 h and cells/WT/6 h have round-1 cultures only. Not deposited: 20180312_QX8_MaMu_SA_PBL985_MITO_t0_H1.raw (in summary.txt, absent from the raw archive).",
   "The HSP27 FLAG-IP raw files (label-free, HEK293T) are in the separate SDRF PXD023790-hsp27-ip.sdrf.tsv (batch rule 12).",
   "comment[precursor mass tolerance] = not available: MaxQuant 1.6.1.13 parameters.txt/summary.txt do not record the group-specific first/main-search precursor tolerance and no mqpar.xml was deposited. The paper/PRIDE text says \"initial precursor mass deviation up to 7 ppm\", but the same sentence gives a 10 ppm fragment tolerance that the deposited parameters.txt (20 ppm FTMS) contradicts, so that sentence is not used. Consequence: parse_sdrf convert-openms exits 1 (\"Cannot read precursor mass tolerance\"); a probe with a filled tolerance converts (18 conditions).",
   "Clone identity of the three CLPB-KO runs filed as 2CELLS_t6_W1/W2/W3 is not documented (submitter note only says \"CLPB ko, not wt\"); biological replicates 4/5/6 follow file order and source names say clone-unconfirmed.",
-  "Clone of experiment \"2CELLS_t0_H\" (file 20180612_..._CELLS_t0_H.raw) is inferred as clone 3 from a light-channel clone signature (reciprocal best match with the round-2 H3 runs) plus the gap in the design; it is not stated anywhere.",
-  "Light reference cells: the paper says pulsed cells were mixed with \"light labeled cells\" without naming the clone; the data show the light channel carries the same knockout as the pulsed cells (HAX1/CLPB absent in L), so light rows get the same genotype/clone/round. That the light cells are the same clone (not another clone of the same genotype) is inferred.",
-  "2X_ runs carry a 20180312 file date but are assigned to round 2 per the experiment prefix and the ratio-correlation batch check; 2MITO_t24_H1 has a borderline round signature and is kept as named.",
+  "Clone of experiment \"2CELLS_t0_H\" (file 20180612_..._CELLS_t0_H.raw) is inferred as clone 3 from the acquisition order (W2, W3, H1, H2, H, C1-C3); it is not stated anywhere. The earlier clone-signature argument is withdrawn (it groups runs by time point).",
+  "Light reference cells: the paper says pulsed cells were mixed with \"light labeled cells\" without naming the clone; the data show the light channel carries the same knockout as the pulsed cells (HAX1/CLPB absent in L), so light rows get the same genotype/clone/round. That the light cells are the same clone (not another clone of the same genotype) is inferred. Exception to disclose: CLPB is detected in the light channel only (1 peptide, 1.3-3.4e9; M = H = 0) in 1MITO_t6_C3, 1MITO_t24_C3 and 2MITO_t24_C3 (genotype_check.txt).",
+  "characteristics[cellular component] = cell: the GO label \"cell\" (GO:0005623) is obsolete in GO and replaced by CL:0000000 \"cell\"; the label is kept as in 14 curated precedents.",
+  "2X_ runs carry a 20180312 file-name date but were acquired on 2018-06-13 in the round-2 QX0 sequence (7z member times, acq_order) and are assigned to round 2 as their experiment prefix says; 2MITO_t24_H1 has a borderline M/L round signature and is kept as named.",
   "Minor HAX1 signal in 1MITO_t6_H2 (2 peptides, ~5% of WT intensity) and 1MITO_t24_H2 (1 peptide) is treated as carry-over/noise; those runs are kept as HAX1 knockout.",
   "characteristics[cell type], passage number, sample storage temperature = not available (not stated; \"more than 10 passages in SILAC medium\" is not a passage number). Reduction/alkylation reagents not stated (PreOmics LYSE kit), columns omitted; Carbamidomethyl is from the search.",
-  "Raw-header verification limited to 4 of 106 SILAC files (techsdrf not installable); dissociation/NCE/scan range assumed uniform.",
+  "Raw-header verification limited to 4 of 100 annotated SILAC files (techsdrf not installable); dissociation/NCE/scan range assumed uniform.",
   "PRIDE structured fields disagree with the record: instrument \"Q Exactive HF\" (raw: HF-X); disease \"neutropenia\" (the cells are a leukemia line); \"No PTMs\" (search has several).",
   "Independent review not yet performed: REVIEW_PENDING_EXTERNAL."
  ]
