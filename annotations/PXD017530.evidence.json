@@ -84,7 +84,7 @@
   },
   {
    "location": "characteristics[genotype], factor value[genotype], characteristics[disease] rows 1-384 (light rows (first and third 12-row block of each 48-row sample block in rows 1-672; first and third 15-row block of each 60-row block in rows 673-912))",
-   "value": "LZTR1 c.27dupG / c.1943-256C>T (biallelic); Noonan syndrome 10",
+   "value": "LZTR1 c.27dupG / c.1943-256C>T (biallelic); Noonan syndrome 2",
    "source_ids": [
     "mqA",
     "pride",
@@ -92,7 +92,7 @@
     "ratios",
     "ols"
    ],
-   "evidence": "MaxQuant experiments L1-L8 are H1_A1..H2_B2: 4 lines (H1-A, H1-B, H2-A, H2-B) x 2 differentiations = PRIDE's '4 patient-derived' iPSC lines with 'two individual differentiations of each iPSC line'. The follow-up paper (PMC10851011) states the two affected brothers of Hanses et al. carry biallelic LZTR1 variants c.27dupG (maternal) and c.1943-256C>T (paternal, intron 16). MONDO:0014693 'Noonan syndrome 10' = Noonan syndrome caused by mutation in LZTR1. RAS accumulation in these samples (ratios) is consistent."
+   "evidence": "MaxQuant experiments L1-L8 are H1_A1..H2_B2: 4 lines (H1-A, H1-B, H2-A, H2-B) x 2 differentiations = PRIDE's '4 patient-derived' iPSC lines with 'two individual differentiations of each iPSC line'. The follow-up paper (PMC10851011) states the two affected brothers of Hanses et al. carry biallelic LZTR1 variants c.27dupG (maternal) and c.1943-256C>T (paternal, intron 16). PRIDE projectDescription: 'two siblings displaying an autosomal recessive form of NS ... caused by biallelic mutations within LZTR1'. MONDO:0011531 'Noonan syndrome 2' (xref OMIM:605275, the autosomal-recessive LZTR1 entity) is used, not MONDO:0014693 'Noonan syndrome 10' (OMIM:616564, autosomal dominant), per independent review. RAS accumulation in these samples (ratios) is consistent."
   },
   {
    "location": "characteristics[genotype], factor value[genotype], characteristics[disease] rows 385-672 (light rows (first and third 12-row block of each 48-row sample block in rows 1-672; first and third 15-row block of each 60-row block in rows 673-912))",
@@ -106,14 +106,14 @@
   },
   {
    "location": "characteristics[genotype], factor value[genotype], characteristics[disease] rows 673-912 (light rows (first and third 12-row block of each 48-row sample block in rows 1-672; first and third 15-row block of each 60-row block in rows 673-912))",
-   "value": "LZTR1 intron 16 CRISPR-repaired (patient-derived isogenic); Noonan syndrome 10",
+   "value": "LZTR1 intron 16 CRISPR-repaired (patient-derived isogenic); Noonan syndrome 2",
    "source_ids": [
     "mqB",
     "pride",
     "followup",
     "ratios"
    ],
-   "evidence": "Experiments Corr02A/Corr02B/Corr4_2018_13/Corr4_2018_11 (2019 runs); PRIDE title 'Intronic CRISPR repair in LZTR1-deficient iPSC-cardiomyocytes from Noonan syndrome patients' and dataProcessingProtocol comparison 'NS-corr versus NS'. Follow-up paper: corrected lines are allele-specific edits of the intron 16 variant in the patients' iPSCs. Disease = the donor's disease (patient-derived lines); the repair is captured in genotype. Normalised RAS ratios (ratios.txt) consistent with repair."
+   "evidence": "Experiments Corr02A/Corr02B/Corr4_2018_13/Corr4_2018_11 (2019 runs); PRIDE title 'Intronic CRISPR repair in LZTR1-deficient iPSC-cardiomyocytes from Noonan syndrome patients' and dataProcessingProtocol comparison 'NS-corr versus NS'. Follow-up paper: corrected lines are allele-specific edits of the intron 16 variant in the patients' iPSCs. Disease = the donor's disease (MONDO:0011531, autosomal-recessive LZTR1 NS; the corrected lines are edited iPSCs of the affected brothers, not of healthy donors); the repair is captured in genotype/factor value, so the compared variable stays distinct from disease. Normalised RAS ratios (ratios.txt) consistent with repair."
   },
   {
    "location": "characteristics[cell line] light rows",
@@ -151,7 +151,7 @@
     "pride",
     "followup"
    ],
-   "evidence": "Experiment names group the 4 patient lines as H1 (A,B) and H2 (A,B); PRIDE/follow-up: two affected siblings. H1/H2 are the depositors' patient labels; mapping to Cellosaurus donors is unknown."
+   "evidence": "INFERENCE from experiment names: the 4 patient lines are named H1_A, H1_B, H2_A, H2_B, read as patient (H1/H2) x clone (A/B); PRIDE/follow-up: two affected siblings. H1/H2 are the depositors' labels; mapping to Cellosaurus donors is unknown. The H*-B lines are patient lines (not relatives): PRIDE states '4 patient-derived' lines in the standard and only 3 WT lines, and RAS ratios of H1_B1/H1_B2/H2_B1 are NS-like (log2 H/L MRAS -0.84, HRAS -0.21/+0.11, NRAS -0.42/-0.13/+0.19 vs WT MRAS +1.24/+1.68, HRAS +0.67..+1.33, NRAS +0.37..+0.85)."
   },
   {
    "location": "characteristics[sex] rows 1-384 and 673-912 light",
@@ -199,11 +199,12 @@
   },
   {
    "location": "characteristics[pooled sample] rows 1-912",
-   "value": "not pooled (light) / pooled (heavy)",
+   "value": "not pooled (light) / SN=H1-A;SN=H1-B;SN=H2-A;SN=H2-B;SN=WT1;SN=WT2;SN=WT3 (heavy)",
    "source_ids": [
-    "pride"
+    "pride",
+    "mqA"
    ],
-   "evidence": "Individual differentiation pellets vs equal-protein pool of 7 heavy cultures (PRIDE protocol)."
+   "evidence": "Light: individual differentiation pellets. Heavy: equal-protein pool of the heavy cultures of the 4 patient-derived and 3 WT lines (PRIDE protocol); members named by the line labels of the MaxQuant experiments (H1-A, H1-B, H2-A, H2-B, WT1-3; precedents PXD000690/PXD001963 list pool members as SN=)."
   },
   {
    "location": "characteristics[age] / characteristics[individual] heavy rows",
@@ -309,11 +310,12 @@
   "Primary paper (Circulation 2020, PMID 32623905) and its supplement could not be read: not in PMC, ahajournals 403, Goettingen repository green copy 403 (bot check, not bypassed). Sample identities therefore rest on the PRIDE protocol, the MaxQuant experiment names and the 2024 follow-up paper.",
   "characteristics[cellosaurus accession] / [cellosaurus name] = not available: the follow-up paper names the patient lines UMGi030-A (isHOCMx1.14) and UMGi031-A (isHOCMx2.8) and corrected clones UMGi030-A-1 / UMGi031-A-1, but the deposit's labels (H1-A, H1-B, H2-A, H2-B, Corr02, Corr4, WT1-3) cannot be mapped to them (2 clones per patient in this study, and the WT lines are not named).",
   "Corr02A vs Corr02B: encoded as two differentiations of one corrected line 'Corr02' (both p42, differentiation IDs 2018_24 / 2019_2, parallel to Corr4_2018_13 / _11); they could instead be two clones. Which patient each corrected line derives from is not stated.",
-  "Super-SILAC standard used for the 2019 corrected-line runs is assumed to be the one described in the PRIDE protocol (4 NS + 3 WT lines); no separate standard is described.",
+  "Super-SILAC standard of the 2019 corrected-line heavy rows (rows 673-912) is ASSUMED to be the same 4 NS + 3 WT standard as in 2017: the PRIDE protocol describes only one standard and the 'NS-corr versus NS' ratio comparison (dataProcessingProtocol) implies a common reference, but no 2019-specific statement exists.",
+  "The follow-up paper (PMC10851011) lists four 'patient-specific' lines including UMGi032-A (NS-R1) and UMGi033-A (NS-R2); Cellosaurus CVCL_A4KP / CVCL_A4KQ record them as a 38Y male and a 28Y female with no disease, i.e. likely the parents/relatives (the follow-up's Figure S6 mentions iPSC-CMs 'from both parents'). They are not assumed to be among H1-A..H2-B: in this deposit the 4 patient-derived lines are read as 2 clones of each of the 2 brothers (experiment names H1_A/H1_B/H2_A/H2_B), supported by NS-like RAS ratios of all H lines incl. H*-B.",
   "R1/R2 run series encoded as technical replicates 1/2 (repeat LC-MS series of the same fractionated sample) from run names only; fractionation method not described in any retrieved source (comment[fractionation method] = not available).",
   "comment[precursor mass tolerance] = not available: MaxQuant 1.6.3.4 parameters.txt/summary.txt do not record it and no mqpar.xml was deposited; parse_sdrf convert-openms is expected to fail on it.",
   "PRIDE dataProcessingProtocol says MaxQuant 1.5.2.8 and UniProt v2016.07; the deposited parameters.txt say MaxQuant 1.6.3.4 and FASTA 20190318_UP_Reference_HOMSA / 20190102_Uniprot_HOMSA. Search settings were taken from the deposited outputs.",
-  "Age, ancestry and passage number not available at sample level; WT donor sex not available.",
+  "Disease term: MONDO:0011531 'Noonan syndrome 2' replaced MONDO:0014693 'Noonan syndrome 10' after independent review (autosomal-recessive vs autosomal-dominant LZTR1 entity). Age, ancestry and passage number not available at sample level; WT donor sex not available.",
   "characteristics[organism part] = not applicable: in vitro iPSC-derived cardiomyocytes; PRIDE's 'skin' / 'stem cell' describe the reprogramming source, captured as sampling site for the patient-derived lines."
  ]
 }

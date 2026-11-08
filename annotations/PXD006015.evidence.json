@@ -1,0 +1,297 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD006015.sdrf.tsv",
+ "dataset": "PXD006015",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD006015 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD006015/files?pageSize=100&page=0..5 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/evidence/files.json; every entry projectAccessions contains PXD006015)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Buchwalter A, Hetzer MW. Nucleolar expansion and elevated protein translation in premature aging. Nat Commun 2017;8:328, doi:10.1038/s41467-017-00322-z, PMID 28855503, PMC5577202 (https://pmc-oa-opendata.s3.amazonaws.com/PMC5577202.1/PMC5577202.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/paper.txt; title verified in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/meta.json). Data availability lists PXD006012-PXD006016."
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "PMC5577202 Supplementary Data 1-3 (41467_2017_322_MOESM2_ESM.xlsx, MOESM3_ESM.xlsx, MOESM4_ESM.xlsx from https://pmc-oa-opendata.s3.amazonaws.com/PMC5577202.1/, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/supp/; descriptions and %HEAVY summaries by script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/supp_check.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/supp_check.txt)"
+  },
+  {
+   "id": "peer_review",
+   "kind": "supplementary",
+   "location": "PMC5577202 Peer Review File 41467_2017_322_MOESM1_ESM.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/supp/MOESM1_ESM.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/supp/MOESM1.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/shared/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/shared/ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/shared/contract.txt); ms-proteomics latest 1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); sdrf version v1.1.0 per spec README.adoc:27. The spec submodule nested templates copy is older."
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/gen_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/build/samples_*.tsv, technical_*.tsv; built by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/build_all.sh (sdrf-tools build; pulse datasets: two builds with identical headers concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/concat.py, rows ordered by assay name then light before heavy)"
+  },
+  {
+   "id": "mzid",
+   "kind": "search-output",
+   "location": "deposited mzIdentML files of PXD006015 (downloaded to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/mzid/); protocols summarised by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/mzid_params.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/mzid_params.json"
+  },
+  {
+   "id": "raw_heads",
+   "kind": "raw-file",
+   "location": "HTTP range read (bytes 0-20000) of every deposited .ms2 and .mzXML of PXD006015 from https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/07/PXD006015/ (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/heads/*.head): RawConverter .ms2 header + first spectra (ActivationType, InstrumentType, Filter); mzXML parentFile and msInstrument/msModel"
+  },
+  {
+   "id": "cello_L622",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_L622?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/cello_CVCL_L622.txt)"
+  },
+  {
+   "id": "cello_H766",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_H766?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/cello_CVCL_H766.txt)"
+  },
+  {
+   "id": "cello_1Y93",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_1Y93?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/cello_CVCL_1Y93.txt)"
+  },
+  {
+   "id": "cello_1Y92",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_1Y92?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/paper/cello_CVCL_1Y92.txt)"
+  },
+  {
+   "id": "heavy_frac",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/heavy_frac.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/heavy_frac.py: passing PSMs per spectra file from light vs heavy search, all pulse mzids; plus Supp Data 1 median %heavy)"
+  },
+  {
+   "id": "sig",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/ms2_mzxml_signatures.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/sig.py over the range-read heads)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[label], source name rows 1-26",
+   "value": "SILAC light = pre-existing proteins; SILAC heavy = proteins synthesised during the labelling period (same culture, same run)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "supp",
+    "mzid",
+    "heavy_frac"
+   ],
+   "evidence": "Paper Methods/PRIDE protocol: \"quiescent fibroblasts were switched to media containing stable heavy isotopes of lysine and arginine (13C6-Lysine, 13C6, 15N4-Arginine) for 1 to 6 days\"; Fig. 1 legend: % 12C (\"old\") remaining vs % 13C-labelled (\"new\"). Supp Data 1: \"%heavy isotope ... after 0, 2, 4 and 6 days of labeling\". Data check (heavy_frac): passing heavy-search PSMs rise with labelling time in every file (WT 0D ~1%, 1D 27%, 2D 36-37%, 4D 50-53%, 6D 58-61%; HGPS 0D 2-18%, 1D 29-32%, 2D 44-48%, 4D 76%, 6D 71-77%) and Supp Data 1 median %heavy WT 5.3/28.0/45.9/60.5, HGPS 2.1/41.2/64.6/77.8 at 0/2/4/6 D -> heavy = new. Both channels come from one culture, so they share biological replicate 1 and get distinct source names (precedent PXD028934). 0D rows: heavy channel kept because each 0D run was searched for heavy peptides and Supp Data 1 has a 0D sheet (background control)."
+  },
+  {
+   "location": "characteristics[sampling time], factor value[sampling time], characteristics[subcellular fraction], factor value[subcellular fraction], characteristics[cellular component] rows 1-26",
+   "value": "N day from file name (0D,1D,2D,4D,6D); nuclear extract / nuclear pellet; nucleus",
+   "source_ids": [
+    "files",
+    "pride",
+    "paper",
+    "mzid",
+    "heavy_frac",
+    "ols"
+   ],
+   "evidence": "Run names <date>_WT_<N>D_<extract|pellet>[_2].ms2 and mzid names WT_<N>D_<extract|pellet>.mzid. PRIDE/paper: \"Crude nuclei were extracted in 10 mM Tris pH 8, 1% n-octyl glucoside, 400 mM NaCl, and 1 mM DTT, and extracts and pellets were prepared separately for LC-MS/MS\". Sampling time = days in heavy medium before harvest; confirmed by the monotonic heavy fraction (heavy_frac). cellular component nucleus = GO:0005634. Extract and pellet are distinct measured samples -> characteristics + factor (rule 16); characteristics[subcellular fraction] is a custom column (curated precedent name)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-26",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "One labelling culture per time point; each (time, fraction) group contains one culture (rule 3). Files with suffix _2 are repeat injections -> comment[technical replicate] 2."
+  },
+  {
+   "location": "comment[data file] mapping rows 1-26",
+   "value": ".ms2 file <-> MHAB-N mzXML/raw",
+   "source_ids": [
+    "raw_heads",
+    "mzid",
+    "sig"
+   ],
+   "evidence": "RawConverter .ms2 files were renamed after conversion: the mzid SpectraData point to 2016MMDD_MHAB-N_<MP|SCX|SCXtip>[ _2].mzXML. Each .ms2 LastScan equals exactly one same-date mzXML scanCount: WT_0D_extract=MHAB-1_SCXtip (122811), _2=MHAB-1_SCXtip_2 (126007), WT_0D_pellet=MHAB-2_SCXtip (119100; first MS2 precursor 414.71 identical), _2=MHAB-2_SCXtip_2 (119451), WT_1D_extract=MHAB-3_MP (95539), WT_1D_pellet=MHAB-4_MP (131043), WT_2D_extract=MHAB-5_SCX (119867), WT_2D_pellet=MHAB-6_SCX (123219), WT_6D_extract=MHAB-9_SCX (115889), WT_6D_pellet=MHAB-10_SCX (126287), WT_4D_extract=MHAB-7_SCX (104793), _2=MHAB-7_SCX_2 (120876), WT_4D_pellet=MHAB-8_SCX (121397). Every mzid name (WT_<N>D_<fraction>) points to the MHAB-N file mapped to the same-named .ms2, which confirms the mapping."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-8,13-20 (0D, 2D, 6D)",
+   "value": "Carbamidomethyl C fixed; Phospho S,T,Y variable; Label:13C(6) K; Label:13C(6)15N(4) R",
+   "source_ids": [
+    "mzid",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Each mzIdentML holds two SpectrumIdentificationProtocols (IP2/ProLuCID): SIP_ for light spectra and SIP_H for the \"H\"-prefixed copy of the same mzXML. SIP_H adds fixed +6.0201 K (MOD:00544, 13C6 Lys = UNIMOD:188 Label:13C(6)) and +10.0083 R (MOD:00587, 13C6 15N4 Arg = UNIMOD:267 Label:13C(6)15N(4)); in the SDRF the label masses are written MT=Variable (campaign rule 11). Carbamidomethyl = 57.02146 C (MOD:00397), paper \"Carbamidomethylation on cysteine was considered as a static modification\". The 0D, 2D and 6D mzids search fixed Carbamidomethyl C and variable +79.96633 S/T/Y (Phospho, UNIMOD:21) in both protocols, missedCleavages -1."
+  },
+  {
+   "location": "comment[modification parameters] rows 9-12,21-26 (1D, 4D)",
+   "value": "not applicable (Carbamidomethyl); not applicable (Phospho); Label:13C(6) K; Label:13C(6)15N(4) R",
+   "source_ids": [
+    "mzid",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Each mzIdentML holds two SpectrumIdentificationProtocols (IP2/ProLuCID): SIP_ for light spectra and SIP_H for the \"H\"-prefixed copy of the same mzXML. SIP_H adds fixed +6.0201 K (MOD:00544, 13C6 Lys = UNIMOD:188 Label:13C(6)) and +10.0083 R (MOD:00587, 13C6 15N4 Arg = UNIMOD:267 Label:13C(6)15N(4)); in the SDRF the label masses are written MT=Variable (campaign rule 11). Carbamidomethyl = 57.02146 C (MOD:00397), paper \"Carbamidomethylation on cysteine was considered as a static modification\". The 1D and 4D mzids have an EMPTY ModificationParams in SIP_ (no carbamidomethyl, no phospho) and only the two label masses in SIP_H, missedCleavages 1. These rows were built separately with identical headers, `not applicable` in the absent-mod columns (rule 5). WT_1D_pellet: see limitations (its deposited mzid is a byte copy of WT_1D_extract.mzid)."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], characteristics[organism part], characteristics[disease], characteristics[ancestry category], characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[individual], characteristics[biorepository], characteristics[material type] rows 1-26 (AG03258)",
+   "value": "AG03258 cell line facts (see SDRF rows)",
+   "source_ids": [
+    "cello_L622",
+    "paper",
+    "peer_review",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_L622 AG03258 (SY AG3258; DR Coriell AG03258): Population Caucasian; Derived from site In situ, Skin, UBERON_0002097; SX Male; AG 36Y; no disease line; CA Finite cell line. Paper Methods: AG3258 = WT-1, wild type primary human dermal fibroblasts from Coriell. Mapping: organism part = Cellosaurus derivation site (skin of body UBERON:0002097 / upper leg skin UBERON:0004262 / dermis UBERON:0002067, labels checked in OLS); disease = normal (PATO:0000461) for WT lines, Hutchinson-Gilford progeria syndrome (MONDO:0008310, OLS) for HGPS lines; ancestry Caucasian -> European ancestry (HANCESTRO:0005), African American (HANCESTRO:0568), not available where Cellosaurus has no population; developmental stage adult for 36Y/40Y5M, pediatric stage (HsapDv:0000264) for 14Y/8Y5M (rule 9: adult only if >=20Y); sex male also stated in the peer-review file (\"AG03258 (WT), AG11498 (HGPS), PRF168 (WT) and PRF167 (HGPS) are all male\"); individual = constructed label <line>_donor (one donor per line; paper: pairs 1 unrelated, WT-3 is a parent of HGPS-3, so all four donors differ); biorepository from paper Methods (Coriell Cell Research / Progeria Research Foundation); material type cell line (Cellosaurus finite cell line). Cellosaurus names used for characteristics[cell line] (the paper writes AG3258 and PRF167/168; AG03258 is the Cellosaurus ID with synonym AG3258)."
+  },
+  {
+   "location": "comment[instrument] rows 1-26",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw_heads",
+    "paper",
+    "pride"
+   ],
+   "evidence": "mzXML msInstrument msModel \"Orbitrap Fusion\" (parentFile G:\\Fusion_data\\... or F:\\MS-RAW\\...); paper Methods: samples for Fig. 1, Fig. 4d,e and Supplementary Fig. 7 \"were run on a Thermo Orbitrap Fusion Tribrid\"; PRIDE sampleProcessingProtocol also says Orbitrap Fusion Tribrid. PRIDE instruments field says \"LTQ Orbitrap\" (MS:1000449) - contradicted by raw metadata and protocol; raw wins."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-26",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "raw_heads",
+    "paper"
+   ],
+   "evidence": "ms2 header ActivationType CID; paper \"CID fragmentation\" / \"CID MS/MS in the ion trap\"."
+  },
+  {
+   "location": "comment[collision energy] rows 1-26",
+   "value": "35 NCE",
+   "source_ids": [
+    "raw_heads"
+   ],
+   "evidence": "Every .ms2 filter line: \"@cid35.00\" (RawConverter header of each run)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-26",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "raw_heads",
+    "paper"
+   ],
+   "evidence": "Every .ms2 header: InstrumentType ITMS, filter \"ITMS + c NSI r d Full ms2 ...@cid35.00\"; paper: \"CID MS/MS in the ion trap\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-26",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw_heads",
+    "ols"
+   ],
+   "evidence": "Paper Methods: \"operated in a data dependent mode\" (Fusion) / \"operated in data-dependent mode\" (Q Exactive); ms2 headers \"AcquisitionMethod Data-Dependent\" and filter lines with \" d Full ms2\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-26",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mzid"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol and paper: \"digested overnight with trypsin\". mzIdentML Enzyme MS:1001251 Trypsin (search also allowed half-tryptic peptides per paper; recorded here as a note, the digestion enzyme is trypsin, rule 2)."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-26",
+   "value": "50 ppm; 600 ppm",
+   "source_ids": [
+    "mzid",
+    "paper",
+    "pride"
+   ],
+   "evidence": "mzIdentML ParentTolerance 50.0 ppm and FragmentTolerance 600.0 ppm in every SpectrumIdentificationProtocol; paper/PRIDE: \"searched with 50 ppm precursor ion tolerance and 600 ppm fragment ion tolerance\" (post-search filter 10 ppm)."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-26",
+   "value": "TCEP (PRIDE:0000609); Chloroacetamide (ClAA) (PRIDE:0000600)",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"reduced with TCEP; alkylated with chloroacetamide\" (PRIDE protocol and paper Methods). PRIDE terms checked in OLS."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-26",
+   "value": "not applicable",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Each digest was injected directly (single-shot); no peptide fractionation described. SCX tips (pulse samples) were used for detergent removal, not fractionation. comment[fraction identifier] = 1 for every row."
+  },
+  {
+   "location": "comment[fraction identifier], comment[technical replicate], assay name, comment[data file] rows 1-26",
+   "value": "one row per (run, SILAC channel); assay name = .ms2 stem; fraction 1",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "Deposits contain no vendor .raw files: PRIDE categorises the RawConverter .ms2 files as RAW, the .mzXML/.mgf as PEAK. comment[data file] therefore lists the RAW-category .ms2 files (the original .raw names appear only in the mzXML parentFile elements). Technical replicate 2 = files with _2 suffix (repeat injection; see run_overlap claim)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-26",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Campaign rules 1 and 10; template versions from sdrf-tools contract; technology type filled by build."
+  },
+  {
+   "location": "characteristics[organism] rows 1-26",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; paper: primary human dermal fibroblasts."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-26",
+   "value": "fibroblast of dermis",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Methods: \"Primary human dermal fibroblasts AG3258 ... AG11498\" and \"Human dermal fibroblasts HGFDFN168 ... HGADFN167\". CL:0002551 fibroblast of dermis (OLS)."
+  }
+ ],
+ "limitations": [
+  "WT_1D_pellet.mzid is byte-identical to WT_1D_extract.mzid (both point to MHAB-3_MP = WT_1D_extract): the search of 20160302_WT_1D_pellet.ms2 (= MHAB-4_MP) is not deposited. Its modification parameters (no CAM/phospho, labels only) and tolerances are inferred from the other three 1D searches (WT_1D_extract, HGPS_1D_extract, HGPS_1D_pellet), all identical; not documented for this file.",
+  "Two WT PEAK-only mzXML files, 20160302_MHAB-1_MP.mzXML (121771 scans) and 20160302_MHAB-2_MP.mzXML (103970 scans), match no .ms2 file and no mzid SpectraData; they have no RAW-category file and are not annotated. Their sample identity is undocumented.",
+  "The PRIDE files carry 13 .ms2 RAW files; the paper's Supp Data 1 has no 1D sheet, and the WT 1D searches yielded few PSMs (424 light + 161 heavy for WT_1D_extract).",
+  "The WT/HGPS comparison spans two deposits (PXD006015 WT, PXD006016 HGPS); each SDRF carries one disease state, so the cross-deposit comparison is not encoded as a factor here.",
+  "No vendor .raw files are deposited (none of PXD006012-PXD006016 has one); comment[data file] lists the RawConverter .ms2 files that PRIDE categorises as RAW. The .mzXML (PEAK) copies are not listed. Reprocessing from the SDRF will need .ms2/.mzXML-capable tools.",
+  "SILAC culture medium is not stated (paper: cells grown in MEM + 15% FBS for general culture; SILAC media base not named) -> characteristics[culture medium] not available. Passage stated only as \"<20\" -> not available. Storage temperature not stated.",
+  "Quiescence (1% serum for 3-5 days before harvest/labelling) applies to every sample and is encoded only in the source names, not as a treatment column.",
+  "characteristics[cell line] uses Cellosaurus IDs; validate-sdrf warns that AG03258 / HGFDFN168 are not in CLO/BTO/EFO under that spelling (CLO has \"AG03258 cell\"; AG11498 and HGADFN167 resolve). developmental stage \"pediatric stage\" (HsapDv:0000264) draws a validator warning (template lists EFO), used for the 14Y and 8Y5M donors per campaign rule 9.",
+  "characteristics[individual] = <line>_donor is a constructed label, not a published donor ID.",
+  "Review pending: external sdrf-adversarial-review hand-off; not self-approved."
+ ]
+}

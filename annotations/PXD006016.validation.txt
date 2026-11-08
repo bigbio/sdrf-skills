@@ -1,3 +1,47 @@
 # PXD006016 validation log (round 1, 2026-11-08T23:12Z); SDRF sha256 379606e4537771546be95e1dbc9fff11c1026877ef8f0fe94b15a7041086d010
 
 ## parse_sdrf validate-sdrf -s annotations/PXD006016.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: pediatric stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure annotations/PXD006016.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD006016.sdrf.tsv --offline
+Hallucination Report: annotations/PXD006016.sdrf.tsv
+  Terms checked:     11
+  Verified:          4
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD006016.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006016/evidence/pride.json --accession PXD006016
+PXD006016: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD006016.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006016/convert)
+Factor columns: ['factor value[sampling time]', 'factor value[subcellular fraction]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[cellular component]']
+Conditions (10): dict_keys(['0 day|nuclear extract', '0 day|nuclear pellet', '2 day|nuclear extract', '2 day|nuclear pellet', '4 day|nuclear pellet', '6 day|nuclear extract', '6 day|nuclear pellet', '1 day|nuclear extract', '1 day|nuclear pellet', '4 day|nuclear extract'])
+Files per condition: dict_values([2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD006016.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check annotations/PXD006016.evidence.json
+annotations/PXD006016.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD006016.sdrf.tsv annotations/PXD006016.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit=0
+
+## Notes
+- Single validation round: validate-sdrf returned only warnings (cell-line spelling not in CLO/BTO/EFO; 'pediatric stage' is an HsapDv term, template lists EFO) - accepted, explained in the report. No fixes needed.
+- The SDRF was written by sdrf-tools build only (scripts in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/: gen_tables.py -> build_all.sh).
+- Post-build step (rule 5/17): two builds (search config A: 0D/2D/6D; config B: 1D/4D) with byte-identical headers (cmp in build_all.sh) concatenated by concat.py, which only orders rows by assay name, light before heavy; no value is edited.
+- reconcile exit 0 did not flag PRIDE 'instruments' (LTQ Orbitrap for PXD006013-16); the SDRF instrument (Orbitrap Fusion / Q Exactive) comes from the mzXML msModel of every run and the paper Methods - see report Conflicts.

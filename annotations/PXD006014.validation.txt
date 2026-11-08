@@ -33,3 +33,15 @@ Files per condition: dict_values([2, 2])
 SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD006014.sdrf.tsv
 exit=0
 
+## sdrf-tools schema-check annotations/PXD006014.evidence.json
+annotations/PXD006014.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD006014.sdrf.tsv annotations/PXD006014.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit=0
+
+## Notes
+- Single validation round: validate-sdrf returned only warnings (cell-line spelling not in CLO/BTO/EFO; 'pediatric stage' is an HsapDv term, template lists EFO) - accepted, explained in the report. No fixes needed.
+- The SDRF was written by sdrf-tools build only (scripts in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/: gen_tables.py -> build_all.sh).
+- reconcile exit 0 did not flag PRIDE 'instruments' (LTQ Orbitrap for PXD006013-16); the SDRF instrument (Orbitrap Fusion / Q Exactive) comes from the mzXML msModel of every run and the paper Methods - see report Conflicts.
