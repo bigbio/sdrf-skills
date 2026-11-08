@@ -55,3 +55,42 @@ exit code: 0
 # - convert-openms on the deliverable fails only on `comment[precursor mass tolerance] = not available` (paper 6 ppm vs PRIDE 4.5 ppm,
 #   no deposited mqpar/apar; see manifest limitations). A scratch copy with a placeholder tolerance converts with exit 0
 #   (15 conditions; 23 files per BioID2 condition, 16 per phospho condition), showing nothing else blocks the conversion.
+
+# ===== Round 2 (after external review round 1: precursor tolerance 4.5 ppm; BioID2 hairpins shKRAS.2 / shNRAS.1) =====
+
+$ sdrf-tools reconcile annotations/PXD031662.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pride.json --accession PXD031662
+PXD031662: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD031662.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD031662.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: XG-2 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/openms3) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD031662.sdrf.tsv -t2
+Conditions (15): dict_keys(['L-363|BioID2 empty vector', 'L-363|BioID2-SLC3A2 + shCTRL', 'L-363|BioID2-SLC3A2 + shNRAS.1', 'SK-MM-1|BioID2 empty vector', 'SK-MM-1|BioID2-SLC3A2 + shCTRL', 'SK-MM-1|BioID2-SLC3A2 + shNRAS.1', 'XG-2|BioID2 empty vector', 'XG-2|BioID2-SLC3A2 + shKRAS.2', 'XG-2|BioID2-SLC3A2 + shCTRL', 'RPMI8226|BioID2 empty vector', 'RPMI8226|BioID2-SLC3A2 + shCTRL', 'RPMI8226|BioID2-SLC3A2 + shKRAS.2', 'SK-MM-1|shCTRL', 'SK-MM-1|shNRAS.1', 'SK-MM-1|shNRAS.2'])
+Files per condition: dict_values([23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 16, 16, 16])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 324 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD031662.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD031662.evidence.json
+annotations/PXD031662.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD031662.sdrf.tsv annotations/PXD031662.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+# Round 2 notes (producer; not a review verdict)
+# - Changes went through the tables only (scripts/make_tables.py -> build2/), rebuilt with sdrf-tools build x3, concatenated with byte-identical
+#   headers (md5 a4c1311e4e0ccb326a94cff34851b780), no post-build cell edits.
+#   (1) comment[precursor mass tolerance] not available -> 4.5 ppm on all rows. Basis: deposited evidence.txt max |Mass error [ppm]| (non-MULTI)
+#       983 4.4999, 984 4.4989, 136 4.4989, 139 4.4940, R1_96 4.4537, R1_96B 4.4941 (scratch analysis/precursor_mass_error_cap.txt) + PRIDE protocol 4.5 ppm.
+#   (2) BioID2 hairpins shKRAS -> shKRAS.2, shNRAS -> shNRAS.1 (paper Methods: "infected with pLKO-shKRAS.2 or pLKO-shNRAS.1").
+# - The round-1 notes about convert-openms failing on 'not available' are superseded: convert-openms now succeeds on the deliverable (exit 0).
+# - parse_sdrf: 0 errors; only the expected XG-2 warning (see round-1 notes). reconcile and structure exit 0.

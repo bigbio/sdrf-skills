@@ -36,22 +36,22 @@
   {
    "id": "mq_983",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/10/PXD031662/MaxQuant_983.zip members summary.txt, parameters.txt, proteinGroups.txt (HTTP range-read; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/mq/MaxQuant_983__*.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pg/MaxQuant_983__proteinGroups.txt)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/10/PXD031662/MaxQuant_983.zip members summary.txt, parameters.txt, proteinGroups.txt, evidence.txt (HTTP range-read; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/mq/MaxQuant_983__*.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pg/MaxQuant_983__proteinGroups.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/ev/MaxQuant_983__evidence.txt)"
   },
   {
    "id": "mq_984",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/10/PXD031662/MaxQuant_984.zip members summary.txt, parameters.txt, proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/mq/MaxQuant_984__*.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pg/MaxQuant_984__proteinGroups.txt)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/10/PXD031662/MaxQuant_984.zip members summary.txt, parameters.txt, proteinGroups.txt, evidence.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/mq/MaxQuant_984__*.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pg/MaxQuant_984__proteinGroups.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/ev/MaxQuant_984__evidence.txt)"
   },
   {
    "id": "mq_136_139",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/10/PXD031662/MaxQuant_136_139.zip members summary.txt, parameters.txt, proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/mq/MaxQuant_136_139__*.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pg/MaxQuant_136_139__proteinGroups.txt)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/10/PXD031662/MaxQuant_136_139.zip members summary.txt, parameters.txt, proteinGroups.txt, evidence.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/mq/MaxQuant_136_139__*.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pg/MaxQuant_136_139__proteinGroups.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/ev/MaxQuant_136_139__evidence.txt)"
   },
   {
    "id": "mq_96",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/10/PXD031662/MaxQuant_96_96B.zip members summary.txt, parameters.txt, proteinGroups.txt, Phospho (STY)Sites.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/mq/MaxQuant_96_96B__*.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pg/)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/10/PXD031662/MaxQuant_96_96B.zip members summary.txt, parameters.txt, proteinGroups.txt, Phospho (STY)Sites.txt, evidence.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/mq/MaxQuant_96_96B__*.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pg/, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/ev/MaxQuant_96_96B__evidence.txt)"
   },
   {
    "id": "mq_excluded",
@@ -66,7 +66,7 @@
   {
    "id": "ratio_checks",
    "kind": "analysis",
-   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/ratios.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/channel_occupancy_and_bait_ratios.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig3a_exact.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig3a_exact_match.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig4b.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig4b_correlation.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig1d.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig1d_exact_match.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/tmt_channel_occupancy.txt"
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/ratios.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/channel_occupancy_and_bait_ratios.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig3a_exact.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig3a_exact_match.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig4b.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig4b_correlation.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig1d.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig1d_exact_match.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/tmt_channel_occupancy.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/masserr.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/precursor_mass_error_cap.txt"
   },
   {
    "id": "cellosaurus",
@@ -315,26 +315,26 @@
   },
   {
    "location": "characteristics[genetic modification] and factor value[genetic modification] rows 1-138,208-276 (non-light rows)",
-   "value": "BioID2-SLC3A2 + shCTRL (medium) / BioID2-SLC3A2 + shNRAS (136, 139 heavy) / BioID2-SLC3A2 + shKRAS (984 heavy)",
+   "value": "BioID2-SLC3A2 + shCTRL (medium) / BioID2-SLC3A2 + shNRAS.1 (136, 139 heavy) / BioID2-SLC3A2 + shKRAS.2 (984 heavy)",
    "source_ids": [
     "file_assignment",
     "source_data",
     "ratio_checks",
     "paper"
    ],
-   "evidence": "File_assignment: medium \"SLC3A2 + shCTRL\", heavy \"SLC3A2 + shNRAS\" (136 L363, 139 SKMM1) / \"SLC3A2 +shKRAS\" (984 RPMI-8226). Confirmed by exact identity: Source Data Fig. 3a columns \"<line> shCTRL\" == log2(Ratio M/L normalized) and \"<line> shKRAS/shNRAS\" == log2(Ratio H/L normalized) for 3007/3012 (L363-136), 2358/2362 (SKMM1-139), 1692/1692 (8226-984) genes. Paper: BioID2-SLC3A2 with control shRNA or shRNAs targeting KRAS or NRAS corresponding to the mutant RAS isoform of each line."
+   "evidence": "File_assignment: medium \"SLC3A2 + shCTRL\", heavy \"SLC3A2 + shNRAS\" (136 L363, 139 SKMM1) / \"SLC3A2 +shKRAS\" (984 RPMI-8226). Confirmed by exact identity: Source Data Fig. 3a columns \"<line> shCTRL\" == log2(Ratio M/L normalized) and \"<line> shKRAS/shNRAS\" == log2(Ratio H/L normalized) for 3007/3012 (L363-136), 2358/2362 (SKMM1-139), 1692/1692 (8226-984) genes. Paper: BioID2-SLC3A2 with control shRNA or shRNAs targeting KRAS or NRAS corresponding to the mutant RAS isoform of each line; hairpin identity from the BioID2 Methods paragraph: \"In certain cases, cells were infected with pLKO-shKRAS.2 or pLKO-shNRAS.1\" (File_assignment says only shKRAS/shNRAS)."
   },
   {
    "location": "characteristics[genetic modification] and factor value[genetic modification] rows 162-207",
-   "value": "SILAC medium = BioID2-SLC3A2 + shKRAS; SILAC heavy = BioID2-SLC3A2 + shCTRL",
+   "value": "SILAC medium = BioID2-SLC3A2 + shKRAS.2; SILAC heavy = BioID2-SLC3A2 + shCTRL",
    "source_ids": [
     "source_data",
-    "ratio_checks",
     "mq_983",
+    "ratio_checks",
     "file_assignment",
     "paper"
    ],
-   "evidence": "CONFLICT resolved against File_assignment (which lists medium = SLC3A2 +shCtrl, heavy = SLC3A2 +shKRAS for 983). Source Data Fig. 3a: \"XG2 shKRAS\" == log2(Ratio M/L normalized, exp 983) and \"XG2 shCTRL\" == log2(Ratio H/L normalized) for 2588/2589 genes (reverse assignment matches 10). Biology in the deposited proteinGroups: KRAS;NRAS log2 M/L 1.95 vs H/L 2.60 and MTOR 1.69 vs 2.20, i.e. RAS and MTOR are LOWER in medium, as expected for shKRAS and as the paper reports (SLC3A2-MTOR association decreases on RAS knockdown); in 984/136/139 the heavy (shKD) channel is the lower one, matching their File_assignment rows. Rule 6: explicit label + data beat the single conflicting label."
+   "evidence": "CONFLICT resolved against File_assignment.txt (which lists medium = SLC3A2 +shCtrl, heavy = SLC3A2 +shKRAS for 983). Deciding evidence: the paper Source Data Fig. 3a, an author-labelled source, is bound to the deposit by exact numerical identity - column \"XG2 shKRAS\" == log2(Ratio M/L normalized, exp 983) and \"XG2 shCTRL\" == log2(Ratio H/L normalized, exp 983) for 2588/2589 genes; the File_assignment orientation matches 10 genes. The same test confirms File_assignment for 984/136/139 (1692/1692, 3007/3012, 2358/2362), so the method is calibrated. Hairpin identity shKRAS.2 per the paper Methods (see the shRNA claim). Rule 6: explicit label + data beat the single conflicting label."
   },
   {
    "location": "characteristics[genetic modification] and factor value[genetic modification] rows 277-324",
@@ -466,12 +466,16 @@
   },
   {
    "location": "comment[precursor mass tolerance] rows 1-324",
-   "value": "not available",
+   "value": "4.5 ppm",
    "source_ids": [
-    "paper",
-    "pride"
+    "mq_983",
+    "mq_984",
+    "mq_136_139",
+    "mq_96",
+    "pride",
+    "ratio_checks"
    ],
-   "evidence": "Conflict with no deciding source: paper Methods 6 ppm, PRIDE data processing 4.5 ppm; MaxQuant 1.6 parameters.txt does not record the main-search tolerance and no mqpar.xml/.apar is deposited."
+   "evidence": "Deposited evidence.txt: the largest calibrated |Mass error [ppm]| of non-MULTI evidence is just under 4.5 ppm in every annotated experiment (MaxQuant_983 exp 983: n=38279 max |Mass error [ppm]| (non-MULTI) = 4.4999; MaxQuant_984 exp 984: n=20907 max |Mass error [ppm]| (non-MULTI) = 4.4989; MaxQuant_136_139 exp 136: n=47517 max |Mass error [ppm]| (non-MULTI) = 4.4989; MaxQuant_136_139 exp 139: n=26420 max |Mass error [ppm]| (non-MULTI) = 4.4940; MaxQuant_96_96B exp R1_96: n=15302 max |Mass error [ppm]| (non-MULTI) = 4.4537; MaxQuant_96_96B exp R1_96B: n=11865 max |Mass error [ppm]| (non-MULTI) = 4.4941), i.e. a hard 4.5 ppm main-search cutoff. PRIDE dataProcessingProtocol: \"After initial recalibration, a mass tolerance of 4.5 ppm and 20 ppm was allowed for precursor and fragment ions\". The paper Methods value (6 ppm) is contradicted by the deposited search output, which outranks the manuscript."
   },
   {
    "location": "comment[modification parameters] (Carbamidomethyl, Oxidation, Acetyl) rows 1-324",
@@ -549,12 +553,12 @@
  ],
  "limitations": [
   "PARTIAL scope: 211 of 319 raw files are not annotated (183 BioID2 SILAC runs of experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 with an undocumented third SILAC channel; 28 TMT11 runs of experiment 0118 with 9 of 11 channels undocumented and a cell-line conflict). Listed in build2/excluded_files.txt and in the report; BLOCKED.md entry added.",
-  "Experiment 983 (XG-2): medium/heavy assignment follows the paper Source Data (Fig. 3a exact ratio identity) and the KRAS/MTOR ratios, overriding the deposited File_assignment.txt, which states the reverse.",
+  "Experiment 983 (XG-2): medium/heavy assignment follows the paper Source Data (Fig. 3a exact log2 normalized-ratio identity, 2588/2589 genes), overriding the deposited File_assignment.txt, which states the reverse; also recorded in BLOCKED.md.",
   "96 vs 96B: encoded as technical replicates 1/2 of one SILAC triple (same sources); the deposit does not say what distinguishes them (separate enrichment, re-preparation or biological repeat). Fig. 4b source data states 1 biological replicate.",
   "File_assignment phospho labels shNRAS.56 / shNRAS.57 are written as the paper's shNRAS.1 / shNRAS.2 (same light/medium/heavy order in both sources); the .56/.57 = .1/.2 equivalence is inferred.",
-  "Precursor mass tolerance not available: paper 6 ppm vs PRIDE 4.5 ppm, no deposited mqpar.xml/.apar. As a consequence parse_sdrf convert-openms refuses the file (it succeeds on a scratch copy with a placeholder tolerance).",
   "Culture medium not available: SILAC base medium not named. Reduction/alkylation reagents omitted (optional columns): PRIDE says LDS/TCEP sample buffer, paper says NuPAGE reducing agent; alkylation reagent unstated although Carbamidomethyl (C) is searched as fixed.",
   "XG-2 has no CLO/BTO/EFO term; parse_sdrf warns on characteristics[cell line] = XG-2 (Cellosaurus CVCL_4798 given).",
+  "BioID2-arm hairpins written shKRAS.2 / shNRAS.1 from the paper Methods sentence about the BioID2 experiments; File_assignment.txt does not number them.",
   "Genetic-modification values are free text in a custom characteristics column (spec Extending Templates; curated precedents use characteristics[genetic modification]); BioID2 constructs of the SLC3A2 experiments are not ontology terms.",
   "techsdrf not installed: instrument checked by raw-header range read only; tolerances/modifications from MaxQuant summary/parameters, not from raw-file analysis.",
   "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."

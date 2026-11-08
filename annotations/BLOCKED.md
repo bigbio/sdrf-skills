@@ -1437,6 +1437,8 @@ Sources checked: paper (PMC HTML), PRIDE protocol, `files/all` (no sample sheet)
 | Paper Fig. 2e / Fig. S3c | SLC3A2-knockdown phosphoproteome in **SKMM1**; deposit says RPMI-8226 for TMT 118 |
 | Paper Methods, PRIDE protocol, Supplementary Figures | no per-channel layout for these experiments; no third condition named |
 
+**Annotated arm deviates from the deposit for experiment 983 (XG-2).** `File_assignment.txt` lists medium = SLC3A2 + shCtrl and heavy = SLC3A2 + shKRAS. The SDRF follows the paper Source Data instead: Fig. 3a "XG2 shKRAS" equals log2 Ratio M/L normalized and "XG2 shCTRL" equals log2 Ratio H/L normalized of exp 983 for 2588/2589 genes. So medium = shKRAS.2 and heavy = shCTRL. The same identity test confirms `File_assignment.txt` for 984, 136 and 139. Authors' confirmation of the 983 orientation would remove this override.
+
 The third SILAC condition of each blocked BioID2 experiment, and 9 of 11 TMT channels, are documented nowhere. Annotating them with `not available` conditions would pool unrelated samples (rule 7), and dropping a demonstrably used channel would falsely mark it unused.
 
 Sources checked: PRIDE project record and protocol, `files/all` (331 entries), `File_assignment.txt`, all 11 MaxQuant zips (summary, parameters, proteinGroups; Phospho (STY)Sites for 96/96B), paper (PMC efetch), PMC OA supplementary (MOESM1 Supplementary Figures, MOESM2 Reporting Summary not needed, MOESM3 Source Data), ref 67 (Fish *et al.* PNAS 2020) for the phospho method. Analysis scripts and outputs are in the PXD031662 scratch dir (`scripts/ratios.py`, `scripts/fig1d.py`, `analysis/`).
