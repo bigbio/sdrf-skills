@@ -1,0 +1,56 @@
+# PXD017530 validation log (2026-11-08T22:58Z); SDRF sha256 8b9e1a5630f1126114b955a6c910444cc55087cf5c0197c6ee93197fd7d81856; 912 rows x 48 columns
+# SDRF = concatenation (scripts/concat.py, header equality asserted, no value edited) of two sdrf-tools build outputs with identical headers:
+#   build/part_qe2017.sdrf.tsv (672 rows, Q Exactive 2017 runs) and build/part_lumos2019.sdrf.tsv (240 rows, Orbitrap Fusion Lumos 2019 runs); scratch /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530
+#   Both builds: sdrf-tools build --samples samples_<part>.tsv --technical technical_<part>.tsv --files files_<part>.json -t ms-proteomics -t human -t cell-lines (exit 0 each). No post-build edits.
+
+## Round 1 (current file): parse_sdrf validate-sdrf -s annotations/PXD017530.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+WARNING: Term: H1-A in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: super-SILAC standard: equal-protein pool of Arg10/Lys8-labelled iPSC-CMs from 4 NS patient-derived and 3 WT iPSC lines in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: H1-B in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: H2-A in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: H2-B in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: WT1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: WT2 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: WT3 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: Corr02 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: Corr4 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+# Note: the only warnings are characteristics[cell line] values not found in CLO/BTO/EFO. They are the depositors' iPSC line labels (from MaxQuant experiment names) and the super-SILAC pool description; these lines have no ontology/Cellosaurus identity that can be mapped from the deposit (see manifest limitations). Expected.
+
+## sdrf-tools structure annotations/PXD017530.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD017530.sdrf.tsv --offline
+Hallucination Report: annotations/PXD017530.sdrf.tsv
+  Terms checked:     13
+  Verified:          5
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD017530.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/pride.json --accession PXD017530
+PXD017530: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+# Refutation of MINOR cleavage_agent_unsupported: the PRIDE sampleProcessingProtocol stops after lysis and does not describe the digest; the dataProcessingProtocol states 'The search was performed with trypsin as enzyme' and all three deposited MaxQuant summary.txt files give Enzyme 'Trypsin/P' (search rule; digestion enzyme recorded as Trypsin MS:1001251 per batch rule 2). The paper's Methods could not be retrieved (403). Value kept.
+# reconcile did not flag the instrument: PRIDE lists only Q Exactive, but raw headers show the 120 corrected-line (2019) runs were acquired on an Orbitrap Fusion Lumos (rows 673-912), documented in the manifest.
+
+## parse_sdrf convert-openms -s annotations/PXD017530.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/convert)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+# Expected failure: comment[precursor mass tolerance] = not available (MaxQuant parameters.txt/summary.txt do not record it; no mqpar.xml deposited). Same as campaign precedents PXD014368/PXD006676.
+
+## sdrf-tools schema-check annotations/PXD017530.evidence.json
+annotations/PXD017530.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD017530.sdrf.tsv annotations/PXD017530.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit=0
