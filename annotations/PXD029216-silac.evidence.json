@@ -1,0 +1,316 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD029216-silac.sdrf.tsv",
+ "dataset": "PXD029216",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029216 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029216/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/files_all.json; 642 entries, all asserted to carry PXD029216: 636 .raw, 3 MaxQuant txt zips, 2 PD .msf, 1 label key .xls)"
+  },
+  {
+   "id": "label_key",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/SWOG_NPM1_TMT_label_key.xls (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/dl/SWOG_NPM1_TMT_label_key.xls; sheets dumped verbatim to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/labelkey_SILAC.tsv, labelkey_SWOG27.tsv, labelkey_NPM1.tsv, labelkey_FH_UW45.tsv)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC11647701 / doi:10.1002/jha2.1041 / PMID 39691254 (Naru J et al., eJHaem 2024;5(6):1243-1251), NCBI efetch db=pmc id=11647701 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/efetch.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/manuscript.txt)"
+  },
+  {
+   "id": "supp_methods",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11647701.1/JHA2-5-1243-s014.docx (Supplemental Methods; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/supp/JHA2-5-1243-s014.docx, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/supp_methods_clean.txt)"
+  },
+  {
+   "id": "table_s13",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11647701.1/JHA2-5-1243-s013.xlsx (patient clinicopathologic table for FHCC/UW-HDR3 and SWOG27; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/supp/JHA2-5-1243-s013.xlsx, dump /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/tableS_clinical.tsv)"
+  },
+  {
+   "id": "mq_1st",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_SWOG_1st_MaxQuant_txt.zip members txt/parameters.txt, txt/summary_new.txt, txt/proteinGroups_new.txt (HTTP-range extracted; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/1st_*.txt)"
+  },
+  {
+   "id": "mq_2nd",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_SWOG_2nd_MaxQuant_txt.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/2nd_*.txt)"
+  },
+  {
+   "id": "mq_npm1",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_NPM1_MaxQuant_txt.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/npm1_*.txt)"
+  },
+  {
+   "id": "pd_msf",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/JN092820_101520_TMT11plex_E2_bRP_Frac_01to24.msf and ..._E3_... (HTTP-range SQLite; Workflows.WorkflowXML -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_workflow.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E3_workflow.xml; WorkflowInputFiles -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_inputs.tsv; ReporterQuanResults sample -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_reporter_sample.tsv)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "first 1.5 MB of 9 .raw files (one per run group: AML1001/AML1036/AML1027_R2 SILAC, SWOG27 GRA, NPM1 Gr01, Gr08, Gr08 reshoot, E2, E3), HTTP-range from https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/ (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/cell-line/<CVCL>?format=txt for CVCL_7916, CVCL_1844, CVCL_1824, CVCL_2110, CVCL_0589, CVCL_2161 (queried 2026-11-08)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4/api/terms?obo_id=<id> (queried 2026-11-08) for every accession used"
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "curation-policy",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (rules 1-18 + batch-3 refinements)"
+  },
+  {
+   "id": "precedent",
+   "kind": "curation-precedent",
+   "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD003822/PXD003822-freshfrozen-silac.sdrf.tsv (AML super-SILAC); /home/user/bigbio/sdrf-skills/annotations/PXD030422.sdrf.tsv (heavy reference encoding); annotations/PXD008327.validation.txt (post-build Lys-C column)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata (ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0); upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t"
+  },
+  {
+   "id": "build",
+   "kind": "local-script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/scripts/rebuild.sh (make_tables.py -> sdrf-tools build x5 -> postbuild.py); working tables /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/build/*/samples.tsv, technical.tsv"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name SILAC light rows 228 rows, 1-6 ... 445-450",
+   "value": "<label-key Sample ID>_SILAC, e.g. AML1001_Blasts_BM_SILAC (38 patients)",
+   "source_ids": [
+    "label_key",
+    "pride_files"
+   ],
+   "evidence": "Label key sheet \"SILAC\" lists 37 Sample IDs, each with its raw file pattern (e.g. AML1001_Blasts_BM -> AML1001_Blast_BM_2D_Fxx.raw). The 38th deposited group, AML1036_Blast_BLD_2D_F01-F06, is absent from that sheet; its ID AML1036_Blasts_BLD is taken from the file name and the NPM1 sheet (Gr07 channel 2). Suffix _SILAC distinguishes these sample preparations from the same patients' TMT samples."
+  },
+  {
+   "location": "comment[label] rows 228 rows, 1-6 ... 445-450 and 228 rows, 7-12 ... 451-456",
+   "value": "SILAC light = patient blasts; SILAC heavy = spike-in standard",
+   "source_ids": [
+    "mq_1st",
+    "supp_methods",
+    "pride"
+   ],
+   "evidence": "MaxQuant summary_new.txt: Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8 on all 228 searched runs (rule 14 verified: really multiplexed SILAC). The patient material is cryopreserved primary cells sorted by FACS and lysed directly (PRIDE sampleProcessingProtocol; Supplemental Methods \"Nucleic acid and protein extraction\") - no culture step, so it cannot carry a metabolic label: patient = light. Data check (proteinGroups_new.txt): HBB (haemoglobin from blood/marrow specimens) Intensity L >> H in all 38 experiments (e.g. AML1024 L 5.9e10 vs H 1.5e8), and MPO L > H in most - the light channel holds the clinical specimen, the heavy channel cultured (labelled) cells; total L and H intensities are ~1:1 (H/L 0.57-1.14), consistent with a 1:1 spike-in."
+  },
+  {
+   "location": "source name / characteristics[sample type] / characteristics[phenotype] SILAC heavy rows 228 rows, 7-12 ... 451-456",
+   "value": "SILAC heavy reference standard (spiked into <Sample ID>) / reference / \"SILAC heavy (Arg10/Lys8) labelled spike-in reference standard, composition not reported\"",
+   "source_ids": [
+    "mq_1st",
+    "campaign_rules",
+    "precedent"
+   ],
+   "evidence": "Rule 18: the heavy channel of a spiked-in labelled standard is encoded as reference, not as a study sample. Its composition (which cell line(s)) is not stated in the paper, PRIDE, the label key or the search output, so organism part, cell type, pooled sample, disease, material type, age, sex and individual are not available and no cell line is named. One heavy source per patient mix keeps the (source, replicate, fraction, label) coordinate unique (precedent PXD030422)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-456",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "mq_1st"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606. Heavy rows: the search used a human-only FASTA (uniprot_taxonomy_9606_Reviewed.fasta) and heavy intensities pair 1:1 with light across thousands of human protein groups, so the standard is human material."
+  },
+  {
+   "location": "characteristics[organism part] SILAC light rows",
+   "value": "bone marrow / blood (from label key Source BM / PB / Apheresis); not available for AML1027",
+   "source_ids": [
+    "label_key"
+   ],
+   "evidence": "SILAC sheet column \"Source\": BM -> bone marrow; PB and Apheresis (leukapheresis product = peripheral blood) -> blood. AML1027 (rows 433-438): Sample ID AML1027_Blasts_BLD and file name \"BLD\" contradict Source \"BM\" (also BM in the FH UW45 sheet) -> not available. AML1036 (rows 445-450): no Source column; \"BLD\" in file name and NPM1-sheet ID -> blood."
+  },
+  {
+   "location": "characteristics[cell type] SILAC light rows",
+   "value": "malignant cell",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "The samples are FACS-sorted viable leukemic blasts (uVLBs) (PRIDE protocol; paper). CL:0001064 malignant cell; same choice as campaign precedent PXD030422."
+  },
+  {
+   "location": "characteristics[phenotype] + characteristics[genotype] + factor value[genotype] SILAC light rows",
+   "value": "blast immunophenotype from label key \"Blast IP\"; \"FLT3-ITD <Pos/Neg/ND>; NPM1 mutation <Pos/Neg>\" from label key",
+   "source_ids": [
+    "label_key",
+    "paper"
+   ],
+   "evidence": "SILAC sheet columns Blast IP (VLBCD34+ / VLBCD117+ / VLBCD45/SSC; legend in Table S13 and Fig. 2: CD117+ = CD34-negative, CD45/SSC = double negative) and FLT3-ITD / NPM1. AML1036 has no SILAC-sheet row: phenotype not available (the sorted fraction can differ between arms for the same patient, e.g. AML044 VLBCD45/SSC in SWOG27 vs VLBCD34+ in NPM1 Gr05), genotype from the NPM1 sheet (FLT3 Pos, NPM1 Pos; mutation status is patient-level and agreed across sheets for every overlapping patient checked). Genotype is the compared variable: the study compares FLT3-ITD and NPM1 mutant vs non-mutant blasts (paper Results; Table S15)."
+  },
+  {
+   "location": "characteristics[disease] SILAC light rows",
+   "value": "acute myeloid leukemia",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "All patients are de novo AML (PRIDE protocol; paper). MONDO:0018874 verified in OLS. Heavy rows: not available (standard of unreported origin)."
+  },
+  {
+   "location": "characteristics[material type], characteristics[biological replicate], characteristics[pooled sample], characteristics[individual] (SILAC light rows; heavy rows: biological replicate 1)",
+   "value": "cell; 1; not pooled; patient ID (e.g. AML1001)",
+   "source_ids": [
+    "label_key"
+   ],
+   "evidence": "One sorted blast lysate per patient; individual = study patient ID prefix of the Sample ID."
+  },
+  {
+   "location": "characteristics[treatment status] / characteristics[treatment response] / characteristics[clinical data] / characteristics[age] / characteristics[sex] / characteristics[developmental stage] (SILAC rows)",
+   "value": "not available",
+   "source_ids": [
+    "table_s13",
+    "campaign_rules"
+   ],
+   "evidence": "None of the 38 SILAC patients is in Table S13 and no other individual-level clinical source was deposited (rule 18)."
+  },
+  {
+   "location": "comment[instrument] all rows",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw_headers",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of AML1001, AML1036 and AML1027_R2 F01: \"Orbitrap Fusion Method Summary\"; acquired 4/5/2016 and 6/15/2016. PRIDE instruments also Orbitrap Fusion."
+  },
+  {
+   "location": "comment[dissociation method] / comment[collision energy] / comment[ms2 mass analyzer] all rows",
+   "value": "beam-type collision-induced dissociation / 27% NCE / linear ion trap",
+   "source_ids": [
+    "raw_headers",
+    "ols"
+   ],
+   "evidence": "Method 012616_Trap_Univ_..._ddMS2_IT_HCD_27CE: ActivationType = HCD, Collision Energy (%) = 27, MS2 Detector Type = IonTrap. MS:1000422, MS:1000291 verified."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw_headers"
+   ],
+   "evidence": "Method name ddMS2 (data-dependent MS2, top speed 3 s)."
+  },
+  {
+   "location": "comment[cleavage agent details] all rows",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mq_1st",
+    "pride",
+    "campaign_rules"
+   ],
+   "evidence": "No digestion protocol is published for the SILAC arm. MaxQuant summary_new.txt Enzyme = Trypsin, Enzyme mode = Specific; PRIDE dataProcessingProtocol \"tryptic enzyme constraint\". A specific-trypsin search identifying >6000 protein groups is consistent with a tryptic digest; the column permits only not applicable as a reserved word."
+  },
+  {
+   "location": "comment[fraction identifier] all rows",
+   "value": "1-6 (F01-F06)",
+   "source_ids": [
+    "pride_files",
+    "mq_1st"
+   ],
+   "evidence": "Each patient mix was acquired as 6 runs _2D_F01.._F06; MaxQuant summary Fraction 1-6 per experiment."
+  },
+  {
+   "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 1-432",
+   "value": "20 ppm / 0.5 Da",
+   "source_ids": [
+    "pride",
+    "supp_methods",
+    "mq_1st"
+   ],
+   "evidence": "Fragment: MaxQuant parameters.txt \"MS/MS tol. (ITMS) 0.5 Da\" (MS2 in ion trap). Precursor: \"Peptide MH+ mass tolerances were set at 20 ppm\" (PRIDE dataProcessingProtocol); not recorded in the deposited MaxQuant output."
+  },
+  {
+   "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 433-456",
+   "value": "not applicable",
+   "source_ids": [
+    "mq_1st",
+    "campaign_rules"
+   ],
+   "evidence": "AML1036_Blast_BLD_2D_F01-F06 and AML1027_Blast_BLD_2D_R2_F01-F06 are not in the deposited MaxQuant summary_new.txt (it lists AML1027_Blast_BLD_2D_F01-F06 and AML1089_Blast_BLD_2D_F01-F06 instead, which were not deposited). Rule 5: runs never database-searched get tolerances not applicable."
+  },
+  {
+   "location": "comment[modification parameters] all rows",
+   "value": "Carbamidomethyl C Fixed; Oxidation M Variable; Label:13C(6)15N(4) R (UNIMOD:267) Variable; Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_1st",
+    "campaign_rules",
+    "ols"
+   ],
+   "evidence": "parameters.txt Fixed modifications Carbamidomethyl (C); summary Variable modifications Oxidation (M); Labels1 Arg10;Lys8 (+10.008 R = UNIMOD:267, +8.014 K = UNIMOD:259; rule 11 MT=Variable). The 24 unsearched rows carry the same chemistry (same 2D SILAC acquisition series, same method file) but no search; see limitations."
+  },
+  {
+   "location": "comment[reduction reagent] / comment[alkylation reagent] all rows",
+   "value": "not available",
+   "source_ids": [
+    "supp_methods"
+   ],
+   "evidence": "The SILAC arm is not described in the paper or supplement; the search sets Carbamidomethyl fixed, so alkylation happened but the reagent is unstated (not available, not not applicable)."
+  },
+  {
+   "location": "comment[fractionation method] all rows",
+   "value": "not available",
+   "source_ids": [
+    "supp_methods",
+    "pride"
+   ],
+   "evidence": "The \"2D\" 6-fraction scheme is not described anywhere."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] all rows",
+   "value": "v1.1.0 / ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0 / NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "campaign_rules",
+    "templates"
+   ],
+   "evidence": "Rules 1 and 10. Templates: patient material (human + clinical-metadata, rule 15/18); AML is a cancer (oncology-metadata licenses characteristics[clinical data]). cell-lines is not declared (no cell-line study samples in this file)."
+  },
+  {
+   "location": "technology type all rows",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "comment[data file] / comment[technical replicate] / assay name all rows",
+   "value": "<deposited raw file name> / 1 / file stem",
+   "source_ids": [
+    "pride_files",
+    "build"
+   ],
+   "evidence": "Each of the 228 deposited SILAC .raw files appears twice (light + heavy row); file names exactly as in PRIDE files/all; one injection per mix, so technical replicate 1."
+  }
+ ],
+ "limitations": [
+  "techsdrf is not installed; instrument, activation, collision energy and MS2 detector were read from HTTP-range raw headers of one file per run group (9 files), not from every file.",
+  "Precursor mass tolerance for the three MaxQuant searches is not recorded in the deposited parameters.txt/summary.txt; 20 ppm is the value the PRIDE dataProcessingProtocol and Supplemental Methods state (\"Peptide MH+ mass tolerances were set at 20 ppm\"). MaxQuant's main-search default is 4.5 ppm (first search 20 ppm), so the stated value may describe the first search.",
+  "Ancestry is not reported for any individual: characteristics[ancestry category] = not available on all rows.",
+  "Individual-level age, sex, treatment response and clinical data exist only for the 30 Table S13 patients (SWOG27 + FHCC/UW-HDR3). They were propagated by patient ID to the same patients' samples in other arms (AML1050, AML039, AML044, AML058, AML158, AML179, AML185 in the NPM1 arm); all other patients carry not available. Sex/channel concordance was checked with RPS4Y1 reporter intensity: 27/27 SWOG27 channels and 7/7 NPM1-arm overlap channels agree with Table S13 (AML179: Table S13 sex F but karyotype 46,XY[20]; RPS4Y1 is low in both of its channels, so sex female was kept).",
+  "No patient age, sex or individual-level clinical data were deposited for the SILAC-arm, NPM1-arm or E3 patients other than the S13 overlaps; the NPM1 label key gives only Age_Group (Adult/Ped), used for developmental stage (adult) and clinical data (pediatric).",
+  "SCOPE NOTE: this file covers the 228 SILAC runs (38 patients x 6 fractions x 2 channels). The 408 TMT runs are in PXD029216-tmt.sdrf.tsv (rule 12).",
+  "The composition of the heavy (Arg10/Lys8) SILAC standard is not reported anywhere (paper, supplement, PRIDE, label key, MaxQuant output); heavy rows are encoded as a reference of unknown composition. The SILAC arm itself is not described in the publication.",
+  "AML1036_Blast_BLD_2D_F01-F06 and AML1027_Blast_BLD_2D_R2_F01-F06 (24 rows) are not covered by the deposited MaxQuant search (which instead names undeposited AML1027 (non-R2) and AML1089 runs). Their tolerances are not applicable (rule 5); their modification parameters repeat the arm's SILAC chemistry. Because convert-openms cannot parse \"not applicable\" tolerances, `parse_sdrf convert-openms` fails on the full SILAC file and succeeds on the 432 searched rows; see validation.txt.",
+  "Raw headers show original acquisition names (e.g. JK033016_AML_RO10001_2D_F01.raw for AML1036, RO50479 for AML1027_R2): the deposited files were renamed; the name->patient mapping is the submitter's.",
+  "AML1027 organism part: Sample ID/file name say BLD, label-key Source says BM -> not available."
+ ]
+}
