@@ -133,3 +133,11 @@ $ sdrf-tools manifest-coverage annotations/PXD031662.sdrf.tsv annotations/PXD031
 Manifest covers every column with a value (30 column(s)).
 exit code: 0
 
+# Round 3 notes (producer; not a review verdict)
+# - Producer re-verified the round-2 blocker before acting: Thermo RunHeader (located via preamble 64-bit addresses, HTTP range) last scan of deposited
+#   TO_R_Young_190220_110320_HFPlus_136_L6_1/2/7 = 32624/33345/33984 = MS+MS/MS of summary.txt 140_L6_1/2/7; summary exp 136 is 060320_HFPlus_136_L2_*
+#   (33074/33569/36745), not deposited. Control: 139_L5_1/7 last scan 32412/33817 = summary 139_L5_1/7. (scratch analysis/runheader_last_scan.txt)
+# - Exp 136 removed in scripts/make_tables.py (tables now in build3/); rebuilt with sdrf-tools build x3, headers byte-identical
+#   (md5 a4c1311e4e0ccb326a94cff34851b780), concatenated, no post-build edits. 255 rows x 47 columns; 85 raws; 12 conditions, biological replicate 1 each
+#   (one independent experiment per condition), 96/96B technical replicates 1/2.
+# - parse_sdrf: 0 errors, XG-2 warning only. reconcile/structure exit 0. convert-openms exit 0 on the deliverable.

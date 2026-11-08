@@ -1417,12 +1417,13 @@ Sources checked: paper (PMC HTML), PRIDE protocol, `files/all` (no sample sheet)
 
 ---
 
-## PXD031662 — RAS and SLC3A2 signaling in multiple myeloma (BioID2-SILAC + phospho SILAC/TMT), 8 BioID2 experiments and the TMT arm (partial block)
+## PXD031662 — RAS and SLC3A2 signaling in multiple myeloma (BioID2-SILAC + phospho SILAC/TMT), 8 BioID2 experiments, the mis-named 136_L6 runs (= exp 140) and the TMT arm (partial block)
 
 | | |
 |---|---|
 | Publication | Yang Y *et al.*, Nat Commun 2022 13:5469, PMID:36115844, PMC9482638, doi:10.1038/s41467-022-33142-x (full text, Supplementary Figures and Source Data xlsx read) |
-| Annotated | 108 raws (BioID2-SLC3A2 experiments 136, 139, 983, 984 and phospho SILAC 96/96B) → `PXD031662.sdrf.tsv`, 324 rows |
+| Annotated | 85 raws (BioID2-SLC3A2 experiments 139, 983, 984 and phospho SILAC 96/96B) → `PXD031662.sdrf.tsv`, 255 rows |
+| Blocked (deposited "136" = exp 140) | 23 raws: `TO_R_Young_190220_110320_HFPlus_136_L6_1-23` (Q Exactive HF). By Thermo RunHeader last-scan number they are MaxQuant_136_139 experiment **140** (e.g. fractions 1/2/7: 32624/33345/33984 = MS+MS/MS of `140_L6_1/2/7`). Experiment 140 is in neither `File_assignment.txt` nor the paper Source Data (it does not reproduce Fig. 3a L363). The L-363 experiment 136 that `File_assignment.txt` and Fig. 3a describe was searched from `TO_R_Young_190220_060320_HFPlus_136_L2_*` (fraction 1 = 33074 scans), and those raws were **never deposited**. |
 | Blocked (BioID2-SILAC) | 183 raws: experiments 341 (`TO_R_Young_110618_240818_L6_341_2-23`), 350 (`R_Young_260618_170818_L1_350_1-23`), 366 (`…P18-366_L1_1-23`), 915 (`…Plus_915_L1_1-23`), 540 (`…P20-540_L3_1-23`), 1645 (`…Plus_1645_L1_1-23`), 1647 (`…Plus_1647_L3_1-23`), 1649 (`…Plus_1649_L5_1-23`); Q Exactive HF, MaxQuant multiplicity 3 |
 | Blocked (TMT) | 28 raws: `YLJI_260321_070421_Ryan_Young_TMT11_0118_Batch1_phos_MS3_R{1,2}_frac1-14` (Orbitrap Fusion, TMT11 SPS-MS3) |
 
@@ -1437,13 +1438,15 @@ Sources checked: paper (PMC HTML), PRIDE protocol, `files/all` (no sample sheet)
 | Paper Fig. 2e / Fig. S3c | SLC3A2-knockdown phosphoproteome in **SKMM1**; deposit says RPMI-8226 for TMT 118 |
 | Paper Methods, PRIDE protocol, Supplementary Figures | no per-channel layout for these experiments; no third condition named |
 
-**Annotated arm deviates from the deposit for experiment 983 (XG-2).** `File_assignment.txt` lists medium = SLC3A2 + shCtrl and heavy = SLC3A2 + shKRAS. The SDRF follows the paper Source Data instead: Fig. 3a "XG2 shKRAS" equals log2 Ratio M/L normalized and "XG2 shCTRL" equals log2 Ratio H/L normalized of exp 983 for 2588/2589 genes. So medium = shKRAS.2 and heavy = shCTRL. The same identity test confirms `File_assignment.txt` for 984, 136 and 139. Authors' confirmation of the 983 orientation would remove this override.
+**Annotated arm deviates from the deposit for experiment 983 (XG-2).** `File_assignment.txt` lists medium = SLC3A2 + shCtrl and heavy = SLC3A2 + shKRAS. The SDRF follows the paper Source Data instead: Fig. 3a "XG2 shKRAS" equals log2 Ratio M/L normalized and "XG2 shCTRL" equals log2 Ratio H/L normalized of exp 983 for 2588/2589 genes. So medium = shKRAS.2 and heavy = shCTRL. The same identity test confirms `File_assignment.txt` for 984 and 139. Authors' confirmation of the 983 orientation would remove this override.
 
-The third SILAC condition of each blocked BioID2 experiment, and 9 of 11 TMT channels, are documented nowhere. Annotating them with `not available` conditions would pool unrelated samples (rule 7), and dropping a demonstrably used channel would falsely mark it unused.
+**Searched but never deposited** (no raw in `files/all`): MaxQuant_136_139 experiments 135 (`060320_HFPlus_135_L1`), 136 (`060320_HFPlus_136_L2`), 137 and 138; MaxQuant_96_96B R1_95, R2_95, R2_96 and R2_96B. Also MaxQuant_540 538-546 (except 540), MaxQuant_915 916-918, MaxQuant_1645_1647_1649 1646/1648/1650/1651, and MaxQuant_118 0122-batch2.
+
+The third SILAC condition of each blocked BioID2 experiment, the identity of experiment 140, and 9 of 11 TMT channels are documented nowhere. Annotating them with `not available` conditions would pool unrelated samples (rule 7), and dropping a demonstrably used channel would falsely mark it unused.
 
 Sources checked: PRIDE project record and protocol, `files/all` (331 entries), `File_assignment.txt`, all 11 MaxQuant zips (summary, parameters, proteinGroups; Phospho (STY)Sites for 96/96B), paper (PMC efetch), PMC OA supplementary (MOESM1 Supplementary Figures, MOESM2 Reporting Summary not needed, MOESM3 Source Data), ref 67 (Fish *et al.* PNAS 2020) for the phospho method. Analysis scripts and outputs are in the PXD031662 scratch dir (`scripts/ratios.py`, `scripts/fig1d.py`, `analysis/`).
 
-**Unblocked by:** the authors' full L/M/H assignment for experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 (and confirmation of which channel holds the RAS bait in 1645/1647/1649), and the full TMT11 channel layout plus the cell line for experiment 0118. The BioID2 runs could then be added to `PXD031662.sdrf.tsv` (same search, add `NT=Biotin` slot `not applicable` for 350, which was searched without Biotin (K)); the TMT runs would go in a separate `PXD031662-tmt.sdrf.tsv` (rule 12).
+**Unblocked by:** for the 23 `HFPlus_136_L6` raws, the authors identifying experiment 140 (cell line and L/M/H conditions), or depositing the `HFPlus_136_L2` raws of experiment 136, which `File_assignment.txt` and Fig. 3a already document. For the rest: the authors' full L/M/H assignment for experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 (and confirmation of which channel holds the RAS bait in 1645/1647/1649), and the full TMT11 channel layout plus the cell line for experiment 0118. The BioID2 runs could then be added to `PXD031662.sdrf.tsv` (same search, add `NT=Biotin` slot `not applicable` for 350, which was searched without Biotin (K)); the TMT runs would go in a separate `PXD031662-tmt.sdrf.tsv` (rule 12).
 
 ## PXD029216 — Proteogenomics of viable leukemic blasts in AML (SWOG; SILAC + TMT10/TMT11), 5 undocumented TMT channels only (partial block)
 
