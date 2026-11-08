@@ -1,0 +1,70 @@
+# PXD012113 validation log — round 1 (2026-11-08T20:11:48Z); SDRF = build_prot + build_phos concatenated by scripts/concat.sh
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD012113.sdrf.tsv --record evidence/pride.json --accession PXD012113
+PXD012113: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'LTQ Orbitrap XL', the annotation says 'LTQ Orbitrap XL ETD'  [LTQ Orbitrap XL]
+[exit code: 0]
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD012113.sdrf.tsv -t ms-proteomics
+ERROR:sdrf_pipelines.ols.ols:OLS search term not applicable error, retry number 0
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term not applicable. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=not+applicable&name=class&rows=10&start=0&ontology=uberon&exact=on
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/ols/ols.py", line 902, in _perform_ols_search
+    req.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=not+applicable&name=class&rows=10&start=0&ontology=uberon&exact=on
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+[exit code: 0]
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD012113.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+[exit code: 0]
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012113.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD012113.sdrf.tsv
+Factor columns: ['factor value[sampling time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[treatment]', 'characteristics[enrichment process]']
+Conditions (6): dict_keys(['0 minute', 'not applicable', '5 minute', '15 minute', '60 minute', '120 minute'])
+Files per condition: dict_values([24, 120, 24, 24, 24, 24])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 240 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD012113.sdrf.tsv
+[exit code: 0]
+
+experimental_design.tsv
+openms.tsv
+# Assessment of findings (round 1 is final; no errors, so no second round was needed)
+
+1. reconcile MAJOR instrument_contradicted ('LTQ Orbitrap XL' vs 'LTQ Orbitrap XL ETD') — FALSE POSITIVE, refuted.
+   The PRIDE sampleProcessingProtocol reads verbatim "...EASY-nLC 1000 chromatograph (Thermo Scientific) coupled to an
+   LTQ Orbitrap XL ETD (Thermo Scientific) mass spectrometer"; reconcile matched the shorter prefix of that string.
+   Raw evidence agrees: HTTP range reads (first 400 kB, utf-16-le) of Tc_Prot_ST-0min_R1_F10_1.RAW,
+   Tc_Prot_ST2h_R2_F18_2.RAW and Tc_Phospho_ST2h_R2_F60.RAW carry the Finnigan instrument-model string
+   "LTQ Orbitrap ETD" and the method header "LTQ Orbitrap XL MS" / "LTQXL" — i.e. the ETD-equipped LTQ Orbitrap XL,
+   MS:1000639 "LTQ Orbitrap XL ETD" (OLS-verified, not obsolete). PRIDE's second instrument entry "LTQ Orbitrap"
+   (MS:1000449) is the generic parent and is not used. Value kept.
+2. validate-sdrf WARNING "untreated ... not found in ncit;efo" — accepted: 'untreated' is the value the
+   sample-metadata template's own validator description prescribes for controls ("Use 'untreated' for controls"),
+   and campaign rule 4 requires it. Warning level only.
+3. validate-sdrf OLS HTTP 500 traceback for q='not applicable' in uberon — transient OLS server error on the lookup of
+   a reserved word (characteristics[organism part] = not applicable, which the template allows); the validator
+   continued and exited 0. No value depends on it.
+4. convert-openms "no TA= specified" (x240) — expected: Acetyl is positional (PP=Protein N-term, format rule), and the
+   proteome rows' sixth modification column is 'not applicable' (rule 5: phospho was not searched on proteome runs).
+   Conversion succeeded (6 conditions: 0/5/15/60/120 minute + 'not applicable' for the reference channel).
+5. Post-build edits: none. The SDRF is the byte-for-byte concatenation of two sdrf-tools build outputs
+   (build_prot: 160 rows, build_phos: 80 rows) with identical headers, via
+   /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/scripts/concat.sh (rule 5/17).
+   The two builds exist because the proteome and phospho MaxQuant searches differ in Phospho (STY)
+   (summary.txt vs summary_phospho.txt), so comment[modification parameters] differs per sub-experiment.
+$ sdrf-tools schema-check PXD012113.evidence.json
+PXD012113.evidence.json: valid evidence-manifest
+[exit code: 0]
+
+$ sdrf-tools manifest-coverage PXD012113.sdrf.tsv PXD012113.evidence.json
+Manifest covers every column with a value (23 column(s)).
+[exit code: 0]
+
+sha256: 55b1f7a49ea7ca00264041b49d7b98a6595078c7468d8845027e52aadab33b00  PXD012113.sdrf.tsv

@@ -1,0 +1,365 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD012113.sdrf.tsv",
+ "dataset": "PXD012113",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012113 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/evidence/pride.json): sampleProcessingProtocol, dataProcessingProtocol, organisms, instruments"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012113/files/all (130 entries = 120 RAW + 9 SEARCH + 1 FASTA; every entry projectAccessions contains PXD012113; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/evidence/files_all.json)"
+  },
+  {
+   "id": "mq_summary_prot",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012113/summary.txt (MaxQuant 1.5.2.8 proteome search; 80 Tc_Prot raws, Experiment/Fraction/Multiplicity/Labels0/Labels1/Variable modifications; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/evidence/summary.txt)"
+  },
+  {
+   "id": "mq_summary_phos",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012113/summary_phospho.txt (MaxQuant phospho search; 40 Tc_Phospho raws; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/evidence/summary_phospho.txt)"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012113/parameters.txt and https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012113/parameters_phospho.txt (fixed modifications, MS/MS tol. (ITMS); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/evidence/parameters.txt, parameters_phospho.txt)"
+  },
+  {
+   "id": "mq_pg_header",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012113/proteinGroups.txt (header only, HTTP range 0-20000): columns \"Ratio H/L <Experiment>\" for the 10 experiments ST-0min_R1..ST5min_R2"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range reads (bytes 0-400000, utf-16-le) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012113/Tc_Prot_ST-0min_R1_F10_1.RAW, Tc_Prot_ST2h_R2_F18_2.RAW, Tc_Phospho_ST2h_R2_F60.RAW (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/raw/*.head): instrument model \"LTQ Orbitrap ETD\", method header \"LTQ Orbitrap XL MS\", LC \"Thermo EASY-nLC\""
+  },
+  {
+   "id": "abstract",
+   "kind": "publication",
+   "location": "Lucena ACR et al., Cell Stress Chaperones 2019, doi:10.1007/s12192-019-01018-7, PMID 31368045, PMC6717228 — abstract only (Europe PMC metadata, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/epmc_meta.json; NCBI efetch numeric id 6717228 returns front matter only, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/efetch_pmc.xml). Full text unobtainable: Europe PMC fullTextXML HTTP 500, Unpaywall/EPMC pdf render 403, link.springer.com client challenge, pmc.ncbi.nlm.nih.gov reCAPTCHA; EPMC supplementaryFiles empty; PMC OA S3 bucket has no PMC6717228 prefix"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 lookups (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/ols/): NCBITaxon:1416333 Trypanosoma cruzi Dm28c; BTO:0000409 epimastigote; EFO:0022074 starvation; EFO:0010806 enrichment of phosphorylated protein; PRIDE:0001013 study sample; PRIDE:0000899 reference; PRIDE:0000564 hpHRP; MS:1000639, MS:1000133, MS:1000083, MS:1001251, PRIDE:0000627; UNIMOD:4/35/1/267/259/21 — all not obsolete"
+  },
+  {
+   "id": "contract",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics (ms-proteomics v1.2.0; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/contract.txt); upstream bigbio/sdrf-templates 7da1747 templates.yaml (ms-proteomics latest 1.2.0, invertebrates scope \"Drosophila, C. elegans, insects\"); spec/sdrf-proteomics/sdrf-templates sample-metadata.yaml (sampling time units; treatment \"Use 'untreated' for controls\")"
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "curation-policy",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (rules 1-18 + batch-3 refinements)"
+  },
+  {
+   "id": "precedent",
+   "kind": "curated-sdrf",
+   "location": "/home/user/bigbio/sdrf-skills/annotations/PXD009868.sdrf.tsv (passed campaign super-SILAC encoding: reference / pooled / factor not applicable); /home/user/bigbio/sdrf-annotated-datasets/datasets/PXD006171, PXD013875, PXD002970 (T. cruzi SDRFs declare ms-proteomics only; PXD006171 uses \"enrichment of phosphorylated protein\")"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/scripts/make_tables.py -> samples_prot.tsv, samples_phos.tsv, technical_prot.tsv, technical_phos.tsv; sdrf-tools build x2; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012113/scripts/concat.sh"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, SILAC light rows (data rows 8k+1..8k+4, k=0..19 [proteome, rows 1-160] and 160+8k+1..160+8k+4, k=0..9 [phospho]; 120 rows)",
+   "value": "T. cruzi Dm28c epimastigotes <ST-0min|ST-5min|ST-15min|ST-1h|ST-2h> R<1|2> (total proteome|phosphopeptide-enriched)",
+   "source_ids": [
+    "files",
+    "mq_summary_prot",
+    "mq_summary_phos",
+    "pride",
+    "build"
+   ],
+   "evidence": "Raw names Tc_<Prot|Phospho>_<timepoint>_R<1|2>_F<10|14|18|60>[_<1|2>]; MaxQuant Experiment = <timepoint>_R<n> (10 experiments per search). PRIDE: \"T. cruzi Dm28c epimastigotes ... ST-0min, ST-5min, ST-15min, ST-1h, ST-2h\". The proteome and phospho portions come from the same digest (\"Approximately 50 ug of peptides were separated for the proteomics analysis ... The remaining volume was ... processed for phosphopeptide enrichment with TiO2\") and are given distinct source names suffixed by the portion so the row coordinate (source, biological replicate, technical replicate, fraction) stays unique."
+  },
+  {
+   "location": "source name, SILAC heavy rows (data rows 8k+5..8k+8, k=0..19 [proteome] and 160+8k+5..160+8k+8, k=0..9 [phospho]; 120 rows)",
+   "value": "super-SILAC standard (Lys8/Arg10-labelled T. cruzi Dm28c epimastigotes pooled from 3 d and 5 d culture and 5 min, 15 min, 1 h, 2 h nutritional stress), aliquot spiked into <timepoint> R<n> (<portion>)",
+   "source_ids": [
+    "pride",
+    "precedent",
+    "campaign_rules"
+   ],
+   "evidence": "PRIDE: \"For the super-SILAC standard, T. cruzi Dm28c epimastigotes were cultured in LM-14B medium, replacing lysine and arginine with lysine 13C615N2 (Lys-8) and arginine 13C615N4 (Arg-10) ... 3 x 10^9 cells were collected after 3 and 5 days of culture and at different times (5 min, 15 min, 1 h, and 2 h) of NS in vitro, which were mixed in the same proportion ... 1.5 x 10^9 cells from the super-SILAC standard was combined with 1.5 x 10^9 cells from each experimental time point\". One reference source per mix (rule 18, precedent PXD009868)."
+  },
+  {
+   "location": "comment[label] all data rows 1-240",
+   "value": "SILAC light = time-point sample; SILAC heavy = super-SILAC standard",
+   "source_ids": [
+    "mq_summary_prot",
+    "mq_summary_phos",
+    "pride",
+    "mq_pg_header"
+   ],
+   "evidence": "All 120 raws in the two summary files: Multiplicity 2, Labels0 empty, Labels1 = Arg10;Lys8 (rule 14 verified: multiplexed SILAC). PRIDE states explicitly that the Lys-8/Arg-10 culture is the super-SILAC standard, and the time-point parasites were cultured in LITB + 10% FBS (unlabelled), so they can only be the light channel. proteinGroups reports Ratio H/L per time-point experiment, i.e. standard over sample."
+  },
+  {
+   "location": "characteristics[sample type] SILAC light rows (data rows 8k+1..8k+4, k=0..19 [proteome, rows 1-160] and 160+8k+1..160+8k+4, k=0..9 [phospho]; 120 rows) / SILAC heavy rows (data rows 8k+5..8k+8, k=0..19 [proteome] and 160+8k+5..160+8k+8, k=0..9 [phospho]; 120 rows)",
+   "value": "study sample / reference",
+   "source_ids": [
+    "ols",
+    "pride",
+    "precedent"
+   ],
+   "evidence": "PRIDE:0001013 study sample for the time-point parasites; PRIDE:0000899 reference for the spiked-in super-SILAC standard (same encoding as passed precedent PXD009868)."
+  },
+  {
+   "location": "characteristics[organism] all data rows 1-240",
+   "value": "Trypanosoma cruzi Dm28c",
+   "source_ids": [
+    "pride",
+    "ols",
+    "files"
+   ],
+   "evidence": "PRIDE organisms NEWT:1416333 \"Trypanosoma cruzi dm28c\"; protocol \"T. cruzi Dm28c epimastigotes\" for both samples and standard; search FASTA TcruziDm28c_uniprot_11346entries_04032016.fasta. OLS NCBITaxon:1416333 label \"Trypanosoma cruzi Dm28c\"."
+  },
+  {
+   "location": "characteristics[cell type] all data rows 1-240",
+   "value": "epimastigote",
+   "source_ids": [
+    "pride",
+    "ols",
+    "abstract"
+   ],
+   "evidence": "PRIDE: \"T. cruzi Dm28c epimastigotes were cultured ...\" and the standard was made from epimastigotes; the 5 min-2 h stress window is \"the initial moments of in vitro metacyclogenesis\" (title), before differentiation to metacyclic trypomastigotes. BTO:0000409 epimastigote (definition: the crithidial stage of trypanosomatid protozoa); cell type column permits BTO."
+  },
+  {
+   "location": "characteristics[biological replicate] SILAC light rows (data rows 8k+1..8k+4, k=0..19 [proteome, rows 1-160] and 160+8k+1..160+8k+4, k=0..9 [phospho]; 120 rows)",
+   "value": "1 / 2 (from R1 / R2), restarting per time point",
+   "source_ids": [
+    "files",
+    "mq_summary_prot",
+    "mq_summary_phos",
+    "campaign_rules"
+   ],
+   "evidence": "Raw names and MaxQuant experiments distinguish R1 and R2 for each time point in both searches, above the level of the proteome injection duplicates (_1/_2). INFERRED, not stated: that R1/R2 are independent parasite cultures; the paper Methods (which would say so) are inaccessible. See limitations."
+  },
+  {
+   "location": "characteristics[biological replicate] SILAC heavy rows (data rows 8k+5..8k+8, k=0..19 [proteome] and 160+8k+5..160+8k+8, k=0..9 [phospho]; 120 rows)",
+   "value": "pooled",
+   "source_ids": [
+    "pride",
+    "contract",
+    "precedent"
+   ],
+   "evidence": "The standard is one pooled mixture of six labelled cultures (PRIDE protocol); the contract allows \"integer or pooled\"; precedent PXD009868."
+  },
+  {
+   "location": "characteristics[pooled sample] SILAC light rows (data rows 8k+1..8k+4, k=0..19 [proteome, rows 1-160] and 160+8k+1..160+8k+4, k=0..9 [phospho]; 120 rows) / SILAC heavy rows (data rows 8k+5..8k+8, k=0..19 [proteome] and 160+8k+5..160+8k+8, k=0..9 [phospho]; 120 rows)",
+   "value": "not pooled / pooled",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Time-point samples: 1.5 x 10^9 cells from one culture at one time point. Standard: cells \"mixed in the same proportion\" from 3 d, 5 d and four stress times. SN= is not used because the pool components are not sources in this SDRF; they are named in the source name."
+  },
+  {
+   "location": "characteristics[material type] all data rows 1-240",
+   "value": "whole organism",
+   "source_ids": [
+    "pride",
+    "contract"
+   ],
+   "evidence": "Whole unicellular parasites (1.5 x 10^9 cells) were lysed; T. cruzi epimastigotes are free-living unicellular organisms, not a tissue or a cell line. Fixed vocabulary value."
+  },
+  {
+   "location": "characteristics[sampling time] SILAC light rows (data rows 8k+1..8k+4, k=0..19 [proteome, rows 1-160] and 160+8k+1..160+8k+4, k=0..9 [phospho]; 120 rows) and factor value[sampling time] SILAC light rows (data rows 8k+1..8k+4, k=0..19 [proteome, rows 1-160] and 160+8k+1..160+8k+4, k=0..9 [phospho]; 120 rows)",
+   "value": "0 / 5 / 15 / 60 / 120 minute",
+   "source_ids": [
+    "pride",
+    "files",
+    "contract",
+    "campaign_rules"
+   ],
+   "evidence": "PRIDE: ST-0min = parasites \"collected after 5 days of culture in the early stationary phase\", then resuspended in TAU \"and incubated for 5 minutes (ST-5min), 15 minutes (ST-15min), 1 hour (ST-1h) and 2 hours (ST-2h)\". The time in nutritional stress is the compared variable (title/abstract: \"analyze different points during NS\"), hence the single factor. Unit minute (template validator units) used for all points so values sort."
+  },
+  {
+   "location": "characteristics[sampling time] / characteristics[treatment] / factor value[sampling time] SILAC heavy rows (data rows 8k+5..8k+8, k=0..19 [proteome] and 160+8k+5..160+8k+8, k=0..9 [phospho]; 120 rows)",
+   "value": "not applicable",
+   "source_ids": [
+    "pride",
+    "precedent"
+   ],
+   "evidence": "The standard is a pool across 3 d, 5 d and all stress times; no single time or treatment applies (precedent PXD009868 factor not applicable on reference rows)."
+  },
+  {
+   "location": "characteristics[treatment] SILAC light rows (data rows 8k+1..8k+4, k=0..19 [proteome, rows 1-160] and 160+8k+1..160+8k+4, k=0..9 [phospho]; 120 rows)",
+   "value": "untreated (ST-0min) / starvation (ST-5min..ST-2h)",
+   "source_ids": [
+    "pride",
+    "ols",
+    "contract",
+    "campaign_rules"
+   ],
+   "evidence": "PRIDE: stressed parasites were washed and incubated in TAU (triatomine artificial urine, a nutrient-poor medium) = \"nutritional stress (NS)\" (project description). EFO:0022074 starvation (\"deprived of food\"). ST-0min parasites were not transferred to TAU -> untreated (rule 4; template validator: \"Use 'untreated' for controls\")."
+  },
+  {
+   "location": "characteristics[enrichment process] phospho rows 161-240 (Tc_Phospho_*.RAW)",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "pride",
+    "ols",
+    "precedent"
+   ],
+   "evidence": "PRIDE: \"processed for phosphopeptide enrichment with TiO2 beads\"; EFO:0010806, the only phospho child of EFO:0009090; T. cruzi precedent PXD006171 uses it. Proteome rows: not applicable (no enrichment; EFO:0009090 has no \"no enrichment\" child)."
+  },
+  {
+   "location": "assay name / comment[data file] all data rows 1-240",
+   "value": "raw file stem / raw file name",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "All 120 RAW files of files/all are claimed exactly once per channel (build check_files); 9 SEARCH + 1 FASTA files are not runs."
+  },
+  {
+   "location": "technology type all data rows 1-240",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "contract"
+   ],
+   "evidence": "Filled by sdrf-tools build for ms-proteomics."
+  },
+  {
+   "location": "comment[technical replicate] proteome rows 1-160 (Tc_Prot_*.RAW) / phospho rows 161-240 (Tc_Phospho_*.RAW)",
+   "value": "1|2 from _1/_2 / 1",
+   "source_ids": [
+    "pride",
+    "files",
+    "mq_summary_prot"
+   ],
+   "evidence": "PRIDE: peptide mixtures \"analyzed by nanoESI MS/MS in duplicate\"; proteome raws carry _1/_2 injection suffixes and share one MaxQuant Experiment+Fraction; phospho raws have no suffix (one injection)."
+  },
+  {
+   "location": "comment[fraction identifier] all data rows 1-240",
+   "value": "1-4 (F10, F14, F18, F60)",
+   "source_ids": [
+    "pride",
+    "mq_summary_prot",
+    "mq_summary_phos"
+   ],
+   "evidence": "PRIDE: \"fractionated by high pH reversed-phase chromatography generating 4 fractions (ACN 10%, 14%, 18% and 60%)\"; MaxQuant Fraction 1..4 = F10, F14, F18, F60 in both summary files."
+  },
+  {
+   "location": "comment[fractionation method] all data rows 1-240",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"high pH reversed-phase chromatography generating 4 fractions\"."
+  },
+  {
+   "location": "comment[instrument] all data rows 1-240",
+   "value": "NT=LTQ Orbitrap XL ETD;AC=MS:1000639",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers: instrument model \"LTQ Orbitrap ETD\", method \"LTQ Orbitrap XL MS\"; PRIDE protocol \"coupled to an LTQ Orbitrap XL ETD\". PRIDE instruments also lists generic \"LTQ Orbitrap\" (MS:1000449) — not used. reconcile flag refuted in validation.txt."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all data rows 1-240",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"The mode of acquisition was data dependent analysis (DDA) ... 10 most intense ions\"."
+  },
+  {
+   "location": "comment[dissociation method] all data rows 1-240",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"fragmented by CID and analyzed in the Ion trap\"; phospho runs additionally used neutral-loss-triggered multistage activation, which is still ion-trap CID."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] all data rows 1-240",
+   "value": "NT=radial ejection linear ion trap;AC=MS:1000083",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE: MS/MS \"analyzed in the Ion trap\"; the ion trap of an LTQ Orbitrap XL is the LTQ radial-ejection linear ion trap (MaxQuant MS/MS tol. ITMS 0.5 Da used)."
+  },
+  {
+   "location": "comment[cleavage agent details] all data rows 1-240",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_summary_prot",
+    "campaign_rules"
+   ],
+   "evidence": "FASP digestion with trypsin (PRIDE \"digested by FASP procedure\"; data protocol \"specific cleavage for trypsin\"). MaxQuant search rule Trypsin/P (summary.txt Enzyme) recorded as a note per rule 2; lysines were not derivatised."
+  },
+  {
+   "location": "comment[precursor mass tolerance] all data rows 1-240",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE data protocol: \"20 ppm (first search) and 4.5 ppm (main search) for peptide tolerance in the MS\". The main-search value is recorded."
+  },
+  {
+   "location": "comment[fragment mass tolerance] all data rows 1-240",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mq_params",
+    "pride"
+   ],
+   "evidence": "parameters.txt / parameters_phospho.txt: \"MS/MS tol. (ITMS) 0.5 Da\" (MS/MS were ion-trap); PRIDE \"MS/MS match tolerance of 0.5 Da\"."
+  },
+  {
+   "location": "comment[modification parameters] columns 1-5 all data rows 1-240",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_params",
+    "mq_summary_prot",
+    "mq_summary_phos",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "parameters*.txt: Fixed modifications Carbamidomethyl (C); summary*.txt: Variable modifications Acetyl (Protein N-term);Oxidation (M)[;Phospho (STY)], Labels1 Arg10;Lys8 (Arg10 = +10.008 = UNIMOD:267, Lys8 = +8.014 = UNIMOD:259; MT=Variable per rule 11)."
+  },
+  {
+   "location": "comment[modification parameters] column 6 phospho rows 161-240 (Tc_Phospho_*.RAW)",
+   "value": "NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable",
+   "source_ids": [
+    "mq_summary_phos",
+    "ols"
+   ],
+   "evidence": "summary_phospho.txt: all 40 phospho raws searched with Phospho (STY) variable. Proteome rows: not applicable — summary.txt shows no Phospho for the 80 proteome raws (rule 5)."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] all data rows 1-240",
+   "value": "v1.1.0 / NT=ms-proteomics;VV=v1.2.0 / NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "contract",
+    "campaign_rules"
+   ],
+   "evidence": "Rules 1 and 10. ms-proteomics alone: T. cruzi is a protozoan; invertebrates covers animals (Drosophila, C. elegans, insects), no organism template fits; ms-proteomics is usable_alone and the curated T. cruzi precedents declare only it. Dm28c is a parasite clone, not a Cellosaurus cell line, so cell-lines is not declared; no clinical samples, so no clinical-metadata (rule 15)."
+  }
+ ],
+ "limitations": [
+  "Paper full text, Methods and supplementary tables of Lucena et al. 2019 (Cell Stress Chaperones, PMC6717228) could not be read: Europe PMC fullTextXML HTTP 500, Unpaywall/Europe PMC PDF render 403, link.springer.com JavaScript client challenge, pmc.ncbi.nlm.nih.gov reCAPTCHA (not bypassed), Europe PMC supplementaryFiles empty, no PMC OA S3 copy. All sample facts rest on the PRIDE protocol (submitter-authored by the first author) plus the deposited MaxQuant outputs.",
+  "R1/R2 are encoded as biological replicates 1/2 per time point. This is inferred from the raw names and MaxQuant experiment structure (R is above the injection-duplicate level and is a separate MaxQuant experiment); no accessible source says whether R1/R2 are independent cultures or replicate processing of one culture.",
+  "Channel direction rests on the explicit PRIDE statement plus MaxQuant Labels1 = Arg10;Lys8 and the fact that only the standard was grown in labelled LM-14B medium. No data-level direction check was possible: both channels are the same strain and stage, and the standard pools all time points, so no protein is expected to be channel-specific.",
+  "Reduction/alkylation reagents, collision energy, and MS1 scan range are not stated in the accessible record; the columns are omitted (optional). Carbamidomethyl (C) is kept because the deposited search declares it Fixed.",
+  "characteristics[disease] = not applicable: PRIDE annotates the project with DOID:12140 Chagas disease, but the samples are axenic parasite cultures, not diseased hosts.",
+  "Review status REVIEW_PENDING_EXTERNAL: no reviewer dispatched and no review-gate run by the producer (external hand-off named in the request)."
+ ]
+}
