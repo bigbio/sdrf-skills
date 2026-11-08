@@ -107,6 +107,16 @@
       "id": "silac_profile",
       "kind": "derived-analysis",
       "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/silac_f06_profile.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/silac_f06_profile.tsv (reproduction of the reviewer's per-run SILAC profile check from the reviewer's /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/review-PXD029216/mq/silac_ratios.pkl = per-run per-protein median log2 H/L of AML_SWOG_1st evidence_new.txt)"
+    },
+    {
+      "id": "review_r2",
+      "kind": "independent-review",
+      "location": "/home/user/bigbio/sdrf-skills/annotations/PXD029216.review.md (review round 2; reviewer-supplied Thermo RunHeader last-scan numbers of all 636 raws: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/review2-PXD029216/scancounts.txt and sc_*.txt)"
+    },
+    {
+      "id": "mq_1st_zip_listing",
+      "kind": "search-output",
+      "location": "central-directory listing of AML_SWOG_1st_MaxQuant_txt.zip (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/zip_AML_SWOG_1st.lst): txt/ tables only, no mqpar.xml"
     }
   ],
   "claims": [
@@ -139,7 +149,7 @@
         "campaign_rules",
         "precedent"
       ],
-      "evidence": "Rule 18: the heavy channel of a spiked-in labelled standard is encoded as reference, not as a study sample. Its composition (which cell line(s)) is not stated in the paper, PRIDE, the label key or the search output, so organism part, cell type, pooled sample, disease, material type, age, sex and individual are not available and no cell line is named. One heavy source per patient mix keeps the (source, replicate, fraction, label) coordinate unique (precedent PXD030422)."
+      "evidence": "Rule 18: the heavy channel of a spiked-in labelled standard is encoded as reference, not as a study sample. Its composition (which cell line(s)) is not stated in the paper, PRIDE, the label key or the search output, so organism part, cell type, pooled sample, disease, material type, age, sex and individual are not available and no cell line is named. One heavy source per patient mix (37 sources) is an encoding ASSUMPTION, not a sourced fact: nothing states whether one standard batch was spiked into every mix (see limitations). Same encoding as campaign precedent PXD030422."
     },
     {
       "location": "characteristics[organism] rows 1-444",
@@ -261,14 +271,24 @@
       "evidence": "Each patient mix was acquired as 6 runs _2D_F01.._F06; MaxQuant summary Fraction 1-6 per experiment."
     },
     {
-      "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 1-432",
-      "value": "20 ppm / 0.5 Da",
+      "location": "comment[fragment mass tolerance] rows 1-432",
+      "value": "0.5 Da",
       "source_ids": [
-        "pride",
-        "supp_methods",
         "mq_1st"
       ],
-      "evidence": "Fragment: MaxQuant parameters.txt \"MS/MS tol. (ITMS) 0.5 Da\" (MS2 in ion trap). Precursor: \"Peptide MH+ mass tolerances were set at 20 ppm\" (PRIDE dataProcessingProtocol); not recorded in the deposited MaxQuant output."
+      "evidence": "MaxQuant 1.5.3.30 parameters.txt \"MS/MS tol. (ITMS) 0.5 Da\" (MS2 in the ion trap per raw headers)."
+    },
+    {
+      "location": "comment[precursor mass tolerance] rows 1-432",
+      "value": "not available",
+      "source_ids": [
+        "mq_1st",
+        "mq_1st_zip_listing",
+        "pride",
+        "supp_methods",
+        "review_r2"
+      ],
+      "evidence": "The SILAC search is AML_SWOG_1st, MaxQuant 1.5.3.30 (parameters.txt); parameters.txt records no precursor/peptide tolerance, summary_new.txt neither, and the zip holds no mqpar.xml. The only stated value, \"Peptide MH+ mass tolerances were set at 20 ppm\" (PRIDE dataProcessingProtocol, Supplemental Methods), describes the discovery-cohort searches with MaxQuant 1.6.0.1 / 1.6.10.43 (= the TMT searches AML_SWOG_2nd / AML_NPM1); the SILAC arm is not described anywhere. Review round 2 (IMPORTANT): 20 ppm unsupported for this search -> not available (allowed by TERMS.tsv / ms-proteomics 1.2.0). The searches did run, so not applicable would be wrong."
     },
     {
       "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 433-444",
@@ -346,7 +366,7 @@
   ],
   "limitations": [
     "techsdrf is not installed; instrument, activation, collision energy and MS2 detector were read from HTTP-range raw headers of one file per run group (9 files), not from every file. Review round 1 added a scan of the first 200 kB of all 228 SILAC and 408 TMT headers (reviewer-fetched; scan_headers.py) for acquisition names and FAIMS settings.",
-    "Precursor mass tolerance for the three MaxQuant searches is not recorded in the deposited parameters.txt/summary.txt; 20 ppm is the value the PRIDE dataProcessingProtocol and Supplemental Methods state (\"Peptide MH+ mass tolerances were set at 20 ppm\"). MaxQuant's main-search default is 4.5 ppm (first search 20 ppm), so the stated value may describe the first search.",
+    "Precursor mass tolerance is not recorded in any deposited MaxQuant parameters.txt/summary.txt. For the SILAC search (AML_SWOG_1st, MaxQuant 1.5.3.30) no source states it, so this file has precursor mass tolerance not available on the 432 searched rows (review round 2). For the TMT MaxQuant searches, 20 ppm is the value the PRIDE dataProcessingProtocol and Supplemental Methods state (\"Peptide MH+ mass tolerances were set at 20 ppm\"). MaxQuant's main-search default is 4.5 ppm (first search 20 ppm), so the stated value may describe the first search.",
     "Ancestry is not reported for any individual: characteristics[ancestry category] = not available on all rows.",
     "Individual-level age, sex, treatment response and clinical data exist only for the 30 Table S13 patients (SWOG27 + FHCC/UW-HDR3). They were propagated by patient ID to the same patients' samples in other arms (AML1050, AML039, AML044, AML058, AML158, AML179, AML185 in the NPM1 arm); all other patients carry not available. Sex/channel concordance was checked with RPS4Y1 reporter intensity: 27/27 SWOG27 channels and 7/7 NPM1-arm overlap channels agree with Table S13 (AML179: Table S13 sex F but karyotype 46,XY[20]; RPS4Y1 is low in both of its channels, so sex female was kept).",
     "No patient age, sex or individual-level clinical data were deposited for the SILAC-arm, NPM1-arm or E3 patients other than the S13 overlaps; the NPM1 label key gives only Age_Group (Adult/Ped), used for developmental stage (adult) and clinical data (pediatric).",
@@ -356,6 +376,8 @@
     "Raw headers show original acquisition names (e.g. RO50479 for AML1027_R2, RO10001 for the left-out AML1036 group): the deposited files were renamed; the name->patient mapping is the submitter's.",
     "AML1027 organism part: Sample ID/file name say BLD, label-key Source says BM -> not available.",
     "Raw-header acquisition names disagree with the deposited names for AML1005 (F01-F05 named F02-F06 of RO50063; F06 named as a yeast QC run), AML1016 (F01-F05 named F02-F06; F06 named as a blank), AML1029 (F06 named RO50145 = AML1012's specimen code) and AML1038 (F01-F05 named F02-F06; F06 named F06b). The per-run L/H profile check (reviewer-supplied, reproduced in silac_f06_profile.tsv) ranks the deposited patient first for every F06, so identity and fraction numbers follow the deposited names. Residual uncertainty: AML1038 F06 is only marginally closer to AML1038 than to AML1005 (r 0.8871 vs 0.8868), and the off-by-one fraction names of AML1005/1016/1038 F01-F05 cannot be checked with profiles (fractions of one mix share the patient's L/H profile), so comment[fraction identifier] for these 3 groups is the deposited numbering.",
-    "Developmental stage: adult for the 10 SILAC individuals with an individual-level Age_Group (Adult) in the label key NPM1 sheet; not available for the other 27 SILAC individuals (no individual-level age source)."
+    "Developmental stage: adult for the 10 SILAC individuals with an individual-level Age_Group (Adult) in the label key NPM1 sheet; not available for the other 27 SILAC individuals (no individual-level age source).",
+    "AML1019_Blast_BM_2D_F06.raw (rows of AML1019 F06, light + heavy) contributed no spectra to the deposited search: AML_SWOG_1st summary_new.txt lists it with MS = 0 and MS/MS = 0, and the reviewer's read of the deposited file's Thermo RunHeader reports only 293 scans (file apparently truncated/not finalised; review round 2). It is kept: it is a deposited raw of a documented group and was submitted to the search (fragment tolerance 0.5 Da kept), but it carries no usable data.",
+    "Heavy reference encoding is an assumption: the heavy (Arg10/Lys8) standard is encoded as one reference source per patient mix (37 sources, 'SILAC heavy reference standard (spiked into <Sample ID>)'). No source says whether a single standard batch was prepared once and spiked into every mix; if it was, these 37 sources are one biological sample. The (file, label) pair is unique either way, so this choice is not needed for row uniqueness."
   ]
 }

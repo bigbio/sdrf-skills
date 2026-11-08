@@ -1,0 +1,3 @@
+# PXD006013 validation log (round 1, 2026-11-08T23:04Z); SDRF sha256 8ede0672ceedfaf734ba6566ee456e836530f4ea49dc66e93387c2f6659c72cf
+
+## parse_sdrf validate-sdrf -s annotations/PXD006013.sdrf.tsv -t ms-proteomics -t human -t cell-lines

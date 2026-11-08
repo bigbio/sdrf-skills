@@ -1480,10 +1480,16 @@ Sources checked: PRIDE record and `files/all` (642 entries), label key (4 sheets
 | label key, sheet "FH UW45" | AML1089 is an FH/UW patient (plex E3 channel 1) in the same plex as AML1037, AML1038 and AML1001-1006, all of which are SILAC-arm patients |
 | raw headers | acquisition name `JK033016_AML_RO10001_2D_F01` … `F06`: the RO1000x series of AML1037 (RO10005) and AML1038 (RO10009) |
 | label key, sheet "NPM1" | a patient AML1036 exists (Gr07 channel 2) in the TMT arm; nothing ties these SILAC raws to that patient |
+| raw RunHeader scan counts vs `summary_new.txt` (review round 2) | the last-scan numbers of the six deposited raws (56695, 55013, 53042, 50719, 53105, 22785) equal MS + MS/MS of `AML1089_Blast_BLD_2D_F01`…`F06` exactly and in order: **these six raws are the files MaxQuant searched as AML1089** |
+| genotype in the label key | AML1036: FLT3-ITD Pos, NPM1 **Pos** (NPM1 sheet Gr07 ch2); AML1089: FLT3-ITD Pos, NPM1 **Neg** (FH UW45 sheet, E3 ch1) |
 
-So the deposited raws may be AML1089's (the searched experiment) renamed as AML1036, or a genuine AML1036 run that was never searched. Annotating them as AML1036 would assert patient identity, organism part and FLT3-ITD/NPM1 genotype from the file name only.
+So the same six files carry the patient name AML1036 in the deposit and AML1089 in the deposited search, and the SILAC sheet lists neither. Either the files were deposited under the wrong name, or the search experiment was misnamed. Annotating them under either name would assert a patient identity (and an NPM1 genotype that differs between the two candidates) that no source settles.
 
-**Unblocked by:** a deposited statement tying the 6 raws to a patient (a SILAC-sheet row, or a corrected deposit), or data evidence: search the 6 raws (same MaxQuant 1.5.3.30 SILAC Arg10/Lys8 parameters as `AML_SWOG_1st`) and show that their light/heavy profile matches AML1036's material and not the searched AML1089 profile (or vice versa). They would then be added as 12 rows to `PXD029216-silac.sdrf.tsv` (light = patient, heavy = reference, as for the other 37 groups).
+**Unblocked by:** a deposited statement tying the 6 raws to one patient (a SILAC-sheet row, or a corrected deposit), or a discriminating data test. Comparing the raws with the AML1089 search proves nothing, because they *are* that search. Either of these would discriminate:
+- **NPM1 genotype in the light channel.** Look for NPM1 C-terminal mutant peptides, e.g. from a search of the AML1089 experiment's light peptides (`evidence_new.txt`) against a database with the NPM1 exon-12 mutant C-terminus, or a targeted look for the wild-type C-terminal peptide. Mutant evidence means AML1036 (NPM1-mutant). Wild-type only, with good coverage, means AML1089 (NPM1 wild-type).
+- **Proteome correlation with the two patients' TMT channels.** Correlate the AML1089-search light protein profile with the AML1036 channel of NPM1 Gr07 (ch2, TMT127N) and with the AML1089 channel of plex E3 (ch1, TMT126), relative to the other channels of each plex.
+
+Once identity is settled, the raws would be added as 12 rows to `PXD029216-silac.sdrf.tsv`, with light = patient and heavy = reference as for the other 37 groups. Their tolerances would follow the AML_SWOG_1st search: fragment 0.5 Da, precursor not available.
 
 ### PXD031662 — identity note for the blocked BioID2 raws (added after review round 3)
 
@@ -1492,73 +1498,3 @@ Before any of the blocked BioID2 raws are unblocked, confirm their identity agai
 - The deposited experiment-915 raws are dated 221119, but MaxQuant searched experiment 915 from files dated 261119; 221119 is experiment 916's date.
 - The experiment-350 raw names in the deposit differ from those in the MaxQuant search.
 - The same pattern already mislabelled the L-363 files (deposited as `HFPlus_136_L6`, actually search experiment 140; see above).
-
----
-
-## PXD044779 — Trichothiodystrophy MPLKIP interactome (SILAC GFP-Trap IP, MRC-5), UV and MMC experiments only (partial block)
-
-**Blocker: the light/heavy identities of the 'UV Complex' and 'MMC Complex' SILAC pull-downs are undocumented, and the deposited ratios show they do not follow the published map.**
-
-The 'Basal Complex' experiment (16 RAW, `1802_L_AlexPines_{high,low}_01..08`) is annotated in `annotations/PXD044779.sdrf.tsv` (light = MRC-5 parental, heavy = MRC-5 MPLKIP-GFP knock-in). The 12 `2427_*` RAW are label-free DIA, byte-identical to PXD044434, and are out of scope for this SILAC campaign (not blocked).
-
-| | |
-|---|---|
-| Publication | Theil AF *et al.*, EMBO Mol Med 2023 15(11):e17973, PMID:37800682, PMC10630875, doi:10.15252/emmm.202317973 (PMC OA full text read) |
-| Blocked | `1802_L_AlexPines_high_09` … `_high_24` and `1802_L_AlexPines_low_09` … `_low_24` (32 RAW, Orbitrap Fusion Lumos; MaxQuant 1.5.4.1 multiplicity 2, Labels1 Arg10;Lys8; experiments 'UV Complex' = 09-16, 'MMC Complex' = 17-24) |
-
-**What each source says:**
-
-| source | channel map |
-|---|---|
-| Paper Results, Fig 3A legend, Methods, PRIDE protocol | one SILAC experiment: light = MRC-5 parental (CTR), heavy = MRC-5 MPLKIP-GFP; no UV or MMC (mitomycin C?) treatment of SILAC cells is described anywhere |
-| `1802_summary.txt` | experiment names 'UV Complex' / 'MMC Complex' only; no channel or treatment description |
-| `1802_proteinGroups.txt`, Ratio H/L normalized | Basal: MPLKIP 21.4, DBR1 22.7, XAB2 21.6, ISY1 23.7 (heavy = bait, matches paper). UV: MPLKIP 0.64, DBR1 0.82, XAB2 0.47, ISY1 0.46. MMC: MPLKIP 0.97, DBR1 0.97, XAB2 7.3, ISY1 8.1. The bait is not enriched in heavy in either, so both channels likely carry MPLKIP-GFP (e.g. treated vs untreated) or a different control; which channel got which treatment, dose and time are unstated. |
-
-Sources checked: paper (full text incl. Methods, figure legends, Data availability), PRIDE v3 record and paginated file list (63 entries; no sample sheet, no mqpar/parameters), `1802_summary.txt`, `1802_proteinGroups.txt`, raw headers (instrument method only).
-
-**Unblocked by:** the authors stating, per experiment, the cell line, treatment (UV dose/time, MMC concentration/time) and SILAC label of each channel. The 32 runs (64 rows) would then be added to `PXD044779.sdrf.tsv` with the same search parameters as the Basal experiment.
-
-## PXD029618 — Podocyte injury in Fabry nephropathy (triple-SILAC GLA-KO vs WT podocytes), 20 raws of mixtures CFP910 / CFP911 (partial block)
-
-**Blocker: channel use and orientation of `20160120_VD_CFP910_sample_1_1..10.RAW` and `20160112_VD_CFP_911_2_01..10.raw` are undocumented.**
-
-| source | what it says |
-|---|---|
-| `txt.zip` (MaxQuant 1.4.1.2) `summary.txt` / `proteinGroups.txt` | only experiments #867_sample1/2 and #899_sample1/2 (40 raws); CFP910/CFP911 were not searched |
-| Paper Fig. 2A | 6 label-swap mixtures (KO vs WT clones, Arg6Lys4 vs Arg10Lys8), not tied to file names; its label identity already conflicts with the data for #899 (light+heavy, not medium+heavy) |
-| Paper Fig. 2B | 6 replicate columns; columns 1-4 match the four searched experiments; columns 5/6 presumably CFP910/CFP911, but which label carries KO, and whether light or medium was used, is not stated |
-| PRIDE protocol, supplementary PDF/xlsx | no label key or sample sheet |
-
-The 40 searched raws are annotated in `annotations/PXD029618.sdrf.tsv` (80 rows).
-
-**Unblocked by:** a MaxQuant search of the 20 raws (same parameters: Multiplicity 3, Arg6;Lys4 / Arg10;Lys8, Trypsin/P, Carbamidomethyl fixed, Oxidation + Acetyl N-term variable), then: channel intensity shares to find the two used labels, and the Fig. 2B column 5/6 match (scripts in the b5-PXD029618 scratch dir) for the KO/WT orientation. Or an author statement of the label per mixture.
-
-## PXD023136 — TMEM126A / complex I ND4-module (Formosa et al., PNAS 2021), 36 pulse-chase SILAC raws (partial block)
-
-**Blocker: per-run sample identity of the Fig 3F/3G pulse-chase SILAC runs `201119_Daniella_DH-1445_01.raw` … `_36.raw` is undocumented in every retrievable source.**
-
-| source | what it says |
-|---|---|
-| `Figure_3F_3G_TMEM126A_pulse_chaseSILAC.zip` (MaxQuant 1.6.10.43) `summary.txt` | Multiplicity 2, Labels1 Arg10;Lys8; experiment names are only `01` … `36` (one per raw); no cell line, time point or IP/input label. No mqpar/experimentalDesign in the zip. |
-| PRIDE dataProcessingProtocol | heavy intensities "normalised to the maximum value detected in the WT cell line at 4h pulse ... means plotted over time" — names a WT line and a time course, not which run is which |
-| bioRxiv v1 preprint (10.1101/2020.09.18.303255) | predates the experiment (raws acquired 2020-11-19; D.H. Hock is not an author of v1); no pulse-chase MS described |
-| PNAS 2021 (PMC8092609) full text, Fig 3F/3G legend, SI | not retrievable: PMC body not open access (efetch front matter only), Europe PMC fullTextXML HTTP 500, pnas.org and pmc.ncbi.nlm.nih.gov served bot checks (not bypassed), Unpaywall points only to the preprint |
-| raw headers | Orbitrap Eclipse, targeted method `Dani Target.meth` with heavy/light inclusion list of mtDNA-encoded peptides — instrument only |
-
-The other 9 raws are annotated: `annotations/PXD023136-silac.sdrf.tsv` (Fig 1B SILAC, 3 runs × 2 channels) and `annotations/PXD023136-aems-lfq.sdrf.tsv` (Fig 3B label-free Flag AE-MS, 6 runs).
-
-**Unblocked by:** the PNAS Fig 3F/3G legend + SI Methods (or an author sample sheet) mapping run 01–36 to cell line (WT / TMEM126A KO / Flag line), pulse or chase time and replicate (and whether runs are Flag eluates or whole mitochondria). Rows would then be one light (pre-existing) + one heavy (newly synthesised) row per run, as in PXD028934, with MaxQuant 1.6.10.43 search parameters (Carbamidomethyl fixed; Oxidation, Acetyl N-term variable; Arg10/Lys8 labels; FTMS 20 ppm).
-
-## PXD023790 — HAX1 controls mitochondrial proteostasis (Fan et al., J Clin Invest 2022), 1 pulse-SILAC raw (partial block)
-
-**Blocker: the sample identity of `20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw` (MaxQuant experiment `2MITO_t6_H1`) is contradicted by its own data.**
-
-| source | what it says |
-|---|---|
-| raw name, MaxQuant experiment, submitter sheet `SRDF_metadata_Fan_et_al.txt` | HAX1-/- clone H1, round 2, mitochondria, 6 h; marked "ok" (not in the mislabel list) |
-| `Fan_et_al_triple_SILAC_txt.7z` → `proteinGroups.txt` | HAX1 (O00165) identified by MS/MS, 8 peptides, Intensity L/M/H 1.1e9 / 5.2e8 / 1.9e8 — wild-type level. Clone H1 has HAX1 = 0 in all three channels in every other run (17 runs) |
-| paper / supplementary | no per-run sample sheet |
-
-Which sample was actually measured (a WT mitochondria sample, a swap) cannot be established. The other 106 deposited triple-SILAC raws are annotated in `annotations/PXD023790-silac.sdrf.tsv` (318 rows); the 12 HSP27 FLAG-IP raws in `annotations/PXD023790-hsp27-ip.sdrf.tsv`. Also not annotatable: `20180312_QX8_MaMu_SA_PBL985_MITO_t0_H1` is in the MaxQuant search but its raw file is not in the deposit.
-
-**Unblocked by:** an author statement of what `MITO_t6_H1` (round 2) contains, or a corrected sample sheet.
