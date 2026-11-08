@@ -1505,7 +1505,7 @@ Before any of the blocked BioID2 raws are unblocked, confirm their identity agai
 
 | raw file (MaxQuant experiment) | label | contradicting data |
 |---|---|---|
-| `20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw` (2MITO_t6_H1) | HAX1-/- clone H1, mito, 6 h | HAX1 (O00165) identified by MS/MS, 8 peptides, Intensity L/M/H 1.1e9 / 5.2e8 / 1.9e8 (WT level). Clone H1 has HAX1 = 0 in its other 17 runs |
+| `20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw` (2MITO_t6_H1) | HAX1-/- clone H1, mito, 6 h | HAX1 (O00165) identified by MS/MS, 8 peptides, Intensity L/M/H 1.1e9 / 5.2e8 / 1.9e8 (WT level). Clone H1 has HAX1 = 0 in its other 11 runs (count corrected by the independent review) |
 | `20180612_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_t24_C1.raw` | CLPB-/- C1, cells, 24 h | median log2 H/M −2.78 (t0 level); same-mix 2MITO_t24_C1 −0.29 |
 | `20180612_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_t24_C2.raw` | CLPB-/- C2, cells, 24 h | −2.88; same-mix 2MITO_t24_C2 −0.19 |
 | `20180612_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_t24_C3.raw` | CLPB-/- C3, cells, 24 h | −2.52; same-mix 2MITO_t24_C3 −0.74 |
@@ -1513,7 +1513,7 @@ Before any of the blocked BioID2 raws are unblocked, confirm their identity agai
 | `20180614_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_Repeat_t0_W1.raw` | WT W1, cells, 0 h | −0.58 (t24 level); same-mix 2MITO_t0_W1 −2.39 |
 | `20180614_QX0_MaMu_SA_M362_PBL985SILAC_CELLS_Repeat_t0_W2.raw` | WT W2, cells, 0 h | −0.67 (t24 level); same-mix 2MITO_t0_W2 −2.45; 2X_CELLS_t0_W2 −2.61 |
 
-**Why H/M identifies the time point.** The supplementary methods take whole cells and mitochondria from the same heavy-pulsed + light mix at each time point, so a whole-cell run must match its same-mix mitochondria run. In the other 100 runs, including all 54 mitochondria runs, H/M agrees with the labelled time point (t0 ≈ −2.3 to −2.9; t24 ≈ −0.03 to −1.8).
+**Why H/M identifies the time point.** The supplementary methods take whole cells and mitochondria from the same heavy-pulsed + light mix at each time point, so a whole-cell run must match its same-mix mitochondria run. Across the other 100 annotated runs (52 of them mitochondria runs), H/M is consistent with the labelled time point. H/M separates 24 h from 0/6 h only; the 0 h and 6 h ranges overlap, so this check cannot distinguish 0 h from 6 h (t0 ≈ −2.3 to −2.9; t24 ≈ −0.03 to −1.8). Supporting evidence for the block: Repeat_t0_W1 correlates r = 0.89 with 2CELLS_t24_W1, consistent with a re-injection of a 24 h sample.
 
 **Also not annotatable.** `20180312_QX8_MaMu_SA_PBL985_MITO_t0_H1` (experiment 1MITO_t0_H1) is in the MaxQuant search, but its raw file was never deposited in `Fan_et_al_Triple_SILAC_basis_raw.7z` (107 members).
 
