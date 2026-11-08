@@ -1,0 +1,289 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD027000.sdrf.tsv",
+ "dataset": "PXD027000",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD027000 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD027000/files?pageSize=100&page=0..1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/files.json; 8 entries = 4 .raw + 4 .msf; every entry projectAccessions contains PXD027000)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Malik I, Tseng YJ, Wright SE, Zheng K, Ramaiyer P, Green KM, Todd PK. SRSF protein kinase 1 modulates RAN translation and suppresses CGG repeat toxicity. EMBO Mol Med 2021;13(11):e14163, doi:10.15252/emmm.202114163, PMID 34542927, PMC8573603 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC8573603.1/PMC8573603.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/paper.txt: Results paragraph \"To quantitatively identify ribonucleoprotein complexes\" (line 138), Fig 1D/E-G legend (lines 128-132), Methods \"Tagged RNA capture and mass spectrometry\" (lines 360-362), Cell culture (line 348), Data availability (line 464))"
+  },
+  {
+   "id": "ev1",
+   "kind": "supplementary",
+   "location": "Dataset EV1 = https://pmc-oa-opendata.s3.amazonaws.com/PMC8573603.1/EMMM-13-e14163-s002.xlsx (label from PMC8573603.1.xml supplementary-material; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/supp/s002.xlsx). Sheets \"Raw MS data-No TG (1)\", \"Raw MS-no TG(2)\", \"Raw MS +TG (1)\", \"Raw MS +TG (2)\" = Proteome Discoverer exports with channel headers \"F1: Light, Sample, AUG|No Repeat\", \"F1: Medium, Sample, CGG|CGG Repeat\", \"F1: Heavy, Sample, GGGGCC|GGGGCC Repeat\""
+  },
+  {
+   "id": "msf",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD027000/UM_F_50cm_2019_{0413,0464,0465,0508}.msf (Proteome Discoverer 2.1.1.21 SQLite, downloaded in full; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/msf/). Workflows.WorkflowXML parameters, WorkflowInputFiles, Peptides; parsed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/scripts/map_runs.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/run_mapping.json; also sdrf-tools search-params"
+  },
+  {
+   "id": "run_map",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/run_mapping.json (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/scripts/map_runs.py): Jaccard overlap of high-confidence peptide sequences of each .msf with the peptides of each Dataset EV1 \"Raw MS\" sheet: 0413 -> No TG (1) 0.985; 0464 -> no TG(2) 0.981; 0465 -> +TG (1) 0.985; 0508 -> +TG (2) 0.979; every off-diagonal value <= 0.47"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 2 MB of each https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD027000/UM_F_50cm_2019_<n>.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/raw/<n>.head; method summaries /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/raw/<n>.method.txt)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0063?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/cello_CVCL_0063.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/ontologies/<o>/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; batch rules /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[label] rows 1-12",
+   "value": "SILAC light / SILAC medium / SILAC heavy (one row per channel per run)",
+   "source_ids": [
+    "paper",
+    "msf",
+    "ev1"
+   ],
+   "evidence": "Methods: \"for triplex SILAC labeling. For light SILAC ... (Lys-0) and (Arg-0); for medium SILAC ... (Lys-4) and ... [13C6] (Arg-6); while for heavy SILAC: ... [13C6, 15N2] (Lys-8) and ... [13C6, 15N4] (Arg-10)\". All four .msf: Precursor Ions Quantifier Quantification Method = \"SILAC 3plex (Arg6, Lys4 | Arg10, Lys8)\" (multiplicity 3, rule 14). Dataset EV1 sheets quantify all three channels per run."
+  },
+  {
+   "location": "characteristics[bait], factor value[bait] rows 1-12",
+   "value": "Light = AUG-nLuc-PP7 reporter RNA (no repeat control); Medium = +1CGG100-nLuc-PP7 reporter RNA; Heavy = (GGGGCC)70-nLuc-PP7 reporter RNA",
+   "source_ids": [
+    "paper",
+    "ev1"
+   ],
+   "evidence": "Channel map (rule 6), two explicit sources that agree: (1) Methods: \"Light SILAC was used for AUG-nLuc-PP7, medium SILAC +1CGG100-nLuc-PP7, and heavy SILAC was used for 1(+) (GGGGCC)70-nLuc-PP7 reporter\"; Results: \"AUG-nLuc-PP7 reporter was grown in light and CGG-nLuc-PP7 reporter was grown in medium amino acids\"; Fig 1D legend light (Lys-0/Arg-0), medium (Lys-4/Arg-6). (2) Dataset EV1 PD column headers in all four Raw MS sheets: \"F1: Light, Sample, AUG\" / \"F1: Medium, Sample, CGG\" / \"F1: Heavy, Sample, GGGGCC\" (or \"No Repeat\"/\"CGG Repeat\"/\"GGGGCC Repeat\"), with ratios labelled \"(CGG)/(AUG)\" and \"(GGGGCC)/(AUG)\". The capture construct is the same in every channel: each reporter plasmid co-transfected with PCP-NLS-3xFLAG and immunoprecipitated with anti-FLAG M2 beads; the PCP bait protein (\"Indranil Bait\" FASTA entry) is quantified in all three channels of every run. Custom characteristics column (spec \"Extending Templates\"; campaign precedent PXD018305 characteristics[bait])."
+  },
+  {
+   "location": "characteristics[treatment], factor value[treatment] rows 1-6 (0413, 0464) / rows 7-12 (0465, 0508)",
+   "value": "untreated / Thapsigargin (NCIT:C128634)",
+   "source_ids": [
+    "paper",
+    "ev1",
+    "run_map",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Methods: \"For ISR activation, cells were seeded similarly and transfected for 19 h, followed by 5 h of treatment with 2 uM Thapsigargin\"; Results: \"cells were treated with 2 uM TG 5 h before the IP\". No vehicle is stated for the no-TG IPs, so controls are \"untreated\" (rule 4). Run assignment: peptide overlap places 0413/0464 on the \"No TG\" sheets and 0465/0508 on the \"+TG\" sheets (run_map, Jaccard >= 0.979 on the diagonal); raw-header sample names agree: 0413 \"3xSILAC\", 0464 \"3xWCE IP#2\", 0465 \"3xStress#2\", 0508 \"3xStress#1\". OLS NCIT:C128634 label \"Thapsigargin\". Dose (2 uM) and duration (5 h) are not encoded in a column."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-12",
+   "value": "1 or 2 per (bait, treatment) group: 0413 = 1, 0464 = 2, 0508 = 1, 0465 = 2",
+   "source_ids": [
+    "paper",
+    "raw",
+    "run_map",
+    "ev1"
+   ],
+   "evidence": "Paper: \"n = 2 independent experiments\" (Fig 1E/F), \"Bar graphs represent average of two biological replicates\"; Methods \"Three 10-cm dishes were used per condition\", each reporter in its own SILAC-labelled cultures, so every (bait, treatment, experiment) is an independent culture. Numbering follows the acquisition-time sample names in the raw headers (\"3xSILAC\" = first no-TG IP, \"3xWCE IP#2\", \"3xStress#1\" = 0508, \"3xStress#2\" = 0465). Dataset EV1 orders the +TG sheets the other way round (+TG (1) = 0465, +TG (2) = 0508); see limitations."
+  },
+  {
+   "location": "source name rows 1-12",
+   "value": "HEK293T_<AUG|CGG|G4C2>-PP7_<noTG|TG>_rep<n>",
+   "source_ids": [
+    "paper",
+    "ev1",
+    "raw"
+   ],
+   "evidence": "One source per (reporter bait, treatment, independent experiment); bait, treatment and replicate as in the claims above. G4C2 abbreviates the (GGGGCC)70 reporter."
+  },
+  {
+   "location": "assay name, comment[data file], comment[technical replicate], comment[fraction identifier] rows 1-12",
+   "value": "UM_F_50cm_2019_<0413|0464|0465|0508>(.raw); technical replicate 1; fraction 1",
+   "source_ids": [
+    "files",
+    "msf",
+    "raw"
+   ],
+   "evidence": "PRIDE lists exactly 4 .raw files; each .msf WorkflowInputFiles names exactly its own raw (E:\\Fusion\\UM_F_50cm_2019_<n>.raw). One unfractionated 180-min LC-MS run per triplex IP mixture (Methods: 2 ul of the peptide solution resolved on a 50 cm column)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-12",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "HEK293T cells (Methods); PRIDE organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-12",
+   "value": "HEK293T / CVCL_0063 / HEK293T",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Methods: \"HEK293T cells were grown in SILAC medium\"; \"HEK293T and U2OS cells were purchased from American Type Culture Collection (ATCC)\". Cellosaurus CVCL_0063 ID HEK293T (DR ATCC CRL-3216). The cell line value is the Cellosaurus recommended name, the most frequent spelling for CVCL_0063 in curated sdrf-annotated-datasets (22 of 40 files); parse_sdrf warns that it is not an exact CLO/BTO/EFO label (CLO \"HEK293T cell\", BTO \"HEK-293T cell\", EFO:0001082 \"293T\")."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-12",
+   "value": "kidney (UBERON:0002113)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0063: \"Derived from site: In situ; Fetal kidney; UBERON=UBERON_0002113\". OLS UBERON:0002113 = kidney."
+  },
+  {
+   "location": "characteristics[disease] rows 1-12",
+   "value": "normal (PATO:0000461)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0063 has no DI (disease) line (transformed embryonic kidney line); OLS PATO:0000461 = normal."
+  },
+  {
+   "location": "characteristics[sex] rows 1-12",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0063 SX Female."
+  },
+  {
+   "location": "characteristics[material type] rows 1-12",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "templates"
+   ],
+   "evidence": "Cultured HEK293T cells; fixed vocabulary value of the template."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-12",
+   "value": "ATCC",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Methods: \"HEK293T and U2OS cells were purchased from American Type Culture Collection (ATCC)\"; Cellosaurus DR ATCC CRL-3216."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-12",
+   "value": "Dulbecco's Modified Eagle Medium (NCIT:C185409)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: \"DMEM deficient in L-arginine and L-lysine is supplemented with 10% dialyzed FBS and isotopes of lysine ... and arginine\" (SILAC DMEM). OLS NCIT:C185409 label \"Dulbecco's Modified Eagle Medium\"."
+  },
+  {
+   "location": "characteristics[sample storage temperature] rows 1-12",
+   "value": "-80 °C",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: after the final PBS wash \"beads were transferred to a new tube ... and stored at -80 C until mass spectrometry\"."
+  },
+  {
+   "location": "comment[instrument] rows 1-12",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of all 4 files: \"Orbitrap Fusion\" / \"Orbitrap Fusion Method Summary\"; paper \"Orbitrap Fusion tribrid mass spectrometer\"; PRIDE MS:1002416."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-12",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw method summary (all 4 runs): \"Scan ddMSnScan\", \"Data Dependent Mode= Cycle Time\", \"Cycle Time (sec) = 3\"."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-12",
+   "value": "beam-type CID (HCD, MS:1000422); 32 NCE; orbitrap (MS:1000484); 400m/z-1400m/z",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw method summary, identical in all 4 runs (method XC3_OT120K_HCD_OT_180min_50cm_loopBypass.meth): MS1 \"Detector Type = Orbitrap\", \"Orbitrap Resolution = 120K\", \"Scan Range (m/z) = 400-1400\"; ddMS2 \"ActivationType = HCD\", \"Is Stepped Collision Energy On = False\", \"Collision Energy (%) = 32\", \"Detector Type = Orbitrap\", \"Orbitrap Resolution = 15K\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-12",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "msf",
+    "ols"
+   ],
+   "evidence": "Methods: \"An overnight digestion with 1 ug sequencing grade, modified trypsin\"; all 4 .msf Sequest HT Enzyme Name = Trypsin (KR, not before P, specific at both ends), max 2 missed cleavages."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-12",
+   "value": "10 ppm; 0.2 Da",
+   "source_ids": [
+    "msf"
+   ],
+   "evidence": "All 4 .msf Sequest HT node: \"Precursor Mass Tolerance = 10 ppm\", \"Fragment Mass Tolerance = 0.2 Da\"."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-12",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Methods/PRIDE protocol: \"Cysteines were reduced by adding 50 ul of 10 mM DTT and incubating at 45 C for 30 min\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-12",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Deamidated N,Q, Acetyl Protein N-term, Label:13C(6) R, Label:2H(4) K, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "msf",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Identical in all 4 .msf Sequest HT nodes: Static Modification Carbamidomethyl C (UnimodAccession 4); Dynamic Modifications Oxidation M (35), Deamidated N,Q (7), Label:13C(6) R (188), Label:13C(6)15N(2) K (259), Label:2H(4) K (481), Label:13C(6)15N(4) R (267); N-Terminal Modification Acetyl PositionType Protein_N_Terminus (1). Label UNIMOD accessions agree with the stated mass shifts (Arg6 188, Lys4 481, Arg10 267, Lys8 259; rule 11) and with PRIDE \"Light, Medium, and Heavy lysine/arginine were considered as variable modifications\". The PD-internal \"Static Modification for X = MappingL\" (maps the ambiguous residue X to Leu, UnimodAccession -1) is not a chemical modification and is not encoded."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-12",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; templates: MS proteomics, human cells, cultured cell line (no patient samples, so no clinical-metadata)."
+  }
+ ],
+ "limitations": [
+  "characteristics[biological replicate] for the +TG runs: the raw-file sample names (\"3xStress#1\" = 0508, \"3xStress#2\" = 0465) are used. Dataset EV1 sheet order and Figure 1F/source-data \"repeat_1\"/\"repeat_2\" put 0465 first (+TG (1)) and 0508 second (+TG (2)). Replicate numbers are only identifiers within a group, but which no-TG and +TG IPs were done side by side is not stated; 0464 (\"3xWCE IP#2\") and 0465 (\"3xStress#2\") were acquired consecutively.",
+  "Channel map evidence is the Methods text plus the Proteome Discoverer channel headers in Dataset EV1. The .pdStudy/.pdResult files that hold the PD sample annotation were not deposited (PRIDE submission type PARTIAL), and the PCP bait protein is present in all three channels by design, so no data-internal marker distinguishes the reporter channels independently of these labels.",
+  "comment[alkylation reagent] = not available: no alkylation step or reagent is described in the paper or PRIDE protocol (only DTT reduction), yet every search used fixed Carbamidomethyl C and PRIDE lists \"iodoacetamide derivatized residue\" among identified PTMs. The search parameter is encoded as deposited; the reagent is not asserted.",
+  "characteristics[developmental stage] = not available: Cellosaurus gives AG \"Fetus\" for HEK293T, but no EFO \"fetal stage\" term was found in OLS (searches \"fetal stage\", \"fetus\", \"foetal stage\" in EFO). characteristics[age] = not available (no numeric age).",
+  "characteristics[ancestry category] = not available: Cellosaurus CVCL_0063 has no population annotation. characteristics[passage number] = not available: only \"5-6 passages\" in SILAC medium are stated, not the passage number of the line.",
+  "Search databases differ: 0413/0464/0465 searched against \"Indranil_Todd.fasta; uniprot-HSapien_Reviewed_08022017.fasta\", 0508 against \"Indranil_Todd.fasta; uniprot-HSapien-reviewed 08292018.fasta\" (explains the OX= headers only in sheet \"+TG (2)\"). Search parameters (enzyme, tolerances, modifications) are otherwise identical, so one header set covers all runs. The paper and PRIDE name only the 08-02-2017 database.",
+  "PD workflow description says \"Ion trap-detected HCD spectra\" (template text) but the raw method summary records Orbitrap MS2 detection at 15K; the raw file is used for comment[ms2 mass analyzer].",
+  "The GGGGCC (heavy) channel is annotated because it was measured and quantified in every run, although the paper analyses mainly the CGG interactome (\"the GGGGCC interactome will be the focus of a separate manuscript\").",
+  "Treatment dose (2 uM thapsigargin) and timing (5 h before IP) are recorded here only; no template column carries them.",
+  "Independent review is external (REVIEW_PENDING_EXTERNAL); this manifest was not self-approved."
+ ]
+}

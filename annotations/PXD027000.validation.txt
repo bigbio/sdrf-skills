@@ -1,0 +1,7 @@
+# PXD027000 validation log (2026-11-08T23:06Z); SDRF sha256 f6e5f23b493991b25991ceb8fa240bbdde744723e9ddee9417f811b624ac5649; 12 rows x 53 columns
+
+## Round 1 (superseded build, identical except characteristics[biological replicate] of the two +TG runs: 0465=1, 0508=2)
+validate-sdrf exit 0 (2 warnings, same as below); structure exit 0; check exit 0; reconcile exit 0; convert-openms exit 0.
+Change (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/scripts/make_tables.py -> samples.tsv, rebuilt with sdrf-tools build; no post-build edit): +TG replicate numbers now follow the raw-header sample names (0508 '3xStress#1' -> 1, 0465 '3xStress#2' -> 2).
+
+## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD027000.sdrf.tsv -t ms-proteomics -t human -t cell-lines
