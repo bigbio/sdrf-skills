@@ -1,0 +1,75 @@
+# PXD009766 validation log (sdrf-pipelines parse_sdrf; sdrf-tools). Run from /home/user/bigbio/sdrf-skills/annotations, 2026-11-08.
+
+## Round 1 (precursor mass tolerance = not available)
+$ parse_sdrf validate-sdrf -s PXD009766.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=HCC1599;SN=MCF7;SN=HCC1937;SN=HCC2218;SN=HMEC' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD009766.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile PXD009766.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/pride.json --accession PXD009766
+PXD009766: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/openms && parse_sdrf convert-openms -s .../PXD009766.sdrf.tsv -t2)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+Fix (technical.tsv, rebuilt with sdrf-tools build): comment[precursor mass tolerance] = 20 ppm, the only precursor tolerance the paper documents (first search). clinical-data wording also changed to quote the Table S1 comment verbatim. No post-build edits of the SDRF.
+
+## Round 2 (final artifact)
+$ parse_sdrf validate-sdrf -s PXD009766.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=HCC1599;SN=MCF7;SN=HCC1937;SN=HCC2218;SN=HMEC' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD009766.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile PXD009766.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/pride_v3.json --accession PXD009766
+PXD009766: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive Plus', the annotation says 'Q Exactive'  [Q-Exactive Plus]
+exit code: 0
+
+$ sdrf-tools reconcile PXD009766.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/pride.json --accession PXD009766
+PXD009766: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/openms3 && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD009766.sdrf.tsv -t2)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD009766.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[material type]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[clinical data]']
+Conditions (5): dict_keys(['estrogen-receptor positive breast cancer', 'not applicable', 'triple-negative breast carcinoma', 'HER2 positive breast carcinoma', 'breast carcinoma'])
+Files per condition: dict_values([211, 359, 97, 7, 44])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 718 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD009766.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check PXD009766.evidence.json
+PXD009766.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD009766.sdrf.tsv PXD009766.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit code: 0
+
+## Justification of remaining findings
+
+1. parse_sdrf WARNING "Invalid value 'SN=HCC1599;SN=MCF7;SN=HCC1937;SN=HCC2218;SN=HMEC'" - characteristics[pooled sample] on the 359 heavy (super-SILAC reference) rows. The resolved template allows `fixed: not pooled, pooled; or pattern: SN=sample1;SN=sample2` (sdrf-tools contract); the validator only checks the fixed list. Same warning was accepted on the passed super-SILAC precedent PXD013311. Not an error (exit 0).
+
+2. reconcile (raw PRIDE v3 record) MAJOR instrument_contradicted "protocol names 'Q Exactive Plus', the annotation says 'Q Exactive'" - FALSE POSITIVE. The protocol says "coupled to the Q-Exactive or Q-Exactive Plus mass spectrometers" and PRIDE `instruments` lists both. Raw-file headers (first 400 kB of all 359 files, scratch rawmeth.json) give "Q Exactive - Orbitrap MS" for 121 files and "Q Exactive Plus - Orbitrap MS" for 238 files; each row carries its own file's model. The checker matched only the longer name.
+
+3. reconcile (MCP get_project_details copy) MINOR cleavage_agent_unsupported - FALSE POSITIVE: that JSON copy flattens the record; the sample processing protocol (and the paper Methods) say "The joint lysates were then trypsin-digested following the FASP protocol". The raw v3 record run (item 2) does not raise it.
+
+4. convert-openms WARNING "no TA= specified" x718 - from NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable, a positional modification correctly written with PP= (format rule); OpenMS maps it to N-term. Expected.
+
+All exits 0; schema-check and manifest-coverage pass. The SDRF was written only by `sdrf-tools build` from scratch build/samples.tsv + build/technical.tsv generated by scripts/make_tables.py (deterministic); no post-build edits.

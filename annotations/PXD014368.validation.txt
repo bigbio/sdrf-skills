@@ -1,0 +1,34 @@
+# PXD014368 validation log (2026-11-08T20:21Z); SDRF sha256 0e851b997439dff7fc1ec77b84bd47c116e1735cf3bdc89fb039107874f674c5
+
+## Round 1 (superseded build): parse_sdrf validate-sdrf -s annotations/PXD014368.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: WM-115 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+ERROR: Value 'WM115/WM266-4 donor' does not match required pattern
+There were validation errors.
+exit=1
+Fixes (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/scripts/make_tables.py -> samples.tsv, rebuilt with sdrf-tools build; no post-build edit): characteristics[individual] 'WM115/WM266-4 donor' -> 'WM115_WM266-4_donor' (identifier pattern); characteristics[cell line]/factor value 'WM-115' -> 'WM115' (EFO:0002390 label).
+
+## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD014368.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD014368.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD014368.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/pride.json --accession PXD014368
+PXD014368: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD014368.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/convert)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.3.0.5 does not record it; no mqpar.xml deposited). Same outcome as campaign precedents PXD006676/PXD024103. validate-sdrf and the template accept the reserved word.
+
+## sdrf-tools schema-check annotations/PXD014368.evidence.json
+annotations/PXD014368.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD014368.sdrf.tsv annotations/PXD014368.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit=0

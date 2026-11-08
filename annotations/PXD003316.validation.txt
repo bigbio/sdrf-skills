@@ -1,0 +1,76 @@
+# PXD003316 validation — round 2 (2026-11-08T20:33:32Z); sha256 9b94d07a0da6cf22dbb61b07b03add236a46fb3358bcd2b045bb8834365f5309
+# Round 2 change (external review round 1, finding 1): characteristics[sample type] added via scripts/make_tables.py -
+#   'reference' (PRIDE:0000899) on the 60 heavy SILAC-HUVEC standard rows, 'study sample' (PRIDE:0001013) on the other 132. Biological replicate 1 kept on standards (finding 2; reason in manifest).
+#   Tables rebuilt with sdrf-tools build (three arms) and concatenated by scripts/postbuild.py (asserts identical headers; changes no cell).
+#   sdrf-tools build --samples build/samples_stiffness.tsv --technical build/technical_stiffness.tsv --files build/files_stiffness.json -t ms-proteomics -t human -o build/part_stiffness.sdrf.tsv
+#   -> wrote build/part_stiffness.sdrf.tsv: 72 rows x 45 columns
+#   -> exit 0
+#   sdrf-tools build --samples build/samples_siCCN1.tsv --technical build/technical_siCCN1.tsv --files build/files_siCCN1.json -t ms-proteomics -t human -o build/part_siCCN1.sdrf.tsv
+#   -> wrote build/part_siCCN1.sdrf.tsv: 12 rows x 45 columns
+#   -> exit 0
+#   sdrf-tools build --samples build/samples_matrigel.tsv --technical build/technical_matrigel.tsv --files build/files_matrigel.json -t ms-proteomics -t human -o build/part_matrigel.sdrf.tsv
+#   -> wrote build/part_matrigel.sdrf.tsv: 108 rows x 45 columns
+#   -> exit 0
+#   python3 -I scripts/postbuild.py /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv build/part_stiffness.sdrf.tsv build/part_siCCN1.sdrf.tsv build/part_matrigel.sdrf.tsv
+#   -> /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv: 192 rows x 45 columns
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv -t ms-proteomics -t human   (full ontology run)
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv -t2   (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/openms)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv
+Factor columns: ['factor value[genetic modification]', 'factor value[growth condition]', 'factor value[sampling time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[genetic modification]', 'characteristics[growth condition]']
+Conditions (8): dict_keys(['not applicable|fibronectin-coated polyacrylamide gel, 22000 Pa|24 hour', 'not applicable|fibronectin-coated polyacrylamide gel, 400 Pa|24 hour', 'CCN1 siRNA pool|tissue culture plastic|not available', 'not applicable|not applicable|not applicable', 'non-targeting control siRNA pool|tissue culture plastic|not available', 'not applicable|Matrigel|4 hour', 'not applicable|Matrigel|22 hour', 'not applicable|Matrigel|30 hour'])
+Files per condition: dict_values([36, 36, 3, 60, 3, 18, 18, 18])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 192 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv
+exit code: 0
+NOTE: the TA= warning concerns the Protein N-term Acetyl (PP=) column; same benign warning as in the passed campaign examples.
+NOTE: the 60 heavy-standard files share condition 'not applicable|not applicable|not applicable' by design (reference channels, sample type = reference).
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/pride.json --accession PXD003316
+PXD003316: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD003316.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD003316.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD003316.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+# Accession checks (sdrf-tools verify <acc> --label <label>, OLS4):
+#   PRIDE:0000899 | Accession: PRIDE:0000899 Exists: True Label match: True OLS label: reference Ontology: pride 
+#   PRIDE:0001013 | Accession: PRIDE:0001013 Exists: True Label match: True OLS label: study sample Ontology: pride 
+#   NCBITaxon:9606 | Accession: NCBITaxon:9606 Exists: True Label match: True OLS label: Homo sapiens Ontology: ncbitaxon 
+#   UBERON:0002066 | Accession: UBERON:0002066 Exists: True Label match: True OLS label: umbilical vein Ontology: uberon 
+#   CL:0002618 | Accession: CL:0002618 Exists: True Label match: True OLS label: endothelial cell of umbilical vein Ontology: cl 
+#   PRIDE:0000627 | Accession: PRIDE:0000627 Exists: True Label match: True OLS label: Data-dependent acquisition Ontology: pride 
+#   MS:1001910 | Accession: MS:1001910 Exists: True Label match: True OLS label: Orbitrap Elite Ontology: ms 
+#   MS:1001251 | Accession: MS:1001251 Exists: True Label match: True OLS label: Trypsin Ontology: ms 
+#   MS:1001313 | Accession: MS:1001313 Exists: True Label match: True OLS label: Trypsin/P Ontology: ms 
+#   MS:1000133 | Accession: MS:1000133 Exists: True Label match: True OLS label: collision-induced dissociation Ontology: ms 
+#   MS:1000422 | Accession: MS:1000422 Exists: True Label match: True OLS label: beam-type collision-induced dissociation Ontology: ms 
+#   MS:1000484 | Accession: MS:1000484 Exists: True Label match: True OLS label: orbitrap Ontology: ms 
+#   MS:1000291 | Accession: MS:1000291 Exists: True Label match: True OLS label: linear ion trap Ontology: ms 
+#   PRIDE:0000568 | Accession: PRIDE:0000568 Exists: True Label match: True OLS label: SDS PAGE Ontology: pride 
+#   PRIDE:0000558 | Accession: PRIDE:0000558 Exists: True Label match: True OLS label: Strong anion-exchange chromatography (SAX) Ontology: pride 
+#   PRIDE:0000608 | Accession: PRIDE:0000608 Exists: True Label match: True OLS label: Dithiothreitol (DTT) Ontology: pride 
+#   UNIMOD:4 | Accession: UNIMOD:4 Exists: True Label match: True OLS label: Carbamidomethyl Ontology: unimod 
+#   UNIMOD:35 | Accession: UNIMOD:35 Exists: True Label match: True OLS label: Oxidation Ontology: unimod 
+#   UNIMOD:1 | Accession: UNIMOD:1 Exists: True Label match: True OLS label: Acetyl Ontology: unimod 
+#   UNIMOD:267 | Accession: UNIMOD:267 Exists: True Label match: True OLS label: Label:13C(6)15N(4) Ontology: unimod 
+#   UNIMOD:259 | Accession: UNIMOD:259 Exists: True Label match: True OLS label: Label:13C(6)15N(2) Ontology: unimod 
+#   OLS4 ancestors of PRIDE:0000899: PRIDE:0000898 multiplex sample -> PRIDE:0000895 sample type (-> PRIDE:0000017, BFO:0000001); is_obsolete false.
+# sha256 of the delivered file: 9b94d07a0da6cf22dbb61b07b03add236a46fb3358bcd2b045bb8834365f5309
+
+# Round 1 (2026-11-08T20:19:47Z; sha256 d55f6d5f853e94ebb72c979127ab142dfdb32400e38a7bfce345e29778dd25a1, 192 x 44, no sample type column):
+#   validate-sdrf exit 0; structure OK; convert-openms SUCCESS (WARNINGS=1); reconcile exit 0; schema-check valid; manifest-coverage 28 columns.
+#   External review round 1: FAIL (important: missing characteristics[sample type] on the heavy standards) -> fixed in round 2 above.

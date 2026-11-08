@@ -1,0 +1,414 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD009766.sdrf.tsv",
+ "dataset": "PXD009766",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009766 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/pride_v3.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/pride.json): title, sample/data processing protocols, instruments [Q Exactive Plus, Q Exactive], quantification SILAC"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009766/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/files_all.json; 360 entries = 359 RAW + bc_combined.zip; every entry projectAccessions contains PXD009766)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Yanovich G et al., Cancer Res 2018 78(20):6001-6010, PMID 30154156, PMC6193543, doi:10.1158/0008-5472.CAN-18-1079; author manuscript text https://pmc-oa-opendata.s3.amazonaws.com/PMC6193543.1/PMC6193543.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/paper.txt; Materials and Methods, Data Availability, Results first section)"
+  },
+  {
+   "id": "tableS1",
+   "kind": "supplementary",
+   "location": "Supplementary Table S1 (sample summary table), AACR figshare https://aacr.figshare.com/articles/dataset/22419198 (resource_doi 10.1158/0008-5472.CAN-18-1079 verified), file https://ndownloader.figshare.com/files/39865341 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/supp/S1.xlsx; sheets exported to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/supp/S1_212_samples.tsv and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/supp/S1_131_included_in_analysis.tsv)"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/07/PXD009766/bc_combined.zip member bc_combined/txt/summary.txt (HTTP-range extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/mq/summary.txt by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/scripts/zipget.py): Raw file -> Experiment, Fraction, Enzyme, Variable modifications, Multiplicity, Labels0/Labels1"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "bc_combined.zip member bc_combined/txt/parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/mq/parameters.txt): MaxQuant 1.5.3.16, Fixed modifications Carbamidomethyl (C), MS/MS tol. (FTMS) 20 ppm"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 400000 bytes of each of the 359 .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/07/PXD009766/<file>.raw, UTF-16LE decoded (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/rawhdr/; parsed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/scripts/rawmeth.py into /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/rawmeth.json)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 https://www.ebi.ac.uk/ols4/api (MONDO, UBERON, PSI-MS, PRIDE lookups made 2026-11-08)"
+  },
+  {
+   "id": "unimod",
+   "kind": "ontology",
+   "location": "sdrf-tools search-params /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/mq/summary.txt and mq/parameters.txt (Unimod mapping of MaxQuant Arg10/Lys8/Oxidation/Acetyl/Carbamidomethyl)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:<HCC1599|MCF-7|HCC1937|HCC2218> (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/cello_*.json): CVCL_1256, CVCL_0031, CVCL_0290, CVCL_1263, all Female breast carcinoma lines"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates templates.yaml (latest ms-proteomics 1.2.0, human 1.1.0, clinical-metadata 1.0.0, oncology-metadata 1.0.0) as resolved by `sdrf-tools contract` (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/contract.txt); batch rule 1"
+  },
+  {
+   "id": "build",
+   "kind": "script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009766/build/samples.tsv, build/technical.tsv, build/files.json; SDRF written only by `sdrf-tools build`"
+  },
+  {
+   "id": "precedent",
+   "kind": "repository",
+   "location": "/home/user/bigbio/sdrf-skills/annotations/PXD013311.sdrf.tsv (passed campaign super-SILAC encoding) and /home/user/bigbio/sdrf-annotated-datasets/datasets/PXD002669/PXD002669-human-subtypes.sdrf.tsv"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-718",
+   "value": "HA_BC<n> (light) / super-SILAC reference in HA_BC<n> (heavy)",
+   "source_ids": [
+    "mq_summary",
+    "tableS1",
+    "precedent"
+   ],
+   "evidence": "summary.txt groups all 359 deposited raw files into exactly 70 Experiments HA_BC2..HA_BC88; Table S1 lists the same 70 names as Dataset-III samples (paper: \"For Dataset-III, 70 FFPE samples\"). Heavy rows get a per-sample reference source name, as in the passed PXD013311 super-SILAC encoding."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier], comment[technical replicate] rows 1-718",
+   "value": "per-run file names; SAX fractions 1-6; separate injections as technical replicates",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "paper",
+    "build"
+   ],
+   "evidence": "All 359 RAW files (files list) appear in summary.txt. 45 experiments have six SAX fraction files (name suffix _1.._6 / -1..-6; MaxQuant Fraction 1..6) plus one extra unfractionated run (MaxQuant puts it at Fraction 2); 25 experiments have only 1-3 unfractionated runs, matching the paper (\"In 25 cases ... we performed in-solution trypsin digestion and/or did not fractionate the samples\"). SDRF: SAX set = technical replicate 1, fractions 1-6 by file suffix; each unfractionated run = its own technical replicate (fraction 1), numbered after the SAX set in file-name order."
+  },
+  {
+   "location": "comment[label] rows 1-718",
+   "value": "SILAC light / SILAC heavy",
+   "source_ids": [
+    "mq_summary",
+    "paper",
+    "pride"
+   ],
+   "evidence": "summary.txt: Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8 for all 359 deposited files (rule 14 verified). Methods: \"proteins from each clinical sample were combined with equal protein amounts of the super-SILAC mix\"; analyses use \"ratios of the unlabeled samples towards the same heavy labeled super-SILAC mix\" -> light = patient sample, heavy = reference."
+  },
+  {
+   "location": "characteristics[sample type] rows 1, 3, 5, 7, 9, 11-16, 23, 25, 27-32, 39, 41, 43-48, 55, 57-62, 69, 71, 73, 75, 77-82, 89, 91-96, 103, 105-110, 117, 119, 121, 123-128, 135, 137, 139, 141-146, 153, 155-160, 167, 169-174, 181, 183-188, 195, 197, 199, 201-206, 213, 215-220, 227, 229-234, 241, 243, 245, 247-252, 259, 261-266, 273, 275-280, 287, 289-294, 301, 303-308, 315, 317, 319, 321, 323, 325-330, 337, 339-344, 351, 353, 355, 357-362, 369, 371-376, 383, 385-390, 397, 399, 401, 403, 405, 407, 409-414, 421, 423-428, 435, 437, 439, 441, 443-448, 455, 457-462, 469, 471-476, 483, 485-490, 497, 499, 501, 503, 505, 507-512, 519, 521-526, 533, 535-540, 547, 549-554, 561, 563-568, 575, 577-582, 589, 591-596, 603, 605-610, 617, 619-624, 631, 633-638, 645, 647-652, 659, 661-666, 673, 675-680, 687, 689, 691, 693, 695, 697, 699, 701, 703-708, 715, 717 / 2, 4, 6, 8, 10, 17-22, 24, 26, 33-38, 40, 42, 49-54, 56, 63-68, 70, 72, 74, 76, 83-88, 90, 97-102, 104, 111-116, 118, 120, 122, 129-134, 136, 138, 140, 147-152, 154, 161-166, 168, 175-180, 182, 189-194, 196, 198, 200, 207-212, 214, 221-226, 228, 235-240, 242, 244, 246, 253-258, 260, 267-272, 274, 281-286, 288, 295-300, 302, 309-314, 316, 318, 320, 322, 324, 331-336, 338, 345-350, 352, 354, 356, 363-368, 370, 377-382, 384, 391-396, 398, 400, 402, 404, 406, 408, 415-420, 422, 429-434, 436, 438, 440, 442, 449-454, 456, 463-468, 470, 477-482, 484, 491-496, 498, 500, 502, 504, 506, 513-518, 520, 527-532, 534, 541-546, 548, 555-560, 562, 569-574, 576, 583-588, 590, 597-602, 604, 611-616, 618, 625-630, 632, 639-644, 646, 653-658, 660, 667-672, 674, 681-686, 688, 690, 692, 694, 696, 698, 700, 702, 709-714, 716, 718",
+   "value": "study sample / reference",
+   "source_ids": [
+    "paper",
+    "precedent"
+   ],
+   "evidence": "Light = clinical FFPE sample; heavy = super-SILAC spike-in reference standard (Methods \"to serve as a reference sample\")."
+  },
+  {
+   "location": "characteristics[organism] rows 1-718",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; human breast tumours and human cell lines."
+  },
+  {
+   "location": "characteristics[organism part] rows 1, 3, 5, 7, 9, 11-16, 23, 25, 27-32, 39, 41, 43-48, 55, 57-62, 69, 71, 73, 75, 77-82, 89, 91-96, 103, 105-110, 117, 119, 121, 123-128, 135, 137, 139, 141-146, 153, 155-160, 167, 169-174, 181, 183-188, 195, 197, 199, 201-206, 213, 215-220, 227, 229-234, 241, 243, 245, 247-252, 259, 261-266, 273, 275-280, 287, 289-294, 301, 303-308, 315, 317, 319, 321, 323, 325-330, 337, 339-344, 351, 353, 355, 357-362, 369, 371-376, 383, 385-390, 397, 399, 401, 403, 405, 407, 409-414, 421, 423-428, 435, 437, 439, 441, 443-448, 455, 457-462, 469, 471-476, 483, 485-490, 497, 499, 501, 503, 505, 507-512, 519, 521-526, 533, 535-540, 547, 549-554, 561, 563-568, 575, 577-582, 589, 591-596, 603, 605-610, 617, 619-624, 631, 633-638, 645, 647-652, 659, 661-666, 673, 675-680, 687, 689, 691, 693, 695, 697, 699, 701, 703-708, 715, 717",
+   "value": "breast",
+   "source_ids": [
+    "paper",
+    "tableS1",
+    "ols"
+   ],
+   "evidence": "Macro-dissected breast cancer FFPE blocks (Methods). UBERON:0000310 breast. Heavy rows: not applicable (cell-line mix)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1, 3, 5, 7, 9, 11-16, 23, 25, 27-32, 39, 41, 43-48, 55, 57-62, 69, 71, 73, 75, 77-82, 89, 91-96, 103, 105-110, 117, 119, 121, 123-128, 135, 137, 139, 141-146, 153, 155-160, 167, 169-174, 181, 183-188, 195, 197, 199, 201-206, 213, 215-220, 227, 229-234, 241, 243, 245, 247-252, 259, 261-266, 273, 275-280, 287, 289-294, 301, 303-308, 315, 317, 319, 321, 323, 325-330, 337, 339-344, 351, 353, 355, 357-362, 369, 371-376, 383, 385-390, 397, 399, 401, 403, 405, 407, 409-414, 421, 423-428, 435, 437, 439, 441, 443-448, 455, 457-462, 469, 471-476, 483, 485-490, 497, 499, 501, 503, 505, 507-512, 519, 521-526, 533, 535-540, 547, 549-554, 561, 563-568, 575, 577-582, 589, 591-596, 603, 605-610, 617, 619-624, 631, 633-638, 645, 647-652, 659, 661-666, 673, 675-680, 687, 689, 691, 693, 695, 697, 699, 701, 703-708, 715, 717",
+   "value": "integer, numbered 1..n within each factor value[disease] group (ER+ 1-41, TN 1-19, HER2 1, unannotated 1-9)",
+   "source_ids": [
+    "tableS1",
+    "build"
+   ],
+   "evidence": "One number per patient sample (Table S1 sample name) restarting per factor group (batch rule 3); all runs of one patient share it. Heavy rows: pooled."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1, 3, 5, 7, 9, 11-16, 23, 25, 27-32, 39, 41, 43-48, 55, 57-62, 69, 71, 73, 75, 77-82, 89, 91-96, 103, 105-110, 117, 119, 121, 123-128, 135, 137, 139, 141-146, 153, 155-160, 167, 169-174, 181, 183-188, 195, 197, 199, 201-206, 213, 215-220, 227, 229-234, 241, 243, 245, 247-252, 259, 261-266, 273, 275-280, 287, 289-294, 301, 303-308, 315, 317, 319, 321, 323, 325-330, 337, 339-344, 351, 353, 355, 357-362, 369, 371-376, 383, 385-390, 397, 399, 401, 403, 405, 407, 409-414, 421, 423-428, 435, 437, 439, 441, 443-448, 455, 457-462, 469, 471-476, 483, 485-490, 497, 499, 501, 503, 505, 507-512, 519, 521-526, 533, 535-540, 547, 549-554, 561, 563-568, 575, 577-582, 589, 591-596, 603, 605-610, 617, 619-624, 631, 633-638, 645, 647-652, 659, 661-666, 673, 675-680, 687, 689, 691, 693, 695, 697, 699, 701, 703-708, 715, 717 / 2, 4, 6, 8, 10, 17-22, 24, 26, 33-38, 40, 42, 49-54, 56, 63-68, 70, 72, 74, 76, 83-88, 90, 97-102, 104, 111-116, 118, 120, 122, 129-134, 136, 138, 140, 147-152, 154, 161-166, 168, 175-180, 182, 189-194, 196, 198, 200, 207-212, 214, 221-226, 228, 235-240, 242, 244, 246, 253-258, 260, 267-272, 274, 281-286, 288, 295-300, 302, 309-314, 316, 318, 320, 322, 324, 331-336, 338, 345-350, 352, 354, 356, 363-368, 370, 377-382, 384, 391-396, 398, 400, 402, 404, 406, 408, 415-420, 422, 429-434, 436, 438, 440, 442, 449-454, 456, 463-468, 470, 477-482, 484, 491-496, 498, 500, 502, 504, 506, 513-518, 520, 527-532, 534, 541-546, 548, 555-560, 562, 569-574, 576, 583-588, 590, 597-602, 604, 611-616, 618, 625-630, 632, 639-644, 646, 653-658, 660, 667-672, 674, 681-686, 688, 690, 692, 694, 696, 698, 700, 702, 709-714, 716, 718",
+   "value": "not pooled / SN=HCC1599;SN=MCF7;SN=HCC1937;SN=HCC2218;SN=HMEC",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Methods: \"four breast cancer cell lines ... (HCC1599, MCF7, HCC1937 and HCC2218) and normal mammary epithelial cells (HMEC) were SILAC labeled with heavy lysine and arginine and their lysates were combined at equal ratios\". Each patient sample is one FFPE block (not pooled)."
+  },
+  {
+   "location": "characteristics[disease] and factor value[disease] rows 1, 3, 7, 9, 27-32, 39, 41, 91-96, 103, 119, 121, 123-128, 135, 137, 139, 141-146, 153, 155-160, 167, 169-174, 181, 183-188, 195, 197, 199, 201-206, 213, 215-220, 227, 229-234, 241, 243, 245, 247-252, 259, 261-266, 273, 275-280, 287, 289-294, 301, 303-308, 315, 317, 319, 321, 323, 325-330, 337, 339-344, 351, 353, 355, 357-362, 369, 371-376, 383, 385-390, 397, 399, 401, 403, 405, 407, 409-414, 421, 423-428, 435, 437, 439, 441, 443-448, 455, 457-462, 469, 471-476, 483, 485-490, 497, 689, 691",
+   "value": "estrogen-receptor positive breast cancer",
+   "source_ids": [
+    "tableS1",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table S1 \"Clinical Annotation\" = ER+ for these samples (individual-level). MONDO:0006512 verified in OLS. Samples \"pathologically defined based on the IHC staining of ER, PR and HER2\" (Methods)."
+  },
+  {
+   "location": "characteristics[disease] and factor value[disease] rows 5, 11-16, 23, 25, 57-62, 69, 71, 73, 75, 77-82, 89, 105-110, 117, 549-554, 561, 563-568, 575, 577-582, 589, 591-596, 603, 605-610, 617, 619-624, 631, 633-638, 645, 647-652, 659, 661-666, 673, 717",
+   "value": "triple-negative breast carcinoma",
+   "source_ids": [
+    "tableS1",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table S1 \"Clinical Annotation\" = TN for these samples (individual-level). MONDO:0005494 verified in OLS. Samples \"pathologically defined based on the IHC staining of ER, PR and HER2\" (Methods)."
+  },
+  {
+   "location": "characteristics[disease] and factor value[disease] rows 43-48, 55",
+   "value": "HER2 positive breast carcinoma",
+   "source_ids": [
+    "tableS1",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table S1 \"Clinical Annotation\" = HER2 for these samples (individual-level). MONDO:0006244 verified in OLS. Samples \"pathologically defined based on the IHC staining of ER, PR and HER2\" (Methods)."
+  },
+  {
+   "location": "characteristics[disease] and factor value[disease] rows 499, 501, 503, 505, 507-512, 519, 521-526, 533, 535-540, 547, 675-680, 687, 693, 695, 697, 699, 701, 703-708, 715",
+   "value": "breast carcinoma",
+   "source_ids": [
+    "tableS1",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table S1 \"Clinical Annotation\" = N/A for these samples (individual-level). MONDO:0004989 verified in OLS. Samples with Clinical Annotation N/A are tumours without subtype annotation: Results count \"131 ER+, 30 TN, 15 HER2 and 9 with no annotation\" separately from \"adjacent healthy tissue (27 samples)\", and all 9 N/A are Dataset-III; so the generic parent term is used."
+  },
+  {
+   "location": "characteristics[disease] and factor value[disease] rows 2, 4, 6, 8, 10, 17-22, 24, 26, 33-38, 40, 42, 49-54, 56, 63-68, 70, 72, 74, 76, 83-88, 90, 97-102, 104, 111-116, 118, 120, 122, 129-134, 136, 138, 140, 147-152, 154, 161-166, 168, 175-180, 182, 189-194, 196, 198, 200, 207-212, 214, 221-226, 228, 235-240, 242, 244, 246, 253-258, 260, 267-272, 274, 281-286, 288, 295-300, 302, 309-314, 316, 318, 320, 322, 324, 331-336, 338, 345-350, 352, 354, 356, 363-368, 370, 377-382, 384, 391-396, 398, 400, 402, 404, 406, 408, 415-420, 422, 429-434, 436, 438, 440, 442, 449-454, 456, 463-468, 470, 477-482, 484, 491-496, 498, 500, 502, 504, 506, 513-518, 520, 527-532, 534, 541-546, 548, 555-560, 562, 569-574, 576, 583-588, 590, 597-602, 604, 611-616, 618, 625-630, 632, 639-644, 646, 653-658, 660, 667-672, 674, 681-686, 688, 690, 692, 694, 696, 698, 700, 702, 709-714, 716, 718",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Reference is a mix of four cancer cell lines and normal HMEC; no single disease applies; it is not a compared group."
+  },
+  {
+   "location": "characteristics[material type] rows 1, 3, 5, 7, 9, 11-16, 23, 25, 27-32, 39, 41, 43-48, 55, 57-62, 69, 71, 73, 75, 77-82, 89, 91-96, 103, 105-110, 117, 119, 121, 123-128, 135, 137, 139, 141-146, 153, 155-160, 167, 169-174, 181, 183-188, 195, 197, 199, 201-206, 213, 215-220, 227, 229-234, 241, 243, 245, 247-252, 259, 261-266, 273, 275-280, 287, 289-294, 301, 303-308, 315, 317, 319, 321, 323, 325-330, 337, 339-344, 351, 353, 355, 357-362, 369, 371-376, 383, 385-390, 397, 399, 401, 403, 405, 407, 409-414, 421, 423-428, 435, 437, 439, 441, 443-448, 455, 457-462, 469, 471-476, 483, 485-490, 497, 499, 501, 503, 505, 507-512, 519, 521-526, 533, 535-540, 547, 549-554, 561, 563-568, 575, 577-582, 589, 591-596, 603, 605-610, 617, 619-624, 631, 633-638, 645, 647-652, 659, 661-666, 673, 675-680, 687, 689, 691, 693, 695, 697, 699, 701, 703-708, 715, 717 / 2, 4, 6, 8, 10, 17-22, 24, 26, 33-38, 40, 42, 49-54, 56, 63-68, 70, 72, 74, 76, 83-88, 90, 97-102, 104, 111-116, 118, 120, 122, 129-134, 136, 138, 140, 147-152, 154, 161-166, 168, 175-180, 182, 189-194, 196, 198, 200, 207-212, 214, 221-226, 228, 235-240, 242, 244, 246, 253-258, 260, 267-272, 274, 281-286, 288, 295-300, 302, 309-314, 316, 318, 320, 322, 324, 331-336, 338, 345-350, 352, 354, 356, 363-368, 370, 377-382, 384, 391-396, 398, 400, 402, 404, 406, 408, 415-420, 422, 429-434, 436, 438, 440, 442, 449-454, 456, 463-468, 470, 477-482, 484, 491-496, 498, 500, 502, 504, 506, 513-518, 520, 527-532, 534, 541-546, 548, 555-560, 562, 569-574, 576, 583-588, 590, 597-602, 604, 611-616, 618, 625-630, 632, 639-644, 646, 653-658, 660, 667-672, 674, 681-686, 688, 690, 692, 694, 696, 698, 700, 702, 709-714, 716, 718",
+   "value": "tissue / cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "FFPE tissue blocks; reference = lysates of cultured cells (cell lines plus primary HMEC, so \"cell\" rather than \"cell line\")."
+  },
+  {
+   "location": "characteristics[age] rows 2, 4, 6, 8, 10, 17-22, 24, 26, 33-38, 40, 42, 49-54, 56, 63-68, 70, 72, 74, 76, 83-88, 90, 97-102, 104, 111-116, 118, 120, 122, 129-134, 136, 138, 140, 147-152, 154, 161-166, 168, 175-180, 182, 189-194, 196, 198, 200, 207-212, 214, 221-226, 228, 235-240, 242, 244, 246, 253-258, 260, 267-272, 274, 281-286, 288, 295-300, 302, 309-314, 316, 318, 320, 322, 324, 331-336, 338, 345-350, 352, 354, 356, 363-368, 370, 377-382, 384, 391-396, 398, 400, 402, 404, 406, 408, 415-420, 422, 429-434, 436, 438, 440, 442, 449-454, 456, 463-468, 470, 477-482, 484, 491-496, 498, 500, 502, 504, 506, 513-518, 520, 527-532, 534, 541-546, 548, 555-560, 562, 569-574, 576, 583-588, 590, 597-602, 604, 611-616, 618, 625-630, 632, 639-644, 646, 653-658, 660, 667-672, 674, 681-686, 688, 690, 692, 694, 696, 698, 700, 702, 709-714, 716, 718",
+   "value": "pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Reference pooled from five cell sources. Patient ages are not given at individual level anywhere -> not available."
+  },
+  {
+   "location": "characteristics[sex] rows 169-174, 181",
+   "value": "male",
+   "source_ids": [
+    "tableS1",
+    "paper"
+   ],
+   "evidence": "Table S1 HA_BC25 comment \"Excluded - male gender\"; paper: excluded samples included \"one male patient\". All other rows not available (no individual-level sex given; not inferred from the cohort)."
+  },
+  {
+   "location": "characteristics[individual] rows 1, 3, 5, 7, 9, 11-16, 23, 25, 27-32, 39, 41, 43-48, 55, 57-62, 69, 71, 73, 75, 77-82, 89, 91-96, 103, 105-110, 117, 119, 121, 123-128, 135, 137, 139, 141-146, 153, 155-160, 167, 169-174, 181, 183-188, 195, 197, 199, 201-206, 213, 215-220, 227, 229-234, 241, 243, 245, 247-252, 259, 261-266, 273, 275-280, 287, 289-294, 301, 303-308, 315, 317, 319, 321, 323, 325-330, 337, 339-344, 351, 353, 355, 357-362, 369, 371-376, 383, 385-390, 397, 399, 401, 403, 405, 407, 409-414, 421, 423-428, 435, 437, 439, 441, 443-448, 455, 457-462, 469, 471-476, 483, 485-490, 497, 499, 501, 503, 505, 507-512, 519, 521-526, 533, 535-540, 547, 549-554, 561, 563-568, 575, 577-582, 589, 591-596, 603, 605-610, 617, 619-624, 631, 633-638, 645, 647-652, 659, 661-666, 673, 675-680, 687, 689, 691, 693, 695, 697, 699, 701, 703-708, 715, 717 / 2, 4, 6, 8, 10, 17-22, 24, 26, 33-38, 40, 42, 49-54, 56, 63-68, 70, 72, 74, 76, 83-88, 90, 97-102, 104, 111-116, 118, 120, 122, 129-134, 136, 138, 140, 147-152, 154, 161-166, 168, 175-180, 182, 189-194, 196, 198, 200, 207-212, 214, 221-226, 228, 235-240, 242, 244, 246, 253-258, 260, 267-272, 274, 281-286, 288, 295-300, 302, 309-314, 316, 318, 320, 322, 324, 331-336, 338, 345-350, 352, 354, 356, 363-368, 370, 377-382, 384, 391-396, 398, 400, 402, 404, 406, 408, 415-420, 422, 429-434, 436, 438, 440, 442, 449-454, 456, 463-468, 470, 477-482, 484, 491-496, 498, 500, 502, 504, 506, 513-518, 520, 527-532, 534, 541-546, 548, 555-560, 562, 569-574, 576, 583-588, 590, 597-602, 604, 611-616, 618, 625-630, 632, 639-644, 646, 653-658, 660, 667-672, 674, 681-686, 688, 690, 692, 694, 696, 698, 700, 702, 709-714, 716, 718",
+   "value": "HA_BC<n> / pooled",
+   "source_ids": [
+    "tableS1",
+    "mq_summary"
+   ],
+   "evidence": "Study patient/sample identifier as published in Table S1 and the deposited MaxQuant experiment names; one FFPE block per patient."
+  },
+  {
+   "location": "characteristics[clinical data] rows 1, 3, 5, 7, 9, 11-16, 23, 25, 27-32, 39, 41, 43-48, 55, 57-62, 69, 71, 73, 75, 77-82, 89, 91-96, 103, 105-110, 117, 119, 121, 123-128, 135, 137, 139, 141-146, 153, 155-160, 167, 169-174, 181, 183-188, 195, 197, 199, 201-206, 213, 215-220, 227, 229-234, 241, 243, 245, 247-252, 259, 261-266, 273, 275-280, 287, 289-294, 301, 303-308, 315, 317, 319, 321, 323, 325-330, 337, 339-344, 351, 353, 355, 357-362, 369, 371-376, 383, 385-390, 397, 399, 401, 403, 405, 407, 409-414, 421, 423-428, 435, 437, 439, 441, 443-448, 455, 457-462, 469, 471-476, 483, 485-490, 497, 499, 501, 503, 505, 507-512, 519, 521-526, 533, 535-540, 547, 549-554, 561, 563-568, 575, 577-582, 589, 591-596, 603, 605-610, 617, 619-624, 631, 633-638, 645, 647-652, 659, 661-666, 673, 675-680, 687, 689, 691, 693, 695, 697, 699, 701, 703-708, 715, 717",
+   "value": "Table S1 clinical annotation + Table S1 inclusion status/comment + FFPE macro-dissection",
+   "source_ids": [
+    "tableS1",
+    "paper"
+   ],
+   "evidence": "Annotation and comment copied from Table S1 sheet \"212 samples\"; \"included in the 131-sample analysis\" when the sample appears in sheet \"131 included in analysis\" (43 Dataset-III samples). FFPE and macro-dissection from Methods (protocol applied to every Dataset-III sample)."
+  },
+  {
+   "location": "characteristics[clinical data] rows 2, 4, 6, 8, 10, 17-22, 24, 26, 33-38, 40, 42, 49-54, 56, 63-68, 70, 72, 74, 76, 83-88, 90, 97-102, 104, 111-116, 118, 120, 122, 129-134, 136, 138, 140, 147-152, 154, 161-166, 168, 175-180, 182, 189-194, 196, 198, 200, 207-212, 214, 221-226, 228, 235-240, 242, 244, 246, 253-258, 260, 267-272, 274, 281-286, 288, 295-300, 302, 309-314, 316, 318, 320, 322, 324, 331-336, 338, 345-350, 352, 354, 356, 363-368, 370, 377-382, 384, 391-396, 398, 400, 402, 404, 406, 408, 415-420, 422, 429-434, 436, 438, 440, 442, 449-454, 456, 463-468, 470, 477-482, 484, 491-496, 498, 500, 502, 504, 506, 513-518, 520, 527-532, 534, 541-546, 548, 555-560, 562, 569-574, 576, 583-588, 590, 597-602, 604, 611-616, 618, 625-630, 632, 639-644, 646, 653-658, 660, 667-672, 674, 681-686, 688, 690, 692, 694, 696, 698, 700, 702, 709-714, 716, 718",
+   "value": "super-SILAC reference description",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods super-SILAC paragraph (cell lines, heavy Lys/Arg, equal protein mixing, combined with each clinical lysate before digestion); heavy labels Lys8/Arg10 from summary.txt."
+  },
+  {
+   "location": "comment[instrument] rows 1-8, 23-26, 39-42, 55-56, 69-90, 103-104, 117-154, 167-182, 195-200, 213-228, 241-246, 259-260, 273-288, 301-302, 315-324, 337-338, 351-356, 369-370, 383-384, 397-406, 421-422, 435-440, 455-456, 469-470, 483-484, 497-506, 519-520, 533-534, 547-548, 561-562, 575-576, 589-590, 603-604, 617-618, 631-632, 645-646, 659-660, 673-674, 687-700, 715-718",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw_header",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Raw header instrument string \"Q Exactive - Orbitrap MS\" for 121 files (all 2013 TG/YP/SA runs except 20130117/20130122 sets)."
+  },
+  {
+   "location": "comment[instrument] rows 9-22, 27-38, 43-54, 57-68, 91-102, 105-116, 155-166, 183-194, 201-212, 229-240, 247-258, 261-272, 289-300, 303-314, 325-336, 339-350, 357-368, 371-382, 385-396, 407-420, 423-434, 441-454, 457-468, 471-482, 485-496, 507-518, 521-532, 535-546, 549-560, 563-574, 577-588, 591-602, 605-616, 619-630, 633-644, 647-658, 661-672, 675-686, 701-714",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw_header",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Raw header \"Q Exactive Plus - Orbitrap MS\" for 238 files (Animal_*, Kermit_*, 20130117_*, 20130122_* runs). Paper/PRIDE: \"Q-Exactive or Q-Exactive Plus\"."
+  },
+  {
+   "location": "comment[fractionation method] rows 11-22, 27-38, 43-54, 57-68, 77-88, 91-102, 105-116, 123-134, 141-152, 155-166, 169-180, 183-194, 201-212, 215-226, 229-240, 247-258, 261-272, 275-286, 289-300, 303-314, 325-336, 339-350, 357-368, 371-382, 385-396, 409-420, 423-434, 443-454, 457-468, 471-482, 485-496, 507-518, 521-532, 535-546, 549-560, 563-574, 577-588, 591-602, 605-616, 619-630, 633-644, 647-658, 661-672, 675-686, 703-714",
+   "value": "NT=Strong anion-exchange chromatography (SAX);AC=PRIDE:0000558",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "Methods: \"peptides were fractionated using pH-based strong anion exchange chromatography (SAX) in a StageTip format ... six fractions\". Unfractionated single-shot runs: not applicable."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-718",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_summary"
+   ],
+   "evidence": "Methods: \"trypsin-digested following the FASP protocol\". MaxQuant rule Trypsin/P recorded as a note (batch rule 2: digestion enzyme, not search rule)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-718",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) variable",
+   "source_ids": [
+    "mq_params",
+    "mq_summary",
+    "unimod",
+    "paper"
+   ],
+   "evidence": "parameters.txt Fixed modifications Carbamidomethyl (C); summary.txt Variable modifications Oxidation (M);Acetyl (Protein N-term); Labels1 Arg10;Lys8 (mass shifts +10.008 R -> UNIMOD:267, +8.014 K -> UNIMOD:259); labels MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-718",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw_header"
+   ],
+   "evidence": "Methods: top10 method; raw method TopN 10."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-718",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: HCD."
+  },
+  {
+   "location": "comment[collision energy] rows 1-718",
+   "value": "25 NCE",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Raw method block \"NCE 25.0\" (Q Exactive) / \"NCE / stepped NCE 25\" (Q Exactive Plus) in all 359 files."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-718",
+   "value": "300m/z-1700m/z",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Raw method \"Scan range 300 to 1700 m/z\" in all 359 files."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-718",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Q Exactive family; MS/MS resolution 17,500 (Methods) -> Orbitrap."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-718",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_params"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-718",
+   "value": "20 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Methods: \"An initial search followed by mass recalibration was performed with a mass tolerance of 20 ppm\". The main-search tolerance after recalibration is not in parameters.txt and no mqpar.xml was deposited; 20 ppm is the only documented precursor tolerance (see limitations)."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-718",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: \"solubilized in buffer containing 4% SDS, 0.1 M dithiothreitol\". Alkylation reagent not stated -> column omitted."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-718",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rule 1."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-718",
+   "value": "ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0",
+   "source_ids": [
+    "templates",
+    "paper"
+   ],
+   "evidence": "Patient breast cancer tissue study (rules 15/18). cell-lines not declared: its characteristics[cell line] would be required on patient rows."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-718",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rule 10."
+  },
+  {
+   "location": "technology type rows 1-718",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "Precursor mass tolerance: only the first-search tolerance (20 ppm) is documented; MaxQuant main-search tolerance (default 4.5 ppm) not deposited (no mqpar.xml; parameters.txt lacks it). 20 ppm used because convert-openms refuses not available.",
+  "Sex: only HA_BC25 (male) is stated at individual level; the other 69 patients are not available although the cohort is presumably female - not inferred (rule 18).",
+  "Age, ancestry, tumour grade/stage, histology and treatment are not published per patient (Table S1 gives only subtype and inclusion status) -> columns omitted / not available.",
+  "HER2 group (1 sample, HA_BC12) mapped to MONDO:0006244 \"HER2 positive breast carcinoma\" whose definition is the gene-expression HER2-enriched subset; the paper subtype is IHC-based.",
+  "The 9 samples with Table S1 Clinical Annotation \"N/A\" are annotated with the generic MONDO:0004989 breast carcinoma (tumour status inferred from the Results counts), not with a subtype.",
+  "Unfractionated extra runs of the 45 fractionated samples are encoded as technical replicate 2 of the same source; whether they came from the same digest as the SAX set is not stated. MaxQuant placed them at Fraction 2 of the SAX experiment; the SDRF uses the physical layout instead.",
+  "Multiple single-shot runs of the same unfractionated sample (e.g. HA_BC50 x3) are technical replicates; re-preparation vs re-injection is not documented.",
+  "HMEC donor sex/age unknown -> reference sex not available; HMEC is a primary cell, so material type \"cell\" rather than \"cell line\".",
+  "Dataset-I (PXD002619) and Dataset-II (PXD000815) raw files of the integrated 212-sample cohort are separate deposits and out of scope.",
+  "techsdrf not installed: instrument, NCE and scan range read from HTTP-range raw headers with a regex parser (scripts/rawmeth.py).",
+  "Status REVIEW_PENDING_EXTERNAL: not independently reviewed yet."
+ ]
+}

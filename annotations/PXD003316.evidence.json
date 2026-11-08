@@ -1,0 +1,397 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD003316.sdrf.tsv",
+ "dataset": "PXD003316",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD003316 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD003316/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/files_all.json; 135 entries = 132 .raw + txtsiCCN1.zip, txtstiffness.zip, txtMatrigel.zip; every entry projectAccessions contains PXD003316)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Reid SE et al. EMBO J 2017;36(16):2373-2389, doi:10.15252/embj.201694912, PMID 28694244, PMC5556271; full text via NCBI efetch db=pmc id=5556271 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/efetch_PXD003316.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/paper.txt; title verified)"
+  },
+  {
+   "id": "appendix",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC5556271.1/EMBJ-36-2373-s001.pdf (Appendix incl. Supplementary Methods \"MS analysis\"; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/supp/s001.txt)"
+  },
+  {
+   "id": "dataset_ev1",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC5556271.1/EMBJ-36-2373-s005.zip -> EMBOJ-2016-94912R_DatasetEV1.xlsx (sheets Stiffness proteome, Matrigel Proteome; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/supp/x_s005/)"
+  },
+  {
+   "id": "dataset_ev3",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC5556271.1/EMBJ-36-2373-s007.zip -> EMBOJ-2016-94912R_DatasetEV3.xlsx (sheet siCCN1; legend \"Proteomic analysis of HUVECs cultured on plastic dish and silenced or not for CCN1\"; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/supp/x_s007/)"
+  },
+  {
+   "id": "mq_stiffness",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/07/PXD003316/txtstiffness.zip members experimentalDesignTemplate.txt, parameters.txt, summary.txt, proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/mq/stiffness/)"
+  },
+  {
+   "id": "mq_siccn1",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/07/PXD003316/txtsiCCN1.zip members experimentalDesignTemplate.txt, parameters.txt, summary.txt, proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/mq/siCCN1/)"
+  },
+  {
+   "id": "mq_matrigel",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/07/PXD003316/txtMatrigel.zip members experimentalDesignTemplate.txt, parameters.txt, summary.txt, proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/mq/Matrigel/)"
+  },
+  {
+   "id": "ev1_match",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/scripts/stiff_match.py run on Dataset EV1 sheet2 vs stiffness proteinGroups.txt: Intensity L/H \"22/0.4 KPa Fwd\" equal Intensity L/H A_Prolif_Fwd for 5804/5801 protein groups (MaxQuant id join), \"22/0.4 KPa Rev\" equal B_Prolif_Rev for 5791/5790; C_MitoC/D_MitoC match <=3"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 4 MB of 9 .raw files (https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/07/PXD003316/<name>.raw): Prolif_Fwd_A1, Prolif_Fwd_A18, Prolif_Rev_B9, MitoC_Fwd_C1, SA_siCCN1, SA_siCTL3, LIPID_Exp51_4h1_pH3, 22h2_pH6, 30h3_pH11 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/raw/*.head, decoded utf-16-le by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD003316/scripts/rawhdr.py)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via sdrf-tools verify <acc> --label <label> (all Exists: True, Label match: True; listed in PXD003316.validation.txt) and OLS4 children/descendants of PRIDE:0000895, PRIDE:0000550, PRIDE:0000565, PRIDE:0000567"
+  },
+  {
+   "id": "batch_rules",
+   "kind": "curation-policy",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (campaign rules 1, 2, 7, 10, 11, 17)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-192",
+   "value": "HUVEC_PAG_<22000Pa|400Pa>_<Fwd|Rev>; HUVEC_plastic_<siCTL|siCCN1>_<n>; HUVEC_Matrigel_<4|22|30>h_<n>; \"SILAC-HUVEC heavy standard (<experiment>), aliquot spiked into <sample>\"",
+   "source_ids": [
+    "mq_stiffness",
+    "mq_siccn1",
+    "mq_matrigel",
+    "paper"
+   ],
+   "evidence": "One source per SILAC channel of each MaxQuant experiment (A_Prolif_Fwd, B_Prolif_Rev; CTL 1-3, siCCN 1-3; 4h_1..30h_3). Spike-in heavy aliquots get one source name per mixture (paper: \"a heavy SILAC-HUVEC standard was mixed at a 1:1 ratio with each of the lysates from the non-labeled samples\")."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-192",
+   "value": "96 of 132 deposited .raw files; fractions 1-18 (stiffness gel slices), 1 (siCCN1), 1-6 (Matrigel SAX pH3,4,5,6,8,11)",
+   "source_ids": [
+    "files",
+    "mq_stiffness",
+    "mq_siccn1",
+    "mq_matrigel"
+   ],
+   "evidence": "Fraction numbers copied from the MaxQuant experimentalDesignTemplate.txt Fraction column (stiffness A1..A18 -> 1..18; Matrigel pH3=1, pH4=2, pH5=3, pH6=4, pH8=5, pH11=6); siCCN1 design has no Fraction column (one file per sample). 36 MitoC files excluded (see limitations)."
+  },
+  {
+   "location": "comment[label] + factor value[growth condition] rows 1-72 (stiffness)",
+   "value": "Fwd (A_Prolif_Fwd): SILAC heavy = 22000 Pa, SILAC light = 400 Pa; Rev (B_Prolif_Rev): SILAC heavy = 400 Pa, SILAC light = 22000 Pa",
+   "source_ids": [
+    "paper",
+    "dataset_ev1",
+    "ev1_match",
+    "mq_stiffness",
+    "appendix"
+   ],
+   "evidence": "Paper: \"SILAC-labeled ECs were cultured on PAGs of differing matrix stiffness (physiological, 400 Pa, and pathological, 22,000 Pa) for 24 h\"; \"forward and reverse experiments, where labeling conditions were swapped\". Dataset EV1 column \"22/0.4 KPa Fwd (log2)\" with Intensity H > L for stiffness-up UBE2C; Appendix: \"The reported H/L ratio was inverted in ... reverse SILAC labeling experiments\", so Fwd H/L = 22/0.4 and Rev H/L = 0.4/22. EV1 Fwd/Rev columns equal MaxQuant experiments A_Prolif_Fwd/B_Prolif_Rev intensities exactly (ev1_match). Data check: CYR61/CCN1 (paper: highly induced by stiffness) normalized H/L = 2.33 in A_Prolif_Fwd and 0.58 in B_Prolif_Rev; CDH2 2.12 / 0.55."
+  },
+  {
+   "location": "comment[label] rows 73-192 (spike-in arms)",
+   "value": "SILAC light = study sample; SILAC heavy = SILAC-HUVEC standard",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_siccn1",
+    "mq_matrigel",
+    "dataset_ev1",
+    "dataset_ev3"
+   ],
+   "evidence": "Paper/PRIDE: \"a heavy SILAC-HUVEC standard was mixed at a 1:1 ratio with each of the lysates from the non-labeled samples (triplicates for each condition)\". MaxQuant Labels1 = Arg10;Lys8. Dataset EV3 \"Ratio siCCN 1 /STD\", EV1 \"Ratio 4h/SILAC standard_1\" = inverted H/L. Data check: CYR61 normalized H/L 5.4/7.2/8.8 in siCCN 1-3 vs 1.1/1.1/1.8 in CTL 1-3 (knock-down lowers the light channel); GAPDH ~0.9-1.0."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-192",
+   "value": "reference on the 60 heavy-standard rows (rows 74,76,78,80,82,84 (siCCN1 heavy standard) and 91-96,103-108,115-120,127-132,139-144,151-156,163-168,175-180,187-192 (Matrigel heavy standard)); study sample on the other 132 rows (both stiffness channels, rows 1-72, and every spike-in light row)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE: \"a heavy SILAC-HUVEC standard was mixed at a 1:1 ratio with each of the lysates from the non-labeled samples\"; the standard is the common reference for the ratio-of-ratios (\"In SILAC spike-in experiments the ratio of ratios between experimental conditions was calculated\"). OLS4: PRIDE:0000899 \"reference\" (not obsolete), ancestors PRIDE:0000898 multiplex sample -> PRIDE:0000895 sample type, so it is within the column's permitted subtree; PRIDE:0001013 \"study sample\" is a direct child of PRIDE:0000895. Same light = study sample / heavy = reference pattern as campaign precedents PXD009868, PXD030422, PXD012113."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-192",
+   "value": "stiffness Fwd = 1, Rev = 2 within each stiffness; siCTL/siCCN1 1-3; Matrigel 1-3 per time point; heavy standard aliquots = 1",
+   "source_ids": [
+    "mq_stiffness",
+    "mq_siccn1",
+    "mq_matrigel",
+    "paper",
+    "batch_rules"
+   ],
+   "evidence": "Fwd and Rev are independent label-swap cultures (paper); siCCN1 and Matrigel \"triplicates for each condition\", numbered as in MaxQuant experiments CTL 1-3 / siCCN 1-3 / 4h_1-3 etc. Rule 3: numbering restarts per factor group. Heavy standard rows keep biological replicate 1 rather than pooled: the paper describes one standard per experiment (\"a heavy SILAC-HUVEC standard\"), i.e. a single heavy-labelled HUVEC preparation aliquoted into every mixture, not a mixture of distinct study samples or cell lines (the template reserves pooled for pooled reference samples; donor pooling of the HUVECs themselves is already carried by characteristics[pooled sample] = pooled on every row). Its aliquots are distinguished by source name."
+  },
+  {
+   "location": "characteristics[organism] rows 1-192",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Human umbilical vein endothelial cells; PRIDE organisms NEWT:9606; searched against human UniProt. NCBITaxon:9606 verified."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-192",
+   "value": "umbilical vein",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Methods: \"Human umbilical vein endothelial cells were isolated from freshly collected umbilical cords\". UBERON:0002066 umbilical vein verified."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-192",
+   "value": "endothelial cell of umbilical vein",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "HUVECs (paper); PRIDE organismParts CL:0000071 blood vessel endothelial cell (the more specific CL:0002618 endothelial cell of umbilical vein verified in OLS)."
+  },
+  {
+   "location": "characteristics[pooled sample], characteristics[individual] rows 1-192",
+   "value": "pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods: \"Cells from 3 to 5 cords were pooled.\" (Patella et al. 2015, the lab's Matrigel study, likewise: \"HUVECs isolated from 2-5 umbilical cords were pooled\"). Every row is HUVEC material from a multi-donor pool."
+  },
+  {
+   "location": "characteristics[material type] rows 1-192",
+   "value": "cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Primary HUVECs isolated in-house from umbilical cords and used up to passage six (paper Methods) - primary cells, not an established cell line."
+  },
+  {
+   "location": "characteristics[growth condition] + factor value[growth condition] rows 1-72",
+   "value": "fibronectin-coated polyacrylamide gel, 22000 Pa / 400 Pa",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"matrices of low (400 Pa) or high (22,000 Pa) stiffness, using fibronectin-coated polyacrylamide gels (PAGs)\"; Methods \"Polyacrylamide gels were generated and coated with fibronectin\"."
+  },
+  {
+   "location": "characteristics[growth condition] + factor value[growth condition] rows 73,75,77,79,81,83",
+   "value": "tissue culture plastic",
+   "source_ids": [
+    "dataset_ev3",
+    "paper"
+   ],
+   "evidence": "Dataset EV3 legend: \"Proteomic analysis of HUVECs cultured on plastic dish and silenced or not for CCN1\"; paper: \"we manipulated CCN1 levels in ECs grown at a constant stiffness (on plastic)\"."
+  },
+  {
+   "location": "characteristics[growth condition] + factor value[growth condition] Matrigel light rows",
+   "value": "Matrigel",
+   "source_ids": [
+    "paper",
+    "pride",
+    "dataset_ev1"
+   ],
+   "evidence": "Paper: \"Another model cultures ECs on soft Matrigel for 4 or 22 h\"; Dataset EV1 sheet \"Matrigel Proteome\"."
+  },
+  {
+   "location": "characteristics[genetic modification] + factor value[genetic modification] rows 73-83 light",
+   "value": "CCN1 siRNA pool / non-targeting control siRNA pool",
+   "source_ids": [
+    "appendix",
+    "mq_siccn1",
+    "paper"
+   ],
+   "evidence": "Appendix: \"The siRNAs consisted of a pool targeting CCN1 (SI02626421, SI02626428, SI03028655, SI03053477) ... and a non-targeting pool (D-001810-10-05, GE Healthcare Dharmacon) was used as a control\"; MaxQuant experiments siCCN 1-3 / CTL 1-3; paper Fig 3A \"siCCN1 and siCTL\"."
+  },
+  {
+   "location": "characteristics[sampling time] + factor value[sampling time] rows 1-72",
+   "value": "24 hour",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"cultured on PAGs of differing matrix stiffness ... for 24 h before MS analysis\"."
+  },
+  {
+   "location": "characteristics[sampling time] + factor value[sampling time] Matrigel light rows",
+   "value": "4 hour / 22 hour / 30 hour",
+   "source_ids": [
+    "mq_matrigel",
+    "paper",
+    "dataset_ev1"
+   ],
+   "evidence": "MaxQuant experiments 4h_1-3, 22h_1-3, 30h_1-3 and raw names Exp51_4h/22h/30h; paper uses 4 h vs 22 h (\"Matrigel 4h/22h\"); the 30 h runs are deposited and searched but not used in the paper."
+  },
+  {
+   "location": "factor value[...] heavy standard rows (rows 74,76,78,80,82,84 (siCCN1 heavy standard) and 91-96,103-108,115-120,127-132,139-144,151-156,163-168,175-180,187-192 (Matrigel heavy standard))",
+   "value": "not applicable",
+   "source_ids": [
+    "paper",
+    "batch_rules"
+   ],
+   "evidence": "The heavy spike-in standard is the common reference for ratio-of-ratios, not a level of any compared variable (paper: \"In SILAC spike-in experiments the ratio of ratios between experimental conditions was calculated\")."
+  },
+  {
+   "location": "comment[instrument] rows 1-192",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of all 9 sampled files: \"Orbitrap Elite MS\"; paper \"LTQ-Orbitrap Elite\"; PRIDE MS:1001910 (OLS label \"Orbitrap Elite\")."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-192",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "appendix"
+   ],
+   "evidence": "Raw method: \"Scan Event 2 repeated for top 10 peaks\" (HCD) / \"Top15_rCID\" with data-dependent MS/MS scan events; Appendix \"the top ten most intense peaks in the full MS were isolated for fragmentation\"."
+  },
+  {
+   "location": "comment[dissociation method], comment[ms2 mass analyzer], comment[collision energy], comment[fragment mass tolerance] rows 1-72",
+   "value": "collision-induced dissociation (MS:1000133); linear ion trap (MS:1000291); 35 NCE; 0.5 Da",
+   "source_ids": [
+    "raw",
+    "appendix",
+    "mq_stiffness"
+   ],
+   "evidence": "Raw headers (Prolif_Fwd_A1, A18, Rev_B9): method HeLa_150min_240_Top15_rCID_Elite.meth, \"ITMS + c ... Activation Type: CID ... Normalized Coll. Energy: 35.0\". Appendix: fragment deviation \"20 ppm (HCD) or 0.5 Da (rCID)\"; parameters.txt MS/MS tol. (ITMS) 0.5 Da."
+  },
+  {
+   "location": "comment[dissociation method], comment[ms2 mass analyzer], comment[collision energy], comment[fragment mass tolerance] rows 73-192",
+   "value": "beam-type collision-induced dissociation (MS:1000422); orbitrap (MS:1000484); 30 NCE; 20 ppm",
+   "source_ids": [
+    "raw",
+    "appendix",
+    "mq_siccn1",
+    "mq_matrigel"
+   ],
+   "evidence": "Raw headers (SA_siCCN1, SA_siCTL3, Exp51_4h1_pH3, 22h2_pH6, 30h3_pH11): \"FTMS + c ... Activation Type: HCD ... Normalized Coll. Energy: 30.0\", methods *_HCD_TOP10_FMS120k_MSMS15k_*. Appendix \"20 ppm (HCD)\"; parameters.txt MS/MS tol. (FTMS) 20 ppm."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-192",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "appendix"
+   ],
+   "evidence": "Appendix: \"To search the parent mass and fragment ions we required a mass deviation of 4.5 ppm and 20 ppm (HCD) or 0.5 Da (rCID)\". (MaxQuant main-search tolerance; not printed in MaxQuant 1.4 parameters.txt.)"
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-192",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_stiffness",
+    "mq_siccn1",
+    "mq_matrigel",
+    "batch_rules"
+   ],
+   "evidence": "Paper: proteins digested in-gel / by FASP \"with trypsin (Promega)\". MaxQuant summary.txt Enzyme Trypsin/P, Specific, max 2 missed cleavages (search rule recorded in limitations; batch rule 2 = digestion enzyme). No lysine derivatisation, so no CS= override."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-72",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "mq_stiffness",
+    "ols"
+   ],
+   "evidence": "Paper: lysates \"run through a 4-12% gradient NuPAGE Novex Bis-Tris gel ... digested in-gel (stiffness and siCCN1 experiments)\"; stiffness MaxQuant design has 18 fractions per mixture (gel slices)."
+  },
+  {
+   "location": "comment[fractionation method] rows 85-192",
+   "value": "NT=Strong anion-exchange chromatography (SAX);AC=PRIDE:0000558",
+   "source_ids": [
+    "paper",
+    "mq_matrigel",
+    "ols"
+   ],
+   "evidence": "Paper: \"peptides separated into six fractions using on-tip strong anion exchange (SAX) chromatography (Matrigel experiment)\"; raw names pH3/4/5/6/8/11."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-192",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper: \"Cell lysates were collected in 2% SDS, 100 mM Tris-HCl pH 7.6, subsequently reduced with DTT\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-192",
+   "value": "Carbamidomethyl C Fixed; Oxidation M Variable; Acetyl Protein N-term Variable; Label:13C(6)15N(4) R Variable; Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mq_stiffness",
+    "mq_siccn1",
+    "mq_matrigel",
+    "paper",
+    "batch_rules"
+   ],
+   "evidence": "All three parameters.txt: Fixed modifications Carbamidomethyl (C); all three summary.txt: Variable modifications Acetyl (Protein N-term);Oxidation (M), Multiplicity 2, Labels1 Arg10;Lys8 (paper: 13C6 15N2 L-lysine, 13C6 15N4 L-arginine). UNIMOD:267/259 from the mass shifts (rule 11, MT=Variable). Identical across the three searches, so one value set for every row (rule 5)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-192",
+   "value": "v1.1.0; ms-proteomics v1.2.0 + human v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "batch_rules"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates.yaml latest ms-proteomics 1.2.0 (upstream bigbio/sdrf-templates 7da1747), human 1.1.0."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-192",
+   "value": "1",
+   "source_ids": [
+    "mq_stiffness",
+    "mq_siccn1",
+    "mq_matrigel"
+   ],
+   "evidence": "Each (sample, fraction) was injected once: one raw file per MaxQuant design entry."
+  },
+  {
+   "location": "technology type rows 1-192",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "LC-MS/MS on an Orbitrap Elite."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 96 of 132 deposited .raw files annotated. Excluded (rule 7): the 36 files 20140715_Elite_StRe_STIFF_Prot_MitoC_Fwd_C1-C18 and _MitoC_Rev_D1-D18 (MaxQuant experiments C_MitoC_Fwd, D_MitoC_Rev in txtstiffness.zip). Neither the paper, its Appendix, Datasets EV1-3, the review process file, the PRIDE protocol nor any other Europe PMC record citing PXD003316 describes this arm: the treatment behind \"MitoC\" (presumably mitomycin C, never stated) and the stiffness per SILAC channel are undocumented. The full list is in the report and BLOCKED.md.",
+  "Raw headers were read for 9 of 96 annotated files (techsdrf not installed); the per-arm fragmentation settings were constant in every sampled file and match the Appendix (rCID for stiffness, HCD for siCCN1/Matrigel).",
+  "Appendix says HCD top ten; the stiffness rCID method is Top15 (raw header). Not encoded in a column.",
+  "comment[cleavage agent details] records the digestion enzyme Trypsin (rule 2); the MaxQuant search rule was Trypsin/P (MS:1001313).",
+  "comment[alkylation reagent] is not available: the paper and PRIDE give only DTT reduction; carbamidomethyl (C) is fixed in all three searches, so an alkylation step is implied but its reagent is unstated (PRIDE identifiedPTM MOD:00397 \"iodoacetamide derivatized residue\" describes the search modification, not a reagent statement).",
+  "Composition of the heavy SILAC-HUVEC standard (culture condition, whether siCCN1 and Matrigel experiments used the same preparation) is not described; its growth condition / genetic modification / sampling time are not available and its factor values not applicable; it is marked characteristics[sample type] = reference (PRIDE:0000899). Under convert-openms both experiments' standards (60 files) share the condition \"not applicable|not applicable|not applicable\" by design: they are reference channels, not a compared group, and source names keep the two experiments' standards apart.",
+  "Review round 1 (external) listed 66 heavy-standard rows; the SDRF has 60 (siCCN1 6 + Matrigel 54, matching the reviewer's own row ranges); sample type = reference was applied to exactly those 60 rows and study sample to the other 132.",
+  "Donor age, sex, ancestry and disease status are not available (HUVECs pooled from 3-5 anonymous umbilical cords); developmental stage left out rather than inferred from \"umbilical cord\".",
+  "siCCN1 culture/transfection duration before lysis is not stated: sampling time not available on those rows.",
+  "characteristics[growth condition] and characteristics[genetic modification] are custom columns (not licensed by ms-proteomics/human; allowed by spec \"Extending Templates\", campaign rule 15) with free-text values.",
+  "The PRIDE sample protocol conflates two experiments (\"HUVECs silenced for CCN1 and cultured on Matrigel\"); the paper (\"For the proteome of HUVECs silenced for CCN1 and those cultured on Matrigel\") and Dataset EV3 (\"cultured on plastic dish\") show siCCN1 on plastic and Matrigel as a separate experiment; the paper was followed.",
+  "The 30 h Matrigel samples are deposited and searched but not used in the paper (which compares 4 h vs 22 h); annotated from file and MaxQuant experiment names.",
+  "PRIDE data-processing text says MaxQuant 1.3.6.0 was used for a \"contact inhibited\" dataset; no such runs are in this deposit (the confluence 1d/4d ratios in Dataset EV1 come from Patella et al. 2016).",
+  "ms-proteomics is declared at v1.2.0 (upstream bigbio/sdrf-templates 7da1747 templates.yaml latest); the spec submodule's nested templates copy is older.",
+  "Review not performed by the producer: status REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off named in the request)."
+ ]
+}

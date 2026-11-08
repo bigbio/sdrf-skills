@@ -1285,3 +1285,160 @@ Sources checked:
 - The sample list's HPV− block has 10 entries against the paper's 9.
 
 **Unblocked by:** an explicit file → HPV-status (and ideally patient-ID) key from the submitters (R. Noberini / T. Bonaldi, IEO), for example an updated `Sample_list.txt` with an HPV column, or the mapping of Supplementary Data sheet 1 columns (HPV± #n) to raw file names. That key must also state whether FFPE_15T is in the published set. The technical values are already settled and are in `PXD064152.report.md`.
+
+## PXD012000 — Breast cancer neoadjuvant treatment proteomics (super-SILAC FFPE), experiments 27C and 32D only (partial block)
+
+**Blocker: 9 of 689 RAW belong to two MaxQuant experiments, `27C` and `32D`, that are not among the paper's 113 samples. Their sample identity is undocumented. The other 680 RAW (113 samples × light/heavy = 1360 rows) are annotated in `annotations/PXD012000.sdrf.tsv`.**
+
+| | |
+|---|---|
+| Publication | Shenoy *et al.*, Mol Syst Biol 2020 16:e9443, PMID:32960509, PMC7507992, doi:10.15252/msb.20209443 (open access; full text and Datasets EV1–EV5 read) |
+| Deposited | 689 RAW + `combined_NAT.zip` (MaxQuant 1.5.5.1 combined folder; `experimentalDesignTemplate.txt`, `txt/summary.txt`, `txt/parameters.txt` were HTTP-range read) |
+| Blocked | `20160706_ASK_CS_32D1–32D7.raw` (experiment 32D; searched) and `20160706_ASK_CS_27C6.raw`, `20160706_ASK_CS_27C7.raw` (experiment 27C; in the design but not in summary.txt, so not searched) |
+| SDRF would need | 9 files × 2 SILAC channels = 18 rows, with a sample identity for the light channel |
+
+Sources checked:
+
+| source | result |
+|---|---|
+| Dataset EV2 legend | defines only A = pre-treatment biopsy, B = post-treatment residual tumour, C = post-treatment adjacent normal, and C34–38 = healthy. No D type, no "27C" (patient 27 is split into 27a/27b, bilateral) |
+| Dataset EV2–EV5 column headers | 113 samples; no 32D or 27C column |
+| Dataset EV1 | patient 32 has only "32A,32B,32C"; patient 27 has "27aA,27aB,27aC" and "27bA,27bB,27bC" |
+| Paper text, Appendix, Review Process File | no mention of a fourth sample type or of 27C |
+| MaxQuant design / summary | 32D = 7 SCX fractions, searched; 27C = fractions 6–7 only, not searched |
+
+**Deliberately not used:** assigning 27C6/27C7 as the missing fractions 6–7 of 27aC (which has only fractions 1–5). It is plausible, but no source states it, and MaxQuant kept 27C as a separate experiment.
+
+**Unblocked by:** a statement from the submitters (T. Geiger lab, Tel Aviv University) of what 32D is (for example a re-extraction of 32C or a fourth specimen) and which sample 27C belongs to.
+
+## PXD003316 — Tumour matrix stiffness / CCN1 in HUVECs (SILAC), MitoC arm only (partial block)
+
+**Blocker: 36 of 132 RAW belong to two MaxQuant experiments, `C_MitoC_Fwd` and `D_MitoC_Rev`. No source describes them, so their treatment and their SILAC channel→condition map are undocumented. The other 96 RAW (stiffness Prolif Fwd/Rev, siCCN1 spike-in, Matrigel spike-in; 192 rows) are annotated in `annotations/PXD003316.sdrf.tsv`.**
+
+| | |
+|---|---|
+| Publication | Reid *et al.*, EMBO J 2017 36:2373, PMID:28694244, PMC5556271, doi:10.15252/embj.201694912 (full text via NCBI efetch; Appendix, Datasets EV1–EV3 and Review Process File from the PMC OA bucket) |
+| Deposited | 132 RAW + `txtstiffness.zip`, `txtsiCCN1.zip`, `txtMatrigel.zip` (MaxQuant 1.4.1.x; experimentalDesignTemplate, parameters, summary and proteinGroups were HTTP-range read) |
+| Blocked | `20140715_Elite_StRe_STIFF_Prot_MitoC_Fwd_C1–C18.raw`, `20140715_Elite_StRe_STIFF_Prot_MitoC_Rev_D1–D18.raw` (18 gel slices each; searched together with the Prolif runs in `txtstiffness.zip`) |
+| SDRF would need | 36 files × 2 SILAC channels = 72 rows, with the treatment ("MitoC") and the substrate stiffness of each channel |
+
+Sources checked:
+
+| source | result |
+|---|---|
+| Paper text and Methods | only one stiffness proteome is described (400 Pa vs 22,000 Pa, forward + reverse); the strings "mitomycin" and "MitoC" do not occur |
+| Appendix (Supplementary Methods), Review Process File | no mention of mitomycin or a second stiffness experiment |
+| Dataset EV1 "Stiffness proteome" | columns "22/0.4 KPa Fwd/Rev"; their per-channel intensities equal MaxQuant `A_Prolif_Fwd` / `B_Prolif_Rev` exactly (5,804 / 5,791 protein groups). They match `C_MitoC`/`D_MitoC` for 3 or fewer |
+| Datasets EV2, EV3 | stiffness values re-used from EV1; siCCN1 only |
+| PRIDE project record (protocols, description) | stiffness forward/reverse, siCCN1 and Matrigel only |
+| Europe PMC search "PXD003316" | only this paper |
+| MaxQuant proteinGroups | CYR61 normalized H/L: Prolif Fwd 2.33 / Rev 0.58; MitoC Fwd 1.36 / Rev 1.00. Ratios exist, but there is no label statement |
+
+**Deliberately not used:** assuming the MitoC runs follow the Prolif layout (Fwd heavy = 22 kPa) and that "MitoC" means mitomycin C treatment. Both are plausible, but neither is stated, and the weaker CYR61 response does not confirm the orientation.
+
+**Unblocked by:** a statement from the submitters (S. Zanivan lab, CRUK Beatson Institute) of what "MitoC" denotes (agent, dose, timing) and the stiffness assigned to the heavy and light channels of the MitoC_Fwd and MitoC_Rev mixtures.
+
+---
+
+## PXD027175 — Mitochondrial one-carbon flux / methotrexate in MDA-MB-468 (SILAC), KO arm only (partial block)
+
+**Blocker: the KO/SCR SILAC design is not described anywhere, and the only stated channel map (light = 50 nM MTX, heavy = control) fails the data check for every KO experiment. The SCR arm (26 RAW, 52 rows) is annotated in `annotations/PXD027175.sdrf.tsv`.**
+
+| | |
+|---|---|
+| Publication | Kiweler *et al.*, Nat Commun 2022 13:2699, PMID:35577770, PMC9110368 (full text via NCBI efetch; supplementary MOESM1/MOESM3 via PMC OA S3) |
+| Deposited | 54 RAW, `proteinGroups.txt`, `peptides.txt` (MaxQuant 1.6.7.0). No summary.txt / mqpar.xml / experimental design |
+| Run → sample map | RAW headers (range read): sample names `MDB468_SCR_*`, `MDB468_KO_*`, `KO_*` = MaxQuant experiment names |
+| Annotated | 26 RAW `MDB468_SCR_*` (normal, TreatSwap, Ctrl): stated orientation + data agree |
+| Blocked | 28 RAW: QHF_00014373-14375, 14378-14383, 14393, 14394, 14397, 14398, 14403-14406, 14411-14414, 14503-14506, 14508-14510 (MaxQuant experiments MB468_KO_{6,24,48,72}h-b-t, MB468_KO_Ctrl-1..3, MB468_KO_TreatSwap_*; KO_48h-1-2 has two raws, 14380 and rerun 14503) |
+| SDRF would need | 28 files × 2 SILAC channels = 56 rows, each with treatment, time and genotype |
+
+**What is stated:** the PRIDE protocol and paper Methods give one design only: light = 50 nM MTX for 24 h and 72 h, heavy = control. Neither mentions KO cells, SCR cells, a label swap or a Ctrl mix in the proteomics. The paper's KO lines are an MTHFD2 CRISPR KO (scramble gRNA control) and an MTHFD1L KO (from the Cantley lab).
+
+**Why the arm is blocked.** Data check: median-centred log2 H/L from proteinGroups.txt, using the MTX targets the paper names.
+
+| Experiments | DHFR | TYMS | SOD2 | Reading |
+|---|---|---|---|---|
+| SCR normal (16) | −0.4..−3.1 | 0..−1.5 | −0.5..−1.8 | light = MTX ✔ stated |
+| SCR TreatSwap (8) | +0.9..+2.8 | +0.9..+1.2 | +0.2..+1.7 | heavy = MTX ✔ swap |
+| **KO normal (16)** | **+0.1..+2.6** | **+0.2..+1.1** | **+0.4..+1.8** | heavy = MTX ✘ contradicts stated map |
+| **KO TreatSwap (8)** | **−0.4..−3.3** | **−1.1..−2.1** | **−0.2..−0.7** | light = MTX ✘ |
+| KO Ctrl (3) | n/a / −0.38 | −0.4..−0.6 | +0.4..+0.5 | not flat (TK1 −1.0..−1.8), unlike SCR Ctrl (~0) |
+
+MTHFD2 is lower in the heavy channel in 22 of the 25 quantified KO experiments, whatever the treatment. The channels may therefore differ in genotype as well as treatment.
+
+**Deliberately not used:**
+- Flipping the orientation of the KO arm to fit the MTX signature.
+- Assigning a genotype (MTHFD2 KO vs SCR/parental) per channel from the MTHFD2 ratios.
+
+Both would assert identities that no source states (rules 6–8).
+
+**Unblocked by:** author confirmation (G. Dittmar / J. Meiser, LIH) of:
+- the KO arm's light/heavy orientation;
+- the genotype of each channel;
+- which gene was knocked out;
+- what the KO_Ctrl mix compares;
+- whether QHF_00014380 or QHF_00014503 was searched as KO_48h-1-2.
+
+All technical values are already resolved in `annotations/PXD027175.report.md`.
+
+---
+
+## PXD018305 — Amino acid variants / BRAFi resistance in A375 melanoma (label-free + SILAC RUNX1 IP), SILAC IP arm only (partial block)
+
+**Blocker: the SILAC channel map of the RUNX1 immunoprecipitation runs is contradictory across sources and the data.** The deposited third IP run also does not match the published replicate 3.
+
+The label-free S-vs-R screen (114 RAW) and the label-free synthetic-peptide pulldown (12 RAW) are annotated in `annotations/PXD018305.sdrf.tsv`.
+
+| | |
+|---|---|
+| Publication | Schmitt *et al.*, Mol Cell Proteomics 2021 20:100163, PMID:34673281, PMC8603206, doi:10.1016/j.mcpro.2021.100163 (full text, supplementary methods mmc1 and Table S3 mmc4 read) |
+| Blocked | `20190719_MaS_KB_OE_Runx1_R1`, `20190719_MaS_KB_OE_Runx1_R2`, `20190514_MaS_RUNX1_IP_02` (3 files, Q Exactive HF-X; MaxQuant `RUNX1_OE` multiplicity 3: light / Arg6;Lys4 / Arg10;Lys8; experiments IP_RUNX1_01/02/03) |
+| Design | Flag-IP in A375 S RUNX1_KO cells transfected with pCMV_Flag_RUNX1 (wt), pCMV_Flag_RUNX1_S276L or empty pCMV_Flag; one mixed triplex per replicate |
+
+**What each source says:**
+
+| source | channel map |
+|---|---|
+| Paper Experimental Design + PRIDE protocol | wt, S276L, empty listed, then ("light":"medium":"heavy") |
+| Supplementary methods (mmc1) | same list, no channel assignment |
+| Table S3.1 header block (mmc4) | Flag empty = Light (BR1-3); RUNX1_S276L = Medium / **Heavy** / Medium; RUNX1_wt = Heavy / **Medium** / Heavy (BR1/BR2/BR3) |
+| Deposited data: RUNX1 protein | lowest in light (IP_01 L/M/H 0.69/0.89/2.71e9; IP_02 1.06/1.62/2.15e9). This refutes empty = heavy and supports Table S3.1 for light. |
+| Deposited data: S276L-only peptide `…HPATPILPGR` | only in IP_RUNX1_02 (= Table BR2), quantified in **Medium** (M 2.29e6, H 0.62e6, L 0; score 39.3, PEP 0.043). Table S3.1 says S276L = Heavy in BR2. |
+| HDAC1 (paper: enriched with wt, depleted with S276L), Table BR1 | log2 M/L 1.29 > H/L 0.60, so wt looks like Medium in BR1. Table S3.1 says Heavy. |
+| Authors' averaged `wt_emp` column (Table S3.1) | best reproduced by wt = M/H/M (r 0.88), the inverse of the stated block |
+| Replicate 3 | Table S3.2 BR3 quantifies 1848 peptides. The deposited `20190514_MaS_RUNX1_IP_02` (5% MS/MS identified) quantifies 377, with 232 shared; BR1/BR2 vs their deposited runs share ~83% (log2 r 0.97/0.94). Table BR3 is most likely an undeposited run. |
+
+The explicit statement (Table S3.1) and every data check disagree on the medium/heavy assignment. The data signals are individually weak but all point the same way, and replicate 3 cannot be tied to the deposit. Annotating would mean choosing the wt vs S276L identity of 6 channel rows against one source or the other (batch rules 6/7).
+
+Sources checked: paper (PMC HTML), PRIDE protocol, `files/all` (no sample sheet), `RUNX1_OE_txt.zip` (summary, parameters, experimentalDesignTemplate, proteinGroups, peptides, evidence), `RUNX1_OE_mqpar_fasta.zip` (mqpar, FASTA with RUNX1 wt / S276L / Flag entries), PMC OA supplementary mmc1-mmc4. Analysis files are in the PXD018305 scratch dir (`runx1_*.txt`).
+
+**Unblocked by:** the authors confirming the per-replicate L/M/H assignment of the three IP runs and which raw file is replicate 3, or a re-deposition of the BR3 run. If they confirm Table S3.1 for `_R1`/`_R2`, those two runs (6 rows) can be added as a separate `PXD018305-silac.sdrf.tsv` (rule 12).
+
+---
+
+## PXD031662 — RAS and SLC3A2 signaling in multiple myeloma (BioID2-SILAC + phospho SILAC/TMT), 8 BioID2 experiments and the TMT arm (partial block)
+
+| | |
+|---|---|
+| Publication | Yang Y *et al.*, Nat Commun 2022 13:5469, PMID:36115844, PMC9482638, doi:10.1038/s41467-022-33142-x (full text, Supplementary Figures and Source Data xlsx read) |
+| Annotated | 108 raws (BioID2-SLC3A2 experiments 136, 139, 983, 984 and phospho SILAC 96/96B) → `PXD031662.sdrf.tsv`, 324 rows |
+| Blocked (BioID2-SILAC) | 183 raws: experiments 341 (`TO_R_Young_110618_240818_L6_341_2-23`), 350 (`R_Young_260618_170818_L1_350_1-23`), 366 (`…P18-366_L1_1-23`), 915 (`…Plus_915_L1_1-23`), 540 (`…P20-540_L3_1-23`), 1645 (`…Plus_1645_L1_1-23`), 1647 (`…Plus_1647_L3_1-23`), 1649 (`…Plus_1649_L5_1-23`); Q Exactive HF, MaxQuant multiplicity 3 |
+| Blocked (TMT) | 28 raws: `YLJI_260321_070421_Ryan_Young_TMT11_0118_Batch1_phos_MS3_R{1,2}_frac1-14` (Orbitrap Fusion, TMT11 SPS-MS3) |
+
+**What each source says:**
+
+| source | channel map |
+|---|---|
+| `File_assignment.txt` (deposit) | two labels per BioID2 experiment: light = empty vector, plus heavy = (NB-)NRAS V12 (341, 350, 366) or medium = KRAS/shCTRL / NB-KRAS V12 (915, 540, 1645, 1647, 1649). TMT 118: only 126 = RPMI-8226 shCTRL and 128N = RPMI-8226 shSLC3A2 |
+| MaxQuant `summary.txt` | every BioID2 experiment searched Multiplicity 3 (Arg6;Lys4 / Arg10;Lys8) |
+| Deposited `proteinGroups.txt` | all three SILAC channels carry signal and bait enrichment in all 8 experiments (third-channel intensity share 13-68%; e.g. 366 medium 68%, NRAS log2 M/L 5.0; 915 heavy KRAS H/L 4.97). TMT 0118: all 11 reporter channels 1.17-1.43e8 |
+| Source Data Fig. 1d (paper) | BioID2-RAS/empty-vector values equal log2 **H/L** normalized of 1645, 1647, 1649 (298/408/367 exact gene matches) — the deposit names the RAS bait as **medium** there; for 341 and 366 H/L (agrees with deposit) |
+| Paper Fig. 2e / Fig. S3c | SLC3A2-knockdown phosphoproteome in **SKMM1**; deposit says RPMI-8226 for TMT 118 |
+| Paper Methods, PRIDE protocol, Supplementary Figures | no per-channel layout for these experiments; no third condition named |
+
+The third SILAC condition of each blocked BioID2 experiment, and 9 of 11 TMT channels, are documented nowhere. Annotating them with `not available` conditions would pool unrelated samples (rule 7), and dropping a demonstrably used channel would falsely mark it unused.
+
+Sources checked: PRIDE project record and protocol, `files/all` (331 entries), `File_assignment.txt`, all 11 MaxQuant zips (summary, parameters, proteinGroups; Phospho (STY)Sites for 96/96B), paper (PMC efetch), PMC OA supplementary (MOESM1 Supplementary Figures, MOESM2 Reporting Summary not needed, MOESM3 Source Data), ref 67 (Fish *et al.* PNAS 2020) for the phospho method. Analysis scripts and outputs are in the PXD031662 scratch dir (`scripts/ratios.py`, `scripts/fig1d.py`, `analysis/`).
+
+**Unblocked by:** the authors' full L/M/H assignment for experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 (and confirmation of which channel holds the RAS bait in 1645/1647/1649), and the full TMT11 channel layout plus the cell line for experiment 0118. The BioID2 runs could then be added to `PXD031662.sdrf.tsv` (same search, add `NT=Biotin` slot `not applicable` for 350, which was searched without Biotin (K)); the TMT runs would go in a separate `PXD031662-tmt.sdrf.tsv` (rule 12).

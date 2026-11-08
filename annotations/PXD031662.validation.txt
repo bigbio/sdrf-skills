@@ -1,0 +1,57 @@
+$ sdrf-tools reconcile annotations/PXD031662.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pride.json --accession PXD031662
+PXD031662: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD031662.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD031662.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+ERROR:sdrf_pipelines.ols.ols:OLS search term blood error, retry number 0
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term blood. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=blood&name=class&rows=10&start=0&ontology=uberon&exact=on
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/ols/ols.py", line 902, in _perform_ols_search
+    req.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=blood&name=class&rows=10&start=0&ontology=uberon&exact=on
+WARNING: Term: XG-2 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/openms) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD031662.sdrf.tsv -t2
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+$ (scratch probe only: copy with precursor tolerance set to a placeholder '4.5 ppm' to test the rest of the conversion; NOT the deliverable) parse_sdrf convert-openms -s /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/openms2/probe.sdrf.tsv -t2
+Conditions (15): dict_keys(['L-363|BioID2 empty vector', 'L-363|BioID2-SLC3A2 + shCTRL', 'L-363|BioID2-SLC3A2 + shNRAS', 'SK-MM-1|BioID2 empty vector', 'SK-MM-1|BioID2-SLC3A2 + shCTRL', 'SK-MM-1|BioID2-SLC3A2 + shNRAS', 'XG-2|BioID2 empty vector', 'XG-2|BioID2-SLC3A2 + shKRAS', 'XG-2|BioID2-SLC3A2 + shCTRL', 'RPMI8226|BioID2 empty vector', 'RPMI8226|BioID2-SLC3A2 + shCTRL', 'RPMI8226|BioID2-SLC3A2 + shKRAS', 'SK-MM-1|shCTRL', 'SK-MM-1|shNRAS.1', 'SK-MM-1|shNRAS.2'])
+Files per condition: dict_values([23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 16, 16, 16])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 324 times.
+SUCCESS (WARNINGS=1): probe.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD031662.evidence.json
+annotations/PXD031662.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD031662.sdrf.tsv annotations/PXD031662.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+# Notes (producer; not a review verdict)
+# - The SDRF is the byte concatenation of three `sdrf-tools build` outputs (build2/part_biotin_qehf, part_biotin_qe, part_phospho_qehf;
+#   scratch dir /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/build2), header lines byte-identical
+#   (md5 a4c1311e4e0ccb326a94cff34851b780), header kept once. No post-build edit of any cell (rule 17).
+#   Parts differ only in comment[instrument] (983/984 = Q Exactive per raw header) and in the search (Biotin (K) vs Phospho (STY)).
+# - parse_sdrf: 0 errors. Warning `XG-2 ... not found in clo;bto;efo` is correct: Cellosaurus CVCL_4798 has no CLO/BTO/EFO
+#   cross-reference and OLS returns no XG-2 cell-line term; the Cellosaurus name and accession are given.
+#   The `OLS search term blood error, retry number 0` (HTTP 500) was a transient OLS error; the retry produced no term warning
+#   for `blood` (UBERON:0000178 verified separately in OLS, scratch ols1.txt).
+# - reconcile exit 0: no findings to refute.
+# - convert-openms on the deliverable fails only on `comment[precursor mass tolerance] = not available` (paper 6 ppm vs PRIDE 4.5 ppm,
+#   no deposited mqpar/apar; see manifest limitations). A scratch copy with a placeholder tolerance converts with exit 0
+#   (15 conditions; 23 files per BioID2 condition, 16 per phospho condition), showing nothing else blocks the conversion.

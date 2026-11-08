@@ -1,0 +1,342 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD014368.sdrf.tsv",
+ "dataset": "PXD014368",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD014368 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD014368/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/files_all.json; 67 entries = 63 .raw + 3 MaxQuant txt .rar + MaxQuant_1.6.6.0.zip; every entry projectAccessions contains PXD014368)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Qi TF et al. Discovery of TBC1D7 as a Potential Driver for Melanoma Cell Invasion. Proteomics 2020;20(14):e1900347, doi:10.1002/pmic.201900347, PMID 32510182, PMC9362880 (NIHMS1828319 author manuscript; text https://pmc-oa-opendata.s3.amazonaws.com/PMC9362880.1/PMC9362880.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/paper.txt; JATS via NCBI efetch id=9362880, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/efetch.xml). The manuscript is a short communication; its Methods are only in Supporting Information, which was not retrievable."
+  },
+  {
+   "id": "mq_F1",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD014368/WM_F1_MaxQuanttxtfiles.rar members parameters.txt, summary.txt, F1-proteinGroups.txt (RAR5 HTTP range read, members inflated individually with libarchive; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/mq_F1/)"
+  },
+  {
+   "id": "mq_F2",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD014368/WM_F2_MaxQuanttxtfiles.rar members parameters.txt, summary.txt, F2-proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/mq_F2/)"
+  },
+  {
+   "id": "mq_R1",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD014368/WM_R1_MaxQuanttxtfiles.rar members parameters.txt, summary.txt, R1-proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/mq_R1/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/scripts/orient.py: Pearson correlation of log2 Ratio H/L normalized between the three MaxQuant searches, plus TBC-family marker ratios)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD014368/WM_F1-0.raw, WM_F2-4_130621045623.raw, WM_R1-0.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0040?format=txt and CVCL_2765?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/cello_CVCL_0040.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/cello_CVCL_2765.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014368/ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-126",
+   "value": "<cell line>_<experiment> (WM-266-4_F1, WM115_F1, WM-266-4_F2, WM115_F2, WM115_R1, WM-266-4_R1)",
+   "source_ids": [
+    "files",
+    "mq_F1",
+    "mq_F2",
+    "mq_R1",
+    "pride"
+   ],
+   "evidence": "Three SILAC experiments deposited as file prefixes WM_F1, WM_F2, WM_R1 (21 SCX fractions each, -0..-20), each searched separately in MaxQuant (separate rar per experiment; summary.txt experiment names F1, F2, R1). PRIDE protocol describes a forward (F) and a reverse (R) SILAC experiment; F1/F2 are the two forward replicates. One source per (cell line, SILAC mixture)."
+  },
+  {
+   "location": "comment[label] + characteristics[cell line] + factor value[cell line] rows 1-84 (F1, F2)",
+   "value": "F1, F2: SILAC light = WM-266-4, SILAC heavy = WM115",
+   "source_ids": [
+    "pride",
+    "orientation",
+    "mq_F1",
+    "mq_F2",
+    "paper"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: \"In the forward SILAC experiment, the lysate of light-labeled WM-266-4 cells and that of the heavy-labeled WM-115 cells were combined at 1:1 ratio\". Data check: paper reports TBC1D4, TBC1D14, TBC1D16, TBC1D7, TBC1D10A up and TBC1D24 down in WM-266-4 vs WM-115; deposited normalized H/L log2 in F1/F2: TBC1D7 -1.43/-1.16, TBC1D4 -2.17/-2.36, TBC1D16 -1.55/-1.83, TBC1D10A -0.71/-0.78, TBC1D24 +0.79/+0.86 -> heavy = WM-115 (lower TBC1D7). F1 vs F2 log2 H/L Pearson +0.922 (n=5470)."
+  },
+  {
+   "location": "comment[label] + characteristics[cell line] + factor value[cell line] rows 85-126 (R1)",
+   "value": "R1: SILAC light = WM115, SILAC heavy = WM-266-4",
+   "source_ids": [
+    "pride",
+    "orientation",
+    "mq_R1",
+    "paper"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: \"the heavy-labeled WM-266-4 cell lysate was mixed equally with the light-labeled WM-115 cell lysate in the reverse SILAC experiment\". Data check: R1 log2 H/L TBC1D4 +1.77, TBC1D14 +0.70, TBC1D16 +1.19, TBC1D10A +0.44, TBC1D24 -0.84 (TBC1D7 quantified by 1 ratio only, NaN); R1 vs F1 / F2 Pearson -0.863 / -0.875 -> label swap confirmed."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-126",
+   "value": "1 (F1), 2 (F2), 3 (R1), numbered per cell line",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_F1",
+    "mq_F2",
+    "mq_R1"
+   ],
+   "evidence": "Paper: \"5955 (81%) were quantified in at least two replicates of SILAC-labeling experiments\" - the three mixtures are separate SILAC-labeling experiments, each separately SCX-fractionated (21 fractions each) and searched. Whether F1 and F2 came from independent cultures is not stated explicitly (Methods in unretrievable SI); treated as independent labelling experiments."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-126",
+   "value": "WM_<exp>-<n>[_timestamp].raw; fraction identifier = n+1",
+   "source_ids": [
+    "files",
+    "mq_F1",
+    "mq_F2",
+    "mq_R1",
+    "pride"
+   ],
+   "evidence": "All 63 deposited .raw files are listed in the MaxQuant summary.txt of their experiment (0 missing, 0 extra). PRIDE dataProcessingProtocol: \"Twenty-one fractions were collected\" by off-line SCX; file suffixes -0..-20 per experiment."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-126",
+   "value": "1",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Each fraction injected once (one raw file per experiment and fraction number)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-126",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606 for both lines."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-21,43-63,106-126 (WM-266-4) / rows 22-42,64-105 (WM115)",
+   "value": "upper leg skin (WM-266-4) / skin of leg (WM115)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_2765: \"Derived from site: Metastatic; Right thigh, skin; UBERON=UBERON_0004262\" (OLS label upper leg skin); CVCL_0040: \"Derived from site: Metastatic; Right anterior leg, skin; UBERON=UBERON_0001511\" (OLS label skin of leg)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-126",
+   "value": "melanoma",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3224 Melanoma for both lines; paper: \"paired primary/metastatic melanoma cell lines\"; MONDO:0005105 melanoma verified in OLS."
+  },
+  {
+   "location": "characteristics[material type] rows 1-126",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Cultured WM-115 and WM-266-4 cell lines (paper; PRIDE protocol)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-126",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Caucasian\" for both lines (genome ancestry ~99% European per PubMed=30894373); HANCESTRO:0005 European ancestry verified."
+  },
+  {
+   "location": "characteristics[age] rows 1-126",
+   "value": "55Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 55Y for CVCL_0040 and CVCL_2765 (same donor)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-126",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Female for both lines."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-126",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 55Y (>= 20Y, batch rule 9); EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[individual] rows 1-126",
+   "value": "WM115_WM266-4_donor",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"WM-115 and WM-266-4 cells, which are paired primary/metastatic melanoma cells derived from the same patient\"; Cellosaurus lists each as originating from the same individual (OI lines). No published patient ID exists; the value is a descriptive label marking that both lines share one donor (identifier pattern requires no spaces/slashes)."
+  },
+  {
+   "location": "characteristics[cell line] + factor value[cell line] rows 1-21,43-63,106-126 (WM-266-4) / rows 22-42,64-105 (WM115)",
+   "value": "WM115 / WM-266-4",
+   "source_ids": [
+    "paper",
+    "ols",
+    "cellosaurus"
+   ],
+   "evidence": "Paper and PRIDE name WM-115 and WM-266-4. OLS: EFO:0002390 label \"WM115\" (xref CVCL_0040); \"WM-115\" is not found by the validator in clo/bto/efo (round-1 warning), so the EFO label WM115 is used. \"WM-266-4\" resolves in the validator (BTO:0001595 \"WM-266-4 cell\", CLO:0009612) and matches curated precedent in sdrf-annotated-datasets. Factor value = the compared variable (primary WM-115 vs metastatic WM-266-4 of the same patient)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-21,43-63,106-126 (CVCL_2765) / rows 22-42,64-105 (CVCL_0040)",
+   "value": "CVCL_0040 WM115 / CVCL_2765 WM266-4",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID/AC lines."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-126",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"complete light and heavy DMEM media were prepared by adding light or heavy lysine and arginine, along with dialyzed FBS, to the lysine, arginine-depleted SILAC medium\"; NCIT:C185409 Dulbecco's Modified Eagle Medium."
+  },
+  {
+   "location": "comment[instrument] rows 1-126",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw headers of WM_F1-0, WM_F2-4_130621045623, WM_R1-0: \"LTQ Orbitrap Velos MS\", \"Creator: LTQ Velos\"; PRIDE instruments MS:1001742 agrees."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-126",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method: scan event 1 \"FTMS + c norm res=60000 o(350.0-1500.0)\", events 2-21 \"ITMS + c norm Dep MS/MS Most intense ion from (1)\" ... 20th (top-20 DDA)."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-126",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method: \"Activation Type: CID\" for each dependent MS/MS event."
+  },
+  {
+   "location": "comment[collision energy] rows 1-126",
+   "value": "35 NCE",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method: \"Normalized Coll. Energy: 35.0\"."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-126",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "MS/MS events are ITMS on the LTQ Velos linear ion trap."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-126",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_F1",
+    "mq_F2",
+    "mq_R1"
+   ],
+   "evidence": "PRIDE protocol: \"digested with trypsin\" (FASP). MaxQuant summary.txt Protease = Trypsin/P (search rule; batch rule 2: digestion enzyme recorded)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-126",
+   "value": "NT=Strong cation-exchange chromatography (SCX);AC=PRIDE:0000561",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE dataProcessingProtocol: \"off-line strong cation exchange (SCX) fractionation ... PolySulfoethyl A SCX column ... Twenty-one fractions\"."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-126",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mq_F1",
+    "mq_F2",
+    "mq_R1",
+    "raw"
+   ],
+   "evidence": "parameters.txt (MaxQuant 1.3.0.5, identical in all three searches): \"MS/MS tol. (ITMS) 0.5 Da\"; the MS/MS spectra are ITMS (raw)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-126",
+   "value": "Carbamidomethyl C Fixed; Oxidation M Variable; Label:13C(6) R (UNIMOD:188) Variable; Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_F1",
+    "mq_F2",
+    "mq_R1",
+    "pride",
+    "ols"
+   ],
+   "evidence": "parameters.txt: \"Fixed modifications Carbamidomethyl (C)\"; summary.txt: \"Variable modifications Oxidation (M)\", Multiplicity 2, Labels1 \"Arg6;Lys8\" (Acetyl (Protein N-term) only in \"Variable modifications first search\" with \"Use variable modifications first search False\", so not included). PRIDE protocol: heavy lysine [13C6,15N2] and arginine [13C6]. Accessions from mass shift (batch rule 11): Arg6 UNIMOD:188, Lys8 UNIMOD:259; SILAC labels MT=Variable per batch convention."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-126",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10."
+  }
+ ],
+ "limitations": [
+  "Supporting Information (Supplementary pdf with Experimental Section, Supplementary Excel file Tables S1-S4) of PMC9362880 could not be retrieved: Europe PMC supplementaryFiles says \"not open access\", Europe PMC full-text XML returns 500, Unpaywall PDF 403, PMC bin URL served bot-check HTML (not bypassed). Methods therefore come from the PRIDE protocol text, the raw headers and the MaxQuant outputs.",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.3.0.5 parameters.txt/summary.txt do not record first/main-search precursor tolerance and no mqpar.xml or .apar was deposited. Consequence: parse_sdrf convert-openms exits 1 (\"Cannot read precursor mass tolerance: not available\"), as for campaign precedents PXD006676/PXD024103.",
+  "comment[reduction reagent] / comment[alkylation reagent] = not available: PRIDE says proteins were \"reduced, alkylated\" (and the search has fixed Carbamidomethyl) but no reagent is named in any retrieved source.",
+  "characteristics[biological replicate]: F1 and F2 are treated as independent SILAC-labelling experiments (replicates 1 and 2) and R1 as replicate 3; independence of the cultures is not stated explicitly in any retrieved text.",
+  "WM-115 primary vs metastatic: the paper and PRIDE call WM-115 the primary-melanoma line, whereas Cellosaurus CVCL_0040 records \"Derived from site: Metastatic; Right anterior leg, skin\". No primary/metastatic column is asserted; the compared variable is encoded as factor value[cell line].",
+  "characteristics[passage number], characteristics[biorepository], characteristics[sample storage temperature], characteristics[cell type] = not available: not stated in any retrieved source (cell source/vendor is in the unretrievable SI if anywhere).",
+  "MaxQuant_1.6.6.0.zip (deposited, category OTHER) is the MaxQuant software distribution (bin/*.dll, conf/), not search output; the searches themselves were MaxQuant 1.3.0.5 (parameters.txt).",
+  "techsdrf not installed; raw-file verification limited to range-read headers of 3 of 63 files (one per experiment).",
+  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."
+ ]
+}
