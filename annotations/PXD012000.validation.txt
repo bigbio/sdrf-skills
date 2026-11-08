@@ -1,0 +1,50 @@
+# PXD012000 validation — 2026-11-08T20:23:26Z; artifact sha256 5394ddddf1604dfc4d0fb4e60d613910579b1b7b33361241cd9ce4e61e7e3ccc (1360 rows x 51 cols)
+# Build procedure (rule 17):
+#  1. python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/scripts/make_tables.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000  -> build/{samples,technical}.tsv, files.json, mq_fraction_by_file.json
+#  2. sdrf-tools build --samples build/samples.tsv --technical build/technical.tsv --files build/files.json -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata -o build/PXD012000.prebuild.sdrf.tsv  (1360 rows x 50 cols)
+#  3. python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/scripts/postbuild.py build/PXD012000.prebuild.sdrf.tsv build/mq_fraction_by_file.json annotations/PXD012000.sdrf.tsv
+#     Deterministic, self-checking post-build edits:
+#     (a) inserts a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 after the Trypsin column on all rows
+#         (rule 2; build emits one column because the contract column is not 'multiple'; same as PXD008327).
+#     (b) sets comment[fraction identifier] to the MaxQuant experimentalDesignTemplate Fraction of each data file. build numbers
+#         positionally; differs only where the design has gaps: 25B4/5/6 (3,4,5 -> 4,5,6) and 26C6/7 (5,6 -> 6,7), 10 rows.
+#     It asserts that removing the inserted column and these fraction cells gives back the build output exactly.
+# Round 1 (identical except characteristics[individual] 'healthy donor NN'): validate-sdrf exit 1 -> 5 ERRORs
+#   "Value 'healthy donor 3x' does not match required pattern" (identifier validator forbids spaces) + one transient OLS 500 on 'Grade 3'.
+#   Fixed in make_tables.py -> 'healthy_donor_NN'; rebuilt. Round 2 below.
+
+$ parse_sdrf validate-sdrf -s annotations/PXD012000.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata   (full ontology, round 2)
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD012000.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD012000.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/pride.json --accession PXD012000
+PXD012000: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive HF', the annotation says 'Q Exactive Plus'  [Q-Exactive HF]
+exit code: 0
+# REFUTED (false positive): the PRIDE/paper protocol names BOTH instruments ('coupled to either Q-Exactive (QE) Plus or Q-Exactive HF').
+#   Each row carries the model read from its own raw header: 'Q Exactive Plus - Orbitrap MS' in all 330 Animal_2015*/Kermit_2015* raws,
+#   'Q Exactive HF - Orbitrap MS' in all 359 20160706_* raws (first 256 KB of every raw, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/rawhdr/). Reconcile only matched the HF mention.
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012000.sdrf.tsv -t2)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD012000.sdrf.tsv
+Factor columns: ['factor value[disease]', 'factor value[miller and payne score]', 'factor value[relapse]', 'factor value[treatment status]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[tumor grading]', 'characteristics[clinical data]']
+Conditions (23): dict_keys(['invasive breast carcinoma|3|no|pre-treatment', 'not applicable|not applicable|not applicable|not applicable', 'invasive breast carcinoma|3|no|post-treatment', 'normal|3|no|post-treatment', 'invasive breast carcinoma|2|no|pre-treatment', 'invasive breast carcinoma|2|no|post-treatment', 'normal|2|no|post-treatment', 'invasive breast carcinoma|2|yes|pre-treatment', 'invasive breast carcinoma|2|yes|post-treatment', 'normal|2|yes|post-treatment', 'invasive breast carcinoma|4|no|pre-treatment', 'invasive breast carcinoma|4|no|post-treatment', 'normal|4|no|post-treatment'
+Files per condition: dict_values([95, 680, 95, 87, 61, 59, 57, 19, 21, 17, 7, 7, 5, 7, 7, 5, 17, 18, 16, 15, 15, 15, 35])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 1360 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD012000.sdrf.tsv
+exit code: 0
+# 'no TA= specified' x1360 comes from Acetyl PP=Protein N-term (correct per format rules). Conversion SUCCESS, 23 conditions.
+
+$ sdrf-tools schema-check annotations/PXD012000.evidence.json
+annotations/PXD012000.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD012000.sdrf.tsv annotations/PXD012000.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit code: 0

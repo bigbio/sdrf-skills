@@ -1,0 +1,52 @@
+# PXD027175 validation — round 1 (2026-11-08T20:18:21Z); sha256 ecaebc4a98bb952cd626c2ac9ec9e354ea562d76ca837c76b2ca542660134695
+# SDRF = sdrf-tools build output (scratch build.sdrf.tsv) + deterministic post-build step scripts/postbuild.py,
+#   which inserts a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 directly after the Trypsin column
+#   on all 52 rows (campaign rule 2: digestion was Lys-C 4 h then trypsin overnight). build emits one cleavage column only
+#   (term not 'multiple'; a '|' second value is dropped — same behaviour recorded for PXD008327/PXD004245).
+#   postbuild.py asserts: exactly one existing cleavage column, Trypsin on every row, equal row widths. No other edits.
+# OLS traceback lines (HTTP 500 retries from EBI) are filtered from the logs below; the ERROR/WARNING lines are kept.
+
+$ parse_sdrf validate-sdrf -s annotations/PXD027175.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: MDA-MB-468 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+[exit 0]
+
+$ sdrf-tools structure annotations/PXD027175.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+[exit 0]
+
+$ sdrf-tools reconcile annotations/PXD027175.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027175/pride.json --accession PXD027175
+PXD027175: every annotated value agrees with the deposit record.
+[exit 0]
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD027175.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD027175.sdrf.tsv
+Factor columns: ['factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[sampling site]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (5): dict_keys(['6 hour|methotrexate', 'not available|untreated', '24 hour|methotrexate', '48 hour|methotrexate', '72 hour|methotrexate'])
+Files per condition: dict_values([6, 28, 6, 6, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 52 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD027175.sdrf.tsv
+[exit 0]
+
+# Notes on the findings above
+# - validate-sdrf WARNING 'untreated' (characteristics[treatment]): campaign rule 4 prescribes the reserved control value
+#   'untreated' for untreated controls; it is deliberately not an NCIT/EFO term. Accepted warning.
+# - validate-sdrf WARNING 'MDA-MB-468' (characteristics[cell line]): the cell-lines template wants the Cellosaurus name
+#   (CVCL_0419 = 'MDA-MB-468', also in characteristics[cellosaurus name/accession]); the EFO label is 'MDAMB468'
+#   (EFO:0001216, verified in OLS). Same accepted warning as other cell-line annotations in the campaign. Accepted.
+# - convert-openms WARNING 'no TA= specified' (x52): the Acetyl modification is positional (PP=Protein N-term), which is
+#   the correct encoding (format rules); OpenMS maps it to Protein N-term as the converted openms.tsv shows
+#   ('Acetyl (Protein N-term)'). Not an error.
+# - reconcile: exit 0, no findings (Lys-C second cleavage column present, instrument Q Exactive HF = PRIDE = raw header).
+# Only one validation round was needed; no value was changed after validation.
+
+# Step 9.5 manifest checks
+$ sdrf-tools schema-check annotations/PXD027175.evidence.json
+annotations/PXD027175.evidence.json: valid evidence-manifest
+[exit 0]
+
+$ sdrf-tools manifest-coverage annotations/PXD027175.sdrf.tsv annotations/PXD027175.evidence.json
+Manifest covers every column with a value (33 column(s)).
+[exit 0]

@@ -1,0 +1,96 @@
+# PXD018305 validation — round 1 (2026-11-08T20:22:50Z); sha256 1a42a33f6d285b77976184a970e83942505825727ae2250a0b4b09c10a63a4bc
+# Build: sdrf-tools build run three times (main-screen proteome, main-screen phospho, peptide pulldown), templates ms-proteomics human cell-lines;
+#   tables written deterministically by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/scripts/make_tables.py (files.json = the 126 non-IP .raw names).
+#   sdrf-tools build --samples samples_prot.tsv --technical technical_prot.tsv --files files.json -t ms-proteomics -t human -t cell-lines -o part_prot.sdrf.tsv -> 54 rows x 50 columns, exit 0
+#   sdrf-tools build --samples samples_phos.tsv --technical technical_phos.tsv --files files.json -t ms-proteomics -t human -t cell-lines -o part_phos.sdrf.tsv -> 60 rows x 50 columns, exit 0
+#   sdrf-tools build --samples samples_pull.tsv --technical technical_pull.tsv --files files.json -t ms-proteomics -t human -t cell-lines -o part_pull.sdrf.tsv -> 12 rows x 50 columns, exit 0
+# Post-build step /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/scripts/postbuild.py (deterministic): asserts the three part headers are identical and that there is exactly one
+#   comment[cleavage agent details] column holding NT=Trypsin;AC=MS:1001251 on every row, concatenates the parts (54 + 60 + 12 rows) and inserts
+#   a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 directly after it. Why: both the cell-lysate protocol (paper) and the on-bead
+#   pulldown protocol (supplementary methods) pre-digest with Lys-C, then trypsin; batch rule 2 requires the second column; build emits one because the
+#   column is not 'multiple' in the contract. No other cell is changed. Three builds are needed because the searches differ (batch rule 5: Phospho
+#   only on phospho and pulldown runs) and instrument / NCE / fractionation method differ between the arms.
+#   python3 -I scripts/postbuild.py /home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv  -> 126 rows x 51 columns
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv -t ms-proteomics -t human -t cell-lines   (full ontology run)
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv -t2   (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/openms)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv
+Factor columns: ['factor value[bait]', 'factor value[phenotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[cell line authentication]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (6): dict_keys(['not applicable|PLX4720 sensitive', 'not applicable|PLX4720 resistant', 'biotinylated synthetic RUNX1 peptide SGSGSPSVHPATPISPGRASGM (reference S276)|PLX4720 sensitive', 'biotinylated synthetic RUNX1 peptide SGSGSPSVHPATPILPGRASGM (variant S276L)|PLX4720 sensitive', 'streptavidin beads without peptide (control)|PLX4720 sensitive', 'pull-down input lysate (no bait)|PLX4720 sensitive'])
+Files per condition: dict_values([57, 57, 3, 3, 3, 3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 126 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv
+exit code: 0
+NOTE: the TA= warning concerns the Protein N-term Acetyl (PP=) and the not-applicable Phospho cells on proteome rows; same benign warning as in the passed campaign examples.
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/pride.json --accession PXD018305
+PXD018305: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive HF-X', the annotation says 'Orbitrap Exploris 480'  [Q Exactive HF-X]
+exit code: 1
+REFUTATION of both reconcile findings (false positives for the annotated scope; batch rule 13):
+  BLOCKER labelled_annotated_as_label_free: PRIDE lists both "Label free" (PRIDE:0000312) and "SILAC" (PRIDE:0000315). SILAC applies only to the 3
+    RUNX1 IP runs (MaxQuant RUNX1_OE summary.txt: Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8), which are EXCLUDED from this SDRF (channel map
+    contradictory, see report / BLOCKED.md). Every annotated run is label-free: A375_proteogenomics_txt summary.txt Multiplicity 1, Labels0 empty for all 114
+    runs; RUNX1_SynPep_txt summary.txt Multiplicity 1 for all 12 runs; both mqpar lfqMode 1; paper "label-free quantification" for S vs R and for the pulldowns.
+  MAJOR instrument_contradicted: the protocol names Q Exactive HF-X for "immunoprecipitation" runs only ("measured on Q Exactive HF-X" for the RUNX1
+    overexpression interactome). Raw headers of all 129 files (scratch raw/instrument_all.tsv, raw/instrument_vs_sdrf.txt): Orbitrap Exploris 480 = the 114
+    main-screen files, Q Exactive HF = the 12 pulldown files, Q Exactive HF-X = only the 3 excluded IP files. 0 annotated rows disagree with their raw header.
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD018305.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD018305.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD018305.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit code: 0
+
+# Accession checks (sdrf-tools verify <acc> --label <label>, OLS4):
+#   Accession: PRIDE:0000627 Exists: True Label match: True OLS label: Data-dependent acquisition Ontology: pride 
+#   Accession: MS:1003028 Exists: True Label match: True OLS label: Orbitrap Exploris 480 Ontology: ms 
+#   Accession: MS:1002523 Exists: True Label match: True OLS label: Q Exactive HF Ontology: ms 
+#   Accession: MS:1002877 Exists: True Label match: True OLS label: Q Exactive HF-X Ontology: ms 
+#   Accession: MS:1001251 Exists: True Label match: True OLS label: Trypsin Ontology: ms 
+#   Accession: MS:1001309 Exists: True Label match: True OLS label: Lys-C Ontology: ms 
+#   Accession: MS:1000422 Exists: True Label match: True OLS label: beam-type collision-induced dissociation Ontology: ms 
+#   Accession: PRIDE:0000564 Exists: True Label match: True OLS label: High-pH reversed-phase chromatography (hpHRP) Ontology: pride 
+#   Accession: PRIDE:0000608 Exists: True Label match: True OLS label: Dithiothreitol (DTT) Ontology: pride 
+#   Accession: PRIDE:0000599 Exists: True Label match: True OLS label: Iodoacetamide (IAA) Ontology: pride 
+#   Accession: UNIMOD:4 Exists: True Label match: True OLS label: Carbamidomethyl Ontology: unimod 
+#   Accession: UNIMOD:35 Exists: True Label match: True OLS label: Oxidation Ontology: unimod 
+#   Accession: UNIMOD:1 Exists: True Label match: True OLS label: Acetyl Ontology: unimod 
+#   Accession: UNIMOD:21 Exists: True Label match: True OLS label: Phospho Ontology: unimod 
+#   Accession: MS:1000484 Exists: True Label match: True OLS label: orbitrap Ontology: ms 
+#   Accession: MS:1002038 Exists: True Label match: True OLS label: label free sample Ontology: ms 
+# Characteristics values (OLS4 exact search; first hit is the used term):
+#   ## amelanotic melanoma (mondo)
+#      MONDO:0002971 | amelanotic melanoma
+#      MONDO:0005208 | amelanotic skin melanoma
+#      MONDO:1013406 | amelanotic melanoma, non-human animal
+#   ## skin of leg (uberon)
+#      UBERON:0001511 | skin of leg
+#   ## European (hancestro)
+#      HANCESTRO:0005 | European ancestry
+#      HANCESTRO:0590 | European American
+#      HANCESTRO:2003 | European (EUR) reference superpopulation (1KGP)
+#   ## adult (efo)
+#      EFO:0001272 | adult
+#      EFO:1001934 | adult acute myeloid leukemia
+#      EFO:1001932 | adult acute megakaryoblastic leukemia
+#   ## Roswell Park Memorial Institute 1640 Medium (ncit)
+#      NCIT:C178973 | Roswell Park Memorial Institute 1640 Medium
+#   ## enrichment of phosphorylated protein (efo)
+#      EFO:0010806 | enrichment of phosphorylated protein
+#   ## Homo sapiens (ncbitaxon)
+#      NCBITaxon:9606 | Homo sapiens
+#      NCBITaxon:741158 | Homo sapiens subsp. 'Denisova'
+#      NCBITaxon:1035824 | Trichuris sp. ex Homo sapiens JP-2011

@@ -1,0 +1,534 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD012000.sdrf.tsv",
+ "dataset": "PXD012000",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012000 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012000/files?pageSize=100&page=0..6 (690 entries, all projectAccessions contain PXD012000; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/files_all_PXD012000.json)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Shenoy A et al. Proteomic patterns associated with response to breast cancer neoadjuvant treatment. Mol Syst Biol 2020;16:e9443. PMID 32960509, PMC7507992, doi:10.15252/msb.20209443 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/dl/PMC7507992.1.txt)"
+  },
+  {
+   "id": "ev1",
+   "kind": "supplementary",
+   "location": "Dataset EV1 (Neoadjuvant clinical cohort), https://pmc-oa-opendata.s3.amazonaws.com/PMC7507992.1/MSB-16-e9443-s003.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/dl/MSB-16-e9443-s003.xlsx)"
+  },
+  {
+   "id": "ev2",
+   "kind": "supplementary",
+   "location": "Dataset EV2 (H/L ratios per sample, with legend A/B/C), https://pmc-oa-opendata.s3.amazonaws.com/PMC7507992.1/MSB-16-e9443-s004.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/dl/MSB-16-e9443-s004.xlsx)"
+  },
+  {
+   "id": "mq_design",
+   "kind": "search-output",
+   "location": "combined_NAT.zip member combined_NAT/experimentalDesignTemplate.txt, HTTP-range read from https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/08/PXD012000/combined_NAT.zip (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/mq/experimentalDesignTemplate.txt)"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "combined_NAT.zip member combined_NAT/txt/summary.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/mq/summary.txt)"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "combined_NAT.zip members combined_NAT/txt/parameters.txt and combined_NAT/andromeda/allSpectra.HCD.FTMS.sil1.apar (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/mq/parameters.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/mq/hcd_sil1.apar)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "first 256 KB of all 689 .raw files, HTTP-range read from the PRIDE FTP (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/rawhdr/*.hdr)"
+  },
+  {
+   "id": "channel_check",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/channel_direction.txt (computed from Dataset EV2)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (live lookups 2026-11-08)"
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "curation-policy",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md"
+  },
+  {
+   "id": "precedent",
+   "kind": "curated-sdrf",
+   "location": "/home/user/bigbio/sdrf-skills/annotations/PXD009868.sdrf.tsv (passed super-SILAC clinical example); /home/user/bigbio/sdrf-annotated-datasets/datasets/PXD002882/PXD002882.sdrf.tsv"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata (ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0); bigbio/sdrf-templates 7da1747 templates.yaml line 150"
+  },
+  {
+   "id": "build_scripts",
+   "kind": "local-script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/scripts/make_tables.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/scripts/postbuild.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/build/samples.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012000/build/technical.tsv"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, SILAC light rows: 680 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "<code><A|B|C> <sample description> / <code> healthy breast duct tissue (breast reduction surgery)",
+   "source_ids": [
+    "mq_design",
+    "ev2",
+    "paper"
+   ],
+   "evidence": "Code = MaxQuant Experiment name from experimentalDesignTemplate.txt (e.g. 2A, 27aB, 34C). Dataset EV2 legend: \"A- Pre-treatment core needle biopsy; B- Post-treatment residual tumor sample; C- Post-treatment Tumor Adjacent Normal ... Matched sample numbers denote matching samples from the same patient. C34-38 refers to Healthy samples from breast reduction surgery.\" EV2 lists exactly the 113 experiments used here (36x A/B/C + 34C-38C), matching the paper's 113 FFPE samples. NOTE the deposited raws named *_CS_21* acquired 2015-06 (Animal_20150601_*, Kermit_20150605_*) are Experiments 1A/1B/1C in the design template, NOT patient 21 (patient 21 = the 20160706_ASK_CS_21* raws)."
+  },
+  {
+   "location": "source name, SILAC heavy rows: 680 rows (file lines 7-11,17-21,27-31,39-45,53-59,65-69,77-83,91-97,103-107,115-121,129-135,141-145,153-159,167-173,179-183,191-197,205-211,217-221,229-235,243-249,255-259,267-273,281-287,293-297,303-307,313-317,323-327,333-337,343-347,353-357,363-367,373-377,383-387,393-397,403-407,413-417,423-427,433-437,443-447,453-4...)",
+   "value": "breast super-SILAC reference mix (Arg10/Lys8), aliquot spiked into <code>",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_summary",
+    "channel_check",
+    "precedent",
+    "campaign_rules"
+   ],
+   "evidence": "Methods/PRIDE protocol: \"7.5ug total protein in each sample was mixed 1:1 with the breast super-SILAC mix that served as an internal standard (Geiger et al., 2010)\"; Results: \"a common super-SILAC mix as a heavy-labeled reference sample\". summary.txt: Multiplicity 2, Labels0 empty (light), Labels1 Arg10;Lys8 for all 687 searched raws. One reference source per spiked sample (precedent PXD009868/PXD002882) to keep the row coordinate unique. The paper does not name the cell lines of the mix, so they are not listed (rule 18: named only when stated)."
+  },
+  {
+   "location": "characteristics[sample type] 680 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "study sample",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Patient and healthy-donor FFPE tissue samples; PRIDE:0001013 study sample (descendant of PRIDE:0000895)."
+  },
+  {
+   "location": "characteristics[sample type] 680 rows (file lines 7-11,17-21,27-31,39-45,53-59,65-69,77-83,91-97,103-107,115-121,129-135,141-145,153-159,167-173,179-183,191-197,205-211,217-221,229-235,243-249,255-259,267-273,281-287,293-297,303-307,313-317,323-327,333-337,343-347,353-357,363-367,373-377,383-387,393-397,403-407,413-417,423-427,433-437,443-447,453-4...)",
+   "value": "reference",
+   "source_ids": [
+    "paper",
+    "ols",
+    "precedent"
+   ],
+   "evidence": "Spiked-in super-SILAC internal standard; PRIDE:0000899 reference."
+  },
+  {
+   "location": "characteristics[organism] all rows",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Human breast cancer patients and healthy women; PRIDE organism Homo sapiens (NCBITaxon:9606)."
+  },
+  {
+   "location": "characteristics[organism part] 680 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "breast",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "FFPE breast tumour and tumour-adjacent / healthy breast ducts macrodissected from breast tissue; UBERON:0000310 breast."
+  },
+  {
+   "location": "characteristics[biological replicate] 680 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "integer per factor-value group",
+   "source_ids": [
+    "build_scripts",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each combination of the four factor values (disease x treatment status x Miller & Payne score x relapse), one number per independent tissue sample (rule 3). Each A/B/C/healthy sample is a distinct biological specimen."
+  },
+  {
+   "location": "characteristics[biological replicate], characteristics[age], characteristics[individual] 680 rows (file lines 7-11,17-21,27-31,39-45,53-59,65-69,77-83,91-97,103-107,115-121,129-135,141-145,153-159,167-173,179-183,191-197,205-211,217-221,229-235,243-249,255-259,267-273,281-287,293-297,303-307,313-317,323-327,333-337,343-347,353-357,363-367,373-377,383-387,393-397,403-407,413-417,423-427,433-437,443-447,453-4...)",
+   "value": "pooled",
+   "source_ids": [
+    "paper",
+    "precedent"
+   ],
+   "evidence": "The heavy channel is a pooled mix of labelled cell lines, not an individual (precedent PXD009868)."
+  },
+  {
+   "location": "characteristics[pooled sample] 680 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "not pooled",
+   "source_ids": [
+    "paper",
+    "mq_design"
+   ],
+   "evidence": "Each light channel is one patient/donor tissue sample (one MaxQuant experiment)."
+  },
+  {
+   "location": "characteristics[pooled sample] 680 rows (file lines 7-11,17-21,27-31,39-45,53-59,65-69,77-83,91-97,103-107,115-121,129-135,141-145,153-159,167-173,179-183,191-197,205-211,217-221,229-235,243-249,255-259,267-273,281-287,293-297,303-307,313-317,323-327,333-337,343-347,353-357,363-367,373-377,383-387,393-397,403-407,413-417,423-427,433-437,443-447,453-4...)",
+   "value": "pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Super-SILAC mix = pooled lysates of several labelled breast cancer cell lines (Geiger et al. 2010, cited); individual lines not named in this paper, so no SN= list."
+  },
+  {
+   "location": "characteristics[disease] / factor value[disease] 443 rows (file lines 2-6,12-16,32-38,46-52,70-76,84-90,108-114,122-128,146-152,160-166,184-190,198-204,222-228,236-242,260-266,274-280,298-302,308-312,328-332,338-342,358-362,368-372,388-392,398-402,418-422,428-432,448-452,458-462,478-482,488-492,508-512,518-522,538-542,548-552,568-572,578-582,598-602,608-612,628-632,63...)",
+   "value": "invasive breast carcinoma",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ev2",
+    "ols"
+   ],
+   "evidence": "Paper: \"All patients in the cohort had stage II or III invasive breast cancer\"; PRIDE: \"grade 2 or 3, lymph node positive, invasive breast carcinoma\". A = pre-treatment tumour biopsy, B = post-treatment residual carcinoma (EV2 legend). MONDO:0006256 invasive breast carcinoma."
+  },
+  {
+   "location": "characteristics[disease] / factor value[disease] 237 rows (file lines 22-26,60-64,98-102,136-140,174-178,212-216,250-254,288-292,318-322,348-352,378-382,408-412,438-442,468-472,498-502,528-532,558-562,588-592,618-622,648-652,686-692,728-734,770-774,808-814,846-852,888-893,928-932,966-972,1008-1014,1046-1050,1084-1090,1126-1132,1164-1169,1204-1210,1218-1224,1232-1238,1...)",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "ev2",
+    "ols"
+   ],
+   "evidence": "C = post-treatment tumour-adjacent normal ducts (EV2 legend) and C34-38 = healthy breast-reduction tissue; paper uses them as normal controls (\"tumor-adjacent normal samples... compared them to breast ducts from five breast reduction surgeries of healthy women\"). PATO:0000461 normal. Project-level disease NOT broadcast onto control rows."
+  },
+  {
+   "location": "characteristics[material type] 680 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "tissue",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "FFPE tissue samples."
+  },
+  {
+   "location": "characteristics[material type] 680 rows (file lines 7-11,17-21,27-31,39-45,53-59,65-69,77-83,91-97,103-107,115-121,129-135,141-145,153-159,167-173,179-183,191-197,205-211,217-221,229-235,243-249,255-259,267-273,281-287,293-297,303-307,313-317,323-327,333-337,343-347,353-357,363-367,373-377,383-387,393-397,403-407,413-417,423-427,433-437,443-447,453-4...)",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "precedent"
+   ],
+   "evidence": "Super-SILAC mix of SILAC-labelled cell lines."
+  },
+  {
+   "location": "characteristics[treatment status] / factor value[treatment status] 221 rows (file lines 2-6,32-38,70-76,108-114,146-152,184-190,222-228,260-266,298-302,328-332,358-362,388-392,418-422,448-452,478-482,508-512,538-542,568-572,598-602,628-632,658-664,700-706,742-748,780-786,822-828,860-866,900-906,938-944,980-986,1022-1026,1056-1062,1098-1104,1140-1144,1176-1182,1288-1293,1324-1330)",
+   "value": "pre-treatment",
+   "source_ids": [
+    "ev2",
+    "paper"
+   ],
+   "evidence": "EV2 legend \"A- Pre-treatment core needle biopsy\"; all patients then received neoadjuvant AC-T."
+  },
+  {
+   "location": "characteristics[treatment status] / factor value[treatment status] 424 rows (file lines 12-16,22-26,46-52,60-64,84-90,98-102,122-128,136-140,160-166,174-178,198-204,212-216,236-242,250-254,274-280,288-292,308-312,318-322,338-342,348-352,368-372,378-382,398-402,408-412,428-432,438-442,458-462,468-472,488-492,498-502,518-522,528-532,548-552,558-562,578-582,588-592,608-612,618-622,638-642...)",
+   "value": "post-treatment",
+   "source_ids": [
+    "ev2",
+    "paper"
+   ],
+   "evidence": "EV2 legend \"B- Post-treatment residual tumor sample; C- Post-treatment Tumor Adjacent Normal\" (surgical specimens after neoadjuvant AC-T, +Herceptin for HER2-overexpressing)."
+  },
+  {
+   "location": "characteristics[treatment status] / factor value[treatment status] 35 rows (file lines 1218-1224,1232-1238,1246-1252,1260-1266,1274-1280)",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Healthy breast-reduction donors received no cancer treatment."
+  },
+  {
+   "location": "characteristics[age] 645 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "<n>Y (31Y-80Y)",
+   "source_ids": [
+    "ev1"
+   ],
+   "evidence": "Dataset EV1 per-patient column \"Age\" under the header \"Diagnosis pre-treatment\" (age at diagnosis), joined on \"Patient code\" = sample number (1..40, 27a/27b). Same value written on the A, B and C rows of a patient. Healthy donors: no individual-level age published -> not available."
+  },
+  {
+   "location": "characteristics[sex] 680 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "female",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper: \"113 FFPE samples were retrospectively collected from 35 women with breast cancer ... and from five healthy women who underwent breast reduction surgeries\" - a statement about every individual, not a cohort statistic."
+  },
+  {
+   "location": "characteristics[developmental stage] 645 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "adult",
+   "source_ids": [
+    "ev1",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "Every patient's EV1 age is 31-80 years (>= 20Y; rule 9). EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[individual] 645 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "ST-nn",
+   "source_ids": [
+    "ev1"
+   ],
+   "evidence": "Dataset EV1 \"ST code\" of the patient, joined on \"Patient code\". 27a and 27b (bilateral cancer, analysed separately) share ST-52 - the same individual. Dates of birth/diagnosis/surgery in EV1 are deliberately NOT copied (rule 18, no extra identifying information)."
+  },
+  {
+   "location": "characteristics[individual] 35 rows (file lines 1218-1224,1232-1238,1246-1252,1260-1266,1274-1280)",
+   "value": "healthy_donor_34..healthy_donor_38",
+   "source_ids": [
+    "ev2"
+   ],
+   "evidence": "No donor ID published beyond the sample number 34C-38C (EV2 legend); the label is my own pseudonym built from that number."
+  },
+  {
+   "location": "characteristics[tumor grading] 221 rows (file lines 2-6,32-38,70-76,108-114,146-152,184-190,222-228,260-266,298-302,328-332,358-362,388-392,418-422,448-452,478-482,508-512,538-542,568-572,598-602,628-632,658-664,700-706,742-748,780-786,822-828,860-866,900-906,938-944,980-986,1022-1026,1056-1062,1098-1104,1140-1144,1176-1182,1288-1293,1324-1330)",
+   "value": "Grade 1 / Grade 2 / Grade 3",
+   "source_ids": [
+    "ev1",
+    "ols"
+   ],
+   "evidence": "EV1 \"Tumor Grade\" under \"Diagnosis pre-treatment\" (biopsy). NCIT:C28077/C28078/C28079."
+  },
+  {
+   "location": "characteristics[tumor grading] 222 rows (file lines 12-16,46-52,84-90,122-128,160-166,198-204,236-242,274-280,308-312,338-342,368-372,398-402,428-432,458-462,488-492,518-522,548-552,578-582,608-612,638-642,672-678,714-720,756-762,794-800,836-840,874-880,914-920,952-958,994-1000,1032-1038,1070-1076,1112-1118,1150-1156,1190-1196,1300-1305,1338-1343)",
+   "value": "Grade 1 / Grade 2 / Grade 3 / not available",
+   "source_ids": [
+    "ev1",
+    "ols"
+   ],
+   "evidence": "EV1 \"Tumor Grade\" under \"Surgery post-treatment\" (residual tumour); \"-\" in EV1 -> not available."
+  },
+  {
+   "location": "characteristics[clinical data] 645 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "tumour subtype at diagnosis ...; relapse-free survival N days; overall survival N days",
+   "source_ids": [
+    "ev1"
+   ],
+   "evidence": "EV1 columns Subtype (HP/TP/HER2/TN, expanded per the EV1 legend sheet), \"RFS (days)\" and \"OS (days)\" per patient."
+  },
+  {
+   "location": "characteristics[miller and payne score] / factor value[miller and payne score] 645 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "1 / 2 / 3 / 4",
+   "source_ids": [
+    "ev1",
+    "paper"
+   ],
+   "evidence": "EV1 \"Miller & Payne score\" per patient (MP1 n=6, MP2 n=13, MP3 n=16, MP4 n=1 tumours - reproduces the paper's counts). The paper compares better (MP3/4) vs worse (MP1/2) responders. Custom characteristics column (spec \"Extending Templates\"; NCIT has only the classification NCIT:C63611, no per-grade terms)."
+  },
+  {
+   "location": "characteristics[relapse] / factor value[relapse] 645 rows (file lines 2-6,12-16,22-26,32-38,46-52,60-64,70-76,84-90,98-102,108-114,122-128,136-140,146-152,160-166,174-178,184-190,198-204,212-216,222-228,236-242,250-254,260-266,274-280,288-292,298-302,308-312,318-322,328-332,338-342,348-352,358-362,368-372,378-382,388-392,398-402,408-412,418-422,428-432,438-442,448-452...)",
+   "value": "yes / no",
+   "source_ids": [
+    "ev1",
+    "paper"
+   ],
+   "evidence": "yes when EV1 \"Date of Relapse\" is filled. 7 patients relapsed - matches paper (\"seven patients showed relapse post-treatment\"). The paper compares patients with vs without relapse (Fig 2, WGCNA). Custom characteristics column."
+  },
+  {
+   "location": "characteristics[miller and payne score], characteristics[relapse], characteristics[clinical data], characteristics[tumor grading] 35 rows (file lines 1218-1224,1232-1238,1246-1252,1260-1266,1274-1280) and all SILAC heavy rows",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Healthy donors and the cell-line reference have no tumour / response / follow-up."
+  },
+  {
+   "location": "assay name, comment[data file] all rows",
+   "value": "<raw file stem> / <raw file>",
+   "source_ids": [
+    "files",
+    "mq_design"
+   ],
+   "evidence": "680 of the 689 deposited .raw files; MaxQuant design names with commas (e.g. \"Animal_20150310_ASK_CS_2A1,2,3\") were matched to the deposited names without commas (\"..._2A123.raw\")."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "SILAC light / SILAC heavy",
+   "source_ids": [
+    "mq_summary",
+    "paper",
+    "channel_check"
+   ],
+   "evidence": "summary.txt Multiplicity 2, Labels1 Arg10;Lys8 on every searched raw (rule 14 verified). Direction checked on the data: in Dataset EV2 log2(H/L), COL1A1/COL1A2/COL3A1/DCN/LUM/HBB/HBA1/IGHG1 have medians -5.5 to -6.8 across all samples (tissue/blood proteins absent from cultured lines are light-dominant), so light = tissue, heavy = cell-line reference."
+  },
+  {
+   "location": "comment[fraction identifier] all rows",
+   "value": "1-7",
+   "source_ids": [
+    "mq_design",
+    "build_scripts"
+   ],
+   "evidence": "MaxQuant design \"Fraction\" per raw. Fractions 1-5 (2015 batch) / 1-7 (2016 batch) are SCX fractions; for 2A,2B,3A,3B,4A,4B,5A,5B,6A,6B,7A,7B,8A,8B the design assigns fraction 6 to the re-injected pooled SCX fractions 1-3 (\"..123.raw\") and 7 to pooled 4-5 (\"..45.raw\"). build numbered positionally; postbuild.py set the design value per data file (changes only 25B4-6, 26C6-7 where the design has gaps)."
+  },
+  {
+   "location": "comment[technical replicate] all rows",
+   "value": "1",
+   "source_ids": [
+    "mq_design"
+   ],
+   "evidence": "One injection series per sample; no technical replicates in the design."
+  },
+  {
+   "location": "comment[instrument] 656 rows (file lines 2-657)",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw_headers",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw header model string \"Q Exactive Plus - Orbitrap MS\" in all 330 Animal_2015*/Kermit_2015* raws. Paper: \"coupled to either Q-Exactive (QE) Plus or Q-Exactive HF\". PRIDE's instrument field \"Q Exactive\" is overridden by the raw files."
+  },
+  {
+   "location": "comment[instrument] 704 rows (file lines 658-1361)",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_headers",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw header model string \"Q Exactive HF - Orbitrap MS\" in all 359 20160706_* raws."
+  },
+  {
+   "location": "comment[cleavage agent details] (first column) all rows",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_params",
+    "campaign_rules"
+   ],
+   "evidence": "Digestion with \"Lysine-C (LysC)-Trypsin mix (Promega, 1:100) and sequencing grade-modified trypsin (Promega, 1:50)\". MaxQuant searched with Trypsin/P (summary.txt Enzyme); per rule 2 the digestion enzyme Trypsin is written."
+  },
+  {
+   "location": "comment[cleavage agent details] (second column) all rows",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "campaign_rules",
+    "build_scripts"
+   ],
+   "evidence": "The LysC-Trypsin mix contains Lys-C (rule 2: second cleavage column). Inserted by postbuild.py because the contract column is not multiple."
+  },
+  {
+   "location": "comment[modification parameters] all rows",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_params",
+    "mq_summary",
+    "campaign_rules"
+   ],
+   "evidence": "parameters.txt: Fixed modifications Carbamidomethyl (C); summary.txt: Variable modifications Oxidation (M);Acetyl (Protein N-term); Labels1 Arg10;Lys8 (+10.008 Da R = UNIMOD:267, +8.014 Da K = UNIMOD:259; rule 11 MT=Variable)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] all rows",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mq_params"
+   ],
+   "evidence": "Andromeda allSpectra.HCD.FTMS.sil1.apar: \"peptide mass tolerance=4.5\", unit ppm (main search)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] all rows",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_params"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"; apar \"fragment mass tolerance=20\" ppm."
+  },
+  {
+   "location": "comment[dissociation method] all rows",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "mq_params",
+    "raw_headers"
+   ],
+   "evidence": "apar \"fragmentation type=HCD\"; Q Exactive instruments fragment by HCD only."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] all rows",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "mq_params",
+    "raw_headers"
+   ],
+   "evidence": "MS/MS searched as FTMS (apar allSpectra.HCD.FTMS); Q Exactive MS2 is read in the Orbitrap."
+  },
+  {
+   "location": "comment[fractionation method] all rows",
+   "value": "NT=Strong cation-exchange chromatography (SCX);AC=PRIDE:0000561",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "\"separated using strong cation exchange (SCX) fractionation\"."
+  },
+  {
+   "location": "comment[reduction reagent] all rows",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "\"reduced with 5 mM dithiothreitol (DTT)\"."
+  },
+  {
+   "location": "comment[alkylation reagent] all rows",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "\"alkylated with 15 mM IAA (Iodoacetamide)\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"MS acquisition was performed in a data-dependent manner, with selection of the top 10 (QE-Plus) and top 15 (QE-HF)\"."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] all rows",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "campaign_rules"
+   ],
+   "evidence": "Rule 1 and rule 10. Templates: human patient FFPE tumour study -> human + clinical-metadata + oncology-metadata (rules 15/18); cell-lines not declared (only the pooled reference is cell-line material). The spec submodule's nested templates copy is older than upstream 7da1747."
+  },
+  {
+   "location": "technology type all rows",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "factor value[*] 680 rows (file lines 7-11,17-21,27-31,39-45,53-59,65-69,77-83,91-97,103-107,115-121,129-135,141-145,153-159,167-173,179-183,191-197,205-211,217-221,229-235,243-249,255-259,267-273,281-287,293-297,303-307,313-317,323-327,333-337,343-347,353-357,363-367,373-377,383-387,393-397,403-407,413-417,423-427,433-437,443-447,453-4...)",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "The reference channel is not part of any comparison."
+  }
+ ],
+ "limitations": [
+  "PARTIAL scope: 9 of 689 raw files are not annotated. Experiment 32D (20160706_ASK_CS_32D1..32D7.raw, searched by MaxQuant) and Experiment 27C (20160706_ASK_CS_27C6.raw, 20160706_ASK_CS_27C7.raw, in the design but not in summary.txt, i.e. not searched) are not among the 113 samples of the paper/Dataset EV2 (no 32D or 27C column; legend defines only A/B/C), so their sample identity is undocumented (rule 7). 27C6/27C7 may be the missing fractions 6-7 of 27aC (5 fractions) or of 27bC, but no source says so. combined_NAT.zip (MaxQuant combined folder) is also not an SDRF data file.",
+  "Age is EV1 \"Age\" listed under \"Diagnosis pre-treatment\" (age at diagnosis) and is written on the post-treatment (B, C) rows too; surgery was about 4-15 months later (130-455 days; patient 15 has surgery dated before diagnosis), so for some patients the age at surgical sampling may be one year higher. Computing it from EV1 dates of birth was rejected (several DOBs are 1 January placeholders; patient 15 has surgery before diagnosis).",
+  "Healthy donors (34C-38C): age, ancestry and donor IDs are not published; individual = \"healthy_donor_NN\" is my pseudonym from the sample number.",
+  "Super-SILAC composition: the paper cites Geiger et al. 2010 for the \"breast super-SILAC mix\" but does not list its cell lines; SN= names, sex and organism part of the reference are therefore not available.",
+  "Miller & Payne score and relapse are custom characteristics columns (no template column fits; NCIT has no per-grade Miller-Payne terms); parse_sdrf may report them as unknown/extension columns.",
+  "Ancestry and cell type not stated anywhere -> not available. Tumour size (EV1 coded 1-4 categories) and lymph node status are not written: the template wants number+unit for tumor size and a TNM mapping would be my inference.",
+  "Fraction identifiers 6/7 on 14 early-batch samples are MaxQuant design fraction numbers for re-injected pooled SCX fractions (1-3 and 4-5), not distinct SCX fractions; kept as the deposited search defines them.",
+  "techsdrf not installed; instruments read from raw-header model strings, HCD from the Andromeda .apar, no per-scan verification of collision energy or scan ranges."
+ ]
+}

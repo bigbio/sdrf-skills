@@ -1,0 +1,378 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD018305.sdrf.tsv",
+ "dataset": "PXD018305",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD018305 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD018305/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/files_all.json; 138 entries = 129 .raw + 9 MaxQuant zips; every entry projectAccessions contains PXD018305)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Schmitt M et al. Proteogenomics Reveals Perturbed Signaling Networks in Malignant Melanoma Cells Resistant to BRAF Inhibition. Mol Cell Proteomics 2021;20:100163. doi:10.1016/j.mcpro.2021.100163, PMID 34673281, PMC8603206; full text https://pmc.ncbi.nlm.nih.gov/articles/PMC8603206/ (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/pmc.html, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/pmc.txt)"
+  },
+  {
+   "id": "supp_methods",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8603206.1/mmc1.docx (Supplementary Materials and Methods; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/supp/mmc1.docx, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/supp/mmc1.txt)"
+  },
+  {
+   "id": "supp_tableS3",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8603206.1/mmc4.xlsx (supplemental Table S3, sheets S1-S5; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/supp/mmc4.xlsx)"
+  },
+  {
+   "id": "mq_main",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD018305/A375_proteogenomics_txt.zip members summary.txt, parameters.txt, experimentalDesignTemplate.txt and https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD018305/A375_proteogenomics_mqpar_fasta.zip member mqpar.xml (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/mq/A375_proteogenomics_*)"
+  },
+  {
+   "id": "mq_pull",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD018305/RUNX1_SynPep_txt.zip members summary.txt, parameters.txt and https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD018305/RUNX1_SynPep_mqpar_fasta.zip member mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/mq/RUNX1_SynPep_*)"
+  },
+  {
+   "id": "mq_ip",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD018305/RUNX1_OE_txt.zip members summary.txt, parameters.txt, experimentalDesignTemplate.txt, proteinGroups.txt, peptides.txt, evidence.txt; https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD018305/RUNX1_OE_mqpar_fasta.zip mqpar.xml + FASTA (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/mq/RUNX1_OE_*)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of every deposited .raw (https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD018305/<file>.raw), UTF-16 decoded: instrument model per file /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/raw/instrument_all.tsv; NCE from the embedded method for 12 files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/raw/nce_check.txt"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0132?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/cellosaurus_CVCL_0132.txt); child lines checked /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/cello/"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 (sdrf-tools verify for comment accessions, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/verify_accessions.txt; exact-label search for characteristics values, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/verify_terms.txt)"
+  },
+  {
+   "id": "rules",
+   "kind": "campaign-rule",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md rules 1 and 10; upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (latest ms-proteomics 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t"
+  },
+  {
+   "id": "ip_checks",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/runx1_tableS31_labels.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/runx1_channel_check.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/runx1_peptide_crosscheck.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/runx1_br_to_exp.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/runx1_author_average_check.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/runx1_br3_check.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD018305/runx1_hdac1_check.txt"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-126",
+   "value": "A375<S|R>_BR<n>_<proteome|phospho> (rows 1-114); A375S_pulldown_<RUNX1-S276|RUNX1-L276|beads|input>_R<n> (rows 115-126)",
+   "source_ids": [
+    "files",
+    "mq_main",
+    "mq_pull",
+    "paper"
+   ],
+   "evidence": "Main screen: files *_MaS_A375<S|R>_<proteome|phospho>_R<n>_F<k>.raw; MaxQuant experiments A375S_prot_1-3, A375R_prot_1-3, A375S_phospho_1-3, A375R_phospho_1-3. Proteome and TiO2-enriched portions of one replicate get separate sources because characteristics[enrichment process] differs. Pulldown: MaxQuant experiments A375S_Syn_S276_01-03, A375S_Syn_L276_01-03, Beads_01-03, A375_input_01-03."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-126",
+   "value": "126 deposited .raw; fractions 1-9 (proteome), 1-10 (phospho TiO2 rounds), 1 (pulldown)",
+   "source_ids": [
+    "files",
+    "mq_main",
+    "paper",
+    "supp_methods"
+   ],
+   "evidence": "Paper: screen 1 = 114 runs, 3 biological replicates per cell line, \"19 samples per replicate consisting of nine fractionated proteome samples and ten rounds of phosphopeptide enrichment\"; supp: Pierce high-pH kit, nine fractions. Fraction id = file suffix _F<k>. MaxQuant experimentalDesignTemplate fractions 111-119 etc. for proteome; all phospho rounds of a replicate share one MaxQuant fraction (121) - the sequential TiO2 rounds are encoded as fractions 1-10 of the phospho source. 20210215_MaS_A375R_proteome_R3_F4 is R3 fraction 4 (MaxQuant fraction 314). Pulldown files are single injections. The 3 SILAC IP runs are excluded (see limitations)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-126",
+   "value": "1-3 per group",
+   "source_ids": [
+    "paper",
+    "supp_methods",
+    "mq_main",
+    "mq_pull"
+   ],
+   "evidence": "Paper: \"three biological replicates per cell line\" (screen 1); pulldown \"three independent replicates\", supp \"each peptide was used for three independent pulldowns\"; beads only \"three replicates\"; input runs A375_input_01-03."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-126",
+   "value": "1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Each replicate/fraction injected once; no technical re-injection described or deposited."
+  },
+  {
+   "location": "characteristics[organism] rows 1-126",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-126",
+   "value": "A375 / CVCL_0132 / A-375",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"The human metastatic BRAFV600E-mutated melanoma cell line A375 (CRL-1619, ATCC)\"; A375 R was generated in-house by selection with PLX4720 (Sinnberg et al. 2016) - Cellosaurus lists no entry for this derivative (children of CVCL_0132 checked: A375-R CVCL_6234 is an unrelated Fidler line, A375/R CVCL_IW10 a different PLX4720-resistant line from Baenke et al.), so the parental accession is used for both S and R, as in the campaign precedent PXD010683."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-126",
+   "value": "skin of leg",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: \"Derived from site: In situ; Leg, skin; UBERON=UBERON_0001511\"; OLS UBERON:0001511 = skin of leg."
+  },
+  {
+   "location": "characteristics[disease] rows 1-126",
+   "value": "amelanotic melanoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3802 Amelanotic melanoma; OLS MONDO:0002971 amelanotic melanoma. The paper calls it malignant melanoma; the cell-line record is more specific."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage] rows 1-126",
+   "value": "54Y / female / adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 54Y, SX Female; donor age >= 20Y -> EFO:0001272 adult (batch rule 9)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-126",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Caucasian.\" -> HANCESTRO:0005 European ancestry."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-126",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: \"A375 S and R cells were grown in RPMI medium (Sigma-Aldrich) supplemented with FBS\"; OLS NCIT:C178973."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-27, 55-84, 115-126",
+   "value": "ATCC",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: A375 (CRL-1619, ATCC). R rows (28-54, 85-114) are not available: the resistant line was derived in-house (Sinnberg et al. 2016), not obtained from a repository."
+  },
+  {
+   "location": "characteristics[cell line authentication] rows 1-27, 55-84, 115-126",
+   "value": "Microsynth AG",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: A375 \"was used in this study and authenticated by Microsynth AG\". Not stated for the derived resistant line, so R rows are not available."
+  },
+  {
+   "location": "characteristics[phenotype] + factor value[phenotype] rows 1-126",
+   "value": "PLX4720 sensitive (S rows 1-27, 55-84, 115-126) / PLX4720 resistant (R rows 28-54, 85-114)",
+   "source_ids": [
+    "paper",
+    "files",
+    "mq_main"
+   ],
+   "evidence": "Paper: \"The generation of the cell line with acquired resistance to vemurafenib analogue PLX4720 ... (for simplicity referred to as vemurafenib in the Results section)\"; drug-sensitive (n=3) vs drug-resistant (n=3) A375 compared by LFQ/intensities (the study's main comparison). File/experiment tokens A375S / A375R. Pulldowns used A375 S cells (paper \"synthetic peptide pull-downs in A375 S cells\"; supp \"Cell extracts of A375 S\"; input files A375S_proteome_input). Custom characteristics column (spec Extending Templates; precedent PXD010683)."
+  },
+  {
+   "location": "characteristics[bait] + factor value[bait] rows 1-126",
+   "value": "not applicable (rows 1-114); RUNX1 S276 / L276 synthetic peptide, beads-only control, input lysate (rows 115-126)",
+   "source_ids": [
+    "supp_methods",
+    "paper",
+    "mq_pull",
+    "supp_tableS3"
+   ],
+   "evidence": "Supp Table 1: RUNX1_S276 = SGSGSPSVHPATPISPGRASGM, RUNX1_L276 = SGSGSPSVHPATPILPGRASGM, 17 aa + biotinylated N-terminal linker, coupled to streptavidin magnetic beads; \"beads without synthetic peptides were used as a control\". Files syn_S/syn_L/B -> MaxQuant experiments A375S_Syn_S276/L276, Beads; Table S3.3 compares Syn_L vs Syn_S vs Beads (the pulldown factor). The input runs (A375S_proteome_input_01-03, MaxQuant A375_input) are the pre-cleared input lysate; labelled \"pull-down input lysate (no bait)\" so they are not pooled with the main-screen proteome. Main-screen rows have no bait. Custom characteristics column, convention from curated datasets (characteristics[bait] in >100 curated SDRFs)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-126",
+   "value": "enrichment of phosphorylated protein (rows 55-114); not applicable (other rows)",
+   "source_ids": [
+    "paper",
+    "mq_main",
+    "ols"
+   ],
+   "evidence": "Paper: TiO2 phosphopeptide enrichment, 10 rounds per replicate; files *_phospho_*; OLS EFO:0010806."
+  },
+  {
+   "location": "comment[instrument] rows 1-114",
+   "value": "NT=Orbitrap Exploris 480;AC=MS:1003028",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw headers of all main-screen files read \"Orbitrap Exploris 480\"; paper: \"For screen 1, all samples were measured on an Exploris 480\"."
+  },
+  {
+   "location": "comment[instrument] rows 115-126",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw headers of all 12 pulldown files read \"Q Exactive HF\"; paper: \"Synthetic peptide pull-downs were analyzed on Q Exactive HF\". PRIDE also lists Q Exactive HF-X, which belongs only to the excluded SILAC IP runs (raw headers HF-X)."
+  },
+  {
+   "location": "comment[collision energy] rows 1-114",
+   "value": "28 NCE",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Paper: \"normalized collision energy of 28\" (screen 1); Exploris method header \"Collision Energy (%) = 28\", Collision Energy Type = Normalized."
+  },
+  {
+   "location": "comment[collision energy] rows 115-126",
+   "value": "27 NCE",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "QE HF method header in 4 pulldown/input files: \"(N)CE / stepped (N)CE  nce: 27\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-126",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: \"operated in data-dependent mode\"; top20 (screen 1) / top7 (pulldown)."
+  },
+  {
+   "location": "comment[dissociation method], comment[ms2 mass analyzer] rows 1-126",
+   "value": "beam-type CID MS:1000422 / orbitrap MS:1000484",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: \"higher-energy collisional dissociation (HCD)\"; \"MS/MS spectra were recorded with a resolution of 30,000\" / pulldown \"resolution of 60,000\" in the Orbitrap."
+  },
+  {
+   "location": "comment[cleavage agent details] (both columns) rows 1-126",
+   "value": "NT=Trypsin;AC=MS:1001251 and NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "supp_methods",
+    "mq_main",
+    "mq_pull",
+    "ols"
+   ],
+   "evidence": "Paper (cell lysates): \"digested with Lys-C (Lysyl Endopeptidase, Wako) for 3 h ... with trypsin (Promega) overnight\"; supp (on-bead pulldown digestion): \"pre-digested with Lys-C (1 ug ...) for 3h ... digested with trypsin (1 ug ...) overnight\". MaxQuant searched Trypsin/P (batch rule 2: the digestion enzymes are annotated; the search rule is a note)."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-126",
+   "value": "DTT PRIDE:0000608 / IAA PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "supp_methods",
+    "ols"
+   ],
+   "evidence": "Paper: \"reduced with 10 mM of dithiothreitol (DTT) ... alkylated with 55 mM iodoacetamide\"; supp pulldown: \"1 mM DTT ... 5.5 mM of IAA\"."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-54",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "supp_methods",
+    "ols"
+   ],
+   "evidence": "Supp: \"Peptides were fractionated using Pierce high pH reversed-phase peptide fractionation Kit ... into nine fractions\". Phospho rows (TiO2 rounds) and pulldown rows: not applicable."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-126",
+   "value": "4.5 ppm / 20 ppm",
+   "source_ids": [
+    "mq_main",
+    "mq_pull",
+    "paper"
+   ],
+   "evidence": "mqpar mainSearchTol 4.5 (ppm; firstSearchTol 20), parameters.txt \"MS/MS tol. (FTMS) 20 ppm\" in both searches; paper \"MS tolerance was set at 4.5 ppm and MS/MS tolerance at 20 ppm\"."
+  },
+  {
+   "location": "comment[modification parameters] (columns 1-3) rows 1-126",
+   "value": "Carbamidomethyl C Fixed; Oxidation M Variable; Acetyl Protein N-term Variable",
+   "source_ids": [
+    "mq_main",
+    "mq_pull",
+    "ols"
+   ],
+   "evidence": "summary.txt per raw file: Fixed modifications \"Carbamidomethyl (C)\"; Variable modifications include \"Oxidation (M);Acetyl (Protein N-term)\" for all 114 main-screen files and all 12 pulldown files; mqpar fixedModifications/variableModifications agree."
+  },
+  {
+   "location": "comment[modification parameters] (column 4) rows 55-126",
+   "value": "NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable",
+   "source_ids": [
+    "mq_main",
+    "mq_pull",
+    "ols"
+   ],
+   "evidence": "summary.txt: the 60 phospho files and the 12 pulldown files were searched with \"Phospho (STY)\" in addition (second mqpar parameter group / SynPep mqpar). The 54 proteome files were searched without it -> not applicable on rows 1-54 (batch rule 5)."
+  },
+  {
+   "location": "comment[label] rows 1-126",
+   "value": "label free sample",
+   "source_ids": [
+    "mq_main",
+    "mq_pull",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt Multiplicity 1, empty Labels0 for all 126 files; mqpar lfqMode 1 for both searches; paper \"label-free quantification\" for both comparisons."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-126",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "rules"
+   ],
+   "evidence": "Campaign batch rules 1 and 10: sdrf version v1.1.0 (spec README.adoc:27); ms-proteomics latest 1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (the spec submodule nested templates copy is older); template cells written by sdrf-tools build."
+  },
+  {
+   "location": "technology type rows 1-126",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Written by sdrf-tools build from ms-proteomics; LC-MS/MS study."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 126 of 129 deposited .raw files annotated. Excluded: the 3 SILAC RUNX1 immunoprecipitation runs 20190719_MaS_KB_OE_Runx1_R1.raw, 20190719_MaS_KB_OE_Runx1_R2.raw, 20190514_MaS_RUNX1_IP_02.raw (MaxQuant RUNX1_OE, multiplicity 3: light / Arg6;Lys4 / Arg10;Lys8). Their channel map is contradictory across sources: (1) paper and PRIDE protocol prose list pCMV_Flag_RUNX1, pCMV_Flag_RUNX1_S276L, empty pCMV_Flag then (\"light\":\"medium\":\"heavy\"); (2) supplemental Table S3.1 states Flag empty = Light in BR1-3, RUNX1_S276L = Medium/Heavy/Medium and RUNX1_wt = Heavy/Medium/Heavy for BR1/BR2/BR3; (3) deposited data: RUNX1 is lowest in light (supports Table S3.1 over the prose for the empty-vector channel), but the only S276L-specific peptide (QIQPSPPWSYDQSYQYLGSIASPSVHPATPILPGR) is quantified in the MEDIUM channel of IP_RUNX1_02 = Table BR2 (S3.1 says S276L = Heavy there; weak ID: score 39.3, PEP 0.043, H/M 0.62), the HDAC1 BR1 ratios and the authors' own averaged wt_emp column both fit the inverse M/H assignment. In addition the third deposited run (20190514_MaS_RUNX1_IP_02, 5% MS/MS identified) shares only 232 peptides with the BR3 data of Table S3.2 (1848 peptides), so Table BR3 most likely comes from an undeposited run. Per batch rules 6/7 the arm is left out rather than annotated with a contradicted or unresolved channel identity. Section in annotations/BLOCKED.md.",
+  "Phospho runs F1-F10 are sequential TiO2 enrichment rounds per the Methods; the supplementary workflow legend says high-pH fractions were \"measured directly (proteome) or applied to phosphopeptide enrichment\", which could mean the phospho samples were also hpH fractions. MaxQuant gives all 10 phospho files of a replicate one fraction number, consistent with enrichment rounds; comment[fractionation method] is not applicable on phospho rows.",
+  "Whether the three pulldown replicates (and three inputs) come from independent cultures or one lysate is not stated (\"three independent pulldowns\", 2 mg pre-cleared input each); they are numbered biological replicates 1-3 per bait group.",
+  "Collision energy for the pulldown runs (27 NCE) is read from the embedded instrument method of 4 of the 12 files (all four identical); not stated in the paper.",
+  "A375 R has no Cellosaurus entry; the parental CVCL_0132 is used (precedent PXD010683). Passage number, storage temperature, cell type and individual are not available.",
+  "techsdrf is not installed; instrument and NCE were verified by HTTP range reads of the raw headers instead.",
+  "sdrf-tools reconcile reports two findings (SILAC quantification method, Q Exactive HF-X in the protocol); both concern only the excluded SILAC IP runs - refuted with evidence in PXD018305.validation.txt."
+ ]
+}
