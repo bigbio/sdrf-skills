@@ -49,3 +49,46 @@ exit code: 0
 2. parse_sdrf WARNING "Invalid value 'SN=LS411N;SN=HT-29;SN=SW480;SN=SW837;SN=SW1463' - must be one of the allowed values" (characteristics[pooled sample], 122 heavy rows): justified. TERMS.tsv and the contract allow "fixed: not pooled, pooled; or pattern: SN=sample1;SN=sample2". The validator checks only the fixed list. Rule 18 asks for the reference cell lines to be named when stated. Curated precedent PXD001370 uses the same SN= form.
 3. parse_sdrf WARNINGs "Term: cT3N1M0 / cT2N1M0 / cT3N0M0 / cT4N1M0 ... not found in ncit" (characteristics[tumor stage]): justified. The check is warning level. The oncology-metadata template documents combined TNM notation with a c/p prefix, and its own examples (T2N1M0 ...) are not NCIT terms either. NCIT has no combined-TNM term.
 4. convert-openms: SUCCESS. The one warning ("no TA= specified", 244x) comes from Acetyl PP=Protein N-term, which correctly has no TA. Conditions: Pathologic Complete Response 64 files, Residual Disease 58, not applicable 122 (the heavy reference channel).
+
+## Post-merge correction: biological replicate numbering
+
+Defect (later review of a similar dataset; campaign rule 3; spec README.adoc ~line 330): characteristics[biological replicate] was 1 on all 122 SILAC light (patient) rows, which collapsed the independent patients in each factor-value group into one replicate.
+Fix: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD030422/fix_biorep.py (deterministic). Light rows are numbered 1..n within each factor value[treatment response] group, one number per patient (characteristics[individual], sorted by Internal ID). All runs of a patient share its number. The 122 heavy 'pooled' rows are unchanged. The script asserts that only this column changed, and only on light rows (118 rows changed; the 4 rows of the two patients numbered 1 kept 1). Map: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD030422/biological_replicate_map.tsv.
+  Pathologic Complete Response: 32 patients -> 1-32 (64 rows)
+  Residual Disease: 29 patients -> 1-29 (58 rows)
+The manifest claim "characteristics[biological replicate] the 122 SILAC light rows" was updated, and sources 'spec' and 'fix_biorep' were added.
+New artifact sha256: 7194fc25157f417cd8b2b7abd19dd7e3a832cf295991bd3383cccb917edd5c17 (was 33b7e596f43995cc3d4cad3e6e9ed2d4bc134437eddc59f3b1a831c006f3c5d9)
+
+$ sdrf-tools structure annotations/PXD030422.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD030422.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=LS411N;SN=HT-29;SN=SW480;SN=SW837;SN=SW1463' - must be one of the allowed values
+WARNING: Term: cT3N1M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+WARNING: Term: cT2N1M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+WARNING: Term: cT3N0M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+WARNING: Term: cT4N1M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools check annotations/PXD030422.sdrf.tsv
+Hallucination Report: annotations/PXD030422.sdrf.tsv
+  Terms checked:     20
+  Verified:          20
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD030422.evidence.json
+annotations/PXD030422.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD030422.sdrf.tsv annotations/PXD030422.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+Warnings are unchanged from round 1 and stay justified as in findings 2-3 above.
