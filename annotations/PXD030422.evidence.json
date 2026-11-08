@@ -62,6 +62,16 @@
    "id": "campaign_rules",
    "kind": "curation-policy",
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (rules 1, 2, 10, 11, 14, 15, 17, 18)"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc ~line 330 (biological replicate numbering per factor value group)"
+  },
+  {
+   "id": "fix_biorep",
+   "kind": "local-script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD030422/fix_biorep.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD030422/biological_replicate_map.tsv"
   }
  ],
  "claims": [
@@ -126,11 +136,14 @@
   },
   {
    "location": "characteristics[biological replicate] the 122 SILAC light rows (odd rows 1-243)",
-   "value": "1",
+   "value": "1..n per factor value group (Pathologic Complete Response: 1-32, Residual Disease: 1-29)",
    "source_ids": [
-    "cohort"
+    "cohort",
+    "spec",
+    "campaign_rules",
+    "fix_biorep"
    ],
-   "evidence": "Each patient contributes one tumour sample; repeated runs are technical replicates (comment[technical replicate]). Heavy rows: 'pooled' (allowed by TERMS allow_pooled; precedent PXD000332)."
+   "evidence": "Each patient (characteristics[individual] = cohort Internal ID) contributes one independent tumour sample; repeated runs are technical replicates (comment[technical replicate]). Per spec README.adoc ~330 and campaign rule 3, biological replicate restarts at 1 within each factor value[treatment response] group and is unique per patient: patients sorted by Internal ID (order carries no meaning), all runs of one patient share its number. Post-merge correction (previously '1' on all light rows, which collapsed 61 patients). Full map: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD030422/biological_replicate_map.tsv. Heavy rows: 'pooled', unchanged."
   },
   {
    "location": "characteristics[biological replicate] the 122 SILAC heavy rows (even rows 2-244)",

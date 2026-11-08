@@ -242,13 +242,22 @@
    "evidence": "Numeric token after MuazzamA_ in each of the 50 unique .d names (all 50 distinct; DIA-NN processed exactly these 50 runs). Not asserted to be a patient ID."
   },
   {
-   "location": "characteristics[sample type]; characteristics[pooled sample]; characteristics[biological replicate] rows 1-50",
-   "value": "study sample; not pooled; 1",
+   "location": "characteristics[sample type]; characteristics[pooled sample] rows 1-50",
+   "value": "study sample; not pooled",
    "source_ids": [
     "paper",
     "ols"
    ],
    "evidence": "One run per individual BM sample (\"For individual BM analysis\"). PRIDE:0001013."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-50",
+   "value": "1..50 (one number per BM source, natural sort of the numeric token: BM-838 = 1 ... BM-5987 = 50)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "One run per individual BM sample (\"For individual BM analysis\"); 50 distinct BM sources, all in one factor value[disease] group. Spec README.adoc ~l.330 and campaign rule 3: numbering restarts per factor-value group and is unique per independent biological sample. characteristics[individual] is 'not available' (no token-to-patient link published), so the independent unit is the source name; no two sources are merged because nothing shows they share a patient. Post-merge correction: the merged file had 1 for every sample; fixed by the deterministic script fix-PXD048525/fix_biorep.py (only this column changed)."
   },
   {
    "location": "characteristics[spiked compound] rows 1-50",

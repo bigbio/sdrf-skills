@@ -223,11 +223,11 @@
   },
   {
    "location": "characteristics[biological replicate] all rows",
-   "value": "1 (light) / pooled (heavy)",
+   "value": "1..49 (light, one number per characteristics[individual] within the factor value[disease] group, sorted by PHLC ID) / pooled (heavy)",
    "source_ids": [
     "samplelist"
    ],
-   "evidence": "Each light source is one tumour of one case, measured once. Heavy = aliquots of one pooled standard, not replicates."
+   "evidence": "Each light source is one tumour of one case (49 distinct PHLC individuals), measured once. Spec README.adoc ~l.330 and campaign rule 3: numbering restarts per factor-value group and is unique per independent individual, so the 49 light rows (single group 'lung adenocarcinoma') are numbered 1..49 by sorted individual ID. Post-merge correction: the merged file had 1 for every patient; fixed by the deterministic script fix-PXD048525/fix_biorep.py (only this column changed). Heavy = aliquots of one pooled standard, not replicates -> pooled, unchanged."
   },
   {
    "location": "characteristics[individual] light rows",
