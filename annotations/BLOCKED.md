@@ -1548,3 +1548,17 @@ The 40 searched raws are annotated in `annotations/PXD029618.sdrf.tsv` (80 rows)
 The other 9 raws are annotated: `annotations/PXD023136-silac.sdrf.tsv` (Fig 1B SILAC, 3 runs × 2 channels) and `annotations/PXD023136-aems-lfq.sdrf.tsv` (Fig 3B label-free Flag AE-MS, 6 runs).
 
 **Unblocked by:** the PNAS Fig 3F/3G legend + SI Methods (or an author sample sheet) mapping run 01–36 to cell line (WT / TMEM126A KO / Flag line), pulse or chase time and replicate (and whether runs are Flag eluates or whole mitochondria). Rows would then be one light (pre-existing) + one heavy (newly synthesised) row per run, as in PXD028934, with MaxQuant 1.6.10.43 search parameters (Carbamidomethyl fixed; Oxidation, Acetyl N-term variable; Arg10/Lys8 labels; FTMS 20 ppm).
+
+## PXD023790 — HAX1 controls mitochondrial proteostasis (Fan et al., J Clin Invest 2022), 1 pulse-SILAC raw (partial block)
+
+**Blocker: the sample identity of `20180614_QX0_MaMu_SA_M362_PBL985SILAC_MITO_t6_H1.raw` (MaxQuant experiment `2MITO_t6_H1`) is contradicted by its own data.**
+
+| source | what it says |
+|---|---|
+| raw name, MaxQuant experiment, submitter sheet `SRDF_metadata_Fan_et_al.txt` | HAX1-/- clone H1, round 2, mitochondria, 6 h; marked "ok" (not in the mislabel list) |
+| `Fan_et_al_triple_SILAC_txt.7z` → `proteinGroups.txt` | HAX1 (O00165) identified by MS/MS, 8 peptides, Intensity L/M/H 1.1e9 / 5.2e8 / 1.9e8 — wild-type level. Clone H1 has HAX1 = 0 in all three channels in every other run (17 runs) |
+| paper / supplementary | no per-run sample sheet |
+
+Which sample was actually measured (a WT mitochondria sample, a swap) cannot be established. The other 106 deposited triple-SILAC raws are annotated in `annotations/PXD023790-silac.sdrf.tsv` (318 rows); the 12 HSP27 FLAG-IP raws in `annotations/PXD023790-hsp27-ip.sdrf.tsv`. Also not annotatable: `20180312_QX8_MaMu_SA_PBL985_MITO_t0_H1` is in the MaxQuant search but its raw file is not in the deposit.
+
+**Unblocked by:** an author statement of what `MITO_t6_H1` (round 2) contains, or a corrected sample sheet.
