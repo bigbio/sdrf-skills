@@ -1471,12 +1471,12 @@ Sources checked: PRIDE record and `files/all` (642 entries), label key (4 sheets
 
 ### PXD029216 — SILAC raws `AML1036_Blast_BLD_2D_F01-F06` (added after review round 1)
 
-**Blocker: AML1036 / AML1089 conflict — the patient identity of these 6 runs rests on the file name alone.**
+**Blocker: AML1036 / AML1089 conflict — the deposit names these 6 runs AML1036, the deposited search names the very same files AML1089 (a different patient, different NPM1 genotype), and no sample sheet lists them.**
 
 | source | what it says about `AML1036_Blast_BLD_2D_F01-F06` |
 |---|---|
 | `SWOG_NPM1_TMT_label_key.xls`, sheet "SILAC" (37 rows) | no AML1036 row; every other deposited SILAC group (37) has one, with its raw pattern |
-| `AML_SWOG_1st_MaxQuant_txt.zip` `summary_new.txt` | no AML1036 experiment; it holds a 38th experiment `AML1089_Blast_BLD_2D_F01-F06` whose raws were **not deposited** |
+| `AML_SWOG_1st_MaxQuant_txt.zip` `summary_new.txt` | no AML1036 experiment; it holds a 38th experiment `AML1089_Blast_BLD_2D_F01-F06`; no raw is deposited under that name (but see the scan counts below) |
 | label key, sheet "FH UW45" | AML1089 is an FH/UW patient (plex E3 channel 1) in the same plex as AML1037, AML1038 and AML1001-1006, all of which are SILAC-arm patients |
 | raw headers | acquisition name `JK033016_AML_RO10001_2D_F01` … `F06`: the RO1000x series of AML1037 (RO10005) and AML1038 (RO10009) |
 | label key, sheet "NPM1" | a patient AML1036 exists (Gr07 channel 2) in the TMT arm; nothing ties these SILAC raws to that patient |

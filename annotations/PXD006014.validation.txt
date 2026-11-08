@@ -1,3 +1,35 @@
 # PXD006014 validation log (round 1, 2026-11-08T23:06Z); SDRF sha256 b390b9fe6e87ddc11361fc066053bc8b746d09f954285c1ffe421963360bd29b
 
 ## parse_sdrf validate-sdrf -s annotations/PXD006014.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: AG03258 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: pediatric stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure annotations/PXD006014.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD006014.sdrf.tsv --offline
+Hallucination Report: annotations/PXD006014.sdrf.tsv
+  Terms checked:     10
+  Verified:          3
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD006014.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006014/evidence/pride.json --accession PXD006014
+PXD006014: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD006014.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006014/convert)
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[cellular component]']
+Conditions (2): dict_keys(['Hutchinson-Gilford progeria syndrome', 'normal'])
+Files per condition: dict_values([2, 2])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD006014.sdrf.tsv
+exit=0
+
