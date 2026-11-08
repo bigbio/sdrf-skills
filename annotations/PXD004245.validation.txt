@@ -294,3 +294,75 @@ c794eafafe099bd14df6336b0cedb0a52534d001e131ad655d18cb98793fd262  PXD004245-hela
 - liver BLOCKER labelled_annotated_as_label_free: REFUTED. The tag is project-level. The liver runs are absent from the deposited MaxQuant search (HUMAN.fasta; experimentalDesignTemplate.txt has no Liver run), so no SILAC search covers them. Methods: "Male 9-week-old C57BL/6 mice were maintained on a 12-h light–dark cycle with regular unrestricted diet", which rules out SILAC labelling in vivo. Raw original names end "_unt".
 - liver BLOCKER organism_contradicted: REFUTED (tool false positive). evidence/pride.json organisms = [NEWT:9606 Homo sapiens (human), NEWT:10090 Mus musculus (mouse)], and organismParts include BTO:0000759 Liver. Methods: "Preparation of mouse liver extracts" (C57BL/6).
 Conclusion: no reconcile finding changes a value. Status: REVIEW_PENDING_EXTERNAL.
+# Round 5 (2026-11-08T09:51:02Z) — external review round 2 fixes. hela-silac: biological replicate renumbered 1..n per factor-value group (0-minute group 1-7, H2O2-only 10-minute group 1-4); characteristics[enrichment process] = sample enrichment (EFO:0009106, verified live) / not available (occupancy run). hela-lfq: H2O2 '10 minute' moved from characteristics[exposure duration] to characteristics[sampling time] (exposure duration column dropped; there was no exposure-duration factor column to rename, factor value[treatment] kept); enrichment process = sample enrichment; clinical-metadata template dropped (no licensed column left). Liver SDRF untouched (sha256 42f7e29c...).
+$ sdrf-tools structure PXD004245-hela-silac.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD004245-hela-lfq.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-hela-silac.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-hela-lfq.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-hela-silac.sdrf.tsv -t2   (scratch dir)
+Files per condition: dict_values([1, 4, 1, 7, 1, 1, 1, 1, 1])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 18 times.
+SUCCESS (WARNINGS=1): PXD004245-hela-silac.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-hela-lfq.sdrf.tsv -t2   (scratch dir)
+Files per condition: dict_values([3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 3 times.
+SUCCESS (WARNINGS=1): PXD004245-hela-lfq.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile PXD004245-hela-silac.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/pride.json --accession PXD004245
+PXD004245: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ sdrf-tools reconcile PXD004245-hela-lfq.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/pride.json --accession PXD004245
+PXD004245: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 1
+
+# Reconcile round 5: same findings as round 4 (MINOR cleavage agent answered by paper/msms; hela-lfq BLOCKER labelled_annotated_as_label_free refuted as recorded in round 4).
+
+$ sdrf-tools schema-check PXD004245-hela-silac.evidence.json
+PXD004245-hela-silac.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-hela-silac.sdrf.tsv PXD004245-hela-silac.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245-hela-lfq.evidence.json
+PXD004245-hela-lfq.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-hela-lfq.sdrf.tsv PXD004245-hela-lfq.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245-liver.evidence.json
+PXD004245-liver.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-liver.sdrf.tsv PXD004245-liver.evidence.json
+Manifest covers every column with a value (20 column(s)).
+exit code: 0
+
+50291e6677216889e3e56c47ab3b112059f3b2cf3be38130eeed2c41c059a8e4  PXD004245-hela-silac.sdrf.tsv
+7b12e46d076f9fc6e8fa21e4635bee8d13d87e0eda8dd352e370e6938439d362  PXD004245-hela-lfq.sdrf.tsv
+42f7e29c5654645a30a09eb49f1858ec02b363a0a87a2c9152586d4ffd19ed46  PXD004245-liver.sdrf.tsv
