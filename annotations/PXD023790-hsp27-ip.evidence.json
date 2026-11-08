@@ -1,0 +1,192 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD023790-hsp27-ip.sdrf.tsv",
+ "dataset": "PXD023790",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD023790 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD023790/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/files_all.json; 5 entries: Fan_et_al_Triple_SILAC_basis_raw.7z, Fan_et_al_HSP27_IP.7z, Fan_et_al_triple_SILAC_txt.7z, HSP27_only_IP_September_txt.7z, SRDF_metadata_Fan_et_al.txt; every entry projectAccessions contains PXD023790)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Fan Y, Murgia M, ... Mann M, Klein C. HAX1-dependent control of mitochondrial proteostasis governs neutrophil granulocyte differentiation. J Clin Invest 2022;132(9):e153153, doi:10.1172/JCI153153, PMID 35499078, PMC9057593 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC9057593.1/PMC9057593.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/paper.txt)"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "JCI153153DS1 Supplemental Methods/Figures/Tables, https://pmc-oa-opendata.s3.amazonaws.com/PMC9057593.1/jci-132-153153-s112.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/supp.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/supp.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "rawip7z",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/05/PXD023790/Fan_et_al_HSP27_IP.7z: 7z header read by HTTP range and parsed with py7zr; member list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/arch/Fan_et_al_HSP27_IP.list (12 .raw)"
+  },
+  {
+   "id": "mqip",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/05/PXD023790/HSP27_only_IP_September_txt.7z (single solid LZMA2 folder, fully downloaded) members parameters.txt, summary.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/mq_hsp/HSP27 only IP September txt/); MaxQuant 1.6.1.13, Multiplicity 1, LFQ"
+  },
+  {
+   "id": "rawip",
+   "kind": "raw-file",
+   "location": "HTTP range + partial LZMA2 decompression of 20200927_QX7_MaMu_SA_CKlein_CTR1.raw and ..._CKlein2_HSP3.raw headers (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/raw/)"
+  },
+  {
+   "id": "ipcheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/hsp27_check.txt: HSPB1, HAX1, CLPB and myeloid markers (MPO, ELANE, AZU1) intensities per IP from proteinGroups.txt"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0063?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023790/cello_CVCL_0063.txt)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-12",
+   "value": "HEK293T_<HSPB1-FLAG|control>_experiment<1|2>",
+   "source_ids": [
+    "mqip",
+    "rawip7z",
+    "supp",
+    "paper"
+   ],
+   "evidence": "Raw names ..._CKlein_<CTR|HSP><n> (experiment 1) and ..._CKlein2_<CTR|HSP><n> (experiment 2); MaxQuant experiments CTR_1-6 / HSP27_1-6. Supp: \"two independent experiments were carried out, each with three independent pulldowns for both HSP27 and control\"."
+  },
+  {
+   "location": "characteristics[bait], factor value[bait] rows 1-12",
+   "value": "HSPB1-FLAG / no bait (control FLAG IP)",
+   "source_ids": [
+    "supp",
+    "paper",
+    "ipcheck"
+   ],
+   "evidence": "Supp \"Interactome analysis of HSP27\": \"HEK293T cells expressing either pRRL or HSP27FLAG were lysed ... incubated with anti-FLAG M2 agarose beads\". Paper Fig 6F legend: \"mitochondrial interactome of HSP27 (n = 6) versus control (non-bait) (n = 6)\". Data: HSPB1 intensity 3.8-6.3e11 in HSP27 IPs vs 2.7e7-2.3e9 in controls."
+  },
+  {
+   "location": "characteristics[biological replicate], comment[technical replicate] rows 1-12",
+   "value": "biological replicate = experiment (1, 2); technical replicate = pulldown 1-3",
+   "source_ids": [
+    "supp",
+    "paper",
+    "mqip"
+   ],
+   "evidence": "Paper Fig 6F: \"commonly identified in 2 biological replicates\"; supp: two independent experiments, each with three independent pulldowns. Run file CKlein -> experiment 1, CKlein2 -> experiment 2 (MaxQuant CTR_1-3/HSP27_1-3 vs CTR_4-6/HSP27_4-6)."
+  },
+  {
+   "location": "comment[label] rows 1-12",
+   "value": "label free sample",
+   "source_ids": [
+    "mqip"
+   ],
+   "evidence": "summary.txt: Multiplicity 1, no labels; proteinGroups has LFQ intensity columns. The PRIDE project-level quantification \"SILAC\" applies to the pulse-SILAC part only."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-12",
+   "value": "12 .raw files, fraction 1",
+   "source_ids": [
+    "rawip7z",
+    "mqip"
+   ],
+   "evidence": "All 12 raw members of Fan_et_al_HSP27_IP.7z are the 12 runs of summary.txt; single-shot runs."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-12",
+   "value": "HEK-293T cell / CVCL_0063 / HEK293T",
+   "source_ids": [
+    "supp",
+    "cellosaurus",
+    "ols",
+    "ipcheck"
+   ],
+   "evidence": "Supp: \"HEK293T cells expressing either pRRL or HSP27FLAG\". BTO:0002181 label \"HEK-293T cell\" (campaign precedent PXD023136). No myeloid markers (MPO, ELANE, AZU1) detected, consistent with a non-myeloid line rather than PLB-985."
+  },
+  {
+   "location": "characteristics[organism], characteristics[organism part], characteristics[disease], characteristics[sex], characteristics[developmental stage], characteristics[material type] rows 1-12",
+   "value": "Homo sapiens / kidney / normal / female / fetal stage / cell line",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0063: OX 9606, \"Derived from site: In situ; Fetal kidney; UBERON_0002113\", SX Female, AG Fetus, no disease line (transformed, non-cancer) -> normal (PATO:0000461); fetal stage (HsapDv:0000037), as in precedent PXD023136."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-12",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Methods: \"HeLa and HEK293T cells were cultured in DMEM (Gibco)\"; NCIT:C185409."
+  },
+  {
+   "location": "characteristics[organism] / comment[instrument] / comment[proteomics data acquisition method] / comment[dissociation method] / comment[collision energy] / comment[ms2 mass analyzer] / comment[ms1 scan range] rows 1-12",
+   "value": "Q Exactive HF-X; DDA; HCD 27 NCE; orbitrap; 300m/z-1650m/z",
+   "source_ids": [
+    "rawip",
+    "ols"
+   ],
+   "evidence": "Raw headers of CKlein_CTR1 and CKlein2_HSP3: \"Q Exactive HF-X - Orbitrap MS\", TopN 15, Full MS 300 to 1650 m/z, dd-MS2 resolution 15,000, nce: 27."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-12",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mqip",
+    "supp"
+   ],
+   "evidence": "summary.txt Enzyme Trypsin/P. Supp says IP eluates were resuspended in PreOmics LYSE and \"Bound proteins were further digested\" without naming enzymes; Lys-C is not asserted for the IP part (it is stated only for the SILAC cell/mitochondria digests)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-12",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term Variable",
+   "source_ids": [
+    "mqip"
+   ],
+   "evidence": "summary.txt: Fixed modifications Carbamidomethyl (C); Variable modifications Oxidation (M);Acetyl (Protein N-term)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-12",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqip"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-12",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10."
+  }
+ ],
+ "limitations": [
+  "Control IP definition conflicts between sources: supp methods say control = HEK293T cells expressing empty pRRL vector + anti-FLAG IP; the supp statistics paragraph says \"control (GFP) antibody\"; the paper says \"control (non-bait)\". Encoded as \"no bait (control FLAG IP)\" without naming the vector or antibody.",
+  "Compartment not asserted: the paper calls this a \"mitochondrial interactome\" of \"mitochondria lysates\", the supp methods lyse whole HEK293T cells in a digitonin \"mitochondrial IP buffer\"; no cellular component column is written.",
+  "Whether the three pulldowns per experiment came from one lysate is not stated; they are encoded as technical replicates 1-3 of the experiment (biological replicate 1 or 2) following the paper's \"2 biological replicates\".",
+  "comment[precursor mass tolerance] = not available (not recorded in parameters.txt; see SILAC part); convert-openms exits 1 for that reason.",
+  "ancestry, age, individual, passage number, cell type, storage temperature = not available (Cellosaurus has no population/age in years for HEK293T).",
+  "The HAX1-FLAG in-gel IP (Supplemental Figure 1, MALDI-TOF/TOF on Bruker Ultraflextreme) is not part of this deposit.",
+  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL."
+ ]
+}
