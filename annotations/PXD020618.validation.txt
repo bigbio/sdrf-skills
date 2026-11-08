@@ -1,0 +1,82 @@
+PXD020618 validation log (sdrf-skills producer run, 2026-11-08)
+Artifact: annotations/PXD020618.sdrf.tsv  sha256 beb4f05c93dca0b44cb5d34d2e6f6a466aa230a3de0cecb50186e306ebc86fb2  (676 rows x 52 columns)
+Build: scripts/make_tables.py -> sdrf-tools build x2 (searched 668 rows / unsearched 8 rows; identical headers; -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata)
+Post-build (rule 17, deterministic, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/scripts/postbuild.py): (1) concatenation; (2) second comment[cleavage agent details]
+  inserted after the Trypsin column: NT=Lys-C;AC=MS:1001309 on all rows except TIL25/TIL33 (+their reference rows) = not applicable
+  (build drops a second value of a non-multiple column; PXD008327 precedent); (3) comment[fraction identifier] set to the MaxQuant
+  summary.txt Fraction for 3 re-injection files (6 rows) that build numbered by position: Animal_20180627_MH_SA_PD1_58_3_180716234208 -> 3,
+  Animal_20180627_MH_SA_PD1_58_4_180717021301 -> 4, Animal_20180726_MH_SA_CTLA4_14_3_180808063759 -> 3. The script asserts that undoing (2)+(3)
+  restores the concatenation cell for cell and that (source, biorep, techrep, fraction, label) and (source, assay, label) are unique.
+
+=== ROUND 1 (sha256 db53b370..., precursor tolerance 'not available') ===
+$ parse_sdrf validate-sdrf -s PXD020618.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+ERROR: Value 'PD49/58' does not match required pattern
+There were validation errors.
+(plus an OLS HTTP 500 traceback for 'small intestine' - transient)
+exit=1
+Fix: characteristics[individual] of PD58 'PD49/58' -> 'PD49PD58' (S1B column name) in make_tables.py; rebuilt.
+
+=== ROUND 2 (sha256 94b88afa...) ===
+$ parse_sdrf validate-sdrf ... (same 4 templates)
+Everything seems to be fine. Well done.
+exit=0
+$ parse_sdrf convert-openms -s PXD020618.sdrf.tsv -t2   (scratch dir)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Fix: precursor tolerance found in the deposit: combined.zip combined/andromeda/allSpectra.CID.FTMS.sil1.apar 'peptide mass tolerance=4.5',
+  unit ppm -> technical_searched.tsv '4.5 ppm'; rebuilt (only that column changed).
+
+=== ROUND 3 (final, sha256 beb4f05c93dca0b44cb5d34d2e6f6a466aa230a3de0cecb50186e306ebc86fb2) ===
+$ parse_sdrf validate-sdrf -s PXD020618.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata   (run 3a)
+WARNING: Term: Progressive Disease in column 'characteristics[treatment response]', is not found in the given ontology list ncit
+Most seems to be fine. There were only warnings.
+exit=0
+  (run 3a hit OLS HTTP 500s for 'progressive disease' (ncit) and 'muscle tissue' (bto); the warning is a lookup failure, not a bad term:
+   NCIT:C35571 'Progressive Disease' verified live via OLS obo_id lookup. Re-run on the identical file:)
+$ parse_sdrf validate-sdrf -s PXD020618.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata   (run 3b)
+Everything seems to be fine. Well done.
+exit=0
+
+$ sdrf-tools structure annotations/PXD020618.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+$ sdrf-tools reconcile annotations/PXD020618.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/pride.json --accession PXD020618
+PXD020618: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names not applicable, Lys-C, Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+$ sdrf-tools reconcile annotations/PXD020618.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/pride_v3.json --accession PXD020618
+PXD020618: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'not applicable' but the record's digest names Trypsin, Lys-C
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive HF', the annotation says 'Q Exactive Plus'  [Q-Exactive HF]
+exit=1
+Refutations (rule 13):
+ - MINOR cleavage_agent_unsupported (MCP record): the PRIDE sample_processing_protocol does name the digest ("Lys-C-Trypsin mix ... and
+   trypsin (Promega)"); the MCP record text is the same - false positive of the matcher. Search output: summary.txt Enzyme Trypsin/P.
+ - BLOCKER cleavage_agent_contradicted (v3 record): fires on the 'not applicable' second cleavage column of the 14 TIL25/TIL33 rows
+   (7 runs x light/heavy). Those are technical set 1 (Table S1A), acquired 2014-04-29 with the Harel et al. 2019 TIL cohort, whose
+   protocol (Harel 2019 Methods, cited by PRIDE "prepared according to ... Harel et al.") is FASP with "sequencing grade trypsin" only
+   and "six fractions using strong anion exchange (SAX)"; TIL33 has exactly 6 runs named by SAX elution pH (methods 220_min_noFIT_pH-3-4,
+   -5-6-8, -11). The Lys-C/trypsin TFE protocol in the PRIDE text is that of the anti-PD1 cohort / unpublished samples (sets 2-3).
+   Every other row carries Trypsin + Lys-C.
+ - MAJOR instrument_contradicted (v3 record): the protocol names both "Q-Exactive HF or Q-Exactive Plus"; the per-file raw headers
+   ("Method of Q Exactive HF|Plus") give 143 HF and 195 Plus files and are what the SDRF carries.
+
+$ parse_sdrf convert-openms -s annotations/PXD020618.sdrf.tsv -t2   (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/openms2)
+ValueError: Error: Cannot read precursor mass tolerance: not applicable
+exit=1
+Expected and kept: the 8 rows of the 4 never-searched runs carry 'not applicable' tolerances (batch rule 5; PXD004817 precedent).
+Probe: the 668 searched rows only (awk filter -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/openms3/probe_searched_only.sdrf.tsv):
+$ parse_sdrf convert-openms -s probe_searched_only.sdrf.tsv -t2
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 668 times.
+SUCCESS (WARNINGS=1): probe_searched_only.sdrf.tsv
+exit=0
+
+$ sdrf-tools schema-check annotations/PXD020618.evidence.json
+annotations/PXD020618.evidence.json: valid evidence-manifest
+exit=0
+$ sdrf-tools manifest-coverage annotations/PXD020618.sdrf.tsv annotations/PXD020618.evidence.json
+Manifest covers every column with a value (37 column(s)).
+exit=0
