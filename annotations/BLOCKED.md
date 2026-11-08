@@ -1532,3 +1532,19 @@ Sources checked: paper (full text incl. Methods, figure legends, Data availabili
 The 40 searched raws are annotated in `annotations/PXD029618.sdrf.tsv` (80 rows).
 
 **Unblocked by:** a MaxQuant search of the 20 raws (same parameters: Multiplicity 3, Arg6;Lys4 / Arg10;Lys8, Trypsin/P, Carbamidomethyl fixed, Oxidation + Acetyl N-term variable), then: channel intensity shares to find the two used labels, and the Fig. 2B column 5/6 match (scripts in the b5-PXD029618 scratch dir) for the KO/WT orientation. Or an author statement of the label per mixture.
+
+## PXD023136 — TMEM126A / complex I ND4-module (Formosa et al., PNAS 2021), 36 pulse-chase SILAC raws (partial block)
+
+**Blocker: per-run sample identity of the Fig 3F/3G pulse-chase SILAC runs `201119_Daniella_DH-1445_01.raw` … `_36.raw` is undocumented in every retrievable source.**
+
+| source | what it says |
+|---|---|
+| `Figure_3F_3G_TMEM126A_pulse_chaseSILAC.zip` (MaxQuant 1.6.10.43) `summary.txt` | Multiplicity 2, Labels1 Arg10;Lys8; experiment names are only `01` … `36` (one per raw); no cell line, time point or IP/input label. No mqpar/experimentalDesign in the zip. |
+| PRIDE dataProcessingProtocol | heavy intensities "normalised to the maximum value detected in the WT cell line at 4h pulse ... means plotted over time" — names a WT line and a time course, not which run is which |
+| bioRxiv v1 preprint (10.1101/2020.09.18.303255) | predates the experiment (raws acquired 2020-11-19; D.H. Hock is not an author of v1); no pulse-chase MS described |
+| PNAS 2021 (PMC8092609) full text, Fig 3F/3G legend, SI | not retrievable: PMC body not open access (efetch front matter only), Europe PMC fullTextXML HTTP 500, pnas.org and pmc.ncbi.nlm.nih.gov served bot checks (not bypassed), Unpaywall points only to the preprint |
+| raw headers | Orbitrap Eclipse, targeted method `Dani Target.meth` with heavy/light inclusion list of mtDNA-encoded peptides — instrument only |
+
+The other 9 raws are annotated: `annotations/PXD023136-silac.sdrf.tsv` (Fig 1B SILAC, 3 runs × 2 channels) and `annotations/PXD023136-aems-lfq.sdrf.tsv` (Fig 3B label-free Flag AE-MS, 6 runs).
+
+**Unblocked by:** the PNAS Fig 3F/3G legend + SI Methods (or an author sample sheet) mapping run 01–36 to cell line (WT / TMEM126A KO / Flag line), pulse or chase time and replicate (and whether runs are Flag eluates or whole mitochondria). Rows would then be one light (pre-existing) + one heavy (newly synthesised) row per run, as in PXD028934, with MaxQuant 1.6.10.43 search parameters (Carbamidomethyl fixed; Oxidation, Acetyl N-term variable; Arg10/Lys8 labels; FTMS 20 ppm).

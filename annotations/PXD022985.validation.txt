@@ -1,0 +1,44 @@
+# PXD022985 validation log (2026-11-08T22:55Z); SDRF sha256 152751c22d1bd1f1991b040fa1cf29e75d324d6a7a97f1b20f7e608801ec7d77; 420 rows x 49 cols
+
+Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/scripts/build.sh (make_tables.py -> sdrf-tools build twice, once per instrument [LTQ Orbitrap XL: samples_xl.tsv/technical_xl.tsv, 120 files; Q Exactive Plus: samples_qep.tsv/technical_qep.tsv, 20 files], identical headers verified with cmp, concatenated by concat.py which only orders rows deterministically by sample set, technical replicate, fraction, label). No cell of the build output is edited.
+Round 1 build (rows ordered by file name) gave the same validate-sdrf result (2 warnings, exit 0); the only change in the current build is row order.
+
+## parse_sdrf validate-sdrf -s annotations/PXD022985.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: pediatric stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+Warnings refuted: 'untreated' is the template-prescribed control value for characteristics[treatment] (campaign rule 4). 'pediatric stage' is HsapDv:0000264 (verified in OLS); EFO has no term spanning the donors (NHF 2-9 years, RDEB <1 year) - kept deliberately and listed in the manifest limitations.
+
+## sdrf-tools structure annotations/PXD022985.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD022985.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/pride.json --accession PXD022985
+PXD022985: every annotated value agrees with the deposit record.
+exit=0
+
+## sdrf-tools check annotations/PXD022985.sdrf.tsv --offline
+Hallucination Report: annotations/PXD022985.sdrf.tsv
+  Terms checked:     17
+  Verified:          8
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools schema-check annotations/PXD022985.evidence.json
+annotations/PXD022985.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD022985.sdrf.tsv annotations/PXD022985.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD022985.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/convert)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.4.1.2 parameters.txt/summary.txt do not record it; no mqpar.xml deposited). Same outcome as campaign precedents PXD006676/PXD014368/PXD024103. validate-sdrf and the template accept the reserved word.
