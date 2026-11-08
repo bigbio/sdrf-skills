@@ -202,6 +202,31 @@ and treatment calls) so the two are `diff`-able for the shared basenames.
 
 ---
 
+## Group 7 — PXD039207 ≡ PXD045898 (same 27 SILAC runs deposited twice; both annotated)
+
+Same lab (PI Sangkyu Lee, Kyungpook National University). Triple-SILAC global proteome of HEK293 (heavy), 786-O (medium) and Caki-1 (light): 3 mixes × 9 high-pH fractions. The design source for both is the paper of PXD045898, PMID:39467626 / PMC11534031. PRIDE links PXD039207 to PMID:37889066, a TMT tissue paper whose data are in PXD039204.
+
+| | files | note |
+|---|---|---|
+| `PXD039207` | 27 RAW + `mqpar.xml` | Submitted 2023-01-03. RAW names end `_3-23_.raw`. |
+| `PXD045898` | 27 RAW + `mqpar_SILAC_Global.xml` + 2 SDRF files | Submitted 2023-10-04. RAW names end `_3-23.raw`. Cites the paper that describes the design. |
+
+`files/all` carries **no checksum** for either accession. The match was verified instead by:
+
+- (a) **27/27 RAW map 1:1 by name** (modulo the trailing `_`) **and byte-exact `fileSizeBytes`**, with no size collisions;
+- (b) `mqpar_SILAC_Global.xml` **byte-identical** to `mqpar.xml`;
+- (c) **HTTP-range reads**, identical between the two FTPs: the first 1 MiB and the 1 MiB at offset 300 MB of F0-1, and the 1 MiB at offset 400 MB of F8-3.
+
+The RAW headers carry the original path `…\Cell line\SILAC_Global\…_3-23%.raw`. Map: `scratchpad/PXD045898/file_map.tsv`.
+
+The two SDRFs (`annotations/PXD039207.sdrf.tsv`, `annotations/PXD045898.sdrf.tsv`) are **cell-identical except `assay name` / `comment[data file]`**. Both have 81 rows in the same order. **A consumer concatenating both would double-count all 27 runs (81 channels).**
+
+The previously curated `sdrf-annotated-datasets` PXD045898 SDRF annotates these runs as **27 label-free "Epithelial cell" samples**. It is byte-identical to PRIDE's `PXD045898_community_annotated.sdrf.tsv`. It is wrong (mqpar multiplicity 3) and is superseded by `annotations/PXD045898.sdrf.tsv`.
+
+**Recommended canonical: `PXD045898`.** Its PRIDE record cites the paper that describes the experiment, and its metadata (instrument, SILAC) is correct. PXD039207's record links the wrong paper, an ovarian disease and a generic instrument. If both are kept, change them together.
+
+---
+
 ## Why these were annotated anyway
 
 Each SDRF is correct *for its own accession* — that is what an SDRF describes, and a consumer

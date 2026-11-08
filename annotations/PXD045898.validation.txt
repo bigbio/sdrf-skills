@@ -1,0 +1,58 @@
+$ sdrf-tools reconcile annotations/PXD045898.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD045898/evidence/pride.json --accession PXD045898
+PXD045898: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD045898.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD045898.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: 786-O in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: Caki-1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools check annotations/PXD045898.sdrf.tsv
+Hallucination Report: annotations/PXD045898.sdrf.tsv
+  Terms checked:     28
+  Verified:          28
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD045898.evidence.json
+annotations/PXD045898.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD045898.sdrf.tsv annotations/PXD045898.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD045898/convert) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD045898.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD045898.sdrf.tsv
+Factor columns: ['factor value[cell line]']
+Conditions (3): dict_keys(['HEK293', '786-O', 'Caki-1'])
+Files per condition: dict_values([27, 27, 27])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 81 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD045898.sdrf.tsv
+exit code: 0
+
+$ python3 -I <scratch>/PXD045898/scripts/check_files.py annotations/PXD045898.sdrf.tsv /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD045898/evidence/files_all.json
+81 rows; 27/27 PXD045898 RAW files covered, each x3 with 3 distinct labels; 0 duplicate (source, assay, label) keys; 0 files outside PXD045898 files/all
+exit code: 0
+
+## Notes on the results above (producer, not a review)
+- Single validation round; no post-build edits. annotations/PXD045898.sdrf.tsv is a byte copy of the `sdrf-tools build` output (scratch: PXD045898/build/PXD045898.sdrf.tsv). Inputs: the PXD039207 scratch tables copied unchanged to PXD045898/from_PXD039207/, then scripts/make_tables.py rewrote only the 81 data-file references in samples.tsv and files.json ("..._3-23_.raw" -> "..._3-23.raw", taken from the name+size map in file_map.tsv). technical.tsv is byte-identical to PXD039207's.
+- Cell-by-cell diff against the reviewed annotations/PXD039207.sdrf.tsv (same 49-column header, same row order): only `assay name` and `comment[data file]` differ, and only by that trailing "_".
+- parse_sdrf validate-sdrf (full ontology; ms-proteomics v1.2.0 + human v1.1.0 + cell-lines v1.1.0): exit 0, 0 errors, 2 warnings - the same 2 as the reviewed PXD039207 file.
+  * '786-O' / 'Caki-1' not found in CLO/BTO/EFO: false positives. These are the Cellosaurus names (CVCL_1051 / CVCL_0234, in characteristics[cellosaurus accession]). The ontology labels are '786-O cell' (CLO:0001486), 'RCC 786-O cell' (BTO:0003781), '786-0' with a zero (EFO:0005707), and 'Caki-1 cell' (CLO:0002176/BTO:0003204), 'Caki1' (EFO:0002149). The PXD039207 reviewer accepted this.
+- sdrf-tools reconcile against PXD045898's OWN PRIDE record (evidence/pride.json, fetched 2026-11-08): exit 0, nothing to refute. The record agrees on instrument (MS:1001742 LTQ Orbitrap Velos), SILAC quantification and organism. Not compared by reconcile, handled by hand:
+  * organismParts CL:0000066 "Epithelial cell": a cell type, not an organism part; per-line support missing, so characteristics[cell type] stays not available (manifest limitation).
+  * dataProcessingProtocol "Arg6-Lys4 for light and Arg10-Lys8 for heavy": channel NAME differs from the paper ("Arg6 and Lys4 for medium"); the isotope-to-line assignment is the same. Explained in the comment[label] claim.
+  * sampleProcessingProtocol "All Cell lines were grown in SILAC medium": the paper says only HEK-293 and 786-O; the paper is followed (manifest limitation).
+- sdrf-tools structure: OK. sdrf-tools check: CLEAN, 28/28 terms verified, 0 UNIMOD swaps.
+- convert-openms -t2: exit 0, 3 conditions x 27 files. Its only warning ('no TA= specified', for the PP=Protein N-term Acetyl) is benign.
+- File coverage (scripts/check_files.py): 27/27 RAW of PXD045898 files/all, each 3x with 3 distinct labels; the 3 non-RAW entries (mqpar_SILAC_Global.xml, sdrf.tsv, PXD045898_community_annotated.sdrf.tsv) are not data files.
