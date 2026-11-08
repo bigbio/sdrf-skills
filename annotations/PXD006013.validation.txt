@@ -45,3 +45,31 @@ exit=0
 - Single validation round: validate-sdrf returned only warnings (cell-line spelling not in CLO/BTO/EFO; 'pediatric stage' is an HsapDv term, template lists EFO) - accepted, explained in the report. No fixes needed.
 - The SDRF was written by sdrf-tools build only (scripts in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/: gen_tables.py -> build_all.sh).
 - reconcile exit 0 did not flag PRIDE 'instruments' (LTQ Orbitrap for PXD006013-16); the SDRF instrument (Orbitrap Fusion / Q Exactive) comes from the mzXML msModel of every run and the paper Methods - see report Conflicts.
+
+# Round 1 addendum (2026-11-08T23:35Z): online sdrf-tools check (review minor finding); SDRF unchanged, sha256 8ede0672ceedfaf734ba6566ee456e836530f4ea49dc66e93387c2f6659c72cf
+
+## sdrf-tools check annotations/PXD006013.sdrf.tsv (online)
+Hallucination Report: annotations/PXD006013.sdrf.tsv
+  Terms checked:     19
+  Verified:          18
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [2, 4]: 'HGFDFN168' in characteristics[cell line]
+exit=1
+
+## Refutation (rule 13): 'HGFDFN168' in characteristics[cell line] rows 2,4 is a false positive
+- Cellosaurus record CVCL_1Y93 (https://api.cellosaurus.org/cell-line/CVCL_1Y93?format=txt, re-fetched to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006013/cello_CVCL_1Y93_recheck.txt):
+    ID   HGFDFN168
+    AC   CVCL_1Y93
+    CC   Part of: Progeria Research Foundation cell lines.
+    SX   Male
+    AG   40Y5M
+- The ID line is exactly 'HGFDFN168', the value in characteristics[cell line] and characteristics[cellosaurus name]; characteristics[cellosaurus accession] = CVCL_1Y93 on the same rows.
+- The paper (PMC5577202, Methods 'Cell culture') names 'Human dermal fibroblasts HGFDFN168 (wild type) ... obtained from the Progeria Research Foundation', and PRIDE/Supp Data 3 call it PRF168.
+- check flags it only because the term is absent from CLO/BTO/EFO under that spelling (the same cause as the validate-sdrf warning). The template's cell-line column requires no ontology entry beyond the Cellosaurus accession. No change made.
+

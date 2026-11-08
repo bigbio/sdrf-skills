@@ -1588,3 +1588,19 @@ The other 9 raws are annotated: `annotations/PXD023136-silac.sdrf.tsv` (Fig 1B S
 **Unblocked by:** the paper Methods or an author statement defining ACPOE (e.g. "HEK293T expressing yACP1Flag"); the rows would then be added to `PXD004666-knockout.sdrf.tsv` as light = ACPOE line, heavy = HEK293T wild type, with the same technical values as the other QEP120 runs.
 
 Also noted (not blocked, no files): `combined.zip` experimentalDesignTemplate.txt lists `124ELITE180_K-117/118/119-NDUFV1` T1/T2 runs that were neither deposited nor searched.
+
+## PXD006015 — SILAC pulse labeling in HGPS fibroblasts, WT samples (Buchwalter & Hetzer, Nat Commun 2017), 2 PEAK-only MP re-runs (partial block)
+
+**Blocked files (2 of 15 WT runs):** `20160302_MHAB-1_MP.mzXML` (121,771 scans) and `20160302_MHAB-2_MP.mzXML` (103,970 scans). Both are Orbitrap Fusion runs (mzXML parentFile `G:\Fusion_data\MHAB\20160302_MHAB-1_MP.raw` / `..._MHAB-2_MP.raw`).
+
+**Probable identity, from the MHAB numbering:** the numbering maps the other 23 runs of PXD006015/PXD006016 consistently. WT is MHAB-1..10 and HGPS is MHAB-11..20, in the order 0D, 1D, 2D, 4D, 6D × extract, pellet. By that scheme, MHAB-1 = WT 0 day nuclear extract and MHAB-2 = WT 0 day nuclear pellet. The annotated WT 0D runs are `MHAB-1_SCXtip` and `MHAB-2_SCXtip` (+ `_2`) of 20160227 = `20160227_WT_0D_extract/pellet[_2].ms2`. The two MP files look like the same samples re-run after the "MP" clean-up on 20160302, the day the HGPS 0D samples (MHAB-11_MP / MHAB-12_MP) were run.
+
+**Why they are not annotated:**
+- They are PEAK-only (.mzXML): no RAW-category `.ms2` exists for them, so there is no `comment[data file]` consistent with the other 13 rows.
+- No deposited mzIdentML references them. The WT_0D_extract and WT_0D_pellet mzids use only the SCXtip runs, so their search parameters are undocumented.
+- Their clean-up (MP) differs from the searched SCXtip runs of the same samples.
+- Their identity is inferred from file numbering only. No source states it.
+
+**Annotated:** the 13 RAW-category `.ms2` runs (26 rows) are in `annotations/PXD006015.sdrf.tsv`. All 10 HGPS runs are in `annotations/PXD006016.sdrf.tsv`; no HGPS file is blocked.
+
+**Unblocked by:** an author statement or sample sheet confirming that MHAB-1_MP / MHAB-2_MP are the WT 0D extract / pellet, plus their search parameters (or a re-search). They could then be added as WT 0D technical replicate 3 rows, with the .mzXML as `comment[data file]` in a separate build with identical headers.

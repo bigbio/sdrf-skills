@@ -95,7 +95,7 @@
     "mzid",
     "heavy_frac"
    ],
-   "evidence": "Paper Methods/PRIDE protocol: \"quiescent fibroblasts were switched to media containing stable heavy isotopes of lysine and arginine (13C6-Lysine, 13C6, 15N4-Arginine) for 1 to 6 days\"; Fig. 1 legend: % 12C (\"old\") remaining vs % 13C-labelled (\"new\"). Supp Data 1: \"%heavy isotope ... after 0, 2, 4 and 6 days of labeling\". Data check (heavy_frac): passing heavy-search PSMs rise with labelling time in every file (WT 0D ~1%, 1D 27%, 2D 36-37%, 4D 50-53%, 6D 58-61%; HGPS 0D 2-18%, 1D 29-32%, 2D 44-48%, 4D 76%, 6D 71-77%) and Supp Data 1 median %heavy WT 5.3/28.0/45.9/60.5, HGPS 2.1/41.2/64.6/77.8 at 0/2/4/6 D -> heavy = new. Both channels come from one culture, so they share biological replicate 1 and get distinct source names (precedent PXD028934). 0D rows: heavy channel kept because each 0D run was searched for heavy peptides and Supp Data 1 has a 0D sheet (background control)."
+   "evidence": "Paper Methods/PRIDE protocol: \"quiescent fibroblasts were switched to media containing stable heavy isotopes of lysine and arginine (13C6-Lysine, 13C6, 15N4-Arginine) for 1 to 6 days\"; Fig. 1 legend: % 12C (\"old\") remaining vs % 13C-labelled (\"new\"). Supp Data 1: \"%heavy isotope ... after 0, 2, 4 and 6 days of labeling\". Data check (heavy_frac): passing heavy-search PSMs rise with labelling time in every file (WT 0D ~1%, 1D 27%, 2D 36-37%, 4D 50-53%, 6D 58-61%; HGPS 0D 2-18%, 1D 29-32%, 2D 44-48%, 4D 76%, 6D 71-77%) and Supp Data 1 median %heavy WT 5.3/28.0/45.9/60.5, HGPS 2.1/41.2/64.6/77.8 at 0/2/4/6 D -> heavy = new. Both channels come from one culture, so they share biological replicate 1 and get distinct source names (precedent PXD028934). 0D rows: the paper calls 0D \"no label\" (Fig. 1c: \"after no label (c, 473 proteins)\"), so the 0D heavy rows are a background channel (heavy-search PSMs 0.7-1.8% in WT, 1.8-17.9% in HGPS), not newly synthesised protein. They are kept because each 0D run was searched for heavy peptides and Supp Data 1 has a 0D sheet."
   },
   {
    "location": "characteristics[sampling time], factor value[sampling time], characteristics[subcellular fraction], factor value[subcellular fraction], characteristics[cellular component] rows 1-20",
@@ -283,6 +283,7 @@
   }
  ],
  "limitations": [
+  "PRIDE project-level identifiedPTMStrings (MOD:00425 monohydroxylated residue, MOD:00394 acetylated residue, MOD:00397 iodoacetamide derivatized residue) conflict with the deposited searches: no oxidation or acetylation appears in any mzid SearchModification list, and the protocol alkylation was chloroacetamide (the 57.021 C mass is the same as carbamidomethyl). The SDRF follows the mzid (rule 5).",
   "The WT/HGPS comparison spans two deposits (PXD006015 WT, PXD006016 HGPS); each SDRF carries one disease state.",
   "HGPS_0D_extract heavy fraction (17.9% of passing PSMs) is higher than other 0D runs (0.7-1.8%); not explained in the paper; the file is annotated as named (0 day).",
   "No vendor .raw files are deposited (none of PXD006012-PXD006016 has one); comment[data file] lists the RawConverter .ms2 files that PRIDE categorises as RAW. The .mzXML (PEAK) copies are not listed. Reprocessing from the SDRF will need .ms2/.mzXML-capable tools.",

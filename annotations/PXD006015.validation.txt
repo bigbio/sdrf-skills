@@ -45,3 +45,13 @@ exit=0
 - The SDRF was written by sdrf-tools build only (scripts in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006012/scripts/: gen_tables.py -> build_all.sh).
 - Post-build step (rule 5/17): two builds (search config A: 0D/2D/6D; config B: 1D/4D) with byte-identical headers (cmp in build_all.sh) concatenated by concat.py, which only orders rows by assay name, light before heavy; no value is edited.
 - reconcile exit 0 did not flag PRIDE 'instruments' (LTQ Orbitrap for PXD006013-16); the SDRF instrument (Orbitrap Fusion / Q Exactive) comes from the mzXML msModel of every run and the paper Methods - see report Conflicts.
+# Round 2 (2026-11-08T23:35Z): manifest-only edits after external review (BLOCKED.md partial-block wording, 0D heavy background note, PRIDE PTM conflict); SDRF unchanged, sha256 9d8847aeb4f69bbccc4b613ad6e32aff9314e5c5b61d63036d53da529c76bb25
+
+## sdrf-tools schema-check annotations/PXD006015.evidence.json
+annotations/PXD006015.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD006015.sdrf.tsv annotations/PXD006015.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit=0
+
