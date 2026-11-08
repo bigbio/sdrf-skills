@@ -5,3 +5,45 @@ validate-sdrf exit 0 (2 warnings, same as below); structure exit 0; check exit 0
 Change (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/scripts/make_tables.py -> samples.tsv, rebuilt with sdrf-tools build; no post-build edit): +TG replicate numbers now follow the raw-header sample names (0508 '3xStress#1' -> 1, 0465 '3xStress#2' -> 2).
 
 ## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD027000.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: HEK293T in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+Warnings justified: (1) 'untreated' is the template-prescribed control value for characteristics[treatment] (batch rule 4), not an ontology term. (2) 'HEK293T' is the Cellosaurus recommended name of CVCL_0063 and the most frequent curated spelling (22/40 curated sdrf-annotated-datasets files with CVCL_0063); ontology labels are CLO 'HEK293T cell', BTO 'HEK-293T cell', EFO:0001082 '293T'. Warnings only.
+
+## sdrf-tools structure annotations/PXD027000.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD027000.sdrf.tsv
+Hallucination Report: annotations/PXD027000.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD027000.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/pride.json --accession PXD027000
+PXD027000: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD027000.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD027000/convert)
+Factor columns: ['factor value[bait]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (6): dict_keys(['AUG-nLuc-PP7 reporter RNA (no repeat control)|untreated', '+1CGG100-nLuc-PP7 reporter RNA|untreated', '(GGGGCC)70-nLuc-PP7 reporter RNA|untreated', 'AUG-nLuc-PP7 reporter RNA (no repeat control)|Thapsigargin', '+1CGG100-nLuc-PP7 reporter RNA|Thapsigargin', '(GGGGCC)70-nLuc-PP7 reporter RNA|Thapsigargin'])
+Files per condition: dict_values([2, 2, 2, 2, 2, 2])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD027000.sdrf.tsv
+exit=0
+Note: the 'no TA= specified' warning comes from the Acetyl PP=Protein N-term modification (positional, correctly without TA=).
+
+## sdrf-tools schema-check annotations/PXD027000.evidence.json
+annotations/PXD027000.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD027000.sdrf.tsv annotations/PXD027000.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit=0
