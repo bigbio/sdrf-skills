@@ -1468,3 +1468,11 @@ Sources checked: PRIDE project record and protocol, `files/all` (331 entries), `
 Sources checked: PRIDE record and `files/all` (642 entries), label key (4 sheets), 3 MaxQuant zips (parameters, summary, proteinGroups), both PD `.msf` (WorkflowXML, WorkflowInputFiles, ReporterQuanResults sample), raw headers, paper (PMC efetch), all 15 PMC OA supplementary files, Europe PMC search for the accession (only this paper).
 
 **Unblocked by:** the identity of SWOG27 channel 131 (probably an internal reference pool) and of E2/E3 channels 131N/131C. They would be added as further rows to `PXD029216-tmt.sdrf.tsv` (same search parameters as their plex).
+
+### PXD031662 — identity note for the blocked BioID2 raws (added after review round 3)
+
+Before any of the blocked BioID2 raws are unblocked, confirm their identity against the MaxQuant search, not by file name alone:
+
+- The deposited experiment-915 raws are dated 221119, but MaxQuant searched experiment 915 from files dated 261119; 221119 is experiment 916's date.
+- The experiment-350 raw names in the deposit differ from those in the MaxQuant search.
+- The same pattern already mislabelled the L-363 files (deposited as `HFPlus_136_L6`, actually search experiment 140; see above).
