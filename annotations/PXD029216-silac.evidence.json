@@ -51,7 +51,7 @@
   {
    "id": "pd_msf",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/JN092820_101520_TMT11plex_E2_bRP_Frac_01to24.msf and ..._E3_... (HTTP-range SQLite; Workflows.WorkflowXML -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_workflow.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E3_workflow.xml; WorkflowInputFiles -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_inputs.tsv; ReporterQuanResults sample -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_reporter_sample.tsv)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/JN092820_101520_TMT11plex_E2_bRP_Frac_01to24.msf and ..._E3_... (HTTP-range SQLite; Workflows.WorkflowXML -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_workflow.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E3_workflow.xml; WorkflowInputFiles -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_inputs.tsv; ReporterQuanResults samples -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_reporter_sample.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E3_reporter_sample.tsv)"
   },
   {
    "id": "raw_headers",

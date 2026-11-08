@@ -1444,3 +1444,24 @@ The third SILAC condition of each blocked BioID2 experiment, and 9 of 11 TMT cha
 Sources checked: PRIDE project record and protocol, `files/all` (331 entries), `File_assignment.txt`, all 11 MaxQuant zips (summary, parameters, proteinGroups; Phospho (STY)Sites for 96/96B), paper (PMC efetch), PMC OA supplementary (MOESM1 Supplementary Figures, MOESM2 Reporting Summary not needed, MOESM3 Source Data), ref 67 (Fish *et al.* PNAS 2020) for the phospho method. Analysis scripts and outputs are in the PXD031662 scratch dir (`scripts/ratios.py`, `scripts/fig1d.py`, `analysis/`).
 
 **Unblocked by:** the authors' full L/M/H assignment for experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 (and confirmation of which channel holds the RAS bait in 1645/1647/1649), and the full TMT11 channel layout plus the cell line for experiment 0118. The BioID2 runs could then be added to `PXD031662.sdrf.tsv` (same search, add `NT=Biotin` slot `not applicable` for 350, which was searched without Biotin (K)); the TMT runs would go in a separate `PXD031662-tmt.sdrf.tsv` (rule 12).
+
+## PXD029216 — Proteogenomics of viable leukemic blasts in AML (SWOG; SILAC + TMT10/TMT11), 5 undocumented TMT channels only (partial block)
+
+| | |
+|---|---|
+| Publication | Naru J *et al.*, eJHaem 2024 5(6):1243-1251, PMID:39691254, PMC11647701, doi:10.1002/jha2.1041 (full text via NCBI efetch, Supplemental Methods s014.docx and Table S13 read) |
+| Annotated | all 636 raws → `PXD029216-silac.sdrf.tsv` (228 raws, 456 rows) and `PXD029216-tmt.sdrf.tsv` (408 raws, 4248 rows) |
+| Not annotated | 168 (run, channel) pairs: TMT131 of `JK021618_031218_AML_2nd_Discovery_TMT_10plex_GR{A,B,C}_F01-F24` (SWOG27) and TMT131N + TMT131C of `JN092820_101520_TMT11plex_E{2,3}_bRP_Frac_01-24` |
+
+**What each source says:**
+
+| source | channel map |
+|---|---|
+| `SWOG_NPM1_TMT_label_key.xls` (deposit) | SWOG27 sheet: channel 9 of groups A/B/C has an empty Sample ID and empty attributes; FH UW45 sheet: E2/E3 list channels 1-9 only |
+| MaxQuant `AML_SWOG_2nd` proteinGroups | Reporter intensity 9 is 0.86-0.97 of the strongest channel in each group (occupied); RPS4Y1 intermediate between male and female channels (consistent with a mixed pool, not stated) |
+| PD `.msf` E2 and E3 (ReporterQuanResults, first 40k rows each) | channels 10 and 11 have mean heights comparable to channels 1-9 in both plexes (occupied) |
+| Paper, Supplemental Methods, PRIDE protocol | no reference/pool channel described for SWOG27 or FHCC/UW-HDR3 |
+
+Sources checked: PRIDE record and `files/all` (642 entries), label key (4 sheets), 3 MaxQuant zips (parameters, summary, proteinGroups), both PD `.msf` (WorkflowXML, WorkflowInputFiles, ReporterQuanResults sample), raw headers, paper (PMC efetch), all 15 PMC OA supplementary files, Europe PMC search for the accession (only this paper).
+
+**Unblocked by:** the identity of SWOG27 channel 131 (probably an internal reference pool) and of E2/E3 channels 131N/131C. They would be added as further rows to `PXD029216-tmt.sdrf.tsv` (same search parameters as their plex).
