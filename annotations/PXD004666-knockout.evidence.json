@@ -129,7 +129,7 @@
     "pride",
     "mq_apms"
    ],
-   "evidence": "PRIDE data processing: 'Default search parameters for a Arg10 and Lys8 labelled experiment were used' with MaxQuant 1.5.4.1, whose default main-search peptide tolerance is 4.5 ppm (first search 20 ppm). No mqpar.xml was deposited; consistency check on the AP-MS evidence.txt: 88,983 evidences, 99.9th percentile |Mass Error| 0.22 ppm, 51 (0.06%) above 4.5 ppm (max 5.56 ppm). The value rests on the stated use of defaults, not on a deposited parameter file."
+   "evidence": "PRIDE data processing: 'Default search parameters for a Arg10 and Lys8 labelled experiment were used' with MaxQuant 1.5.4.1, whose default main-search peptide tolerance is 4.5 ppm (first search 20 ppm). No mqpar.xml was deposited; consistency check on the AP-MS evidence.txt: 88,983 evidences, 99.9th percentile |Mass Error| 0.22 ppm, 51 (0.06%) above 4.5 ppm (max 5.56 ppm), all 51 of Type MULTI-MATCH (match-between-runs transfers); no MS/MS-identified evidence exceeds 4.5 ppm. Not every search setting was default (match-between-runs on, ACP1.fasta added, matching-group 'fractions'), so the tolerance rests on the PRIDE statement. The value rests on the stated use of defaults, not on a deposited parameter file."
   },
   {
    "location": "comment[fragment mass tolerance], comment[instrument], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] all rows (per run)",
@@ -169,7 +169,7 @@
     "paper",
     "ratio_check"
    ],
-   "evidence": "AP-MS ratio headers are '<bait>FLAG/HEK293T' (Supp Tables S2-S4, S10, S11), i.e. the partner channel is parental HEK293T; Fig. 2c uses HEK293T as the reference line. In every knockout run the partner channel carries the targeted protein at high level (ratio_check), consistent with an unedited HEK293T partner. The paper Methods (paywalled) were not read; 'wild type' = parental HEK293T is the reading of these sources."
+   "evidence": "Not used for the NDUFAB1 experiments (see the 'HEK293T expressing yeast ACP1' claim). AP-MS ratio headers are '<bait>FLAG/HEK293T' (Supp Tables S3, S4, S10, S11), i.e. the partner channel is parental HEK293T; Fig. 2c uses HEK293T as the reference line. In every knockout run the partner channel carries the targeted protein at high level (ratio_check), consistent with an unedited HEK293T partner. The paper Methods (paywalled) were not read; 'wild type' = parental HEK293T is the reading of these sources."
   },
   {
    "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool]",
@@ -188,7 +188,7 @@
     "ratio_check",
     "mq_apms"
    ],
-   "evidence": "Explicit: Supp Data 'Column definitions' \u2014 'X-000-YYY-ZZ ... ZZ, label orientation identifier (either HL or LH)'; AP-MS tables name the HL experiments 'Expt. 1/2 H/L NDUFAB1FLAG/HEK293T...' and the LH experiment 'Expt. 3 L/H NDUFAB1FLAG/HEK293T...' (same pattern in S3, S4, S10, S11), so HL = FLAG cells heavy. PRIDE: raw names include 'applicable label orientation'. Data check: AP-MS H/L of the bait protein log2 +3.1 to +6.1 in all 10 HL runs and -3.6 to -5.0 in all 5 LH runs; knockout runs: H/L of the knocked-out protein is negative in every HL experiment with a value (e.g. NDUFA9 Q-025 -3.48, NDUFB6 H-096 -3.78, NDUFB11 M-149 -5.89) and positive in every LH experiment with a value (e.g. NDUFA8 M-144 +3.69, NDUFB9 V-225 +3.74); 89 of the 117 annotated mitochondrial experiments quantify the target and all 89 agree in sign; none contradicts. Whole-cell experiments are encoded the same way and match Supp Table S5 column names (e.g. FS6-1_1/2/3 HL,HL,LH = W.1-3.NDUFS6 HL,HL,LH)."
+   "evidence": "Explicit: Supp Data 'Column definitions' \u2014 'X-000-YYY-ZZ ... ZZ, label orientation identifier (either HL or LH)'; AP-MS tables name the HL experiments 'Expt. 1/2 H/L NDUFAB1FLAG/HEK293T...' and the LH experiment 'Expt. 3 L/H NDUFAB1FLAG/HEK293T...' (same pattern in S3, S4, S10, S11), so HL = FLAG cells heavy. PRIDE: raw names include 'applicable label orientation'. Data check: AP-MS H/L of the bait protein log2 +3.1 to +6.1 in all 10 HL runs and -3.6 to -5.0 in all 5 LH runs; knockout runs: H/L of the knocked-out protein is negative in every HL experiment with a value (e.g. NDUFA9 Q-025 -3.48, NDUFB6 H-096 -3.78, NDUFB11 M-149 -5.89) and positive in every LH experiment with a value (e.g. NDUFA8 M-144 +3.69, NDUFB9 V-225 +3.74); 121 of the 150 annotated knockout experiments (89 of 117 mitochondrial, 32 of 33 whole-cell) quantify the target and all 121 agree in sign; none contradicts. The tag is not infallible: raw-header acquisition names of 063QEP120_V-227-NDUFB9-HL (acquired as 'P2DAS20160525_U-227-FB9-LH') and 123QEP120_T-215-NDUFAF2-LH (acquired as 'P1DAS20160419_T-215-NDUFAF2-HL') carry the opposite tag; the data support the deposited tags (NDUFB9 log2 H/L -3.44 => KO heavy = HL; NDUFAF2 +2.75 => LH), so the deposited tags are used. (The blocked O-173-ACPOE run is the one case where acquisition name and data both contradict the deposited tag; see BLOCKED.md.) Whole-cell experiments match Supp Table S5 column names (e.g. FS6-1_1/2/3 HL,HL,LH = W.1-3.NDUFS6 HL,HL,LH)."
   },
   {
    "location": "characteristics[genotype] / factor value[genotype] knockout rows; source name",
@@ -200,10 +200,20 @@
     "suppdata",
     "ratio_check"
    ],
-   "evidence": "Gene from the raw file name (PRIDE: names carry the 'knockout cell line being studied'); Supp Table 1 lists the CRISPR/TALEN knockout clones for each gene (NDUFA9 and COA6 KOs generated previously); Supp Table S5 reports 'Mean Log2 ratio <gene>' for exactly these lines (ACPOE excluded, see limitations); target protein depleted in each quantified experiment (ratio_check). NDUFAB1 KO line: Supp Table 1 clones ACP1-1/ACP1-3 'KO (NDUFAB1)' and Ext Data Fig. 3 (KO complemented to survive); yeast ACP1 (P32463) is detected in the knockout channel of O-168..170 (H/L 5.37 in HL, 0.35/0.38 in LH), so this line expresses yeast ACP1; the genotype is written as 'NDUFAB1 knockout' without asserting the rescue construct."
+   "evidence": "Gene from the raw file name (PRIDE: names carry the 'knockout cell line being studied'); Supp Table 1 lists the CRISPR/TALEN knockout clones for each gene (NDUFA9 and COA6 KOs generated previously); Supp Table S5 reports 'Mean Log2 ratio <gene>' for exactly these lines (ACPOE excluded, see limitations); target protein depleted in each quantified experiment (ratio_check). NDUFAB1 KO line: Supp Table 1 clones ACP1-1/ACP1-3 'KO (NDUFAB1)' and Ext Data Fig. 3 (KO complemented to survive); yeast ACP1 (P32463) is detected in the knockout channel of O-168..170 (H/L 5.37 in HL, 0.35/0.38 in LH), so this line is written 'NDUFAB1 knockout; yeast ACP1 expressing' (factor level of its own)."
   },
   {
-   "location": "characteristics[cellular component] rows",
+   "location": "characteristics[genotype] / factor value[genotype] 'HEK293T expressing yeast ACP1' rows (partners of O-168/169/170); source name HEK293T_yACP1_mito_*",
+   "value": "HEK293T expressing yeast ACP1",
+   "source_ids": [
+    "mq_main",
+    "suppdata",
+    "suppinfo"
+   ],
+   "evidence": "combined.zip proteinGroups, yeast ACP1 P32463 (searched via ACP1.fasta, parameters.txt): Intensity H/L O-168 (HL) 1.96e9/3.80e8, O-169 (LH) 7.19e8/1.97e9, O-170 (LH) 8.12e8/2.29e9, Ratio H/L type 'Leave out requantified', ratio counts 6-8, i.e. both channels measured; plain-HEK293T partners in O-171 (L only, H 0) and O-173 (H only, L 0) have none. Supp Table S2 names the NDUFAB1-period control 'HEK293TACP1'; Supp Table 1 lists the NDUFAB1 KO clones as 'ACP1-1'/'ACP1-3'. Kept out of the 'wild type' group; replicates numbered 1-3 within this level."
+  },
+  {
+   "location": "characteristics[cellular component] / factor value[cellular component] rows",
    "value": "mitochondrion (numbered runs 001-129) / whole cell (P1DAS_2016* runs)",
    "source_ids": [
     "pride",
@@ -211,39 +221,40 @@
     "mq_main",
     "ols"
    ],
-   "evidence": "PRIDE: 'SILAC labelled, 8M UREA solubilised mitochondria analysed through a single injection' and 'SDC solubilised whole-cell starting material fractionated over SCX'. Mitochondrial runs = single-injection numbered files (T1..T5 repeats); whole-cell = P1DAS_2016* files with F1-F6 (experimentalDesignTemplate Fraction 1-6; raw path '20160506_WC_SILAC_BATCHA'). GO:0005739 mitochondrion; 'whole cell' is free text in this custom column (batch rule 16)."
+   "evidence": "PRIDE: 'SILAC labelled, 8M UREA solubilised mitochondria analysed through a single injection' and 'SDC solubilised whole-cell starting material fractionated over SCX'. Mitochondrial runs = single-injection numbered files (T1..T5 repeats); whole-cell = P1DAS_2016* files with F1-F6 (experimentalDesignTemplate Fraction 1-6; raw path '20160506_WC_SILAC_BATCHA'). GO:0005739 mitochondrion; 'whole cell' is free text in this custom column (batch rule 16). Made a factor because the two materials are separate measured samples analysed separately (Supp Table S5/S8/S9 use either the mitochondrial or the whole-cell experiments per line)."
   },
   {
-   "location": "comment[technical replicate], comment[fraction identifier], comment[fractionation method] rows",
+   "location": "comment[technical replicate], comment[fraction identifier], comment[fractionation method], comment[sample preparation batch] rows",
    "value": "mito: T<n> -> technical replicate = rank of T<n> among the deposited injections (equals n except R-005 T3 -> 2), fraction 1, fractionation not applicable; whole-cell: F1-F6 -> fraction 1-6, technical replicate 1, SCX (PRIDE:0000561)",
    "source_ids": [
     "mq_main",
     "raw_header",
     "pride"
    ],
-   "evidence": "experimentalDesignTemplate groups T1/T2/T3 of one run in one Experiment (e.g. 001+ELITE180_D-040-NDUFA1-HL_T1..T3 -> D-040-NDUFA1-HL); the T1/T2 raw headers of 001ELITE180_D-040 show the same vial (RB5) re-injected; the MaxQuant 'Fraction' values 8/10/12 for these files are matching groups ('Experimental groups ... were given odd numbered fractions to avoid falsely matched identifications', PRIDE), not fractions. 035ELITE180_R-005 has only T1 and T3 deposited (no T2 in the deposit or the search); they are numbered technical replicates 1 and 2 (rank of the deposited injections, so that replicates run 1..n). Whole-cell F1-F6 = SCX fractions per Kulak et al. (PRIDE)."
+   "evidence": "experimentalDesignTemplate groups T1/T2/T3 of one run in one Experiment (e.g. 001+ELITE180_D-040-NDUFA1-HL_T1..T3 -> D-040-NDUFA1-HL); raw headers show same-vial re-injections for 001ELITE180_D-040 T1/T2 (vial RB5) and R-004/005/006 ('David-SILAC-1_InSolMito_180min_A/B/C-Stagetip_Rep1..3', vials BE1/BE3/BE2). EXCEPTION, COA6 J-102/103/104: T1-T3 were acquired in Mar-Apr 2014 (Data\\1403\\MB307\\7/8/9-c1orf31-A9-HL/LH-T1..3, vials RC7/RC8/RD1) while T4/T5 are a separate 8 M urea preparation acquired Sep 2014 (Data\\1408\\MB531\\Coa6-A9-HL_UREA / LH1_UREA / LH2_UREA, vials RE1/RE2/RE3; T5 re-injects the T4 vial). They are kept as technical replicates 4-5 of the same source (the HL/LH1/LH2 names map one-to-one onto J-102/103/104, so the same SILAC mixture is assumed, not proven) and comment[sample preparation batch] marks 'COA6 prep 1' (T1-T3) vs 'COA6 prep 2: 8 M urea' (T4-T5); 'not available' for every other row; the MaxQuant 'Fraction' values 8/10/12 for these files are matching groups ('Experimental groups ... were given odd numbered fractions to avoid falsely matched identifications', PRIDE), not fractions. 035ELITE180_R-005 has only T1 and T3 deposited (no T2 in the deposit or the search); they are numbered technical replicates 1 and 2 (rank of the deposited injections, so that replicates run 1..n). Whole-cell F1-F6 = SCX fractions per Kulak et al. (PRIDE)."
   },
   {
    "location": "characteristics[biological replicate] rows",
-   "value": "1..n per genotype group; wild type numbered 1..150 across all 150 experiments (117 mitochondrial + 33 whole-cell)",
+   "value": "1..n per (genotype, cellular component) factor group; wild type mitochondrion 1..114, wild type whole cell 1..33, HEK293T expressing yeast ACP1 1..3",
    "source_ids": [
     "paper",
     "suppdata",
     "mq_main"
    ],
-   "evidence": "Each knockout line was measured in three independent SILAC experiments ('n = 3 biological replicates', Fig. 2d, Ext Data Fig. 8-9; triplicate columns in Supp Table S5). Within a genotype group the mitochondrial and whole-cell experiments (and the two NDUFA13 batches R and I) are numbered consecutively, never reusing a number (batch rule 3). Each experiment's HEK293T partner is given its own number in the wild-type group because the deposit does not say whether control cultures were shared; this may over-count control cultures (limitation)."
+   "evidence": "Each knockout line was measured in three independent SILAC experiments ('n = 3 biological replicates', Fig. 2d, Ext Data Fig. 8-9; triplicate columns in Supp Table S5). Numbering restarts per factor-value group (genotype x cellular component); the two NDUFA13 mitochondrial batches R and I are 1-6 (batch rule 3). Each SILAC mixture's control partner gets its own number: this is a ceiling (one per mixture), not evidence of independent control cultures; sharing of control cultures between experiments is undocumented."
   }
  ],
  "limitations": [
   "Paper Methods are behind the Nature paywall and were not read (not bypassed); sample preparation details (culture medium, reduction/alkylation reagents, passage) are therefore not available. PRIDE lists 'iodoacetamide derivatized residue' and cites Kulak et al. 2014 (an iST protocol that uses chloroacetamide); reagents left out rather than guessed.",
   "Precursor tolerance 4.5 ppm rests on the PRIDE statement that MaxQuant defaults were used (no mqpar.xml deposited).",
   "Instrument settings (scan range, NCE, analyzer) were read from one raw file per acquisition batch (25 files), not from every file.",
-  "Wild-type HEK293T partner channels: each experiment's control is given a distinct biological replicate number; whether control SILAC cultures were shared between experiments is not documented.",
+  "Control partner channels: each SILAC mixture's control has a distinct biological replicate number within its factor group; this is an upper bound (one per mixture), since sharing of control cultures between experiments is not documented.",
+  "Sample preparation varies across batches and is not fully encoded: PRIDE describes 8 M urea mitochondria, but the R-004..006 runs (Sep 2013) are named 'InSolMito ... Stagetip' and COA6 T1-T3 (Mar 2014) predate the COA6 8 M urea re-preparation (T4/T5). Only the COA6 split is encoded (comment[sample preparation batch]); acquisition names were read for 25 batch-representative files plus the COA6, R, O, V-227 and T-215 files.",
   "PRIDE lists two publications. PMID 27626371 (Stroud et al., Nature 2016) generated the data. PMID 32161263 (Zhang et al., Nat Commun 2020, BRAWNIN) reanalysed the mitochondrial raw files with SearchGUI/PeptideShaker and is not the source of any sample metadata.",
   "Digestion enzyme: no source for this study names it; Trypsin is taken from the search rule (Trypsin/P). The whole-cell protocol cites Kulak et al., which may have used Lys-C in addition.",
   "Partial scope: the 6 raw files of experiments O-171..173 'ACPOE' (091QEP120_O-171-ACPOE-LH_T1/T2, 092QEP120_O-172-ACPOE-LH_T1/T2, 093QEP120_O-173-ACPOE-LH_T1/T2) are left out: the identity of the ACPOE line is not defined in the paper, Supplementary Information or Supplementary Data (only 'Mean Log2 ratio ACPOE' in Table S5). Data suggest yeast ACP1 over-expression in cells with normal NDUFAB1 (NDUFAB1 H/L ~1.15, yeast ACP1 P32463 H/L 0.07 in an LH run), but that is inference. See annotations/BLOCKED.md.",
   "experimentalDesignTemplate.txt of combined.zip lists 6 runs (124ELITE180_K-117/118/119-NDUFV1, T1/T2) that were neither deposited nor searched (absent from summary.txt); no rows exist for them.",
-  "The NDUFAB1 knockout line expresses yeast ACP1 (detected in its channel); the rescue construct is not encoded in the genotype value.",
+  "NDUFAB1 experiments O-168..170: both channels contain yeast ACP1; encoded as 'NDUFAB1 knockout; yeast ACP1 expressing' vs 'HEK293T expressing yeast ACP1'. Whether the ACP1 construct is identical in both lines (and whether the partner is the blocked ACPOE line) is not documented.",
   "Whole-cell clone tokens in file names (e.g. FA8-22 = NDUFA8-22, FB4-7 = NDUFB4-7 per Supp Table 1) are not encoded; FS5-A9 matches no clone in Supp Table 1."
  ]
 }
