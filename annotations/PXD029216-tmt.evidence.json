@@ -1,358 +1,407 @@
 {
- "schema_version": 1,
- "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD029216-tmt.sdrf.tsv",
- "dataset": "PXD029216",
- "sources": [
-  {
-   "id": "pride",
-   "kind": "repository",
-   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029216 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/pride.json)"
-  },
-  {
-   "id": "pride_files",
-   "kind": "repository",
-   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029216/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/files_all.json; 642 entries, all asserted to carry PXD029216: 636 .raw, 3 MaxQuant txt zips, 2 PD .msf, 1 label key .xls)"
-  },
-  {
-   "id": "label_key",
-   "kind": "repository",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/SWOG_NPM1_TMT_label_key.xls (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/dl/SWOG_NPM1_TMT_label_key.xls; sheets dumped verbatim to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/labelkey_SILAC.tsv, labelkey_SWOG27.tsv, labelkey_NPM1.tsv, labelkey_FH_UW45.tsv)"
-  },
-  {
-   "id": "paper",
-   "kind": "publication",
-   "location": "PMC11647701 / doi:10.1002/jha2.1041 / PMID 39691254 (Naru J et al., eJHaem 2024;5(6):1243-1251), NCBI efetch db=pmc id=11647701 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/efetch.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/manuscript.txt)"
-  },
-  {
-   "id": "supp_methods",
-   "kind": "supplementary",
-   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11647701.1/JHA2-5-1243-s014.docx (Supplemental Methods; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/supp/JHA2-5-1243-s014.docx, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/supp_methods_clean.txt)"
-  },
-  {
-   "id": "table_s13",
-   "kind": "supplementary",
-   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11647701.1/JHA2-5-1243-s013.xlsx (patient clinicopathologic table for FHCC/UW-HDR3 and SWOG27; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/supp/JHA2-5-1243-s013.xlsx, dump /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/tableS_clinical.tsv)"
-  },
-  {
-   "id": "mq_1st",
-   "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_SWOG_1st_MaxQuant_txt.zip members txt/parameters.txt, txt/summary_new.txt, txt/proteinGroups_new.txt (HTTP-range extracted; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/1st_*.txt)"
-  },
-  {
-   "id": "mq_2nd",
-   "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_SWOG_2nd_MaxQuant_txt.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/2nd_*.txt)"
-  },
-  {
-   "id": "mq_npm1",
-   "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_NPM1_MaxQuant_txt.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/npm1_*.txt)"
-  },
-  {
-   "id": "pd_msf",
-   "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/JN092820_101520_TMT11plex_E2_bRP_Frac_01to24.msf and ..._E3_... (HTTP-range SQLite; Workflows.WorkflowXML -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_workflow.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E3_workflow.xml; WorkflowInputFiles -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_inputs.tsv; ReporterQuanResults samples -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_reporter_sample.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E3_reporter_sample.tsv)"
-  },
-  {
-   "id": "raw_headers",
-   "kind": "raw-file",
-   "location": "first 1.5 MB of 9 .raw files (one per run group: AML1001/AML1036/AML1027_R2 SILAC, SWOG27 GRA, NPM1 Gr01, Gr08, Gr08 reshoot, E2, E3), HTTP-range from https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/ (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/raw/*.head)"
-  },
-  {
-   "id": "cellosaurus",
-   "kind": "ontology",
-   "location": "https://api.cellosaurus.org/cell-line/<CVCL>?format=txt for CVCL_7916, CVCL_1844, CVCL_1824, CVCL_2110, CVCL_0589, CVCL_2161 (queried 2026-11-08)"
-  },
-  {
-   "id": "ols",
-   "kind": "ontology",
-   "location": "https://www.ebi.ac.uk/ols4/api/terms?obo_id=<id> (queried 2026-11-08) for every accession used"
-  },
-  {
-   "id": "campaign_rules",
-   "kind": "curation-policy",
-   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (rules 1-18 + batch-3 refinements)"
-  },
-  {
-   "id": "precedent",
-   "kind": "curation-precedent",
-   "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD003822/PXD003822-freshfrozen-silac.sdrf.tsv (AML super-SILAC); /home/user/bigbio/sdrf-skills/annotations/PXD030422.sdrf.tsv (heavy reference encoding); annotations/PXD008327.validation.txt (post-build Lys-C column)"
-  },
-  {
-   "id": "templates",
-   "kind": "specification",
-   "location": "sdrf-tools contract -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata (ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0); upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t"
-  },
-  {
-   "id": "build",
-   "kind": "local-script",
-   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/scripts/rebuild.sh (make_tables.py -> sdrf-tools build x5 -> postbuild.py); working tables /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/build/*/samples.tsv, technical.tsv"
-  }
- ],
- "claims": [
-  {
-   "location": "comment[label] + source name SWOG27 rows 1-648",
-   "value": "TMT126..TMT130C = label-key channels 0-8 of groups A/B/C; channel 9 (TMT131) omitted",
-   "source_ids": [
-    "label_key",
-    "mq_2nd",
-    "table_s13"
-   ],
-   "evidence": "Label key sheet \"SWOG27\": Sample ID, TMT group (A/B/C), TMT channel 0-9, raw file pattern JK021618_031218_AML_2nd_Discovery_TMT_10plex_GR<group>_Fxx.raw. MaxQuant proteinGroups has Reporter intensity 0-9 per Group_A/B/C (TMT10plex; channel index n -> 10plex order 126,127N,...,131). Cross-check: RPS4Y1 reporter intensity separates Table S13 males (27-61 ppm of channel total) from females (3-16) on all 27 channels. Channel 9 is blank in the key but carries reporter signal (0.86-0.97 of the max channel) -> occupied by an undocumented sample, left out (build emits nothing for an empty source name)."
-  },
-  {
-   "location": "comment[label] + source name NPM1 rows 649-3816",
-   "value": "TMT126..TMT131C = label-key channels 1-11 of Gr01-Gr11",
-   "source_ids": [
-    "label_key",
-    "mq_npm1"
-   ],
-   "evidence": "Label key sheet \"NPM1\": Sample ID, TMT group 1-11, TMT channel 1-11, Cell_type, Age_Group, Cell_fraction_IP, raw file pattern; for Gr08 the key lists both JK111819_032120_..._Gr08 and JK051120_052920_..._Gr08 for every channel. MaxQuant: Reporter intensity 1-11 per experiment Gr01..Gr11 + Gr08_reshoot (TMT11plex). The Gr08 and Gr08_reshoot channel-intensity profiles match channel for channel (e.g. ch7 0.29 vs 0.30, ch10 0.64 vs 0.64), confirming the same plex."
-  },
-  {
-   "location": "comment[technical replicate] rows 2497-2520,2545-2568,2593-2616,2641-2664,2689-2712,2737-2760,2785-2808,2833-2856,2881-2904,2929-2952,2977-3000",
-   "value": "2 (Gr08 re-injection JK051120_052920); 1 elsewhere",
-   "source_ids": [
-    "label_key",
-    "mq_npm1"
-   ],
-   "evidence": "Same TMT plex re-injected (MaxQuant experiment \"Gr08_reshoot\"); same source names, technical replicate 2."
-  },
-  {
-   "location": "comment[label] + source name FH/UW rows 3817-4248",
-   "value": "TMT126..TMT130C = label-key channels 1-9 of E2 / E3; channels 10-11 omitted",
-   "source_ids": [
-    "label_key",
-    "pd_msf"
-   ],
-   "evidence": "Label key sheet \"FH UW45\": E2 channels 1-9 = AML1051/AML1050/AML1052 MNC, CD34+ (CD117+ for AML1051) and CD34- (CD117-) fractions; E3 channels 1-9 = AML1089, AML1037, AML1038, AML1001-AML1006. The sheet's other E3-labelled rows (AML1007 onward) have no raw data/search file and are not deposited. PD QuantificationMethod = TMT 11plex. ReporterQuanResults samples (first 40,000 rows of each msf) show channels 10 and 11 with mean heights comparable to channels 1-9 in both E2 (9438, 7882 vs 6823-14502) and E3 (3389, 4761 vs 1018-7142) -> occupied but undocumented -> left out."
-  },
-  {
-   "location": "characteristics[age], characteristics[sex], characteristics[treatment status], characteristics[treatment response], characteristics[clinical data], characteristics[developmental stage] rows 1-648,913-936,1081-1104,1489-1512,1561-1584,1609-1632,1729-1752,2329-2352,3817-4032",
-   "value": "Table S13 Age (e.g. 59Y), Sex, pre-treatment, Complete Remission / Primary Induction Failure, clinical text",
-   "source_ids": [
-    "table_s13",
-    "paper",
-    "ols"
-   ],
-   "evidence": "Table S13 gives per-patient Age, Sex, Source, Outcome (CR / No CR within 12 months), FLT3-ITD, NPM1 and 13 other mutations, IP, cytogenetic risk, karyotype, allelic ratio, ELN 2017 risk, protocol and induction regimen for the 27 SWOG27 and 3 FHCC/UW-HDR3 patients. Paper Methods: specimens from \"previously untreated AML patients\" -> pre-treatment. CR -> NCIT:C4870 Complete Remission; No CR -> NCIT:C70622 Primary Induction Failure (\"does not achieve a complete remission\"). All ages >= 21 -> adult (EFO:0001272). Propagated by patient ID to the same patients in the NPM1 arm."
-  },
-  {
-   "location": "characteristics[organism part] all non-pool, non-cell-line rows",
-   "value": "bone marrow / blood",
-   "source_ids": [
-    "label_key",
-    "table_s13"
-   ],
-   "evidence": "SWOG27 and FH/UW: Source column (BM / PB / Apheresis -> blood), which agrees with Table S13 for every S13 patient (PB vs Apheresis both blood). NPM1 arm: no Source column; taken from the Sample ID suffix _BM / _BLD, which matched the explicit Source for every patient that also appears in another sheet except AML1027/AML1056 (neither is in the NPM1 arm). Unidentified NPM1 channels: not available."
-  },
-  {
-   "location": "characteristics[cell type] rows",
-   "value": "malignant cell (sorted blasts); peripheral blood mononuclear cell (E2 MNC rows {rng(MNC)}); hematopoietic precursor cell (normal CD34+ controls); not available (unsorted controls, cell lines, pools)",
-   "source_ids": [
-    "label_key",
-    "paper",
-    "ols"
-   ],
-   "evidence": "IP / Cell_fraction_IP columns; paper: MNC = \"all cell populations in the thawed specimen prior to sorting\" (E2 are blood/apheresis specimens). CL:0001064, CL:2000001, CL:0008001 verified."
-  },
-  {
-   "location": "characteristics[phenotype] + factor value[phenotype] all rows",
-   "value": "sorted population, e.g. \"CD34-positive viable leukemic blasts\", \"unsorted mononuclear cells\", \"CD34-negative viable leukemic blasts (differentiated)\"",
-   "source_ids": [
-    "label_key",
-    "paper",
-    "table_s13"
-   ],
-   "evidence": "From IP / Cell_fraction_IP / Blast IP. Definitions: Fig. 2 legend and Table S13 footnote (CD117+ = no CD34, CD45/SSC = DN = double negative); paper: differentiated VLBs = VLBCD34-/CD38+ and VLBCD117-/CD38+. The study compares these populations (MNC vs differentiated vs undifferentiated VLBs, E2; CD34pos vs CD34neg, Table S2/S6/S7), so it is a factor. The fraction is per-sample: AML044, AML058 and AML185 were sorted differently in SWOG27 and NPM1 arms."
-  },
-  {
-   "location": "characteristics[genotype] + factor value[genotype] all rows",
-   "value": "\"FLT3-ITD <positive|negative|not determined>; NPM1 mutation <positive|negative>\"",
-   "source_ids": [
-    "label_key",
-    "table_s13",
-    "paper"
-   ],
-   "evidence": "FLT3-ITD / FLT3 and NPM1 columns of the label key (agree with Table S13 for all 30 S13 patients). Unidentified NPM1-cohort channels (Cell_type \"NPM1\", no ID): NPM1 mutation positive, FLT3-ITD not available. The paper compares FLT3-ITD+ vs - and NPM1+ vs - (Results; Table S15). Controls/cell lines: not available; pools: not applicable."
-  },
-  {
-   "location": "characteristics[disease] + factor value[disease]",
-   "value": "acute myeloid leukemia; normal for NL controls (rows {rng(CTRL)}) and Control_Pool",
-   "source_ids": [
-    "label_key",
-    "pride",
-    "ols"
-   ],
-   "evidence": "NPM1 sheet Cell_type \"Control\" (NL### donors) and \"Control_Pool\" vs \"NPM1\"/\"NPM1_Pool\"/\"Cell_line\" (AML lines). The NPM1 arm compares NPM1-mutant AML with normal controls, so disease is a factor. MONDO:0018874, PATO:0000461 verified."
-  },
-  {
-   "location": "pool rows 865-912,1129-1176,1393-1440,1657-1704,1921-1968,2185-2232,2449-2496,2929-3024,3241-3288,3505-3552,3769-3816: characteristics[sample type] / characteristics[pooled sample] / characteristics[biological replicate] / characteristics[age] / characteristics[sex] / characteristics[individual]",
-   "value": "pooled",
-   "source_ids": [
-    "label_key",
-    "templates"
-   ],
-   "evidence": "NPM1 sheet channels 10 (NPM1_Pool) and 11 (Control_Pool) in every group; composition not listed -> \"pooled\" without SN= members."
-  },
-  {
-   "location": "cell line rows 745-768,1105-1128,1177-1200,1465-1488,2017-2040,3049-3072: characteristics[individual] / characteristics[phenotype] / characteristics[age] / characteristics[sex] / characteristics[developmental stage] / characteristics[material type]",
-   "value": "MOLM-14, OCI-AML-3, KG-1a, ME-1, Kasumi-1, PL-21; Cellosaurus donor age/sex",
-   "source_ids": [
-    "label_key",
-    "cellosaurus"
-   ],
-   "evidence": "Label key IDs Molm14.L1, OCI-AML3, Kg1A, ME.1, Kasumi1, PL21 (Cell_type Cell_line) -> CVCL_7916, CVCL_1844, CVCL_1824, CVCL_2110, CVCL_0589, CVCL_2161 (verified live; sdrf-tools cellline lookup fuzzy-matched KG-1a to the wrong line KG-1-C and was overridden). Ages 20Y/57Y/59Y/40Y/7Y/24Y, all male; adult for >= 20Y, Kasumi-1 (7Y) not available. Disease: all six are AML lines per Cellosaurus. characteristics[cell line] is not used: under the cell-lines template it forbids both reserved words, which every patient row of the same plexes would need."
-  },
-  {
-   "location": "unidentified rows 841-864,985-1008,1225-1248,1441-1464,1801-1824,2161-2184,2377-2400,2689-2736,2785-2832,3745-3768",
-   "value": "source name unidentified_<pediatric|adult>_NPM1_AML_<group>_<channel>",
-   "source_ids": [
-    "label_key"
-   ],
-   "evidence": "NPM1 sheet rows with blank Sample ID but Cell_type NPM1, Age_Group Ped (8 channels) or Adult (Gr01 ch9, Gr08 ch7) and an IP. The samples exist and are characterised by the submitter; only the patient identifier was withheld. individual / organism part not available; age group in clinical data."
-  },
-  {
-   "location": "comment[instrument] rows 1-648 / rows 649-4248",
-   "value": "Orbitrap Fusion (SWOG27) / Orbitrap Eclipse (NPM1, E2, E3)",
-   "source_ids": [
-    "raw_headers",
-    "pd_msf",
-    "ols"
-   ],
-   "evidence": "Raw headers: SWOG27 GRA F01 \"Orbitrap Fusion\" (acquired 3/6/2018); NPM1 Gr01/Gr08/Gr08-reshoot and E2/E3 F01 \"Orbitrap Eclipse\" with FAIMS CV -40/-60/-80 (2020); PD WorkflowInputFiles instrument \"Orbitrap Eclipse\". Conflicts: PRIDE lists only Orbitrap Fusion; the Supplemental Methods say Orbitrap Eclipse for SWOG27, which is impossible for a March-2018 acquisition - raw headers win."
-  },
-  {
-   "location": "comment[dissociation method] / comment[collision energy] / comment[ms2 mass analyzer]",
-   "value": "beam-type CID / 40% NCE (SWOG27), 38% NCE (NPM1, E2, E3) / orbitrap",
-   "source_ids": [
-    "raw_headers",
-    "supp_methods"
-   ],
-   "evidence": "Raw headers: ActivationType HCD, Collision Energy (%) 40 (SWOG27; Supplemental Methods \"40% normalized collision energy\") or 38 (2020 Eclipse runs; Supplemental Methods FHCC \"38%\"); MS2 Detector Type Orbitrap."
-  },
-  {
-   "location": "comment[proteomics data acquisition method] all rows",
-   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
-   "source_ids": [
-    "supp_methods",
-    "raw_headers"
-   ],
-   "evidence": "\"data dependent MS/MS scans using HCD activation\" (Supplemental Methods)."
-  },
-  {
-   "location": "comment[cleavage agent details] (first column) all rows",
-   "value": "NT=Trypsin;AC=MS:1001251",
-   "source_ids": [
-    "supp_methods",
-    "mq_2nd",
-    "mq_npm1",
-    "pd_msf"
-   ],
-   "evidence": "SWOG27: \"trypsin was added at a 1:50 ... second aliquot 1:100\" (Supplemental Methods). FHCC: rLys-C 1:100 4 h then trypsin 1:100 overnight. NPM1 arm: no digestion protocol published; MaxQuant Enzyme Trypsin/Specific. PD Enzyme Trypsin (Full)."
-  },
-  {
-   "location": "comment[cleavage agent details] (second column) rows 3817-4248 / other rows",
-   "value": "NT=Lys-C;AC=MS:1001309 / not applicable",
-   "source_ids": [
-    "supp_methods",
-    "campaign_rules",
-    "precedent"
-   ],
-   "evidence": "Rule 2: two-enzyme digests get a second cleavage column. Inserted by scripts/postbuild.py after build (single-valued in the contract). The Lys-C step is described for FHCC/UW-HDR3 (= plex E2); E3 shares the prep batch (JN092820), acquisition date (10/15/20) and identical PD workflow, so the same protocol is inferred (limitation). SWOG27: trypsin only (stated); NPM1: not described."
-  },
-  {
-   "location": "comment[reduction reagent] / comment[alkylation reagent]",
-   "value": "TCEP / Iodoacetamide (SWOG27, E2, E3); not available (NPM1)",
-   "source_ids": [
-    "supp_methods",
-    "ols"
-   ],
-   "evidence": "SWOG27: \"reduced in 15 mM TCEP ... alkylation with 40 mM IAM\"; FHCC: \"reduced (5 mM TCEP) ... alkylated with 10 mM IAM\". NPM1 arm: not described, but the search sets Carbamidomethyl fixed -> reagent not available. PRIDE:0000609, PRIDE:0000599 verified."
-  },
-  {
-   "location": "comment[fractionation method] / comment[fraction identifier] all rows",
-   "value": "High-pH reversed-phase chromatography (hpHRP) PRIDE:0000564 / 1-24",
-   "source_ids": [
-    "supp_methods",
-    "pride_files"
-   ],
-   "evidence": "Supplemental Methods: basic (high pH) RP fractions concatenated into 24 samples (SWOG27 and FHCC). NPM1 file names carry \"bRP\" (basic reversed phase) and 24 fractions F01-F24; E2/E3 \"bRP_Frac_01..24\"."
-  },
-  {
-   "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance]",
-   "value": "20 ppm / 20 ppm (SWOG27, NPM1 MaxQuant); 10 ppm / 0.6 Da (E2, E3 PD)",
-   "source_ids": [
-    "mq_2nd",
-    "mq_npm1",
-    "pd_msf",
-    "pride"
-   ],
-   "evidence": "MaxQuant parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"; precursor 20 ppm as stated in PRIDE (\"Peptide MH+ mass tolerances were set at 20 ppm\"). PD WorkflowXML PeptideTolerance 10 ppm, FragmentTolerance 0.6 Da (both msf identical)."
-  },
-  {
-   "location": "comment[modification parameters] (7 columns)",
-   "value": "Carbamidomethyl C Fixed; TMT6plex K Fixed; TMT6plex Any N-term Fixed; Oxidation M Variable; [E2/E3 only] Acetyl Protein N-term, Met-loss, Met-loss+Acetyl Variable (not applicable on MaxQuant rows)",
-   "source_ids": [
-    "mq_2nd",
-    "mq_npm1",
-    "pd_msf",
-    "ols",
-    "campaign_rules"
-   ],
-   "evidence": "MaxQuant: Fixed modifications Carbamidomethyl (C), Variable modifications Oxidation (M) only (summary.txt), reporter-ion MS2 TMT quantification (TMT10/11 reporter columns; TMT10plex/11plex share the TMT6plex mass, UNIMOD:737). PD WorkflowXML: StaticModification C Carbamidomethyl, K TMT6plex, StaticModificationNPeptide TMT6plex (Any N-Terminus); DynamicModification1 Oxidation (M); DynamicModificationNProtein Acetyl, Met-loss (M), Met-loss+Acetyl (M) -> PP=Protein N-term. Rule 5: sub-experiments searched differently are built separately with identical headers and not applicable where a mod is absent. PRIDE text lists only Carbamidomethyl + Oxidation for the PD search; the msf wins."
-  },
-  {
-   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] all rows",
-   "value": "v1.1.0 / ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0 / NT=sdrf-skills;VV=v0.1.0",
-   "source_ids": [
-    "campaign_rules",
-    "templates"
-   ],
-   "evidence": "Rules 1, 10, 15, 18. cell-lines is not declared: its required characteristics[cell line] forbids both reserved words and the patient/control/pool channels in the same plexes would need one; cell-line identity is carried in individual and phenotype."
-  },
-  {
-   "location": "characteristics[organism], characteristics[material type], characteristics[biological replicate], characteristics[pooled sample], characteristics[sample type], characteristics[individual] (non-pool rows)",
-   "value": "Homo sapiens; cell / cell line; 1; not pooled; study sample; patient or donor ID",
-   "source_ids": [
-    "pride",
-    "label_key"
-   ],
-   "evidence": "PRIDE NEWT:9606. individual = study patient ID (e.g. AML044_P200725088, AML1037, NL684), already published in the deposited label key / Table S13."
-  },
-  {
-   "location": "technology type all rows",
-   "value": "proteomic profiling by mass spectrometry",
-   "source_ids": [
-    "templates"
-   ],
-   "evidence": "Filled by sdrf-tools build from ms-proteomics."
-  },
-  {
-   "location": "comment[data file] / comment[technical replicate] / assay name all rows",
-   "value": "<deposited raw file name> / 1 (2 for the Gr08 reshoot) / file stem",
-   "source_ids": [
-    "pride_files",
-    "label_key",
-    "build"
-   ],
-   "evidence": "All 408 deposited TMT .raw files, names exactly as in PRIDE files/all, one row per documented channel; assay name = file stem shared by the channels of a run."
-  }
- ],
- "limitations": [
-  "techsdrf is not installed; instrument, activation, collision energy and MS2 detector were read from HTTP-range raw headers of one file per run group (9 files), not from every file.",
-  "Precursor mass tolerance for the three MaxQuant searches is not recorded in the deposited parameters.txt/summary.txt; 20 ppm is the value the PRIDE dataProcessingProtocol and Supplemental Methods state (\"Peptide MH+ mass tolerances were set at 20 ppm\"). MaxQuant's main-search default is 4.5 ppm (first search 20 ppm), so the stated value may describe the first search.",
-  "Ancestry is not reported for any individual: characteristics[ancestry category] = not available on all rows.",
-  "Individual-level age, sex, treatment response and clinical data exist only for the 30 Table S13 patients (SWOG27 + FHCC/UW-HDR3). They were propagated by patient ID to the same patients' samples in other arms (AML1050, AML039, AML044, AML058, AML158, AML179, AML185 in the NPM1 arm); all other patients carry not available. Sex/channel concordance was checked with RPS4Y1 reporter intensity: 27/27 SWOG27 channels and 7/7 NPM1-arm overlap channels agree with Table S13 (AML179: Table S13 sex F but karyotype 46,XY[20]; RPS4Y1 is low in both of its channels, so sex female was kept).",
-  "No patient age, sex or individual-level clinical data were deposited for the SILAC-arm, NPM1-arm or E3 patients other than the S13 overlaps; the NPM1 label key gives only Age_Group (Adult/Ped), used for developmental stage (adult) and clinical data (pediatric).",
-  "SCOPE NOTE: this file covers the 408 TMT runs (SWOG27 TMT10 3x24, NPM1 TMT11 11x24 + Gr08 reshoot 24, FH/UW E2/E3 TMT11 2x24). The 228 SILAC runs are in PXD029216-silac.sdrf.tsv (rule 12).",
-  "Undocumented occupied channels left out (no source can be named): SWOG27 TMT131 in groups A, B, C (reporter signal 0.86-0.97 of the max channel; RPS4Y1 intermediate, consistent with a mixed-sex pool but not stated) and E2/E3 TMT131N/TMT131C (reporter heights comparable to channels 1-9 in both plexes). 3x24 + 2x2x24 = 168 (run, channel) pairs are therefore not annotated.",
-  "E3 plex: the FH UW45 sheet gives the 9 patients and their IP/Source/genotype but the paper does not describe this plex; its digestion (Lys-C + trypsin), reduction and alkylation are inferred from E2 (same JN092820 prep batch, same 10/15/20 acquisition, identical PD workflow).",
-  "NPM1 arm: digestion, reduction/alkylation and the cohort itself are not described in the publication (the paper reports SWOG27 and FHCC/UW-HDR3 only); technical values come from the search output and raw headers; reduction/alkylation reagents not available; second cleavage column not applicable by default.",
-  "10 NPM1-cohort channels have no deposited patient ID (8 pediatric, 2 adult); they are annotated as unidentified NPM1-mutant AML samples with individual not available.",
-  "The NPM1_Pool and Control_Pool channels are annotated as pooled samples; their member samples are not listed in any source.",
-  "Label \"Molm14.L1\" was read as MOLM-14 (CVCL_7916); the \".L1\" suffix is unexplained.",
-  "Table S13 AML179: sex F but karyotype 46,XY[20]; proteomic RPS4Y1 supports female (kept).",
-  "reconcile raises false positives (cleavage agent wording; see validation.txt)."
- ]
+  "schema_version": 1,
+  "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD029216-tmt.sdrf.tsv",
+  "dataset": "PXD029216",
+  "sources": [
+    {
+      "id": "pride",
+      "kind": "repository",
+      "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029216 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/pride.json)"
+    },
+    {
+      "id": "pride_files",
+      "kind": "repository",
+      "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029216/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/files_all.json; 642 entries, all asserted to carry PXD029216: 636 .raw, 3 MaxQuant txt zips, 2 PD .msf, 1 label key .xls)"
+    },
+    {
+      "id": "label_key",
+      "kind": "repository",
+      "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/SWOG_NPM1_TMT_label_key.xls (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/dl/SWOG_NPM1_TMT_label_key.xls; sheets dumped verbatim to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/labelkey_SILAC.tsv, labelkey_SWOG27.tsv, labelkey_NPM1.tsv, labelkey_FH_UW45.tsv)"
+    },
+    {
+      "id": "paper",
+      "kind": "publication",
+      "location": "PMC11647701 / doi:10.1002/jha2.1041 / PMID 39691254 (Naru J et al., eJHaem 2024;5(6):1243-1251), NCBI efetch db=pmc id=11647701 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/efetch.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/manuscript.txt)"
+    },
+    {
+      "id": "supp_methods",
+      "kind": "supplementary",
+      "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11647701.1/JHA2-5-1243-s014.docx (Supplemental Methods; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/supp/JHA2-5-1243-s014.docx, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/evidence/supp_methods_clean.txt)"
+    },
+    {
+      "id": "table_s13",
+      "kind": "supplementary",
+      "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11647701.1/JHA2-5-1243-s013.xlsx (patient clinicopathologic table for FHCC/UW-HDR3 and SWOG27; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/supp/JHA2-5-1243-s013.xlsx, dump /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/tableS_clinical.tsv)"
+    },
+    {
+      "id": "mq_1st",
+      "kind": "search-output",
+      "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_SWOG_1st_MaxQuant_txt.zip members txt/parameters.txt, txt/summary_new.txt, txt/proteinGroups_new.txt (HTTP-range extracted; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/1st_*.txt)"
+    },
+    {
+      "id": "mq_2nd",
+      "kind": "search-output",
+      "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_SWOG_2nd_MaxQuant_txt.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/2nd_*.txt)"
+    },
+    {
+      "id": "mq_npm1",
+      "kind": "search-output",
+      "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/AML_NPM1_MaxQuant_txt.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/npm1_*.txt)"
+    },
+    {
+      "id": "pd_msf",
+      "kind": "search-output",
+      "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/JN092820_101520_TMT11plex_E2_bRP_Frac_01to24.msf and ..._E3_... (HTTP-range SQLite; Workflows.WorkflowXML -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_workflow.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E3_workflow.xml; WorkflowInputFiles -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_inputs.tsv; ReporterQuanResults samples -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E2_reporter_sample.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/mq/E3_reporter_sample.tsv)"
+    },
+    {
+      "id": "raw_headers",
+      "kind": "raw-file",
+      "location": "first 1.5 MB of 9 .raw files (one per run group: AML1001/AML1036/AML1027_R2 SILAC, SWOG27 GRA, NPM1 Gr01, Gr08, Gr08 reshoot, E2, E3), HTTP-range from https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/ (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/raw/*.head)"
+    },
+    {
+      "id": "cellosaurus",
+      "kind": "ontology",
+      "location": "https://api.cellosaurus.org/cell-line/<CVCL>?format=txt for CVCL_7916, CVCL_1844, CVCL_1824, CVCL_2110, CVCL_0589, CVCL_2161 (queried 2026-11-08)"
+    },
+    {
+      "id": "ols",
+      "kind": "ontology",
+      "location": "https://www.ebi.ac.uk/ols4/api/terms?obo_id=<id> (queried 2026-11-08) for every accession used"
+    },
+    {
+      "id": "campaign_rules",
+      "kind": "curation-policy",
+      "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (rules 1-18 + batch-3 refinements)"
+    },
+    {
+      "id": "precedent",
+      "kind": "curation-precedent",
+      "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD003822/PXD003822-freshfrozen-silac.sdrf.tsv (AML super-SILAC); /home/user/bigbio/sdrf-skills/annotations/PXD030422.sdrf.tsv (heavy reference encoding); annotations/PXD008327.validation.txt (post-build Lys-C column); /home/user/bigbio/sdrf-annotated-datasets/datasets/PXD045616/PXD045616.sdrf.tsv (comment[FAIMS compensation voltage])"
+    },
+    {
+      "id": "templates",
+      "kind": "specification",
+      "location": "sdrf-tools contract -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata (ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0); upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t"
+    },
+    {
+      "id": "build",
+      "kind": "local-script",
+      "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/scripts/rebuild.sh (make_tables.py -> sdrf-tools build x5 -> postbuild.py); working tables /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/build/*/samples.tsv, technical.tsv"
+    },
+    {
+      "id": "raw_headers_all",
+      "kind": "raw-file",
+      "location": "first 200 kB of every deposited .raw (228 SILAC + 408 TMT), HTTP-range fetched by the independent reviewer from https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD029216/ (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/review-PXD029216/rawsilac/*.raw.head, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/review-PXD029216/rawtmt/*.raw.head; JN092820_101520_TMT11plex_E2_bRP_Frac_11 was truncated at 4 kB there and re-fetched: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/rawtmt_refetch/). Scanned by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/scan_headers.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/silac_acqnames.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/tmt_acqnames.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/tmt_faims.tsv"
+    },
+    {
+      "id": "review_r1",
+      "kind": "independent-review",
+      "location": "/home/user/bigbio/sdrf-skills/annotations/PXD029216.review.md (review round 1; reviewer-supplied evidence: per-run L/H profile correlation from AML_SWOG_1st evidence_new.txt, reporter-profile and peptide-overlap checks of NPM1 Gr07/Gr08 from AML_NPM1 evidence.txt; reviewer scripts and data /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/review-PXD029216/scripts, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/review-PXD029216/mq)"
+    },
+    {
+      "id": "fix_r1",
+      "kind": "local-script",
+      "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/apply_fixes.py (post-build edits of review round 1, run after /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/scan_headers.py, silac_acq_check.py, silac_f06_profile.py); frozen round-1 inputs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/orig/"
+    }
+  ],
+  "claims": [
+    {
+      "location": "comment[label] + source name SWOG27 rows 1-648",
+      "value": "TMT126..TMT130C = label-key channels 0-8 of groups A/B/C; channel 9 (TMT131) omitted",
+      "source_ids": [
+        "label_key",
+        "mq_2nd",
+        "table_s13"
+      ],
+      "evidence": "Label key sheet \"SWOG27\": Sample ID, TMT group (A/B/C), TMT channel 0-9, raw file pattern JK021618_031218_AML_2nd_Discovery_TMT_10plex_GR<group>_Fxx.raw. MaxQuant proteinGroups has Reporter intensity 0-9 per Group_A/B/C (TMT10plex; channel index n -> 10plex order 126,127N,...,131). Cross-check: RPS4Y1 reporter intensity separates Table S13 males (27-61 ppm of channel total) from females (3-16) on all 27 channels. Channel 9 is blank in the key but carries reporter signal (0.86-0.97 of the max channel) -> occupied by an undocumented sample, left out (build emits nothing for an empty source name)."
+    },
+    {
+      "location": "comment[label] + source name NPM1 rows 649-3816",
+      "value": "TMT126..TMT131C = label-key channels 1-11 of Gr01-Gr11",
+      "source_ids": [
+        "label_key",
+        "mq_npm1"
+      ],
+      "evidence": "Label key sheet \"NPM1\": Sample ID, TMT group 1-11, TMT channel 1-11, Cell_type, Age_Group, Cell_fraction_IP, raw file pattern; for Gr08 the key lists both JK111819_032120_..._Gr08 and JK051120_052920_..._Gr08 for every channel. MaxQuant: Reporter intensity 1-11 per experiment Gr01..Gr11 + Gr08_reshoot (TMT11plex). The Gr08 and Gr08_reshoot channel-intensity profiles match channel for channel (e.g. ch7 0.29 vs 0.30, ch10 0.64 vs 0.64), confirming the same plex."
+    },
+    {
+      "location": "comment[technical replicate] rows 2497-2520,2545-2568,2593-2616,2641-2664,2689-2712,2737-2760,2785-2808,2833-2856,2881-2904,2929-2952,2977-3000",
+      "value": "2 (Gr08 re-injection JK051120_052920); 1 elsewhere",
+      "source_ids": [
+        "label_key",
+        "mq_npm1"
+      ],
+      "evidence": "Same TMT plex re-injected (MaxQuant experiment \"Gr08_reshoot\"); same source names, technical replicate 2."
+    },
+    {
+      "location": "comment[label] + source name FH/UW rows 3817-4248",
+      "value": "TMT126..TMT130C = label-key channels 1-9 of E2 / E3; channels 10-11 omitted",
+      "source_ids": [
+        "label_key",
+        "pd_msf"
+      ],
+      "evidence": "Label key sheet \"FH UW45\": E2 channels 1-9 = AML1051/AML1050/AML1052 MNC, CD34+ (CD117+ for AML1051) and CD34- (CD117-) fractions; E3 channels 1-9 = AML1089, AML1037, AML1038, AML1001-AML1006. The sheet's other E3-labelled rows (AML1007 onward) have no raw data/search file and are not deposited. PD QuantificationMethod = TMT 11plex. ReporterQuanResults samples (first 40,000 rows of each msf) show channels 10 and 11 with mean heights comparable to channels 1-9 in both E2 (9438, 7882 vs 6823-14502) and E3 (3389, 4761 vs 1018-7142) -> occupied but undocumented -> left out."
+    },
+    {
+      "location": "characteristics[age], characteristics[sex], characteristics[treatment status], characteristics[treatment response], characteristics[clinical data], characteristics[developmental stage] rows 1-648,913-936,1081-1104,1489-1512,1561-1584,1609-1632,1729-1752,2329-2352,3817-4032",
+      "value": "Table S13 Age (e.g. 59Y), Sex, pre-treatment, Complete Remission / Primary Induction Failure, clinical text",
+      "source_ids": [
+        "table_s13",
+        "paper",
+        "ols"
+      ],
+      "evidence": "Table S13 gives per-patient Age, Sex, Source, Outcome (CR / No CR within 12 months), FLT3-ITD, NPM1 and 13 other mutations, IP, cytogenetic risk, karyotype, allelic ratio, ELN 2017 risk, protocol and induction regimen for the 27 SWOG27 and 3 FHCC/UW-HDR3 patients. Paper Methods: specimens from \"previously untreated AML patients\" -> pre-treatment. CR -> NCIT:C4870 Complete Remission; No CR -> NCIT:C70622 Primary Induction Failure (\"does not achieve a complete remission\"). All ages >= 21 -> adult (EFO:0001272). Propagated by patient ID to the same patients in the NPM1 arm."
+    },
+    {
+      "location": "characteristics[developmental stage] NPM1 rows 649-864,913-984,1009-1128,1177-1224,1249-1392,1465-1656,1705-1800,1825-1920,1969-2016,2041-2160,2233-2376,2401-2448,2497-2688,2737-2928,3025-3240,3289-3504,3553-3744 (Age_Group Adult) and E3 rows 4057-4104,4153-4176,4225-4248",
+      "value": "adult",
+      "source_ids": [
+        "label_key",
+        "ols",
+        "review_r1"
+      ],
+      "evidence": "NPM1 sheet Age_Group = Adult for the channel (individual-level). Rows of the same individual in plex E3 (AML1037, AML1038, AML1003, AML1006; FH UW45 sheet gives no age) take the same value, because age group is a property of the individual (review round 1, minor 3). EFO:0001272 adult. Age_Group Ped -> not available (no pediatric stage term in the template's EFO subtree; 'pediatric' kept in clinical data)."
+    },
+    {
+      "location": "characteristics[organism part] all non-pool, non-cell-line rows",
+      "value": "bone marrow / blood",
+      "source_ids": [
+        "label_key",
+        "table_s13"
+      ],
+      "evidence": "SWOG27 and FH/UW: Source column (BM / PB / Apheresis -> blood), which agrees with Table S13 for every S13 patient (PB vs Apheresis both blood). NPM1 arm: no Source column; taken from the Sample ID suffix _BM / _BLD, which matched the explicit Source for every patient that also appears in another sheet except AML1027/AML1056 (neither is in the NPM1 arm). Unidentified NPM1 channels: not available."
+    },
+    {
+      "location": "characteristics[cell type] rows",
+      "value": "malignant cell (sorted blasts); peripheral blood mononuclear cell (E2 MNC rows {rng(MNC)}); hematopoietic precursor cell (normal CD34+ controls); not available (unsorted controls, cell lines, pools)",
+      "source_ids": [
+        "label_key",
+        "paper",
+        "ols"
+      ],
+      "evidence": "IP / Cell_fraction_IP columns; paper: MNC = \"all cell populations in the thawed specimen prior to sorting\" (E2 are blood/apheresis specimens). CL:0001064, CL:2000001, CL:0008001 verified."
+    },
+    {
+      "location": "characteristics[phenotype] + factor value[phenotype] all rows",
+      "value": "sorted population, e.g. \"CD34-positive viable leukemic blasts\", \"unsorted mononuclear cells\", \"CD34-negative viable leukemic blasts (differentiated)\"",
+      "source_ids": [
+        "label_key",
+        "paper",
+        "table_s13"
+      ],
+      "evidence": "From IP / Cell_fraction_IP / Blast IP. Definitions: Fig. 2 legend and Table S13 footnote (CD117+ = no CD34, CD45/SSC = DN = double negative); paper: differentiated VLBs = VLBCD34-/CD38+ and VLBCD117-/CD38+. The study compares these populations (MNC vs differentiated vs undifferentiated VLBs, E2; CD34pos vs CD34neg, Table S2/S6/S7), so it is a factor. The fraction is per-sample: AML044, AML058 and AML185 were sorted differently in SWOG27 and NPM1 arms."
+    },
+    {
+      "location": "characteristics[genotype] + factor value[genotype] all rows",
+      "value": "\"FLT3-ITD <positive|negative|not determined>; NPM1 mutation <positive|negative>\"",
+      "source_ids": [
+        "label_key",
+        "table_s13",
+        "paper"
+      ],
+      "evidence": "FLT3-ITD / FLT3 and NPM1 columns of the label key (agree with Table S13 for all 30 S13 patients). Unidentified NPM1-cohort channels (Cell_type \"NPM1\", no ID): NPM1 mutation positive, FLT3-ITD not available. The paper compares FLT3-ITD+ vs - and NPM1+ vs - (Results; Table S15). Controls/cell lines: not available; pools: not applicable."
+    },
+    {
+      "location": "characteristics[disease] + factor value[disease]",
+      "value": "acute myeloid leukemia; normal for NL controls (rows {rng(CTRL)}) and Control_Pool",
+      "source_ids": [
+        "label_key",
+        "pride",
+        "ols"
+      ],
+      "evidence": "NPM1 sheet Cell_type \"Control\" (NL### donors) and \"Control_Pool\" vs \"NPM1\"/\"NPM1_Pool\"/\"Cell_line\" (AML lines). The NPM1 arm compares NPM1-mutant AML with normal controls, so disease is a factor. MONDO:0018874, PATO:0000461 verified."
+    },
+    {
+      "location": "pool rows 865-912,1129-1176,1393-1440,1657-1704,1921-1968,2185-2232,2449-2496,2929-3024,3241-3288,3505-3552,3769-3816: characteristics[sample type] / characteristics[pooled sample] / characteristics[biological replicate] / characteristics[age] / characteristics[sex] / characteristics[individual]",
+      "value": "pooled",
+      "source_ids": [
+        "label_key",
+        "templates"
+      ],
+      "evidence": "NPM1 sheet channels 10 (NPM1_Pool) and 11 (Control_Pool) in every group; composition not listed -> \"pooled\" without SN= members."
+    },
+    {
+      "location": "cell line rows 745-768,1105-1128,1177-1200,1465-1488,2017-2040,3049-3072: characteristics[individual] / characteristics[phenotype] / characteristics[age] / characteristics[sex] / characteristics[developmental stage] / characteristics[material type]",
+      "value": "MOLM-14, OCI-AML-3, KG-1a, ME-1, Kasumi-1, PL-21; Cellosaurus donor age/sex",
+      "source_ids": [
+        "label_key",
+        "cellosaurus"
+      ],
+      "evidence": "Label key IDs Molm14.L1, OCI-AML3, Kg1A, ME.1, Kasumi1, PL21 (Cell_type Cell_line) -> CVCL_7916, CVCL_1844, CVCL_1824, CVCL_2110, CVCL_0589, CVCL_2161 (verified live; sdrf-tools cellline lookup fuzzy-matched KG-1a to the wrong line KG-1-C and was overridden). Ages 20Y/57Y/59Y/40Y/7Y/24Y, all male; adult for >= 20Y, Kasumi-1 (7Y) not available. Disease: all six are AML lines per Cellosaurus. characteristics[cell line] is not used: under the cell-lines template it forbids both reserved words, which every patient row of the same plexes would need."
+    },
+    {
+      "location": "unidentified rows 841-864,985-1008,1225-1248,1441-1464,1801-1824,2161-2184,2377-2400,2689-2736,2785-2832,3745-3768",
+      "value": "source name unidentified_<pediatric|adult>_NPM1_AML_<group>_<channel>",
+      "source_ids": [
+        "label_key"
+      ],
+      "evidence": "NPM1 sheet rows with blank Sample ID but Cell_type NPM1, Age_Group Ped (8 channels) or Adult (Gr01 ch9, Gr08 ch7) and an IP. The samples exist and are characterised by the submitter; only the patient identifier was withheld. individual / organism part not available; age group in clinical data."
+    },
+    {
+      "location": "comment[instrument] rows 1-648 / rows 649-4248",
+      "value": "Orbitrap Fusion (SWOG27) / Orbitrap Eclipse (NPM1, E2, E3)",
+      "source_ids": [
+        "raw_headers",
+        "pd_msf",
+        "ols"
+      ],
+      "evidence": "Raw headers: SWOG27 GRA F01 \"Orbitrap Fusion\" (acquired 3/6/2018); NPM1 Gr01/Gr08/Gr08-reshoot and E2/E3 F01 \"Orbitrap Eclipse\" with FAIMS CV -40/-60/-80 (2020); PD WorkflowInputFiles instrument \"Orbitrap Eclipse\". Conflicts: PRIDE lists only Orbitrap Fusion; the Supplemental Methods say Orbitrap Eclipse for SWOG27, which is impossible for a March-2018 acquisition - raw headers win."
+    },
+    {
+      "location": "comment[dissociation method] / comment[collision energy] / comment[ms2 mass analyzer]",
+      "value": "beam-type CID / 40% NCE (SWOG27), 38% NCE (NPM1, E2, E3) / orbitrap",
+      "source_ids": [
+        "raw_headers",
+        "supp_methods"
+      ],
+      "evidence": "Raw headers: ActivationType HCD, Collision Energy (%) 40 (SWOG27; Supplemental Methods \"40% normalized collision energy\") or 38 (2020 Eclipse runs; Supplemental Methods FHCC \"38%\"); MS2 Detector Type Orbitrap."
+    },
+    {
+      "location": "comment[proteomics data acquisition method] all rows",
+      "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+      "source_ids": [
+        "supp_methods",
+        "raw_headers"
+      ],
+      "evidence": "\"data dependent MS/MS scans using HCD activation\" (Supplemental Methods)."
+    },
+    {
+      "location": "comment[cleavage agent details] (first column) all rows",
+      "value": "NT=Trypsin;AC=MS:1001251",
+      "source_ids": [
+        "supp_methods",
+        "mq_2nd",
+        "mq_npm1",
+        "pd_msf"
+      ],
+      "evidence": "SWOG27: \"trypsin was added at a 1:50 ... second aliquot 1:100\" (Supplemental Methods). FHCC: rLys-C 1:100 4 h then trypsin 1:100 overnight. NPM1 arm: no digestion protocol published; MaxQuant Enzyme Trypsin/Specific. PD Enzyme Trypsin (Full)."
+    },
+    {
+      "location": "comment[cleavage agent details] (second column) rows 3817-4248 / other rows",
+      "value": "NT=Lys-C;AC=MS:1001309 / not applicable",
+      "source_ids": [
+        "supp_methods",
+        "campaign_rules",
+        "precedent"
+      ],
+      "evidence": "Rule 2: two-enzyme digests get a second cleavage column. Inserted by scripts/postbuild.py after build (single-valued in the contract). The Lys-C step is described for FHCC/UW-HDR3 (= plex E2); E3 shares the prep batch (JN092820), acquisition date (10/15/20) and identical PD workflow, so the same protocol is inferred (limitation). SWOG27: trypsin only (stated); NPM1: not described."
+    },
+    {
+      "location": "comment[reduction reagent] / comment[alkylation reagent]",
+      "value": "TCEP / Iodoacetamide (SWOG27, E2, E3); not available (NPM1)",
+      "source_ids": [
+        "supp_methods",
+        "ols"
+      ],
+      "evidence": "SWOG27: \"reduced in 15 mM TCEP ... alkylation with 40 mM IAM\"; FHCC: \"reduced (5 mM TCEP) ... alkylated with 10 mM IAM\". NPM1 arm: not described, but the search sets Carbamidomethyl fixed -> reagent not available. PRIDE:0000609, PRIDE:0000599 verified."
+    },
+    {
+      "location": "comment[fractionation method] / comment[fraction identifier] all rows",
+      "value": "High-pH reversed-phase chromatography (hpHRP) PRIDE:0000564 / 1-24",
+      "source_ids": [
+        "supp_methods",
+        "pride_files"
+      ],
+      "evidence": "Supplemental Methods: basic (high pH) RP fractions concatenated into 24 samples (SWOG27 and FHCC). NPM1 file names carry \"bRP\" (basic reversed phase) and 24 fractions F01-F24; E2/E3 \"bRP_Frac_01..24\"."
+    },
+    {
+      "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] (all rows except 2531,2579,2627,2675,2723,2771,2819,2867,2915,2963,3011)",
+      "value": "20 ppm / 20 ppm (SWOG27, NPM1 MaxQuant); 10 ppm / 0.6 Da (E2, E3 PD)",
+      "source_ids": [
+        "mq_2nd",
+        "mq_npm1",
+        "pd_msf",
+        "pride"
+      ],
+      "evidence": "MaxQuant parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"; precursor 20 ppm as stated in PRIDE (\"Peptide MH+ mass tolerances were set at 20 ppm\"). PD WorkflowXML PeptideTolerance 10 ppm, FragmentTolerance 0.6 Da (both msf identical)."
+    },
+    {
+      "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 2531,2579,2627,2675,2723,2771,2819,2867,2915,2963,3011",
+      "value": "not applicable",
+      "source_ids": [
+        "mq_npm1",
+        "campaign_rules",
+        "review_r1"
+      ],
+      "evidence": "JK111819_032120_NPM1_AML_Gr08_TMT_11plex_bRP_GLBL_F11.raw is the only one of the 288 deposited NPM1 raws absent from the NPM1 MaxQuant summary.txt (287 raws x 3 FAIMS CVs are present; its re-injection JK051120_052920_..._F11 is searched). Rule 5: runs never database-searched get tolerances not applicable. Modification parameters are kept as the plex's chemistry (TMT6plex, Carbamidomethyl, Oxidation), the same convention as the unsearched SILAC AML1027_R2 runs."
+    },
+    {
+      "location": "comment[modification parameters] (7 columns)",
+      "value": "Carbamidomethyl C Fixed; TMT6plex K Fixed; TMT6plex Any N-term Fixed; Oxidation M Variable; [E2/E3 only] Acetyl Protein N-term, Met-loss, Met-loss+Acetyl Variable (not applicable on MaxQuant rows)",
+      "source_ids": [
+        "mq_2nd",
+        "mq_npm1",
+        "pd_msf",
+        "ols",
+        "campaign_rules"
+      ],
+      "evidence": "MaxQuant: Fixed modifications Carbamidomethyl (C), Variable modifications Oxidation (M) only (summary.txt), reporter-ion MS2 TMT quantification (TMT10/11 reporter columns; TMT10plex/11plex share the TMT6plex mass, UNIMOD:737). PD WorkflowXML: StaticModification C Carbamidomethyl, K TMT6plex, StaticModificationNPeptide TMT6plex (Any N-Terminus); DynamicModification1 Oxidation (M); DynamicModificationNProtein Acetyl, Met-loss (M), Met-loss+Acetyl (M) -> PP=Protein N-term. Rule 5: sub-experiments searched differently are built separately with identical headers and not applicable where a mod is absent. PRIDE text lists only Carbamidomethyl + Oxidation for the PD search; the msf wins."
+    },
+    {
+      "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] all rows",
+      "value": "v1.1.0 / ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0 / NT=sdrf-skills;VV=v0.1.0",
+      "source_ids": [
+        "campaign_rules",
+        "templates"
+      ],
+      "evidence": "Rules 1, 10, 15, 18. cell-lines is not declared: its required characteristics[cell line] forbids both reserved words and the patient/control/pool channels in the same plexes would need one; cell-line identity is carried in individual and phenotype."
+    },
+    {
+      "location": "characteristics[organism], characteristics[material type], characteristics[biological replicate], characteristics[pooled sample], characteristics[sample type], characteristics[individual] (non-pool rows)",
+      "value": "Homo sapiens; cell / cell line; 1; not pooled; study sample; patient or donor ID",
+      "source_ids": [
+        "pride",
+        "label_key"
+      ],
+      "evidence": "PRIDE NEWT:9606. individual = study patient ID (e.g. AML044_P200725088, AML1037, NL684), already published in the deposited label key / Table S13."
+    },
+    {
+      "location": "technology type all rows",
+      "value": "proteomic profiling by mass spectrometry",
+      "source_ids": [
+        "templates"
+      ],
+      "evidence": "Filled by sdrf-tools build from ms-proteomics."
+    },
+    {
+      "location": "comment[data file] / comment[technical replicate] / assay name all rows",
+      "value": "<deposited raw file name> / 1 (2 for the Gr08 reshoot) / file stem",
+      "source_ids": [
+        "pride_files",
+        "label_key",
+        "build"
+      ],
+      "evidence": "All 408 deposited TMT .raw files, names exactly as in PRIDE files/all, one row per documented channel; assay name = file stem shared by the channels of a run."
+    },
+    {
+      "location": "comment[FAIMS compensation voltage] rows 649-4248 / rows 1-648",
+      "value": "-40 V,-60 V,-80 V (NPM1, Gr08 reshoot, E2, E3) / not applicable (SWOG27)",
+      "source_ids": [
+        "raw_headers_all",
+        "raw_headers",
+        "mq_npm1",
+        "precedent",
+        "review_r1"
+      ],
+      "evidence": "Every one of the 336 NPM1/E2/E3 raw headers has FAIMS Voltages On = True with three experiments 'TMT MS2 FAIMS -40 CV', '-60 CV', '-80 CV' (FAIMS CV = -40/-60/-80; methods TMT10Plex_MS2_140min_40_60_80_CV_*.meth and TMT10Plex_MS2_90min_40_60_80_CV_DE1C.meth); scan_headers.py -> tmt_faims.tsv. The NPM1 MaxQuant summary.txt lists every searched raw as three runs suffixed _-40, _-60, _-80. SWOG27 raws (Orbitrap Fusion, 2018) carry no FAIMS settings -> not applicable. Column name and value format follow curated precedents (sdrf-annotated-datasets PXD045616, PXD045618: comment[FAIMS compensation voltage] = '-40 V,-55 V,-70 V')."
+    }
+  ],
+  "limitations": [
+    "techsdrf is not installed; instrument, activation, collision energy and MS2 detector were read from HTTP-range raw headers of one file per run group (9 files), not from every file. Review round 1 added a scan of the first 200 kB of all 408 TMT headers (reviewer-fetched; scan_headers.py) for acquisition names and FAIMS CVs.",
+    "Precursor mass tolerance for the three MaxQuant searches is not recorded in the deposited parameters.txt/summary.txt; 20 ppm is the value the PRIDE dataProcessingProtocol and Supplemental Methods state (\"Peptide MH+ mass tolerances were set at 20 ppm\"). MaxQuant's main-search default is 4.5 ppm (first search 20 ppm), so the stated value may describe the first search.",
+    "Ancestry is not reported for any individual: characteristics[ancestry category] = not available on all rows.",
+    "Individual-level age, sex, treatment response and clinical data exist only for the 30 Table S13 patients (SWOG27 + FHCC/UW-HDR3). They were propagated by patient ID to the same patients' samples in other arms (AML1050, AML039, AML044, AML058, AML158, AML179, AML185 in the NPM1 arm); all other patients carry not available. Sex/channel concordance was checked with RPS4Y1 reporter intensity: 27/27 SWOG27 channels and 7/7 NPM1-arm overlap channels agree with Table S13 (AML179: Table S13 sex F but karyotype 46,XY[20]; RPS4Y1 is low in both of its channels, so sex female was kept).",
+    "No patient age, sex or individual-level clinical data were deposited for the SILAC-arm, NPM1-arm or E3 patients other than the S13 overlaps; the NPM1 label key gives only Age_Group (Adult/Ped), used for developmental stage (adult) and clinical data (pediatric).",
+    "SCOPE NOTE: this file covers the 408 TMT runs (SWOG27 TMT10 3x24, NPM1 TMT11 11x24 + Gr08 reshoot 24, FH/UW E2/E3 TMT11 2x24). The 228 SILAC runs are in PXD029216-silac.sdrf.tsv (rule 12).",
+    "Undocumented occupied channels left out (no source can be named): SWOG27 TMT131 in groups A, B, C (reporter signal 0.86-0.97 of the max channel; RPS4Y1 intermediate, consistent with a mixed-sex pool but not stated) and E2/E3 TMT131N/TMT131C (reporter heights comparable to channels 1-9 in both plexes). 3x24 + 2x2x24 = 168 (run, channel) pairs are therefore not annotated.",
+    "E3 plex: the FH UW45 sheet gives the 9 patients and their IP/Source/genotype but the paper does not describe this plex; its digestion (Lys-C + trypsin), reduction and alkylation are inferred from E2 (same JN092820 prep batch, same 10/15/20 acquisition, identical PD workflow).",
+    "NPM1 arm: digestion, reduction/alkylation and the cohort itself are not described in the publication (the paper reports SWOG27 and FHCC/UW-HDR3 only); technical values come from the search output and raw headers; reduction/alkylation reagents not available; second cleavage column not applicable by default.",
+    "10 NPM1-cohort channels have no deposited patient ID (8 pediatric, 2 adult); they are annotated as unidentified NPM1-mutant AML samples with individual not available.",
+    "The NPM1_Pool and Control_Pool channels are annotated as pooled samples; their member samples are not listed in any source. ASSUMPTION: they are encoded as one pool source per plex (NPM1_Pool_NPM1-Gr01 ... Gr11, Control_Pool_NPM1-Gr01 ... Gr11; 22 sources, the Gr08 reshoot sharing Gr08's sources). Nothing deposited says whether a single bridging pool was prepared once and reused across the 11 plexes; if it was, these 11 sources per pool type are one biological sample. The sample type stays 'pooled' (not 'reference'), since no source describes the pools as a bridging/normalisation reference.",
+    "Label \"Molm14.L1\" was read as MOLM-14 (CVCL_7916); the \".L1\" suffix is unexplained.",
+    "Table S13 AML179: sex F but karyotype 46,XY[20]; proteomic RPS4Y1 supports female (kept).",
+    "reconcile raises false positives (cleavage agent wording; see validation.txt).",
+    "Raw-header acquisition names in NPM1 Gr07/Gr08 are scrambled (tmt_acqnames.tsv): deposited JK111819_032120_..._Gr08_F01-F08 carry Gr07 F17-F23 names (F08 a timestamped duplicate of Gr07 F23), and deposited Gr07_F09-F24 carry Gr07 F01-F16 names (deposited Gr07_F01-F08 carry timestamped Gr07 F01-F08 names). Timestamp-suffixed duplicate names also occur in Gr01 (F09), Gr04 (F08, F11, F12) and Gr09 (F15, F23). Resolved by data in favour of the deposited names (reviewer-supplied evidence, review round 1): per-run reporter profiles from NPM1 evidence.txt of deposited Gr08 F01-F08 correlate 0.86-0.99 with Gr08 F09-F24 and <= 0.24 with Gr07, and peptide-overlap matching assigns every Gr07/Gr08 file to its deposited fraction number. MaxQuant searched them under the deposited names (experiments Gr07 / Gr08). Deposited names, fraction numbers and the Gr08 reshoot's technical replicate 2 are kept.",
+    "JK111819_032120_NPM1_AML_Gr08_TMT_11plex_bRP_GLBL_F11.raw was not database-searched (absent from the NPM1 MaxQuant summary.txt): tolerances not applicable on its 11 rows; `parse_sdrf convert-openms` therefore fails on the full TMT file and succeeds without those rows (see validation.txt)."
+  ]
 }

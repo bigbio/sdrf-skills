@@ -1,25 +1,48 @@
 # PXD029216 validation log (two SDRFs, rule 12: PXD029216-silac.sdrf.tsv and PXD029216-tmt.sdrf.tsv)
 # Templates for both: ms-proteomics, human, clinical-metadata, oncology-metadata
-# sha256 of the validated files:
-#   7d750e95bea3c460f27e0bc19c3f3daa87fc203b9cb064762620faac0c8ec9d5  PXD029216-silac.sdrf.tsv
-#   74a97fb04a7c03d6e7f74f05dbed0b7c49589e1785bd212fb18b49108ddb387f  PXD029216-tmt.sdrf.tsv
-#   a698e33d36e4fde57fe094dc4f27cf83f8ad4c40e12ec8d9792f76497dcbb443  PXD029216-silac.evidence.json
-#   2eb3fde0ba158e0a432580766f0665039788af507a8e94fff00eb0031a5c4805  PXD029216-tmt.evidence.json
+# State: after review round 1 (annotations/PXD029216.review.md). sha256 of the validated files:
+#   9e14022c72696211f677795627064c882c81cebe50e39e41295e652cc4ddbc5e  PXD029216-silac.sdrf.tsv
+#   a2933f23c85d480554daeadbc6d19cc144cf67c28a3268b548153397fcf3647e  PXD029216-tmt.sdrf.tsv
+#   036a7a3647c61ad426b2bcb8147a38780abdd3f2ed98b870a299beeb13f232c8  PXD029216-silac.evidence.json
+#   299155b016acdcda0ccd3f612526f365964994eda287081aa261ba9c603979e9  PXD029216-tmt.evidence.json
 #
 # Build: bash /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/scripts/rebuild.sh  (make_tables.py -> sdrf-tools build x5 -> postbuild.py)
-# Post-build edits (rule 17), deterministic and asserted in scripts/postbuild.py:
-#  1. SILAC: concatenation of build parts silac_searched + silac_unsearched (headers asserted identical).
+#   -> round-1 files (frozen copies + sha256 asserted: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/orig/), then
+#   python3 /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/apply_fixes.py  (review-round-1 post-build edits; inputs from scan_headers.py, silac_acq_check.py,
+#   silac_f06_profile.py in the same directory).
+# Post-build edits (rule 17), deterministic and asserted:
+#  1. SILAC: concatenation of build parts silac_searched + silac_unsearched (headers asserted identical). [postbuild.py]
 #  2. TMT: concatenation of tmt_swog27 + tmt_npm1 + tmt_fhuw (headers asserted identical), then insertion of a second
 #     comment[cleavage agent details] directly after the Trypsin column: NT=Lys-C;AC=MS:1001309 on the 432 E2/E3 rows
 #     (Supplemental Methods: rLys-C 4 h, then trypsin), 'not applicable' on the other 3816 rows. Why: the column is
-#     single-valued in the contract, so build emits one column (rule 2; precedent PXD008327). Deleting the inserted
-#     column restores the concatenation byte for byte (asserted per row).
-# Round history: round 1 had custom characteristics[cell line]/[cellosaurus accession] columns; sdrf-tools structure
-#   rejected 'not applicable' in them (reserved-word-not-allowed). Fixed in make_tables.py (columns dropped, identity
-#   moved to characteristics[individual]/[phenotype]) and rebuilt. Everything below is round 2 (final files).
+#     single-valued in the contract, so build emits one column (rule 2; precedent PXD008327). [postbuild.py]
+#  3. SILAC (review IMPORTANT 1, option a): removed the 12 rows of AML1036_Blast_BLD_2D_F01-F06 (light+heavy). Why: no
+#     SILAC label-key row and no AML1036 experiment in the deposited search (an undeposited AML1089 group instead);
+#     identity rested on the file name only. Raws listed in annotations/BLOCKED.md. [apply_fixes.py]
+#  4. SILAC (review minor 3): characteristics[developmental stage] not available -> adult on 60 light rows of the 10
+#     individuals whose label-key NPM1-sheet Age_Group (individual-level) is Adult, matching the TMT file. [apply_fixes.py]
+#  5. TMT (review minor 1): comment[precursor/fragment mass tolerance] 20 ppm -> not applicable on the 11 rows of
+#     JK111819_032120_NPM1_AML_Gr08_TMT_11plex_bRP_GLBL_F11.raw, the only NPM1 raw absent from the NPM1 MaxQuant
+#     summary.txt (rule 5). Modification parameters kept (same convention as the unsearched SILAC runs). [apply_fixes.py]
+#  6. TMT (review minor 3): developmental stage not available -> adult on the 96 E3 rows of AML1003/1006/1037/1038
+#     (NPM1-sheet Age_Group Adult); developmental stage now uniform per individual (asserted). [apply_fixes.py]
+#  7. TMT (review minor 2): new comment[FAIMS compensation voltage] after comment[ms2 mass analyzer]:
+#     '-40 V,-60 V,-80 V' on 3600 NPM1/E2/E3 rows (FAIMS CV = -40/-60/-80 in all 336 raw headers), 'not applicable'
+#     on 648 SWOG27 rows (Orbitrap Fusion, no FAIMS). Not built by sdrf-tools build because the column is in no
+#     template; name/format from curated precedent PXD045616. [apply_fixes.py]
+# Earlier history: round 1 had custom characteristics[cell line]/[cellosaurus accession] columns (rejected by
+#   sdrf-tools structure); fixed in make_tables.py before the round-1 review.
 
 ================================================================================
 $ parse_sdrf validate-sdrf -s PXD029216-silac.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+ERROR:sdrf_pipelines.ols.ols:OLS search term bone marrow error, retry number 1
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term bone marrow. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=bone+marrow&name=class&rows=10&start=10&ontology=uberon&exact=on
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/ols/ols.py", line 902, in _perform_ols_search
+    req.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=bone+marrow&name=class&rows=10&start=10&ontology=uberon&exact=on
 WARNING: Term: CD34-positive viable leukemic blasts in column 'characteristics[phenotype]', is not found in the given ontology list pato;efo
 WARNING: Term: SILAC heavy (Arg10/Lys8) labelled spike-in reference standard, composition not reported in column 'characteristics[phenotype]', is not found in the given ontology list pato;efo
 WARNING: Term: CD117-positive CD34-negative viable leukemic blasts in column 'characteristics[phenotype]', is not found in the given ontology list pato;efo
@@ -29,6 +52,14 @@ exit 0
 
 ================================================================================
 $ parse_sdrf validate-sdrf -s PXD029216-tmt.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+ERROR:sdrf_pipelines.ols.ols:OLS search term blood error, retry number 0
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term blood. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=blood&name=class&rows=10&start=0&ontology=uberon&exact=on
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/ols/ols.py", line 902, in _perform_ols_search
+    req.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=blood&name=class&rows=10&start=0&ontology=uberon&exact=on
 WARNING: Term: CD34-negative CD117-negative viable leukemic blasts (CD45-low SSC-low) in column 'characteristics[phenotype]', is not found in the given ontology list pato;efo
 WARNING: Term: CD34-positive viable leukemic blasts in column 'characteristics[phenotype]', is not found in the given ontology list pato;efo
 WARNING: Term: CD117-positive CD34-negative viable leukemic blasts in column 'characteristics[phenotype]', is not found in the given ontology list pato;efo
@@ -47,15 +78,33 @@ WARNING: Term: CD117-negative viable leukemic blasts (differentiated) in column 
 WARNING: Term: CD34-negative viable leukemic blasts (differentiated) in column 'characteristics[phenotype]', is not found in the given ontology list pato;efo
 Most seems to be fine. There were only warnings.
 exit 0
-# (Two earlier attempts of this command on the identical file crashed on transient OLS HTTP 500 errors:
-#  /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/val2_tmt_ols500.txt and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/val3_tmt.txt; not a property of the SDRF.)
+# The ERROR/Traceback lines in both logs are sdrf_pipelines' own logged OLS HTTP 500 retries (ols.py retries the
+# search); both runs completed with 'Most seems to be fine' and exit 0. (The TMT log was renamed while the run was
+# still writing, so its final 'exit 0' line landed in a separate file; the two parts were concatenated in order.)
 
 # Warnings (both files): only free-text characteristics[phenotype] values ('... viable leukemic blasts', SILAC heavy
 # reference description, 'unsorted ...'). TERMS.tsv phenotype values = 'PATO, EFO, free text' -> free text is allowed;
 # no PATO/EFO class describes FACS-gated leukemic blast populations. Justified, not fixed.
 
 ================================================================================
-# sdrf-tools reconcile / structure / schema-check / manifest-coverage (final files)
+# sdrf-tools check / structure / reconcile / schema-check / manifest-coverage (final files)
+# (the first 'sdrf-tools check' of the SILAC file crashed on a transient OLS HTTP 500 for q=adult, logs/checks.txt;
+#  the retry on the identical file is shown below)
+$ sdrf-tools check PXD029216-silac.sdrf.tsv
+Hallucination Report: PXD029216-silac.sdrf.tsv
+  Terms checked:     15
+  Verified:          15
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit 0
+
+$ sdrf-tools structure PXD029216-silac.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+
 $ sdrf-tools reconcile PXD029216-silac.sdrf.tsv --record <scratch>/evidence/pride.json --accession PXD029216
 PXD029216: 2 value(s) disagree with the deposit record:
 
@@ -63,16 +112,27 @@ PXD029216: 2 value(s) disagree with the deposit record:
   MAJOR    disease_with_control_arm_in_record (characteristics[disease]): the record describes a control arm, so 'acute myeloid leukemia' cannot hold for every row  [untreated]
 exit 1
 
-$ sdrf-tools structure PXD029216-silac.sdrf.tsv
-Structure OK: acquisition, template declaration and column order are consistent.
-exit 0
-
 $ sdrf-tools schema-check PXD029216-silac.evidence.json
 PXD029216-silac.evidence.json: valid evidence-manifest
 exit 0
 
 $ sdrf-tools manifest-coverage PXD029216-silac.sdrf.tsv PXD029216-silac.evidence.json
-Manifest covers every column with a value (25 column(s)).
+Manifest covers every column with a value (26 column(s)).
+exit 0
+
+$ sdrf-tools check PXD029216-tmt.sdrf.tsv
+Hallucination Report: PXD029216-tmt.sdrf.tsv
+  Terms checked:     26
+  Verified:          26
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit 0
+
+$ sdrf-tools structure PXD029216-tmt.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
 exit 0
 
 $ sdrf-tools reconcile PXD029216-tmt.sdrf.tsv --record <scratch>/evidence/pride.json --accession PXD029216
@@ -82,20 +142,16 @@ PXD029216: 2 value(s) disagree with the deposit record:
   MAJOR    disease_with_control_arm_in_record (characteristics[disease]): the record describes a control arm, so 'acute myeloid leukemia' cannot hold for every row  [untreated]
 exit 1
 
-$ sdrf-tools structure PXD029216-tmt.sdrf.tsv
-Structure OK: acquisition, template declaration and column order are consistent.
-exit 0
-
 $ sdrf-tools schema-check PXD029216-tmt.evidence.json
 PXD029216-tmt.evidence.json: valid evidence-manifest
 exit 0
 
 $ sdrf-tools manifest-coverage PXD029216-tmt.sdrf.tsv PXD029216-tmt.evidence.json
-Manifest covers every column with a value (36 column(s)).
+Manifest covers every column with a value (37 column(s)).
 exit 0
 
 
-# reconcile refutations (both files):
+# reconcile refutations (both files; unchanged from round 1):
 #  BLOCKER cleavage_agent_unsupported: FALSE POSITIVE. reconcile reads only the PRIDE JSON, which says 'tryptic enzyme
 #   constraint' but never names the reagent. The Supplemental Methods (PMC11647701 s014.docx) state 'trypsin was added at
 #   a 1:50 trypsin:protein ratio ... second aliquot of trypsin 1:100' (SWOG27) and 'digested with rLys-C 1:100 ... then
@@ -108,22 +164,26 @@ exit 0
 #   file: the real controls (15 NL### donor sources + 11 Control_Pool sources = 26 normal sources) already carry 'normal'.
 
 ================================================================================
-$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/openms_tmt && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD029216-tmt.sdrf.tsv -t2)
-PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD029216-tmt.sdrf.tsv
-Factor columns: ['factor value[disease]', 'factor value[genotype]', 'factor value[phenotype]']
-Files per condition: dict_values([672, 192, 384, 384, 48, 264, 600, 48, 24, 48, 288, 288, 120, 96, 24, 24, 192, 24, 24, 48, 24, 240, 24, 24, 24, 24, 24, 24, 24, 24])
-WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 4680 times.
-SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD029216-tmt.sdrf.tsv
-exit 0
-# 30 conditions (disease|genotype|phenotype); TA= warning = Acetyl / TMT6plex use PP= (positional), expected.
-
-$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/openms_silac && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD029216-silac.sdrf.tsv -t2)
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/silac && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD029216-silac.sdrf.tsv -t2)
 ValueError: Error: Cannot read precursor mass tolerance: not applicable
 exit 1
-# EXPECTED FAILURE: 24 rows (AML1036_Blast_BLD_2D_F01-06, AML1027_Blast_BLD_2D_R2_F01-06, light+heavy) carry
-# precursor/fragment mass tolerance 'not applicable' because these runs are not in the deposited MaxQuant search
-# (campaign rule 5). convert-openms cannot parse a reserved word as a tolerance. The 432 searched rows convert:
-$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/openms_silac_searched && parse_sdrf convert-openms -s /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/build/silac_searched/out.sdrf.tsv -t2)
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/tmt && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD029216-tmt.sdrf.tsv -t2)
+ValueError: Error: Cannot read precursor mass tolerance: not applicable
+exit 1
+# EXPECTED FAILURES: rows of runs never database-searched carry precursor/fragment mass tolerance 'not applicable'
+# (campaign rule 5): SILAC 12 rows (AML1027_Blast_BLD_2D_R2_F01-06, light+heavy); TMT 11 rows
+# (JK111819_032120_NPM1_AML_Gr08_TMT_11plex_bRP_GLBL_F11.raw). convert-openms cannot parse a reserved word as a
+# tolerance. The searched rows (those rows dropped by run_checks.sh) convert:
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/silac_searched && parse_sdrf convert-openms -s /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/silac_searched.sdrf.tsv -t2)
+PROCESSING: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/silac_searched.sdrf.tsv
+Factor columns: ['factor value[genotype]']
 Files per condition: dict_values([108, 216, 24, 48, 30, 6])
-SUCCESS (WARNINGS=0): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/build/silac_searched/out.sdrf.tsv
+SUCCESS (WARNINGS=0): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/silac_searched.sdrf.tsv
 exit 0
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/tmt_searched && parse_sdrf convert-openms -s /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/tmt_searched.sdrf.tsv -t2)
+Factor columns: ['factor value[disease]', 'factor value[genotype]', 'factor value[phenotype]']
+Files per condition: dict_values([670, 191, 384, 384, 48, 263, 597, 48, 24, 48, 287, 287, 120, 96, 24, 24, 191, 24, 24, 47, 24, 240, 24, 24, 24, 24, 24, 24, 24, 24])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 4669 times.
+SUCCESS (WARNINGS=1): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/openms/tmt_searched.sdrf.tsv
+exit 0
+# TMT: 30 conditions (disease|genotype|phenotype); TA= warning = Acetyl / TMT6plex use PP= (positional), expected.

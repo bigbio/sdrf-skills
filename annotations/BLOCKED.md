@@ -1448,13 +1448,13 @@ Sources checked: PRIDE project record and protocol, `files/all` (331 entries), `
 
 **Unblocked by:** for the 23 `HFPlus_136_L6` raws, the authors identifying experiment 140 (cell line and L/M/H conditions), or depositing the `HFPlus_136_L2` raws of experiment 136, which `File_assignment.txt` and Fig. 3a already document. For the rest: the authors' full L/M/H assignment for experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 (and confirmation of which channel holds the RAS bait in 1645/1647/1649), and the full TMT11 channel layout plus the cell line for experiment 0118. The BioID2 runs could then be added to `PXD031662.sdrf.tsv` (same search, add `NT=Biotin` slot `not applicable` for 350, which was searched without Biotin (K)); the TMT runs would go in a separate `PXD031662-tmt.sdrf.tsv` (rule 12).
 
-## PXD029216 — Proteogenomics of viable leukemic blasts in AML (SWOG; SILAC + TMT10/TMT11), 5 undocumented TMT channels only (partial block)
+## PXD029216 — Proteogenomics of viable leukemic blasts in AML (SWOG; SILAC + TMT10/TMT11), 5 undocumented TMT channels + 6 SILAC raws of unconfirmed identity (partial block)
 
 | | |
 |---|---|
 | Publication | Naru J *et al.*, eJHaem 2024 5(6):1243-1251, PMID:39691254, PMC11647701, doi:10.1002/jha2.1041 (full text via NCBI efetch, Supplemental Methods s014.docx and Table S13 read) |
-| Annotated | all 636 raws → `PXD029216-silac.sdrf.tsv` (228 raws, 456 rows) and `PXD029216-tmt.sdrf.tsv` (408 raws, 4248 rows) |
-| Not annotated | 168 (run, channel) pairs: TMT131 of `JK021618_031218_AML_2nd_Discovery_TMT_10plex_GR{A,B,C}_F01-F24` (SWOG27) and TMT131N + TMT131C of `JN092820_101520_TMT11plex_E{2,3}_bRP_Frac_01-24` |
+| Annotated | 630 of 636 raws → `PXD029216-silac.sdrf.tsv` (222 raws, 444 rows) and `PXD029216-tmt.sdrf.tsv` (408 raws, 4248 rows) |
+| Not annotated | 6 SILAC raws `AML1036_Blast_BLD_2D_F01.raw` … `AML1036_Blast_BLD_2D_F06.raw` (12 rows: light + heavy; added after review round 1, see below); 168 TMT (run, channel) pairs: TMT131 of `JK021618_031218_AML_2nd_Discovery_TMT_10plex_GR{A,B,C}_F01-F24` (SWOG27) and TMT131N + TMT131C of `JN092820_101520_TMT11plex_E{2,3}_bRP_Frac_01-24` |
 
 **What each source says:**
 
@@ -1468,6 +1468,22 @@ Sources checked: PRIDE project record and protocol, `files/all` (331 entries), `
 Sources checked: PRIDE record and `files/all` (642 entries), label key (4 sheets), 3 MaxQuant zips (parameters, summary, proteinGroups), both PD `.msf` (WorkflowXML, WorkflowInputFiles, ReporterQuanResults sample), raw headers, paper (PMC efetch), all 15 PMC OA supplementary files, Europe PMC search for the accession (only this paper).
 
 **Unblocked by:** the identity of SWOG27 channel 131 (probably an internal reference pool) and of E2/E3 channels 131N/131C. They would be added as further rows to `PXD029216-tmt.sdrf.tsv` (same search parameters as their plex).
+
+### PXD029216 — SILAC raws `AML1036_Blast_BLD_2D_F01-F06` (added after review round 1)
+
+**Blocker: AML1036 / AML1089 conflict — the patient identity of these 6 runs rests on the file name alone.**
+
+| source | what it says about `AML1036_Blast_BLD_2D_F01-F06` |
+|---|---|
+| `SWOG_NPM1_TMT_label_key.xls`, sheet "SILAC" (37 rows) | no AML1036 row; every other deposited SILAC group (37) has one, with its raw pattern |
+| `AML_SWOG_1st_MaxQuant_txt.zip` `summary_new.txt` | no AML1036 experiment; it holds a 38th experiment `AML1089_Blast_BLD_2D_F01-F06` whose raws were **not deposited** |
+| label key, sheet "FH UW45" | AML1089 is an FH/UW patient (plex E3 channel 1) in the same plex as AML1037, AML1038 and AML1001-1006, all of which are SILAC-arm patients |
+| raw headers | acquisition name `JK033016_AML_RO10001_2D_F01` … `F06`: the RO1000x series of AML1037 (RO10005) and AML1038 (RO10009) |
+| label key, sheet "NPM1" | a patient AML1036 exists (Gr07 channel 2) in the TMT arm; nothing ties these SILAC raws to that patient |
+
+So the deposited raws may be AML1089's (the searched experiment) renamed as AML1036, or a genuine AML1036 run that was never searched. Annotating them as AML1036 would assert patient identity, organism part and FLT3-ITD/NPM1 genotype from the file name only.
+
+**Unblocked by:** a deposited statement tying the 6 raws to a patient (a SILAC-sheet row, or a corrected deposit), or data evidence: search the 6 raws (same MaxQuant 1.5.3.30 SILAC Arg10/Lys8 parameters as `AML_SWOG_1st`) and show that their light/heavy profile matches AML1036's material and not the searched AML1089 profile (or vice versa). They would then be added as 12 rows to `PXD029216-silac.sdrf.tsv` (light = patient, heavy = reference, as for the other 37 groups).
 
 ### PXD031662 — identity note for the blocked BioID2 raws (added after review round 3)
 
