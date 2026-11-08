@@ -1,3 +1,34 @@
 # PXD006015 validation log (round 1, 2026-11-08T23:09Z); SDRF sha256 9d8847aeb4f69bbccc4b613ad6e32aff9314e5c5b61d63036d53da529c76bb25
 
 ## parse_sdrf validate-sdrf -s annotations/PXD006015.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: AG03258 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure annotations/PXD006015.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD006015.sdrf.tsv --offline
+Hallucination Report: annotations/PXD006015.sdrf.tsv
+  Terms checked:     11
+  Verified:          4
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD006015.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/evidence/pride.json --accession PXD006015
+PXD006015: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD006015.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD006015/convert)
+Factor columns: ['factor value[sampling time]', 'factor value[subcellular fraction]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[cellular component]']
+Conditions (10): dict_keys(['0 day|nuclear extract', '0 day|nuclear pellet', '1 day|nuclear extract', '1 day|nuclear pellet', '2 day|nuclear extract', '2 day|nuclear pellet', '6 day|nuclear extract', '6 day|nuclear pellet', '4 day|nuclear extract', '4 day|nuclear pellet'])
+Files per condition: dict_values([4, 4, 2, 2, 2, 2, 2, 2, 4, 2])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD006015.sdrf.tsv
+exit=0
+

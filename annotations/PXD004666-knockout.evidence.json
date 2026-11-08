@@ -1,0 +1,249 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD004666-knockout.sdrf.tsv",
+ "dataset": "PXD004666",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "MCP get_project_details(PXD004666) = PRIDE archive record (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/pride.json): title, description, sample/data processing protocols (SILAC; SCX-fractionated whole-cell, single-injection 8M-urea mitochondria, FLAG AP-MS from digitonin/Triton X-100 mitochondria; Q Exactive Plus and LTQ-Orbitrap Elite 'as indicated in the raw file name'; raw names carry batch, instrument+gradient, knockout line and label orientation; MaxQuant 1.5.4.1, Arg10/Lys8 defaults, Carbamidomethyl fixed, Acetyl N-term + Oxidation M variable), keywords Hek293t/Crispr/Talen, two publications (PMID 27626371 and 32161263)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004666/files?pageSize=100&page=0..5 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/files_p0..p5.json, merged files_all.json; 491 entries = 489 RAW + combined.zip + combined-AP-MS.zip; every entry projectAccessions contains PXD004666)"
+  },
+  {
+   "id": "mq_main",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/09/PXD004666/combined.zip (9.7 GB; read by HTTP range, central directory + single members): experimentalDesignTemplate.txt, txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/dl/main_*). summary.txt: 474 raw files, Multiplicity 2, Labels1 Arg10;Lys8, Enzyme Trypsin/P specific, max 2 missed cleavages, variable Oxidation (M);Acetyl (Protein N-term). parameters.txt: MaxQuant 1.5.4.1, fixed Carbamidomethyl (C), MS/MS tol FTMS 20 ppm, ITMS 0.5 Da. experimentalDesignTemplate: T1/T2/T3 files of one run share one Experiment; whole-cell F1-F6 = Fraction 1-6"
+  },
+  {
+   "id": "mq_apms",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/09/PXD004666/combined-AP-MS.zip (HTTP range): experimentalDesignTemplate.txt, txt/summary.txt (15 raw files, Multiplicity 2, Arg10;Lys8, Trypsin/P, same variable mods), txt/parameters.txt (same fixed mod and tolerances), txt/proteinGroups.txt, txt/evidence.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/dl/apms_*)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Stroud DA et al., Accessory subunits are integral for assembly and function of human mitochondrial complex I. Nature 2016;538:123-126, PMID 27626371, doi:10.1038/nature19754 (not in PMC; subscription). Read: the public article page https://www.nature.com/articles/nature19754 and figure pages /figures/2-4 (local nat.html/nat.txt, fig2-4.html): abstract, data deposit statement 'Data are available via ProteomeXchange under accession PXD004666', Fig. 2-4 and Extended Data figure legends. Methods text not accessible (paywall; not bypassed)"
+  },
+  {
+   "id": "suppdata",
+   "kind": "supplementary",
+   "location": "https://static-content.springer.com/esm/art%3A10.1038%2Fnature19754/MediaObjects/41586_2016_BFnature19754_MOESM333_ESM.xlsx (Supplementary Data, Tables S2-S12 + column definitions; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/supp/suppdata.xlsx)"
+  },
+  {
+   "id": "suppinfo",
+   "kind": "supplementary",
+   "location": "https://static-content.springer.com/esm/art%3A10.1038%2Fnature19754/MediaObjects/41586_2016_BFnature19754_MOESM332_ESM.pdf (Supplementary Information: Supplementary Table 1 knockout lines generated in HEK293T by CRISPR/Cas9 or TALEN, with clones; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/supp/suppinfo.pdf, suppinfo.txt)"
+  },
+  {
+   "id": "brawnin",
+   "kind": "publication",
+   "location": "Zhang S et al., Nat Commun 2020;11:1312, PMID 32161263, PMC7066179 (Europe PMC full text, local brawnin.json): reuses PXD004666 ('Quantitative mass spectrometry data on isolated mitochondria are available at ... PXD004666 ... downloaded using the PRIDE API'); a reanalysis, not the study that generated the data"
+  },
+  {
+   "id": "ratio_check",
+   "kind": "search-output",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/scripts/orient.py on mq_main/mq_apms proteinGroups.txt 'Ratio H/L normalized <experiment>' for the knocked-out or bait protein (output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/orient_main.tsv)"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 2.5-3 MB of one RAW file per acquisition batch (25 files listed in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/rawhdr/batch_reps.txt, from https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/09/PXD004666/<file>.raw), UTF-16LE strings (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/rawhdr/*.bin): instrument model, method name, scan ranges, NCE, MS2 analyzer"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0063?format=txt and sdrf-tools cellline lookup HEK293T (2026-11-08): HEK293T, CVCL_0063, OX Homo sapiens, SX Female, AG Fetus, BTO_0002181, parent HEK293 (embryonic kidney)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 search API 2026-11-08 (responses in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/ols/): BTO:0002181 HEK-293T cell, UBERON:0002113 kidney, PATO:0000461 normal, HsapDv:0000037 fetal stage, GO:0005739 mitochondrion, EFO:0009106 sample enrichment, NCIT:C457 Doxycycline, MS:1002634 Q Exactive Plus, MS:1001910 Orbitrap Elite, MS:1000422 beam-type CID, MS:1000133 CID, MS:1000484 orbitrap, MS:1000291 linear ion trap, MS:1001251 Trypsin, PRIDE:0000561 SCX, PRIDE:0000627 DDA, PRIDE:0000325/0000326 SILAC heavy/light, UNIMOD:267 Label:13C(6)15N(4), UNIMOD:259 Label:13C(6)15N(2)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0); the spec submodule's nested templates copy is older"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism], characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], characteristics[organism part], characteristics[sex], characteristics[developmental stage], characteristics[material type] all rows",
+   "value": "Homo sapiens / HEK-293T cell / CVCL_0063 / HEK293T / kidney / female / fetal stage / cell line",
+   "source_ids": [
+    "pride",
+    "suppinfo",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "All knockout and FLAG lines were generated in HEK293T (PRIDE keyword Hek293t; Supp Table 1 lists CRISPR/TALEN knockout clones; Fig. 2c and AP-MS headers use HEK293T as the comparator). Cellosaurus CVCL_0063: Homo sapiens, Female, AG Fetus, derived from HEK293 (embryonic kidney); BTO:0002181 'HEK-293T cell'; developmental stage from Cellosaurus 'Fetus' as HsapDv:0000037 'fetal stage'; organism part kidney UBERON:0002113."
+  },
+  {
+   "location": "characteristics[disease] all rows",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0063 lists no disease for HEK293T (transformed embryonic kidney line); PATO:0000461 normal. The study models complex I deficiency genetically, but no row is a patient sample, so no disease term is broadcast."
+  },
+  {
+   "location": "characteristics[label] / comment[label] all rows",
+   "value": "SILAC heavy / SILAC light",
+   "source_ids": [
+    "mq_main",
+    "mq_apms",
+    "ols"
+   ],
+   "evidence": "summary.txt Multiplicity 2, Labels0 empty (light = Arg0/Lys0), Labels1 Arg10;Lys8 for every searched file: one heavy and one light row per raw file."
+  },
+  {
+   "location": "comment[modification parameters] all rows",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_main",
+    "mq_apms",
+    "pride",
+    "ols"
+   ],
+   "evidence": "parameters.txt 'Fixed modifications Carbamidomethyl (C)'; summary.txt 'Variable modifications Oxidation (M);Acetyl (Protein N-term)', 'Labels1 Arg10;Lys8'. Arg10 = +10.008 Da = UNIMOD:267, Lys8 = +8.014 Da = UNIMOD:259 (batch rule 11: labels MT=Variable). Both searches identical."
+  },
+  {
+   "location": "comment[cleavage agent details] all rows",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_main",
+    "mq_apms"
+   ],
+   "evidence": "The PRIDE record names no digestion enzyme; both MaxQuant searches used 'Trypsin/P', Specific, max 2 missed cleavages (summary.txt), i.e. a tryptic digest; written as Trypsin per batch rule 2. Whole-cell samples were prepared 'as described by Kulak et al.' (PRIDE), a protocol that can use Lys-C with trypsin; no Lys-C is written because no source for this study names it (limitation)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] all rows",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "pride",
+    "mq_apms"
+   ],
+   "evidence": "PRIDE data processing: 'Default search parameters for a Arg10 and Lys8 labelled experiment were used' with MaxQuant 1.5.4.1, whose default main-search peptide tolerance is 4.5 ppm (first search 20 ppm). No mqpar.xml was deposited; consistency check on the AP-MS evidence.txt: 88,983 evidences, 99.9th percentile |Mass Error| 0.22 ppm, 51 (0.06%) above 4.5 ppm (max 5.56 ppm). The value rests on the stated use of defaults, not on a deposited parameter file."
+  },
+  {
+   "location": "comment[fragment mass tolerance], comment[instrument], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] all rows (per run)",
+   "value": "ELITE runs: Orbitrap Elite, CID, 35 NCE, linear ion trap, 0.5 Da, 350-1500 m/z; QEP120 and P1DAS runs: Q Exactive Plus, HCD (beam-type CID), 27 NCE, orbitrap, 20 ppm, 375-1800 m/z; QEP155 runs: as QEP120 but 375-1600 m/z",
+   "source_ids": [
+    "raw_header",
+    "pride",
+    "mq_main",
+    "ols"
+   ],
+   "evidence": "Raw headers (one file per batch, 25 files): 'Orbitrap Elite MS', scan events 'FTMS + p norm o(350.0-1500.0)' / 'ITMS + c norm Dep ... MS/MS', 'Activation Type: CID', 'Normalized Coll. Energy: 35.0'; QEP120/P1DAS: 'Q Exactive Plus - Orbitrap MS', 'Scan range 375 to 1800 m/z', 'NCE / stepped NCE 27', Fragmentation_HCD 27; QEP155 (batches H, I): 'Scan range 375 to 1600 m/z'. PRIDE protocol: QE Plus HCD NCE 27 m/z 375-1800; Elite CID 35% m/z 350-1500. Fragment tolerances from parameters.txt: 'MS/MS tol. (FTMS) 20 ppm', 'MS/MS tol. (ITMS) 0.5 Da'. Instrument per file from the file-name tag (ELITE180/QEP120/QEP155/P1DAS), confirmed on one file per batch."
+  },
+  {
+   "location": "comment[data file], assay name all rows",
+   "value": "<raw file name>.raw; assay = file stem",
+   "source_ids": [
+    "files",
+    "mq_main",
+    "mq_apms"
+   ],
+   "evidence": "Every RAW file of the PRIDE file list appears once per SILAC channel; each is listed in the summary.txt of the search it went through (combined.zip: 474 files incl. 6 ACPOE files left out here; combined-AP-MS.zip: 15 files)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw_header"
+   ],
+   "evidence": "PRIDE protocol: 'Data Dependent Acquisition' (top-12 HCD QE Plus; top-20 CID Elite); raw method names '..._Top12_...', 'CID-Top20'."
+  },
+  {
+   "location": "characteristics[genotype] / factor value[genotype] wild type rows",
+   "value": "wild type",
+   "source_ids": [
+    "suppdata",
+    "paper",
+    "ratio_check"
+   ],
+   "evidence": "AP-MS ratio headers are '<bait>FLAG/HEK293T' (Supp Tables S2-S4, S10, S11), i.e. the partner channel is parental HEK293T; Fig. 2c uses HEK293T as the reference line. In every knockout run the partner channel carries the targeted protein at high level (ratio_check), consistent with an unedited HEK293T partner. The paper Methods (paywalled) were not read; 'wild type' = parental HEK293T is the reading of these sources."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool]",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10. Templates: human cell line samples measured by MS."
+  },
+  {
+   "location": "comment[label] per row; channel -> sample map",
+   "value": "file tag HL: knockout/bait cells = SILAC heavy, HEK293T control = SILAC light; tag LH: the reverse",
+   "source_ids": [
+    "suppdata",
+    "pride",
+    "ratio_check",
+    "mq_apms"
+   ],
+   "evidence": "Explicit: Supp Data 'Column definitions' \u2014 'X-000-YYY-ZZ ... ZZ, label orientation identifier (either HL or LH)'; AP-MS tables name the HL experiments 'Expt. 1/2 H/L NDUFAB1FLAG/HEK293T...' and the LH experiment 'Expt. 3 L/H NDUFAB1FLAG/HEK293T...' (same pattern in S3, S4, S10, S11), so HL = FLAG cells heavy. PRIDE: raw names include 'applicable label orientation'. Data check: AP-MS H/L of the bait protein log2 +3.1 to +6.1 in all 10 HL runs and -3.6 to -5.0 in all 5 LH runs; knockout runs: H/L of the knocked-out protein is negative in every HL experiment with a value (e.g. NDUFA9 Q-025 -3.48, NDUFB6 H-096 -3.78, NDUFB11 M-149 -5.89) and positive in every LH experiment with a value (e.g. NDUFA8 M-144 +3.69, NDUFB9 V-225 +3.74); 89 of the 117 annotated mitochondrial experiments quantify the target and all 89 agree in sign; none contradicts. Whole-cell experiments are encoded the same way and match Supp Table S5 column names (e.g. FS6-1_1/2/3 HL,HL,LH = W.1-3.NDUFS6 HL,HL,LH)."
+  },
+  {
+   "location": "characteristics[genotype] / factor value[genotype] knockout rows; source name",
+   "value": "<gene> knockout (38 lines: 30 accessory subunits NDUFA1-A3,A5-A13,AB1,B1-B11,C1,C2,S4-S6,V3; assembly factors NDUFAF1, NDUFAF2, NDUFAF4, NDUFAF6, TIMMDC1, DMAC1, ATP5SL; COA6)",
+   "source_ids": [
+    "files",
+    "pride",
+    "suppinfo",
+    "suppdata",
+    "ratio_check"
+   ],
+   "evidence": "Gene from the raw file name (PRIDE: names carry the 'knockout cell line being studied'); Supp Table 1 lists the CRISPR/TALEN knockout clones for each gene (NDUFA9 and COA6 KOs generated previously); Supp Table S5 reports 'Mean Log2 ratio <gene>' for exactly these lines (ACPOE excluded, see limitations); target protein depleted in each quantified experiment (ratio_check). NDUFAB1 KO line: Supp Table 1 clones ACP1-1/ACP1-3 'KO (NDUFAB1)' and Ext Data Fig. 3 (KO complemented to survive); yeast ACP1 (P32463) is detected in the knockout channel of O-168..170 (H/L 5.37 in HL, 0.35/0.38 in LH), so this line expresses yeast ACP1; the genotype is written as 'NDUFAB1 knockout' without asserting the rescue construct."
+  },
+  {
+   "location": "characteristics[cellular component] rows",
+   "value": "mitochondrion (numbered runs 001-129) / whole cell (P1DAS_2016* runs)",
+   "source_ids": [
+    "pride",
+    "files",
+    "mq_main",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'SILAC labelled, 8M UREA solubilised mitochondria analysed through a single injection' and 'SDC solubilised whole-cell starting material fractionated over SCX'. Mitochondrial runs = single-injection numbered files (T1..T5 repeats); whole-cell = P1DAS_2016* files with F1-F6 (experimentalDesignTemplate Fraction 1-6; raw path '20160506_WC_SILAC_BATCHA'). GO:0005739 mitochondrion; 'whole cell' is free text in this custom column (batch rule 16)."
+  },
+  {
+   "location": "comment[technical replicate], comment[fraction identifier], comment[fractionation method] rows",
+   "value": "mito: T<n> -> technical replicate n, fraction 1, fractionation not applicable; whole-cell: F1-F6 -> fraction 1-6, technical replicate 1, SCX (PRIDE:0000561)",
+   "source_ids": [
+    "mq_main",
+    "raw_header",
+    "pride"
+   ],
+   "evidence": "experimentalDesignTemplate groups T1/T2/T3 of one run in one Experiment (e.g. 001+ELITE180_D-040-NDUFA1-HL_T1..T3 -> D-040-NDUFA1-HL); the T1/T2 raw headers of 001ELITE180_D-040 show the same vial (RB5) re-injected; the MaxQuant 'Fraction' values 8/10/12 for these files are matching groups ('Experimental groups ... were given odd numbered fractions to avoid falsely matched identifications', PRIDE), not fractions. 035ELITE180_R-005 has only T1 and T3 deposited, kept as technical replicates 1 and 3. Whole-cell F1-F6 = SCX fractions per Kulak et al. (PRIDE)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows",
+   "value": "1..n per genotype group; wild type numbered 1..150 across all 150 experiments (117 mitochondrial + 33 whole-cell)",
+   "source_ids": [
+    "paper",
+    "suppdata",
+    "mq_main"
+   ],
+   "evidence": "Each knockout line was measured in three independent SILAC experiments ('n = 3 biological replicates', Fig. 2d, Ext Data Fig. 8-9; triplicate columns in Supp Table S5). Within a genotype group the mitochondrial and whole-cell experiments (and the two NDUFA13 batches R and I) are numbered consecutively, never reusing a number (batch rule 3). Each experiment's HEK293T partner is given its own number in the wild-type group because the deposit does not say whether control cultures were shared; this may over-count control cultures (limitation)."
+  }
+ ],
+ "limitations": [
+  "Paper Methods are behind the Nature paywall and were not read (not bypassed); sample preparation details (culture medium, reduction/alkylation reagents, passage) are therefore not available. PRIDE lists 'iodoacetamide derivatized residue' and cites Kulak et al. 2014 (an iST protocol that uses chloroacetamide); reagents left out rather than guessed.",
+  "Precursor tolerance 4.5 ppm rests on the PRIDE statement that MaxQuant defaults were used (no mqpar.xml deposited).",
+  "Instrument settings (scan range, NCE, analyzer) were read from one raw file per acquisition batch (25 files), not from every file.",
+  "Wild-type HEK293T partner channels: each experiment's control is given a distinct biological replicate number; whether control SILAC cultures were shared between experiments is not documented.",
+  "PRIDE lists two publications. PMID 27626371 (Stroud et al., Nature 2016) generated the data. PMID 32161263 (Zhang et al., Nat Commun 2020, BRAWNIN) reanalysed the mitochondrial raw files with SearchGUI/PeptideShaker and is not the source of any sample metadata.",
+  "Digestion enzyme: no source for this study names it; Trypsin is taken from the search rule (Trypsin/P). The whole-cell protocol cites Kulak et al., which may have used Lys-C in addition.",
+  "Partial scope: the 6 raw files of experiments O-171..173 'ACPOE' (091QEP120_O-171-ACPOE-LH_T1/T2, 092QEP120_O-172-ACPOE-LH_T1/T2, 093QEP120_O-173-ACPOE-LH_T1/T2) are left out: the identity of the ACPOE line is not defined in the paper, Supplementary Information or Supplementary Data (only 'Mean Log2 ratio ACPOE' in Table S5). Data suggest yeast ACP1 over-expression in cells with normal NDUFAB1 (NDUFAB1 H/L ~1.15, yeast ACP1 P32463 H/L 0.07 in an LH run), but that is inference. See annotations/BLOCKED.md.",
+  "experimentalDesignTemplate.txt of combined.zip lists 6 runs (124ELITE180_K-117/118/119-NDUFV1, T1/T2) that were neither deposited nor searched (absent from summary.txt); no rows exist for them.",
+  "The NDUFAB1 knockout line expresses yeast ACP1 (detected in its channel); the rescue construct is not encoded in the genotype value.",
+  "Whole-cell clone tokens in file names (e.g. FA8-22 = NDUFA8-22, FB4-7 = NDUFB4-7 per Supp Table 1) are not encoded; FS5-A9 matches no clone in Supp Table 1."
+ ]
+}
