@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD029216-silac.sdrf.tsv",
+  "artifact": "annotations/PXD029216-silac.sdrf.tsv",
   "dataset": "PXD029216",
   "sources": [
     {
@@ -117,6 +117,21 @@
       "id": "mq_1st_zip_listing",
       "kind": "search-output",
       "location": "central-directory listing of AML_SWOG_1st_MaxQuant_txt.zip (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD029216/zip_AML_SWOG_1st.lst): txt/ tables only, no mqpar.xml"
+    },
+    {
+      "id": "review_r3",
+      "kind": "independent-review",
+      "location": "/home/user/bigbio/sdrf-skills/annotations/PXD029216-silac.review.md (review round 3, SILAC)"
+    },
+    {
+      "id": "spec",
+      "kind": "specification",
+      "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc lines 327-341 (biological replicate numbering per factor value group)"
+    },
+    {
+      "id": "fix_r3",
+      "kind": "local-script",
+      "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/apply_fixes_r3.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/biological_replicate_map.tsv"
     }
   ],
   "claims": [
@@ -198,12 +213,25 @@
       "evidence": "All patients are de novo AML (PRIDE protocol; paper). MONDO:0018874 verified in OLS. Heavy rows: not available (standard of unreported origin)."
     },
     {
-      "location": "characteristics[material type], characteristics[biological replicate], characteristics[pooled sample], characteristics[individual] (SILAC light rows; heavy rows: biological replicate 1)",
-      "value": "cell; 1; not pooled; patient ID (e.g. AML1001)",
+      "location": "characteristics[material type], characteristics[pooled sample], characteristics[individual] (SILAC light rows)",
+      "value": "cell; not pooled; patient ID (e.g. AML1001)",
       "source_ids": [
         "label_key"
       ],
       "evidence": "One sorted blast lysate per patient; individual = study patient ID prefix of the Sample ID."
+    },
+    {
+      "location": "characteristics[biological replicate] SILAC light rows / SILAC heavy rows",
+      "value": "1..n per factor value[genotype] group (groups of 19, 8, 5, 4 and 1 patients) / 1",
+      "source_ids": [
+        "spec",
+        "campaign_rules",
+        "precedent",
+        "label_key",
+        "review_r3",
+        "fix_r3"
+      ],
+      "evidence": "Spec sdrf-proteomics/README.adoc:327-341 ('Numbering restarts per experimental condition (factor value group)'; patient_001 = 1, patient_002 = 2) and campaign rule 3; curated precedent PXD003822-freshfrozen-silac numbers its patients 1..4. Numbers are assigned 1..n within each factor-value group in sorted order of characteristics[individual] (unidentified channels, individual not available, keyed by source name); every row of the same individual in a group shares the number (full map: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/biological_replicate_map.tsv, written by apply_fixes_r3.py; review round 3 IMPORTANT). Each SILAC patient is one independent sample (one sorted blast lysate, one group). Heavy rows (reference, factor value not applicable) keep 1: they are assumed to be the same standard material in every mix; numbering per mix would assert 37 independent standards, and 'pooled' would assert an unreported pooled composition."
     },
     {
       "location": "characteristics[treatment status] / characteristics[treatment response] / characteristics[clinical data] / characteristics[age] / characteristics[sex] (SILAC rows); characteristics[developmental stage] (SILAC rows except below)",
@@ -378,6 +406,7 @@
     "Raw-header acquisition names disagree with the deposited names for AML1005 (F01-F05 named F02-F06 of RO50063; F06 named as a yeast QC run), AML1016 (F01-F05 named F02-F06; F06 named as a blank), AML1029 (F06 named RO50145 = AML1012's specimen code) and AML1038 (F01-F05 named F02-F06; F06 named F06b). The per-run L/H profile check (reviewer-supplied, reproduced in silac_f06_profile.tsv) ranks the deposited patient first for every F06, so identity and fraction numbers follow the deposited names. Residual uncertainty: AML1038 F06 is only marginally closer to AML1038 than to AML1005 (r 0.8871 vs 0.8868), and the off-by-one fraction names of AML1005/1016/1038 F01-F05 cannot be checked with profiles (fractions of one mix share the patient's L/H profile), so comment[fraction identifier] for these 3 groups is the deposited numbering.",
     "Developmental stage: adult for the 10 SILAC individuals with an individual-level Age_Group (Adult) in the label key NPM1 sheet; not available for the other 27 SILAC individuals (no individual-level age source).",
     "AML1019_Blast_BM_2D_F06.raw (rows of AML1019 F06, light + heavy) contributed no spectra to the deposited search: AML_SWOG_1st summary_new.txt lists it with MS = 0 and MS/MS = 0, and the reviewer's read of the deposited file's Thermo RunHeader reports only 293 scans (file apparently truncated/not finalised; review round 2). It is kept: it is a deposited raw of a documented group and was submitted to the search (fragment tolerance 0.5 Da kept), but it carries no usable data.",
-    "Heavy reference encoding is an assumption: the heavy (Arg10/Lys8) standard is encoded as one reference source per patient mix (37 sources, 'SILAC heavy reference standard (spiked into <Sample ID>)'). No source says whether a single standard batch was prepared once and spiked into every mix; if it was, these 37 sources are one biological sample. The (file, label) pair is unique either way, so this choice is not needed for row uniqueness."
+    "Heavy reference encoding is an assumption: the heavy (Arg10/Lys8) standard is encoded as one reference source per patient mix (37 sources, 'SILAC heavy reference standard (spiked into <Sample ID>)'). No source says whether a single standard batch was prepared once and spiked into every mix; if it was, these 37 sources are one biological sample. The (file, label) pair is unique either way, so this choice is not needed for row uniqueness.",
+    "Biological replicate numbering (review round 3): light rows 1..n per factor value[genotype] group in patient-ID order (the order carries no meaning). Heavy reference rows keep 1 under the single-standard-material assumption stated above; if each mix had its own independently prepared standard, they would need 1..37."
   ]
 }

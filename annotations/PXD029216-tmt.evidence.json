@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD029216-tmt.sdrf.tsv",
+  "artifact": "annotations/PXD029216-tmt.sdrf.tsv",
   "dataset": "PXD029216",
   "sources": [
     {
@@ -102,6 +102,21 @@
       "id": "fix_r1",
       "kind": "local-script",
       "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/apply_fixes.py (post-build edits of review round 1, run after /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/scan_headers.py, silac_acq_check.py, silac_f06_profile.py); frozen round-1 inputs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/orig/"
+    },
+    {
+      "id": "review_r3",
+      "kind": "independent-review",
+      "location": "/home/user/bigbio/sdrf-skills/annotations/PXD029216-silac.review.md (review round 3; its note for the caller flags the same all-1 pattern in the TMT file)"
+    },
+    {
+      "id": "spec",
+      "kind": "specification",
+      "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc lines 327-341 (biological replicate numbering per factor value group)"
+    },
+    {
+      "id": "fix_r3",
+      "kind": "local-script",
+      "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/apply_fixes_r3.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/biological_replicate_map.tsv"
     }
   ],
   "claims": [
@@ -347,13 +362,26 @@
       "evidence": "Rules 1, 10, 15, 18. cell-lines is not declared: its required characteristics[cell line] forbids both reserved words and the patient/control/pool channels in the same plexes would need one; cell-line identity is carried in individual and phenotype."
     },
     {
-      "location": "characteristics[organism], characteristics[material type], characteristics[biological replicate], characteristics[pooled sample], characteristics[sample type], characteristics[individual] (non-pool rows)",
-      "value": "Homo sapiens; cell / cell line; 1; not pooled; study sample; patient or donor ID",
+      "location": "characteristics[organism], characteristics[material type], characteristics[pooled sample], characteristics[sample type], characteristics[individual] (non-pool rows)",
+      "value": "Homo sapiens; cell / cell line; not pooled; study sample; patient or donor ID",
       "source_ids": [
         "pride",
         "label_key"
       ],
       "evidence": "PRIDE NEWT:9606. individual = study patient ID (e.g. AML044_P200725088, AML1037, NL684), already published in the deposited label key / Table S13."
+    },
+    {
+      "location": "characteristics[biological replicate] non-pool rows",
+      "value": "1..n per (factor value[disease], factor value[genotype], factor value[phenotype]) group (28 groups, up to 24 individuals); pool rows stay pooled",
+      "source_ids": [
+        "spec",
+        "campaign_rules",
+        "precedent",
+        "label_key",
+        "review_r3",
+        "fix_r3"
+      ],
+      "evidence": "Spec sdrf-proteomics/README.adoc:327-341 ('Numbering restarts per experimental condition (factor value group)'; patient_001 = 1, patient_002 = 2) and campaign rule 3; curated precedent PXD003822-freshfrozen-silac numbers its patients 1..4. Numbers are assigned 1..n within each factor-value group in sorted order of characteristics[individual] (unidentified channels, individual not available, keyed by source name); every row of the same individual in a group shares the number (full map: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD029216/biological_replicate_map.tsv, written by apply_fixes_r3.py; review round 3 IMPORTANT). The same patient sampled in two arms with the same factor values (e.g. AML1038 in NPM1 Gr02 and E3; AML179/AML039/AML158 in SWOG27 and NPM1; AML1050 in E2 and NPM1) keeps one number, because the two samples are not independent biological replicates; the source names stay distinct. The Gr08 reshoot shares its sources' numbers (technical replicate 2). Each of the 10 unidentified NPM1-cohort channels is a distinct patient and gets its own number. Each cell line is its own group (number 1)."
     },
     {
       "location": "technology type all rows",
@@ -402,6 +430,7 @@
     "Table S13 AML179: sex F but karyotype 46,XY[20]; proteomic RPS4Y1 supports female (kept).",
     "reconcile raises false positives (cleavage agent wording; see validation.txt).",
     "Raw-header acquisition names in NPM1 Gr07/Gr08 are scrambled (tmt_acqnames.tsv): deposited JK111819_032120_..._Gr08_F01-F08 carry Gr07 F17-F23 names (F08 a timestamped duplicate of Gr07 F23), and deposited Gr07_F09-F24 carry Gr07 F01-F16 names (deposited Gr07_F01-F08 carry timestamped Gr07 F01-F08 names). Timestamp-suffixed duplicate names also occur in Gr01 (F09), Gr04 (F08, F11, F12) and Gr09 (F15, F23). Resolved by data in favour of the deposited names (reviewer-supplied evidence, review round 1): per-run reporter profiles from NPM1 evidence.txt of deposited Gr08 F01-F08 correlate 0.86-0.99 with Gr08 F09-F24 and <= 0.24 with Gr07, and peptide-overlap matching assigns every Gr07/Gr08 file to its deposited fraction number. MaxQuant searched them under the deposited names (experiments Gr07 / Gr08). Deposited names, fraction numbers and the Gr08 reshoot's technical replicate 2 are kept.",
-    "JK111819_032120_NPM1_AML_Gr08_TMT_11plex_bRP_GLBL_F11.raw was not database-searched (absent from the NPM1 MaxQuant summary.txt): tolerances not applicable on its 11 rows; `parse_sdrf convert-openms` therefore fails on the full TMT file and succeeds without those rows (see validation.txt)."
+    "JK111819_032120_NPM1_AML_Gr08_TMT_11plex_bRP_GLBL_F11.raw was not database-searched (absent from the NPM1 MaxQuant summary.txt): tolerances not applicable on its 11 rows; `parse_sdrf convert-openms` therefore fails on the full TMT file and succeeds without those rows (see validation.txt).",
+    "Biological replicate numbering (review round 3): 1..n per factor-value group in individual-ID order (the order carries no meaning); samples of the same individual in the same group share one number; the 10 unidentified NPM1-cohort channels are assumed to be 10 different patients (the label key gives each its own channel and age group, but no ID)."
   ]
 }
