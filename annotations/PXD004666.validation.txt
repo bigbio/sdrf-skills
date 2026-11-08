@@ -103,7 +103,7 @@ openms.tsv
 # the MaxQuant experimentalDesignTemplate). make_tables.py now numbers comment[technical replicate] by rank of the deposited
 # injections (T1->1, T3->2). PXD004666-apms.sdrf.tsv unchanged (same sha256).
 
-## Round 2 (final artifacts; no value changed after this round)
+## Round 2 (superseded after the independent review of 2026-11-08, PXD004666.review.md: both files FAIL)
 ## PXD004666-knockout.sdrf.tsv  sha256 d9438bcf4eed7a8902e9bc127a9d7d1eed055099165feba9db792d003a271f27
 $ parse_sdrf validate-sdrf -s PXD004666-knockout.sdrf.tsv -t ms-proteomics -t human -t cell-lines
 WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
@@ -208,3 +208,127 @@ openms.tsv
 3. convert-openms exit 0 for both (SUCCESS); the warning 'no TA= specified' comes from the Acetyl PP=Protein N-term modification
    and is expected.
 4. structure, check, schema-check, manifest-coverage: exit 0 for both in round 2.
+
+# Fixes after review (tables/scripts only, then rebuild with build.sh; no post-build edit):
+#  knockout: O-168..170 partners -> 'HEK293T expressing yeast ACP1' (own level), KO -> 'NDUFAB1 knockout; yeast ACP1 expressing'
+#            (P32463 intensities in both channels, Supp Table 1 ACP1-1/-3, Supp S2 'HEK293TACP1');
+#            factor value[cellular component] added (mitochondrion / whole cell); biological replicates renumbered per
+#            (genotype, cellular component) group; comment[sample preparation batch] marks COA6 T1-T3 (MB307, Mar 2014) vs
+#            T4-T5 (separate 8 M urea preparation, MB531, Sep 2014), 'not available' elsewhere;
+#            characteristics[sample storage temperature] = not available (cell-lines recommended column).
+#  apms:     NDUFAB1-FLAG control runs 25-27 -> 'HEK293T expressing yeast ACP1' (Supp S2 header); factor value[detergent]
+#            added; biological replicates renumbered per (genotype, detergent) group (1-3).
+#  manifests: channel claim records the V-227 / T-215 acquisition-tag conflicts (data support the deposited tags) and
+#            121/121 agreeing experiments; control numbering called an upper bound; COA6 claim corrected; precursor note
+#            (all 51 >4.5 ppm evidences are MULTI-MATCH); sample-prep heterogeneity limitation. BLOCKED.md section updated
+#            in place with the O-173 acquisition-name / data conflict.
+
+## Round 3 (final artifacts; no value changed after this round)
+## PXD004666-knockout.sdrf.tsv  sha256 83db2cb19686c7c18de5a7479a18add3548911c9a4f4c497653a94dc82a4e93e
+$ parse_sdrf validate-sdrf -s PXD004666-knockout.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+ERROR:sdrf_pipelines.ols.ols:OLS search term normal error, retry number 1
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term normal. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=normal&name=class&rows=10&start=10&ontology=efo&exact=on
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/ols/ols.py", line 902, in _perform_ols_search
+    req.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=normal&name=class&rows=10&start=10&ontology=efo&exact=on
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD004666-knockout.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD004666-knockout.sdrf.tsv
+Hallucination Report: PXD004666-knockout.sdrf.tsv
+  Terms checked:     18
+  Verified:          18
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD004666-knockout.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/pride.json --accession PXD004666
+PXD004666: 1 value(s) disagree with the deposit record:
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ sdrf-tools schema-check PXD004666-knockout.evidence.json
+PXD004666-knockout.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004666-knockout.sdrf.tsv PXD004666-knockout.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD004666-knockout.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD004666-knockout.sdrf.tsv
+Factor columns: ['factor value[cellular component]', 'factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (52): dict_keys(['mitochondrion|NDUFA1 knockout', 'mitochondrion|wild type', 'mitochondrion|NDUFA2 knockout', 'mitochondrion|NDUFA3 knockout', 'mitochondrion|NDUFA5 knockout', 'mitochondrion|NDUFA6 knockout', 'mitochondrion|NDUFA7 knockout', 'mitochondrion|NDUFA8 knockout', 'mitochondrion|NDUFA9 knockout', 'mitochondrion|NDUFA10 knockout', 'mitochondrion|NDUFA11 knockout', 'mitochondrion|NDUFA12 knockout', 'mitochondrion|NDUFA13 knockout', 'mitochondrion|NDUFB1 knockout', 'mitochondrion|NDUFB2 knockout', 'mitochondrion|NDUFB3 knockout', 'mitochondrion|NDUFB4 knockout', 'mitochondrion|NDUFB5 knockout', 'mitochondrion|NDUFB6 knockout', 'mitochondrion|NDUFB7 knockout', 'mitochondrion|NDUFB8 knockout', 'mitochondrion|NDUFB9 knockout', 'mitochondrion|NDUFB10 knockout', 'mitochondrion|NDUFB11 knockout', 'mitochondrion|NDUFC1 knockout', 'mitochondrion|NDUFC2 knockout', 'mitochondrion|NDUFS4 knockout', 'mitochondrion|NDUFS5 knockout', 'mitochondrion|NDUFS6 knockout', 'mitochondrion|NDUFV3 knockout', 'mitochondrion|NDUFAB1 knockout; yeast ACP1 expressing', 'mitochondrion|HEK293T expressing yeast ACP1', 'mitochondrion|DMAC1 knockout', 'mitochondrion|COA6 knockout', 'mitochondrion|NDUFAF1 knockout', 'mitochondrion|TIMMDC1 knockout', 'mitochondrion|NDUFAF6 knockout', 'mitochondrion|ATP5SL knockout', 'mitochondrion|NDUFAF4 knockout', 'mitochondrion|NDUFAF2 knockout', 'whole cell|NDUFS6 knockout', 'whole cell|wild type', 'whole cell|NDUFA8 knockout', 'whole cell|NDUFB7 knockout', 'whole cell|NDUFB4 knockout', 'whole cell|NDUFA1 knockout', 'whole cell|NDUFB11 knockout', 'whole cell|NDUFB10 knockout', 'whole cell|NDUFC1 knockout', 'whole cell|NDUFS5 knockout', 'whole cell|NDUFV3 knockout', 'whole cell|NDUFA2 knockout'])
+Files per condition: dict_values([9, 264, 6, 6, 6, 6, 6, 6, 6, 9, 6, 6, 12, 6, 9, 6, 6, 6, 6, 6, 9, 6, 6, 6, 9, 9, 9, 9, 9, 6, 6, 6, 6, 15, 6, 6, 6, 6, 6, 6, 18, 198, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 936 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD004666-knockout.sdrf.tsv
+exit code: 0
+
+experimental_design.tsv
+openms.tsv
+## PXD004666-apms.sdrf.tsv  sha256 fdfdfb42568fc33cc2dc22cbe67096d09d7ef775de63c03026f21c44865241fe
+$ parse_sdrf validate-sdrf -s PXD004666-apms.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD004666-apms.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD004666-apms.sdrf.tsv
+Hallucination Report: PXD004666-apms.sdrf.tsv
+  Terms checked:     14
+  Verified:          14
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD004666-apms.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004666/pride.json --accession PXD004666
+PXD004666: 1 value(s) disagree with the deposit record:
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ sdrf-tools schema-check PXD004666-apms.evidence.json
+PXD004666-apms.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004666-apms.sdrf.tsv PXD004666-apms.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD004666-apms.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD004666-apms.sdrf.tsv
+Factor columns: ['factor value[detergent]', 'factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[treatment]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[bait]', 'characteristics[cellular component]']
+Conditions (9): dict_keys(['not available|DMAC1-FLAG expressing', 'not available|wild type', 'not available|ATP5SL-FLAG expressing', 'Triton X-100|NDUFV3 knockout expressing NDUFV3-FLAG', 'Triton X-100|wild type', 'digitonin|NDUFV3 knockout expressing NDUFV3-FLAG', 'digitonin|wild type', 'Triton X-100|NDUFAB1 knockout expressing NDUFAB1-FLAG', 'Triton X-100|HEK293T expressing yeast ACP1'])
+Files per condition: dict_values([3, 6, 3, 3, 3, 3, 3, 3, 3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 30 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD004666-apms.sdrf.tsv
+exit code: 0
+
+experimental_design.tsv
+openms.tsv
+
+## Findings and refutations (round 3)
+1. validate-sdrf exit 0 for both files; one WARNING each: 'fetal stage' not in EFO (HsapDv:0000037, from Cellosaurus 'AG Fetus';
+   same as curated precedent PXD023136). Not an error.
+2. reconcile exit 0, one MINOR cleavage_agent_unsupported each: refuted from both summary.txt files (Enzyme 'Trypsin/P', Specific).
+3. convert-openms exit 0 for both: knockout 52 conditions (genotype x cellular component), apms 9 conditions (genotype x detergent);
+   'no TA=' warning from Acetyl PP=Protein N-term, expected.
+4. structure, check, schema-check, manifest-coverage exit 0 for both.
