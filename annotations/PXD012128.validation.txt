@@ -1,0 +1,107 @@
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: mock reconstitution without recombinant COPII coat in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24A in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24C in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24D in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24C LIL895AAA in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[biorepository]']
+Conditions (5): dict_keys(['mock reconstitution without recombinant COPII coat', 'COPII vesicle reconstitution with Sec23A/Sec24A', 'COPII vesicle reconstitution with Sec23A/Sec24C', 'COPII vesicle reconstitution with Sec23A/Sec24D', 'COPII vesicle reconstitution with Sec23A/Sec24C LIL895AAA'])
+Files per condition: dict_values([6, 6, 12, 2, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 32 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv --record evidence/pride.json --accession PXD012128
+PXD012128: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin/P' but the record's digest names Trypsin
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin digest but only Trypsin/P is declared  [missing: Trypsin]
+exit code: 1
+NOTE (annotator): kept NT=Trypsin/P;AC=MS:1001313 — the deposited MaxQuant search (FrankAdolphMeta2_Wieland.xml <enzymes>Trypsin/P</enzymes>; summary.txt Enzyme column) declares Trypsin/P, i.e. trypsin without the proline rule; the record's 'trypsin' is the same protease. Not a contradiction of enzyme identity; see report judgement call.
+
+==================================================================
+ROUND 2 (after external review round 1 FAIL: biological replicate renumbered per factor-value group; comment[sdrf version] v1.1.0; cleavage agent NT=Trypsin;AC=MS:1001251; characteristics[cell type] = not available added). Round 1 above is superseded.
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: mock reconstitution without recombinant COPII coat in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24A in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24C in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24D in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24C LIL895AAA in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv --record evidence/pride.json --accession PXD012128
+PXD012128: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[biorepository]']
+Conditions (5): dict_keys(['mock reconstitution without recombinant COPII coat', 'COPII vesicle reconstitution with Sec23A/Sec24A', 'COPII vesicle reconstitution with Sec23A/Sec24C', 'COPII vesicle reconstitution with Sec23A/Sec24D', 'COPII vesicle reconstitution with Sec23A/Sec24C LIL895AAA'])
+Files per condition: dict_values([6, 6, 12, 2, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 32 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD012128.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD012128.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD012128.evidence.json
+Manifest covers every column with a value (27 column(s)).
+exit code: 0
+
+==================================================================
+ROUND 3 (after external review round 2 FAIL: added characteristics[culture medium] = Dulbecco's Modified Eagle Medium (NCIT:C185409); individual / passage number / sample storage temperature = not available; comment[collision energy] 27 NCE (Q Exactive HF) / 35 NCE (Orbitrap Elite) from raw headers). Rounds 1-2 above are superseded.
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: mock reconstitution without recombinant COPII coat in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24A in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24C in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24D in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: COPII vesicle reconstitution with Sec23A/Sec24C LIL895AAA in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv --record evidence/pride.json --accession PXD012128
+PXD012128: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (5): dict_keys(['mock reconstitution without recombinant COPII coat', 'COPII vesicle reconstitution with Sec23A/Sec24A', 'COPII vesicle reconstitution with Sec23A/Sec24C', 'COPII vesicle reconstitution with Sec23A/Sec24D', 'COPII vesicle reconstitution with Sec23A/Sec24C LIL895AAA'])
+Files per condition: dict_values([6, 6, 12, 2, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 32 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD012128.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD012128.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD012128.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+

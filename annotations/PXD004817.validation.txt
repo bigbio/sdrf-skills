@@ -1,0 +1,107 @@
+### Round 1: parse_sdrf validate-sdrf -s PXD004817.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+### sdrf-tools structure PXD004817.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+### (in scratch dir) parse_sdrf convert-openms -s PXD004817.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD004817.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[spiked compound]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]']
+Conditions (4): dict_keys(['Sham Control', 'X-ray Therapy', 'Proton Beam Radiation Therapy', 'Carbon Ion Radiotherapy'])
+Files per condition: dict_values([269, 90, 89, 90])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 538 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD004817.sdrf.tsv
+exit code: 0
+### sdrf-tools reconcile PXD004817.sdrf.tsv --record <scratch>/evidence/pride.json --accession PXD004817
+PXD004817: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin/P' but the record's digest names Trypsin
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin digest but only Trypsin/P is declared  [missing: Trypsin]
+(both findings judged false positives: record text says 'Enzyme specificity was set to trypsin/p'; see report)
+### sdrf-tools schema-check PXD004817.evidence.json
+PXD004817.evidence.json: valid evidence-manifest
+exit code: 0
+### sdrf-tools manifest-coverage PXD004817.sdrf.tsv PXD004817.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit code: 0
+
+========== ROUND 2 (coordinator decisions: sdrf version v1.1.0; per-search modification sets built per sub-experiment with identical headers, 'not applicable' where a search lacked a mod, concatenated by scripts/split_build.py after asserting identical headers + full file coverage) ==========
+### Round 2: parse_sdrf validate-sdrf -s PXD004817.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+### sdrf-tools structure PXD004817.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+### (in scratch dir) parse_sdrf convert-openms -s PXD004817.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD004817.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[spiked compound]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]']
+Conditions (4): dict_keys(['Sham Control', 'X-ray Therapy', 'Proton Beam Radiation Therapy', 'Carbon Ion Radiotherapy'])
+Files per condition: dict_values([269, 90, 89, 90])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 538 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD004817.sdrf.tsv
+exit code: 0
+### sdrf-tools schema-check PXD004817.evidence.json
+PXD004817.evidence.json: valid evidence-manifest
+exit code: 0
+### sdrf-tools manifest-coverage PXD004817.sdrf.tsv PXD004817.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit code: 0
+### sdrf-tools reconcile (round 2)
+PXD004817: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin/P' but the record's digest names Trypsin
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin digest but only Trypsin/P is declared  [missing: Trypsin]
+(Trypsin vs Trypsin/P findings unchanged; judged false positives, see report)
+
+========== ROUND 3 (review round 1 fixes: cleavage agent Trypsin MS:1001251; sham biological replicates 1-9 within Sham Control; 27 characteristics[spiked compound] columns CT=peptide;QY=not available;PS=<seq>; recommended cell-line columns individual/passage number/culture medium/sample storage temperature = not available) ==========
+### Round 3: parse_sdrf validate-sdrf -s PXD004817.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+### sdrf-tools structure PXD004817.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+### sdrf-tools reconcile PXD004817.sdrf.tsv --record <scratch>/evidence/pride.json --accession PXD004817
+PXD004817: every annotated value agrees with the deposit record.
+exit code: 0
+### (in scratch dir) parse_sdrf convert-openms -s PXD004817.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD004817.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Conditions (4): dict_keys(['Sham Control', 'X-ray Therapy', 'Proton Beam Radiation Therapy', 'Carbon Ion Radiotherapy'])
+Files per condition: dict_values([269, 90, 89, 90])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 538 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD004817.sdrf.tsv
+exit code: 0
+### sdrf-tools schema-check PXD004817.evidence.json
+PXD004817.evidence.json: valid evidence-manifest
+exit code: 0
+### sdrf-tools manifest-coverage PXD004817.sdrf.tsv PXD004817.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit code: 0
+
+========== ROUND 4 (review round 2 fixes: targeted rows 523-538 precursor/fragment mass tolerance = not applicable; 28 spiked-compound columns with CN=<protein site> (27 sequences, TP53BP1 pS830/pS831 positional isomers separate); targeted comment[fractionation method] = not available, consistent with discovery phospho; characteristics[mass] not added: not licensed by ms-proteomics/human/cell-lines) ==========
+### Round 4: parse_sdrf validate-sdrf -s PXD004817.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+### sdrf-tools structure PXD004817.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+### sdrf-tools reconcile PXD004817.sdrf.tsv --record <scratch>/evidence/pride.json --accession PXD004817
+PXD004817: every annotated value agrees with the deposit record.
+exit code: 0
+### (in scratch dir) parse_sdrf convert-openms -s PXD004817.sdrf.tsv -t2
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not applicable
+exit code: 1
+NOTE: convert-openms fails only because rows 523-538 carry 'not applicable' in both tolerance columns (review round 2 finding 1, coordinator decision). Probe with 'not available' instead fails identically ('Cannot read precursor mass tolerance: not available'). Both reserved words are allowed by ms-proteomics 1.2.0 and pass parse_sdrf validate-sdrf; the quantms/OpenMS converter cannot parse either. Escalated to the coordinator; see report.
+### sdrf-tools schema-check PXD004817.evidence.json
+PXD004817.evidence.json: valid evidence-manifest
+exit code: 0
+### sdrf-tools manifest-coverage PXD004817.sdrf.tsv PXD004817.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit code: 0

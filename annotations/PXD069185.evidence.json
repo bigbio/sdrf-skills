@@ -1,0 +1,504 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD069185.sdrf.tsv",
+ "dataset": "PXD069185",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD069185 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD069185/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD069185/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD069185/evidence/files_all.json; 18 RAW + mqpar.xml + maxquant_output.zip; every entry's projectAccessions contains PXD069185)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC13415529 / doi:10.1038/s41467-026-73882-8 (Wang et al., Nat Commun 2026 17:7574), NCBI efetch db=pmc id=13415529, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD069185/paper/paper.txt"
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/07/PXD069185/mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD069185/dl/mqpar.xml)"
+  },
+  {
+   "id": "mq_txt",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/07/PXD069185/maxquant_output.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt, txt/NEMSites.txt (HTTP-range extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD069185/dl/)"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/07/PXD069185/20191213_QEP1_PBE_FC_U2OS_UFC1_APEX_rep1_1.raw and ..._rep3_6.raw, first 256 KB, UTF-16LE decoded"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0042?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD069185/evidence/cellosaurus_CVCL_0042.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (via sdrf-tools ols / sdrf-tools verify)"
+  },
+  {
+   "id": "contract",
+   "kind": "spec",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0)"
+  },
+  {
+   "id": "spec_readme",
+   "kind": "spec",
+   "location": "spec/sdrf-proteomics/README.adoc:27 '**Version v1.1.0** - 2026-01' (spec rev dc9be283; also upstream bigbio/proteomics-sample-metadata HEAD)"
+  },
+  {
+   "id": "templates_yaml",
+   "kind": "spec",
+   "location": "bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 'latest: 1.2.0' for ms-proteomics (the sdrf-skills pinned submodule dc9be283 predates it; sdrf-pipelines bundled templates ship ms-proteomics 1.2.0)"
+  },
+  {
+   "id": "review_r1",
+   "kind": "review",
+   "location": "annotations/PXD069185.review.md (external adversarial review round 1, FAIL on artifact sha256 656487c5...)"
+  },
+  {
+   "id": "terms_tsv",
+   "kind": "spec",
+   "location": "spec/sdrf-proteomics/TERMS.tsv 'cleavage agent details' = 'Enzyme or chemical used for protein digestion'; skills/sdrf-annotate/references/technical-values.md §5.3"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-54",
+   "value": "U2OS_UFC1-APEX2_<condition>_rep<1-3>",
+   "source_ids": [
+    "paper",
+    "mqpar"
+   ],
+   "evidence": "Curator-chosen identifiers: one source per (SILAC channel x replicate experiment). mqpar.xml groups the 18 raw files into experiments 1,2,3 (file names rep1/rep2/rep3); paper Fig. 5B defines 3 SILAC conditions."
+  },
+  {
+   "location": "comment[label] rows 1-6, 19-24, 37-42",
+   "value": "SILAC light",
+   "source_ids": [
+    "paper",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "Paper Results & Fig. 5B legend: '(1) a negative control using biotin-phenol only (light)'; mqpar labelMods[0] empty = light. PRIDE:0000326 'SILAC light'."
+  },
+  {
+   "location": "comment[label] rows 7-12, 25-30, 43-48",
+   "value": "SILAC medium",
+   "source_ids": [
+    "paper",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "Paper: '(2) active APEX2 labelling without DNA damage (medium)'; mqpar labelMods[1]='Arg6;Lys4'. PRIDE:0000327."
+  },
+  {
+   "location": "comment[label] rows 13-18, 31-36, 49-54",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "paper",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "Paper: '(3) APEX2 labelling following IR-induced DNA damage (heavy)'; mqpar labelMods[2]='Arg10;Lys8'. PRIDE:0000325."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 1-6, 19-24, 37-42",
+   "value": "biotin-phenol only, no H2O2 (APEX2 labelling negative control)",
+   "source_ids": [
+    "paper",
+    "mq_txt"
+   ],
+   "evidence": "Fig. 5B legend: 'negative control (biotin phenol (BP) only, no H2O2; light)'. Same channel map in all 3 replicates: no swap described in paper; proteinGroups shows bait UFC1 log2 M/L 4.3/4.7/4.6 and H/L 5.0/3.0/3.1 in experiments 1/2/3, consistent with light = non-labelled control in every replicate. IR status of light channel not stated, so not asserted. Free text: no NCIT/EFO term covers this condition (validator warning)."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 7-12, 25-30, 43-48",
+   "value": "biotin-phenol + H2O2 APEX2 labelling, no ionizing radiation",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Fig. 5B legend: '(2) APEX2-catalysed biotinylation without DNA damage (medium)'; BP 0.5 mM 2 h, H2O2 1 mM 2 min (Methods). Medium vs heavy swap cannot be excluded from ratios (both active); paper describes one fixed assignment."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 13-18, 31-36, 49-54",
+   "value": "biotin-phenol + H2O2 APEX2 labelling, ionizing radiation 10 Gy",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Fig. 5B legend: '(3) APEX2-catalysed biotinylation following ionising radiation (IR, 10 Gy, ~30 min; heavy)'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-54",
+   "value": "1 / 2 / 3",
+   "source_ids": [
+    "mqpar",
+    "mq_txt",
+    "files"
+   ],
+   "evidence": "The deposit defines three replicate experiments. mqpar.xml <experiments> assigns files rep1_1..6 to experiment 1, rep2_* to 2 and rep3_* to 3, and summary.txt/proteinGroups.txt report ratios separately for experiments 1, 2 and 3. Raw file names carry rep1/rep2/rep3. Each experiment is a separate SILAC mix with all three channels. Calling them biological replicates (independent cultures/labelling) is inferred from this structure; the paper does not state the replicate type for the APEX2 screen."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-54",
+   "value": "20191213_QEP1_PBE_FC_U2OS_UFC1_APEX_rep{1-3}_{1-6}.raw",
+   "source_ids": [
+    "files",
+    "mqpar"
+   ],
+   "evidence": "18 deposited RAW files, all listed in mqpar filePaths; each file carries all three SILAC channels (multiplicity 3)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-54",
+   "value": "1-6",
+   "source_ids": [
+    "mqpar",
+    "mq_txt"
+   ],
+   "evidence": "mqpar <fractions> 1..6 per experiment; summary.txt Fraction column; files suffixed _1.._6."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-54",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "Protocol: proteins separated on 4-12% Bis-Tris SDS-PAGE gels and in-gel digested; MaxQuant defines 6 fractions per sample (gel slices). PRIDE:0000568 verified in OLS."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-54",
+   "value": "1",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "Each fraction file injected once (one file per experiment/fraction in mqpar)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-54",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism NEWT:9606; U2OS is human (Cellosaurus OX NCBI_TaxID=9606)."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-54",
+   "value": "U2OS",
+   "source_ids": [
+    "paper",
+    "raw_header",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper Results: 'APEX2 was fused to UFC1 and ectopically expressed in U2OS cells'; SILAC Methods: 'U2OS cells were grown for two weeks in DMEM for SILAC'; file names contain U2OS. EFO:0002869 label 'U2OS' (Cellosaurus DR EFO_0002869)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-54",
+   "value": "CVCL_0042",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC CVCL_0042, ID U2OS."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-54",
+   "value": "U2OS",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line: U2OS."
+  },
+  {
+   "location": "characteristics[disease] rows 1-54",
+   "value": "osteosarcoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9145 / ORDO 668 Osteosarcoma; MONDO:0009807 'osteosarcoma'. Donor disease of the cell line."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-54",
+   "value": "tibia",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site: In situ; Bone, tibia; UBERON=UBERON_0000979'; UBERON:0000979 label 'tibia'."
+  },
+  {
+   "location": "characteristics[age] rows 1-54",
+   "value": "15Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 15Y (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-54",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Female."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-54",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Population: Caucasian' mapped to HANCESTRO:0005 'European ancestry' (inferred mapping)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-54",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "contract"
+   ],
+   "evidence": "Cultured U2OS cell line; 'cell line' is in the contract's fixed value list."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-54",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: 'DMEM for SILAC (Thermofisher)' with light/medium/heavy Lys/Arg, 10% dialysed FBS; NCIT:C185409 'Dulbecco's Modified Eagle Medium'."
+  },
+  {
+   "location": "comment[instrument] rows 1-54",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw_header",
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "RAW headers (rep1_1, rep3_6) contain 'Q Exactive Plus - Orbitrap MS'; PRIDE instruments MS:1002634; paper: Q Exactive Plus. Agree."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-54",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE experimentTypes PRIDE:0000627; protocol 'operated in data-dependent mode... 15 most intense ions'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-54",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper",
+    "terms_tsv",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "The column records the enzyme used for digestion (TERMS.tsv: 'Enzyme or chemical used for protein digestion'). The protocol says samples were 'in-gel digested using trypsin', with 'strict trypsin specificity'. MS:1001251 'Trypsin' was verified in OLS. NOTE: the deposited MaxQuant search used the cleavage rule Trypsin/P (mqpar.xml <enzymes>Trypsin/P</enzymes>, MS:1001313). That rule is a search setting, not the wet-lab agent; reprocessing that needs to reproduce the deposited search should use Trypsin/P. sdrf-tools reconcile exits 0."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-54",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Protocol: fragmented by higher energy C-trap dissociation (HCD); MS:1000422 is the PSI-MS term for HCD."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-54",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "'Fragment spectra were acquired in the Orbitrap mass analyser.'"
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-54",
+   "value": "300m/z-1700m/z",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "'Survey full scan MS spectra (m/z 300-1,700) were acquired in the Orbitrap.'"
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-54",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mqpar",
+    "mq_txt"
+   ],
+   "evidence": "mqpar mainSearchTol 4.5 ppm (searchTolInPpm=true). Paper prose says 6 ppm; deposited search parameters take precedence."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-54",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqpar",
+    "mq_txt",
+    "paper"
+   ],
+   "evidence": "mqpar/parameters.txt 'MS/MS tol. (FTMS) 20 ppm'; Orbitrap MS2; paper '20 ppm in HCD MS2 mode'."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-54",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: beads 'eluted ... with 3x SDS loading buffer containing freshly added 1 mM DTT'; the only reducing step stated before alkylation."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-54",
+   "value": "NT=Chloroacetamide (ClAA);AC=PRIDE:0000600",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Protocol: 'Samples were alkylated by addition of 5.5 mM chloroacetamide'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-54 (column 1)",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "mqpar",
+    "mq_txt"
+   ],
+   "evidence": "mqpar fixedModifications 'Carbamidomethyl (C)'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-54 (column 2)",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "mqpar variableModifications 'Acetyl (Protein N-term)'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-54 (column 3)",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "mqpar variableModifications 'Oxidation (M)'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-54 (column 4)",
+   "value": "NT=Nethylmaleimide;AC=UNIMOD:108;TA=C;MT=Variable",
+   "source_ids": [
+    "mqpar",
+    "mq_txt",
+    "paper",
+    "ols"
+   ],
+   "evidence": "mqpar variableModifications 'NEM'; NEMSites.txt lists 523 sites, all on C; lysis buffer contained 10 mM N-ethylmaleimide (Methods). UNIMOD:108 'Nethylmaleimide' = N-ethylmaleimide on cysteines. Not mentioned in paper/PRIDE search prose; deposited search wins."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-54 (columns 5-6)",
+   "value": "NT=Label:13C(6);AC=UNIMOD:188;TA=R;MT=Variable | NT=Label:2H(4);AC=UNIMOD:481;TA=K;MT=Variable",
+   "source_ids": [
+    "mqpar",
+    "paper"
+   ],
+   "evidence": "mqpar labelMods medium 'Arg6;Lys4'; Methods: L-lysine [4,4,5,5-D4], L-arginine-U-13C6 (medium)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-54 (columns 7-8)",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable | NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "mqpar",
+    "paper"
+   ],
+   "evidence": "mqpar labelMods heavy 'Arg10;Lys8'; Methods: L-lysine-U-13C6,15N2, L-arginine-U-13C6,15N4 (heavy). Labels encoded as Variable on every row, as in curated SILAC SDRFs (e.g. sandbox/PXD011001)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-54",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec_readme",
+    "review_r1"
+   ],
+   "evidence": "The SDRF-Proteomics specification version is v1.1.0 (README.adoc:27). The specification is versioned separately from the templates (VERSIONING.adoc). Round 1 wrongly copied the ms-proteomics template version v1.2.0."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-54",
+   "value": "manual curation",
+   "source_ids": [
+    "contract"
+   ],
+   "evidence": "Annotation authored by agent following sdrf-annotate workflow; contract allows 'manual curation'."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-54",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=human;VV=v1.1.0 | NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "contract",
+    "templates_yaml"
+   ],
+   "evidence": "Templates passed to sdrf-tools build. ms-proteomics v1.2.0 is the released upstream latest (bigbio/sdrf-templates HEAD 7da1747 templates.yaml:150 'latest: 1.2.0') and is the version the parse_sdrf validator applied. The pinned spec submodule in sdrf-skills is older and lists 1.1.0. Kept v1.2.0 per coordinator batch decision 2. human v1.1.0 and cell-lines v1.1.0 as printed by sdrf-tools contract."
+  },
+  {
+   "location": "technology type rows 1-54",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "contract"
+   ],
+   "evidence": "Filled by build from ms-proteomics template."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-6, 19-24, 37-42",
+   "value": "negative control",
+   "source_ids": [
+    "paper",
+    "ols",
+    "contract"
+   ],
+   "evidence": "Paper Results and Fig. 5B: the light channel is '(1) a negative control using biotin-phenol only' (no H2O2). PRIDE:0000905 'negative control', a child of PRIDE:0000895 verified live in OLS. The column is licensed via the sample-metadata layer (sdrf-tools contract lists characteristics[sample type])."
+  },
+  {
+   "location": "characteristics[sample type] rows 7-18, 25-36, 43-54",
+   "value": "study sample",
+   "source_ids": [
+    "paper",
+    "ols",
+    "contract"
+   ],
+   "evidence": "Medium (APEX2 labelling, no IR) and heavy (APEX2 labelling + 10 Gy IR) are the two experimental conditions compared against light (M/L and H/L ratios, Fig. 5D). PRIDE:0001013 'study sample' verified live in OLS."
+  }
+ ],
+ "limitations": [
+  "techsdrf not installed: instrument verified by HTTP-range reading RAW headers only (2 of 18 files); collision energy, MS2 analyzer and scan settings not machine-verified from raw files.",
+  "sdrf-tools fetch failed (Europe PMC HTTP 500 twice); record gathered manually from PRIDE v3 API, NCBI efetch (PMC 13415529) and the deposited MaxQuant files. Europe PMC full-text XML also returned 500.",
+  "Medium vs heavy channel assignment per replicate rests on the paper's single stated design (Fig. 5B); a medium/heavy label swap would not be detectable from proteinGroups ratios (both channels are active labelling). The light=control assignment is cross-checked by bait (UFC1) M/L and H/L enrichment in all 3 experiments.",
+  "Whether the light (BP-only) channel was irradiated is not stated; IR status not asserted for light rows.",
+  "Transient expression of UFC1-2HA-APEX2 in all channels is not encoded: characteristics[genotype] is licensed only by clinical-metadata, which does not apply.",
+  "characteristics[treatment]/factor value[treatment] are free text (no NCIT/EFO term for these APEX2 conditions): 3 parse_sdrf ontology warnings.",
+  "passage number, sample storage temperature and cell type are 'not available' (not reported; Cellosaurus gives no cell type).",
+  "Precursor tolerance: paper prose 6 ppm vs mqpar main search 4.5 ppm; mqpar used.",
+  "Neutravidin enrichment of biotinylated proteins (paper Methods: lysates mixed 1:1:1, neutravidin pull-down) is not encoded. characteristics[enrichment process] is licensed, but it must be a child of EFO:0009090, and OLS shows no descendant covering biotin/streptavidin/neutravidin affinity enrichment (descendants are cell-isolation methods, methylated-DNA and phosphoprotein enrichment). I did not add a non-ontology free-text value.",
+  "characteristics[individual] (recommended by human) is omitted. The cell line has one Cellosaurus donor, but no donor identifier is published.",
+  "comment[sdrf template] declares ms-proteomics v1.2.0, the released upstream version. The spec submodule pinned in sdrf-skills (dc9be283) lists 1.1.0 as latest.",
+  "Biological (vs technical) nature of the 3 replicates is inferred from the deposit's 3 MaxQuant experiments and the rep1-3 file names. The paper's 'performed in triplicate' sentence refers to the protein-concentration assay and is not used as evidence.",
+  "comment[cleavage agent details] records the wet-lab enzyme, Trypsin. The deposited search rule was Trypsin/P (MS:1001313)."
+ ]
+}

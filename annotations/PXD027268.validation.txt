@@ -1,0 +1,102 @@
+$ parse_sdrf validate-sdrf -s annotations/PXD027268.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD027268.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD027268.sdrf.tsv -t2
+PROCESSING: PXD027268.sdrf.tsv
+Factor columns: ['factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[sampling site]']
+Conditions (6): dict_keys(['30 minute|Hepatocyte Growth Factor', '0 minute|not available', '30 minute|untreated', 'not applicable|Mesna', 'not applicable|untreated', 'not available|not available'])
+Files per condition: dict_values([14, 14, 14, 14, 14, 84])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 154 times.
+SUCCESS (WARNINGS=1): PXD027268.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD027268.evidence.json
+annotations/PXD027268.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD027268.sdrf.tsv annotations/PXD027268.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD027268.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/evidence/pride.json --accession PXD027268
+PXD027268: every annotated value agrees with the deposit record.
+exit code: 0
+
+
+==================================================================
+ROUND 2: after external review round 1 FAIL. Lanes A/B removed (partial BLOCK); comment[sdrf version] v1.1.0; culture medium and ancestry category added; cleavage agent kept as Trypsin (MS:1001251)
+==================================================================
+
+$ parse_sdrf validate-sdrf -s annotations/PXD027268.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD027268.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD027268.sdrf.tsv -t2   (run in scratch dir)
+PROCESSING: PXD027268.sdrf.tsv
+Factor columns: ['factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[sampling site]', 'characteristics[culture medium]']
+Conditions (5): dict_keys(['30 minute|Hepatocyte Growth Factor', '0 minute|not available', '30 minute|untreated', 'not applicable|Mesna', 'not applicable|untreated'])
+Files per condition: dict_values([14, 14, 14, 14, 14])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 70 times.
+SUCCESS (WARNINGS=1): PXD027268.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD027268.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/evidence/pride.json --accession PXD027268
+PXD027268: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD027268.evidence.json
+annotations/PXD027268.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD027268.sdrf.tsv annotations/PXD027268.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit code: 0
+
+==================================================================
+ROUND 3: after review round 2. Added characteristics[developmental stage]=adult; comment[sdrf annotation tool]=NT=sdrf-skills;VV=v0.1.0. Scope unchanged (lanes C/D only, 28 of 56 raw files).
+==================================================================
+
+$ parse_sdrf validate-sdrf -s annotations/PXD027268.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD027268.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD027268.sdrf.tsv -t2   (run in scratch dir)
+PROCESSING: PXD027268.sdrf.tsv
+Factor columns: ['factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[sampling site]', 'characteristics[culture medium]']
+Conditions (5): dict_keys(['30 minute|Hepatocyte Growth Factor', '0 minute|not available', '30 minute|untreated', 'not applicable|Mesna', 'not applicable|untreated'])
+Files per condition: dict_values([14, 14, 14, 14, 14])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 70 times.
+SUCCESS (WARNINGS=1): PXD027268.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD027268.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/evidence/pride.json --accession PXD027268
+PXD027268: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD027268.evidence.json
+annotations/PXD027268.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD027268.sdrf.tsv annotations/PXD027268.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+

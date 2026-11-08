@@ -1,0 +1,64 @@
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]']
+Conditions (2): dict_keys(['starvation', 'control'])
+Files per condition: dict_values([12, 12])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 24 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv --record evidence/pride.json --accession PXD021199
+PXD021199: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD021199.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD021199.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD021199.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit code: 0
+
+
+==================== ROUND 2 (after external review round 1 FAIL; tables fixed and rebuilt: sdrf version v1.1.0, cleavage NT=Trypsin;AC=MS:1001251 per coordinator correction, DH bait encoding, CVCL_C4ET, culture medium). Round 1 above is superseded. ====================
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: HeLa Flp-In T-REx in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv
+Factor columns: ['factor value[genetic modification]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]']
+Conditions (3): dict_keys(['not available|starvation', 'PLEKHM1-GFP, doxycycline-induced|not available', 'PLEKHM1-GFP, doxycycline-induced|starvation'])
+Files per condition: dict_values([6, 12, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 24 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv --record evidence/pride.json --accession PXD021199
+PXD021199: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD021199.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD021199.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD021199.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit code: 0
+

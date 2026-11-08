@@ -1,0 +1,20 @@
+PXD041679 — validation log
+
+No SDRF was built: the dataset is BLOCKED (raw file -> MaxQuant experiment map absent from every
+source; see PXD041679.report.md). Therefore no `sdrf-tools build`, `parse_sdrf validate-sdrf`,
+`sdrf-tools structure` or `parse_sdrf convert-openms` command was run.
+
+Ontology accessions intended for the unblocked annotation were verified live with `sdrf-tools verify`
+(exit 0 / label match unless noted):
+  UNIMOD:188  Label:13C(6)
+  UNIMOD:267  Label:13C(6)15N(4)
+  UNIMOD:121  GG  (expected 'GlyGly' = MaxQuant name; OLS label is 'GG')
+  UNIMOD:35   Oxidation
+  UNIMOD:1    Acetyl
+  UNIMOD:4    Carbamidomethyl
+  MS:1002732  Orbitrap Fusion Lumos
+  MS:1001251  Trypsin
+  PRIDE:0000326 SILAC light
+  PRIDE:0000325 SILAC heavy
+  PRIDE:0000627 Data-dependent acquisition
+  NCBITaxon:9606 Homo sapiens

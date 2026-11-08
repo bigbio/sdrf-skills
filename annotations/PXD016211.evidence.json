@@ -1,0 +1,389 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv",
+ "dataset": "PXD016211",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD016211 (local copy: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/evidence/pride.json)"
+  },
+  {
+   "id": "pride-files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD016211/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/files_all.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/evidence/files.json)"
+  },
+  {
+   "id": "mq-summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/04/PXD016211/MaxQuant_Analysis.zip -> MaxQuant_Analysis/summary.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/mq/summary.txt)"
+  },
+  {
+   "id": "mq-parameters",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/04/PXD016211/MaxQuant_Analysis.zip -> MaxQuant_Analysis/parameters.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/mq/parameters.txt)"
+  },
+  {
+   "id": "mq-evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/04/PXD016211/MaxQuant_Analysis.zip -> MaxQuant_Analysis/evidence.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/mq/evidence.txt)"
+  },
+  {
+   "id": "mq-proteingroups",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/04/PXD016211/MaxQuant_Analysis.zip -> MaxQuant_Analysis/proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/mq/proteinGroups.txt)"
+  },
+  {
+   "id": "raw-header",
+   "kind": "raw-file",
+   "location": "HTTP range bytes 0-400000 of https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/04/PXD016211/2018-10-19_Fusion_15892.raw and .../2018-12-18_Fusion_16473.raw (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/raw/*.head)"
+  },
+  {
+   "id": "abstract",
+   "kind": "publication",
+   "location": "PMID:32327453 / doi:10.4049/immunohorizons.2000006 (abstract only; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/evidence/manuscript.txt)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://www.cellosaurus.org/CVCL_0042 (via sdrf-tools cellline lookup U2-OS and api.cellosaurus.org search)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools ols / OLS4 API lookups run 2026-11-08)"
+  },
+  {
+   "id": "spec-upstream",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 'latest: 1.2.0' (ms-proteomics); spec/sdrf-proteomics README.adoc:27 'Version v1.1.0'; external review annotations/PXD016211.review.md"
+  },
+  {
+   "id": "review-r1",
+   "kind": "review",
+   "location": "/home/user/bigbio/sdrf-skills/annotations/PXD016211.review.md (external adversarial reviews: round 1 FAIL, round 2 FAIL with blocker B1 on channel orientation)"
+  },
+  {
+   "id": "mq-pgfilt6",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/04/PXD016211/MaxQuant_Analysis.zip -> MaxQuant_Analysis/pgFilt6.txt (authors' filtered H/M table; cited in limitations; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/mq/pgFilt6.txt)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-90",
+   "value": "U2OS-ciHHV6A_rep{1,2}_{pre-existing-proteome-pool,trichostatin-A,solvent-control}",
+   "source_ids": [
+    "abstract",
+    "mq-proteingroups",
+    "mq-summary",
+    "pride"
+   ],
+   "evidence": "MaxQuant summary.txt has two experiments, Repl1_U2OS_mc6A (files 15892-15906) and Repl2_U2OS_mc6A (16473-16487), multiplicity 3. PRIDE protocol: solvent-control cells in heavy, Trichostatin-A cells in medium, light = pre-pulse growth medium; heavy and medium lysates mixed 1:1. 'ciHHV6A' is INFERRED from the experiment name 'mc6A', the PRIDE title (HHV-6A reactivation) and the abstract (U2-OS with chromosomally integrated HHV-6, reactivated with TSA). Source names follow the condition: U2OS-ciHHV6A_repN_trichostatin-A carries SILAC medium and U2OS-ciHHV6A_repN_solvent-control carries SILAC heavy. 'mc6A' matches the lab's BAC-derived mCherry latent HHV-6A U2OS line (Prusty 2018, PMC6125432, per external review); no Cellosaurus entry."
+  },
+  {
+   "location": "comment[label] rows 1-15,46-60 / 16-30,61-75 / 31-45,76-90",
+   "value": "SILAC light (pre-existing pool) / SILAC medium (Trichostatin A) / SILAC heavy (solvent control)",
+   "source_ids": [
+    "pride",
+    "mq-summary",
+    "mq-proteingroups",
+    "ols",
+    "review-r1"
+   ],
+   "evidence": "PRIDE terms SILAC light PRIDE:0000326, medium PRIDE:0000327, heavy PRIDE:0000325; summary.txt Multiplicity=3, Labels0 light. Condition per channel: (a) PRIDE sampleProcessingProtocol names the isotope reagents by catalogue number: solvent control = CNLM-291-H ([13C6,15N2]Lys = Lys8) + CNLM-539-H ([13C6,15N4]Arg = Arg10) = HEAVY; Trichostatin A = DLM-2640 ([2H4]Lys = Lys4) + CLM-2265-H ([13C6]Arg = Arg6) = MEDIUM. MaxQuant summary.txt agrees on the label definitions: Labels1 = Arg6;Lys4 (M), Labels2 = Arg10;Lys8 (H). (b) Independent HDAC-inhibitor signature in the authors' proteinGroups.txt (log2 'Ratio H/M normalized', Repl1/Repl2): canonical TSA-induced CDKN1A/p21 -2.98/-3.18 and H1F0 -2.41/-2.77 (higher in medium); E2F/S-phase targets repressed by HDACi G1 arrest are higher in heavy: MCM3 +2.35/+2.24, MCM7 +2.29/+2.32, RRM2 +2.61/+2.65, TOP2A +2.41/+2.90, CCNB1 +2.61/+2.48. Lower global new synthesis in medium (median raw H/L 0.55/0.49 > M/L 0.43/0.39) also fits TSA growth arrest. Both replicates share the orientation (log2 H/M rep1 vs rep2 Pearson r = 0.857, n = 2744). The abstract states only biological directions, never a label assignment (see limitations)."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 16-30,61-75",
+   "value": "Trichostatin A",
+   "source_ids": [
+    "pride",
+    "mq-summary",
+    "mq-proteingroups",
+    "ols",
+    "review-r1"
+   ],
+   "evidence": "SILAC medium rows = Trichostatin A arm; NCIT:C1261. (a) PRIDE sampleProcessingProtocol names the isotope reagents by catalogue number: solvent control = CNLM-291-H ([13C6,15N2]Lys = Lys8) + CNLM-539-H ([13C6,15N4]Arg = Arg10) = HEAVY; Trichostatin A = DLM-2640 ([2H4]Lys = Lys4) + CLM-2265-H ([13C6]Arg = Arg6) = MEDIUM. MaxQuant summary.txt agrees on the label definitions: Labels1 = Arg6;Lys4 (M), Labels2 = Arg10;Lys8 (H). (b) Independent HDAC-inhibitor signature in the authors' proteinGroups.txt (log2 'Ratio H/M normalized', Repl1/Repl2): canonical TSA-induced CDKN1A/p21 -2.98/-3.18 and H1F0 -2.41/-2.77 (higher in medium); E2F/S-phase targets repressed by HDACi G1 arrest are higher in heavy: MCM3 +2.35/+2.24, MCM7 +2.29/+2.32, RRM2 +2.61/+2.65, TOP2A +2.41/+2.90, CCNB1 +2.61/+2.48. Lower global new synthesis in medium (median raw H/L 0.55/0.49 > M/L 0.43/0.39) also fits TSA growth arrest. Both replicates share the orientation (log2 H/M rep1 vs rep2 Pearson r = 0.857, n = 2744). The abstract states only biological directions, never a label assignment (see limitations)."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 31-45,76-90",
+   "value": "control",
+   "source_ids": [
+    "pride",
+    "mq-summary",
+    "mq-proteingroups",
+    "ols",
+    "review-r1"
+   ],
+   "evidence": "SILAC heavy rows = solvent-control arm; EFO:0001461. (a) PRIDE sampleProcessingProtocol names the isotope reagents by catalogue number: solvent control = CNLM-291-H ([13C6,15N2]Lys = Lys8) + CNLM-539-H ([13C6,15N4]Arg = Arg10) = HEAVY; Trichostatin A = DLM-2640 ([2H4]Lys = Lys4) + CLM-2265-H ([13C6]Arg = Arg6) = MEDIUM. MaxQuant summary.txt agrees on the label definitions: Labels1 = Arg6;Lys4 (M), Labels2 = Arg10;Lys8 (H). (b) Independent HDAC-inhibitor signature in the authors' proteinGroups.txt (log2 'Ratio H/M normalized', Repl1/Repl2): canonical TSA-induced CDKN1A/p21 -2.98/-3.18 and H1F0 -2.41/-2.77 (higher in medium); E2F/S-phase targets repressed by HDACi G1 arrest are higher in heavy: MCM3 +2.35/+2.24, MCM7 +2.29/+2.32, RRM2 +2.61/+2.65, TOP2A +2.41/+2.90, CCNB1 +2.61/+2.48. Lower global new synthesis in medium (median raw H/L 0.55/0.49 > M/L 0.43/0.39) also fits TSA growth arrest. Both replicates share the orientation (log2 H/M rep1 vs rep2 Pearson r = 0.857, n = 2744). The abstract states only biological directions, never a label assignment (see limitations)."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 1-15,46-60",
+   "value": "not applicable",
+   "source_ids": [
+    "pride",
+    "mq-summary"
+   ],
+   "evidence": "Light channel = proteins synthesised before the pulse in BOTH arms (light pre-culture), mixed 1:1; not a single treatment arm."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-15,46-60",
+   "value": "SN=U2OS-ciHHV6A_repN_solvent-control;SN=U2OS-ciHHV6A_repN_trichostatin-A",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Heavy and medium pulse-labelled lysates were mixed 1:1; their pre-existing (light) proteins are therefore a pool of both arms."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 16-45,61-90",
+   "value": "not pooled",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Each newly synthesised (heavy or medium) proteome derives from one treatment arm only."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-45 / 46-90",
+   "value": "1 / 2",
+   "source_ids": [
+    "mq-summary",
+    "pride-files"
+   ],
+   "evidence": "MaxQuant experiments Repl1_U2OS_mc6A (raw files acquired 2018-10-19) and Repl2_U2OS_mc6A (acquired 2018-12-18): independent experiments."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-90",
+   "value": "2018-10-19_Fusion_15892..15906.raw (fractions 1-15, rep1); 2018-12-18_Fusion_16473..16487.raw (fractions 1-15, rep2)",
+   "source_ids": [
+    "pride-files",
+    "mq-summary"
+   ],
+   "evidence": "files/all lists 30 RAW + MaxQuant_Analysis.zip; every entry's projectAccessions contains PXD016211. summary.txt Fraction 101-115 / 201-215 in file order."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-90",
+   "value": "1",
+   "source_ids": [
+    "mq-summary"
+   ],
+   "evidence": "Each file is one injection of one fraction; no repeated injections in summary.txt."
+  },
+  {
+   "location": "characteristics[organism] rows 1-90",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; U2OS is a human line (CVCL_0042)."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-90",
+   "value": "U2OS / CVCL_0042 / U2OS",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol 'U2-OS cells'; Cellosaurus CVCL_0042 (id U2OS, synonym U2-OS); EFO:0002869 'U2OS'. Cellosaurus has no separate entry for the ciHHV-6A derivative, so the parental line is used."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-90",
+   "value": "tibia",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0042: Derived from site: In situ; Bone, tibia; UBERON_0000979."
+  },
+  {
+   "location": "characteristics[disease] rows 1-90",
+   "value": "osteosarcoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0042 disease Osteosarcoma; MONDO:0009807."
+  },
+  {
+   "location": "characteristics[age] rows 1-90",
+   "value": "15Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0042: donor age 15Y."
+  },
+  {
+   "location": "characteristics[sex] rows 1-90",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0042: Sex of cell: Female."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-90",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0042: 'Population: Caucasian' and genome ancestry European North 60.98% + European South 31.08% (PubMed=30894373); HANCESTRO:0005 European ancestry."
+  },
+  {
+   "location": "characteristics[material type] rows 1-90",
+   "value": "cell line",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Cultured U2-OS cell line lysates."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-90",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus gives no cell type for U2OS."
+  },
+  {
+   "location": "comment[instrument] rows 1-90",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw-header",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of 15892 and 16473 read 'Orbitrap Fusion' (no 'Lumos'); PRIDE dataProcessingProtocol 'Orbitrap Fusion'. PRIDE structured field 'LTQ Orbitrap' (MS:1000449) is wrong and overruled."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-90",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'A Top Speed data-dependent MS/MS method with a fixed cycle time of 3 seconds was used.'"
+  },
+  {
+   "location": "comment[dissociation method] rows 1-90",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "pride",
+    "raw-header",
+    "ols"
+   ],
+   "evidence": "'HCD fragmentation with 35 % normalized collision energy'; raw method name 'HCD,MS2_OT_15k,45min'."
+  },
+  {
+   "location": "comment[collision energy] rows 1-90",
+   "value": "35% NCE",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "'HCD fragmentation with 35 % normalized collision energy'."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-90",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "pride",
+    "raw-header"
+   ],
+   "evidence": "'Both MS and MS/MS scans were acquired in the Orbitrap analyzer'; method name MS2_OT_15k."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-90",
+   "value": "350m/z-1550m/z",
+   "source_ids": [
+    "raw-header"
+   ],
+   "evidence": "Raw method summary: 'Scan Range (m/z) = 350-1550' (first MS scan block, file 15892)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-90",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq-summary",
+    "ols"
+   ],
+   "evidence": "Digestion enzyme trypsin: PRIDE 'tryptic cleavage specificity'. The MaxQuant search rule differs: summary.txt Enzyme = Trypsin/P (MS:1001313, cleaves before P); the SDRF records the enzyme, MS:1001251, per batch-wide decision."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-90 (8 columns)",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Gln->pyro-Glu N-term Q Variable; Label:13C(6) R, Label:2H(4) K, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K",
+   "source_ids": [
+    "mq-summary",
+    "pride",
+    "ols"
+   ],
+   "evidence": "summary.txt: Fixed modifications 'Carbamidomethyl (C)'; Variable 'Oxidation (M);Acetyl (Protein N-term);Gln->pyro-Glu'; Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 (sdrf-tools search-params mapping, accessions verified in OLS UNIMOD: 4,35,1,28,188,481,267,259). The four Label:* entries encode the SILAC channel labels (MaxQuant Labels1/Labels2 at multiplicity 3), not variable search modifications; MT=Variable follows common SDRF practice for SILAC (review round 2 M1)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-90",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "pride",
+    "mq-evidence"
+   ],
+   "evidence": "INFERRED: no mqpar.xml/.apar deposited; PRIDE text says search ran with 'MaxQuant default settings' (v1.6.2.2; default main-search tolerance 4.5 ppm). Corroborated: max |Mass error [ppm]| over 136,784 MS/MS-identified evidence rows = 4.499."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-90",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq-parameters",
+    "pride"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm'; MS/MS were Orbitrap (FTMS) scans."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-90",
+   "value": "not available",
+   "source_ids": [
+    "pride",
+    "mq-summary"
+   ],
+   "evidence": "15 fractions per replicate and PRIDE experimentType 'Gel-based experiment', but no source describes the fractionation; not asserted."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-90",
+   "value": "not available",
+   "source_ids": [
+    "mq-summary"
+   ],
+   "evidence": "Fixed Carbamidomethyl (C) in the search implies alkylation, but no source names the reagents."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-90",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; manual curation",
+   "source_ids": [
+    "spec-upstream",
+    "review-r1"
+   ],
+   "evidence": "comment[sdrf version] = v1.1.0 per spec README.adoc:27 ('Version v1.1.0'). Template versions written by sdrf-tools build from the contract; ms-proteomics VV=v1.2.0 kept per batch decision, citing upstream bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 'latest: 1.2.0'. Note: the templates.yaml nested in this checkout's spec submodule (rev dc9be283) is older than upstream and lists ms-proteomics 1.1.0 only; the review flagged this."
+  },
+  {
+   "location": "technology type rows 1-90",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "MS-based proteomics deposit."
+  }
+ ],
+ "limitations": [
+  "Full text of the paper (ImmunoHorizons 2020;4(4):201, CC-BY-NC-ND gold OA) could not be retrieved: publisher/OUP and immunohorizons.org return Cloudflare 403, Europe PMC has no PMC copy, Unpaywall download 403. Only the abstract and the PRIDE protocol text (which appears copied from the paper's Methods, it cites reference '(57)') were used.",
+  "Abstract-direction discrepancy (curator note, not the basis of the map): the abstract (PMID 32327453) says dUTPase/thymidylate synthase are 'strongly induced' and SOD2/fatty-acid-oxidation proteins 'strongly inhibited' by HHV-6 reactivation. With medium = TSA, the deposited H/M ratios (proteinGroups/pgFilt6: TYMS log2 H/M +4.99/+2.96, DUT +2.98/+3.52, SOD2 -2.65/-2.76) show the opposite in the TSA arm, so the paper's directional statements appear to be phrased relative to the H/M ratio as reported. The abstract never states a label assignment. Round 2 of this annotation wrongly read it as heavy = TSA; review round 2 (blocker B1) reverted that. The full text (unreachable here) should be checked by a human curator.",
+  "No label swap between replicates: log2 H/M normalized ratios of rep1 vs rep2 correlate positively (Pearson r=0.857, n=2744 proteins), so both replicates use the same orientation.",
+  "ciHHV-6A status of the U2OS cells is inferred (experiment name 'U2OS_mc6A', PRIDE title, abstract); the clone (lab's mCherry-BAC HHV-6A U2OS line, Prusty 2018) has no Cellosaurus entry so parental U2OS (CVCL_0042) is annotated and the derivative is only named in source name.",
+  "Light (pre-existing proteome) channel annotated as a 1:1 pool of the two arms, treatment 'not applicable'; an alternative encoding would omit the light channel, but MaxQuant searched multiplicity 3 and reports M/L and H/L ratios.",
+  "TSA concentration, solvent identity, and culture medium have no usable term or source (McCoy's 5A has no NCIT term); characteristics[culture medium], dose and compound columns omitted.",
+  "precursor mass tolerance 4.5 ppm inferred from 'MaxQuant default settings' + evidence.txt mass errors (no mqpar.xml deposited).",
+  "techsdrf not installed: raw-file metadata verified only by HTTP-range reading of the first 400 KB of two .raw headers.",
+  "parse_sdrf warns that SN=... in characteristics[pooled sample] is not one of the allowed values; the same template's pattern validator explicitly allows SN=a;SN=b (template-internal conflict), so the warning is accepted.",
+  "characteristics[developmental stage] deliberately NOT added: the donor was 15Y, which is HsapDv:0000086 'adolescent stage' (13-19 years). The only EFO candidates are 'adult' EFO:0001272 (defined as having attained sexual maturity and full growth: wrong for a 15-year-old) and 'juvenile stage' UBERON:0034919 (sexual maturity not reached: not supported). The column is validated against EFO and HsapDv adolescent stage is not in EFO, so it is left out; age 15Y carries the information.",
+  "ms-proteomics template VV=v1.2.0 is newer than the spec submodule copy in this checkout (dc9be283 lists 1.1.0 only); kept per batch decision citing upstream sdrf-templates 7da1747."
+ ]
+}

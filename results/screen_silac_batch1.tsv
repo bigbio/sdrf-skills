@@ -1,0 +1,11 @@
+id	repository	label	failed_criterion	reason	evidence
+PXD004817	PRIDE	include		SILAC (Arg10/Lys8) A549 radiation study; deposited MaxQuant search; not in sdrf-annotated-datasets	repository structured fields; PRIDE protocol
+PXD016167	PRIDE	include		SILAC MRC-5 baicalein study; deposited MaxQuant tables; not in sdrf-annotated-datasets	repository structured fields; PRIDE protocol
+PXD021199	PRIDE	include		SILAC PLEKHM1-GFP pulldown; deposited mqpar; not in sdrf-annotated-datasets	repository structured fields; PRIDE protocol
+PXD004245	PRIDE	include		SILAC HeLa ADP-ribosylome (plus label-free arms); deposited MaxQuant output; not in sdrf-annotated-datasets	repository structured fields; paper methods
+PXD041679	PRIDE	include		SILAC Pol II / CSB IP-MS; deposited MaxQuant output; not in sdrf-annotated-datasets	repository structured fields; paper methods
+PXD012128	PRIDE	include		SILAC COPII vesicle proteomics; deposited mqpar; not in sdrf-annotated-datasets	repository structured fields; paper methods
+PXD069185	PRIDE	include		Triple-SILAC APEX2 proximity labelling; deposited mqpar; not in sdrf-annotated-datasets	repository structured fields; paper methods
+PXD012922	PRIDE	include		SILAC radioresistant MIA PaCa-2; deposited MaxQuant tables; not in sdrf-annotated-datasets	repository structured fields; paper methods
+PXD016211	PRIDE	include		Triple pulsed-SILAC U2OS TSA study; deposited MaxQuant output; not in sdrf-annotated-datasets	repository structured fields; PRIDE protocol
+PXD027268	PRIDE	include		Triple-SILAC H1299 endosome capture; deposited mqpar; not in sdrf-annotated-datasets	repository structured fields; paper methods

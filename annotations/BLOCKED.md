@@ -977,3 +977,68 @@ study with real sample names), supplied by the authors. See `annotations/PXD0645
 full recoverable structural facts (organism/tissue/cell type/instrument/mods/labels all resolved and
 OLS-verified). Sibling PXD064499 (pilot) IS annotated (its map was deposited); PXD064518 (analytical) is
 likewise BLOCKED. The three depositions use disjoint runs — no duplication.
+
+---
+
+## PXD041679 — Transcription-coupled DPC repair by CSB and CRL4(CSA) (SILAC Pol II / CSB interaction proteomics)
+
+**Blocker: raw file → MaxQuant experiment (and gel slice) map does not exist.**
+
+| | |
+|---|---|
+| Publication | van Sluis *et al.*, Nat Cell Biol 2024, PMID:38600236, PMC11098752 (open access, full text read) |
+| Deposited | 15 RAW (`2300_L_MarjoleinVanSluis_13april2021_{19..33}`), `2300_proteinGroups.txt`, `2300_parameters.txt` |
+| SDRF would need | 15 files × 2 SILAC channels = 30 rows, each with IP target / treatment / cell line |
+
+The deposited `proteinGroups.txt` names **8** MaxQuant experiments whose names encode the channel map,
+label swaps included (e.g. `Pol2 Ser2 IP Untreated Heavy vs 300uM FA 45min Light` and its swap; Pol2
+untreated vs 16 J UV ×2; `CSB IP WT … vs CSB-KI …` under FA and 30 J UV ×4). Each was searched as up to
+10 gel-slice fractions (`Fraction 1..10`), so the 15 deposited files are a subset of the search. Nothing
+records which experiment or slice any file is. The paper reports only the two Pol2/FA experiments.
+
+Sources checked, all exhausted: PRIDE record + `files/all`; `parameters.txt` (MaxQuant 1.6, no file
+map); `proteinGroups.txt` (experiment names only); Thermo `.raw` headers of all 15 files (sample
+name/comment fields empty); paper full text (efetch); Supplementary Tables xlsx (Springer; protein
+ratios only); Europe PMC supplementary (endpoint error); Data availability (PRIDE only); paper GitHub
+(imaging code; not listable from session); sibling Marteijn-lab PRIDE projects.
+
+**Deliberately not used:** assuming the 15 consecutive runs are the two Pol2/FA lanes, and forensic
+per-file H/L inference from spectra. Both would assert treatment/IP identity that no deposited
+metadata states.
+
+**Unblocked by:** the MaxQuant `experimentalDesignTemplate.txt` / `mqpar.xml` / `summary.txt` for search
+"2300", or an author-supplied file → experiment + slice list. The technical values (SILAC light/heavy,
+Lys6 UNIMOD:188 / Arg10 UNIMOD:267, Oxidation/Acetyl/GlyGly variable mods, Orbitrap Fusion Lumos, trypsin,
+DDA, 20 ppm MS/MS) are already resolved and OLS-verified in `annotations/PXD041679.report.md`.
+
+---
+
+## PXD027268 — Nuclear-capture of endosomes (SILAC surface and nuclear-capture proteomes), lanes A/B only (partial block)
+
+**Blocker: no channel → condition map exists for MaxQuant lanes A and B. Lanes C and D are annotated in `annotations/PXD027268.sdrf.tsv`.**
+
+| | |
+|---|---|
+| Publication | Marco *et al.*, Nat Commun 2021 12:6829, PMID:34819513, PMC8613289 (open access, full text read via NCBI efetch) |
+| Deposited | 56 RAW, `mqpar.xml`, `MaxQuant_txt_folder.zip` (MaxQuant 1.5.5.1, triple SILAC: light / Arg6Lys4 / Arg10Lys8) |
+| Annotated | 28 RAW = lanes C and D of Expt1 and Expt2 (70 rows). Channel map from Supplementary Data 1 and its legend in the Description of Supplementary Files, cross-checked against `proteinGroups.txt` |
+| Blocked | 28 RAW = lanes A and B: `20170608_…_Sample_A0[1-8]`, `…_Sample_B0[1-8]`, `2018050x/11_…_Lane_A_00[1-6]`, `…_Lane_B_00[1-6]` (MaxQuant experiments Expt1_A, Expt1_B, Expt2_A, Expt2_B) |
+| SDRF would need | 28 files × 3 SILAC channels = 84 rows, each with a condition (HGF / internalisation / reduction arm) |
+
+`proteinGroups.txt` shows all three channels quantified in every A/B lane (e.g. Expt2_A: L 6.9e11, M 2.3e11, H 5.3e11), so these are real triple-SILAC samples. The external reviewer measured H/L correlations of 0.21–0.73 among the four lanes, so they are not interchangeable replicates of one design. Nothing records which condition is in which channel.
+
+Sources checked, all exhausted:
+
+| source | result |
+|---|---|
+| Paper Methods / Results / figure legends | describe only the surface (lane D) and nuclear-capture (lane C) experiments |
+| Supplementary Data 1 (`MOESM4_ESM.xlsx`) | columns only for Expt1_C, Expt2_C, Expt1_D |
+| Description of Supplementary Files (`MOESM3_ESM.docx`) | legends for sheets 1–2 only (nuclear L/H, surface L/H) |
+| Supplementary Data 2 / 3, Source Data, Supplementary Information, Peer Review File | TurboID LFQ, RNA-seq, figure source values; nothing on lanes A/B |
+| PRIDE sample/data processing protocols, `files/all` | protocol prose only (2-state), no sample sheet |
+| MaxQuant `mqpar.xml`, `parameters.txt`, `summary.txt`, `proteinGroups.txt` | experiment names `Expt1_A`… only |
+| Data Availability | "available from the corresponding author on request"; no Zenodo/figshare/GitHub deposit (only GEO GSE179901 and PXD027217, both unrelated to these lanes) |
+
+**Deliberately not used:** inferring A/B conditions from ratio patterns or from the letter codes A/B/C that Supplementary Data 1 uses for *conditions* within lane C. Both would assert condition identities that no source states.
+
+**Unblocked by:** a lane A/B channel → condition map from the corresponding author (J.C. Norman, CRUK Beatson Institute). The technical values (Q Exactive HF, SILAC mods UNIMOD:188/481/267/259, Carbamidomethyl fixed, 4.5/20 ppm) are already resolved in `annotations/PXD027268.report.md`. Adding the lanes means adding rows to `samples.tsv` and rebuilding.

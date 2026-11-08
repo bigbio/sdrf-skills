@@ -1,0 +1,207 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD004245-liver.sdrf.tsv",
+ "dataset": "PXD004245",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004245 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004245/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/files_all_pride.json; 15 .raw, all entries asserted projectAccessions contains PXD004245)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC5056437 / doi:10.1038/ncomms12917 (Martello et al. Nat Commun 2016); full text via NCBI efetch db=pmc id=5056437, title verified; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/manuscript.txt"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1 MiB of each deposited .raw under https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/10/PXD004245/ decoded utf-16-le; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/raw_headers.tsv"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc line 27 (Version v1.1.0); bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS lookups verified with sdrf-tools verify / sdrf-tools ols on 2026-11-08"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism] rows 1-3",
+   "value": "Mus musculus",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Methods 'Preparation of mouse liver extracts': male 9-week-old C57BL/6 mice; PRIDE organisms include Mus musculus."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-3",
+   "value": "liver",
+   "source_ids": [
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Excised livers (Methods); raw names Liver1-3; UBERON:0002107."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-3",
+   "value": "1 / 2 / 3",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Results: 'Three C57BL/6 mice were killed before their livers were collected ... In triplicate analyses'; one liver per run (raw original names Liver1_unt, Liver2_unt, Liver3_unt)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-3",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Healthy mice on regular unrestricted diet (Methods); PATO:0000461."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 1-3",
+   "value": "untreated",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw-file original names end '_unt'; Results: non-induced ADP-ribosylome of tissue, no treatment described. 'untreated' is the template's recommended control value (validator warning)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-3",
+   "value": "adult",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "9-week-old mice (Methods) -> adult (EFO:0001272), INFERRED from age."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-3",
+   "value": "C57BL/6J",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: 'Male 9-week-old C57BL/6 mice'; animal-study comment: 'C57BL/6J mice were bread at the animal facility of the University of Zurich'."
+  },
+  {
+   "location": "characteristics[sex] rows 1-3",
+   "value": "male",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: 'Male 9-week-old C57BL/6 mice'."
+  },
+  {
+   "location": "comment[label] rows 1-3",
+   "value": "label free sample",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Unlabelled tissue (no SILAC possible in vivo here); triplicate label-free analyses."
+  },
+  {
+   "location": "comment[instrument] rows 1-3",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw headers of Liver_Rep1-3: 'Q Exactive HF - Orbitrap MS', path QEXACTIVEHF_1."
+  },
+  {
+   "location": "comment[data file] / comment[technical replicate] / comment[fraction identifier] rows 1-3",
+   "value": "3 .raw / 1 / 1",
+   "source_ids": [
+    "files",
+    "paper"
+   ],
+   "evidence": "File names as in PRIDE files/all; single-shot, unfractionated runs."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-3",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Digestion enzyme. Methods: liver lysate 'processed similar as described for the cell culture samples', i.e. Lys-C + trypsin digestion. Trypsin is written here. Lys-C has no column because comment[cleavage agent details] is single-cardinality in ms-proteomics v1.2.0 (see limitations). No mouse search was deposited; the Methods say 'strict trypsin specificity'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-3",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, ADP-Ribosyl K,R,D,E Variable",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods 'Identification of peptides and proteins': carbamidomethylation fixed; protein N-terminal acetylation, methionine oxidation and mono-ADP-ribosylation on K,R,E,D variable. No deposited mouse search to confirm."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-3",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: 'operated using data-dependent acquisition'."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-3",
+   "value": "NT=HCD;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: 'fragmentation ... using HCD'; MS:1000422 (beam-type CID = HCD)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-3",
+   "value": "7 ppm",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: 'maximum 7 p.p.m. for peptide masses' (parameters.txt of MaxQuant 1.3 does not list it)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-3",
+   "value": "20 ppm",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: '20 p.p.m. for HCD fragment ion masses' (no deposited mouse search)."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf annotation tool] rows 1-3",
+   "value": "v1.1.0 / manual curation",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "comment[sdrf version] = SDRF-Proteomics specification version: spec README.adoc line 27 'Version v1.1.0' (also upstream HEAD; coordinator decision). comment[sdrf template] keeps ms-proteomics VV=v1.2.0 per bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 'latest: 1.2.0'. Annotation done by manual curation."
+  }
+ ],
+ "limitations": [
+  "Lys-C (MS:1001309) was used in the digestion (Methods) but has no column: comment[cleavage agent details] is single-cardinality in ms-proteomics v1.2.0, so sdrf-tools build emits only the first value. The SDRF was not hand-edited to add a second column. Rebuilding with Lys-C needs a build/contract change or a coordinator decision to override the template cardinality.",
+  "techsdrf not installed: instrument verified by HTTP range-read of .raw headers only; tolerances/acquisition not re-derived from spectra.",
+  "Europe PMC fullTextXML returned HTTP 500 and supplementaryFiles failed; paper retrieved through NCBI efetch (numeric id, title verified) and SI from the publisher.",
+  "No deposited search for the mouse liver runs (deposited MaxQuant output used HUMAN.fasta and contains no Liver runs): modifications, enzyme and tolerances taken from the paper's general Methods.",
+  "Mouse age (9 weeks) is not encoded: no age column is licensed under ms-proteomics + vertebrates.",
+  "Developmental stage 'adult' inferred from 9-week age.",
+  "Af1521 ADP-ribose peptide enrichment is not encoded (no verified child of EFO:0009090).",
+  "Companion of PXD004245-hela-silac.sdrf.tsv: separate file because the cell-lines template's characteristics[cell line] allows no reserved word and human/vertebrates templates are exclusive."
+ ]
+}

@@ -1,0 +1,452 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv",
+ "dataset": "PXD012922",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012922 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012922/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012922/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012922/evidence/files_all_raw.json; 20 RAW + 4 SEARCH files, all projectAccessions == PXD012922)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC7000112 / doi:10.1074/mcp.RA119.001779 (Nguyen et al., Mol Cell Proteomics 2020); PMC HTML render https://pmc.ncbi.nlm.nih.gov/articles/PMC7000112/ (local text: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012922/evidence/manuscript.txt)"
+  },
+  {
+   "id": "raw-headers",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/12/PXD012922/Soluble-1.RAW, Soluble-10.RAW, Membrane-1.RAW (first 8 MB HTTP-range-read; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012922/dl/head8_*.RAW)"
+  },
+  {
+   "id": "mq-membrane",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/12/PXD012922/Membraneprotein_proteinGroups.txt and Membraneprotein_peptides.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012922/dl/)"
+  },
+  {
+   "id": "mq-soluble",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/12/PXD012922/Solubleprotein_proteinGroups.txt and Solubleprotein_peptides.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012922/dl/)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0428?format=txt"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (verified with sdrf-tools verify / sdrf-tools ols on 2026-11-08)"
+  },
+  {
+   "id": "contract",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0)"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "spec/sdrf-proteomics/README.adoc line 27 \"Version v1.1.0\" (also upstream HEAD); bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 ms-proteomics latest: 1.2.0"
+  },
+  {
+   "id": "pyproject",
+   "kind": "software",
+   "location": "/home/user/bigbio/sdrf-skills/pyproject.toml (name = \"sdrf-skills-tools\", version = \"0.1.0\")"
+  },
+  {
+   "id": "template-treatment",
+   "kind": "specification",
+   "location": "spec/sdrf-proteomics/sdrf-templates/sample-metadata/1.0.0/sample-metadata.yaml line 297 (\"Use 'untreated' for controls\", example: untreated)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-40",
+   "value": "MIA PaCa-2-R soluble protein fraction (1-10) / MIA PaCa-2-R membrane protein fraction (11-20) / MIA PaCa-2 parental soluble protein fraction (21-30) / MIA PaCa-2 parental membrane protein fraction (31-40)",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper Methods \"Proteome Labeling and Cell Fractionation\": two cell populations (radioresistant MIA PaCa-2-R, parental MIA PaCa-2), each split into soluble (100,000 x g supernatant) and membrane (RIPA-solubilised pellet) proteins; equal amounts of soluble (resp. membrane) proteins from the two populations mixed and run on separate gel lanes. Source names are curator-chosen identifiers for (population x subcellular fraction)."
+  },
+  {
+   "location": "comment[label] rows 1-20",
+   "value": "SILAC light",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq-membrane",
+    "mq-soluble",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE protocol: \"The radioresistant MIA PaCa-2-R cells were cultured in unlabeled DMEM ... (light medium)\". PRIDE:0000326 = SILAC light (OLS). Cross-check: membrane proteinGroups 5NTD_HUMAN (CD73, reported up-regulated in radioresistant cells) Ratio H/L = 0.0599, vimentin H/L 0.55 (membrane) / 0.55 (soluble) -> light channel carries the radioresistant cells; no label swap (single SILAC experiment per fraction, no replicates)."
+  },
+  {
+   "location": "comment[label] rows 21-40",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq-membrane",
+    "mq-soluble",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE protocol: \"the parental MIA PaCa-2 cells were cultured in labeled DMEM medium containing arginine-13C6 and lysine-13C615N2 (heavy medium)\". PRIDE:0000325 = SILAC heavy. Search tables carry only L and H intensities (2-plex, no medium channel)."
+  },
+  {
+   "location": "comment[data file] rows 1-40",
+   "value": "Soluble-1..10.RAW (rows 1-10, 21-30); Membrane-1..10.RAW (rows 11-20, 31-40)",
+   "source_ids": [
+    "files",
+    "paper"
+   ],
+   "evidence": "files/all lists exactly 20 RAW files: Soluble-1..10 and Membrane-1..10. Paper: \"the entire lane ... was cut into 10 slices\"; separate SDS-PAGE lanes for the soluble and membrane mixes. Every RAW file appears once per SILAC channel (2 rows per file)."
+  },
+  {
+   "location": "assay name rows 1-40",
+   "value": "file stem (Soluble-N / Membrane-N), shared by the light and heavy rows of one run",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One assay per data file; the two SILAC channels of a run share it and are distinguished by comment[label]."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-40",
+   "value": "1-10 = numeric suffix of the RAW file name",
+   "source_ids": [
+    "files",
+    "paper"
+   ],
+   "evidence": "Paper: 10 gel slices per lane. Mapping slice k -> file \"<fraction>-k.RAW\" is inferred from the file names (not stated explicitly)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-40",
+   "value": "1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Each slice injected once; no technical replicates described."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-40",
+   "value": "1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper \"Experimental Design and Statistical Rationale\": \"Instead of performing biological replicates in the SILAC proteomic analysis, we fractionated cellular proteins into soluble and membrane fractions and analyzed them independently\"."
+  },
+  {
+   "location": "characteristics[organism] rows 1-40",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; Cellosaurus CVCL_0428 OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-40",
+   "value": "pancreas",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0428 \"Derived from site: In situ; Pancreas; UBERON=UBERON_0001264\"; UBERON:0001264 = pancreas."
+  },
+  {
+   "location": "characteristics[disease] rows 1-40",
+   "value": "undifferentiated pancreatic carcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "paper"
+   ],
+   "evidence": "Cellosaurus CVCL_0428 DI NCIt C5722 \"Pancreatic undifferentiated carcinoma\"; MONDO:0006478 = undifferentiated pancreatic carcinoma (OLS). Paper says \"pancreatic cancer cell line\". Disease of the donor of the cell line; both arms are the same cell line."
+  },
+  {
+   "location": "characteristics[age] rows 1-40",
+   "value": "65Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0428 AG 65Y (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-40",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0428 \"Population: Caucasian\" (genome ancestry ~86% European North+South, PubMed 30894373) -> HANCESTRO:0005 European ancestry (label verified in OLS). Donor-level property of the cell line, same for both arms."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-40",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0428 donor age 65Y -> EFO:0001272 adult (verified in OLS). Donor stage, not a cell property."
+  },
+  {
+   "location": "characteristics[sex] rows 1-40",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0428 SX Male."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-40",
+   "value": "MIA PaCa-2",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: parental MIA PaCa-2 and its irradiation-selected derivative MIA PaCa-2-R (clone #6). Cellosaurus CVCL_0428 lists 10 child lines (GEM-MIA PaCa-2, HyCyte KO-hSNAP23, HyCyte ABHD17C, MIA PaCa-2 GR2000/GR300/GR800, MIA PaCa-2/CMV-Luc, MiaPaCa(BCRP), MiaPaCa-2 F-RFP, PH61-N); none is this radioresistant clone, and CLO/EFO have no entry for it. Both arms therefore carry the parental line name; the arm is in source name and treatment."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-40",
+   "value": "epithelial cell",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE record organismParts lists CvParam CL:0000066 \"Epithelial cell\" (OLS label: epithelial cell). Caveat: the paper shows MIA PaCa-2-R cells in a mesenchymal-like (EMT) state; the value describes the cell line's epithelial origin as recorded by the submitter."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-40",
+   "value": "CVCL_0428",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID MIA PaCa-2, AC CVCL_0428. Rows 1-20 are a non-catalogued derivative of this line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-40",
+   "value": "MIA PaCa-2",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-40",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: cells maintained in DMEM; SILAC culture in unlabeled (light) or Arg-13C6/Lys-13C6-15N2 (heavy) DMEM with 10% dialyzed FBS. NCIT:C185409 = Dulbecco's Modified Eagle Medium."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 1-20",
+   "value": "Gamma Radiation",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: \"Stable radioresistant cells were generated by exposing MIA PaCa-2 cells to a total dose of 60 Gy of gamma-radiation over 6 weeks (2 Gy per day ...)\". NCIT:C44386 = Gamma Radiation. This is the selection history of the derived line (cells were not irradiated immediately before harvest); radioresistant vs parental is the compared variable. The value records how the resistant clone was selected (selection history), not an acute irradiation before harvest: surviving clones were expanded and maintained like the parental cells. Paper Results: \"The radioresistance was stable and was retained after more than 30 passages.\""
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 21-40",
+   "value": "untreated",
+   "source_ids": [
+    "paper",
+    "template-treatment"
+   ],
+   "evidence": "Parental MIA PaCa-2 cells were not irradiated; they are the untreated comparator of the study factor. The sample-metadata template prescribes \"untreated\" for controls (the reserved word \"not applicable\" would wrongly say the concept does not apply)."
+  },
+  {
+   "location": "comment[instrument] rows 1-40",
+   "value": "NT=LTQ Orbitrap XL;AC=MS:1000556",
+   "source_ids": [
+    "paper",
+    "raw-headers",
+    "ols"
+   ],
+   "evidence": "Paper: \"analyzed by LC-MS/MS using a LTQ-Orbitrap XL mass spectrometer\"; PRIDE says the less specific \"LTQ Orbitrap\". RAW headers read only the family strings \"LTQ Orbitrap MS\" / \"Thermo Finnigan LTQ\" (model block not reached by range read); Nth Order Double Play method with FTMS MS1 + ITMS MS2 is consistent with an LTQ Orbitrap XL."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-40",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw-headers"
+   ],
+   "evidence": "Paper: \"operated in a data-dependent mode\"; RAW method: \"ITMS + c norm ... Dep MS/MS Most intense ion from (1)\", \"Scan Event 2 repeated for top 5 peaks\"."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-40",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "raw-headers",
+    "ols"
+   ],
+   "evidence": "RAW method header (Soluble-1, Soluble-10, Membrane-1): \"Activation Type: CID\"."
+  },
+  {
+   "location": "comment[collision energy] rows 1-40",
+   "value": "35 NCE",
+   "source_ids": [
+    "raw-headers"
+   ],
+   "evidence": "RAW method header: \"Normalized Coll. Energy: 35.0\"."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-40",
+   "value": "NT=radial ejection linear ion trap;AC=MS:1000083",
+   "source_ids": [
+    "raw-headers",
+    "ols"
+   ],
+   "evidence": "RAW method: MS2 scan event is \"ITMS\" (LTQ linear ion trap, radial ejection). MS:1000083 verified in OLS."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-40",
+   "value": "375m/z-1500m/z",
+   "source_ids": [
+    "raw-headers"
+   ],
+   "evidence": "RAW method scan event 1: \"FTMS + p norm !corona !pi o(375.0-1500.0)\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-40",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: \"in-gel digestion with trypsin (Promega)\"; MaxQuant search with max 2 missed cleavages."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-40",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: mixed proteins \"fractionated by a 12% SDS-PAGE gel ... the entire lane ... was cut into 10 slices\". PRIDE:0000568 (SDS PAGE) is a descendant of PRIDE:0000550 (Fractionation method)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-40",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper/PRIDE data processing protocol: \"The MS error tolerance was set to 4.5 ppm\" (MaxQuant 1.6.2.10 main-search tolerance). No mqpar.xml/parameters.txt deposited."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-40 (1st)",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE: \"the fixed modification of cysteine carbamidomethylation\". No mqpar.xml deposited; deposited proteinGroups/peptides tables cannot show fixed mods."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-40 (2nd)",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq-membrane",
+    "mq-soluble",
+    "ols"
+   ],
+   "evidence": "Paper: \"variable modifications of ... oxidation on methionine\"; deposited MaxQuant tables carry an \"Oxidation (M) site IDs\" column."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-40 (3rd)",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Any N-term;MT=Variable",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE: \"variable modifications of acetylation at peptide N terminus\". Encoded as Any N-term per the stated wording; MaxQuant's usual default is Acetyl (Protein N-term) and no mqpar.xml is deposited to confirm."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-40 (4th)",
+   "value": "NT=Label:13C(6);AC=UNIMOD:188;TA=R;MT=Variable",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq-membrane",
+    "ols"
+   ],
+   "evidence": "Heavy medium contained arginine-13C6 (Arg6, +6.020 Da) -> UNIMOD:188 Label:13C(6) on R. MaxQuant tables report H/L ratios (multiplicity 2). Encoded as Variable, the convention for SILAC labels in curated SDRFs (e.g. bigbio PXD000228)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-40 (5th)",
+   "value": "NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq-membrane",
+    "ols"
+   ],
+   "evidence": "Heavy medium contained lysine-13C6-15N2 (Lys8, +8.014 Da) -> UNIMOD:259 Label:13C(6)15N(2) on K."
+  },
+  {
+   "location": "technology type rows 1-40",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "contract"
+   ],
+   "evidence": "Filled by sdrf-tools build from the ms-proteomics template."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-40",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "SDRF-Proteomics specification version v1.1.0 (README.adoc line 27, same at upstream HEAD). Independent of template versions."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-40",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=human;VV=v1.1.0 | NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "contract",
+    "spec",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Mass spectrometry DDA study of a human cell line (MIA PaCa-2 and derivative); no patient/clinical data. ms-proteomics v1.2.0 is the released latest in bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 (the pinned spec submodule only carries 1.1.0)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-40",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "pyproject"
+   ],
+   "evidence": "Unattended sdrf-skills sdrf-annotate run (tables expanded by sdrf-tools build); version 0.1.0 from the sdrf-skills pyproject.toml."
+  }
+ ],
+ "limitations": [
+  "Fragment mass tolerance is \"not available\": the paper states MS/MS tolerance 20 ppm (MaxQuant FTMS default), but the RAW method shows MS2 in the ion trap (ITMS), whose MaxQuant tolerance (default 0.5 Da) is not stated anywhere and no mqpar.xml/parameters.txt/summary.txt is deposited. Consequence: parse_sdrf convert-openms fails on this column (see validation.txt).",
+  "No MaxQuant mqpar.xml / parameters.txt / summary.txt deposited; modifications and SILAC label amino acids are from the paper/PRIDE protocol, only Oxidation (M) and the 2-plex L/H design are confirmed by the deposited proteinGroups/peptides tables. Acetyl encoded as PP=Any N-term following the paper wording (\"peptide N terminus\"); MaxQuant may have used Acetyl (Protein N-term).",
+  "Instrument model string (XL) not found in the range-read RAW header (only \"LTQ Orbitrap MS\" family string in first 8 MB and last 4 MB); LTQ Orbitrap XL taken from the paper. techsdrf not installed.",
+  "Gel slice number -> RAW file suffix mapping (fraction identifier) inferred from file names.",
+  "MIA PaCa-2-R (radioresistant derivative) has no Cellosaurus/CLO/EFO entry; annotated with parental MIA PaCa-2 cell line / CVCL_0428 plus characteristics[treatment] = Gamma Radiation for the selection history.",
+  "Soluble vs membrane protein fraction is recorded only in source name: no template-licensed characteristics column for subcellular fraction exists in ms-proteomics/human/cell-lines.",
+  "Europe PMC fullTextXML returned HTTP 500 and sdrf-tools fetch failed (Europe PMC 500); full text read from the PMC HTML render. Supplementary tables (S1-S8) not opened.",
+  "sdrf-tools curated failed (GitHub 403); Step 0.5 settled by caller against a local clone of bigbio/sdrf-annotated-datasets (not present) and PRIDE (no deposited SDRF).",
+  "parse_sdrf exit 0 proves well-formedness only; no mutation test performed.",
+  "External review round 1 PASS (5 minor) and round 2 FAIL (1 important: control arm \"not applicable\" -> \"untreated\"). Round-2 fixes applied (untreated, cell type, annotation tool, report wording); fragment tolerance sentinel kept. Rebuilt file has a new hash and needs a fresh review.",
+  "characteristics[cell type] = epithelial cell rests only on the PRIDE submitter tag; the radioresistant cells are described as mesenchymal-like in the paper."
+ ]
+}

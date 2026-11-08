@@ -1,0 +1,120 @@
+# Round 1 (2026-11-08T08:38:28Z)
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]']
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+    OpenMS().openms_convert(sdrf, onetable, legacy, verbose, conditionsfromcolumns, extension_convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+    self._process_tolerances(row, f2c, raw)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 209, in _process_tolerances
+    raise ValueError(f"Cannot read fragment mass tolerance: {f_tol_str}")
+ValueError: Cannot read fragment mass tolerance: not available
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read fragment mass tolerance: not available
+exit code: 1
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv --record evidence/pride.json --accession PXD012922
+PXD012922: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json
+Manifest covers every column with a value (26 column(s)).
+exit code: 0
+
+# Note: one validation round only. validate-sdrf and structure are clean (exit 0). convert-openms exits 1
+# solely because comment[fragment mass tolerance] = "not available" (deliberate sentinel; ion-trap MS2
+# tolerance is unrecorded - see report). No further rounds run.
+# Round 2 (2026-11-08T08:51:09Z) - after external review fixes: sdrf version v1.1.0; + ancestry category, developmental stage
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv -t2
+ValueError: Error: Cannot read fragment mass tolerance: not available
+exit code: 1 (traceback trimmed to last line)
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv --record evidence/pride.json --accession PXD012922
+PXD012922: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit code: 0
+
+# Round 3 (2026-11-08T09:01:51Z) - after review round 2: parental treatment untreated; + cell type; annotation tool NT=sdrf-skills;VV=v0.1.0
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv -t2
+ValueError: Error: Cannot read fragment mass tolerance: not available
+exit code: 1 (traceback trimmed to last line)
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv --record evidence/pride.json --accession PXD012922
+PXD012922: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD012922.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD012922.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+# Note: the round-3 WARNING ('untreated' not in ncit;efo) is expected. 'untreated' is the control value the sample-metadata template prescribes (yaml line 297, listed as an example), so it is not an ontology term. Accepted on purpose; not an error.

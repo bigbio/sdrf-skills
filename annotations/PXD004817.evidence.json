@@ -1,0 +1,603 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD004817.sdrf.tsv",
+ "dataset": "PXD004817",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004817 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/evidence/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004817/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/evidence/files_all_raw.json; all 10 entries asserted projectAccessions contains PXD004817)"
+  },
+  {
+   "id": "zip_listing",
+   "kind": "raw-file",
+   "location": "ZIP central directories range-read from https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/03/PXD004817/{A549_2h_Proteome.zip,A549_2h_Phosphoproteome.zip,A549_2h_Phosphoproteome_Targeted.zip} (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/cd/*.json; raw names in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/evidence/files.json)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "HTTP-range-read + inflated first 600 KB of 150424_MW2400_A10.RAW, 150527_MW2439_C2P_1_1.RAW, 160315_MW2585_C2-1.RAW inside the three PRIDE ZIPs (reader: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/scripts/rawhead.py)"
+  },
+  {
+   "id": "mqpar_prot",
+   "kind": "search-output",
+   "location": "A549_2h_Proteome_MaxQuant_All.zip :: A549_2h_Proteome_MaxQuant_All/mqpar.xml (MaxQuant 1.5.3.8; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/dl/prot/mqpar.xml)"
+  },
+  {
+   "id": "mqpar_phos",
+   "kind": "search-output",
+   "location": "A549_2h_Phosphoproteome_MaxQuant_All.zip :: A549_2h_Phosphoproteome_MaxQuant_All/mqpar.xml (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/dl/phos/mqpar.xml)"
+  },
+  {
+   "id": "phosphosites",
+   "kind": "search-output",
+   "location": "A549_2h_Phosphoproteome_MaxQuant_All.zip :: combined/txt/Phospho (STY)Sites.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/dl/phos/phosphosites.txt); analysis output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/evidence/labelswap_check.txt"
+  },
+  {
+   "id": "skyline",
+   "kind": "search-output",
+   "location": "A549_2h_Phosphoproteome_Targeted_Skyline_Files.zip :: Spike-in validation A549 (Discovery+Targeted).sky (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/dl/spike.sky); https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/03/PXD004817/A549_2h_Phosphoproteome_Targeted_Quant.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/dl/targeted_quant.txt)"
+  },
+  {
+   "id": "paper_abstract",
+   "kind": "publication",
+   "location": "PMID 28302921 / PMC5417826 / doi:10.1074/mcp.M116.066597 — abstract only (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/evidence/article_meta.json)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0023?format=txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/evidence/cellosaurus_CVCL_0023.txt)"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc line 27 (spec v1.1.0); https://github.com/bigbio/sdrf-templates commit 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 lookups and live accession verification (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004817/evidence/ols_lookups_1.txt, ols_lookups_treatment.txt, verify_terms.txt)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-538",
+   "value": "A549_<arm>_rep<n>_<sham|irradiated>_<proteome|phosphoproteome|phosphoproteome_targeted>",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline",
+    "pride"
+   ],
+   "evidence": "One source per (radiation arm x biological replicate x SILAC state x preparation). Arm/replicate from MaxQuant experiment names (X2-n, P2-n, C2-n proteome; X2p-n, P2p-n, C2p-n phospho; Skyline replicates \"X2-n - Targeted\" -> 160315_MW2585_X2-n.RAW). State from PRIDE protocol (light=sham, heavy=irradiated). Preparation suffix keeps the (source, bio rep, tech rep, fraction) coordinate unique; proteome/phospho/targeted of the same replicate derive from the same lysate per PRIDE protocol (inferred link)."
+  },
+  {
+   "location": "comment[data file] rows 1-538; assay name rows 1-538",
+   "value": "raw file names inside the deposited ZIPs",
+   "source_ids": [
+    "pride_files",
+    "zip_listing"
+   ],
+   "evidence": "PRIDE deposits only ZIP bundles; the 243 + 18 + 8 = 269 .RAW members were listed from the ZIP central directories. comment[data file] holds the member file name, not the ZIP."
+  },
+  {
+   "location": "comment[label] rows 1-27, 55-81, 109-135, 163-189, 217-243, 271-297, 325-351, 379-405, 433-459, 487-488, 491-492, 495-496, 499-500, 503-504, 507-508, 511-512, 515-516, 519-520, 523, 525, 527, 529, 531, 533, 535, 537",
+   "value": "SILAC light",
+   "source_ids": [
+    "pride",
+    "mqpar_prot",
+    "mqpar_phos",
+    "ols"
+   ],
+   "evidence": "mqpar.xml labelMods: state 0 = \"\" (light, Arg0/Lys0), state 1 = \"Arg10;Lys8\"; multiplicity 2. PRIDE:0000326 SILAC light."
+  },
+  {
+   "location": "comment[label] rows 28-54, 82-108, 136-162, 190-216, 244-270, 298-324, 352-378, 406-432, 460-486, 489-490, 493-494, 497-498, 501-502, 505-506, 509-510, 513-514, 517-518, 521-522, 524, 526, 528, 530, 532, 534, 536, 538",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "pride",
+    "mqpar_prot",
+    "mqpar_phos",
+    "ols"
+   ],
+   "evidence": "mqpar.xml labelMods state 1 = \"Arg10;Lys8\". PRIDE:0000325 SILAC heavy."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-27, 55-81, 109-135, 163-189, 217-243, 271-297, 325-351, 379-405, 433-459, 487-488, 491-492, 495-496, 499-500, 503-504, 507-508, 511-512, 515-516, 519-520, 523, 525, 527, 529, 531, 533, 535, 537; factor value[treatment] same rows",
+   "value": "Sham Control",
+   "source_ids": [
+    "pride",
+    "phosphosites",
+    "ols"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: \"Cells of the light SILAC state were sham irradiated and ones of the heavy state were irradiated by the different radiation qualities.\" Cross-check (no label swap): in all 9 phospho replicates the median log2 normalized H/L of class-I pS/TQ (ATM/ATR motif) sites is positive (0.17-0.50) with 24-34 sites up >1.5x vs 1-4 down, while all other sites centre at ~0 -> heavy = irradiated in every replicate. NCIT:C184727 Sham Control."
+  },
+  {
+   "location": "characteristics[treatment] rows 28-54, 82-108, 136-162, 489-490, 493-494, 497-498, 534, 536, 538; factor value[treatment] same rows",
+   "value": "X-ray Therapy",
+   "source_ids": [
+    "pride",
+    "zip_listing",
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline",
+    "ols"
+   ],
+   "evidence": "Heavy channel of the X-ray arm. Arm from deposited folder A549_2h_Proteome_X-ray and MaxQuant/Skyline experiment prefix (X2/X2p/X2P). PRIDE: 6 Gy X-rays, 3.5 Gy protons, 2 Gy carbon ions at HIT. NCIT term chosen for the radiation modality; dose not encodable in licensed columns."
+  },
+  {
+   "location": "characteristics[treatment] rows 190-216, 244-270, 298-324, 501-502, 505-506, 509-510, 530, 532; factor value[treatment] same rows",
+   "value": "Proton Beam Radiation Therapy",
+   "source_ids": [
+    "pride",
+    "zip_listing",
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline",
+    "ols"
+   ],
+   "evidence": "Heavy channel of the proton arm. Arm from deposited folder A549_2h_Proteome_Proton and MaxQuant/Skyline experiment prefix (P2/P2p/P2P). PRIDE: 6 Gy X-rays, 3.5 Gy protons, 2 Gy carbon ions at HIT. NCIT term chosen for the radiation modality; dose not encodable in licensed columns."
+  },
+  {
+   "location": "characteristics[treatment] rows 352-378, 406-432, 460-486, 513-514, 517-518, 521-522, 524, 526, 528; factor value[treatment] same rows",
+   "value": "Carbon Ion Radiotherapy",
+   "source_ids": [
+    "pride",
+    "zip_listing",
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline",
+    "ols"
+   ],
+   "evidence": "Heavy channel of the carbon ion arm. Arm from deposited folder A549_2h_Proteome_CarbonIon and MaxQuant/Skyline experiment prefix (C2/C2p/C2P). PRIDE: 6 Gy X-rays, 3.5 Gy protons, 2 Gy carbon ions at HIT. NCIT term chosen for the radiation modality; dose not encodable in licensed columns."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 28-54, 82-108, 136-162, 190-216, 244-270, 298-324, 352-378, 406-432, 460-486, 489-490, 493-494, 497-498, 501-502, 505-506, 509-510, 513-514, 517-518, 521-522, 524, 526, 528, 530, 532, 534, 536, 538",
+   "value": "1-3 within each irradiated group",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline"
+   ],
+   "evidence": "Heavy (irradiated) cultures: replicate n from experiment names X2-n/P2-n/C2-n (proteome), X2p-n/P2p-n/C2p-n (phospho), 160315_MW2585_<arm>2-n (targeted); numbering restarts per factor-value group (spec README, biological replicate)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-27, 55-81, 109-135, 163-189, 217-243, 271-297, 325-351, 379-405, 433-459, 487-488, 491-492, 495-496, 499-500, 503-504, 507-508, 511-512, 515-516, 519-520, 523, 525, 527, 529, 531, 533, 535, 537",
+   "value": "1-9 within Sham Control (X-ray pair 1-3, proton pair 4-6, carbon pair 7-9)",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "pride"
+   ],
+   "evidence": "Each of the 9 SILAC experiments (X2-1..3, P2-1..3, C2-1..3) has its own sham-irradiated light culture (PRIDE: light state sham irradiated per radiation quality), so the single Sham Control factor group holds 9 independent cultures, numbered uniquely and identically on the proteome, phospho and targeted rows of the same culture (review round 1 finding 2). The rep<n> in the source name is the SILAC-pair index within the arm, not this number."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-486",
+   "value": "1-27",
+   "source_ids": [
+    "mqpar_prot",
+    "pride"
+   ],
+   "evidence": "mqpar.xml fractions 1-27 per experiment, equal to the slice number in the file name (verified for all 243). PRIDE: \"gel slicing (27 per lane)\"."
+  },
+  {
+   "location": "comment[fraction identifier] rows 487-522",
+   "value": "1-2",
+   "source_ids": [
+    "mqpar_phos",
+    "pride"
+   ],
+   "evidence": "mqpar.xml: 150527_*_1.RAW fraction 1, 150526_*_2.RAW fraction 2. PRIDE: \"IMAC and TiO2 leading to 2 phosphopeptide fractions\"."
+  },
+  {
+   "location": "comment[fractionation method] rows 487-538",
+   "value": "not available",
+   "source_ids": [
+    "pride",
+    "skyline"
+   ],
+   "evidence": "Discovery phospho (2 fractions from the IMAC/TiO2 combination, no PRIDE:0000550 child) and targeted runs alike: Skyline pairs each targeted replicate (e.g. X2-1 - Targeted) with the discovery fraction-1 run (X2P_1_1), so the targeted material is enriched phospho material of unstated fractionation; not available on both for consistency (review round 2 finding 5)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-486",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"SDS-PAGE, gel slicing (27 per lane) and subsequent in-gel digestion\"; also gel image A549_2h_Proteome_Gel.tif deposited."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 487-538",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "pride",
+    "mqpar_phos",
+    "skyline",
+    "ols"
+   ],
+   "evidence": "PRIDE: phosphoproteome lysates \"tryptically digested in-solution and enriched using a combination of IMAC and TiO2\"; targeted spike-ins \"spiked into enriched phosphoproteome samples\". EFO:0010806."
+  },
+  {
+   "location": "characteristics[spiked compound] (28 repeated columns) rows 523-538",
+   "value": "CT=peptide;QY=not available;PS=<seq>;CN=<protein site>: ADDPLRLDQELQQPQTQEK = TP53BP1 pT855; AQLEPVASPAK = PLEC pS1435; EIESEIDSEEELINK = MCM6 pS762; ELFQTPDHTEESTTDDK = MKI67 pT2203; ESVPEFPLSPPK = STMN1 pS38; FVPAENDSILMNPAQDGEVQLSQNDDK = TP53BP1 pS580; GNLLHFPSSQGEEEKEK = TP53BP1 pS1068; IGEGTYGVVYK = CDK1 pY15; LDVTILSPSR = FLNB pS983; LFDVCGSQDFESDLDR = RAD50 pS635; LFGGFNSSDTVTSPQR = SRC pS75; LPDGPTGSSEEEEEFLEIPPFNK = TP53BP1 pS1759; LSQLEEHLSQLQDNPPQEK = NUMA1 pS395; LTPLPEDNSMNVDQDGDPSDR = PRKDC pS3205; MDLAAAAEPGAGSQHLEVR = MCM6 pS13; NTDVAQSPEAPKQEAPAK = RRBP1 pS615; NVALLSQLYHSPAR = ELAVL1 pS202; NVSSFPDDATSPLQENR = KPNA2 pS62; NYPSQEELIK = BRCA1 pS1524; QDKPMDTSVLSEEGGEPFQK = TP53BP1 pS398; QSQQPMKPISPVKDPVSPASQK = TP53BP1 pS1094+pS1101; SGTAETEPVEQDSSQPSLPLVR = TP53BP1 pS830; SGTAETEPVEQDSSQPSLPLVR = TP53BP1 pS831; SLYASSPGGVYATR = VIM pS56; SPEPEVLSTQEDLFDQSNK = TP53BP1 pS294; SVGGSGGGSFGDNLVTR = LMNA pS628; SVNFSLTPNEIK = MAP1B pT1282; TQMAEVLPSPR = TOP2A pS1213",
+   "source_ids": [
+    "pride",
+    "skyline"
+   ],
+   "evidence": "PRIDE: \"selected phosphopeptides were synthesized as heavy isotope labeled counterparts and spiked into enriched phosphoproteome samples\". One column per synthetic standard (SAMPLE-GUIDELINES \"Spiked-in Samples\"): the distinct (Peptide Sequence, Protein Name) pairs carrying \"medium\" (Skyline internal_standard) rows in A549_2h_Phosphoproteome_Targeted_Quant.txt = 28 standards over 27 sequences (TP53BP1 SGTAETEPVEQDSSQPSLPLVR exists as pS830 and pS831 positional isomers, two distinct medium precursors in the .sky). CN = protein + phosphosite from the Protein Name column (review round 2 finding 3). The 13C15N Leu/Ile/Val/Phe label has no key in the spiked-compound syntax; it is in comment[modification parameters] columns 8-10 of these rows. Amount not stated -> QY=not available."
+  },
+  {
+   "location": "characteristics[spiked compound] (28 repeated columns) rows 1-522",
+   "value": "not applicable",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Discovery proteome and phosphoproteome runs carry no spiked standards (PRIDE: spike-in only in the targeted confirmation experiment)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-538",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-538",
+   "value": "A549",
+   "source_ids": [
+    "pride",
+    "paper_abstract",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"human lung adenocarcinoma cells (A549)\"; MaxQuant experiment names \"(A549)\". EFO:0001086 A549."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-538",
+   "value": "CVCL_0023",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC CVCL_0023, ID A-549."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-538",
+   "value": "A-549",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-538",
+   "value": "lung",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Derived from site: In situ; Lung; UBERON=UBERON_0002048\"."
+  },
+  {
+   "location": "characteristics[disease] rows 1-538",
+   "value": "lung adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3512 Lung adenocarcinoma; PRIDE diseases DOID:3910. MONDO:0005061. Applies to all rows: every channel is A549 (sham rows included; disease is a cell-line property, not a condition)."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-538",
+   "value": "epithelial cell",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE organismParts CL:0000066 Epithelial cell (submitter field); Cellosaurus gives no cell type; local cellline db says not available."
+  },
+  {
+   "location": "characteristics[material type] rows 1-538",
+   "value": "cell line",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Cultured A549 cell line per PRIDE protocol."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-538",
+   "value": "2 hour",
+   "source_ids": [
+    "pride",
+    "paper_abstract"
+   ],
+   "evidence": "PRIDE: \"Following a waiting period of 2 h the cells were harvested\"; abstract \"2 h post irradiation\"; deposit names \"A549_2h_*\". Applies to sham and irradiated alike (harvest time after (sham) irradiation)."
+  },
+  {
+   "location": "characteristics[age] rows 1-538",
+   "value": "58Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 58Y (donor age)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-538",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-538",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor aged 58Y (Cellosaurus) -> adult (EFO:0001272)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-538",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Caucasian\"; genome ancestry European North 66.12% + South 33.16%. HANCESTRO:0005 (synonym Caucasian)."
+  },
+  {
+   "location": "comment[instrument] rows 1-538",
+   "value": "NT=LTQ Orbitrap XL;AC=MS:1000556",
+   "source_ids": [
+    "raw_headers",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All three sampled .RAW headers: \"Creator: LTQ Orbitrap XL\" / \"LTQ Orbitrap XL MS\". PRIDE protocol: \"LTQ-Orbitrap XL\". PRIDE instruments field gives the less specific MS:1000449 LTQ Orbitrap; raw wins."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-538",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw_headers"
+   ],
+   "evidence": "Discovery runs: \"ITMS + c norm Dep MS/MS Most intense ion from (1)\" top-6. Targeted runs: \"Dep Wideband MS/MS Most intense ion from parent list in (1)\" = data-dependent MS2 restricted to an inclusion (parent mass) list, still DDA, not PRM."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-538",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "raw_headers"
+   ],
+   "evidence": "Raw method: \"Activation Type: CID\", Activation Q 0.250 (ion-trap CID); targeted runs use multistage activation (CID)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-538",
+   "value": "NT=ion trap;AC=MS:1000264",
+   "source_ids": [
+    "raw_headers"
+   ],
+   "evidence": "Scan events \"ITMS + c norm Dep MS/MS\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-538",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mqpar_prot",
+    "mqpar_phos",
+    "ols"
+   ],
+   "evidence": "Digestion enzyme (TERMS.tsv: \"Enzyme or chemical used for protein digestion\"): PRIDE sampleProcessingProtocol \"in-gel digestion using trypsin\" (proteome) and \"tryptically digested in-solution\" (phospho). NOTE: the MaxQuant search specificity was Trypsin/P (MS:1001313; mqpar <enzymes>Trypsin/P, PRIDE \"Enzyme specificity was set to trypsin/p\", max 2 missed cleavages proteome / 4 phospho); that is a search rule, not the enzyme, and is recorded here only. Review round 1 finding 1; sdrf-tools reconcile exits 0."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-522",
+   "value": "7 ppm",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "pride"
+   ],
+   "evidence": "mqpar mainSearchTol 7, searchTolInPpm true; PRIDE \"7 ppm for precursor\"."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-522",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "pride",
+    "raw_headers"
+   ],
+   "evidence": "mqpar msmsParams ITMS MatchTolerance 0.5 (Da); MS2 analyzer is the ion trap; PRIDE \"0.5 Da for fragment ions\"."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-538",
+   "value": "1",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos"
+   ],
+   "evidence": "Each experiment injected once per fraction; no repeated injections in the deposit."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 523-538",
+   "value": "not applicable",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline"
+   ],
+   "evidence": "Targeted runs 160315_MW2585_* appear in neither mqpar.xml filePaths list; they were not database-searched (Skyline extraction only; Skyline mz/ion match tolerances are not search tolerances). TERMS.tsv defines the column as a database-search tolerance. Review round 2 finding 1."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 523-538",
+   "value": "not applicable",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline"
+   ],
+   "evidence": "Targeted runs 160315_MW2585_* appear in neither mqpar.xml filePaths list; they were not database-searched (Skyline extraction only; Skyline mz/ion match tolerances are not search tolerances). TERMS.tsv defines the column as a database-search tolerance. Review round 2 finding 1."
+  },
+  {
+   "location": "comment[modification parameters] (column 1 of 10) rows 1-538",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline"
+   ],
+   "evidence": "mqpar fixedModifications \"Carbamidomethyl (C)\" in both searches; Skyline static_modification \"Carbamidomethyl (C)\" (not variable)."
+  },
+  {
+   "location": "comment[modification parameters] (column 2 of 10) rows 1-538",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline"
+   ],
+   "evidence": "mqpar variableModifications \"Oxidation (M)\"; Skyline \"Oxidation (M)\" explicit_decl."
+  },
+  {
+   "location": "comment[modification parameters] (column 3 of 10) rows 1-486, rows 487-522",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos"
+   ],
+   "evidence": "mqpar variableModifications \"Acetyl (Protein N-term)\"."
+  },
+  {
+   "location": "comment[modification parameters] (column 3 of 10) rows 523-538",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Any N-term;MT=Variable",
+   "source_ids": [
+    "skyline"
+   ],
+   "evidence": "Skyline static_modification \"Acetyl (N-term)\" terminus=\"N\" variable=\"true\" (peptide N-terminus, no protein restriction in the Skyline definition)."
+  },
+  {
+   "location": "comment[modification parameters] (column 4 of 10) rows 1-538",
+   "value": "NT=Deamidated;AC=UNIMOD:7;TA=N,Q;MT=Variable",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline"
+   ],
+   "evidence": "mqpar \"Deamidation (NQ)\"; Skyline \"Deamidated (NQ)\" variable."
+  },
+  {
+   "location": "comment[modification parameters] (column 5 of 10) rows 1-486",
+   "value": "not applicable",
+   "source_ids": [
+    "mqpar_prot"
+   ],
+   "evidence": "Proteome search (mqpar_prot variableModifications) has no Phospho; the column exists only because other sub-experiments carry it."
+  },
+  {
+   "location": "comment[modification parameters] (column 5 of 10) rows 487-522, rows 523-538",
+   "value": "NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable",
+   "source_ids": [
+    "mqpar_phos",
+    "skyline"
+   ],
+   "evidence": "mqpar_phos \"Phospho (STY)\"; Skyline \"Phospho (ST)\" + \"Phospho (Y)\" variable, unimod_id 21."
+  },
+  {
+   "location": "comment[modification parameters] (column 6 of 10) rows 1-538",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline",
+    "pride"
+   ],
+   "evidence": "SILAC heavy Arg10: mqpar labelMods \"Arg10\"; Skyline heavy_modifications \"Label:13C(6)15N(4) (R)\" unimod 267; PRIDE \"13C6,15N4-arginine (+10.0083)\"."
+  },
+  {
+   "location": "comment[modification parameters] (column 7 of 10) rows 1-538",
+   "value": "NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos",
+    "skyline",
+    "pride"
+   ],
+   "evidence": "SILAC heavy Lys8: mqpar labelMods \"Lys8\"; Skyline heavy \"Label:13C(6)15N(2) (K)\" unimod 259; PRIDE \"13C6,15N2-lysine (+8.0142)\"."
+  },
+  {
+   "location": "comment[modification parameters] (columns 8-10 of 10) rows 1-486, rows 487-522",
+   "value": "not applicable",
+   "source_ids": [
+    "mqpar_prot",
+    "mqpar_phos"
+   ],
+   "evidence": "Neither MaxQuant search declares the synthetic-standard labels; the columns exist only for the targeted runs."
+  },
+  {
+   "location": "comment[modification parameters] (column 8 of 10) rows 523-538",
+   "value": "NT=Label:13C(6)15N(1);AC=UNIMOD:695;TA=I,L;MT=Variable",
+   "source_ids": [
+    "skyline",
+    "ols"
+   ],
+   "evidence": "Skyline heavy_modifications isotope_label=\"medium\" (internal_standard=\"medium\"): \"Label:13C(6)15N(1) (I)\" and \"(L)\", unimod_id 695. Variable: each standard carries one labelled residue (e.g. NYPS[+80]QEEL[+7]IK)."
+  },
+  {
+   "location": "comment[modification parameters] (column 9 of 10) rows 523-538",
+   "value": "NT=Label:13C(5)15N(1);AC=UNIMOD:268;TA=V;MT=Variable",
+   "source_ids": [
+    "skyline",
+    "ols"
+   ],
+   "evidence": "Skyline medium \"Label:13C(5)15N(1) (V)\", unimod_id 268 (e.g. LDV[+6]TILS[+80]PSR)."
+  },
+  {
+   "location": "comment[modification parameters] (column 10 of 10) rows 523-538",
+   "value": "NT=Label:13C(9)15N(1);AC=UNIMOD:269;TA=F;MT=Variable",
+   "source_ids": [
+    "skyline",
+    "ols"
+   ],
+   "evidence": "Skyline medium \"Label:13C(9)15N(1) (F)\", unimod_id 269 (e.g. ELF[+10]QT[+80]PDHTEESTTDDK)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-538; comment[sdrf template] rows 1-538; comment[sdrf annotation tool] rows 1-538; technology type rows 1-538",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0, NT=human;VV=v1.1.0, NT=cell-lines;VV=v1.1.0; manual curation",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "sdrf version v1.1.0 = SDRF-Proteomics spec version (spec/sdrf-proteomics/README.adoc:27, also upstream HEAD). ms-proteomics template v1.2.0 is released upstream: bigbio/sdrf-templates HEAD 7da1747, templates.yaml line 150 latest: 1.2.0 (coordinator-verified). Templates chosen because MS proteomics of a human cell line."
+  }
+ ],
+ "limitations": [
+  "Paper full text (PMC5417826, CC-BY hybrid) not retrievable: Europe PMC fullTextXML HTTP 500, Unpaywall/Europe PMC PDF HTTP 403, PMC HTML/PDF behind reCAPTCHA, NCBI efetch returned front matter only, BioC/PMC-OA S3 had no copy. Methods taken from PRIDE protocol text + deposited search/Skyline outputs; abstract only from the paper.",
+  "Light=sham / heavy=irradiated is stated only in the PRIDE sampleProcessingProtocol; it was cross-validated for the 9 phospho replicates from deposited Phospho (STY)Sites.txt (pS/TQ sites up in H/L in every replicate). Proteome replicates could not be independently checked (protein-level changes negligible per abstract); same lysates per PRIDE protocol.",
+  "Per-search modification sets: the SDRF was built per sub-experiment (sdrf-tools build x3 with identical headers; not applicable where a search lacked a mod) and concatenated by scripts/split_build.py after asserting identical headers and full file coverage. The concatenation step is outside sdrf-tools build. Missed cleavages (2 proteome vs 4 phospho) not encoded.",
+  "Targeted spike-in runs (rows 523-538) were not database-searched in the deposit; their modification parameters come from the deposited Skyline document (incl. the synthetic-standard labels UNIMOD:695/268/269). Spike amount unknown (QY=not available in each of the 27 spiked-compound columns); phosphosite/label of each standard not expressible in PS=.",
+  " characteristics[individual], [passage number], [culture medium], [sample storage temperature] = not available: no accessible source (PRIDE protocol, abstract) states them; the SILAC medium base is unstated.",
+  "characteristics[mass] (injected mass, SAMPLE-GUIDELINES) not added: the column is not licensed by ms-proteomics 1.2.0 / human 1.1.0 / cell-lines 1.1.0 (absent from TERMS.tsv and the contract); the injected amount is unstated anyway (150 ug is pre-enrichment input).",
+  "parse_sdrf convert-openms (quantms) fails on rows 523-538 because both tolerance columns are not applicable (it also fails with not available); validate-sdrf accepts it. A quantms reprocessing would need those runs dropped or given explicit tolerances.",
+  "Dose confound: modality and dose co-vary (6 Gy X-ray, 3.5 Gy proton, 2 Gy carbon ion; doses chosen as biologically equivalent per PRIDE), so factor value[treatment] encodes modality+dose jointly; dose has no licensed column (clinical-metadata dose units exclude Gy).",
+  "Targeted run 160315_MW2585_P2-1.RAW is referenced by the deposited Skyline document but was not deposited; only 8 targeted runs annotated (proton heavy arm has 89 files vs 90).",
+  "Proteome/phospho/targeted samples of the same arm+replicate are assumed to derive from the same SILAC-mixed lysate (PRIDE: same lysates for 15 ug proteome and 150 ug phospho; targeted replicate names match). Encoded as separate source names with a shared biological replicate index.",
+  "Doses (6 Gy X-ray, 3.5 Gy proton, 2 Gy carbon ion) and irradiation facility not encoded: no licensed dose column in ms-proteomics/human/cell-lines.",
+  "Reduction/alkylation reagents not stated in any accessible source (Carbamidomethyl fixed in search) -> not available. Phospho 2-fraction method (IMAC/TiO2 combination) has no PRIDE:0000550 child -> comment[fractionation method] not available on rows 487-522.",
+  "characteristics[cell type] epithelial cell comes only from the PRIDE organismParts submitter field.",
+  "Treatment terms are NCIT radiotherapy-modality terms (X-ray Therapy, Proton Beam Radiation Therapy, Carbon Ion Radiotherapy) applied to in-vitro irradiation; NCIT:C40431 Proton Radiation rejected (defined as radioactive decay).",
+  "techsdrf not installed: instrument/acquisition verified by HTTP range-read of 3 raw headers (one per sub-experiment), not every file.",
+  "sdrf-tools fetch failed twice (Europe PMC HTTP 500); record gathered manually from PRIDE REST.",
+  "The deposited MaxQuant archives also contain .index/andromeda folders of other, undeposited runs (6 h, 2013 TR2003/TR1999, MW2096/2102/2119); the mqpar.xml filePaths list only the deposited 243 + 18 runs, which are the ones annotated."
+ ]
+}

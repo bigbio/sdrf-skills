@@ -1,0 +1,296 @@
+# PXD004245 validation — round 1 (2026-11-08T08:42:08Z)
+$ parse_sdrf validate-sdrf -s PXD004245.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD004245.sdrf.tsv   (round 1, mixed SILAC+LFQ file)
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+
+$ parse_sdrf convert-openms -s PXD004245.sdrf.tsv -t2   (round 1, scratch dir)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+ValueError: Error: Convert SILAC and other labeling methods in separate SDRF files
+exit 1
+
+# Round 1 conclusion: validate-sdrf clean (1 warning), but convert-openms refuses SILAC mixed with label-free runs in one SDRF. Split: PXD004245.sdrf.tsv = SILAC arm (9 runs); label-free HeLa replicates and mouse liver moved to companion SDRFs (validated below).
+
+# Round 2 (2026-11-08T08:45:42Z) — SILAC-only PXD004245.sdrf.tsv
+$ sdrf-tools structure PXD004245.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245.sdrf.tsv -t2
+PROCESSING: PXD004245.sdrf.tsv
+Factor columns: ['factor value[compound]', 'factor value[dose]', 'factor value[exposure duration]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]']
+Conditions (9): dict_keys(['olaparib|1 uM|10 minute|hydrogen peroxide', 'not applicable|not applicable|10 minute|hydrogen peroxide', 'olaparib|10 uM|10 minute|hydrogen peroxide', 'not applicable|not applicable|0 minute|hydrogen peroxide', 'not applicable|not applicable|5 minute|hydrogen peroxide', 'not applicable|not applicable|30 minute|hydrogen peroxide', 'not applicable|not applicable|60 minute|hydrogen peroxide', 'not applicable|not applicable|120 minute|hydrogen peroxide', 'not applicable|not applicable|not applicable|untreated'])
+Files per condition: dict_values([1, 4, 1, 7, 1, 1, 1, 1, 1])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 18 times.
+SUCCESS (WARNINGS=1): PXD004245.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools reconcile PXD004245.sdrf.tsv --record evidence/pride.json --accession PXD004245
+PXD004245: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit 0
+
+# Companion SDRFs (2026-11-08T08:49:37Z)
+$ sdrf-tools structure PXD004245-hela-lfq.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD004245-liver.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-hela-lfq.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-liver.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-hela-lfq.sdrf.tsv -t2
+Conditions (1): dict_keys(['hydrogen peroxide'])
+Files per condition: dict_values([3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 3 times.
+SUCCESS (WARNINGS=1): PXD004245-hela-lfq.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-liver.sdrf.tsv -t2
+Conditions (1): dict_keys(['untreated'])
+Files per condition: dict_values([3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 3 times.
+SUCCESS (WARNINGS=1): PXD004245-liver.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245.evidence.json
+PXD004245.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245.sdrf.tsv PXD004245.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+# Round 3 (2026-11-08T08:56:21Z) — coordinator decisions: comment[sdrf version]=v1.1.0 (ms-proteomics template VV stays v1.2.0); cleavage agent checked against deposited search (MaxQuant rule = Trypsin, not Trypsin/P; no Lys-C in search output) -> unchanged; companion manifests added. All three SDRFs rebuilt.
+$ python3 -I enzyme_check.py msms_hdr.txt msms_chunk.txt
+2789 PSMs with internal K/R-P: missed cleavages exclude K/R-P (Trypsin, no cleavage before P)
+source: msms.txt bytes 100000000-160000000; MaxQuant 'Missed cleavages' vs sequence. parameters.txt (MaxQuant 1.3.0.5) has no enzyme row; no mqpar.xml/summary.txt deposited.
+
+$ sdrf-tools structure PXD004245.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD004245-hela-lfq.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD004245-liver.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-hela-lfq.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-liver.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245.sdrf.tsv -t2   (scratch dir)
+Files per condition: dict_values([1, 4, 1, 7, 1, 1, 1, 1, 1])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 18 times.
+SUCCESS (WARNINGS=1): PXD004245.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-hela-lfq.sdrf.tsv -t2   (scratch dir)
+Files per condition: dict_values([3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 3 times.
+SUCCESS (WARNINGS=1): PXD004245-hela-lfq.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-liver.sdrf.tsv -t2   (scratch dir)
+Files per condition: dict_values([3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 3 times.
+SUCCESS (WARNINGS=1): PXD004245-liver.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile PXD004245.sdrf.tsv --record evidence/pride.json --accession PXD004245
+PXD004245: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245.evidence.json
+PXD004245.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245.sdrf.tsv PXD004245.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245-hela-lfq.evidence.json
+PXD004245-hela-lfq.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-hela-lfq.sdrf.tsv PXD004245-hela-lfq.evidence.json
+Manifest covers every column with a value (27 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245-liver.evidence.json
+PXD004245-liver.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-liver.sdrf.tsv PXD004245-liver.evidence.json
+Manifest covers every column with a value (20 column(s)).
+exit code: 0
+
+# Round 3b (2026-11-08T09:04:29Z) — coordinator correction: cleavage agent = digestion enzyme NT=Trypsin;AC=MS:1001251 (unchanged in all SDRFs); search rule (MaxQuant Trypsin, not /P) recorded as a manifest note. Lys-C second column NOT added: comment[cleavage agent details] is single-cardinality in ms-proteomics v1.2.0 (sdrf_pipelines template, no 'cardinality: multiple'; contract shows no [multiple]), so sdrf-tools build emits one column. SDRFs unchanged since round 3; manifests regenerated.
+$ sdrf-tools schema-check PXD004245.evidence.json
+PXD004245.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245.sdrf.tsv PXD004245.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245-hela-lfq.evidence.json
+PXD004245-hela-lfq.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-hela-lfq.sdrf.tsv PXD004245-hela-lfq.evidence.json
+Manifest covers every column with a value (27 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245-liver.evidence.json
+PXD004245-liver.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-liver.sdrf.tsv PXD004245-liver.evidence.json
+Manifest covers every column with a value (20 column(s)).
+exit code: 0
+
+# Round 4 (2026-11-08T09:31:39Z) — external review round 1 fixes. SILAC file renamed to PXD004245-hela-silac.sdrf.tsv (old PXD004245.sdrf.tsv / PXD004245.evidence.json removed). Changes: H2O2 time -> characteristics[sampling time] + factor value[sampling time]; characteristics[exposure duration] = not available (olaparib rows 1,3) / not applicable (no compound). hela-lfq: comment[sample preparation batch] = 2xSep-pak / normal / Filter. Liver SDRF unchanged (sha256 42f7e29c...).
+$ sdrf-tools structure PXD004245-hela-silac.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD004245-hela-lfq.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD004245-liver.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-hela-silac.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-hela-lfq.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD004245-liver.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-hela-silac.sdrf.tsv -t2   (scratch dir)
+Files per condition: dict_values([1, 4, 1, 7, 1, 1, 1, 1, 1])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 18 times.
+SUCCESS (WARNINGS=1): PXD004245-hela-silac.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-hela-lfq.sdrf.tsv -t2   (scratch dir)
+Files per condition: dict_values([3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 3 times.
+SUCCESS (WARNINGS=1): PXD004245-hela-lfq.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD004245-liver.sdrf.tsv -t2   (scratch dir)
+Files per condition: dict_values([3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 3 times.
+SUCCESS (WARNINGS=1): PXD004245-liver.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile PXD004245-hela-silac.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/pride.json --accession PXD004245
+PXD004245: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ sdrf-tools reconcile PXD004245-hela-lfq.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/pride.json --accession PXD004245
+PXD004245: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 1
+
+$ sdrf-tools reconcile PXD004245-liver.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD004245/evidence/pride.json --accession PXD004245
+PXD004245: 3 value(s) disagree with the deposit record:
+
+  BLOCKER  organism_contradicted (characteristics[organism]): the record names only Homo sapiens and never Mus musculus  [declared 'Mus musculus']
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 1
+
+$ sdrf-tools schema-check PXD004245-hela-silac.evidence.json
+PXD004245-hela-silac.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-hela-silac.sdrf.tsv PXD004245-hela-silac.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245-hela-lfq.evidence.json
+PXD004245-hela-lfq.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-hela-lfq.sdrf.tsv PXD004245-hela-lfq.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD004245-liver.evidence.json
+PXD004245-liver.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004245-liver.sdrf.tsv PXD004245-liver.evidence.json
+Manifest covers every column with a value (20 column(s)).
+exit code: 0
+
+9e37ebc8f9c05758960c7dbdc45bdd14f16414603ce7d1170b96a0e96dd6c6a7  PXD004245-hela-silac.sdrf.tsv
+c794eafafe099bd14df6336b0cedb0a52534d001e131ad655d18cb98793fd262  PXD004245-hela-lfq.sdrf.tsv
+42f7e29c5654645a30a09eb49f1858ec02b363a0a87a2c9152586d4ffd19ed46  PXD004245-liver.sdrf.tsv
+
+# Round 4 — reconcile findings, checked against the evidence (refuted flags recorded per review minor item)
+- hela-silac MINOR cleavage_agent_unsupported: answered. PRIDE prose never describes the digest. Paper Methods: "digested using endoproteinase Lys-C ... and modified sequencing grade trypsin"; search "requiring strict trypsin specificity"; msms.txt missed-cleavage pattern = MaxQuant Trypsin rule (evidence/enzyme_rule_check.txt). The same answer applies to the MINOR on hela-lfq and liver.
+- hela-lfq BLOCKER labelled_annotated_as_label_free: REFUTED. PRIDE quantificationMethods=SILAC (PRIDE:0000315) is a single project-level tag covering the SILAC runs. For the 3 PAR_PD runs:
+  - msms.txt Labeling State is 0 for every PSM (1863/1845/2209 PSMs in the sampled block; the SILAC runs show states 0/1/-1);
+  - proteinGroups.txt has 'Intensity Rep1-3' but no 'Ratio H/L Rep1-3' (H/L ratio columns exist only for the SILAC experiments);
+  - observed masses are unlabelled (delta 0 per K/R).
+- liver BLOCKER labelled_annotated_as_label_free: REFUTED. The tag is project-level. The liver runs are absent from the deposited MaxQuant search (HUMAN.fasta; experimentalDesignTemplate.txt has no Liver run), so no SILAC search covers them. Methods: "Male 9-week-old C57BL/6 mice were maintained on a 12-h light–dark cycle with regular unrestricted diet", which rules out SILAC labelling in vivo. Raw original names end "_unt".
+- liver BLOCKER organism_contradicted: REFUTED (tool false positive). evidence/pride.json organisms = [NEWT:9606 Homo sapiens (human), NEWT:10090 Mus musculus (mouse)], and organismParts include BTO:0000759 Liver. Methods: "Preparation of mouse liver extracts" (C57BL/6).
+Conclusion: no reconcile finding changes a value. Status: REVIEW_PENDING_EXTERNAL.

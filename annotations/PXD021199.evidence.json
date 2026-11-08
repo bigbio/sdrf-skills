@@ -1,0 +1,569 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD021199.sdrf.tsv",
+ "dataset": "PXD021199",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021199 (local copy: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021199/files/all (local copy: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/dl/files_all.json; all 22 entries asserted to carry PXD021199)"
+  },
+  {
+   "id": "mqpar_dgm",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/01/PXD021199/mqpar.xml (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/dl/mqpar.xml)"
+  },
+  {
+   "id": "mqpar_dh",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/01/PXD021199/mqpar_interactome.xml (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/dl/mqpar_interactome.xml)"
+  },
+  {
+   "id": "mq_parameters",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/01/PXD021199/parameters.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/dl/parameters.txt)"
+  },
+  {
+   "id": "mq_results",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/01/PXD021199/{proteinGroups.txt,proteinGroups_interactome.txt,evidence.txt,PhosphoSTYSites_D.txt}; analysis output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/evidence/deposited_results_analysis.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/scripts/analysis.py)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/01/PXD021199/<each of the 12 .raw>, first 1 MiB HTTP-range read (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/rawhdr/*.head)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 via sdrf-tools verify/ols; results /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/verify.txt"
+  },
+  {
+   "id": "paper_abstract",
+   "kind": "publication",
+   "location": "PMID:33452816 doi:10.1002/1873-3468.14041 (abstract only; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/evidence/manuscript.txt)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_C4ET (fetched live 2026-11-08; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD021199/evidence/cellosaurus_CVCL_C4ET.txt); parent https://api.cellosaurus.org/cell-line/CVCL_0030"
+  },
+  {
+   "id": "spec_readme",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc line 27 ('Version v1.1.0')"
+  },
+  {
+   "id": "templates_head",
+   "kind": "specification",
+   "location": "https://github.com/bigbio/sdrf-templates templates.yaml at HEAD 7da1747 line 150 'latest: 1.2.0' for ms-proteomics (coordinator batch decision; the pinned submodule is older)"
+  },
+  {
+   "id": "paper_retry",
+   "kind": "publication",
+   "location": "doi:10.1002/1873-3468.14041 retried round 2: Europe PMC DOI search (PMID 33452816, no PMCID, not OA in EPMC); OpenAlex OA locations (Wiley pdfdirect 403; Dundee Discovery portal; MPG.PuRe hdl 21.11116/0000-0007-B2C2-4 -> 403, REST item has no public files); CORE work 8683983 download 403 / fullText 'Not available for public API users'; Semantic Scholar -> Wiley pdfdirect (403)"
+  },
+  {
+   "id": "coordinator",
+   "kind": "curation-decision",
+   "location": "Coordinator batch decisions for review round 1 (sdrf version v1.1.0; ms-proteomics VV=v1.2.0; cleavage agent = digestion enzyme Trypsin, Trypsin/P recorded as search-rule note)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism] rows 1-24",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; HeLa is human (Cellosaurus OX 9606); FASTA in mqpar = uniprot homo sapiens."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-24",
+   "value": "epithelial cell",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organismParts CL:0000066 epithelial cell; Cellosaurus cell type epithelial."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-24",
+   "value": "1",
+   "source_ids": [
+    "pride",
+    "mqpar_dh",
+    "mqpar_dgm"
+   ],
+   "evidence": "Each experiment is a single SILAC mix (one IP pair, eluates mixed 1:1) run as 6 gel bands; no replicate mixes deposited."
+  },
+  {
+   "location": "assay name rows 1-24",
+   "value": "raw file stem",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One assay per raw file, shared by both SILAC channels."
+  },
+  {
+   "location": "technology type rows 1-24",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Shotgun proteomics (PRIDE experimentTypes)."
+  },
+  {
+   "location": "comment[data file] rows 1-24",
+   "value": "20150224_DP_DH1-6.raw, 20150410_DGM_1-6.raw",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "All 12 RAW files in files/all; each appears in 2 rows (light, heavy)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-24",
+   "value": "1",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "No repeated injections deposited."
+  },
+  {
+   "location": "comment[label] rows 1-6,13-18",
+   "value": "SILAC light",
+   "source_ids": [
+    "mqpar_dh",
+    "mqpar_dgm",
+    "ols"
+   ],
+   "evidence": "mqpar <labels>: first state empty (unlabeled Arg0/Lys0) = light; PRIDE:0000326."
+  },
+  {
+   "location": "comment[label] rows 7-12,19-24",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "mqpar_dh",
+    "mqpar_dgm",
+    "ols"
+   ],
+   "evidence": "mqpar <labels>: second state 'Arg10; Lys8' = heavy; PRIDE:0000325."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-24",
+   "value": "1-6 by file number",
+   "source_ids": [
+    "mq_results",
+    "pride"
+   ],
+   "evidence": "PRIDE protocol: individual gel bands excised from one SDS-PAGE lane. evidence.txt shows DGM_1..6 median protein MW 275 -> 34 kDa, i.e. bands top to bottom. DH1..6 ordering inferred by the identical naming scheme (see limitations)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-24",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'eluates mixed 1:1 and run on an SDS-PAGE gel ... excision of individual gel bands'. PRIDE:0000568 is under PRIDE:0000550 Fractionation method."
+  },
+  {
+   "location": "comment[instrument] rows 1-24",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw_headers",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Every .raw header names 'Orbitrap Elite MS' with EASY-nLC; PRIDE instruments MS:1001910; OLS label 'Orbitrap Elite'."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-24",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw_headers",
+    "pride"
+   ],
+   "evidence": "Raw method 'Top20', scan event 2 'Dep ... Most intense ion from (1)'; protocol 'Up to 20 most intense peptides per full scan'."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-24",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "raw_headers",
+    "pride"
+   ],
+   "evidence": "Raw header 'Activation Type: CID'; protocol 'collision induced dissociation (CID)'."
+  },
+  {
+   "location": "comment[collision energy] rows 1-24",
+   "value": "35 NCE",
+   "source_ids": [
+    "raw_headers",
+    "pride"
+   ],
+   "evidence": "Raw header 'Normalized Coll. Energy: 35.0'."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-24",
+   "value": "6 ppm",
+   "source_ids": [
+    "mqpar_dh",
+    "mqpar_dgm"
+   ],
+   "evidence": "mqpar <mainSearchTol>6</mainSearchTol> (ppm, MaxQuant 1.3.0.5); first search 20 ppm."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-24",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mqpar_dh",
+    "mqpar_dgm",
+    "mq_parameters",
+    "raw_headers"
+   ],
+   "evidence": "MS2 in ion trap (raw 'ITMS + c'); MaxQuant ITMS MS/MS tolerance 0.5 Dalton."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-24",
+   "value": "NT=radial ejection linear ion trap;AC=MS:1000083",
+   "source_ids": [
+    "raw_headers",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw scan event 2 'ITMS'; protocol 'isolated in the ion-trap ... rapid mode'; Orbitrap Elite's linear trap is radial-ejection."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-24",
+   "value": "300m/z-2000m/z",
+   "source_ids": [
+    "raw_headers",
+    "pride"
+   ],
+   "evidence": "Raw 'FTMS + p norm o(300.0-2000.0)'; protocol 'Full scan MS spectra (300-2000 m/z)'."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-24",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'reduced with 10mM DTT for 45 minutes at 56C'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-24",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'alkylated with 55mM Iodoacetamide'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-24 (column 1)",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "mqpar_dh",
+    "mqpar_dgm",
+    "mq_parameters",
+    "ols"
+   ],
+   "evidence": "<fixedModifications> Carbamidomethyl (C) in both mqpar files."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-24 (columns 2-3)",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable / NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "mqpar_dh",
+    "mqpar_dgm",
+    "ols"
+   ],
+   "evidence": "<variableModifications> Oxidation (M), Acetyl (Protein N-term) in both mqpar files."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-24 (columns 4-5)",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable / NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "mqpar_dh",
+    "mqpar_dgm",
+    "pride",
+    "ols"
+   ],
+   "evidence": "mqpar heavy label 'Arg10; Lys8' = +10.008 R (13C6 15N4) and +8.014 K (13C6 15N2); protocol 'L-arginine 13C6 15N4 (Arg10) and L-lysine-U13C6 15N2 (Lys8)'. Encoded as Variable per the SILAC convention of the curated corpus (heavy residues are optional per peptide)."
+  },
+  {
+   "location": "comment[modification parameters] rows 13-24 (column 6)",
+   "value": "NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable",
+   "source_ids": [
+    "mqpar_dgm",
+    "mq_results",
+    "ols"
+   ],
+   "evidence": "mqpar.xml (DGM files) variableModifications includes Phospho (STY); PhosphoSTYSites_D.txt deposited."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-12 (column 6)",
+   "value": "not applicable",
+   "source_ids": [
+    "mqpar_dh"
+   ],
+   "evidence": "mqpar_interactome.xml variableModifications has no Phospho; slot left not applicable so the column count matches the DGM rows."
+  },
+  {
+   "location": "comment[acquisition date] rows 1-12",
+   "value": "2015-02-24",
+   "source_ids": [
+    "files",
+    "raw_headers"
+   ],
+   "evidence": "File prefix 20150224 and raw path C:\\Xcalibur\\Data\\2015_02."
+  },
+  {
+   "location": "comment[acquisition date] rows 13-24",
+   "value": "2015-04-10",
+   "source_ids": [
+    "files",
+    "raw_headers"
+   ],
+   "evidence": "File prefix 20150410 and raw path C:\\Xcalibur\\Data\\2015_04."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-24",
+   "value": "manual curation",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Annotated by agent workflow with manual curation."
+  },
+  {
+   "location": "source name rows 1-6",
+   "value": "interactome_light_EBSS_4h",
+   "source_ids": [
+    "pride",
+    "mq_results"
+   ],
+   "evidence": "DH light channel. Protocol: 'HeLa FlpIn TREx cells, cultured in light SILAC-labelled medium, were treated in EBSS for 4 hours'. No bait asserted: proteinGroups_interactome PLEKHM1 Ratio H/L 9.55 (norm 12.4; median group ratio ~0.99), so the light pulldown carries ~10x less bait; whether it is parental/uninduced (no bait) is not stated."
+  },
+  {
+   "location": "source name rows 7-12",
+   "value": "interactome_heavy_PLEKHM1-GFP",
+   "source_ids": [
+    "pride",
+    "mq_results"
+   ],
+   "evidence": "DH heavy channel = the PLEKHM1-GFP (bait-expressing) pulldown: PLEKHM1 Intensity H 1.36e11 vs L 1.10e10; known interactors H-enriched (MTOR 2.55, VPS39 4.09, VPS41 3.54, RPTOR 1.98). Heavy treatment is not stated."
+  },
+  {
+   "location": "source name rows 13-24",
+   "value": "PLEKHM1-GFP_phospho_light_EBSS_4h (13-18) / PLEKHM1-GFP_phospho_heavy (19-24)",
+   "source_ids": [
+    "pride",
+    "mq_results",
+    "mqpar_dgm"
+   ],
+   "evidence": "DGM experiment: PLEKHM1 Ratio H/L 0.69 (norm 0.86) in proteinGroups.txt, so both channels carry the PLEKHM1-GFP bait; light = EBSS per protocol, heavy treatment unstated."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-6,13-18",
+   "value": "starvation",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "Protocol: light SILAC cells 'treated in EBSS for 4 hours to starve cells of amino acids'. EFO:0022074 starvation."
+  },
+  {
+   "location": "characteristics[treatment] rows 7-12,19-24",
+   "value": "not available",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "The protocol never states the heavy cells' treatment; 'control' is not inferred (coordinator instruction 4). Reserved word, no source supports a value."
+  },
+  {
+   "location": "factor value[treatment] rows 1-24",
+   "value": "starvation (light) / not available (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Mirrors characteristics[treatment]. In DH this factor is confounded with bait status (factor value[genetic modification]): light = EBSS + low/no bait, heavy = bait + unstated treatment; the two cannot be separated from the deposit."
+  },
+  {
+   "location": "factor value[genetic modification] rows 7-24",
+   "value": "PLEKHM1-GFP, doxycycline-induced",
+   "source_ids": [
+    "pride",
+    "mq_results"
+   ],
+   "evidence": "Protocol: 'HeLa FlpIn TREx PLEKHM1-GFP cells ... PLEKHM1-GFP expression was induced for 16h with doxycycline'. Bait presence per channel evidenced by deposited ratios: DH heavy (H/L 9.55) and both DGM channels (H/L 0.69). No declared template licenses characteristics[genetic modification] except clinical-metadata (patient-study template, not appropriate for a cell-line IP), so bait status is carried in the source name and this factor only."
+  },
+  {
+   "location": "factor value[genetic modification] rows 1-6",
+   "value": "not available",
+   "source_ids": [
+    "pride",
+    "mq_results"
+   ],
+   "evidence": "DH light channel bait status not stated: protocol calls these cells only 'HeLa FlpIn TREx cells'; ~10x less PLEKHM1 than heavy could be leaky/uninduced expression or background. Reserved word."
+  },
+  {
+   "location": "characteristics[material type] rows 1-24",
+   "value": "cell line",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "HeLa FlpIn TREx (PLEKHM1-GFP) cells (PRIDE sampleProcessingProtocol)."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-24",
+   "value": "HeLa Flp-In T-REx",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "Protocol names 'HeLa FlpIn TREx' cells (all SILAC cells, including the light 'HeLa FlpIn TREx cells'); Cellosaurus CVCL_C4ET ID 'HeLa Flp-In T-REx', HI CVCL_0030 HeLa, verified live. parse_sdrf warns the label is not in CLO/BTO/EFO; accepted because the Cellosaurus name is the specific evidenced line."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-24",
+   "value": "CVCL_C4ET",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Cellosaurus CVCL_C4ET 'HeLa Flp-In T-REx' (child of CVCL_0030). The PLEKHM1-GFP derivative itself has no Cellosaurus entry."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-24",
+   "value": "HeLa Flp-In T-REx",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line of CVCL_C4ET."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-24",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "Protocol: 'cultured in DMEM supplemented with either L-arginine 12C6 14N4 ... or ... 13C6 15N4'. NCIT:C185409 Dulbecco's Modified Eagle Medium. (Light cells were additionally moved to EBSS for 4 h; captured in treatment.)"
+  },
+  {
+   "location": "characteristics[organism part] rows 1-24",
+   "value": "uterine cervix",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_C4ET 'Derived from site: In situ; Uterus, cervix; UBERON_0000002'."
+  },
+  {
+   "location": "characteristics[disease] rows 1-24",
+   "value": "cervical adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_C4ET DI NCIt C27677 HPV-related endocervical adenocarcinoma; nearest verified MONDO term MONDO:0005153 cervical adenocarcinoma. PRIDE 'disease free' describes the study, not the cell line."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-24",
+   "value": "African American",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_C4ET 'Population: African American'; HANCESTRO:0568."
+  },
+  {
+   "location": "characteristics[age] rows 1-24",
+   "value": "30Y6M",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_C4ET AG 30Y6M (donor age)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-24",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_C4ET SX Female."
+  },
+  {
+   "location": "comment[sample preparation batch] rows 1-12",
+   "value": "GFP-Trap IP, interactome search (20150224_DP_DH)",
+   "source_ids": [
+    "pride",
+    "mqpar_dh"
+   ],
+   "evidence": "DH files searched together in mqpar_interactome.xml; acquired 2015-02-24. Bait not asserted in the batch label because the DH light channel's bait status is unstated."
+  },
+  {
+   "location": "comment[sample preparation batch] rows 13-24",
+   "value": "PLEKHM1-GFP GFP-Trap IP, phospho search (20150410_DGM)",
+   "source_ids": [
+    "pride",
+    "mqpar_dgm",
+    "mq_results"
+   ],
+   "evidence": "DGM files searched together in mqpar.xml (with Phospho STY); acquired 2015-04-10; both channels carry bait (PLEKHM1 H/L 0.69)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-24",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec_readme",
+    "coordinator"
+   ],
+   "evidence": "Spec README.adoc line 27 'Version v1.1.0' (also upstream HEAD)."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-24",
+   "value": "NT=ms-proteomics;VV=v1.2.0 / NT=human;VV=v1.1.0 / NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "templates_head",
+    "coordinator",
+    "pride"
+   ],
+   "evidence": "MS proteomics of a human cell line. ms-proteomics 1.2.0 is 'latest' in bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 (pinned submodule older); written by sdrf-tools build from the installed bundle."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-24",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mqpar_dh",
+    "mqpar_dgm",
+    "coordinator",
+    "ols"
+   ],
+   "evidence": "Column = digestion enzyme: protocol 'After digestion with Trypsin at 37C over-night'. NOTE: the MaxQuant search rule in both mqpar files is 'Trypsin/P' (MS:1001313); that is the search setting, recorded here as a note, not the enzyme."
+  }
+ ],
+ "limitations": [
+  "Publication (FEBS Lett 2021, doi:10.1002/1873-3468.14041, CC-BY hybrid) still unreachable after a second attempt: Europe PMC (no PMCID), Wiley pdfdirect/full-xml 403 (Cloudflare), OpenAlex repository copies (Dundee Discovery portal; MPG.PuRe -> 403, no public file via REST), CORE (download 403, fullText not available to public API), Semantic Scholar (points to Wiley). No preprint. Channel design rests on the PRIDE protocol plus deposited MaxQuant outputs.",
+  "DH interactome: the deposited ratios show a bait-vs-background IP (PLEKHM1 H/L 9.55, norm 12.4; median group ratio ~0.99; interactors heavy-enriched). Heavy = PLEKHM1-GFP pulldown (annotated); light bait status = not available. The protocol's stated EBSS starvation of the light cells is confounded with bait status in DH, and the heavy treatment is not stated (not available). The two contrasts cannot be separated from the deposit.",
+  "DGM phospho experiment: light = EBSS rests only on the shared protocol sentence. Signals that do not fit light=starved/heavy=fed-with-active-mTOR, none conclusive: mqpar.xml processFolder 'PLEK KUp' (possibly KU-0063794 mTOR inhibitor, unstated); MTOR normalized H/L 0.30 (more mTOR co-purified with light); PLEKHM1 S432 normalized H/L 0.72 and S443 0.54 vs protein 0.86 (lower phosphorylation in the heavy channel). Heavy treatment left not available.",
+  "Deposited mqpar_interactome.xml lists only DH1-DH3; proteinGroups_interactome.txt has 4% of groups <40 kDa vs 29% in the 6-band DGM search, so DH4-DH6 (presumed low-MW gel bands) were likely not in the deposited interactome search. DH4-6 annotated as fractions 4-6 of the same SILAC mix (naming/protocol inference); a separate lane or label swap cannot be excluded.",
+  "Cell line: CVCL_C4ET HeLa Flp-In T-REx is the Cellosaurus entry matching the protocol's 'HeLa FlpIn TREx'; its documented origin is the Harper lab (PMID 25284222) and identity with the Dikic-lab stock is assumed from the name. The PLEKHM1-GFP derivative has no Cellosaurus entry. parse_sdrf warns that 'HeLa Flp-In T-REx' is not in CLO/BTO/EFO.",
+  "Bait status has no licensed characteristics column (genetic modification/genotype are licensed only by clinical-metadata, a patient-study template); it is carried in source names and factor value[genetic modification] without a matching characteristics column.",
+  "techsdrf not installed: raw-file technical values come from HTTP-range reads of the first 1 MiB of each .raw (instrument method header), not scan-level analysis.",
+  "sdrf-tools search-params did not map MaxQuant 1.3 variable modifications or SILAC labels (only the fixed mod); read by hand from mqpar <variableModifications>/<labels>.",
+  "Modification parameters differ between experiments (Phospho only in the DGM search); sdrf-tools build cannot vary a 'multiple' column per row, so each experiment was built separately with identical headers and concatenated by scratch merge.py (header equality asserted).",
+  "Search rule Trypsin/P (mqpar) vs annotated digestion enzyme Trypsin: by design (coordinator correction); reconcile agrees with Trypsin. If Trypsin/P had been annotated, reconcile's cleavage_agent_contradicted flag would be a known false positive.",
+  "The mqpar <isobaricLabels> list (iTRAQ4plex) is MaxQuant's inactive default (SILAC multiplicity 2); not annotated."
+ ]
+}

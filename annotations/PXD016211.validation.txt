@@ -1,0 +1,161 @@
+## Round 1 (2026-11-08T08:39:24Z)
+$ sdrf-tools reconcile PXD016211.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/evidence/pride.json --accession PXD016211
+PXD016211: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD016211.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Invalid value 'SN=U2OS-ciHHV6A_rep1_solvent-control;SN=U2OS-ciHHV6A_rep1_trichostatin-A' - must be one of the allowed values
+WARNING: Invalid value 'SN=U2OS-ciHHV6A_rep2_solvent-control;SN=U2OS-ciHHV6A_rep2_trichostatin-A' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD016211.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]']
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+    OpenMS().openms_convert(sdrf, onetable, legacy, verbose, conditionsfromcolumns, extension_convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+    self._process_tolerances(row, f2c, raw)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not available
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+## Round 2 (2026-11-08T08:42:58Z) — after setting comment[precursor mass tolerance] to 4.5 ppm (round 1 convert-openms failed on 'not available')
+$ sdrf-tools reconcile PXD016211.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/evidence/pride.json --accession PXD016211
+PXD016211: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD016211.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Invalid value 'SN=U2OS-ciHHV6A_rep1_solvent-control;SN=U2OS-ciHHV6A_rep1_trichostatin-A' - must be one of the allowed values
+WARNING: Invalid value 'SN=U2OS-ciHHV6A_rep2_solvent-control;SN=U2OS-ciHHV6A_rep2_trichostatin-A' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD016211.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]']
+Conditions (3): dict_keys(['not applicable', 'Trichostatin A', 'control'])
+Files per condition: dict_values([30, 30, 30])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 90 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv
+exit code: 0
+
+## Manifest checks (2026-11-08T08:46:29Z)
+$ sdrf-tools schema-check PXD016211.evidence.json
+PXD016211.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD016211.sdrf.tsv PXD016211.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit code: 0
+
+## Round 3 (2026-11-08T09:04:16Z) — after external review round 1 FAIL: channel map swapped (heavy = Trichostatin A, medium = solvent control); comment[sdrf version] v1.2.0 -> v1.1.0
+$ sdrf-tools reconcile PXD016211.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/evidence/pride.json --accession PXD016211
+PXD016211: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD016211.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Invalid value 'SN=U2OS-ciHHV6A_rep1_solvent-control;SN=U2OS-ciHHV6A_rep1_trichostatin-A' - must be one of the allowed values
+WARNING: Invalid value 'SN=U2OS-ciHHV6A_rep2_solvent-control;SN=U2OS-ciHHV6A_rep2_trichostatin-A' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD016211.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]']
+Conditions (3): dict_keys(['not applicable', 'Trichostatin A', 'control'])
+Files per condition: dict_values([30, 30, 30])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 90 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv
+exit code: 0
+
+## Manifest checks, round 3 (2026-11-08T09:06:17Z)
+$ sdrf-tools schema-check PXD016211.evidence.json
+PXD016211.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD016211.sdrf.tsv PXD016211.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit code: 0
+
+## Round 4 (2026-11-08T09:13:27Z) — after external review round 2 FAIL (B1): channel map reverted to medium (Arg6/Lys4) = Trichostatin A, heavy (Arg10/Lys8) = solvent control; sdrf version v1.1.0 and Trypsin kept
+$ sdrf-tools reconcile PXD016211.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016211/evidence/pride.json --accession PXD016211
+PXD016211: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD016211.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Invalid value 'SN=U2OS-ciHHV6A_rep1_solvent-control;SN=U2OS-ciHHV6A_rep1_trichostatin-A' - must be one of the allowed values
+WARNING: Invalid value 'SN=U2OS-ciHHV6A_rep2_solvent-control;SN=U2OS-ciHHV6A_rep2_trichostatin-A' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD016211.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]']
+Conditions (3): dict_keys(['not applicable', 'Trichostatin A', 'control'])
+Files per condition: dict_values([30, 30, 30])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 90 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD016211.sdrf.tsv
+exit code: 0
+
+## Manifest checks, round 4 (2026-11-08T09:15:28Z)
+$ sdrf-tools schema-check PXD016211.evidence.json
+PXD016211.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD016211.sdrf.tsv PXD016211.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit code: 0
+

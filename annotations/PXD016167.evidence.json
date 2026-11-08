@@ -1,0 +1,337 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD016167.sdrf.tsv",
+ "dataset": "PXD016167",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD016167 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016167/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD016167/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016167/files_all.json; all 6 entries projectAccessions=[PXD016167])"
+  },
+  {
+   "id": "abstract",
+   "kind": "publication",
+   "location": "PMID:32932046 / doi:10.1016/j.biopha.2020.110744 (abstract only; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016167/evidence/manuscript.txt)"
+  },
+  {
+   "id": "proteinGroups",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/09/PXD016167/Baicalein_identifiedproteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016167/dl/Baicalein_identifiedproteinGroups.txt)"
+  },
+  {
+   "id": "peptides",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/09/PXD016167/Baicalein_identifiedpeptides.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016167/dl/Baicalein_identifiedpeptides.txt)"
+  },
+  {
+   "id": "raw01",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/09/PXD016167/Baicalein01.raw bytes 0-400000 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016167/raw/h01.bin)"
+  },
+  {
+   "id": "raw02",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/09/PXD016167/Baicalein02.raw bytes 0-400000 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016167/raw/h02.bin)"
+  },
+  {
+   "id": "raw03",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/09/PXD016167/Baicalein03.raw bytes 0-400000 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD016167/raw/h03.bin)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0440?format=txt"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (EFO:0002835 MRC5, CL:0002553, UBERON:0002048, PATO:0000461, MS:1001910, MS:1002472, MS:1000264, MS:1001251, PRIDE:0000627, PRIDE:0000325, PRIDE:0000326, UNIMOD:4/35/1/188)"
+  },
+  {
+   "id": "precedent",
+   "kind": "community-annotation",
+   "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD013120/PXD013120.sdrf.tsv (MRC-5 age encoded 14W)"
+  },
+  {
+   "id": "templates_yaml",
+   "kind": "specification",
+   "location": "https://github.com/bigbio/sdrf-templates/blob/7da1747/templates.yaml (line 150: ms-proteomics latest: 1.2.0); spec README.adoc line 27 Version v1.1.0 (/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc)"
+  },
+  {
+   "id": "hsapdv",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4/api/ontologies/hsapdv/terms?obo_id=HsapDv:0000037 (label 'fetal stage', not obsolete; queried 2026-11-08)"
+  },
+  {
+   "id": "review_pmc",
+   "kind": "publication",
+   "location": "PMC10470008 (NCBI efetch db=pmc id=10470008), review citing Sun et al. 2020 as ref 32"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-6",
+   "value": "MRC-5_rep{1,2,3}_SILAC-{light,heavy}",
+   "source_ids": [
+    "files",
+    "pride"
+   ],
+   "evidence": "Identifier chosen by annotator: one source per (raw file x SILAC channel). 3 raw files; PRIDE dataProcessingProtocol: 'The SILAC experiment was performed with three biological replicates'; MaxQuant outputs have Experiment 1/2/3 with Ratio H/L only (duplex)."
+  },
+  {
+   "location": "comment[data file] rows 1-6; assay name rows 1-6",
+   "value": "Baicalein01.raw (rows 1-2), Baicalein02.raw (rows 3-4), Baicalein03.raw (rows 5-6)",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "files/all lists exactly 3 RAW files Baicalein01-03.raw, all with projectAccessions PXD016167."
+  },
+  {
+   "location": "comment[label] rows 1-6",
+   "value": "SILAC light (rows 1,3,5); SILAC heavy (rows 2,4,6)",
+   "source_ids": [
+    "proteinGroups",
+    "peptides",
+    "pride"
+   ],
+   "evidence": "MaxQuant outputs carry only Intensity L/H and Ratio H/L per experiment 1-3 (two channels, no M); PRIDE sampleProcessingProtocol: 'equal amounts of protein samples from light and heavy cell lysates were mixed'; quantificationMethods SILAC PRIDE:0000315. Labels per spec README (SILAC light / SILAC heavy)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-6",
+   "value": "1 (rows 1-2), 2 (rows 3-4), 3 (rows 5-6)",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "Three biological replicates (PRIDE dataProcessingProtocol), one raw file each. Assignment of file NN to replicate NN is an annotator numbering choice; MaxQuant experiment-to-file mapping (summary.txt/mqpar) is not deposited."
+  },
+  {
+   "location": "characteristics[organism] rows 1-6",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus CVCL_0440 OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-6; characteristics[cellosaurus accession] rows 1-6; characteristics[cellosaurus name] rows 1-6",
+   "value": "MRC5 / CVCL_0440 / MRC-5",
+   "source_ids": [
+    "abstract",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Abstract and PRIDE description: 'lung fibroblast MRC-5 cells'. Cellosaurus ID MRC-5 AC CVCL_0440 (DR EFO_0002835). OLS EFO:0002835 label 'MRC5'. Note: sdrf-tools cellline lookup returned a wrong fuzzy match (RMZ-RC5, CVCL_L511) and was not used."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-6",
+   "value": "lung",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: 'Derived from site: In situ; Fetal lung; UBERON=UBERON_0005597'; UBERON:0002048 lung used (parent, as template column uses UBERON/BTO; PRIDE organismParts lists CL fibroblast which is a cell type, not a part)."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-6",
+   "value": "fibroblast of lung",
+   "source_ids": [
+    "abstract",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Abstract: 'lung fibroblast MRC-5 cells'; OLS CL:0002553 'fibroblast of lung'. PRIDE lists CL:0000057 fibroblast."
+  },
+  {
+   "location": "characteristics[disease] rows 1-6",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "MRC-5 derives from normal fetal lung (EFO:0002835 definition: 'normal cell line ... derived from normal lung tissue'; Cellosaurus has no DI line). PRIDE 'pulmonary fibrosis' (DOID:3770) is the study's disease context (TGFb1 in vitro model), not a property of the cells; PATO:0000461 normal."
+  },
+  {
+   "location": "characteristics[material type] rows 1-6",
+   "value": "cell line",
+   "source_ids": [
+    "abstract"
+   ],
+   "evidence": "Cultured MRC-5 cell line (abstract)."
+  },
+  {
+   "location": "characteristics[age] rows 1-6",
+   "value": "14W",
+   "source_ids": [
+    "cellosaurus",
+    "precedent"
+   ],
+   "evidence": "Cellosaurus AG '14FW' (14 fetal weeks); EFO:0002835 definition '14-week-old male fetus'. Spec age format {Number}{Unit} has no prenatal unit; 14W is written with characteristics[developmental stage]=fetal stage so the weeks are read as fetal (gestational) age. Same encoding as community precedent PXD013120 (MRC-5)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-6",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male; STR Amelogenin X,Y."
+  },
+  {
+   "location": "comment[instrument] rows 1-6",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw01",
+    "raw02",
+    "raw03",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All three .raw headers (UTF-16) contain 'Orbitrap Elite MS' / 'Creator: Orbitrap Elite ETD'; PRIDE instruments MS:1001910 (OLS label 'Orbitrap Elite')."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-6",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw01",
+    "raw02",
+    "raw03"
+   ],
+   "evidence": "Raw header scan events: '1: FTMS + p norm res=120000 o(350.0-1800.0)', '2: ITMS + c norm Dep MS/MS Most intense ion from (1)' ... 21 scan events (top-20 DDA)."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-6",
+   "value": "NT=trap-type collision-induced dissociation;AC=MS:1002472",
+   "source_ids": [
+    "raw01",
+    "raw02",
+    "raw03",
+    "ols"
+   ],
+   "evidence": "Raw header: 'Activation Type: CID ... Activation Q: 0.250, Activation Time: 10.000' in the ITMS dependent scans = resonance (ion-trap) CID; MS:1002472 is_a MS:1000133 under MS:1000044."
+  },
+  {
+   "location": "comment[collision energy] rows 1-6",
+   "value": "35 NCE",
+   "source_ids": [
+    "raw01",
+    "raw02",
+    "raw03"
+   ],
+   "evidence": "Raw header: 'Normalized Coll. Energy: 35.0'."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-6",
+   "value": "NT=ion trap;AC=MS:1000264",
+   "source_ids": [
+    "raw01",
+    "raw02",
+    "raw03"
+   ],
+   "evidence": "Dependent scans are 'ITMS + c norm Dep MS/MS'."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-6",
+   "value": "350m/z-1800m/z",
+   "source_ids": [
+    "raw01",
+    "raw02",
+    "raw03"
+   ],
+   "evidence": "Raw header scan event 1: 'FTMS + p norm res=120000 o(350.0-1800.0)'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-6",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "peptides"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: 'digested by using trypsin solution'; peptides.txt: all peptides end in K/R (C-terminal) with missed cleavages 0-2."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-6 (Carbamidomethyl)",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "peptides"
+   ],
+   "evidence": "peptides.txt 'Mass' column of every Cys peptide exceeds the unmodified monoisotopic mass by 57.0215 Da per Cys (e.g. AACNLLQR 944.48618 vs 887.4647), i.e. the search declared Carbamidomethyl (C) fixed."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-6 (Oxidation)",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "proteinGroups",
+    "peptides"
+   ],
+   "evidence": "Both MaxQuant tables carry 'Oxidation (M) site IDs' columns, which MaxQuant writes only for searched variable modifications."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-6 (Acetyl)",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "peptides"
+   ],
+   "evidence": "peptides.txt: the only Met-free peptide with two modification-specific forms (Mod. peptide IDs 10786;10787) is VNPTVFFDIAVDGEPLGR, a protein N-terminal peptide (Amino acid before M, start position 2) - consistent only with a protein-N-term variable modification (MaxQuant default Acetyl (Protein N-term)). Inferred; mqpar.xml not deposited."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-6 (Label:13C(6) K, R)",
+   "value": "NT=Label:13C(6);AC=UNIMOD:188;TA=K;MT=Variable | NT=Label:13C(6);AC=UNIMOD:188;TA=R;MT=Variable",
+   "source_ids": [
+    "pride",
+    "peptides",
+    "ols"
+   ],
+   "evidence": "PRIDE identifiedPTMStrings lists only MOD:00544 '6x(13)C labeled residue' (no 13C6-15N2 Lys or 13C6-15N4 Arg terms). peptides.txt: both K-only (4763) and R-only (4576) peptides carry Ratio H/L, so both K and R were heavy-labelled. 13C6 for both K and R is inferred from the PRIDE PTM list; heavy masses not directly observable in deposited tables."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-6; comment[sdrf annotation tool] rows 1-6; comment[sdrf template] rows 1-6; technology type rows 1-6",
+   "value": "v1.1.0 / manual curation / ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0",
+   "source_ids": [
+    "templates_yaml"
+   ],
+   "evidence": "comment[sdrf version]=v1.1.0: the SDRF-Proteomics spec version (README.adoc:27 'Version v1.1.0', also upstream HEAD). comment[sdrf template] NT=ms-proteomics;VV=v1.2.0: released upstream in bigbio/sdrf-templates HEAD 7da1747 (templates.yaml line 150 'latest: 1.2.0'); the pinned spec submodule predates it. human/cell-lines v1.1.0 as printed by sdrf-tools contract. technology type = proteomic profiling by mass spectrometry."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-6; comment[technical replicate] rows 1-6",
+   "value": "1 / 1",
+   "source_ids": [
+    "files",
+    "pride"
+   ],
+   "evidence": "One unfractionated raw file per biological replicate; no fractionation or technical replication described."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-6",
+   "value": "fetal stage",
+   "source_ids": [
+    "cellosaurus",
+    "hsapdv",
+    "ols"
+   ],
+   "evidence": "Donor was a 14-week fetus (Cellosaurus AG 14FW; EFO:0002835 definition). 'fetal stage' = HsapDv:0000037 (verified live in OLS4, not obsolete); it is the example value given for this column by the spec README (human template, 'adult, embryonic stage, fetal stage, infant stage') and human.yaml. The template validator checks EFO only, where OLS4 has no 'fetal stage' term, so parse_sdrf emits a warning (error_level: warning)."
+  }
+ ],
+ "limitations": [
+  "Publication full text (Biomed Pharmacother 2020;131:110744, gold OA CC-BY, PII S0753332220309379) could not be retrieved, rounds 1 and 2: ScienceDirect article HTML, /pdf, /pdfft?pid=1-s2.0-S0753332220309379-main.pdf -> HTTP 403; Unpaywall pdf_url -> 403; Elsevier API -> metadata only without key (401 for view=FULL); Europe PMC: no PMCID, no full text, free-text search for PXD016167 -> 0 hits; Semantic Scholar and OpenAlex OA locations point only to ScienceDirect (plus PubMed, DOAJ landing pages); CORE API -> HTTP 429 (rate limited) twice; WebFetch/ResearchGate -> 403. Review PMC10470008 cites the study (MRC-5, TGF-b1, baicalein 1 and 10 uM across their cited studies; 'baicalein significantly decreased the expression of CTGF') but gives no SILAC channel assignment. Only the abstract was read.",
+  "SILAC channel-to-condition map NOT FOUND: PRIDE protocol only says 'light and heavy cell lysates were mixed'; MaxQuant outputs name experiments 1/2/3 only; no sample sheet in files/all; paper Methods unavailable. characteristics[treatment] and factor value[treatment] are therefore 'not available' on all 6 rows. Data-derived hint NOT applied: normalized H/L for CTGF (2.66/1.85/1.51) and COL1A1 (2.54/2.31/1.86) is >1 in all three replicates, which together with the abstract's claim that baicalein decreased CTGF would put the baicalein arm in the light channel; but ACTA2 (0.31-0.41) and TAGLN (0.41) H/L<1 conflict with the authors' earlier report that baicalein inhibits myofibroblast differentiation, and the arm composition (TGFb1 in both arms?) is not stated.",
+  "No label swap detected: log2 normalized H/L ratios correlate positively between all experiment pairs (r=0.82, 0.83, 0.89; n=1187-1252 proteins), so all three replicates share one channel orientation.",
+  "mqpar.xml / parameters.txt / summary.txt not deposited: modification list reconstructed from peptides.txt/proteinGroups.txt (Carbamidomethyl fixed and Oxidation variable are directly evidenced; Acetyl Protein N-term inferred from one modified-form split; heavy label 13C6 on K and R inferred from PRIDE identifiedPTMStrings MOD:00544). Precursor/fragment tolerances not deposited -> not available.",
+  "MaxQuant Experiment 1/2/3 to raw-file mapping not deposited; biological replicate numbers follow file names.",
+  "Reduction/alkylation reagents not stated in any accessible source -> not available (Carbamidomethyl fixed implies an iodoacetamide-type alkylation but reagent unstated).",
+  "Treatment concentrations/times (TGF b1, baicalein), culture medium, passage number not available without the Methods.",
+  "techsdrf not installed; instrument/acquisition settings taken from HTTP-range reads of the first 400 kB of each .raw header.",
+  "sdrf-tools curated failed (GitHub 403); Step 0.5 settled against local clone /home/user/bigbio/sdrf-annotated-datasets (PXD016167 absent).",
+  "Review handed to an external sdrf-adversarial-review; not self-approved (REVIEW_PENDING_EXTERNAL).",
+  "Annotation is INCOMPLETE: the study variable (which SILAC channel is TGF-b1 vs TGF-b1 + baicalein) is missing. Unblock: the Methods/figure legend of Sun et al. 2020 (any copy of the CC-BY PDF), or the authors' MaxQuant experimentalDesign/mqpar.xml.",
+  "characteristics[developmental stage]=fetal stage is HsapDv:0000037; parse_sdrf warns because the human template validates this column against EFO only."
+ ]
+}

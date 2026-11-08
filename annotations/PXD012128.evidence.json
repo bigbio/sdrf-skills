@@ -1,0 +1,461 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD012128.sdrf.tsv",
+ "dataset": "PXD012128",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012128 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012128/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/files.json)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "doi:10.1016/j.celrep.2018.12.041 (PMID 30605680), full text incl. STAR Methods from https://ars.els-cdn.com/content/image/1-s2.0-S2211124718319715-mmc4.pdf (text: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/paper_fulltext_mmc4.txt)"
+  },
+  {
+   "id": "tableS1",
+   "kind": "supplementary",
+   "location": "https://ars.els-cdn.com/content/image/1-s2.0-S2211124718319715-mmc2.xlsx (Table S1; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/dl/mmc2.xlsx)"
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/01/PXD012128/FrankAdolphMeta2_Wieland.xml (MaxQuant 1.5.3.30 mqpar; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/mqpar_FrankAdolphMeta2_Wieland.xml)"
+  },
+  {
+   "id": "mq_results",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/01/PXD012128/MaxQuant_Results.zip members summary.txt, parameters.txt, proteinGroups.txt, FrankMeta2_proteinGroups4.txt (range-read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/summary.txt, evidence/parameters.txt, dl/proteinGroups.txt, dl/pg4.txt)"
+  },
+  {
+   "id": "map_crosscheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/channel_map_razor_match.txt and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/channel_direction_marker_intensities.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/scripts/match2.py, scripts/dir.py)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read (first 3 MB) of each deposited .raw under https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/01/PXD012128/ ; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/raw_headers.txt"
+  },
+  {
+   "id": "raw_ce",
+   "kind": "raw-file",
+   "location": "HTTP range read (first 3 MB) of each deposited .raw; per-file collision energy lines in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/evidence/raw_collision_energy.txt"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0030?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/dl/cvcl_0030.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4/api (live lookups of every accession, 2026-11-08)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; installed sdrf_pipelines bundle)"
+  },
+  {
+   "id": "templates_upstream",
+   "kind": "specification",
+   "location": "https://raw.githubusercontent.com/bigbio/sdrf-templates/7da1747/templates.yaml line 150 (ms-proteomics latest: 1.2.0, versions 1.2.0, 1.1.0); local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD012128/dl/upstream_templates.yaml"
+  },
+  {
+   "id": "spec_readme",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc line 27 (spec version v1.1.0) and line 330 (biological replicate numbering restarts per factor value group)"
+  },
+  {
+   "id": "terms",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/TERMS.tsv (comment[cleavage agent details] = enzyme or chemical used for protein digestion)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-32",
+   "value": "<comparison>_exp<n>_<condition>, one per (raw file x SILAC channel)",
+   "source_ids": [
+    "tableS1",
+    "map_crosscheck"
+   ],
+   "evidence": "Each name encodes the Table S1 tab comparison (S2C Sec24AvsMock, S2D Sec24CvsMock, S2E Sec24DvsMock, S3A Sec24AvsSec24C, S4A Sec24C-LIL895AAAvsSec24C), its Exp number and the condition in that channel. Each channel is a separate vesicle preparation (label-switch design, paper STAR Methods \"vesicles from cells labeled with light amino acids with control fractions from cells labeled with heavy amino acids and vice versa\")."
+  },
+  {
+   "location": "comment[label] rows 1-32 + characteristics[treatment]/factor value[treatment] rows 1-32",
+   "value": "SILAC light / SILAC heavy channel -> condition map",
+   "source_ids": [
+    "tableS1",
+    "mq_results",
+    "map_crosscheck"
+   ],
+   "evidence": "Table S1 column headers state the heavy/light condition per Exp (e.g. \"Sec24A.(H).vs.Ctrl.(L) - Exp1\"). Each Table S1 Exp was matched to a MaxQuant experiment by identical per-protein Razor+unique peptide counts against FrankMeta2_proteinGroups4.txt (100% identity for all 16, next best <=42%): S2C Exp1=16-225-02, Exp2=16-225-01; S2D Exp1=16-186-01, Exp2=16-186-02; S2E Exp1=16-187-02, Exp2=16-187-01; S3A Exp1=E-15-244-01, Exp2=E-15-244-04, Exp3=16-162-02, Exp4=16-162-01; S4A Exp1..6=16-151-01,16-151-02,16-224-01,16-224-02,16-226-02,16-226-01. Direction independently cross-checked from Intensity H/L in proteinGroups.txt: vesicle-vs-mock runs show COPII cargo (SEC22B, LMAN1, SURF4, ERGIC1, ...) 2-5 log2 units higher in the stated vesicle channel; Sec24A vs Sec24C runs show SEC22B/CNIH4 (Sec24A clients) vs STX5/BET1/ERGIC1 (Sec24C clients) in the stated channels; LIL895AAA runs show STX5/BET1/SCFD1/GOSR2 depleted in the stated mutant channel. 0 discrepancies. S2D Exp2 ratio header reads \"(H/L) Sec24C.(H)\" while its peptide headers read \"Sec24C.(L)\"; intensities confirm Sec24C = light in 16-186-02."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 1,4-5,8-9,12",
+   "value": "mock reconstitution without recombinant COPII coat",
+   "source_ids": [
+    "paper",
+    "tableS1",
+    "map_crosscheck"
+   ],
+   "evidence": "mock reaction lacking recombinant coat proteins (paper Results, Fig 2B; Table S1 \"Ctrl\"). Free text: no NCIT/EFO term exists for an in vitro coat-reconstitution condition (validator warning, error_level warning)."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 2-3,14-15,18-19",
+   "value": "COPII vesicle reconstitution with Sec23A/Sec24A",
+   "source_ids": [
+    "paper",
+    "tableS1",
+    "map_crosscheck"
+   ],
+   "evidence": "Sec23A/24A inner coat (paper Results/Fig 2; Table S1 S2C, S3A). Free text: no NCIT/EFO term exists for an in vitro coat-reconstitution condition (validator warning, error_level warning)."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 6-7,13,16-17,20-21,24-25,28-29,32",
+   "value": "COPII vesicle reconstitution with Sec23A/Sec24C",
+   "source_ids": [
+    "paper",
+    "tableS1",
+    "map_crosscheck"
+   ],
+   "evidence": "Sec23A/24C inner coat (paper Results/Fig 2; Table S1 S2D, S3A, S4A wild type). Free text: no NCIT/EFO term exists for an in vitro coat-reconstitution condition (validator warning, error_level warning)."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 10-11",
+   "value": "COPII vesicle reconstitution with Sec23A/Sec24D",
+   "source_ids": [
+    "paper",
+    "tableS1",
+    "map_crosscheck"
+   ],
+   "evidence": "Sec23A/24D inner coat (paper Results/Fig 2; Table S1 S2E). Free text: no NCIT/EFO term exists for an in vitro coat-reconstitution condition (validator warning, error_level warning)."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 22-23,26-27,30-31",
+   "value": "COPII vesicle reconstitution with Sec23A/Sec24C LIL895AAA",
+   "source_ids": [
+    "paper",
+    "tableS1",
+    "map_crosscheck"
+   ],
+   "evidence": "Sec24C LIL895AAA mutant; key resources table lists pFBDM-His6-TEV-Sec23A/Sec24CLIL895AAA (Table S1 S4A). Free text: no NCIT/EFO term exists for an in vitro coat-reconstitution condition (validator warning, error_level warning)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-32",
+   "value": "numbered 1..n within each factor value[treatment] group: mock 1-6, Sec24A 1-6, Sec24C 1-12, Sec24D 1-2, Sec24C LIL895AAA 1-6",
+   "source_ids": [
+    "tableS1",
+    "paper",
+    "spec_readme"
+   ],
+   "evidence": "Each SILAC channel is an independent vesicle preparation (paper STAR Methods label-switch design: vesicles from light cells mixed with control from heavy cells and vice versa; Table S1 Exp1..ExpN). Spec README.adoc:330: numbering restarts per factor value group, so every preparation of one condition gets its own number, in Table S1 tab/Exp order (S2C, S2D, S2E, S3A, S4A). The Table S1 comparison and Exp number stay in source name."
+  },
+  {
+   "location": "characteristics[organism] rows 1-32",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mqpar",
+    "cellosaurus"
+   ],
+   "evidence": "HeLa cells (paper: \"The Core Components of COPII Vesicles from HeLa Cells\"; Fig 2A \"HeLa cells were metabolically labeled\"); human UniProt FASTA in mqpar; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] / characteristics[cellosaurus accession] / characteristics[cellosaurus name] rows 1-32",
+   "value": "HeLa / CVCL_0030 / HeLa",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Key resources table: \"HeLa DSMZ Cat#ACC-57\"; Methods \"HeLa ACC57 (DSMZ)\". Cellosaurus CVCL_0030 carries DR DSMZ; ACC-57. EFO:0001185 label \"HeLa\" verified in OLS."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "templates"
+   ],
+   "evidence": "Cellosaurus CVCL_0030 states no cell type; the contract allows not available for this recommended column. Not inferred."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-32",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "STAR Methods, \"Vesicle reconstitution for quantitative mass spectrometric analysis\": \"HeLa ACC57, HepG2, or iMF cells were cultivated at 37 C with 5% CO2 in DMEM medium containing either natural amino acids or 15N2 13C6-lysine (Lys-8) and 15N4 13C6-arginine (Arg-10) (SILAC-Lys8-Arg10-Kit, Silantes) supplemented with 10% fetal bovine serum.\" NCIT:C185409 label \"Dulbecco's Modified Eagle Medium\" verified live in OLS. alpha-MEM (Experimental Model section) applied only to cells for biochemical/western-blot assays, not to the MS samples."
+  },
+  {
+   "location": "characteristics[individual] / characteristics[passage number] / characteristics[sample storage temperature] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "templates"
+   ],
+   "evidence": "Not stated in the paper, Table S1 or PRIDE; the contract allows not available for all three recommended columns."
+  },
+  {
+   "location": "comment[collision energy] rows 13-16",
+   "value": "35 NCE",
+   "source_ids": [
+    "raw_ce"
+   ],
+   "evidence": "E-15-244-01/-04 raw method (CID, ITMS MS2): \"Normalized Coll. Energy: 35.0\"."
+  },
+  {
+   "location": "comment[collision energy] rows 1-12,17-32",
+   "value": "27 NCE",
+   "source_ids": [
+    "raw_ce"
+   ],
+   "evidence": "All 14 Q Exactive HF raw methods: \"(N)CE / stepped (N)CE nce: 27\"."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-32",
+   "value": "DSMZ ACC-57",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Key resources table: HeLa, DSMZ, Cat#ACC-57."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-32",
+   "value": "uterine cervix",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0030 \"Derived from site: In situ; Uterus, cervix; UBERON=UBERON_0000002\"; OLS UBERON:0000002 = uterine cervix."
+  },
+  {
+   "location": "characteristics[disease] rows 1-32",
+   "value": "cervical adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C27677 \"Human papillomavirus-related endocervical adenocarcinoma\"; mapped to MONDO:0005153 cervical adenocarcinoma (verified in OLS); broader parent chosen deliberately (see limitations)."
+  },
+  {
+   "location": "characteristics[age] rows 1-32",
+   "value": "30Y6M",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0030 AG 30Y6M (donor age of the cell line)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-32",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0030 SX Female."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-32",
+   "value": "African American",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0030 \"Population: African American\"; HANCESTRO:0568 African American verified in OLS."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-32",
+   "value": "16 deposited .raw files, 2 rows (light, heavy) each",
+   "source_ids": [
+    "files",
+    "mqpar"
+   ],
+   "evidence": "files/all lists 16 .raw + mqpar xml + MaxQuant_Results.zip; every file entry checked for PXD012128. mqpar lists 20 raw files; E-15-056_01/_02 and Q35D185-16-188-01/_02 are in the search but NOT deposited and NOT in Table S1, so they are not annotated."
+  },
+  {
+   "location": "comment[fraction identifier] / comment[technical replicate] rows 1-32",
+   "value": "1 / 1",
+   "source_ids": [
+    "mqpar",
+    "paper"
+   ],
+   "evidence": "mqpar <fractions> all 32767 (no fractions), each raw file is its own MaxQuant experiment; paper: mixed samples run into the gel \"until the whole sample had entered the gel\" (one lane per mixture)."
+  },
+  {
+   "location": "comment[instrument] rows 13-16",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw headers of E-15-244-01/-04: \"Orbitrap Elite ETD\" / \"Orbitrap Elite MS\"; paper: Orbitrap Elite. OLS MS:1001910 current label \"Orbitrap Elite\"."
+  },
+  {
+   "location": "comment[instrument] rows 1-12,17-32",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw headers of all 14 Q25D165-/Q35D185- files: \"Q Exactive HF - Orbitrap MS\", \"Method of Q Exactive HF\". Overrides PRIDE instruments and paper prose (\"Q Exactive\"). OLS MS:1002523 = Q Exactive HF."
+  },
+  {
+   "location": "comment[dissociation method] rows 13-16",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Elite method \"150min_CID_Top20\": \"Activation Type: CID\", dependent scans \"ITMS + c norm Dep Rapid MS/MS\"."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-12,17-32",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Q Exactive HF fragments by HCD only (the only dissociation on this instrument); raw method \"Method of Q Exactive HF\", TopN 15."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 13-16",
+   "value": "NT=ion trap;AC=MS:1000264",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Elite dependent scans are \"ITMS + c norm Dep Rapid MS/MS\" (ion trap)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-12,17-32",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Q Exactive HF MS2 resolution 30,000 in the raw method (Orbitrap is the only analyzer)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 13-16",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mqpar",
+    "raw"
+   ],
+   "evidence": "mqpar msmsParams ITMS MatchTolerance 0.5 (Da); Elite MS2 is ITMS."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-12,17-32",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqpar",
+    "raw"
+   ],
+   "evidence": "mqpar msmsParams FTMS MatchTolerance 20, MatchToleranceInPpm=true; QE HF MS2 is FTMS."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-32",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mqpar",
+    "mq_results"
+   ],
+   "evidence": "mqpar mainSearchTol 4.5, searchTolInPpm true (first search 20 ppm)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-32",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper",
+    "terms",
+    "ols"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: \"digested with trypsin using the DigestPro MS platform\"; STAR Methods: gel pieces \"digested with trypsin\". TERMS.tsv defines the column as the digestion enzyme. OLS MS:1001251 = Trypsin. sdrf-tools reconcile exits 0."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-32 (search-rule note, not written to the SDRF)",
+   "value": "MaxQuant search rule Trypsin/P (MS:1001313), max 2 missed cleavages",
+   "source_ids": [
+    "mqpar",
+    "mq_results"
+   ],
+   "evidence": "mqpar <enzymes>Trypsin/P</enzymes>, <maxMissedCleavages>2</maxMissedCleavages>; summary.txt Enzyme = Trypsin/P. Reprocessing that wants to reproduce the original search should cleave without the proline rule."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-32",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mqpar",
+    "mq_results",
+    "ols"
+   ],
+   "evidence": "mqpar fixedModifications Carbamidomethyl (C); variableModifications Oxidation (M), Acetyl (Protein N-term); labelMods light \"\" / heavy \"Arg10;Lys8\" (multiplicity 2). parameters.txt and summary.txt agree. Deamidation (NQ), stated in the paper and PRIDE protocol, is NOT in the deposited search and is omitted. Arg10 = UNIMOD:267 Label:13C(6)15N(4), Lys8 = UNIMOD:259 Label:13C(6)15N(2), verified in OLS; paper confirms 15N4 13C6-Arg / 15N2 13C6-Lys (Silantes SILAC-Lys8-Arg10 kit)."
+  },
+  {
+   "location": "comment[reduction reagent] / comment[alkylation reagent] rows 1-32",
+   "value": "DTT (PRIDE:0000608) / IAA (PRIDE:0000599)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "STAR Methods: \"Gel pieces were reduced with DTT, alkylated with iodoacetamid\"; same in PRIDE protocol."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-32",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper: \"automatic switch between a full scan and up to 30/15 data-dependent MS/MS scans\"; raw methods Top20 (Elite) / TopN 15 (QE HF)."
+  },
+  {
+   "location": "technology type / comment[sdrf template] / comment[sdrf annotation tool] rows 1-32",
+   "value": "proteomic profiling by mass spectrometry / NT=ms-proteomics;VV=v1.2.0, NT=human;VV=v1.1.0, NT=cell-lines;VV=v1.1.0 / manual curation",
+   "source_ids": [
+    "templates",
+    "templates_upstream"
+   ],
+   "evidence": "Filled by sdrf-tools build from the declared templates. ms-proteomics v1.2.0 is the upstream latest: bigbio/sdrf-templates HEAD 7da1747 templates.yaml line 150 \"latest: 1.2.0\" (versions 1.2.0, 1.1.0), and it is the version the installed sdrf_pipelines validates against. The copy nested in this repo spec submodule (dc9be283) is older than upstream and lists only 1.1.0. This SDRF uses none of the columns 1.2.0 adds."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-32",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec_readme"
+   ],
+   "evidence": "Spec README.adoc line 27 gives the SDRF-Proteomics specification version v1.1.0 (the format version, distinct from template versions); batch-wide convention."
+  }
+ ],
+ "limitations": [
+  "Orbitrap Elite rows carry 35 NCE (read from the raw method), not the not available the coordinator suggested, because the raw header states the value.",
+  "techsdrf is not installed; instrument, activation, MS2 analyzer, TopN and NCE were read from HTTP-range-read .raw headers only (no tolerance/PTM refinement from spectra).",
+  "Full text is not in PMC/Europe PMC; it was read from the publisher-hosted \"Article plus Supplemental Information\" PDF (mmc4.pdf).",
+  "The paper (and PRIDE) state MaxQuant 1.5.3.8 and deamidation (NQ) as a variable modification; the deposited mqpar/parameters/summary say 1.5.3.30 and no deamidation. The deposited search was used.",
+  "The paper and PRIDE say \"Q-Exactive\"; raw headers say Q Exactive HF for all 14 non-Elite runs. The paper says Elite \"up to 30\" MS/MS; the raw method is Top20 CID. Raw files were used.",
+  "PRIDE protocol says \"2 gel pieces per sample\"; each deposited raw file is one MaxQuant experiment with no fraction annotation, so each file is one injection (fraction 1). Whether the two gel pieces were combined before injection is not stated.",
+  "mqpar includes 4 additional runs (E-15-056_01/_02, Q35D185-16-188-01/_02) that are neither deposited nor in Table S1; not annotated.",
+  "HeLa cell line identity for each experiment is inferred from the paper describing all COPII proteomes as HeLa-derived; Table S1 does not repeat the cell line per tab. The search used a human-only FASTA.",
+  "characteristics[disease] uses the broader MONDO:0005153 cervical adenocarcinoma; Cellosaurus says NCIt C27677 HPV-related endocervical adenocarcinoma, whose closest MONDO term (MONDO:0000554) xrefs a different NCIt code (C127907).",
+  "characteristics[treatment] values are free text (no ontology term for in vitro coat-reconstitution conditions); parse_sdrf emits 5 warnings.",
+  "comment[cleavage agent details] records the digestion enzyme (Trypsin); the MaxQuant search used the rule Trypsin/P, recorded as a manifest claim only.",
+  "ms-proteomics is declared at v1.2.0 (upstream bigbio/sdrf-templates 7da1747 latest); the spec submodule pinned in this repo is older and lists only 1.1.0.",
+  "characteristics[cell type] = not available: Cellosaurus CVCL_0030 states no cell type.",
+  "The Table S1 log2 ratio values did not reproduce from the deposited proteinGroups ratio columns (different normalisation in the authors' R scripts); the map rests on exact peptide-count identity plus the marker-intensity direction check.",
+  "External review round 1 FAIL (biological replicate numbering, sdrf version, cleavage agent) fixed in round 2; round 2 FAIL (missing culture medium) fixed in round 3; re-review pending (REVIEW_PENDING_EXTERNAL); no reviewer was dispatched by the producer."
+ ]
+}

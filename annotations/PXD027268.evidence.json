@@ -1,0 +1,449 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD027268.sdrf.tsv",
+ "dataset": "PXD027268",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD027268 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD027268/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/evidence/files_all.json; 58 entries, all projectAccessions=PXD027268)"
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD027268/mqpar.xml (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/dl/mqpar.xml)"
+  },
+  {
+   "id": "mq_txt",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD027268/MaxQuant_txt_folder.zip members proteinGroups.txt, parameters.txt, summary.txt (range-read; local copies /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/dl/)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC8613289 / doi:10.1038/s41467-021-26839-y (NCBI efetch id=8613289, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/evidence/efetch_8613289.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/evidence/manuscript.txt)"
+  },
+  {
+   "id": "suppdata1",
+   "kind": "supplementary",
+   "location": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-021-26839-y/MediaObjects/41467_2021_26839_MOESM4_ESM.xlsx (Supplementary Data 1; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/supp/MOESM4_ESM.xlsx)"
+  },
+  {
+   "id": "suppdesc",
+   "kind": "supplementary",
+   "location": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-021-26839-y/MediaObjects/41467_2021_26839_MOESM3_ESM.docx (Description of Supplementary Files; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027268/supp/MOESM3_ESM.docx, text MOESM3_ESM.docx.txt)"
+  },
+  {
+   "id": "upstream_templates",
+   "kind": "specification",
+   "location": "https://github.com/bigbio/sdrf-templates/blob/7da1747/templates.yaml (line 150: ms-proteomics latest: 1.2.0; versions 1.2.0, 1.1.0)"
+  },
+  {
+   "id": "spec_readme",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc line 27 (SDRF-Proteomics Version v1.1.0)"
+  },
+  {
+   "id": "sdrf_skills",
+   "kind": "software",
+   "location": "/home/user/bigbio/sdrf-skills/pyproject.toml (version 0.1.0)"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD027268/20170608_GIR_HF_SEM_R20_120517_Sample_A01.raw, 20180504_GIR_HF_SA_SEM_R20_300418_Lane_A_001.raw, 20180511_GIR_HF_SA_SEM_R20_300418_Lane_D_006.raw (first 1 MiB via HTTP range, utf-16-le)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0060?format=txt"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (queried via sdrf-tools ols)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/sdrf-templates (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-tools contract)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-70",
+   "value": "see value per row",
+   "source_ids": [
+    "suppdata1",
+    "mqpar",
+    "mq_txt"
+   ],
+   "evidence": "Source names are producer-chosen identifiers encoding MaxQuant experiment (Expt1/Expt2 from mqpar <experiments>), lane (A-D) and, for lanes C and D, the condition documented in Supplementary Data 1 column headers. 'Lanes A and B (28 raw files) are NOT annotated (partial BLOCK; see limitations and annotations/BLOCKED.md)."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-70",
+   "value": "28 of 56 deposited .raw files (lanes C and D of Expt1/Expt2); fraction = position within lane",
+   "source_ids": [
+    "files",
+    "mqpar"
+   ],
+   "evidence": "files/all lists 56 .raw files (plus mqpar.xml and MaxQuant_txt_folder.zip). mqpar.xml maps each file to experiment Expt1_A..D (8 fractions each, files Sample_<lane>01-08) and Expt2_A..D (6 fractions each, MaxQuant fraction numbers 11-16, files Lane_<lane>_001-006). Only lanes C (14 files) and D (14 files) are annotated; lanes A/B (28 files) are blocked for lack of a channel map. fraction identifier is the order 1..8 / 1..6 within each lane (MaxQuant's 11-16 renumbered 1-6)."
+  },
+  {
+   "location": "comment[label] rows 1-70",
+   "value": "SILAC light / SILAC medium / SILAC heavy",
+   "source_ids": [
+    "mqpar",
+    "mq_txt",
+    "suppdata1",
+    "ols"
+   ],
+   "evidence": "mqpar.xml multiplicity=3, labelMods: '' (light), 'Arg6;Lys4' (medium), 'Arg10;Lys8' (heavy). proteinGroups.txt has Intensity L/M/H for every experiment; in lanes A, B, C all three channels carry comparable signal (e.g. Expt1_B L 4.1e11, M 3.3e11, H 3.0e11) lane C therefore gets three rows per file; in lanes D the M channel is ~4% of L/H (Expt1_D M 2.9e10 vs L 7.6e11, H 6.4e11) and Supp Data 1 uses only L/H for Expt1_D, so D is annotated as a 2-channel (L/H) run. Terms PRIDE:0000326/0000327/0000325 verified in OLS."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 1-8,41-46",
+   "value": "Hepatocyte Growth Factor",
+   "source_ids": [
+    "suppdesc",
+    "suppdata1",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Description of Supplementary Files (Supp Data 1 legend): 'Cells were warmed to 37 C in the presence (light labelled cells; L) or absence (heavy labelled cells; H) of HGF'. Supp Data 1 header 'Ratio L/H Normalized Expt1_C C/B (Nuc HGF/Nuc Ctl)' and 'Ratio L/M ... C/A (Int Nucl HGF/No int nuclear)' (same for Expt2_C): the L channel of lane C is the internalised +HGF nuclear sample. Methods: 'Light-labelled cells were warmed to 37 C for 30 min ... in the presence of HGF (10 ng/ml)'. NCIT:C20428 'Hepatocyte Growth Factor'."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 17-24,53-58",
+   "value": "untreated",
+   "source_ids": [
+    "suppdesc",
+    "suppdata1",
+    "paper",
+    "templates"
+   ],
+   "evidence": "Supp Data 1 legend (MOESM3): heavy = 'absence ... of HGF', and the ratio is described as 'HGF-treated (L) to untreated'. Supp Data 1: H of lane C = 'Nuc Ctl' (B in 'H/M ... B/A (Nuc Ctl/No int nuc)'); Methods: heavy cells 'warmed to 37 C in the absence of HGF'. 'untreated' is the value the sample-metadata template's treatment validator prescribes for controls (it is not an NCIT/EFO term, hence the validator warning)."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 9-16,47-52",
+   "value": "not available",
+   "source_ids": [
+    "suppdata1"
+   ],
+   "evidence": "Supp Data 1 names the M channel of lane C only 'No int nuclear' / 'No int nuc' (no internalisation); no source states whether this arm received HGF, and the Methods do not describe the medium arm at all."
+  },
+  {
+   "location": "characteristics[sampling time] / factor value[sampling time] rows 1-8,17-24,41-46,53-58",
+   "value": "30 minute",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Methods/PRIDE protocol: cells 'warmed to 37 C for 30 min to allow internalisation' (light +HGF, heavy -HGF) before nuclei purification. Encoded as the internalisation (chase) time before sampling."
+  },
+  {
+   "location": "characteristics[sampling time] / factor value[sampling time] rows 9-16,47-52",
+   "value": "0 minute",
+   "source_ids": [
+    "suppdata1"
+   ],
+   "evidence": "Supp Data 1 labels this channel 'No int nuclear' (no internalisation), read as zero internalisation time. INFERRED from the label; the arm's protocol is not written out."
+  },
+  {
+   "location": "characteristics[sampling time] / factor value[sampling time] rows 25-40,59-70",
+   "value": "not applicable",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "The surface-proteome protocol has no 37 C internalisation step: cells were biotinylated at 4 C, (heavy/light) MesNa-treated or not at 4 C, lysed."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 25-32,59-64",
+   "value": "Mesna",
+   "source_ids": [
+    "suppdesc",
+    "suppdata1",
+    "mq_txt",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Description of Supplementary Files (Supp Data 1 sheet 2 legend): 'Light-labelled cells (L) were treated with MesNa to remove biotin from the cell surface, whilst heavy-labelled cells were left untreated (H)'. Supp Data 1 sheet 'surface Red_NonRed', column 'Ratio L/H Normalized Expt1_D +red/-red (surface)': L = reduced (MesNa-stripped), H = non-reduced. Deposited proteinGroups.txt confirms the orientation in BOTH Expt1_D and Expt2_D: surface receptors have H/L >> 1 (TFRC 864 / 3.7, EGFR 21.7 / 18.5, EPHA2 28 / 150, ITGB1 27 / 12), i.e. biotin was stripped from the L channel. The main-text Methods/PRIDE prose ('Heavy-labelled cells were incubated with MesNa') contradicts this; the explicit supplementary legend and the data agree with each other and win. Expt2_D orientation is INFERRED from the ratio pattern (Supp Data 1 only reports Expt1_D). NCIT:C192 'Mesna'."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 33-40,65-70",
+   "value": "untreated",
+   "source_ids": [
+    "suppdesc",
+    "suppdata1",
+    "mq_txt",
+    "templates"
+   ],
+   "evidence": "MOESM3 legend: 'heavy-labelled cells were left untreated (H)'. H channel of lanes D = '-red' (non-reduced) per Supp Data 1 and the deposited H/L ratios (see Mesna claim). 'untreated' per template guidance for controls."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-70",
+   "value": "1 (Expt1_*), 2 (Expt2_*)",
+   "source_ids": [
+    "mqpar",
+    "paper",
+    "suppdata1"
+   ],
+   "evidence": "mqpar.xml groups runs into Expt1_* (2017 acquisitions) and Expt2_* (2018 acquisitions); the paper (Fig. 1b legend) reports SILAC ratios 'from two independent experiments ((1) and (2))' and Supp Data 1 reports Expt1 and Expt2 columns side by side."
+  },
+  {
+   "location": "characteristics[organism] rows 1-70",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; H1299 is a human cell line (Cellosaurus OX NCBI_TaxID=9606)."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-70",
+   "value": "NCI-H1299 / CVCL_0060 / NCI-H1299",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Methods: 'H1299 cells were SILAC-labelled'; 'H1299 cells were obtained from American Type Culture Collection'. Cellosaurus CVCL_0060 ID NCI-H1299, synonym H1299; EFO:0003043 'NCI-H1299'. "
+  },
+  {
+   "location": "characteristics[disease] rows 1-70",
+   "value": "lung large cell carcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C4450 Lung large cell carcinoma -> MONDO:0003050 'lung large cell carcinoma'."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-70",
+   "value": "lung",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Cellosaurus tissue of origin lung (sdrf-tools cellline lookup 'Tissue: Lung'); PRIDE organismParts 'Lung'."
+  },
+  {
+   "location": "characteristics[sampling site] rows 1-70",
+   "value": "lymph node",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029'."
+  },
+  {
+   "location": "characteristics[age] rows 1-70",
+   "value": "43Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 43Y (donor age)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-70",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male."
+  },
+  {
+   "location": "comment[instrument] rows 1-70",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_header",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw-file headers (2017 and 2018 batches) contain 'Q Exactive HF - Orbitrap MS' and 'Method of Q Exactive HF'; Methods: 'Orbitrap Q-Exactive HF'. PRIDE's instruments field ('Orbitrap Fusion Lumos') is wrong for this dataset (Lumos belongs to the companion TurboID dataset PXD027217)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-70",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Methods: 'The top ten most intense ions in the full MS were isolated for fragmentation' (top-10 DDA)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-70",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mqpar",
+    "templates"
+   ],
+   "evidence": "The column is the digestion enzyme (TERMS.tsv; sdrf-annotate technical-values.md 5.3). Methods: digested with trypsin (Trypsin gold, Promega). NOTE: the MaxQuant search used the Trypsin/P cleavage rule (mqpar <enzymes>Trypsin/P</enzymes>, MS:1001313), i.e. trypsin without the proline restriction; a reanalysis replicating the deposited search should use Trypsin/P."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-70",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) R, Label:2H(4) K, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mqpar",
+    "mq_txt",
+    "ols"
+   ],
+   "evidence": "mqpar.xml fixedModifications 'Carbamidomethyl (C)'; variableModifications 'Oxidation (M)', 'Acetyl (Protein N-term)'; labelMods Arg6;Lys4 (medium) and Arg10;Lys8 (heavy), translated by sdrf-tools search-params to UNIMOD:188 (Arg6), 481 (Lys4), 267 (Arg10), 259 (Lys8); parameters.txt confirms Fixed modifications Carbamidomethyl (C). SILAC labels encoded as Variable as MaxQuant applies them per channel."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-70",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "mqpar mainSearchTol 4.5, searchTolInPpm true."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-70",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqpar",
+    "raw_header"
+   ],
+   "evidence": "MaxQuant FTMS MS/MS tolerance 20 ppm (sdrf-tools search-params note); Q Exactive HF acquires MS2 in the Orbitrap (FTMS)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-70",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "raw_header"
+   ],
+   "evidence": "Methods: fragments at a resolution of 15,000 (Orbitrap) on a Q Exactive HF; MS:1000484 'orbitrap'."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-70",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "Q Exactive HF fragments by HCD (beam-type CID, MS:1000422). INFERRED from the instrument class; the Methods do not name the dissociation method."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-70",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Methods: proteins separated on 4-12% NuPAGE Bis-Tris gel; each lane excised into slices. Note: the paper says six slices, but Expt1 lanes have 8 files each (mqpar fractions 1-8); Expt2 lanes have 6."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-70",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Methods: gel slices 'reduced using 10 mM dithiothreitol'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-70",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Methods: 'alkylated with 55 mM iodoacetamide'."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-70",
+   "value": "1",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "Each lane/fraction was acquired once (one file per MaxQuant experiment+fraction)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-70",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor stage: Cellosaurus CVCL_0060 AG 43Y (donor age at sampling) -> adult. EFO:0001272 'adult' verified live in OLS4 (not obsolete)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-70",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec_readme"
+   ],
+   "evidence": "The SDRF-Proteomics specification version is v1.1.0 (spec README.adoc line 27); there is no spec v1.2.0."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-70",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "sdrf_skills"
+   ],
+   "evidence": "Annotation produced with the sdrf-skills workflow; version from /home/user/bigbio/sdrf-skills/pyproject.toml (version = \"0.1.0\")."
+  },
+  {
+   "location": "comment[sdrf template], technology type rows 1-70",
+   "value": "NT=ms-proteomics;VV=v1.2.0, NT=human;VV=v1.1.0, NT=cell-lines;VV=v1.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates",
+    "upstream_templates"
+   ],
+   "evidence": "Filled by sdrf-tools build. ms-proteomics v1.2.0 is the latest version in upstream bigbio/sdrf-templates (HEAD 7da1747, templates.yaml line 150 'latest: 1.2.0'), which is also the version in the installed sdrf-pipelines. The templates copy nested in the pinned spec submodule is OLDER than upstream (it has only ms-proteomics 1.1.0). No 1.2.0-only column is used."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-70",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0060 'Population: Caucasian'. HANCESTRO:0005 'European ancestry' lists 'Caucasian' as an exact synonym, and its definition includes individuals 'described by authors as European, Caucasian, White'."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-70",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: 'H1299 cells ... were cultured in Dulbecco's modified Eagle medium' supplemented with 10% FCS. NCIT:C185409 'Dulbecco's Modified Eagle Medium' verified live in OLS4. The SILAC formulation (Arg/Lys-free DMEM, dialysed serum) is not stated."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-70",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Cellosaurus gives no cell type for NCI-H1299; PRIDE's 'Epithelial cell of lung' is a submitter dropdown not stated in the paper."
+  }
+ ],
+ "limitations": [
+  "SCOPE: PARTIAL ANNOTATION. This SDRF covers 28 of 56 deposited raw files (MaxQuant lanes C and D of Expt1/Expt2). Lanes A and B are BLOCKED (no channel->condition map in any source; see annotations/BLOCKED.md). The 28 raw files NOT in this SDRF: 20170608_GIR_HF_SEM_R20_120517_Sample_A01.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_A02.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_A03.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_A04.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_A05.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_A06.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_A07.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_A08.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_B01.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_B02.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_B03.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_B04.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_B05.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_B06.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_B07.raw; 20170608_GIR_HF_SEM_R20_120517_Sample_B08.raw; 20180504_GIR_HF_SA_SEM_R20_300418_Lane_A_001.raw; 20180504_GIR_HF_SA_SEM_R20_300418_Lane_A_002.raw; 20180504_GIR_HF_SA_SEM_R20_300418_Lane_A_003.raw; 20180504_GIR_HF_SA_SEM_R20_300418_Lane_A_004.raw; 20180504_GIR_HF_SA_SEM_R20_300418_Lane_A_005.raw; 20180504_GIR_HF_SA_SEM_R20_300418_Lane_A_006.raw; 20180504_GIR_HF_SA_SEM_R20_300418_Lane_B_001.raw; 20180511_GIR_HF_SA_SEM_R20_300418_Lane_B_002.raw; 20180511_GIR_HF_SA_SEM_R20_300418_Lane_B_003.raw; 20180511_GIR_HF_SA_SEM_R20_300418_Lane_B_004.raw; 20180511_GIR_HF_SA_SEM_R20_300418_Lane_B_005.raw; 20180511_GIR_HF_SA_SEM_R20_300418_Lane_B_006.raw.",
+  "techsdrf is not installed: technical values were not verified with techsdrf; instrument was verified by HTTP range-read of 3 of 56 .raw headers (both acquisition batches).",
+  "PARTIAL BLOCK: 28 of 56 deposited raw files (lanes A and B of Expt1 and Expt2: *_Sample_A0[1-8], *_Sample_B0[1-8], *_Lane_A_00[1-6], *_Lane_B_00[1-6]) are not annotated. They are triple-SILAC runs (all three channels quantified) whose channel->condition map is documented nowhere: paper, Supplementary Information, Description of Supplementary Files, Supplementary Data 1-3, Source Data, Peer Review File, PRIDE protocols and files/all, MaxQuant mqpar/parameters/summary/proteinGroups (experiment names only). Data Availability says 'available from the corresponding author on request', so no external repository exists. Unblocked by a channel map from the corresponding author (J.C. Norman). Recorded in annotations/BLOCKED.md.",
+  "Main-text Methods/PRIDE prose says heavy cells were MesNa-reduced in the surface experiment; the Description of Supplementary Files, Supplementary Data 1 and the deposited ratios all show the reverse (L = reduced, H = non-reduced), which is used. Expt2_D orientation is inferred from its ratio pattern; Supp Data 1 reports only Expt1_D.",
+  "Methods and PRIDE describe 2-state heavy/light SILAC, while the Results text, Supp Data 1 and the MaxQuant search are 3-state (L/M/H with M = Arg6/Lys4); the medium 'no internalisation' arm of lane C is described only by the Supp Data 1 header.",
+  "The lane-D medium channel (search slot exists, ~4% residual intensity, mqpar reQuantify=true) is treated as unused: no SDRF row.",
+  "Treatment of the no-internalisation (M) arm (HGF or not) is unknown -> not available; its 0 minute sampling time is inferred from the 'No int' label.",
+  "characteristics[treatment] encodes the per-sub-experiment contrast: HGF vs untreated (no HGF) in the nuclear lanes, Mesna vs untreated (not reduced) in the surface lanes. All nuclear-capture arms were also MesNa surface-reduced and warmed to 37 C; 'untreated' there means 'no HGF', following the authors' own wording.",
+  "Paper states 6 gel slices per lane; Expt1 lanes have 8 raw files (fractions 1-8). Annotated per the deposited files.",
+  "Validator warning: 'untreated' (template-prescribed control value) is not an NCIT/EFO term.",
+  "sdrf-tools reconcile flags Trypsin/P against the record as a contradiction; the cleavage agent is annotated as the digestion enzyme Trypsin (MS:1001251), and the search rule Trypsin/P is recorded in the claim note.",
+  "parse_sdrf does not check column licensing or reserved-word permissions; checked by hand against sdrf-tools contract.",
+  "Europe PMC fullTextXML returned HTTP 500; paper text obtained via NCBI efetch (numeric id 8613289, title verified)."
+ ]
+}

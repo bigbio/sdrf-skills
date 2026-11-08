@@ -1,0 +1,128 @@
+$ parse_sdrf validate-sdrf -s annotations/PXD069185.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Downloading file 'bto.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/bto.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'chebi.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/chebi.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'cl.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/cl.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'clo.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/clo.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'doid.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/doid.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'efo.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/efo.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'envo.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/envo.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'gaz.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/gaz.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'hancestro.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/hancestro.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'mod.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/mod.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'mondo.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/mondo.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'ncbitaxon.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/ncbitaxon.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'ncit.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/ncit.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'pato.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/pato.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'pride.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/pride.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'psi-ms.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/psi-ms.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'uberon.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/uberon.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+Downloading file 'unimod.parquet' from 'https://raw.githubusercontent.com/bigbio/sdrf-pipelines/v0.1.7/data/ontologies/unimod.parquet' to '/root/.cache/sdrf-pipelines/ontologies'.
+WARNING: Term: biotin-phenol only, no H2O2 (APEX2 labelling negative control) in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: biotin-phenol + H2O2 APEX2 labelling, no ionizing radiation in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: biotin-phenol + H2O2 APEX2 labelling, ionizing radiation 10 Gy in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD069185.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (3): dict_keys(['biotin-phenol only, no H2O2 (APEX2 labelling negative control)', 'biotin-phenol + H2O2 APEX2 labelling, no ionizing radiation', 'biotin-phenol + H2O2 APEX2 labelling, ionizing radiation 10 Gy'])
+Files per condition: dict_values([18, 18, 18])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 54 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD069185.evidence.json
+annotations/PXD069185.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD069185.sdrf.tsv annotations/PXD069185.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+
+====================================================================
+ROUND 2 (after external review round 1 FAIL; fixes: sdrf version v1.2.0->v1.1.0, cleavage agent Trypsin->Trypsin/P per deposited mqpar)
+====================================================================
+
+$ sdrf-tools reconcile annotations/PXD069185.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD069185/evidence/pride.json --accession PXD069185
+PXD069185: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin/P' but the record's digest names Trypsin
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin digest but only Trypsin/P is declared  [missing: Trypsin]
+exit code: 1
+
+NOTE: the reconcile BLOCKER/MAJOR above (Trypsin/P vs 'Trypsin') is a known false positive: PRIDE's protocol prose names the less specific 'trypsin', while the deposited MaxQuant search (mqpar.xml <enzymes>Trypsin/P</enzymes>) is authoritative per ANNOTATOR_BRIEF evidence precedence (deposited search > paper > PRIDE). Coordinator batch decision 3.
+
+$ parse_sdrf validate-sdrf -s annotations/PXD069185.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: biotin-phenol only, no H2O2 (APEX2 labelling negative control) in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: biotin-phenol + H2O2 APEX2 labelling, no ionizing radiation in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: biotin-phenol + H2O2 APEX2 labelling, ionizing radiation 10 Gy in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD069185.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (3): dict_keys(['biotin-phenol only, no H2O2 (APEX2 labelling negative control)', 'biotin-phenol + H2O2 APEX2 labelling, no ionizing radiation', 'biotin-phenol + H2O2 APEX2 labelling, ionizing radiation 10 Gy'])
+Files per condition: dict_values([18, 18, 18])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 54 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD069185.evidence.json
+annotations/PXD069185.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD069185.sdrf.tsv annotations/PXD069185.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+
+====================================================================
+ROUND 3 (after review round 2 PASS, pre-final re-review; fixes: cleavage agent Trypsin/P->Trypsin (MS:1001251) per corrected batch rule; added characteristics[sample type]: light=negative control, medium/heavy=study sample). This supersedes the round-2 reconcile false-positive note.
+====================================================================
+
+$ sdrf-tools reconcile annotations/PXD069185.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD069185/evidence/pride.json --accession PXD069185
+PXD069185: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD069185.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: biotin-phenol only, no H2O2 (APEX2 labelling negative control) in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: biotin-phenol + H2O2 APEX2 labelling, no ionizing radiation in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: biotin-phenol + H2O2 APEX2 labelling, ionizing radiation 10 Gy in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD069185.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (3): dict_keys(['biotin-phenol only, no H2O2 (APEX2 labelling negative control)', 'biotin-phenol + H2O2 APEX2 labelling, no ionizing radiation', 'biotin-phenol + H2O2 APEX2 labelling, ionizing radiation 10 Gy'])
+Files per condition: dict_values([18, 18, 18])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 54 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD069185.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD069185.evidence.json
+annotations/PXD069185.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD069185.sdrf.tsv annotations/PXD069185.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit code: 0
+
