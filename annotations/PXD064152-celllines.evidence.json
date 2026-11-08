@@ -1,0 +1,1154 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD064152-celllines.sdrf.tsv",
+ "dataset": "PXD064152",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD064152 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD064152/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/files.json; 48 entries, all projectAccessions == PXD064152; 43 .raw)"
+  },
+  {
+   "id": "sample_list",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/02/PXD064152/Sample_list.txt (deposited sample sheet; local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/dl/Sample_list.txt)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Ghiani L et al. J Exp Clin Cancer Res 2026;45:40, doi:10.1186/s13046-025-03631-0, PMID 41507992, PMC12882316 (CC BY); text https://pmc-oa-opendata.s3.amazonaws.com/PMC12882316.1/PMC12882316.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/paper.txt)"
+  },
+  {
+   "id": "supp_tables",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12882316.1/13046_2025_3631_MOESM1_ESM.docx (Supplementary Tables 1-4; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/supp/)"
+  },
+  {
+   "id": "supp_data",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12882316.1/13046_2025_3631_MOESM2_ESM.xlsx (Supplementary Data: L/H ratios; sheets \"HNSCC patient's samples (FFPE)\", \"HNSCC cell lines\", \"E6E7 transduced HKs\"; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/supp/)"
+  },
+  {
+   "id": "epiprofile",
+   "kind": "search-output",
+   "location": "EpiProfile 2.0 outputs read by HTTP range from https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/02/PXD064152/Cells1907.zip, FFPE2208.zip, FFPE2308.zip, HK.zip (members histone_ratios_SILAC.xls, histone_ratios.xls, histone_logs.txt; central directories and members in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/zip/)"
+  },
+  {
+   "id": "map_crosscheck",
+   "kind": "derived",
+   "location": "L/H ratio-of-%RA recomputed from EpiProfile light/heavy areas per peptide family and matched to supp_data columns by mean |log ratio| (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/scripts/match.py, restrict.py; outputs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/map_crosscheck_ffpe.txt, map_crosscheck_cells.txt, map_crosscheck_hk.txt, map_crosscheck_ffpe_hpvneg_restricted.txt)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "First 300 kB of each of the 43 .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/02/PXD064152/<file>.raw read by HTTP range, decoded UTF-16LE (instrument model and embedded method text; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/raw_instruments.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/raw_methods.txt)"
+  },
+  {
+   "id": "ref44",
+   "kind": "publication",
+   "location": "Noberini R et al. Clin Epigenetics 2021 (PMID 34315505, PMC8317427) - the LC-MS/derivatisation protocol this paper cites as [44] (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/ref44_PMC8317427.txt)"
+  },
+  {
+   "id": "ref19",
+   "kind": "publication",
+   "location": "Noberini R et al. Mol Cell Proteomics 2016;15:866 (PMID 26463340, PMC4813706) - the lab's histone super-SILAC/PAT-H-MS method (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/ref19_PMC4813706.txt)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "Cellosaurus records https://api.cellosaurus.org/cell-line/<CVCL>?format=txt for CVCL_7751, CVCL_7773, CVCL_7713, CVCL_7724, CVCL_7725, CVCL_7726, CVCL_7727, CVCL_7733, CVCL_7759, CVCL_1899, CVCL_7712, CVCL_C058, CVCL_2230, CVCL_E325, CVCL_L895 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/cvcl/, summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/cvcl_summary.tsv)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=<id> - every accession/label used was looked up live on 2026-11-08"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); spec README.adoc:27 (sdrf version v1.1.0); the spec submodule's nested templates copy is older"
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "convention",
+   "location": "SILAC campaign batch rules (rules 1, 2, 4, 10, 11, 15, 18) and super-SILAC precedents PXD009868 / PXD008327 (one heavy reference source per spiked aliquot)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-30",
+   "value": "30 distinct values (see SDRF)",
+   "source_ids": [
+    "sample_list",
+    "paper",
+    "cellosaurus",
+    "supp_data"
+   ],
+   "evidence": "Cell line name (Cellosaurus ID) for each HF190703_RN_HN_<token> file: token = cell line number in the paper's list (4,6,10A,17A,17B,18,19,23,47,104 = UM-SCC-*, 2 = UD-SCC-2, 90/152/154 = UPCI:SCC-*, VU = 93-VU-147T). Confirmed by ratio matching of all 14 Supplementary Data sheet 2 columns to the file with the same token (best match in 13/14; UM-SCC-17B column ambiguous). HN_47 (UM-SCC-47) is deposited but absent from Supplementary Data. Heavy rows: 'super-SILAC histone reference (Arg10; breast cancer cell line mix), aliquot spiked into <line>'."
+  },
+  {
+   "location": "characteristics[sample type] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29",
+   "value": "study sample",
+   "source_ids": [
+    "paper",
+    "campaign_rules"
+   ],
+   "evidence": "Light channel = study sample; heavy channel = spike-in internal standard (super-SILAC), encoded as 'reference' (campaign rule 18; PXD000332/PXD009868 precedent)."
+  },
+  {
+   "location": "characteristics[sample type] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30",
+   "value": "reference",
+   "source_ids": [
+    "paper",
+    "campaign_rules"
+   ],
+   "evidence": "Light channel = study sample; heavy channel = spike-in internal standard (super-SILAC), encoded as 'reference' (campaign rule 18; PXD000332/PXD009868 precedent)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-30",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Human samples (PRIDE organisms NEWT:9606); NCBITaxon:9606 Homo sapiens. Heavy reference rows: heavy-labelled human cancer cell lines (paper: 'labelled histones from ... cancer cells/breast cancer cell lines')."
+  },
+  {
+   "location": "characteristics[organism part] rows 1,3,11,13,21,27",
+   "value": "tongue",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site' UBERON where given (UM-SCC-10A laryngeal vocal fold UBERON:0003706; 17A/23 larynx UBERON:0001737; 17B cervical lymph node UBERON:0002429; 47 margin of tongue UBERON:0011877; UPCI-090/154 tongue UBERON:0001723; UPCI-152 hypopharynx UBERON:0001051; VU-SCC-147 mouth floor UBERON:0003679). Where Cellosaurus gives no site, the site named by its disease term: UM-SCC-4/6/18/19 'Tongue squamous cell carcinoma' -> tongue; UM-SCC-104 'Floor of mouth SCC' -> mouth floor; UD-SCC-2 'Hypopharyngeal SCC' -> hypopharynx. Heavy reference: not available."
+  },
+  {
+   "location": "characteristics[organism part] rows 5",
+   "value": "laryngeal vocal fold",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site' UBERON where given (UM-SCC-10A laryngeal vocal fold UBERON:0003706; 17A/23 larynx UBERON:0001737; 17B cervical lymph node UBERON:0002429; 47 margin of tongue UBERON:0011877; UPCI-090/154 tongue UBERON:0001723; UPCI-152 hypopharynx UBERON:0001051; VU-SCC-147 mouth floor UBERON:0003679). Where Cellosaurus gives no site, the site named by its disease term: UM-SCC-4/6/18/19 'Tongue squamous cell carcinoma' -> tongue; UM-SCC-104 'Floor of mouth SCC' -> mouth floor; UD-SCC-2 'Hypopharyngeal SCC' -> hypopharynx. Heavy reference: not available."
+  },
+  {
+   "location": "characteristics[organism part] rows 7,15",
+   "value": "larynx",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site' UBERON where given (UM-SCC-10A laryngeal vocal fold UBERON:0003706; 17A/23 larynx UBERON:0001737; 17B cervical lymph node UBERON:0002429; 47 margin of tongue UBERON:0011877; UPCI-090/154 tongue UBERON:0001723; UPCI-152 hypopharynx UBERON:0001051; VU-SCC-147 mouth floor UBERON:0003679). Where Cellosaurus gives no site, the site named by its disease term: UM-SCC-4/6/18/19 'Tongue squamous cell carcinoma' -> tongue; UM-SCC-104 'Floor of mouth SCC' -> mouth floor; UD-SCC-2 'Hypopharyngeal SCC' -> hypopharynx. Heavy reference: not available."
+  },
+  {
+   "location": "characteristics[organism part] rows 9",
+   "value": "cervical lymph node",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site' UBERON where given (UM-SCC-10A laryngeal vocal fold UBERON:0003706; 17A/23 larynx UBERON:0001737; 17B cervical lymph node UBERON:0002429; 47 margin of tongue UBERON:0011877; UPCI-090/154 tongue UBERON:0001723; UPCI-152 hypopharynx UBERON:0001051; VU-SCC-147 mouth floor UBERON:0003679). Where Cellosaurus gives no site, the site named by its disease term: UM-SCC-4/6/18/19 'Tongue squamous cell carcinoma' -> tongue; UM-SCC-104 'Floor of mouth SCC' -> mouth floor; UD-SCC-2 'Hypopharyngeal SCC' -> hypopharynx. Heavy reference: not available."
+  },
+  {
+   "location": "characteristics[organism part] rows 17,25",
+   "value": "hypopharynx",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site' UBERON where given (UM-SCC-10A laryngeal vocal fold UBERON:0003706; 17A/23 larynx UBERON:0001737; 17B cervical lymph node UBERON:0002429; 47 margin of tongue UBERON:0011877; UPCI-090/154 tongue UBERON:0001723; UPCI-152 hypopharynx UBERON:0001051; VU-SCC-147 mouth floor UBERON:0003679). Where Cellosaurus gives no site, the site named by its disease term: UM-SCC-4/6/18/19 'Tongue squamous cell carcinoma' -> tongue; UM-SCC-104 'Floor of mouth SCC' -> mouth floor; UD-SCC-2 'Hypopharyngeal SCC' -> hypopharynx. Heavy reference: not available."
+  },
+  {
+   "location": "characteristics[organism part] rows 19",
+   "value": "margin of tongue",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site' UBERON where given (UM-SCC-10A laryngeal vocal fold UBERON:0003706; 17A/23 larynx UBERON:0001737; 17B cervical lymph node UBERON:0002429; 47 margin of tongue UBERON:0011877; UPCI-090/154 tongue UBERON:0001723; UPCI-152 hypopharynx UBERON:0001051; VU-SCC-147 mouth floor UBERON:0003679). Where Cellosaurus gives no site, the site named by its disease term: UM-SCC-4/6/18/19 'Tongue squamous cell carcinoma' -> tongue; UM-SCC-104 'Floor of mouth SCC' -> mouth floor; UD-SCC-2 'Hypopharyngeal SCC' -> hypopharynx. Heavy reference: not available."
+  },
+  {
+   "location": "characteristics[organism part] rows 23,29",
+   "value": "mouth floor",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site' UBERON where given (UM-SCC-10A laryngeal vocal fold UBERON:0003706; 17A/23 larynx UBERON:0001737; 17B cervical lymph node UBERON:0002429; 47 margin of tongue UBERON:0011877; UPCI-090/154 tongue UBERON:0001723; UPCI-152 hypopharynx UBERON:0001051; VU-SCC-147 mouth floor UBERON:0003679). Where Cellosaurus gives no site, the site named by its disease term: UM-SCC-4/6/18/19 'Tongue squamous cell carcinoma' -> tongue; UM-SCC-104 'Floor of mouth SCC' -> mouth floor; UD-SCC-2 'Hypopharyngeal SCC' -> hypopharynx. Heavy reference: not available."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1,17",
+   "value": "1",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30",
+   "value": "pooled",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 3,19",
+   "value": "2",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 5,21",
+   "value": "3",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 7,23",
+   "value": "4",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 9,25",
+   "value": "5",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 11,27",
+   "value": "6",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 13,29",
+   "value": "7",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 15",
+   "value": "8",
+   "source_ids": [
+    "sample_list",
+    "supp_data",
+    "campaign_rules"
+   ],
+   "evidence": "Numbered 1..n within each factor-value group (rule 3). Cell lines: one culture per line, numbered per HPV group in the order of Supplementary Data sheet 2 (UM-SCC-47 last of HPV+). Keratinocytes: the 3 cultures of each arm numbered 1-3 in file-name order; the numbers do NOT imply cross-arm (donor) pairing, which no source documents. Heavy reference = 'pooled'."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29",
+   "value": "not pooled",
+   "source_ids": [
+    "paper",
+    "campaign_rules"
+   ],
+   "evidence": "Light samples are single samples (not pooled). Heavy channel is a mixture of labelled histones from several cell lines ('pooled'); component lines are not named in this paper, so no SN= list."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30",
+   "value": "pooled",
+   "source_ids": [
+    "paper",
+    "campaign_rules"
+   ],
+   "evidence": "Light samples are single samples (not pooled). Heavy channel is a mixture of labelled histones from several cell lines ('pooled'); component lines are not named in this paper, so no SN= list."
+  },
+  {
+   "location": "characteristics[disease] rows 1,3,5,7,9,11,13,15",
+   "value": "Human Papillomavirus-Independent Head and Neck Mucosal Squamous Cell Carcinoma",
+   "source_ids": [
+    "supp_data",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "HPV status is carried by the disease term (review round 1: the custom hpv status column was unlicensed and not an ontology term). NCIT:C207803 'Human Papillomavirus-Independent Head and Neck Mucosal Squamous Cell Carcinoma' (def. 'arises from the mucosal sites of the head and neck and is not associated with human papillomavirus infection') for the study's HPV- group: UM-SCC-4, -6, -10A, -18, -19, -23, -17A, -17B (Supplementary Data sheet 2 header 'HPV-'). NCIT:C171023 'Human Papillomavirus-Related Head and Neck Mucosal Squamous Cell Carcinoma' (def. '... associated with human papillomavirus infection') for the HPV+ group: UD-SCC-2, UM-SCC-104, 93-VU147-T, UPCI:SCC-90, -152, -154 (sheet 2 header 'HPV+'), plus UM-SCC-47 from Cellosaurus ('Contains from 21 to 47 copies of the HPV16 genome'; Transformant HPV16) - UM-SCC-47 is NOT in the paper's analysis (absent from sheet 2; paper 'HPV-negative and 6 HPV-positive'). Both terms verified live in OLS4 (not obsolete); no MONDO/EFO/DOID equivalent exists; the resolved sample-metadata disease validator lists ncit (warning level). All lines are mucosal head and neck SCC (Cellosaurus: tongue, larynx, hypopharynx, floor-of-mouth SCC; 17B = cervical lymph node metastasis of the laryngeal SCC of the 17A donor). The site-specific SCC term is dropped; the site remains in organism part. CONFLICT kept per study: Cellosaurus CVCL_7733 lists UM-SCC-23 as 'Transformant: HPV31', the study groups it HPV-. Heavy reference: breast cancer MONDO:0007254 (paper: 'breast cancer cell lines')."
+  },
+  {
+   "location": "characteristics[disease] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30",
+   "value": "breast cancer",
+   "source_ids": [
+    "supp_data",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "HPV status is carried by the disease term (review round 1: the custom hpv status column was unlicensed and not an ontology term). NCIT:C207803 'Human Papillomavirus-Independent Head and Neck Mucosal Squamous Cell Carcinoma' (def. 'arises from the mucosal sites of the head and neck and is not associated with human papillomavirus infection') for the study's HPV- group: UM-SCC-4, -6, -10A, -18, -19, -23, -17A, -17B (Supplementary Data sheet 2 header 'HPV-'). NCIT:C171023 'Human Papillomavirus-Related Head and Neck Mucosal Squamous Cell Carcinoma' (def. '... associated with human papillomavirus infection') for the HPV+ group: UD-SCC-2, UM-SCC-104, 93-VU147-T, UPCI:SCC-90, -152, -154 (sheet 2 header 'HPV+'), plus UM-SCC-47 from Cellosaurus ('Contains from 21 to 47 copies of the HPV16 genome'; Transformant HPV16) - UM-SCC-47 is NOT in the paper's analysis (absent from sheet 2; paper 'HPV-negative and 6 HPV-positive'). Both terms verified live in OLS4 (not obsolete); no MONDO/EFO/DOID equivalent exists; the resolved sample-metadata disease validator lists ncit (warning level). All lines are mucosal head and neck SCC (Cellosaurus: tongue, larynx, hypopharynx, floor-of-mouth SCC; 17B = cervical lymph node metastasis of the laryngeal SCC of the 17A donor). The site-specific SCC term is dropped; the site remains in organism part. CONFLICT kept per study: Cellosaurus CVCL_7733 lists UM-SCC-23 as 'Transformant: HPV31', the study groups it HPV-. Heavy reference: breast cancer MONDO:0007254 (paper: 'breast cancer cell lines')."
+  },
+  {
+   "location": "characteristics[disease] rows 17,19,21,23,25,27,29",
+   "value": "Human Papillomavirus-Related Head and Neck Mucosal Squamous Cell Carcinoma",
+   "source_ids": [
+    "supp_data",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "HPV status is carried by the disease term (review round 1: the custom hpv status column was unlicensed and not an ontology term). NCIT:C207803 'Human Papillomavirus-Independent Head and Neck Mucosal Squamous Cell Carcinoma' (def. 'arises from the mucosal sites of the head and neck and is not associated with human papillomavirus infection') for the study's HPV- group: UM-SCC-4, -6, -10A, -18, -19, -23, -17A, -17B (Supplementary Data sheet 2 header 'HPV-'). NCIT:C171023 'Human Papillomavirus-Related Head and Neck Mucosal Squamous Cell Carcinoma' (def. '... associated with human papillomavirus infection') for the HPV+ group: UD-SCC-2, UM-SCC-104, 93-VU147-T, UPCI:SCC-90, -152, -154 (sheet 2 header 'HPV+'), plus UM-SCC-47 from Cellosaurus ('Contains from 21 to 47 copies of the HPV16 genome'; Transformant HPV16) - UM-SCC-47 is NOT in the paper's analysis (absent from sheet 2; paper 'HPV-negative and 6 HPV-positive'). Both terms verified live in OLS4 (not obsolete); no MONDO/EFO/DOID equivalent exists; the resolved sample-metadata disease validator lists ncit (warning level). All lines are mucosal head and neck SCC (Cellosaurus: tongue, larynx, hypopharynx, floor-of-mouth SCC; 17B = cervical lymph node metastasis of the laryngeal SCC of the 17A donor). The site-specific SCC term is dropped; the site remains in organism part. CONFLICT kept per study: Cellosaurus CVCL_7733 lists UM-SCC-23 as 'Transformant: HPV31', the study groups it HPV-. Heavy reference: breast cancer MONDO:0007254 (paper: 'breast cancer cell lines')."
+  },
+  {
+   "location": "characteristics[material type] rows 1-30",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "cell line (cultured HNSCC lines; heavy mix = breast cancer cell lines)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 17,21,25,27",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "European ancestry (HANCESTRO:0005) only where Cellosaurus states 'Population: Caucasian' (UD-SCC-2, UPCI-SCC-090, -152, -154); HANCESTRO:0005 lists Caucasian as synonym."
+  },
+  {
+   "location": "characteristics[age] rows 1,7,9",
+   "value": "48Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 3",
+   "value": "32Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 5",
+   "value": "57Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 11",
+   "value": "68Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 13",
+   "value": "66Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 15",
+   "value": "36Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 17,29",
+   "value": "58Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 19",
+   "value": "53Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 21",
+   "value": "46Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 23",
+   "value": "56Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 25",
+   "value": "47Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[age] rows 27",
+   "value": "54Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[sex] rows 1,7,9,15",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Cellosaurus SX; paper agrees for UM-SCC-17A (female) and UPCI:SCC-152 (male)."
+  },
+  {
+   "location": "characteristics[sex] rows 3,5,11,13,17,19,21,23,25,27,29",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Cellosaurus SX; paper agrees for UM-SCC-17A (female) and UPCI:SCC-152 (male)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29",
+   "value": "adult",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "adult (EFO:0001272): keratinocytes = 'Adult human epidermal keratinocytes' (paper Methods); cell lines = Cellosaurus donor ages 32Y-68Y (>= 20Y, campaign rule 9)."
+  },
+  {
+   "location": "characteristics[individual] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30",
+   "value": "pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cell lines only: shared donors stated in paper Methods ('UM-SCC-17B is derived from metastasis of the same donor' as UM-SCC-17A; 'UPCI:SCC-152 ... is a recurrence of UPCI:SCC-90'); validator charset [A-Za-z0-9_-]. Other lines and all keratinocyte cultures 'not available'; heavy reference 'pooled'."
+  },
+  {
+   "location": "characteristics[individual] rows 7,9",
+   "value": "UM-SCC-17-donor",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cell lines only: shared donors stated in paper Methods ('UM-SCC-17B is derived from metastasis of the same donor' as UM-SCC-17A; 'UPCI:SCC-152 ... is a recurrence of UPCI:SCC-90'); validator charset [A-Za-z0-9_-]. Other lines and all keratinocyte cultures 'not available'; heavy reference 'pooled'."
+  },
+  {
+   "location": "characteristics[individual] rows 21,25",
+   "value": "UPCI-SCC-090-152-donor",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cell lines only: shared donors stated in paper Methods ('UM-SCC-17B is derived from metastasis of the same donor' as UM-SCC-17A; 'UPCI:SCC-152 ... is a recurrence of UPCI:SCC-90'); validator charset [A-Za-z0-9_-]. Other lines and all keratinocyte cultures 'not available'; heavy reference 'pooled'."
+  },
+  {
+   "location": "characteristics[cell line] rows 1",
+   "value": "UM-SCC-4",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30",
+   "value": "super-SILAC mix of heavy-labelled breast cancer cell lines",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 3",
+   "value": "UM-SCC-6",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 5",
+   "value": "UM-SCC-10A",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 7",
+   "value": "UM-SCC-17A",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 9",
+   "value": "UM-SCC-17B",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 11",
+   "value": "UM-SCC-18",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 13",
+   "value": "UM-SCC-19",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 15",
+   "value": "UM-SCC-23",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 17",
+   "value": "UD-SCC-2",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 19",
+   "value": "UM-SCC-47",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 21",
+   "value": "UPCI-SCC-090",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 23",
+   "value": "UM-SCC-104",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 25",
+   "value": "UPCI-SCC-152",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 27",
+   "value": "UPCI-SCC-154",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cell line] rows 29",
+   "value": "VU-SCC-147",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus recommended names; heavy rows: free text 'super-SILAC mix of heavy-labelled breast cancer cell lines' (paper: 'A mixture of labelled histones obtained from breast cancer cell lines were used as internal standard for the analysis of HNSCC cell lines [42]'; lines not named; PXD000332 precedent)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1",
+   "value": "CVCL_7751",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 3",
+   "value": "CVCL_7773",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 5",
+   "value": "CVCL_7713",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 7",
+   "value": "CVCL_7724",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 9",
+   "value": "CVCL_7725",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 11",
+   "value": "CVCL_7726",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 13",
+   "value": "CVCL_7727",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 15",
+   "value": "CVCL_7733",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 17",
+   "value": "CVCL_E325",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 19",
+   "value": "CVCL_7759",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 21",
+   "value": "CVCL_1899",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 23",
+   "value": "CVCL_7712",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 25",
+   "value": "CVCL_C058",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 27",
+   "value": "CVCL_2230",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 29",
+   "value": "CVCL_L895",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC per line (UPCI:SCC-090 -> CVCL_1899, UPCI:SCC-152 -> CVCL_C058, UPCI:SCC-154 -> CVCL_2230, 93-VU-147T -> VU-SCC-147 CVCL_L895 by synonym)."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1",
+   "value": "UM-SCC-4",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 3",
+   "value": "UM-SCC-6",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 5",
+   "value": "UM-SCC-10A",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 7",
+   "value": "UM-SCC-17A",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 9",
+   "value": "UM-SCC-17B",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 11",
+   "value": "UM-SCC-18",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 13",
+   "value": "UM-SCC-19",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 15",
+   "value": "UM-SCC-23",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 17",
+   "value": "UD-SCC-2",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 19",
+   "value": "UM-SCC-47",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 21",
+   "value": "UPCI-SCC-090",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 23",
+   "value": "UM-SCC-104",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 25",
+   "value": "UPCI-SCC-152",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 27",
+   "value": "UPCI-SCC-154",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 29",
+   "value": "VU-SCC-147",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "'All the cell lines were grown in Dulbecco's modified Eagle's medium (DMEM) ...' -> NCIT:C185409. Heavy mix medium not stated here -> not available."
+  },
+  {
+   "location": "assay name rows 1-30",
+   "value": "15 distinct values (see SDRF)",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Raw file stem (shared by the light and heavy rows of one run)."
+  },
+  {
+   "location": "technology type rows 1-30",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Mass spectrometry (super-SILAC LC-MS/MS) of histones; paper Methods 'LC/MS analysis of histone PTMs'."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-30",
+   "value": "1",
+   "source_ids": [
+    "sample_list"
+   ],
+   "evidence": "One injection per sample in Sample_list.txt; no repeated injections deposited."
+  },
+  {
+   "location": "comment[data file] rows 1-30",
+   "value": "15 distinct values (see SDRF)",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Each .raw listed by PRIDE files/all; per-file assignment from Sample_list.txt."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-30",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "SDRF spec version v1.1.0 (README.adoc:27), campaign rule 1."
+  },
+  {
+   "location": "comment[sdrf template] (occurrence 1) rows 1-30",
+   "value": "NT=ms-proteomics;VV=v1.2.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Templates declared per part (see report); versions as resolved by sdrf-tools contract; ms-proteomics latest 1.2.0 per upstream templates.yaml line 150."
+  },
+  {
+   "location": "comment[sdrf template] (occurrence 2) rows 1-30",
+   "value": "NT=human;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Templates declared per part (see report); versions as resolved by sdrf-tools contract; ms-proteomics latest 1.2.0 per upstream templates.yaml line 150."
+  },
+  {
+   "location": "comment[sdrf template] (occurrence 3) rows 1-30",
+   "value": "NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Templates declared per part (see report); versions as resolved by sdrf-tools contract; ms-proteomics latest 1.2.0 per upstream templates.yaml line 150."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-30",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "campaign_rules"
+   ],
+   "evidence": "Campaign rule 10: NT=sdrf-skills;VV=v0.1.0."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-30",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw_headers",
+    "ref44"
+   ],
+   "evidence": "Every raw method header reads 'FULL MS / DD-MS2 (TOPN)', TopN 10; ref [44] (cited for the LC-MS set-up): 'operated in the data-dependent acquisition (DDA) mode'."
+  },
+  {
+   "location": "comment[instrument] rows 1-30",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_headers",
+    "pride"
+   ],
+   "evidence": "Model string in each raw header: 28 HF* files 'Q Exactive HF - Orbitrap MS', 15 QEP* files 'Q Exactive Plus - Orbitrap MS'. PRIDE lists both Q Exactive Plus (MS:1002634) and Q Exactive HF (MS:1002523). The paper Methods names only the Q Exactive Plus - contradicted by the raw files (raw > paper)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-30",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "ref44",
+    "campaign_rules"
+   ],
+   "evidence": "Paper: histone bands 'chemically acylated ... and in-gel digested with trypsin'. Acylation blocks Lys so trypsin cuts after Arg only ('Arg-C-like', ref44); the digestion enzyme is trypsin (campaign rule 2)."
+  },
+  {
+   "location": "comment[label] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29",
+   "value": "SILAC light",
+   "source_ids": [
+    "paper",
+    "epiprofile",
+    "ref44"
+   ],
+   "evidence": "Paper: 'a % relative abundance (%RA) value for the sample (light channel - L) or the internal standard (heavy channel - H)'. EpiProfile ran in 'histone with SILAC' mode and reports LightR/HeavyR with heavy areas near-constant across runs (spike-in), light areas variable. Multiplicity 2 verified (campaign rule 14)."
+  },
+  {
+   "location": "comment[label] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "paper",
+    "epiprofile",
+    "ref44"
+   ],
+   "evidence": "Paper: 'a % relative abundance (%RA) value for the sample (light channel - L) or the internal standard (heavy channel - H)'. EpiProfile ran in 'histone with SILAC' mode and reports LightR/HeavyR with heavy areas near-constant across runs (spike-in), light areas variable. Multiplicity 2 verified (campaign rule 14)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-30",
+   "value": "1",
+   "source_ids": [
+    "sample_list",
+    "paper"
+   ],
+   "evidence": "Histone octamer band excised as one gel slice per sample; one raw file per sample, unfractionated."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-30",
+   "value": "NT=higher energy beam-type collision-induced dissociation;AC=MS:1002481",
+   "source_ids": [
+    "raw_headers",
+    "ref44"
+   ],
+   "evidence": "Raw method blocks carry <Fragmentation_HCD ... EnergyType=normalized> and NCE 28; ref44: 'fragmented by HCD with a normalized collision energy setting of 28%'. Q Exactive HF/Plus fragment by HCD only."
+  },
+  {
+   "location": "comment[collision energy] rows 1-30",
+   "value": "28 NCE",
+   "source_ids": [
+    "raw_headers",
+    "ref44"
+   ],
+   "evidence": "'(N)CE / stepped (N)CE  nce: 28' in the method text of all 43 raw files; ref44 states 28%."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 1) rows 1-30",
+   "value": "NT=Acetyl:2H(3);AC=UNIMOD:56;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "ref44",
+    "epiprofile",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "No database-search parameter file is deposited (EpiProfile 2.0 targeted XIC extraction). Mods describe what EpiProfile quantifies for this workflow: biological Lys mono/di/trimethylation and acetylation (paper results; PRIDE identifiedPTMStrings), chemical derivatisation stated in the paper, and the heavy SILAC label Arg10 (ref44/ref19: 'Arg10 was selected as heavy label (multiplicity = 2) in ... EpiProfile 2'; UNIMOD:267 = Label:13C(6)15N(4), +10.008; MT=Variable per campaign rule 11). All accessions verified in OLS."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 2) rows 1-30",
+   "value": "NT=Methyl;AC=UNIMOD:34;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "ref44",
+    "epiprofile",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "No database-search parameter file is deposited (EpiProfile 2.0 targeted XIC extraction). Mods describe what EpiProfile quantifies for this workflow: biological Lys mono/di/trimethylation and acetylation (paper results; PRIDE identifiedPTMStrings), chemical derivatisation stated in the paper, and the heavy SILAC label Arg10 (ref44/ref19: 'Arg10 was selected as heavy label (multiplicity = 2) in ... EpiProfile 2'; UNIMOD:267 = Label:13C(6)15N(4), +10.008; MT=Variable per campaign rule 11). All accessions verified in OLS."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 3) rows 1-30",
+   "value": "NT=Dimethyl;AC=UNIMOD:36;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "ref44",
+    "epiprofile",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "No database-search parameter file is deposited (EpiProfile 2.0 targeted XIC extraction). Mods describe what EpiProfile quantifies for this workflow: biological Lys mono/di/trimethylation and acetylation (paper results; PRIDE identifiedPTMStrings), chemical derivatisation stated in the paper, and the heavy SILAC label Arg10 (ref44/ref19: 'Arg10 was selected as heavy label (multiplicity = 2) in ... EpiProfile 2'; UNIMOD:267 = Label:13C(6)15N(4), +10.008; MT=Variable per campaign rule 11). All accessions verified in OLS."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 4) rows 1-30",
+   "value": "NT=Trimethyl;AC=UNIMOD:37;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "ref44",
+    "epiprofile",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "No database-search parameter file is deposited (EpiProfile 2.0 targeted XIC extraction). Mods describe what EpiProfile quantifies for this workflow: biological Lys mono/di/trimethylation and acetylation (paper results; PRIDE identifiedPTMStrings), chemical derivatisation stated in the paper, and the heavy SILAC label Arg10 (ref44/ref19: 'Arg10 was selected as heavy label (multiplicity = 2) in ... EpiProfile 2'; UNIMOD:267 = Label:13C(6)15N(4), +10.008; MT=Variable per campaign rule 11). All accessions verified in OLS."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 5) rows 1-30",
+   "value": "NT=Acetyl;AC=UNIMOD:1;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "ref44",
+    "epiprofile",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "No database-search parameter file is deposited (EpiProfile 2.0 targeted XIC extraction). Mods describe what EpiProfile quantifies for this workflow: biological Lys mono/di/trimethylation and acetylation (paper results; PRIDE identifiedPTMStrings), chemical derivatisation stated in the paper, and the heavy SILAC label Arg10 (ref44/ref19: 'Arg10 was selected as heavy label (multiplicity = 2) in ... EpiProfile 2'; UNIMOD:267 = Label:13C(6)15N(4), +10.008; MT=Variable per campaign rule 11). All accessions verified in OLS."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 6) rows 1-30",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable",
+   "source_ids": [
+    "paper",
+    "ref44",
+    "epiprofile",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "No database-search parameter file is deposited (EpiProfile 2.0 targeted XIC extraction). Mods describe what EpiProfile quantifies for this workflow: biological Lys mono/di/trimethylation and acetylation (paper results; PRIDE identifiedPTMStrings), chemical derivatisation stated in the paper, and the heavy SILAC label Arg10 (ref44/ref19: 'Arg10 was selected as heavy label (multiplicity = 2) in ... EpiProfile 2'; UNIMOD:267 = Label:13C(6)15N(4), +10.008; MT=Variable per campaign rule 11). All accessions verified in OLS."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-30",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw_headers"
+   ],
+   "evidence": "Q Exactive HF / Q Exactive Plus: dd-MS2 scans are Orbitrap scans (method text: dd-MS2 'Resolution 15,000')."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-30",
+   "value": "300m/z-1350m/z",
+   "source_ids": [
+    "raw_headers",
+    "ref44"
+   ],
+   "evidence": "Full MS 'Scan range 300 to 1350 m/z' in all 43 raw method headers; ref44 'm/z 300-1350'."
+  },
+  {
+   "location": "factor value[disease] rows 1,3,5,7,9,11,13,15",
+   "value": "Human Papillomavirus-Independent Head and Neck Mucosal Squamous Cell Carcinoma",
+   "source_ids": [
+    "supp_data",
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "The compared variable of Fig. 1B (HPV+ vs HPV- HNSCC cell lines); mirrors characteristics[disease]. Heavy reference rows 'not applicable' (PXD000332/PXD009868 precedent)."
+  },
+  {
+   "location": "factor value[disease] rows 17,19,21,23,25,27,29",
+   "value": "Human Papillomavirus-Related Head and Neck Mucosal Squamous Cell Carcinoma",
+   "source_ids": [
+    "supp_data",
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "The compared variable of Fig. 1B (HPV+ vs HPV- HNSCC cell lines); mirrors characteristics[disease]. Heavy reference rows 'not applicable' (PXD000332/PXD009868 precedent)."
+  }
+ ],
+ "limitations": [
+  "techsdrf is not installed; instrument, acquisition mode, NCE and MS1 range were read from HTTP-range-read .raw headers only.",
+  "No search-engine parameter file is deposited: EpiProfile 2.0 (targeted XIC extraction) parameters, including precursor/fragment tolerances, are not deposited or stated -> tolerances 'not available'. comment[modification parameters] is reconstructed from the paper's chemistry, ref44's EpiProfile/MaxQuant variable-modification list for the same protocols and the Arg10 heavy label of the lab's super-SILAC method (ref44/ref19), not read from a deposited search file.",
+  "The heavy label (Arg10, UNIMOD:267) is taken from the lab's published histone super-SILAC method (ref19 'Arg-10' SILAC-DMEM; ref44 'Arg10 was selected as heavy label (multiplicity = 2) in ... EpiProfile 2'), which this paper cites; this paper itself does not name the heavy amino acid, and no MS1 heavy/light mass offset was measured.",
+  "The cell lines making up the heavy super-SILAC reference mixes are not named in this paper (refs [42]/[43], not open access). Ref19 (2016) used MDA-MB-231, MDA-MB-468, MDA-MB-453 and MDA-MB-361 for its breast cancer mix, but it is not stated that the mix used here is identical, so the components are not listed.",
+  "reconcile reports instrument_contradicted (protocol names only Q Exactive Plus; 28 rows say Q Exactive HF). Refuted: the 28 HF* raw headers read 'Q Exactive HF - Orbitrap MS' and PRIDE lists Q Exactive HF; the paper prose is incomplete.",
+  "The 22 FFPE runs of this deposit are not annotated (review round 1, coordinator decision): no source keys the FFPE raw files to HPV status or patient; see annotations/BLOCKED.md and the report.",
+  "UM-SCC-23: the study classifies it HPV-negative (Supplementary Data sheet 2) -> HPV-independent HNSCC; Cellosaurus lists it as an HPV31 transformant. The study's grouping is used.",
+  "UM-SCC-47 (HF190703_RN_HN_47) is deposited but was NOT part of the paper's analysis (absent from Supplementary Data sheet 2; its EpiProfile .ms2 is ~1 MB vs 13-70 MB for the others, suggesting a failed run); its HPV-related disease term comes from Cellosaurus, not the paper.",
+  "HPV status is encoded via NCIT HPV-related/independent head and neck mucosal SCC terms in characteristics[disease]; the Cellosaurus site-specific SCC diagnosis (tongue/laryngeal/hypopharyngeal/floor-of-mouth SCC) is therefore not in the disease column (site kept in organism part).",
+  "Organism part for UM-SCC-4/6/18/19, UM-SCC-104 and UD-SCC-2 is derived from the Cellosaurus disease term's site (no 'Derived from site' line).",
+  "Cell-line derivatisation is D3-acetylation (paper: 'deuterated acetic anhydride (cell lines)'); no PIC step is stated for it, so no Phenylisocyanate mod is declared for this part."
+ ]
+}

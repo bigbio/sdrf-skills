@@ -1,0 +1,749 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD013311.sdrf.tsv",
+ "dataset": "PXD013311",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD013311 via get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/pride.json) and the raw live v3 record (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/pride_v3.json, fetched 2026-11-08)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD013311/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/files_all.json; 50 entries = 48 RAW + txtbreast.zip + txtOCHNC.zip; every entry's projectAccessions contains PXD013311)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC6562406 / doi:10.3390/cancers11050723 (Noberini et al., Cancers 2019 11:723), text https://pmc-oa-opendata.s3.amazonaws.com/PMC6562406.1/PMC6562406.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/paper.txt; Methods 3.1-3.9)"
+  },
+  {
+   "id": "suppl",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6562406.1/cancers-11-00723-s001.zip -> cancers-484721-suppl-final.docx Tables S1 (breast), S2 (ovarian), S3 (head and neck) (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/supp/cancers-484721-supplementary/)"
+  },
+  {
+   "id": "mq_breast",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/09/PXD013311/txtbreast.zip members 'txt ac me1 me2/{summary,parameters}.txt' and 'txt ac me1 me3/{summary,parameters}.txt' (HTTP-range extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/mq/breast/)"
+  },
+  {
+   "id": "mq_ochnc",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/09/PXD013311/txtOCHNC.zip members 'txt me1 me2 ac/{summary,parameters}.txt' and 'txt me 1 me3 ac/{summary,parameters}.txt' (HTTP-range extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/mq/ochnc/)"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 400 KB of each of the 48 .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/09/PXD013311/<file>.raw, UTF-16LE decoded (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/rawhdr/; parsed instrument model and method block into /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/rawmeth.json by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/scripts/rawmeth.py)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:<MDA-MB-231|MDA-MB-468|MDA-MB-453|MDA-MB-361> (parental lines CVCL_0062, CVCL_0419, CVCL_0418, CVCL_0620: SX Female, DI NCIt C5214 Breast adenocarcinoma)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 via sdrf-tools ols / sdrf-tools verify (all accessions verified live 2026-11-08)"
+  },
+  {
+   "id": "contract",
+   "kind": "spec",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata (ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0)"
+  },
+  {
+   "id": "spec_versions",
+   "kind": "spec",
+   "location": "spec/sdrf-proteomics/README.adoc:27 (SDRF spec v1.1.0); bigbio/sdrf-templates 7da1747 templates.yaml line 150 'latest: 1.2.0' for ms-proteomics (the spec submodule's nested templates copy is older); campaign batch rules 1 and 10"
+  },
+  {
+   "id": "build",
+   "kind": "tool",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/build/samples_{breast,ochnc}.tsv + technical_{breast,ochnc}.tsv -> sdrf-tools build x2 -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/scripts/concat.py (identical headers asserted)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-96",
+   "value": "96 distinct values (per-row)",
+   "source_ids": [
+    "suppl",
+    "files",
+    "build"
+   ],
+   "evidence": "Light rows: '<cohort patient ID> normal|tumor' from Tables S1-S3 (patient number + Normal/Tumor column) matching the raw-file stem (e.g. LuA1N.raw = Luminal A-like patient 1 normal). Heavy rows: one aliquot of the super-SILAC reference per run ('super-SILAC reference in <run>'), distinct per run so the build coordinate (source, replicate, fraction) stays unique; the same reference mix is spiked into every run (paper 3.7)."
+  },
+  {
+   "location": "characteristics[sample type] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95",
+   "value": "study sample",
+   "source_ids": [
+    "paper",
+    "mq_breast",
+    "mq_ochnc",
+    "ols"
+   ],
+   "evidence": "Light channel = patient histones (study sample, PRIDE:0001013); heavy channel = Arg10-labelled super-SILAC spike-in standard (reference, PRIDE:0000899, descendant of PRIDE:0000895 via multiplex sample). Paper 3.7: 'About 5-10 ug of histones per run per sample were mixed with an approximately equal amount of super-SILAC mix'; summary.txt Labels0 empty, Labels1 Arg10."
+  },
+  {
+   "location": "characteristics[sample type] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96",
+   "value": "reference",
+   "source_ids": [
+    "paper",
+    "mq_breast",
+    "mq_ochnc",
+    "ols"
+   ],
+   "evidence": "Light channel = patient histones (study sample, PRIDE:0001013); heavy channel = Arg10-labelled super-SILAC spike-in standard (reference, PRIDE:0000899, descendant of PRIDE:0000895 via multiplex sample). Paper 3.7: 'About 5-10 ug of histones per run per sample were mixed with an approximately equal amount of super-SILAC mix'; summary.txt Labels0 empty, Labels1 Arg10."
+  },
+  {
+   "location": "characteristics[organism] rows 1-96",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; human patient tissues and human breast cancer cell lines (NCBITaxon:9606)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59",
+   "value": "breast",
+   "source_ids": [
+    "paper",
+    "suppl",
+    "ols"
+   ],
+   "evidence": "breast (UBERON:0000310) for LuA/TN breast tumor and surrounding normal tissue (paper 3.1, Table S1); ovary (UBERON:0000992) for ovarian cancer and healthy ovarian tissue (Table S2, paper 3.1 'Healthy ovarian tissues ... adnexectomy'); craniocervical region (UBERON:0007811, 'subdivision that includes the head, jaws, pharyngeal region and the neck') for all HNC rows, normal and tumor: Table S3, the individual-level source, gives no anatomical site, only 'head and neck squamous cell carcinoma' / head and neck normal. The narrower sites tonsil (normals; paper 3.1 'Normal head and neck tissues were obtained from tonsils') and oropharynx (tumors; paper 2.1 'head and neck oropharyngeal cancers') are cohort-level statements and appear only, labelled as such, in characteristics[clinical data]. Heavy reference = mix of 4 cell lines of different metastatic origin -> not applicable."
+  },
+  {
+   "location": "characteristics[organism part] rows 61,63,65,67,69,71",
+   "value": "craniocervical region",
+   "source_ids": [
+    "paper",
+    "suppl",
+    "ols"
+   ],
+   "evidence": "breast (UBERON:0000310) for LuA/TN breast tumor and surrounding normal tissue (paper 3.1, Table S1); ovary (UBERON:0000992) for ovarian cancer and healthy ovarian tissue (Table S2, paper 3.1 'Healthy ovarian tissues ... adnexectomy'); craniocervical region (UBERON:0007811, 'subdivision that includes the head, jaws, pharyngeal region and the neck') for all HNC rows, normal and tumor: Table S3, the individual-level source, gives no anatomical site, only 'head and neck squamous cell carcinoma' / head and neck normal. The narrower sites tonsil (normals; paper 3.1 'Normal head and neck tissues were obtained from tonsils') and oropharynx (tumors; paper 2.1 'head and neck oropharyngeal cancers') are cohort-level statements and appear only, labelled as such, in characteristics[clinical data]. Heavy reference = mix of 4 cell lines of different metastatic origin -> not applicable."
+  },
+  {
+   "location": "characteristics[organism part] rows 73,75,77,79,81,83,85,87,89,91,93,95",
+   "value": "ovary",
+   "source_ids": [
+    "paper",
+    "suppl",
+    "ols"
+   ],
+   "evidence": "breast (UBERON:0000310) for LuA/TN breast tumor and surrounding normal tissue (paper 3.1, Table S1); ovary (UBERON:0000992) for ovarian cancer and healthy ovarian tissue (Table S2, paper 3.1 'Healthy ovarian tissues ... adnexectomy'); craniocervical region (UBERON:0007811, 'subdivision that includes the head, jaws, pharyngeal region and the neck') for all HNC rows, normal and tumor: Table S3, the individual-level source, gives no anatomical site, only 'head and neck squamous cell carcinoma' / head and neck normal. The narrower sites tonsil (normals; paper 3.1 'Normal head and neck tissues were obtained from tonsils') and oropharynx (tumors; paper 2.1 'head and neck oropharyngeal cancers') are cohort-level statements and appear only, labelled as such, in characteristics[clinical data]. Heavy reference = mix of 4 cell lines of different metastatic origin -> not applicable."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-96",
+   "value": "16 distinct values (per-row)",
+   "source_ids": [
+    "suppl",
+    "build"
+   ],
+   "evidence": "Light rows: integer restarting per (factor value[disease], factor value[organism part]) group, one per independent patient sample (batch rule 3). Heavy rows: 'pooled' (pool of 4 cell lines; contract: integer or pooled)."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95",
+   "value": "not pooled",
+   "source_ids": [
+    "paper",
+    "contract"
+   ],
+   "evidence": "Light: not pooled (single patient specimen). Heavy: SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361 \u2014 the 4 constituent labelled cell lines, structured (contract pattern SN=sample1;SN=sample2; same encoding as batch-3 PXD009868 and curated precedent PXD002882; parse_sdrf emits a WARNING for SN= values, accepted). characteristics[cell line] is not used: it is licensed only by cell-lines, whose required cell line column forbids reserved words on the 48 patient rows. Paper 3.6 'MDA-MB-231, MDA-MB-468, MDA-MB-453, and MDA-MB-361 ... Histones were isolated ..., mixed in equal amounts'."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96",
+   "value": "SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361",
+   "source_ids": [
+    "paper",
+    "contract"
+   ],
+   "evidence": "Light: not pooled (single patient specimen). Heavy: SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361 \u2014 the 4 constituent labelled cell lines, structured (contract pattern SN=sample1;SN=sample2; same encoding as batch-3 PXD009868 and curated precedent PXD002882; parse_sdrf emits a WARNING for SN= values, accepted). characteristics[cell line] is not used: it is licensed only by cell-lines, whose required cell line column forbids reserved words on the 48 patient rows. Paper 3.6 'MDA-MB-231, MDA-MB-468, MDA-MB-453, and MDA-MB-361 ... Histones were isolated ..., mixed in equal amounts'."
+  },
+  {
+   "location": "characteristics[disease] rows 1,5,9,13,17,21,25,29,33,37,41,45,49,53,57,61,65,67,73,75,77,79,81",
+   "value": "normal",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Per individual: Table S1 subtype (Luminal A-like -> luminal A breast carcinoma MONDO:0021116; Triple negative -> triple-negative breast carcinoma MONDO:0005494); Table S2 tumors 6-12 serous, grade 3, and paper 2.1 'Ovarian cancer specimens belonging to the high-grade serous histotype' diagnosis per Table S2 row: OV6/OV8/OV10 'Serous surface cystadenoma, NOS' (grade 3) -> ovarian serous tumor MONDO:0037255 (benign/borderline/malignant parent; does not assert carcinoma), OV7/OV9/OV11/OV12 'Serous surface papillary carcinoma' -> ovarian serous surface papillary adenocarcinoma MONDO:0003874 (a descendant of MONDO:0037255, OLS hierarchicalAncestors); the paper's cohort sentence 'high-grade serous histotype' is NOT used for per-patient values; Table S3 'head and neck squamous cell carcinoma' -> MONDO:0010150; all Normal-column samples -> normal (PATO:0000461). Heavy: all four cell lines are Breast adenocarcinoma (Cellosaurus NCIt C5214) -> breast adenocarcinoma MONDO:0004988."
+  },
+  {
+   "location": "characteristics[disease] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96",
+   "value": "breast adenocarcinoma",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Per individual: Table S1 subtype (Luminal A-like -> luminal A breast carcinoma MONDO:0021116; Triple negative -> triple-negative breast carcinoma MONDO:0005494); Table S2 tumors 6-12 serous, grade 3, and paper 2.1 'Ovarian cancer specimens belonging to the high-grade serous histotype' diagnosis per Table S2 row: OV6/OV8/OV10 'Serous surface cystadenoma, NOS' (grade 3) -> ovarian serous tumor MONDO:0037255 (benign/borderline/malignant parent; does not assert carcinoma), OV7/OV9/OV11/OV12 'Serous surface papillary carcinoma' -> ovarian serous surface papillary adenocarcinoma MONDO:0003874 (a descendant of MONDO:0037255, OLS hierarchicalAncestors); the paper's cohort sentence 'high-grade serous histotype' is NOT used for per-patient values; Table S3 'head and neck squamous cell carcinoma' -> MONDO:0010150; all Normal-column samples -> normal (PATO:0000461). Heavy: all four cell lines are Breast adenocarcinoma (Cellosaurus NCIt C5214) -> breast adenocarcinoma MONDO:0004988."
+  },
+  {
+   "location": "characteristics[disease] rows 3,7,11,15,19,23,27,31",
+   "value": "luminal A breast carcinoma",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Per individual: Table S1 subtype (Luminal A-like -> luminal A breast carcinoma MONDO:0021116; Triple negative -> triple-negative breast carcinoma MONDO:0005494); Table S2 tumors 6-12 serous, grade 3, and paper 2.1 'Ovarian cancer specimens belonging to the high-grade serous histotype' diagnosis per Table S2 row: OV6/OV8/OV10 'Serous surface cystadenoma, NOS' (grade 3) -> ovarian serous tumor MONDO:0037255 (benign/borderline/malignant parent; does not assert carcinoma), OV7/OV9/OV11/OV12 'Serous surface papillary carcinoma' -> ovarian serous surface papillary adenocarcinoma MONDO:0003874 (a descendant of MONDO:0037255, OLS hierarchicalAncestors); the paper's cohort sentence 'high-grade serous histotype' is NOT used for per-patient values; Table S3 'head and neck squamous cell carcinoma' -> MONDO:0010150; all Normal-column samples -> normal (PATO:0000461). Heavy: all four cell lines are Breast adenocarcinoma (Cellosaurus NCIt C5214) -> breast adenocarcinoma MONDO:0004988."
+  },
+  {
+   "location": "characteristics[disease] rows 35,39,43,47,51,55,59",
+   "value": "triple-negative breast carcinoma",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Per individual: Table S1 subtype (Luminal A-like -> luminal A breast carcinoma MONDO:0021116; Triple negative -> triple-negative breast carcinoma MONDO:0005494); Table S2 tumors 6-12 serous, grade 3, and paper 2.1 'Ovarian cancer specimens belonging to the high-grade serous histotype' diagnosis per Table S2 row: OV6/OV8/OV10 'Serous surface cystadenoma, NOS' (grade 3) -> ovarian serous tumor MONDO:0037255 (benign/borderline/malignant parent; does not assert carcinoma), OV7/OV9/OV11/OV12 'Serous surface papillary carcinoma' -> ovarian serous surface papillary adenocarcinoma MONDO:0003874 (a descendant of MONDO:0037255, OLS hierarchicalAncestors); the paper's cohort sentence 'high-grade serous histotype' is NOT used for per-patient values; Table S3 'head and neck squamous cell carcinoma' -> MONDO:0010150; all Normal-column samples -> normal (PATO:0000461). Heavy: all four cell lines are Breast adenocarcinoma (Cellosaurus NCIt C5214) -> breast adenocarcinoma MONDO:0004988."
+  },
+  {
+   "location": "characteristics[disease] rows 63,69,71",
+   "value": "head and neck squamous cell carcinoma",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Per individual: Table S1 subtype (Luminal A-like -> luminal A breast carcinoma MONDO:0021116; Triple negative -> triple-negative breast carcinoma MONDO:0005494); Table S2 tumors 6-12 serous, grade 3, and paper 2.1 'Ovarian cancer specimens belonging to the high-grade serous histotype' diagnosis per Table S2 row: OV6/OV8/OV10 'Serous surface cystadenoma, NOS' (grade 3) -> ovarian serous tumor MONDO:0037255 (benign/borderline/malignant parent; does not assert carcinoma), OV7/OV9/OV11/OV12 'Serous surface papillary carcinoma' -> ovarian serous surface papillary adenocarcinoma MONDO:0003874 (a descendant of MONDO:0037255, OLS hierarchicalAncestors); the paper's cohort sentence 'high-grade serous histotype' is NOT used for per-patient values; Table S3 'head and neck squamous cell carcinoma' -> MONDO:0010150; all Normal-column samples -> normal (PATO:0000461). Heavy: all four cell lines are Breast adenocarcinoma (Cellosaurus NCIt C5214) -> breast adenocarcinoma MONDO:0004988."
+  },
+  {
+   "location": "characteristics[disease] rows 83,87,91",
+   "value": "ovarian serous tumor",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Per individual: Table S1 subtype (Luminal A-like -> luminal A breast carcinoma MONDO:0021116; Triple negative -> triple-negative breast carcinoma MONDO:0005494); Table S2 tumors 6-12 serous, grade 3, and paper 2.1 'Ovarian cancer specimens belonging to the high-grade serous histotype' diagnosis per Table S2 row: OV6/OV8/OV10 'Serous surface cystadenoma, NOS' (grade 3) -> ovarian serous tumor MONDO:0037255 (benign/borderline/malignant parent; does not assert carcinoma), OV7/OV9/OV11/OV12 'Serous surface papillary carcinoma' -> ovarian serous surface papillary adenocarcinoma MONDO:0003874 (a descendant of MONDO:0037255, OLS hierarchicalAncestors); the paper's cohort sentence 'high-grade serous histotype' is NOT used for per-patient values; Table S3 'head and neck squamous cell carcinoma' -> MONDO:0010150; all Normal-column samples -> normal (PATO:0000461). Heavy: all four cell lines are Breast adenocarcinoma (Cellosaurus NCIt C5214) -> breast adenocarcinoma MONDO:0004988."
+  },
+  {
+   "location": "characteristics[disease] rows 85,89,93,95",
+   "value": "ovarian serous surface papillary adenocarcinoma",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Per individual: Table S1 subtype (Luminal A-like -> luminal A breast carcinoma MONDO:0021116; Triple negative -> triple-negative breast carcinoma MONDO:0005494); Table S2 tumors 6-12 serous, grade 3, and paper 2.1 'Ovarian cancer specimens belonging to the high-grade serous histotype' diagnosis per Table S2 row: OV6/OV8/OV10 'Serous surface cystadenoma, NOS' (grade 3) -> ovarian serous tumor MONDO:0037255 (benign/borderline/malignant parent; does not assert carcinoma), OV7/OV9/OV11/OV12 'Serous surface papillary carcinoma' -> ovarian serous surface papillary adenocarcinoma MONDO:0003874 (a descendant of MONDO:0037255, OLS hierarchicalAncestors); the paper's cohort sentence 'high-grade serous histotype' is NOT used for per-patient values; Table S3 'head and neck squamous cell carcinoma' -> MONDO:0010150; all Normal-column samples -> normal (PATO:0000461). Heavy: all four cell lines are Breast adenocarcinoma (Cellosaurus NCIt C5214) -> breast adenocarcinoma MONDO:0004988."
+  },
+  {
+   "location": "characteristics[material type] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95",
+   "value": "tissue",
+   "source_ids": [
+    "paper",
+    "suppl"
+   ],
+   "evidence": "Light: surgical tissue specimens (fresh-frozen / OCT / FFPE, paper 3.1). Heavy: cultured cell lines (paper 3.6)."
+  },
+  {
+   "location": "characteristics[material type] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "suppl"
+   ],
+   "evidence": "Light: surgical tissue specimens (fresh-frozen / OCT / FFPE, paper 3.1). Heavy: cultured cell lines (paper 3.6)."
+  },
+  {
+   "location": "characteristics[age] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96",
+   "value": "pooled",
+   "source_ids": [
+    "contract",
+    "cellosaurus"
+   ],
+   "evidence": "Heavy rows: 'pooled' (pool of 4 cell lines with donor ages 51Y, 51Y, 48Y, 40Y per Cellosaurus); contract pattern allows 'pooled'."
+  },
+  {
+   "location": "characteristics[sex] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72-96",
+   "value": "female",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "OV rows: female \u2014 the specimens are ovarian tissue (Table S2) from patients undergoing adnexectomy or with ovarian cancer; inferred from the organ, not stated per patient. Heavy rows: female \u2014 all four cell lines Cellosaurus SX Female. Breast and HNC patients: no individual-level sex published -> not available."
+  },
+  {
+   "location": "characteristics[individual] rows 1-96",
+   "value": "35 distinct values (per-row)",
+   "source_ids": [
+    "suppl"
+   ],
+   "evidence": "Study patient IDs = cohort prefix + patient number of Tables S1-S3 (LuA = Luminal A-like, TN = Triple negative, OV = ovarian, HNC = head and neck); matched normal/tumor of one patient share the ID (paper 3.1 'Matched normal-tumor samples ... are indicated by the same sample number'). Heavy rows: pooled."
+  },
+  {
+   "location": "characteristics[tumor grading] rows 63,69,83,85,87,89,91,93,95",
+   "value": "Grade 3",
+   "source_ids": [
+    "suppl",
+    "ols"
+   ],
+   "evidence": "Table S2 Grade = 3 for ovarian tumors 6-12 -> Grade 3 (NCIT:C28079); Table S3 grade 3 (HNC1, HNC4), 1 (HNC5) -> Grade 3 / Grade 1 (NCIT:C28077). Normal tissue -> not applicable; breast tumors: grade not reported -> not available."
+  },
+  {
+   "location": "characteristics[tumor grading] rows 71",
+   "value": "Grade 1",
+   "source_ids": [
+    "suppl",
+    "ols"
+   ],
+   "evidence": "Table S2 Grade = 3 for ovarian tumors 6-12 -> Grade 3 (NCIT:C28079); Table S3 grade 3 (HNC1, HNC4), 1 (HNC5) -> Grade 3 / Grade 1 (NCIT:C28077). Normal tissue -> not applicable; breast tumors: grade not reported -> not available."
+  },
+  {
+   "location": "characteristics[clinical data] rows 1-96",
+   "value": "47 distinct values (per-row)",
+   "source_ids": [
+    "suppl",
+    "paper"
+   ],
+   "evidence": "Verbatim individual-level pathology from Tables S1-S3 (Table S1 subtype and the patient's tumor ER/PR/HER2/Ki67 immunoprofile, labelled 'patient tumor immunoprofile' also on normal-tissue rows; Table S2/S3 diagnosis and grade; matched normal/tumor pairs per paper 3.1 'indicated by the same sample number', e.g. HNC1 normal = matched normal of HNC patient 1 with HNSCC grade 3). Every cohort-level sentence (tumor-surrounding breast tissue, adnexectomy donors, tonsil donors with other pathologies only for HNC2/HNC3 which have no Table S3 tumor/diagnosis, oropharyngeal site, high-grade serous histotype) is explicitly prefixed 'cohort description'/'cohort statement (paper x.y)'. Heavy rows describe the super-SILAC standard (paper 3.6/3.7)."
+  },
+  {
+   "location": "characteristics[sample storage] rows 1,3,5,7,9,11,13,15,17,19,33,35,37,39,41,43",
+   "value": "fresh-frozen",
+   "source_ids": [
+    "suppl",
+    "paper"
+   ],
+   "evidence": "Custom characteristics column (not in the declared templates; spec 'Extending Templates', batch rule 15). Storage column of Tables S1-S3: fresh-frozen (LuA1-5, TN1-3), OCT-frozen (LuA6-9, TN4-8), FFPE for all OV and HNC samples. Kept because storage changes which PTMs are quantifiable (paper 2.1: 30 from frozen vs 24 from FFPE). Heavy rows: 'lyophilized, stored at -80 \u00b0C' from paper 3.6 ('mixed in equal amounts, lyophilized, and stored at -80 \u00b0C until use')."
+  },
+  {
+   "location": "characteristics[sample storage] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96",
+   "value": "lyophilized, stored at -80 \u00b0C",
+   "source_ids": [
+    "suppl",
+    "paper"
+   ],
+   "evidence": "Custom characteristics column (not in the declared templates; spec 'Extending Templates', batch rule 15). Storage column of Tables S1-S3: fresh-frozen (LuA1-5, TN1-3), OCT-frozen (LuA6-9, TN4-8), FFPE for all OV and HNC samples. Kept because storage changes which PTMs are quantifiable (paper 2.1: 30 from frozen vs 24 from FFPE). Heavy rows: 'lyophilized, stored at -80 \u00b0C' from paper 3.6 ('mixed in equal amounts, lyophilized, and stored at -80 \u00b0C until use')."
+  },
+  {
+   "location": "characteristics[sample storage] rows 21,23,25,27,29,31,45,47,49,51,53,55,57,59",
+   "value": "OCT-frozen",
+   "source_ids": [
+    "suppl",
+    "paper"
+   ],
+   "evidence": "Custom characteristics column (not in the declared templates; spec 'Extending Templates', batch rule 15). Storage column of Tables S1-S3: fresh-frozen (LuA1-5, TN1-3), OCT-frozen (LuA6-9, TN4-8), FFPE for all OV and HNC samples. Kept because storage changes which PTMs are quantifiable (paper 2.1: 30 from frozen vs 24 from FFPE). Heavy rows: 'lyophilized, stored at -80 \u00b0C' from paper 3.6 ('mixed in equal amounts, lyophilized, and stored at -80 \u00b0C until use')."
+  },
+  {
+   "location": "characteristics[sample storage] rows 61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95",
+   "value": "formalin-fixed paraffin-embedded",
+   "source_ids": [
+    "suppl",
+    "paper"
+   ],
+   "evidence": "Custom characteristics column (not in the declared templates; spec 'Extending Templates', batch rule 15). Storage column of Tables S1-S3: fresh-frozen (LuA1-5, TN1-3), OCT-frozen (LuA6-9, TN4-8), FFPE for all OV and HNC samples. Kept because storage changes which PTMs are quantifiable (paper 2.1: 30 from frozen vs 24 from FFPE). Heavy rows: 'lyophilized, stored at -80 \u00b0C' from paper 3.6 ('mixed in equal amounts, lyophilized, and stored at -80 \u00b0C until use')."
+  },
+  {
+   "location": "assay name rows 1-96",
+   "value": "48 distinct values (per-row)",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "Raw file stem (sdrf-tools build default), shared by the light and heavy channel of each run."
+  },
+  {
+   "location": "technology type rows 1-96",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "contract"
+   ],
+   "evidence": "Fixed by ms-proteomics template."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-96",
+   "value": "1",
+   "source_ids": [
+    "files",
+    "mq_breast",
+    "mq_ochnc"
+   ],
+   "evidence": "One injection per sample; summary.txt lists each raw file as its own experiment."
+  },
+  {
+   "location": "comment[data file] rows 1-96",
+   "value": "48 distinct values (per-row)",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "48 .raw files from files/all; each carries a light and a heavy row."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-96",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec_versions"
+   ],
+   "evidence": "SDRF spec v1.1.0 (batch rule 1)."
+  },
+  {
+   "location": "comment[sdrf template] (occurrence 1 of 4) rows 1-96",
+   "value": "NT=ms-proteomics;VV=v1.2.0",
+   "source_ids": [
+    "spec_versions",
+    "contract"
+   ],
+   "evidence": "Declared templates and versions as resolved by sdrf-tools contract; ms-proteomics v1.2.0 per bigbio/sdrf-templates 7da1747."
+  },
+  {
+   "location": "comment[sdrf template] (occurrence 2 of 4) rows 1-96",
+   "value": "NT=human;VV=v1.1.0",
+   "source_ids": [
+    "spec_versions",
+    "contract"
+   ],
+   "evidence": "Declared templates and versions as resolved by sdrf-tools contract; ms-proteomics v1.2.0 per bigbio/sdrf-templates 7da1747."
+  },
+  {
+   "location": "comment[sdrf template] (occurrence 3 of 4) rows 1-96",
+   "value": "NT=clinical-metadata;VV=v1.0.0",
+   "source_ids": [
+    "spec_versions",
+    "contract"
+   ],
+   "evidence": "Declared templates and versions as resolved by sdrf-tools contract; ms-proteomics v1.2.0 per bigbio/sdrf-templates 7da1747."
+  },
+  {
+   "location": "comment[sdrf template] (occurrence 4 of 4) rows 1-96",
+   "value": "NT=oncology-metadata;VV=v1.0.0",
+   "source_ids": [
+    "spec_versions",
+    "contract"
+   ],
+   "evidence": "Declared templates and versions as resolved by sdrf-tools contract; ms-proteomics v1.2.0 per bigbio/sdrf-templates 7da1747."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-96",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "spec_versions"
+   ],
+   "evidence": "Batch rule 10."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-96",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "Paper 3.8 'operated in the data-dependent acquisition (DDA) mode'; raw method blocks 'FULL MS / DD-MS2 (TOPN)'. PRIDE:0000627."
+  },
+  {
+   "location": "comment[instrument] rows 1-12,21-40,45-96",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_header",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers: 42 files 'Q Exactive HF - Orbitrap MS' (MS:1002523); LuA4N/T, LuA5N/T, TN3N/T 'Q Exactive - Orbitrap MS' (MS:1001911, method 'Method of Q Exactive', 150 min). Paper says Q Exactive HF only; PRIDE says Q Exactive; raw data wins per file."
+  },
+  {
+   "location": "comment[instrument] rows 13-20,41-44",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw_header",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers: 42 files 'Q Exactive HF - Orbitrap MS' (MS:1002523); LuA4N/T, LuA5N/T, TN3N/T 'Q Exactive - Orbitrap MS' (MS:1001911, method 'Method of Q Exactive', 150 min). Paper says Q Exactive HF only; PRIDE says Q Exactive; raw data wins per file."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-96",
+   "value": "NT=Trypsin;AC=MS:1001251;CS=(?<=R)(?!P)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_breast",
+    "mq_ochnc",
+    "ols"
+   ],
+   "evidence": "NT=Trypsin;AC=MS:1001251;CS=(?<=R)(?!P) (coordinator decision, precedent curated PXD003958). Digestion enzyme is trypsin: PRIDE sampleProcessingProtocol / paper 3.7 'chemically alkylated with D6-acetic anhydride, in-gel digested with trypsin (the combination of chemical alkylation and trypsin digestion generates an Arg-C-like digestion)'. D6-acetylation blocks every unmodified/monomethyl lysine, so trypsin cleaves only after R; the CS= regex states this effective Arg-C-like specificity. All four deposited MaxQuant summary.txt: 'Enzyme ArgC'; PRIDE dataProcessingProtocol 'Enzyme specificity was set to Arg-C' (a search setting, not a second digestion enzyme)."
+  },
+  {
+   "location": "comment[label] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95",
+   "value": "SILAC light",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper"
+   ],
+   "evidence": "summary.txt Multiplicity 2, Labels0 '' (light), Labels1 'Arg10' (heavy); paper 3.9 'Arg10 was selected as a heavy label (multiplicity = 2)'. Light = patient histones, heavy = super-SILAC standard (paper 3.6/3.7)."
+  },
+  {
+   "location": "comment[label] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper"
+   ],
+   "evidence": "summary.txt Multiplicity 2, Labels0 '' (light), Labels1 'Arg10' (heavy); paper 3.9 'Arg10 was selected as a heavy label (multiplicity = 2)'. Light = patient histones, heavy = super-SILAC standard (paper 3.6/3.7)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-96",
+   "value": "1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Single band (histone H3) per sample, one run per sample: no fractionation."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-96",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "Paper 3.8 'fragmented by HCD'; MS:1000422 beam-type collision-induced dissociation (HCD)."
+  },
+  {
+   "location": "comment[collision energy] rows 1-12,21-40,45-96",
+   "value": "28 NCE",
+   "source_ids": [
+    "raw_header",
+    "paper"
+   ],
+   "evidence": "Raw method blocks: 'NCE / stepped NCE 28' or '(N)CE nce: 28' on all Q Exactive HF files; 'NCE 25' on the 6 Q Exactive files. Paper 3.8 states 28%."
+  },
+  {
+   "location": "comment[collision energy] rows 13-20,41-44",
+   "value": "25 NCE",
+   "source_ids": [
+    "raw_header",
+    "paper"
+   ],
+   "evidence": "Raw method blocks: 'NCE / stepped NCE 28' or '(N)CE nce: 28' on all Q Exactive HF files; 'NCE 25' on the 6 Q Exactive files. Paper 3.8 states 28%."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-96",
+   "value": "6 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper 3.9 / PRIDE data processing: 'The mass tolerance was set to 6 ppm for precursor and fragment ions' (precursor value not in the deposited parameters.txt)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-96",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc"
+   ],
+   "evidence": "All four deposited parameters.txt: 'MS/MS tol. (FTMS) 20 ppm' \u2014 deposited search outranks the paper's 6 ppm."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 1 of 7) rows 61-96",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt variable mods: breast searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Tri (K)'; OC/HNC searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Trimethyl (K)' (two parallel MaxQuant jobs per file, paper 3.9). Masses from paper 3.9: D3 = lysine D6-acetylation +45.0294 -> Acetyl:2H(3) UNIMOD:56; M-d3 = +59.0454 (D3-acetyl + methyl) -> Methyl+Acetyl:2H(3) UNIMOD:768; Dimethyl UNIMOD:36; Trimethyl UNIMOD:37; Acetyl UNIMOD:1. Arg10 heavy label -> Label:13C(6)15N(4) UNIMOD:267 TA=R MT=Variable (batch rule 11). Fixed mods: parameters.txt 'Fixed modifications Carbamidomethyl (C)' in both txtOCHNC searches (rows of OV/HNC files) and empty in both txtbreast searches (breast rows carry 'not applicable' in that column, batch rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 2 of 7) rows 1-96",
+   "value": "NT=Acetyl;AC=UNIMOD:1;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt variable mods: breast searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Tri (K)'; OC/HNC searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Trimethyl (K)' (two parallel MaxQuant jobs per file, paper 3.9). Masses from paper 3.9: D3 = lysine D6-acetylation +45.0294 -> Acetyl:2H(3) UNIMOD:56; M-d3 = +59.0454 (D3-acetyl + methyl) -> Methyl+Acetyl:2H(3) UNIMOD:768; Dimethyl UNIMOD:36; Trimethyl UNIMOD:37; Acetyl UNIMOD:1. Arg10 heavy label -> Label:13C(6)15N(4) UNIMOD:267 TA=R MT=Variable (batch rule 11). Fixed mods: parameters.txt 'Fixed modifications Carbamidomethyl (C)' in both txtOCHNC searches (rows of OV/HNC files) and empty in both txtbreast searches (breast rows carry 'not applicable' in that column, batch rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 3 of 7) rows 1-96",
+   "value": "NT=Acetyl:2H(3);AC=UNIMOD:56;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt variable mods: breast searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Tri (K)'; OC/HNC searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Trimethyl (K)' (two parallel MaxQuant jobs per file, paper 3.9). Masses from paper 3.9: D3 = lysine D6-acetylation +45.0294 -> Acetyl:2H(3) UNIMOD:56; M-d3 = +59.0454 (D3-acetyl + methyl) -> Methyl+Acetyl:2H(3) UNIMOD:768; Dimethyl UNIMOD:36; Trimethyl UNIMOD:37; Acetyl UNIMOD:1. Arg10 heavy label -> Label:13C(6)15N(4) UNIMOD:267 TA=R MT=Variable (batch rule 11). Fixed mods: parameters.txt 'Fixed modifications Carbamidomethyl (C)' in both txtOCHNC searches (rows of OV/HNC files) and empty in both txtbreast searches (breast rows carry 'not applicable' in that column, batch rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 4 of 7) rows 1-96",
+   "value": "NT=Methyl+Acetyl:2H(3);AC=UNIMOD:768;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt variable mods: breast searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Tri (K)'; OC/HNC searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Trimethyl (K)' (two parallel MaxQuant jobs per file, paper 3.9). Masses from paper 3.9: D3 = lysine D6-acetylation +45.0294 -> Acetyl:2H(3) UNIMOD:56; M-d3 = +59.0454 (D3-acetyl + methyl) -> Methyl+Acetyl:2H(3) UNIMOD:768; Dimethyl UNIMOD:36; Trimethyl UNIMOD:37; Acetyl UNIMOD:1. Arg10 heavy label -> Label:13C(6)15N(4) UNIMOD:267 TA=R MT=Variable (batch rule 11). Fixed mods: parameters.txt 'Fixed modifications Carbamidomethyl (C)' in both txtOCHNC searches (rows of OV/HNC files) and empty in both txtbreast searches (breast rows carry 'not applicable' in that column, batch rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 5 of 7) rows 1-96",
+   "value": "NT=Dimethyl;AC=UNIMOD:36;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt variable mods: breast searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Tri (K)'; OC/HNC searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Trimethyl (K)' (two parallel MaxQuant jobs per file, paper 3.9). Masses from paper 3.9: D3 = lysine D6-acetylation +45.0294 -> Acetyl:2H(3) UNIMOD:56; M-d3 = +59.0454 (D3-acetyl + methyl) -> Methyl+Acetyl:2H(3) UNIMOD:768; Dimethyl UNIMOD:36; Trimethyl UNIMOD:37; Acetyl UNIMOD:1. Arg10 heavy label -> Label:13C(6)15N(4) UNIMOD:267 TA=R MT=Variable (batch rule 11). Fixed mods: parameters.txt 'Fixed modifications Carbamidomethyl (C)' in both txtOCHNC searches (rows of OV/HNC files) and empty in both txtbreast searches (breast rows carry 'not applicable' in that column, batch rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 6 of 7) rows 1-96",
+   "value": "NT=Trimethyl;AC=UNIMOD:37;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt variable mods: breast searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Tri (K)'; OC/HNC searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Trimethyl (K)' (two parallel MaxQuant jobs per file, paper 3.9). Masses from paper 3.9: D3 = lysine D6-acetylation +45.0294 -> Acetyl:2H(3) UNIMOD:56; M-d3 = +59.0454 (D3-acetyl + methyl) -> Methyl+Acetyl:2H(3) UNIMOD:768; Dimethyl UNIMOD:36; Trimethyl UNIMOD:37; Acetyl UNIMOD:1. Arg10 heavy label -> Label:13C(6)15N(4) UNIMOD:267 TA=R MT=Variable (batch rule 11). Fixed mods: parameters.txt 'Fixed modifications Carbamidomethyl (C)' in both txtOCHNC searches (rows of OV/HNC files) and empty in both txtbreast searches (breast rows carry 'not applicable' in that column, batch rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] (occurrence 7 of 7) rows 1-96",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable",
+   "source_ids": [
+    "mq_breast",
+    "mq_ochnc",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt variable mods: breast searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Tri (K)'; OC/HNC searches 'Acetyl (K);Dimethyl (K);D3;M-d3' and 'Acetyl (K);D3;M-d3;Trimethyl (K)' (two parallel MaxQuant jobs per file, paper 3.9). Masses from paper 3.9: D3 = lysine D6-acetylation +45.0294 -> Acetyl:2H(3) UNIMOD:56; M-d3 = +59.0454 (D3-acetyl + methyl) -> Methyl+Acetyl:2H(3) UNIMOD:768; Dimethyl UNIMOD:36; Trimethyl UNIMOD:37; Acetyl UNIMOD:1. Arg10 heavy label -> Label:13C(6)15N(4) UNIMOD:267 TA=R MT=Variable (batch rule 11). Fixed mods: parameters.txt 'Fixed modifications Carbamidomethyl (C)' in both txtOCHNC searches (rows of OV/HNC files) and empty in both txtbreast searches (breast rows carry 'not applicable' in that column, batch rule 5)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-96",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "Paper 3.8: MS/MS acquired in the Orbitrap after HCD; raw dd-MS2 resolution 15,000/17,500 (Orbitrap). MS:1000484."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-96",
+   "value": "300m/z-1350m/z",
+   "source_ids": [
+    "raw_header",
+    "paper"
+   ],
+   "evidence": "All 48 raw method blocks: Full MS 'Scan range 300 to 1350 m/z'; paper 3.8 'm/z 300-1350'."
+  },
+  {
+   "location": "factor value[disease] rows 1,5,9,13,17,21,25,29,33,37,41,45,49,53,57,61,65,67,73,75,77,79,81",
+   "value": "normal",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Compared variable: tumor vs normal per cancer type (paper 2.1, Fig 1A). Copied from characteristics[disease] on light rows, except the 7 ovarian tumors, which share their common supported parent 'ovarian serous tumor' (MONDO:0037255) so the comparison group stays one group (OV7/9/11/12 characteristics carry the more specific MONDO:0003874); heavy reference rows are not a study group -> not applicable (precedent PXD000332 super-SILAC rows)."
+  },
+  {
+   "location": "factor value[disease] rows 3,7,11,15,19,23,27,31",
+   "value": "luminal A breast carcinoma",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Compared variable: tumor vs normal per cancer type (paper 2.1, Fig 1A). Copied from characteristics[disease] on light rows, except the 7 ovarian tumors, which share their common supported parent 'ovarian serous tumor' (MONDO:0037255) so the comparison group stays one group (OV7/9/11/12 characteristics carry the more specific MONDO:0003874); heavy reference rows are not a study group -> not applicable (precedent PXD000332 super-SILAC rows)."
+  },
+  {
+   "location": "factor value[disease] rows 35,39,43,47,51,55,59",
+   "value": "triple-negative breast carcinoma",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Compared variable: tumor vs normal per cancer type (paper 2.1, Fig 1A). Copied from characteristics[disease] on light rows, except the 7 ovarian tumors, which share their common supported parent 'ovarian serous tumor' (MONDO:0037255) so the comparison group stays one group (OV7/9/11/12 characteristics carry the more specific MONDO:0003874); heavy reference rows are not a study group -> not applicable (precedent PXD000332 super-SILAC rows)."
+  },
+  {
+   "location": "factor value[disease] rows 63,69,71",
+   "value": "head and neck squamous cell carcinoma",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Compared variable: tumor vs normal per cancer type (paper 2.1, Fig 1A). Copied from characteristics[disease] on light rows, except the 7 ovarian tumors, which share their common supported parent 'ovarian serous tumor' (MONDO:0037255) so the comparison group stays one group (OV7/9/11/12 characteristics carry the more specific MONDO:0003874); heavy reference rows are not a study group -> not applicable (precedent PXD000332 super-SILAC rows)."
+  },
+  {
+   "location": "factor value[disease] rows 83,85,87,89,91,93,95",
+   "value": "ovarian serous tumor",
+   "source_ids": [
+    "suppl",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Compared variable: tumor vs normal per cancer type (paper 2.1, Fig 1A). Copied from characteristics[disease] on light rows, except the 7 ovarian tumors, which share their common supported parent 'ovarian serous tumor' (MONDO:0037255) so the comparison group stays one group (OV7/9/11/12 characteristics carry the more specific MONDO:0003874); heavy reference rows are not a study group -> not applicable (precedent PXD000332 super-SILAC rows)."
+  },
+  {
+   "location": "factor value[organism part] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59",
+   "value": "breast",
+   "source_ids": [
+    "suppl",
+    "paper"
+   ],
+   "evidence": "Distinguishes the normal comparator tissue of each cancer model (breast / ovary / tonsil) and HNC tumor site; copied from characteristics[organism part] (HNC rows: craniocervical region, since Table S3 gives no site); heavy rows not applicable."
+  },
+  {
+   "location": "factor value[organism part] rows 61,63,65,67,69,71",
+   "value": "craniocervical region",
+   "source_ids": [
+    "suppl",
+    "paper"
+   ],
+   "evidence": "Distinguishes the normal comparator tissue of each cancer model (breast / ovary / tonsil) and HNC tumor site; copied from characteristics[organism part] (HNC rows: craniocervical region, since Table S3 gives no site); heavy rows not applicable."
+  },
+  {
+   "location": "factor value[organism part] rows 73,75,77,79,81,83,85,87,89,91,93,95",
+   "value": "ovary",
+   "source_ids": [
+    "suppl",
+    "paper"
+   ],
+   "evidence": "Distinguishes the normal comparator tissue of each cancer model (breast / ovary / tonsil) and HNC tumor site; copied from characteristics[organism part] (HNC rows: craniocervical region, since Table S3 gives no site); heavy rows not applicable."
+  }
+ ],
+ "limitations": [
+  "techsdrf is not installed: instrument, NCE and scan range were read from HTTP-range reads of the first 400 KB of every .raw (method text block), not from full spectra.",
+  "Individual age is not published for any patient (Tables S1-S3 give none) -> characteristics[age] = not available on all 48 patient rows.",
+  "Individual sex is not published for breast or head-and-neck patients -> not available; ovarian rows set to female by anatomical entailment (ovarian tissue), not by a per-patient statement.",
+  "Ovarian tumors OV6, OV8, OV10 are listed in Table S2 as 'Serous surface cystadenoma, NOS' with grade 3 (internally inconsistent: cystadenoma is benign). Per-patient disease follows the Table S2 row (ovarian serous tumor, MONDO:0037255), not the paper's cohort 'high-grade serous' sentence; verbatim diagnosis and grade kept in characteristics[clinical data] (review round 1 finding 1).",
+  "'Luminal A-like' and 'triple negative' are IHC surrogate subtypes (paper 3.1); 'luminal A breast carcinoma' (MONDO:0021116) is the closest MONDO term; the surrogate definition is stated in characteristics[clinical data]. No NCIT histologic-subtype term for 'luminal A-like' was used.",
+  "HNC tumor site (oropharynx) and HNC normal site (tonsil) are cohort-level statements (paper 2.1/3.1); Table S3 has no site column, so organism part is the coarser craniocervical region (UBERON:0007811) on all HNC rows (review round 2).",
+  "Ovarian normal tissue donors had other diagnoses (Table S2: leiomyoma, fibroma, endometrioid carcinoma); the sample itself is non-neoplastic ovary -> disease normal, donor diagnosis recorded only as free text in characteristics[clinical data].",
+  "Breast tumor grade and stage, HNC/OV stage, HPV status and treatment history are not published -> tumor grading not available for breast tumors; no stage/treatment columns.",
+  "Precursor tolerance (6 ppm) comes from paper/PRIDE prose; the deposited parameters.txt do not record it. The paper's '6 ppm for fragment' contradicts the deposited 'MS/MS tol. (FTMS) 20 ppm'; the deposited value is used.",
+  "Raw file names in MaxQuant summary.txt contain a space ('LuA1 N') while the deposited files are 'LuA1N.raw'; mapping is 1:1 by name and count (30 breast + 18 OC/HNC).",
+  "The heavy reference is given one source name per run (same physical mix spiked into each sample) because the build coordinate check refuses one source with 48 runs at biological replicate 'pooled'; a reviewer may prefer a single source name.",
+  "No individual-level reduction/alkylation reagent is stated, although the OC/HNC searches declare Carbamidomethyl (C) fixed; reagent columns omitted. Paper's 'chemically alkylated with D6-acetic anhydride' is a lysine acylation, captured as Acetyl:2H(3).",
+  "sdrf-tools reconcile against the live PRIDE v3 record reports MAJOR cleavage_agent_incomplete (record names Trypsin/Arg-C, only Trypsin declared). Not acted on: Arg-C appears only as the search specificity ('Enzyme specificity was set to Arg-C') and as the 'Arg-C-like' result of trypsin after lysine derivatization; no Arg-C enzyme was used, and the effective specificity is encoded by CS=(?<=R)(?!P). Against the MCP-normalized record the same tool reports only MINOR cleavage_agent_unsupported. Both outputs are recorded verbatim in validation.txt.",
+  "characteristics[sample storage] is a custom column not licensed by the declared templates (allowed by spec 'Extending Templates').",
+  "Companion dataset PXD013288 (cell lines etc.) is out of scope; this SDRF covers all 48 raw files of PXD013311."
+ ]
+}

@@ -1,0 +1,486 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD030422.sdrf.tsv",
+ "dataset": "PXD030422",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD030422 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD030422/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/files_all.json; 124 entries, all asserted to carry PXD030422; 122 .raw + Cohort_file_IDs.txt + MaxQuant_Output.zip)"
+  },
+  {
+   "id": "cohort",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD030422/Cohort_file_IDs.txt (deposited per-patient table: Raw file ID, Internal ID, Sample Name, Gender, Age, Grading, cT/cN/cM pre-CRT, Treatment, pT/pN/pM post-CRT, pCR vs non-PCR, DFS Event, DFS Time + legend; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/dl/Cohort_file_IDs.txt)"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD030422/MaxQuant_Output.zip member parameters.txt (HTTP range-read of the zip central directory; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/dl/parameters.txt)"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD030422/MaxQuant_Output.zip member summary.txt (HTTP range-read; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/dl/summary.txt)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD030422/<file>.raw, first 0.3-1.5 MB of all 122 runs HTTP range-read and decoded UTF-16-LE (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/raw/*.head; per-run instrument table /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/rawinfo.tsv)"
+  },
+  {
+   "id": "paper_meta",
+   "kind": "publication",
+   "location": "Nicolas AM et al. Cancer Cell 2022;40(2):168-184.e13, PMID 35120600, doi:10.1016/j.ccell.2022.01.004 (Europe PMC metadata + abstract only; full text not retrievable: not in PMC, publisher HTTP 403)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:<name> for LS411N (CVCL_1385), HT-29 (CVCL_0320), SW480 (CVCL_0546), SW837 (CVCL_1729), SW1463 (CVCL_1718)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 (https://www.ebi.ac.uk/ols4) via sdrf-tools ols / sdrf-tools verify (local logs: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/ols1.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/verify1.txt)"
+  },
+  {
+   "id": "contract",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/contract.txt); spec/sdrf-proteomics/TERMS.tsv; upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0)"
+  },
+  {
+   "id": "precedent",
+   "kind": "curated-sdrf",
+   "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD001370/PXD001370.sdrf.tsv and PXD000332/PXD000332.sdrf.tsv (curated super-SILAC encodings)"
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "curation-policy",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (rules 1, 2, 10, 11, 14, 15, 17, 18)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name the 122 SILAC light rows (odd rows 1-243)",
+   "value": "<cohort Sample Name>, e.g. ypT0pN0-03, ypN+47 (61 sources)",
+   "source_ids": [
+    "cohort",
+    "pride_files"
+   ],
+   "evidence": "One source per patient tumour sample, named with the cohort file's 'Sample Name' column. The file->patient key is the number in the raw file name, which equals the cohort 'Raw file ID' and the numeric suffix of 'Sample Name' (e.g. KRK_47 -> Raw file ID 47 -> ypN+47). The 61 file-name ids and the 61 cohort ids match exactly (no orphan on either side)."
+  },
+  {
+   "location": "source name the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "super-SILAC reference standard (mixed with <Sample Name>)",
+   "source_ids": [
+    "pride",
+    "precedent",
+    "campaign_rules"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: 'Equal protein amounts of each tissue lysate and SILAC quantification standard were mixed' before FASP digestion, i.e. each patient lysate received its own aliquot of the standard. One heavy source per patient mix (61) keeps the (source, biological replicate, technical replicate, fraction) coordinate unique while the replicate injections of one mix share it. Precedent PXD001370 also names the spike-in per aliquot."
+  },
+  {
+   "location": "characteristics[sample type] the 122 SILAC light rows (odd rows 1-243) / the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "study sample / reference",
+   "source_ids": [
+    "pride",
+    "campaign_rules",
+    "precedent",
+    "contract"
+   ],
+   "evidence": "Light = patient tumour material; heavy = the spiked-in 'SILAC quantification standard' (rule 18: super-SILAC heavy channel is a reference). Both values are children of PRIDE:0000895 listed in the contract (PRIDE:0001013 study sample; reference)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-244",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cohort",
+    "cellosaurus",
+    "mq_params"
+   ],
+   "evidence": "PRIDE organisms = Homo sapiens (NEWT:9606); samples are rectal cancer patients (cohort table); the five reference cell lines are human (Cellosaurus NCBI_TaxID=9606); MaxQuant searched uniprot-human (parameters.txt Fasta file). reconcile's organism BLOCKER is a false positive keyed on 'murine rectal cancer model' in the project description (the paper's separate mouse arm) - refuted in validation.txt."
+  },
+  {
+   "location": "characteristics[organism part] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "rectum",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "Title/description: rectal cancer; protocol: 'pure rectal cancer tumor cell population' from FFPE sections; PRIDE organismParts includes BTO:0001158 Rectum. UBERON:0001052 rectum verified in OLS. Heavy rows: not applicable (cell-line pool), as in precedents PXD001370/PXD000332."
+  },
+  {
+   "location": "characteristics[cell type] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "malignant cell",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "sampleProcessingProtocol: 'The pure rectal cancer tumor cell population was collected using the MMI cell cut plus laser capture microdissection system'. CL:0001064 malignant cell verified. PRIDE organismParts also lists CL:0000066 epithelial cell; the protocol prose (tumour cells) was preferred over the dropdown. Heavy rows: not available."
+  },
+  {
+   "location": "characteristics[biological replicate] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "1",
+   "source_ids": [
+    "cohort"
+   ],
+   "evidence": "Each patient contributes one tumour sample; repeated runs are technical replicates (comment[technical replicate]). Heavy rows: 'pooled' (allowed by TERMS allow_pooled; precedent PXD000332)."
+  },
+  {
+   "location": "characteristics[biological replicate] the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "pooled",
+   "source_ids": [
+    "pride",
+    "precedent",
+    "contract"
+   ],
+   "evidence": "The heavy material is a pooled standard of five labelled cell lines (protocol). TERMS.tsv allow_pooled=true for biological replicate; precedent PXD000332 uses 'pooled' for its super-SILAC mix."
+  },
+  {
+   "location": "characteristics[pooled sample] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "not pooled",
+   "source_ids": [
+    "cohort",
+    "pride"
+   ],
+   "evidence": "Each light sample is one patient's microdissected tumour cells (one cohort row per raw-file id)."
+  },
+  {
+   "location": "characteristics[pooled sample] the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "SN=LS411N;SN=HT-29;SN=SW480;SN=SW837;SN=SW1463",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "precedent",
+    "contract"
+   ],
+   "evidence": "Protocol: 'The SILAC quantification standard was composed of the cell lines LS411N, HT29, SW480, SW837 and SW1463 ... purchased from ATCC ... labelled ... Arg+10 and Lys+8'. Names normalised to Cellosaurus IDs (HT29 -> HT-29, CVCL_0320). SN= pattern is permitted by TERMS/contract; parse_sdrf warns (it only checks the fixed values)."
+  },
+  {
+   "location": "characteristics[disease] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "rectal cancer",
+   "source_ids": [
+    "pride",
+    "paper_meta",
+    "ols"
+   ],
+   "evidence": "Title 'Inflammatory fibroblasts mediate resistance to neoadjuvant therapy in rectal cancer'; all 61 cohort patients are rectal cancer patients (cohort internal IDs 'GSH_RADONC_RectalCancer_*'). MONDO:0006519 rectal cancer verified. Histological subtype (adenocarcinoma) is not stated in any accessible source, so the broader term is used; PRIDE's DOID:9256 colorectal cancer is less specific than the title."
+  },
+  {
+   "location": "characteristics[disease] the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "colorectal adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus disease of the five reference lines: LS411N cecum adenocarcinoma, HT-29 and SW480 colon adenocarcinoma, SW837 and SW1463 rectal adenocarcinoma - all colorectal adenocarcinoma. MONDO:0005008 verified."
+  },
+  {
+   "location": "characteristics[material type] the 122 SILAC light rows (odd rows 1-243) / the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "tissue / cell line",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Light: laser-microdissected tumour cells from FFPE tissue sections (protocol). Heavy: cultured cell lines (protocol)."
+  },
+  {
+   "location": "characteristics[age] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "<Age>Y from the cohort table; not available where the table says n.a. (patients 6, 22, 50, 65; 9 rows)",
+   "source_ids": [
+    "cohort"
+   ],
+   "evidence": "Individual-level 'Age' column (legend: years) of Cohort_file_IDs.txt, joined on Raw file ID. Heavy rows: 'pooled' (pool of five donors' cell lines; TERMS allow_pooled=true)."
+  },
+  {
+   "location": "characteristics[age] the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "pooled",
+   "source_ids": [
+    "pride",
+    "contract"
+   ],
+   "evidence": "Pool of five cell lines from different donors; TERMS.tsv allow_pooled=true for age."
+  },
+  {
+   "location": "characteristics[sex] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "male / female",
+   "source_ids": [
+    "cohort"
+   ],
+   "evidence": "Individual-level 'Gender' column (legend: m male, f female) joined on Raw file ID; no n.a. values. Heavy rows: 'pooled' (cell lines from male and female donors; TERMS allow_pooled=true)."
+  },
+  {
+   "location": "characteristics[sex] the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "pooled",
+   "source_ids": [
+    "cellosaurus",
+    "contract"
+   ],
+   "evidence": "LS411N, SW480, SW837 male; HT-29, SW1463 female (Cellosaurus); TERMS.tsv allow_pooled=true for sex."
+  },
+  {
+   "location": "characteristics[individual] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "<Internal ID>, e.g. GSH_RADONC_RectalCancer_213",
+   "source_ids": [
+    "cohort"
+   ],
+   "evidence": "The study's patient identifier ('Internal ID' column), already published in the deposit; no further identifying information added. Heavy rows: 'pooled'."
+  },
+  {
+   "location": "characteristics[individual] the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "pooled",
+   "source_ids": [
+    "pride",
+    "precedent"
+   ],
+   "evidence": "Pooled cell-line standard; precedents PXD000332 and PXD003822 use 'pooled'."
+  },
+  {
+   "location": "characteristics[treatment status] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "pre-treatment",
+   "source_ids": [
+    "cohort",
+    "pride",
+    "paper_meta"
+   ],
+   "evidence": "INFERENCE (not stated in an accessible source): 32 of the 61 patients are ypT0pN0 pathological complete responders (cohort pT0 pN0) and still yielded laser-microdissected 'pure rectal cancer tumor cell population' runs; after a complete response no tumour cells remain in the resection, so the tumour cells must come from pre-therapeutic material, and all samples were processed identically. The abstract frames the patient data as predicting response to chemoradiotherapy. Heavy rows: not applicable."
+  },
+  {
+   "location": "characteristics[treatment response] the 122 SILAC light rows (odd rows 1-243); factor value[treatment response] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "Pathologic Complete Response (pCR, 32 patients, 64 rows) / Residual Disease (non-pCR, 29 patients, 58 rows)",
+   "source_ids": [
+    "cohort",
+    "ols"
+   ],
+   "evidence": "Cohort column 'pCR vs non-PCR' (legend: pCR pathological complete remission). NCIT:C123603 Pathologic Complete Response verified. NCIT has no 'non-pathologic complete response' term (searched: non-pCR, pathologic incomplete response, incomplete response); NCIT:C4809 Residual Disease ('The persistence of tumor cells in the body following cancer treatment') is used, consistent with every non-pCR patient having pT>=1 or pN>=1 post-CRT. Heavy rows: not applicable. This is the variable the cohort file and sample names (ypT0pN0-* vs ypN+*) are organised by."
+  },
+  {
+   "location": "characteristics[tumor grading] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "Grade 2 / Grade 3; not available where the cohort says n.a. (28 rows)",
+   "source_ids": [
+    "cohort",
+    "ols"
+   ],
+   "evidence": "Cohort 'Grading' column (legend: G grading) values 2/3 mapped to NCIT:C28078 Grade 2 / NCIT:C28079 Grade 3 (verified). Heavy rows: not applicable."
+  },
+  {
+   "location": "characteristics[tumor stage] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "cT<cT>N<cN>M<cM> (pre-CRT clinical TNM), e.g. cT3N1M0; not available when any component is n.a. (14 rows)",
+   "source_ids": [
+    "cohort",
+    "contract"
+   ],
+   "evidence": "Cohort columns cT/cN/cM under 'TNM Pre-CRT' (legend c: clinical). The oncology-metadata template documents TNM notation prefixed c for clinical staging; pre-CRT staging matches the sampling time (treatment status). Combined TNM strings are not NCIT terms, so parse_sdrf warns (warning-level ontology check; template examples are themselves combined strings). Heavy rows: not applicable."
+  },
+  {
+   "location": "characteristics[clinical data] the 122 SILAC light rows (odd rows 1-243)",
+   "value": "pre-CRT TNM ..., neoadjuvant treatment <regimen>, post-CRT TNM ..., DFS event <0|1>, DFS time <n> months",
+   "source_ids": [
+    "cohort"
+   ],
+   "evidence": "Verbatim rendering of the remaining individual-level cohort columns: cT/cN/cM, Treatment (5-FU + RT or 5-FU + Oxaliplatin + RT; legend 5-Fu Fluorouracil, RT radiotherapy), pT/pN/pM post-CRT, DFS Event, DFS Time (legend: Time months). 'n.a.' rendered as 'not available'. Heavy rows: not applicable."
+  },
+  {
+   "location": "assay name rows 1-244; comment[data file] rows 1-244",
+   "value": "122 deposited .raw files x 2 SILAC channels",
+   "source_ids": [
+    "pride_files",
+    "mq_summary"
+   ],
+   "evidence": "files/all lists 122 RAW, all annotated; assay name = file stem (build). Every deposited raw file appears in MaxQuant summary.txt. summary.txt also contains KRK_1, KRK_R1_1, KRK_18_R1, KRK_18_R2 which were not deposited and are not in the cohort table (not annotated)."
+  },
+  {
+   "location": "technology type rows 1-244",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "contract"
+   ],
+   "evidence": "Filled by sdrf-tools build from the ms-proteomics template."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-244",
+   "value": "1-3 per patient",
+   "source_ids": [
+    "pride_files",
+    "raw_headers",
+    "mq_summary"
+   ],
+   "evidence": "Repeated runs of one patient (KRK_<n>, KRK_R1_<n>, *_wdh_*, *_R1/_R2) are numbered per patient: 2015 Q Exactive HF batch first, then 2016 Fusion; within a batch the untagged run, then R1, then R2. 59 patients have 2 runs, patient 40 one run (KRK_40), patient 22 three (KRK_22_R1, KRK_22_R2 on QE HF in Dec 2015; KRK_R1_22 on Fusion in Mar 2016). Whether R1/wdh runs are re-injections or re-preparations is not stated; they are treated as technical replicates of the same patient sample."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-244",
+   "value": "1",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "No fractionation described: each sample was one FASP digest, one 178-min LC-MS run."
+  },
+  {
+   "location": "comment[label] the 122 SILAC light rows (odd rows 1-243) / the 122 SILAC heavy rows (even rows 2-244)",
+   "value": "SILAC light / SILAC heavy",
+   "source_ids": [
+    "pride",
+    "mq_summary",
+    "mq_params"
+   ],
+   "evidence": "Rule 14 verified: summary.txt Multiplicity = 2 and Labels1 = Arg10;Lys8 for every deposited run (Labels0 empty = light). Protocol: standard labelled with 13C6,15N4-Arg (Arg+10) and 13C6,15N2-Lys (Lys+8); tissue lysate unlabelled (FFPE patient tissue cannot be metabolically labelled). Hence heavy = reference standard, light = patient sample."
+  },
+  {
+   "location": "comment[instrument] rows 1-12, 33-36, 45-48, 77-80 (24 rows, 12 runs)",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_headers",
+    "ols"
+   ],
+   "evidence": "All 12 T_Oellerich_* runs (patients 2, 3, 4 acquired 27 Nov 2015; 10, 13, 22 acquired 27 Dec 2015) carry 'Q Exactive HF - Orbitrap MS' / 'Method of Q Exactive HF' and method TOP30_120K15_30ms_178min.meth in their headers. Contradicts PRIDE 'instruments' (Orbitrap Fusion only) and the protocol prose; raw data wins."
+  },
+  {
+   "location": "comment[instrument] all other rows (220 rows, 110 runs)",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw_headers",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 110 TO_/H_Bohnenberger_* runs carry 'Orbitrap Fusion Method Summary' (method Universal_270715_178min.meth) in their headers; matches PRIDE instruments and protocol."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] all other rows (220 rows, 110 runs) / rows 1-12, 33-36, 45-48, 77-80 (24 rows, 12 runs)",
+   "value": "NT=ion trap;AC=MS:1000264 / NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw_headers",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Fusion method summary: ddMSnScan 'Detector Type = IonTrap', 'Ion Trap Scan Rate = Rapid' (protocol: 'MS2 scans were acquired in the ion trap in rapid-scan mode'). Q Exactive HF has only an Orbitrap analyser."
+  },
+  {
+   "location": "comment[collision energy] all other rows (220 rows, 110 runs) / rows 1-12, 33-36, 45-48, 77-80 (24 rows, 12 runs)",
+   "value": "35% NCE / 28% NCE",
+   "source_ids": [
+    "raw_headers",
+    "pride"
+   ],
+   "evidence": "Fusion header 'ActivationType = HCD ... Collision Energy (%) = 35' and protocol 'normalized collision energy (NCE) of 35'. Q Exactive HF method text 'NCE / stepped NCE 28'."
+  },
+  {
+   "location": "comment[fragment mass tolerance] all other rows (220 rows, 110 runs) / rows 1-12, 33-36, 45-48, 77-80 (24 rows, 12 runs)",
+   "value": "0.5 Da / 20 ppm",
+   "source_ids": [
+    "mq_params",
+    "pride"
+   ],
+   "evidence": "parameters.txt: 'MS/MS tol. (ITMS) 0.5 Da' and 'MS/MS tol. (FTMS) 20 ppm'; MaxQuant applies the analyser-specific value, so ion-trap MS2 (Fusion) -> 0.5 Da (also protocol: 'fragment ion mass tolerances ... 0.5 Da'), Orbitrap MS2 (QE HF) -> 20 ppm."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-244",
+   "value": "6 ppm",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "dataProcessingProtocol: 'Precursor and fragment ion mass tolerances were set to 6 ppm and 0.5 Da, respectively, after initial recalibration.' mqpar.xml is not deposited and parameters.txt does not list the main-search precursor tolerance."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-244",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw_headers",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Fusion header ActivationType = HCD; protocol 'HCD fragmentation'; Q Exactive HF fragments by HCD only. MS:1000422 label verified in OLS (HCD synonym)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-244",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_summary",
+    "campaign_rules"
+   ],
+   "evidence": "Protocol: 'digested overnight at 37 C with 1 ug trypsin (Promega)'. MaxQuant search rule was Trypsin/P (summary.txt Enzyme), recorded here as a note per rule 2."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-244",
+   "value": "NT=Tris(2-carboxyethyl)phosphine (TCEP);AC=PRIDE:0000609",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "Protocol: lysis buffer '... 50 mM TCEP', incubated 60 min at 99 C. PRIDE:0000609 verified."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-244",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "Protocol: 'alkylated with 50 mM IAA in 100 mM ABC'. PRIDE:0000599 verified."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-244",
+   "value": "Carbamidomethyl C Fixed (UNIMOD:4); Acetyl Protein N-term Variable (UNIMOD:1); Oxidation M Variable (UNIMOD:35); Deamidated N Variable (UNIMOD:7); Label:13C(6)15N(4) R Variable (UNIMOD:267); Label:13C(6)15N(2) K Variable (UNIMOD:259)",
+   "source_ids": [
+    "mq_params",
+    "mq_summary",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "parameters.txt 'Fixed modifications Carbamidomethyl (C)'; summary.txt 'Variable modifications Acetyl (Protein N-term);Deamidation (N);Oxidation (M)' for every run (one search, all runs). Deamidation (N) is absent from the PRIDE protocol prose but present in the search (also 'Deamidation (N)Sites.txt' in the zip); the search wins. SILAC labels from Labels1 'Arg10;Lys8' encoded MT=Variable per rule 11 (Arg10 -> UNIMOD:267, Lys8 -> UNIMOD:259, by mass shift). All UNIMOD accessions verified in OLS."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-244",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw_headers"
+   ],
+   "evidence": "Protocol: 'MS data were acquired in data-dependent Top speed mode'; QE HF headers: TOP30 method with dd Settings."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-244",
+   "value": "v1.1.0",
+   "source_ids": [
+    "campaign_rules"
+   ],
+   "evidence": "Rule 1 (spec README.adoc:27)."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-244",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=human;VV=v1.1.0 | NT=clinical-metadata;VV=v1.0.0 | NT=oncology-metadata;VV=v1.0.0",
+   "source_ids": [
+    "contract",
+    "campaign_rules"
+   ],
+   "evidence": "Filled by build from the contract versions. ms-proteomics 1.2.0 = latest in upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (the spec submodule's nested templates copy is older). human + clinical-metadata per rule 18 (patient samples); oncology-metadata because the study is a cancer cohort with per-patient grade and TNM (licenses tumor grading / tumor stage); cell-lines not declared because only the heavy reference pool is made of cell lines and no cell-line columns are used."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-244",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "campaign_rules"
+   ],
+   "evidence": "Rule 10."
+  }
+ ],
+ "limitations": [
+  "Publication full text (Methods, supplementary tables) could not be read: not in PMC/Europe PMC (subscription), publisher site and Unpaywall PDF return HTTP 403; further attempts on the publisher site were stopped. All sample/clinical values therefore rest on the deposited Cohort_file_IDs.txt, the PRIDE protocol text, the MaxQuant output and the raw headers.",
+  "characteristics[treatment status] = pre-treatment is a logical inference (pCR patients have no residual tumour after CRT yet yielded tumour-cell runs), not a stated fact.",
+  "The file->patient key is the number in the raw file name (matches the cohort 'Raw file ID' and the Sample Name suffix 1:1 for all 61 patients). MaxQuant summary.txt 'Experiment' names disagree for 7 runs: TO_..._KRK_R1_49 -> KRK_R1_48, R1_50 -> KRK_R1_49, R1_52 -> KRK_R1_50, R1_53 -> KRK_R1_51, R1_54 -> KRK_R1_52, H_..._KRK_R1_62 -> KRK_R1_61, TO_..._310316_KRK_R1_22 -> KRK_R1_22 (shared with T_Oellerich_..._KRK_22_R1). These look like a shifted experiment list in the MaxQuant setup (they create duplicate experiment names); the file names were kept. If the experiment names were right, 7 runs would belong to different patients.",
+  "Repeated runs of a patient (untagged/R1/R2/wdh) are encoded as technical replicates; whether they are re-injections of one digest or separate preparations is not stated. Patient 22's third run (Fusion, 2016) carries a different file-name prefix date (070316) than its QE HF runs (171215), so it may be a re-preparation.",
+  "Precursor tolerance 6 ppm is from the protocol prose only (mqpar.xml not deposited). The 20 ppm fragment tolerance for the 12 QE HF runs is MaxQuant's FTMS setting from parameters.txt; the PRIDE prose only states 0.5 Da.",
+  "PRIDE lists only Orbitrap Fusion; 12 runs are Q Exactive HF according to their raw headers (PRIDE/protocol omission).",
+  "Histological subtype not stated in accessible sources: disease = rectal cancer (MONDO:0006519), not rectum adenocarcinoma.",
+  "Non-pCR encoded as NCIT 'Residual Disease' because NCIT has no non-pCR term; alternative would be free text.",
+  "Ancestry not reported anywhere: characteristics[ancestry category] = not available on all rows. Developmental stage not added (4 patients lack an age; two patients are 20Y).",
+  "FFPE preservation and laser-capture microdissection are not captured in a dedicated column (no licensed column fits); they are described in the report.",
+  "reconcile exits 1 with an organism_contradicted BLOCKER that is a false positive (keyed on 'murine' in the project description, which describes the paper's mouse model, not this deposit); refuted in validation.txt.",
+  "techsdrf is not installed; instruments, MS2 analyser and NCE were read from HTTP range-read raw headers instead."
+ ]
+}

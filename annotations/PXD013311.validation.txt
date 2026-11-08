@@ -1,0 +1,145 @@
+PXD013311 validation log (sdrf-skills; producer run, 2026-11-08)
+Artifact: annotations/PXD013311.sdrf.tsv  sha256 c99671d9bf9bb28d31020e4b34c8c8f140db40b78a2776c52317e701343aaad1  (96 rows x 44 columns)
+Build: two sdrf-tools build runs (breast search group, OC/HNC search group; separate technical tables because the
+deposited MaxQuant searches differ in fixed modifications, batch rule 5), concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/scripts/concat.py,
+which asserts byte-identical headers. No post-build edit of any cell (batch rule 17).
+
+=== ROUND 1 ===
+$ parse_sdrf validate-sdrf -s PXD013311.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361' - must be one of the allowed values
+ERROR: Value '? NCE' does not match required pattern
+There were validation errors.
+exit=1 (errors)
+Fixes (in the tables, then rebuilt):
+ - '? NCE': raw-header parser missed the 'nce: 28' syntax of the 70/92-min Q Exactive HF methods; regex fixed in
+   scripts/rawmeth.py, make_tables.py now asserts an integer NCE for every file (42 x 28 NCE, 6 x 25 NCE).
+ - pooled sample 'SN=MDA-MB-231;...' warning: SN= must reference source names of this SDRF; changed to 'pooled',
+   cell-line names kept in characteristics[clinical data].
+
+=== ROUND 2 (final) ===
+$ parse_sdrf validate-sdrf -s PXD013311.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+Everything seems to be fine. Well done.
+exit=0
+
+$ sdrf-tools structure PXD013311.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+$ sdrf-tools reconcile PXD013311.sdrf.tsv --record pride.json --accession PXD013311
+PXD013311: 1 value(s) disagree with the deposit record:
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+REFUTED (false positive): the PRIDE sample_processing_protocol says "bands corresponding to histone H3 were excised,
+chemically alkylated with D6-acetic anhydride, in-gel digested with trypsin (the combination of chemical alkylation
+and trypsin digestion generates an 'Arg-C-like' digestion)"; paper Methods 3.7 says the same. The search rule was
+ArgC (summary.txt 'Enzyme ArgC'); per batch rule 2 the digestion enzyme (Trypsin MS:1001251) is annotated.
+
+$ parse_sdrf convert-openms -s PXD013311.sdrf.tsv -t2   (scratch dir /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD013311/build/conv)
+Conditions (8): normal|breast, not applicable|not applicable (super-SILAC reference), luminal A breast carcinoma|breast,
+ triple-negative breast carcinoma|breast, normal|tonsil, head and neck squamous cell carcinoma|oropharynx, normal|ovary,
+ high grade ovarian serous adenocarcinoma|ovary
+Files per condition: 15, 48, 8, 7, 3, 3, 5, 7
+SUCCESS (WARNINGS=0)
+exit=0
+(openms.tsv: breast files FixedModifications empty, OV/HNC files 'Carbamidomethyl (C)'; Label SILAC.)
+
+$ sdrf-tools schema-check annotations/PXD013311.evidence.json
+annotations/PXD013311.evidence.json: valid evidence-manifest   exit=0
+$ sdrf-tools manifest-coverage annotations/PXD013311.sdrf.tsv annotations/PXD013311.evidence.json
+Manifest covers every column with a value (29 column(s)).   exit=0
+
+Notes:
+ - parse_sdrf exit 0 proves well-formedness only. characteristics[sample storage] is a custom column (not licensed by
+   the declared templates; spec 'Extending Templates', batch rule 15); parse_sdrf raised nothing for it.
+ - techsdrf not installed: instrument/NCE/scan range from HTTP-range reads of the 48 .raw headers.
+
+################################################################################
+=== FIX ROUND after external review round 1 (FAIL, annotations/PXD013311.review.md) ===
+New artifact sha256 d0c20f45eb478bee704bb8f360ae1d8a446f96c4ff689429c4d071f7ed52a789 (96 rows x 44 columns). Changes made only in scripts/make_tables.py (r1 copy kept as
+make_tables.r1.py), both groups rebuilt with sdrf-tools build, rejoined by concat.py (identical headers asserted):
+ - OV6/OV8/OV10 disease -> ovarian serous tumor (MONDO:0037255, Table S2 'Serous surface cystadenoma, NOS');
+   OV7/OV9/OV11/OV12 -> ovarian serous surface papillary adenocarcinoma (MONDO:0003874, Table S2 'Serous surface
+   papillary carcinoma'; descendant of MONDO:0037255 per OLS hierarchicalAncestors). factor value[disease] =
+   ovarian serous tumor for all 7 OV tumors. Cohort 'high-grade serous histotype' text now labelled
+   'cohort statement (paper 2.1), not a per-patient finding'.
+ - HNC1 normal clinical data -> 'matched normal of HNC patient 1 (Table S3 patient diagnosis: head and neck squamous
+   cell carcinoma, grade 3)'; 'other pathologies' wording kept only for HNC2/HNC3, labelled as cohort description.
+   All other cohort-level phrases in clinical data labelled likewise.
+ - Heavy rows: characteristics[pooled sample] restored to SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361
+   (structured cell-line identity; same encoding as batch-3 PXD009868; characteristics[cell line] is not usable
+   because only cell-lines licenses it and its required column forbids reserved words on patient rows);
+   sample storage 'lyophilized, stored at -80 °C' (paper 3.6).
+ - Biological replicate grouping now keyed on the factor-value group (unchanged numbering).
+
+$ parse_sdrf validate-sdrf -s PXD013311.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit=0
+WARNING justified: SN= is the contract-listed pattern for characteristics[pooled sample] ('fixed: not pooled, pooled;
+or pattern: SN=sample1;SN=sample2'); the validator only knows the fixed enum. Same warning accepted for PXD009868.
+
+$ sdrf-tools structure PXD013311.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.   exit=0
+$ sdrf-tools reconcile PXD013311.sdrf.tsv --record pride.json --accession PXD013311
+  MINOR cleavage_agent_unsupported — same false positive as before (PRIDE protocol: 'in-gel digested with trypsin').   exit=0
+$ parse_sdrf convert-openms -s PXD013311.sdrf.tsv -t2
+Conditions (8): normal|breast 15, reference 48, luminal A 8, TNBC 7, normal|tonsil 3, HNSCC|oropharynx 3,
+ normal|ovary 5, ovarian serous tumor|ovary 7.  SUCCESS (WARNINGS=0)   exit=0
+$ sdrf-tools schema-check annotations/PXD013311.evidence.json   -> valid evidence-manifest, exit=0
+$ sdrf-tools manifest-coverage annotations/PXD013311.sdrf.tsv annotations/PXD013311.evidence.json
+Manifest covers every column with a value (29 column(s)).   exit=0
+
+################################################################################
+=== FIX ROUND after external review round 2 (FAIL) ===
+New artifact sha256 6f8c0332fc9e6bd234df8f501e6ad654dacff530e274ea819d74190dd10f6a1b (96 rows x 44 columns). Changes only in scripts/make_tables.py (round-2 copy kept as
+make_tables.r2.py); both groups rebuilt with sdrf-tools build and rejoined by concat.py (identical headers asserted):
+ - HNC rows (normals and tumors): characteristics[organism part] and factor value[organism part] = craniocervical
+   region (UBERON:0007811, checked live with sdrf-tools verify). Tonsil and oropharynx appear only as labelled cohort
+   statements in clinical data. The factor groups are unchanged in membership (3 + 3), so replicate numbers stay 1-3.
+ - comment[cleavage agent details] = NT=Trypsin;AC=MS:1001251;CS=(?<=R)(?!P) (coordinator decision; precedent PXD003958).
+ - Breast clinical data now say "patient tumor immunoprofile: ..." (also on the normal-tissue rows).
+ - Manifest: the review file is no longer cited as a source; cleavage and organism-part evidence rewritten.
+
+All of the following were run on sha256 6f8c0332fc9e6bd234df8f501e6ad654dacff530e274ea819d74190dd10f6a1b:
+$ parse_sdrf validate-sdrf -s PXD013311.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit=0
+(WARNING justified as in the previous round: SN= pattern for pooled sample.)
+
+$ sdrf-tools structure PXD013311.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+$ sdrf-tools reconcile PXD013311.sdrf.tsv --record <record> --accession PXD013311   (both records, verbatim)
+--- record ../pride.json
+PXD013311: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+--- record ../pride_v3.json
+PXD013311: 1 value(s) disagree with the deposit record:
+
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit=0
+Assessment: the live PRIDE v3 record (pride_v3.json, fetched 2026-11-08) gives MAJOR cleavage_agent_incomplete
+[missing Arg-C]. Not acted on. Arg-C occurs in the record only as (a) sampleProcessingProtocol "the combination of chemical
+alkylation and trypsin digestion generates an 'Arg-C-like' digestion" and (b) dataProcessingProtocol "Enzyme specificity
+was set to Arg-C" (a search setting). No Arg-C protease was used for this dataset. The paper's Arg-C in-solution digest
+(Methods 3.7) applies only to the histone H4 data of Figure 6, which this deposit does not contain (all runs are in-gel
+H3 runs, summary.txt). The effective Arg-C-like specificity is encoded by CS=(?<=R)(?!P). The MCP-normalized record
+(pride.json) gives only the MINOR cleavage_agent_unsupported, which is the false positive noted before.
+
+$ parse_sdrf convert-openms -s PXD013311.sdrf.tsv -t2
+Conditions (8): dict_keys(['normal|breast', 'not applicable|not applicable', 'luminal A breast carcinoma|breast', 'triple-negative breast carcinoma|breast', 'normal|craniocervical region', 'head and neck squamous cell carcinoma|craniocervical region', 'normal|ovary', 'ovarian serous tumor|ovary'])
+Files per condition: dict_values([15, 48, 8, 7, 3, 3, 5, 7])
+SUCCESS (WARNINGS=0): ../PXD013311.sdrf.tsv
+exit=0
+(openms.tsv Enzyme = Trypsin for all 48 files.)
+
+$ sdrf-tools schema-check annotations/PXD013311.evidence.json
+annotations/PXD013311.evidence.json: valid evidence-manifest
+exit=0
+$ sdrf-tools manifest-coverage annotations/PXD013311.sdrf.tsv annotations/PXD013311.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit=0

@@ -1,0 +1,353 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD048525-luad.sdrf.tsv",
+ "dataset": "PXD048525",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD048525 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD048525/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/files_all.json; 9 entries, all asserted to carry PXD048525; raw data only inside three .7z archives)"
+  },
+  {
+   "id": "archive_lists",
+   "kind": "repository",
+   "location": "7z central headers read by HTTP range (py7zr) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD048525/UHN_Lung_Tissue_IMPACT_Samples_Raw_Data.7z (49 .raw), Brain-Metastasis-Samples-Raw-DIA-Data.7z (50 .d), Brain-Metastasis-Library-Raw-Data.7z (60 .d) (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/7z_*.json; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/scripts/list7z.py, list7z_reader.py)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Zuccato JA et al. Prediction of brain metastasis development with DNA methylation signatures. Nat Med 2025;31(1):116-125, PMID 39379704, PMC11750707, doi:10.1038/s41591-024-03286-y (NCBI efetch db=pmc id=11750707, title verified; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pmc.xml, sentences /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pmc_sent.txt lines 300-404 = Methods). Only supplementary item is MOESM1 (reporting summary PDF, image-only)."
+  },
+  {
+   "id": "samplelist",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD048525/UHN_Lung_Tissue_IMPACT_SampleList.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/dl/samplelist.xlsx; columns label, ID, Project, Tissue type, Hitology; 49 rows)"
+  },
+  {
+   "id": "mq_pg",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD048525/UHN_Lung_Tissue_IMPACT_proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/dl/pg.txt; MaxQuant proteinGroups, 49 experiments, Ratio H/L columns, Intensity L/H, Oxidation (M) site IDs)"
+  },
+  {
+   "id": "ratio_check",
+   "kind": "analysis",
+   "location": "Light/heavy intensity check on mq_pg (inline python, output in report): tissue-only proteins HBB H/L 0.069, IGHG1 0.030, SFTPB 0.0019, SFTPA2 0.0012, AGER 0.019, PTPRC 0.090 (light-dominant = patient tissue); EGFR H/L 4.25 (heavy-dominant; HCC827 carries EGFR amplification)"
+  },
+  {
+   "id": "ref45",
+   "kind": "publication",
+   "location": "Mirhadi S et al. Mol Cancer Res 2023;21:36-50, PMC9808373 (paper ref. 45, \"analyzed as done previously\"; NCBI efetch db=pmc id=9808373, title verified; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/ref45.xml): super-SILAC standard = HCC827, H520, H460 grown with 13C6 15N2-Lys (Lys-8) and 13C6 15N4-Arg (Arg-10), combined 1:1:1; same Orbitrap Elite LC-MS method; MaxQuant SILAC pairs"
+  },
+  {
+   "id": "raw_hdr_elite",
+   "kind": "raw-file",
+   "location": "First ~1 MB of each of the 49 .raw members of UHN_Lung_Tissue_IMPACT_Samples_Raw_Data.7z, LZMA2 raw-decompressed from HTTP range reads, UTF-16LE decoded (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/scripts/allraw.py; results /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/uhn_raw_headers.json): all 49 say \"Orbitrap Elite MS\", acquired 2015 (May-Oct), method 240min-1Col-5L-DE50-*"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools ols and OLS search by obo_id, 2026-11-08): every accession checked live, none obsolete"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "sdrf-tools cellline lookup HCC827 -> CVCL_2063 (lung adenocarcinoma, female 39Y); NCI-H520 -> CVCL_1566 (squamous cell lung carcinoma, male); NCI-H460 -> CVCL_0459 (lung large cell carcinoma, male); all tissue Lung"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), 79 (human 1.1.0), 41 (clinical-metadata 1.0.0), 160 (oncology-metadata 1.0.0), 61 (dia-acquisition 1.1.0); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. The spec submodule nested templates copy is older. sdrf version v1.1.0 from spec README.adoc:27; annotation tool per campaign rule 10"
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "specification",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (campaign rules 1-18)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[sdrf version] all rows",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates",
+    "campaign_rules"
+   ],
+   "evidence": "Spec README.adoc:27 / campaign rule 1."
+  },
+  {
+   "location": "comment[sdrf annotation tool] all rows",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "campaign_rules"
+   ],
+   "evidence": "Campaign rule 10."
+  },
+  {
+   "location": "technology type all rows",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from the ms-proteomics template."
+  },
+  {
+   "location": "characteristics[organism] all rows",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; paper: patients managed at University Health Network Toronto (in the LUAD file the super-SILAC lines are human too, see pooled sample claim / Cellosaurus). NCBITaxon:9606."
+  },
+  {
+   "location": "comment[technical replicate] all rows; comment[fraction identifier]",
+   "value": "1 (fractions 1-60 in library file)",
+   "source_ids": [
+    "archive_lists",
+    "paper"
+   ],
+   "evidence": "One injection per sample; library fractions numbered from the _F<n>_ token of the .d names (F1-F60 = 60 high-pH fractions, paper/PRIDE protocol)."
+  },
+  {
+   "location": "comment[sdrf template] all rows",
+   "value": "ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0",
+   "source_ids": [
+    "templates",
+    "campaign_rules",
+    "paper"
+   ],
+   "evidence": "Patient tumour tissue (rule 15/18: clinical-metadata appropriate for patient samples; oncology-metadata licenses histologic subtype for cancer tissue). cell-lines NOT declared: only the spiked heavy reference is a cell-line mix (rule 18), recorded via pooled sample SN=."
+  },
+  {
+   "location": "source name light rows (odd rows 1-97)",
+   "value": "PHLC<nnn>-<k>[_<m>] (sample-list label)",
+   "source_ids": [
+    "samplelist",
+    "archive_lists",
+    "mq_pg"
+   ],
+   "evidence": "Sample list column \"label\" equals the .raw member stem and the MaxQuant experiment name for all 49."
+  },
+  {
+   "location": "source name heavy rows (even rows 2-98)",
+   "value": "super-SILAC reference (HCC827, NCI-H520, NCI-H460, Lys8/Arg10) aliquot in <label>",
+   "source_ids": [
+    "paper",
+    "ref45",
+    "ratio_check"
+   ],
+   "evidence": "Paper Methods: \"proteins were extracted from tissue samples, mixed with equal amounts of super-SILAC standard ... analyzed as done previously (refs 45,46)\"; ref45 defines the standard. Per-run suffix keeps the row coordinate unique (precedent PXD000690)."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "SILAC light = patient tissue; SILAC heavy = super-SILAC reference",
+   "source_ids": [
+    "ref45",
+    "paper",
+    "mq_pg",
+    "ratio_check"
+   ],
+   "evidence": "ref45: standard labelled with Lys-8/Arg-10 (heavy), tissue unlabelled. proteinGroups has Ratio H/L + Intensity L/H for 49 experiments (multiplicity 2, campaign rule 14). Data check: blood/tissue/immune/lung-parenchyma proteins are light-dominant (HBB 0.069, IGHG1 0.030, SFTPB 0.0019, AGER 0.019), EGFR heavy-dominant (4.25, HCC827 is EGFR-amplified)."
+  },
+  {
+   "location": "characteristics[sample type] all rows",
+   "value": "study sample (light) / reference (heavy)",
+   "source_ids": [
+    "ref45",
+    "ols"
+   ],
+   "evidence": "PRIDE:0001013 study sample; PRIDE:0000899 reference (child of PRIDE:0000898 multiplex sample under PRIDE:0000895). Heavy = internal reference per ref45 (\"served as an internal reference\")."
+  },
+  {
+   "location": "characteristics[organism part] all rows",
+   "value": "lung",
+   "source_ids": [
+    "samplelist",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Sample list \"Tissue type\" = Lung for all 49 (light). Heavy: all three reference lines are lung-derived (Cellosaurus tissue Lung). UBERON:0002048."
+  },
+  {
+   "location": "characteristics[disease] light rows",
+   "value": "lung adenocarcinoma",
+   "source_ids": [
+    "samplelist",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Sample list \"Hitology\" = adenocarcinoma (ADC) for every sample (4 x \"ADC, mucinous\"); paper \"For 49 LUAD tumors\". MONDO:0005061. Heavy rows not applicable: mix of LUAD, LUSC and large-cell lines (precedent PXD000690/PXD001963)."
+  },
+  {
+   "location": "characteristics[histologic subtype] light rows",
+   "value": "Lung Adenocarcinoma (45) / Mucinous Adenocarcinoma (4: PHLC137-1_2, PHLC054-1_2, PHLC155-1, PHLC264-1)",
+   "source_ids": [
+    "samplelist",
+    "ols"
+   ],
+   "evidence": "Individual-level sample list (rule 18). \"adenocarcinoma (ADC)\" (incl. one truncated \"adenocarcinoma (ADC\") -> NCIT:C3512 Lung Adenocarcinoma; \"adenocarcinoma (ADC), mucinous\" -> NCIT:C26712 Mucinous Adenocarcinoma (the generic term: the list does not say invasive vs minimally invasive, so NCIT:C136709/C7268 are not asserted). Heavy rows not applicable. Characteristic only: histology is not the compared variable (review round 1, L1)."
+  },
+  {
+   "location": "factor value[disease] all rows",
+   "value": "lung adenocarcinoma (light) / not applicable (heavy)",
+   "source_ids": [
+    "samplelist",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Constant factor mirroring characteristics[disease] (MONDO:0005061); heavy reference rows not applicable (precedent PXD000690, consistent with the BM parts). It carries no comparison: the study variable (5-year BM development) is not available per sample, see limitations. Replaces factor value[histologic subtype] (review round 1, L1)."
+  },
+  {
+   "location": "characteristics[material type] all rows",
+   "value": "tissue (light) / cell line (heavy)",
+   "source_ids": [
+    "paper",
+    "ref45"
+   ],
+   "evidence": "Light = proteins extracted from patient tumour tissue; heavy = cultured cell-line lysate mix."
+  },
+  {
+   "location": "characteristics[pooled sample] all rows",
+   "value": "not pooled (light) / SN=HCC827;SN=NCI-H520;SN=NCI-H460 (heavy)",
+   "source_ids": [
+    "ref45",
+    "cellosaurus"
+   ],
+   "evidence": "ref45: HCC827, H520 and H460 combined 1:1:1; Cellosaurus names CVCL_2063, CVCL_1566, CVCL_0459."
+  },
+  {
+   "location": "characteristics[biological replicate] all rows",
+   "value": "1 (light) / pooled (heavy)",
+   "source_ids": [
+    "samplelist"
+   ],
+   "evidence": "Each light source is one tumour of one case, measured once. Heavy = aliquots of one pooled standard, not replicates."
+  },
+  {
+   "location": "characteristics[individual] light rows",
+   "value": "PHLC<nnn> (case prefix of the label)",
+   "source_ids": [
+    "samplelist"
+   ],
+   "evidence": "Sample list column \"ID\" (e.g. 14) matches the zero-padded PHLC prefix of every label (asserted in make_tables.py); used as the deposited case ID, no further identifiers added. Heavy rows pooled (three cell-line donors)."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex] heavy rows",
+   "value": "pooled",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Reference mixes three cell lines from different donors (HCC827 female 39Y; NCI-H520 male; NCI-H460 male)."
+  },
+  {
+   "location": "comment[data file]; assay name all rows",
+   "value": "49 .raw members, each with a light and a heavy row",
+   "source_ids": [
+    "archive_lists",
+    "pride_files"
+   ],
+   "evidence": "File names as they appear inside UHN_Lung_Tissue_IMPACT_Samples_Raw_Data.7z."
+  },
+  {
+   "location": "comment[instrument] all rows",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw_hdr_elite",
+    "paper",
+    "ols"
+   ],
+   "evidence": "All 49 raw headers: \"Orbitrap Elite MS\"; paper Methods agree. PRIDE instruments list Orbitrap Fusion Lumos (wrong for this arm; reconcile refutation in validation.txt)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ref45"
+   ],
+   "evidence": "One full MS scan plus ten data-dependent MS2 scans."
+  },
+  {
+   "location": "comment[cleavage agent details] all rows",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper/PRIDE protocol for primary tumours: \"digested overnight with trypsin\". The Trypsin/Lys-C mix belongs to the BM arm only."
+  },
+  {
+   "location": "comment[dissociation method]; comment[collision energy]; comment[ms2 mass analyzer] all rows",
+   "value": "CID; 30 NCE; linear ion trap",
+   "source_ids": [
+    "paper",
+    "ref45",
+    "ols"
+   ],
+   "evidence": "ref45: \"fragmented by collision-induced dissociation (CID) with normalized collision energies at 30 in the ion trap\"; paper repeats NCE 30 in the ion trap. MS:1000133, MS:1000291."
+  },
+  {
+   "location": "comment[reduction reagent]; comment[alkylation reagent] all rows",
+   "value": "DTT; Iodoacetamide",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: reduced with dithiothreitol 4.5 mmol/l at 60 C, alkylated with iodoacetamide 10 mmol/l. PRIDE:0000608, PRIDE:0000599."
+  },
+  {
+   "location": "comment[modification parameters] 1 all rows",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "INFERRED: no mqpar.xml/parameters.txt deposited. Iodoacetamide alkylation is documented, and PRIDE identifiedPTMStrings lists MOD:00397 \"iodoacetamide derivatized residue\" (IAA was used only in this arm; the BM arm used chloroacetamide); MaxQuant default fixed mod. See limitations."
+  },
+  {
+   "location": "comment[modification parameters] 2 all rows",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "mq_pg",
+    "ols"
+   ],
+   "evidence": "proteinGroups carries \"Oxidation (M) site IDs\" -> Oxidation (M) was a variable modification of this search."
+  },
+  {
+   "location": "comment[modification parameters] 3-4 all rows",
+   "value": "Label:13C(6)15N(2) UNIMOD:259 K; Label:13C(6)15N(4) UNIMOD:267 R; MT=Variable",
+   "source_ids": [
+    "ref45",
+    "mq_pg",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "ref45: Lys-8 (13C6 15N2, +8.014 = UNIMOD:259) and Arg-10 (13C6 15N4, +10.008 = UNIMOD:267); MaxQuant H/L ratios present. MT=Variable per campaign rule 11."
+  },
+  {
+   "location": "comment[ms1 scan range] all rows",
+   "value": "400m/z-1200m/z",
+   "source_ids": [
+    "paper",
+    "ref45"
+   ],
+   "evidence": "One full MS scan (400-1,200 m/z)."
+  }
+ ],
+ "limitations": [
+  "No MaxQuant mqpar.xml/parameters.txt/summary.txt deposited for the UHN arm (only proteinGroups.txt). Oxidation (M) and the H/L multiplicity are read from proteinGroups; the Lys8/Arg10 masses come from ref. 45 (same lab, same standard, same 2015 Orbitrap Elite method), not from this search. Carbamidomethyl (C) Fixed is inferred (IAA alkylation + PRIDE PTM list + MaxQuant default). Acetyl (Protein N-term), a MaxQuant default, is NOT annotated because nothing deposited evidences it for this search (protein N-term mods never yield proteinGroups site columns).",
+  "Precursor/fragment mass tolerances of the MaxQuant 2.4.7.0 search are not stated (\"parameters we outlined previously\" -> ref45 lists none) -> not available; this makes parse_sdrf convert-openms fail (converter cannot read reserved words; campaign precedent PXD006676/PXD009868 kept the honest reserved word).",
+  "The study comparison for this arm, primary LUAD that did vs did not develop brain metastasis within 5 years (paper Results s142, Ext. Data Fig. 6b), CANNOT be annotated per sample. Sources checked: the deposited UHN_Lung_Tissue_IMPACT_SampleList.xlsx (label, ID, Project, Tissue type, Histology only); the paper full text (PMC11750707: cohort-level counts only) and its only ESM (MOESM1 reporting summary, image-only PDF, no supplementary tables); the Nature article page (no other ESM / source data); GEO GSE220838 sample records (196 GSM, characteristics only \"disease state: Lung adenocarcinoma\", titles GZLBM2022tissueNNN, no link to PHLC labels); GitHub patilvikas/BrainMetsPrediction (R code only, no clinical data); ref45 PMC9808373 (no per-patient outcome linked to PHLC labels). Per rule 18 no outcome is inferred; factor value[disease] is a constant placeholder (lung adenocarcinoma / not applicable) and carries no comparison. Age, sex, ancestry, stage and EGFR status are likewise unavailable per sample.",
+  "characteristics[individual] = PHLC case prefix; the deposit does not define \"PHLC\" or say the ID column is a patient (vs specimen) identifier.",
+  "Raw files are deposited only inside a 7z archive; comment[data file] gives member names.",
+  "PRIDE instruments (Orbitrap Fusion Lumos, Bruker) and quantification methods (SILAC, diaPASEF) are project-wide; per-arm values come from raw headers.",
+  "techsdrf not installed; raw verification = UTF-16 header strings of all 49 .raw members (instrument, method, folder date)."
+ ]
+}

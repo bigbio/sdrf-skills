@@ -1,0 +1,51 @@
+# PXD030422 validation log (round 1; one build, no fix round needed). Artifact sha256: 33b7e596f43995cc3d4cad3e6e9ed2d4bc134437eddc59f3b1a831c006f3c5d9
+# SDRF produced only by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/files.json -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata -o annotations/PXD030422.sdrf.tsv (tables written by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/scripts/make_tables.py). No post-build edits.
+
+$ sdrf-tools reconcile annotations/PXD030422.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD030422/pride.json --accession PXD030422
+PXD030422: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  organism_contradicted (characteristics[organism]): the record names only Mus musculus and never Homo sapiens  [declared 'Homo sapiens']
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD030422.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD030422.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=LS411N;SN=HT-29;SN=SW480;SN=SW837;SN=SW1463' - must be one of the allowed values
+WARNING: Term: cT3N1M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+WARNING: Term: cT2N1M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+WARNING: Term: cT3N0M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+WARNING: Term: cT4N1M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD030422.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD030422.sdrf.tsv
+Factor columns: ['factor value[treatment response]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[treatment status]', 'characteristics[tumor grading]', 'characteristics[tumor stage]', 'characteristics[clinical data]']
+Conditions (3): dict_keys(['Pathologic Complete Response', 'not applicable', 'Residual Disease'])
+Files per condition: dict_values([64, 122, 58])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 244 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD030422.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD030422.evidence.json
+annotations/PXD030422.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD030422.sdrf.tsv annotations/PXD030422.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+## Findings and justifications
+
+1. reconcile exit 1, BLOCKER organism_contradicted ("the record names only Mus musculus and never Homo sapiens"): FALSE POSITIVE (campaign rule 13).
+   - The check scans title + projectDescription + sampleProcessingProtocol for species words. The only hit is "a novel murine rectal cancer model" in the projectDescription, which describes the paper's separate mouse experiments. The deposited runs are human.
+   - PRIDE structured `organisms` = Homo sapiens (NEWT:9606). The protocol describes FFPE tissue of rectal cancer patients and five human colorectal cancer cell lines (Cellosaurus NCBI_TaxID=9606: CVCL_1385, CVCL_0320, CVCL_0546, CVCL_1729, CVCL_1718).
+   - dataProcessingProtocol: "searched against the UniProtKB/Swiss-Prot human protein database". MaxQuant parameters.txt: Fasta file uniprot-human-220114.fasta.
+   - Cohort_file_IDs.txt: 61 patients with internal IDs GSH_RADONC_RectalCancer_213-273.
+   No other reconcile finding.
+2. parse_sdrf WARNING "Invalid value 'SN=LS411N;SN=HT-29;SN=SW480;SN=SW837;SN=SW1463' - must be one of the allowed values" (characteristics[pooled sample], 122 heavy rows): justified. TERMS.tsv and the contract allow "fixed: not pooled, pooled; or pattern: SN=sample1;SN=sample2". The validator checks only the fixed list. Rule 18 asks for the reference cell lines to be named when stated. Curated precedent PXD001370 uses the same SN= form.
+3. parse_sdrf WARNINGs "Term: cT3N1M0 / cT2N1M0 / cT3N0M0 / cT4N1M0 ... not found in ncit" (characteristics[tumor stage]): justified. The check is warning level. The oncology-metadata template documents combined TNM notation with a c/p prefix, and its own examples (T2N1M0 ...) are not NCIT terms either. NCIT has no combined-TNM term.
+4. convert-openms: SUCCESS. The one warning ("no TA= specified", 244x) comes from Acetyl PP=Protein N-term, which correctly has no TA. Conditions: Pathologic Complete Response 64 files, Residual Disease 58, not applicable 122 (the heavy reference channel).

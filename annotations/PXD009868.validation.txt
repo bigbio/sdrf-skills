@@ -1,0 +1,52 @@
+# PXD009868 validation record (round 1 = final; no post-build edits: the SDRF is byte-identical to sdrf-tools build output)
+sha256: d4fed1ffea21f2235c0cbf454ba1eb548bddcbc06c2acee7f621a9e11088f557
+
+$ sdrf-tools build --samples samples.tsv --technical technical.tsv --files build_files.json -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata -o PXD009868.sdrf.tsv
+wrote PXD009868.sdrf.tsv: 264 rows x 42 columns
+exit code: 0
+
+(rebuild byte-identical to deposited annotations/PXD009868.sdrf.tsv)
+$ parse_sdrf validate-sdrf -s PXD009868.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=LNCaP;SN=PC-3;SN=22Rv1;SN=WPMY-1' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD009868.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile PXD009868.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009868/evidence/pride.json --accession PXD009868
+PXD009868: 1 value(s) disagree with the deposit record:
+
+  MAJOR    disease_with_control_arm_in_record (characteristics[disease]): the record describes a control arm, so 'metastatic prostate carcinoma' cannot hold for every row  [untreated]
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD009868.sdrf.tsv -t2   (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD009868/openms; traceback trimmed to last lines)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+$ sdrf-tools schema-check PXD009868.evidence.json
+PXD009868.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD009868.sdrf.tsv PXD009868.evidence.json
+Manifest covers every column with a value (24 column(s)).
+exit code: 0
+
+## Notes on non-clean results
+1. parse_sdrf WARNING "Invalid value 'SN=LNCaP;SN=PC-3;SN=22Rv1;SN=WPMY-1' - must be one of the allowed values"
+   (characteristics[pooled sample], 132 heavy reference rows). Warning only (exit 0). The sample-metadata template
+   declares both a 'values' validator (not pooled/pooled) and a 'pattern' validator ^(not pooled|pooled|SN=.+(;SN=.+)*)$;
+   the SN= form satisfies the pattern and is the form curated super-SILAC precedents use (PXD001370, PXD001963,
+   PXD002882 in sdrf-annotated-datasets; campaign precedent PXD016211 carries the same warning). Rule 18 asks that the
+   reference cell lines be named.
+2. reconcile MAJOR disease_with_control_arm_in_record [untreated] - FALSE POSITIVE. The trigger word is from the
+   PRIDE description "while 5 were previously untreated": these are hormone-naive bone-metastasis PATIENTS, i.e.
+   treatment status, not a disease-free control arm. The record's non-malignant tissue (n=8) and localized tumours
+   (n=28) are experiments PC1-PC28/PC53-PC64 deposited in PXD003430/003452/003515/004132/003615/003636 (their file
+   lists checked), none of which is in this deposit. Every patient row is a bone metastasis; the heavy reference
+   rows already carry disease 'not applicable', so the disease is not broadcast onto non-patient rows.
+3. convert-openms exit 1 "Cannot read precursor mass tolerance: not available": MaxQuant 1.3.7.1 parameters.txt
+   does not record the precursor tolerance and no mqpar.xml is deposited; a guessed default would be an unverified
+   value. Same outcome as campaign precedents PXD006676 / PXD024103.

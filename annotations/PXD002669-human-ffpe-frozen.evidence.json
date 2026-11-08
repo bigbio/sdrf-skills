@@ -1,0 +1,472 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD002669-human-ffpe-frozen.sdrf.tsv",
+ "dataset": "PXD002669",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002669 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002669/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/files.json; 113 entries, every entry asserted to carry PXD002669 in projectAccessions; 62 .raw)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Noberini R, Uggetti A, Pruneri G, Minucci S, Bonaldi T. Mol Cell Proteomics 2016;15(3):866-877, PMID 26463340, PMC4813706, doi:10.1074/mcp.M115.054510 (Europe PMC fullTextXML, title verified; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/paper.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/paper.txt)"
+  },
+  {
+   "id": "supp_pdf",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4813706.1/10.1074_M115.054510_mcp.M115.054510-1.pdf (Supplemental Data: Figs S1-S7, Tables S1-S3; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/S1.pdf, text S1.txt; Fig S3A rendered at 400 dpi: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/s3a.png)"
+  },
+  {
+   "id": "dataset_s1",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4813706.1/10.1074_M115.054510_mcp.M115.054510-2.xlsx (Dataset S1, mouse AUC/%RA; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/S2.xlsx)"
+  },
+  {
+   "id": "dataset_s2",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4813706.1/10.1074_M115.054510_mcp.M115.054510-3.xlsx (Dataset S2, biopsies 1-3 heavy/light AUC; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/S3.xlsx)"
+  },
+  {
+   "id": "dataset_s3",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4813706.1/10.1074_M115.054510_mcp.M115.054510-4.xlsx (Dataset S3, subtype biopsies heavy/light AUC; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/S4.xlsx)"
+  },
+  {
+   "id": "designs",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD002669/experimentalDesign*.txt (17 files; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/ed/)"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD002669/txt*.7z (17 archives, downloaded, members txt/summary.txt + txt/parameters.txt extracted; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/mq/<archive>/txt/)"
+  },
+  {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD002669/txtspleenacme1me2.7z, txtBiopsies1-3me1me2ac.7z, txtBiopsiessubtypesme1me2ac.7z, txtspleenothers.7z, txtliverothers.7z, txtliverme1me2ac.7z member txt/evidence.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/mq/<archive>/txt/evidence.txt)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "first 400 kB of 12 .raw files (one or more per acquisition date: F140408_RN_FF_H3, F140602_RN_SP_H4, F140814_Sample3_FFPE_H3_01, F140820_Sample10_Frozen_H3_01, F140821_Sample10_FFPE_H3_01, F140822_Sample2_Frozen_H3_01, F141028_H3_liver_RN_01, F141028_H4_spleen_RN_01, F141124_FFH3RN_1, F141124_LiverH4RN_1, F150414_RN_H3_1, F150414_RN_H3_20) via HTTP range, UTF-16LE decoded (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/rawhdr/)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools ols / sdrf-tools verify, OLS4 term API, 2026-11-08)"
+  },
+  {
+   "id": "unimod",
+   "kind": "ontology",
+   "location": "https://www.unimod.org/obo/unimod.obo (delta_mono_mass and specificity; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/unimod.obo)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:\"MDA-MB-231\" (and MDA-MB-468, MDA-MB-453, MDA-MB-361): CVCL_0062, CVCL_0419, CVCL_0418, CVCL_0620"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0; local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); the sdrf-skills spec submodule's nested templates copy is older. sdrf version v1.1.0 = spec README.adoc:27"
+  },
+  {
+   "id": "rules",
+   "kind": "campaign-rules",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md"
+  },
+  {
+   "id": "ratio_check",
+   "kind": "analysis",
+   "location": "inline python over mq_evidence evidence.txt: per raw file 'Labeling State' counts and sum(Intensity H)/sum(Intensity L) (commands in this session; outputs reproduced in /home/user/bigbio/sdrf-skills/annotations/PXD002669.validation.txt and the report)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[instrument] rows 1-36",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw_headers",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Every sampled raw header (12 files, all 7 acquisition dates) decodes 'Q Exactive' (no Plus/HF). Paper LC-MS/MS: 'connected online to a Q Exactive instrument'. The LTQ-Velos runs mentioned in the paper (cell-line set-up) are not deposited."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-36",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 'The Q Exactive instrument was operated in the data-dependent acquisition (DDA) mode'; top-5."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-36",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "rules",
+    "ols"
+   ],
+   "evidence": "Paper Histone Digestion: in-gel digestion 'with 100 ng/ul trypsin (Promega)' after D6-acetic anhydride derivatisation, giving an 'Arg-C like' digestion. MaxQuant search rule was Protease=Arg-C (summary.txt), recorded here as a note only; campaign rule 2: cleavage agent = digestion enzyme."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-36",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 'fragmented by HCD with a normalized collision energy setting of 25%'. MS:1000422 synonym HCD."
+  },
+  {
+   "location": "comment[collision energy] rows 1-36",
+   "value": "25 NCE",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: 'normalized collision energy setting of 25%'."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-36",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "designs",
+    "ols"
+   ],
+   "evidence": "Paper: histones 'separated on a 17% SDS-PAGE gel and bands corresponding to histones H3 and H4 were excised and in-gel digested'. PRIDE:0000568 is a descendant of PRIDE:0000550 (OLS ancestors)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-36",
+   "value": "6 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper/PRIDE data processing: 'The mass tolerance was set to 6 ppm for precursor and fragment ions' (MaxQuant 1.3.0.5 main-search tolerance; not written to parameters.txt in this version)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-36",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_summary"
+   ],
+   "evidence": "parameters.txt (all 17 jobs): 'MS/MS tol. (FTMS) 20 ppm' - HCD spectra in the Orbitrap are FTMS. The paper's prose says 6 ppm for fragments; the deposited search parameters win."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-36",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "Q Exactive acquires HCD MS/MS in the Orbitrap; MaxQuant applied the FTMS MS/MS tolerance."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-36",
+   "value": "300m/z-1650m/z",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: 'Survey full scan MS spectra (m/z 300-1650)'."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-36",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates",
+    "rules"
+   ],
+   "evidence": "Campaign rule 1: spec README.adoc:27."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-36",
+   "value": "NT=ms-proteomics;VV=v1.2.0 plus organism/clinical templates",
+   "source_ids": [
+    "templates",
+    "rules"
+   ],
+   "evidence": "Campaign rule 1; versions printed by sdrf-tools contract."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-36",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "rules"
+   ],
+   "evidence": "Campaign rule 10."
+  },
+  {
+   "location": "technology type rows 1-36",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-36",
+   "value": "one row per (raw file x channel); assay name = file stem",
+   "source_ids": [
+    "pride_files",
+    "designs"
+   ],
+   "evidence": "Every raw file in files/all appears exactly once per channel; file -> sample from experimentalDesign*.txt (Name -> Experiment)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-36",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Patient breast cancer biopsies; MDA-MB lines are human (Cellosaurus NCBI_TaxID=9606)."
+  },
+  {
+   "location": "comment[label] rows 1,3,5,...,35 (odd) / 2,4,6,...,36 (even)",
+   "value": "SILAC light (patient) / SILAC heavy (super-SILAC reference)",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "mq_evidence",
+    "ratio_check",
+    "dataset_s2",
+    "dataset_s3"
+   ],
+   "evidence": "Fig 3/4 legends: 'light channel: breast cancer biopsy, heavy channel: spike-in super-SILAC standard'; MaxQuant Multiplicity 2, Labels1 Arg10; summed H/L per raw file 0.39-1.41; Datasets S2/S3 give heavy and light AUC per run. Campaign rule 14 satisfied."
+  },
+  {
+   "location": "characteristics[sample type] rows 1,3,5,...,35 (odd) / 2,4,6,...,36 (even)",
+   "value": "study sample / reference",
+   "source_ids": [
+    "paper",
+    "ols",
+    "rules"
+   ],
+   "evidence": "Heavy mix 'used as an internal reference' (Results). PRIDE:0001013 study sample; PRIDE:0000899 reference (descendant of PRIDE:0000895 via multiplex sample). Rule 18."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 2,4,6,...,36 (even)",
+   "value": "SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361",
+   "source_ids": [
+    "paper",
+    "supp_pdf"
+   ],
+   "evidence": "Paper: 'we chose MDA-MB-231, MDA-MB-468, MDA-MB-453 and MDA-MB-361 to generate a super-SILAC mix ... Equal amounts of histones from [the four] were mixed, aliquoted'; Fig S4E. Light rows: 'not pooled' (one patient biopsy each)."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1,3,5,...,35 (odd)",
+   "value": "not pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Each light sample is histone extract from one patient's tumour."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 2,4,6,...,36 (even)",
+   "value": "pooled",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "sample-metadata 1.0.0: biological replicate 'pooled' for pooled reference samples only."
+  },
+  {
+   "location": "characteristics[disease] rows 2,4,6,...,36 (even)",
+   "value": "breast adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: all four lines NCIt C5214 Breast adenocarcinoma. MONDO:0004988."
+  },
+  {
+   "location": "characteristics[disease] rows 1,3,5,...,35 (odd)",
+   "value": "invasive ductal breast carcinoma",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: 'Invasive breast cancer specimens were obtained from 23 patients with duct invasive carcinoma not otherwise specified (supplemental Fig. S3A and supplemental Table S3)'. 23 = biopsies 1-3 + the 20 FFPE subtype biopsies, so the statement covers every annotated patient individually. Table S3 lists 30 biopsies in total: the other 10 (frozen LuA 6-10, TN 6-10) were used only for western blots (Fig 4E-F), are not deposited and are not counted in the 23. MONDO:0004953."
+  },
+  {
+   "location": "characteristics[material type] rows 1,3,5,...,35 (odd) / 2,4,6,...,36 (even)",
+   "value": "tissue / cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Tumour tissue (frozen or FFPE) vs histones from cultured, SILAC-labelled cell lines."
+  },
+  {
+   "location": "characteristics[organism part] rows 1,3,5,...,35 (odd)",
+   "value": "breast",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Primary breast tumour specimens from mastectomy or breast-conserving surgery. UBERON:0000310. Heavy rows 'not applicable' (cell-line pool from four metastatic sites)."
+  },
+  {
+   "location": "characteristics[sex] rows 2,4,6,...,36 (even)",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus sex = Female for CVCL_0062, CVCL_0419, CVCL_0418, CVCL_0620; patient rows 'not available' (sex not reported per patient)."
+  },
+  {
+   "location": "characteristics[age] / [individual] rows 2,4,6,...,36 (even)",
+   "value": "pooled",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "human 1.1.0 allows 'pooled' for age and individual; the reference is a four-donor cell-line pool (Cellosaurus ages 51Y, 51Y, 48Y, 40Y)."
+  },
+  {
+   "location": "characteristics[preservation method] rows 1,3,5,...,35 (odd)",
+   "value": "formalin-fixed paraffin-embedded / frozen",
+   "source_ids": [
+    "paper",
+    "designs",
+    "supp_pdf"
+   ],
+   "evidence": "Custom column. File names and design Experiment names (FFPE / frozen); Table S3 'Sample analyzed' = FFPE for the subtype biopsies. Heavy rows 'not applicable' (cultured cells)."
+  },
+  {
+   "location": "comment[fraction identifier] / comment[technical replicate] rows 1-36",
+   "value": "fraction 1 (H3 band only); technical replicate from design",
+   "source_ids": [
+    "designs"
+   ],
+   "evidence": "All human design rows Fraction = 1; only H3 bands were acquired (file names *_H3*)."
+  },
+  {
+   "location": "comment[modification parameters] (6 columns) rows 1-36",
+   "value": "Acetyl:2H(3), Methyl+Acetyl:2H(3), Acetyl, Dimethyl, Trimethyl, Label:13C(6)15N(4)",
+   "source_ids": [
+    "mq_summary",
+    "mq_evidence",
+    "paper",
+    "unimod",
+    "ols",
+    "rules"
+   ],
+   "evidence": "Modifications come from the deposited MaxQuant 1.3.0.5 jobs (summary.txt 'Variable modifications'; 'Fixed modifications' empty in all 17 jobs). Custom MaxQuant names mapped by mass (paper Data Analysis) and Unimod delta_mono_mass: D3 +45.0294 -> Acetyl:2H(3) UNIMOD:56 (45.029395); me-D3 +59.0454 -> Methyl+Acetyl:2H(3) UNIMOD:768 (59.045045, 'mono-methylated lysine labelled with Acetyl_heavy'); Acetyl (K) UNIMOD:1; Dimethyl (KR) UNIMOD:36 TA=K,R; Trimethyl (K) UNIMOD:37. evidence.txt Modified sequence shows d3/me/ac on K only and di on K and R; no N-terminal D3. No Carbamidomethyl: no reduction/alkylation with iodoacetamide is described and no fixed mod was searched. Human jobs (me1me2ac, me1me2me3, me1me3ac) all contain every human file. Arg10 = Label:13C(6)15N(4) UNIMOD:267 (+10.008269, R; paper 'l-13C6 15N4-arginine (Arg-10)'), MT=Variable per campaign rule 11."
+  },
+  {
+   "location": "source name and characteristics[individual] rows 1-36 (odd rows)",
+   "value": "breast cancer biopsy {1,2,3} {FFPE|frozen}; individual Biopsy1/Biopsy2/Biopsy3",
+   "source_ids": [
+    "designs",
+    "supp_pdf",
+    "dataset_s2"
+   ],
+   "evidence": "All three experimentalDesignBiopsies1-3*.txt map F140822_Sample2_* -> Biopsy1, F140814_Sample3_* -> Biopsy2, F140820/F140821_Sample10_* -> Biopsy3; Fig S3A / Dataset S2 use 'Biopsy 1-3'. FFPE and frozen portions of the same tumour share the individual ID ('distinct tissue portions were frozen or fixed'). Conflict: experimentalDesignBiopsies1-3me1me2ac.txt labels F140820_Sample10_Frozen_* as Biopsy3_FFPE and F140821_Sample10_FFPE_* as Biopsy3_frozen; the file names and the other two design files say the opposite, and the evidence pattern agrees with the file names (light-only evidence count: Sample10_Frozen 155-179 per run like other frozen runs 75-126, Sample10_FFPE 386-409 like other FFPE runs 429-545). File names followed."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-36 (odd rows)",
+   "value": "1,2,3 = Biopsy1,2,3 within each preservation group",
+   "source_ids": [
+    "paper",
+    "rules"
+   ],
+   "evidence": "Rule 3; triplicates are technical replicates ('acquired in triplicate (technical replicates)')."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-36",
+   "value": "1-3",
+   "source_ids": [
+    "designs",
+    "paper",
+    "dataset_s2"
+   ],
+   "evidence": "Design _1/_2/_3, file suffix _01-_03, Dataset S2 technical replicates a-c."
+  },
+  {
+   "location": "characteristics[histologic subtype] rows 1-36 (odd rows)",
+   "value": "Biopsy1 Luminal B Breast Carcinoma; Biopsy2 Luminal A Breast Carcinoma; Biopsy3 Luminal B Breast Carcinoma",
+   "source_ids": [
+    "supp_pdf",
+    "ols"
+   ],
+   "evidence": "Fig S3A table: biopsy 1 LuB, 2 LuA, 3 LuB. NCIT:C53555 / NCIT:C53554."
+  },
+  {
+   "location": "characteristics[tumor grading] rows 1-36 (odd rows)",
+   "value": "Grade 2 (Biopsy1, Biopsy2) / Grade 3 (Biopsy3)",
+   "source_ids": [
+    "supp_pdf",
+    "ols"
+   ],
+   "evidence": "Fig S3A Differentiation: moderate, moderate, poor. NCIT:C28078 'Grade 2' has synonym 'Moderately Differentiated'; NCIT:C28079 'Grade 3' has synonym 'Poorly Differentiated'."
+  },
+  {
+   "location": "characteristics[clinical data] rows 1-36 (odd rows)",
+   "value": "ER/PR/HER2/Ki-67 per biopsy",
+   "source_ids": [
+    "supp_pdf"
+   ],
+   "evidence": "Fig S3A: Biopsy1 ER+ PR+ HER2- Ki-67 25%; Biopsy2 ER+ PR+ HER2- 17%; Biopsy3 ER+ PR- HER2- 22%. pTNM moved to tumor stage and differentiation is carried by tumor grading (review round 1)."
+  },
+  {
+   "location": "characteristics[tumor stage] rows 1-36",
+   "value": "pT2N1a (Biopsy1, rows 1-6 and 19-24 odd) / pT1cN0M0 (Biopsy2, Biopsy3) / not applicable (heavy rows, even)",
+   "source_ids": [
+    "supp_pdf",
+    "templates"
+   ],
+   "evidence": "Fig S3A pTNM column: 1 pT2N1a, 2 pT1cN0M0, 3 pT1cN0M0. oncology-metadata 1.0.0 tumor stage: 'TNM notation (e.g., T2N1M0). Prefix with p for pathological'. The values are TNM strings, not NCIT terms, so parse_sdrf warns 'not found in ncit' (warning only)."
+  },
+  {
+   "location": "source name heavy rows 2,4,...,36",
+   "value": "super-SILAC histone reference mix spiked into <sample> (6 names)",
+   "source_ids": [
+    "paper",
+    "rules"
+   ],
+   "evidence": "All heavy rows are aliquots of one mix ('mixed, aliquoted, lyophilized'). One shared source name was tried in review round 1: sdrf-tools build refuses it ('two rows for source super-SILAC histone reference mix share biological replicate pooled, technical replicate 1 and fraction 1'; scratchpad/PXD002669/single_ref_refusal.txt), because the 6 spiked samples each have technical replicates 1-3 at fraction 1. Renumbering technical replicates 1-18 to get past the check would be false, and rule 17 forbids a hand edit. The per-sample names identify the spiked aliquot."
+  },
+  {
+   "location": "factor value[preservation method] rows 1-36",
+   "value": "formalin-fixed paraffin-embedded / frozen (light); not applicable (heavy reference)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Fig 3B-C / Fig S3D-E compare FFPE vs frozen portions of the same three tumours."
+  },
+  {
+   "location": "characteristics[cell type], [ancestry category], [age], [sex] rows 1-36 (odd rows)",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "supp_pdf"
+   ],
+   "evidence": "Not reported per patient (tumour cells >=50% of sample is a cohort criterion, not a cell type)."
+  }
+ ],
+ "limitations": [
+  "techsdrf is not installed: instrument checked by HTTP range-read of 12 raw headers only (one or more per acquisition date), not by full-file parsing; scan settings come from the paper.",
+  "Precursor tolerance 6 ppm is from paper prose (MaxQuant 1.3.0.5 parameters.txt does not record the main-search tolerance); fragment 20 ppm is from parameters.txt and contradicts the paper's '6 ppm for precursor and fragment ions'.",
+  "Search enzyme was Arg-C (MaxQuant) while the digestion reagent was trypsin after lysine D6-acetylation; comment[cleavage agent details] = Trypsin per campaign rule 2; sdrf-tools reconcile flags this (refuted in validation.txt). Reprocessing with an unrestricted trypsin rule would differ from the deposited Arg-C search.",
+  "The raw data were searched in 3-4 parallel MaxQuant jobs with different variable-modification subsets; comment[modification parameters] lists the union of the jobs each file went through, not one single search.",
+  "characteristics[preservation method] and characteristics[storage duration] are custom columns (no template column exists for FFPE vs frozen; spec 'Extending Templates').",
+  "Not deposited and therefore not annotated: the LTQ-Velos/Q Exactive super-SILAC set-up runs (five breast cancer lines + MCF10A spike-in, Fig S4), and the frozen LuA 6-10 / TN 6-10 samples (western blot only). PRIDE organismParts 'cell culture' and 'mammary gland epithelial cell' refer to that set-up work.",
+  "Patient age, sex, ancestry and treatment are not reported per patient anywhere in the deposit or paper (Table S3 / Fig S3A give subtype, ER, PR, HER2, Ki-67, grade/differentiation and pTNM only): 'not available'. 'Matched for other clinical features (age, sex, etc.)' is a cohort statement and was not copied onto rows.",
+  "Breast cancer subtypes were defined by IHC surrogates (St Gallen 2013, 'Luminal A-like' etc.); the NCIT terms used (Luminal A/B Breast Carcinoma, Triple-Negative, HER2-Positive) sit under 'Breast Carcinoma by Gene Expression Profile'. Closest available terms; the '-like' qualifier is lost.",
+  "Heavy reference rows: one source per spiked sample ('super-SILAC histone reference mix spiked into <sample>') because sdrf-tools build forbids one source with the same replicate/fraction across runs; all are aliquots of one mix ('mixed, aliquoted, lyophilized'). The SN= pooled-sample value triggers a parse_sdrf values-validator warning that contradicts the template's own pattern validator.",
+  "characteristics[clinical data] is free text built from Table S3 / Fig S3A cells (ER, PR, HER2 score, Ki-67, pTNM, differentiation); HER2 strings such as '80% (+)' are copied verbatim (1+ = HER2-negative by ASCO/CAP)."
+ ]
+}

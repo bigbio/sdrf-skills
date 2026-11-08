@@ -1,0 +1,273 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD038030.sdrf.tsv",
+ "dataset": "PXD038030",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD038030 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD038030/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/evidence/files_all.json; 45 entries, all projectAccessions contain PXD038030: 43 .raw, Sample_legend.txt, Magnani.zip)"
+  },
+  {
+   "id": "legend",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/05/PXD038030/Sample_legend.txt (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/evidence/Sample_legend.txt)"
+  },
+  {
+   "id": "epiprofile",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/05/PXD038030/Magnani.zip, members histone_ratios_SILAC.xls, histone_ratios.xls, histone_logs.txt, MS2/HF221020_RN_Magnani_17.ms2, extracted by HTTP-range read of the zip central directory (local copies /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/zip/x/; central directory listing /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/zip/cd.tsv)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Rosano D et al. Cancer Discov 2024;14(5):866-889, PMID 38527495, PMC11061610, doi:10.1158/2159-8290.CD-23-1161 (NCBI efetch id=11061610, title verified; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/evidence/efetch_11061610.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/evidence/manuscript.txt)"
+  },
+  {
+   "id": "tableS8",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11061610.1/cd-23-1161_supplementary_table_8_suppst8.xlsx (Supplementary Table S8 \"Mass spectrometry analysis for MCF7 and T47D\"; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/supp/st8.xlsx, sha256 061995473a27c768c83643afe077b6aab993f69bc31552e776c4c8bf232b9c5b)"
+  },
+  {
+   "id": "map_crosscheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/scripts/xcheck.py, output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/xcheck_out.txt"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "HTTP range bytes 0-1500000 of https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/05/PXD038030/HF220914_RN_Magnani_{1,20,42}.raw and HF221020_RN_Magnani_{13,38,43}.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/raw/*.head; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/raw/method_summary.txt)"
+  },
+  {
+   "id": "silac_delta",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/scripts/deltas.py run on /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/zip/x/HF221020_RN_Magnani_17.ms2"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0031 and /CVCL_0553 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/evidence/cellosaurus_CVCL_0031.txt, cellosaurus_CVCL_0553.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 via sdrf-tools ols / MCP search (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/ols1.txt); MONDO:0004953 xref NCIT:C4194 MONDO:equivalentTo via https://www.ebi.ac.uk/ols4/api/ontologies/mondo/terms?obo_id=MONDO:0004953"
+  },
+  {
+   "id": "ref60",
+   "kind": "publication",
+   "location": "Cuomo A et al. Amino Acids 2011;41:387-99, PMID 20617350 (Europe PMC abstract, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/evidence/ref60_cuomo2011.json)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc line 27 (Version v1.1.0); sdrf-tools contract output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD038030/contract.txt"
+  },
+  {
+   "id": "review1",
+   "kind": "review",
+   "location": "/home/user/bigbio/sdrf-skills/annotations/PXD038030.review.md (external sdrf-adversarial-review; round 1 FAIL on b6e70965..., round 2 FAIL on d45a64f3...)"
+  },
+  {
+   "id": "precedent",
+   "kind": "curated-sdrf",
+   "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD002098/PXD002098.sdrf.tsv (cell line \"super-SILAC mix\", sample type reference); /home/user/bigbio/sdrf-skills/annotations/PXD008327.sdrf.tsv (heavy reference = sample type reference); datasets/PXD013288 (Bonaldi-lab histone super-SILAC, heavy = Arg10)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file], assay name, source name rows 1-86",
+   "value": "43 deposited .raw files; sample number n = numeric suffix of HF2209xx/HF221020_RN_Magnani_<n>.raw; source name = Sample_legend name (+ \"MCF7 \" prefix for samples 1-33) + \" (sample n)\"",
+   "source_ids": [
+    "files",
+    "legend",
+    "tableS8",
+    "epiprofile",
+    "map_crosscheck"
+   ],
+   "evidence": "files/all lists exactly 43 RAW files with suffixes 1-43 (35 HF220914, 8 HF221020: 11,13,14,16,17,18,38,43). Sample_legend.txt lists Sample number 1-43 with names (1-33 MCF7 naming, 34-43 prefixed T47D). Table S8 row 3 gives the same numbers under each sample name, marking 11,13,14,16,17,18 as \"bis\" (re-run) = the HF221020 files. Cross-check: for each S8 column, S8(mark)/S8(unmodified) equals (LightR/HeavyR)_mark / (LightR/HeavyR)_unmod from histone_ratios_SILAC.xls for the file with that suffix: H3K9me2 33/33 MCF7 and 7/7 T47D exact (<1%), H3K4me1 33/33 and 7/7 exact; a one-position shifted map gives 0-3 exact. Samples 38, 39, 43 are deposited and quantified by EpiProfile but not in Table S8; annotated from Sample_legend."
+  },
+  {
+   "location": "comment[label] rows 1-86",
+   "value": "SILAC light (sample) / SILAC heavy (super-SILAC internal standard)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "epiprofile"
+   ],
+   "evidence": "Methods \"Histone PTMs Mass Spectrometry Analysis\": \"~4 ug of histone octamer were mixed with an equal amount of heavy-isotope labeled histones, which were used as an internal standard (super-SILAC mix)... the sample (light channel: L) or the internal standard (heavy channel: H)\". EpiProfile output histone_ratios_SILAC.xls has LightR/HeavyR per peptide for every file; histone_logs.txt \"histone with SILAC\" (rule 14 multiplexing verified)."
+  },
+  {
+   "location": "characteristics[sample type], characteristics[pooled sample], characteristics[biological replicate], characteristics[cell line], factor value[cell line], characteristics[age], characteristics[sex], source name heavy rows (even rows 2,4,...,86)",
+   "value": "reference / pooled / pooled / super-SILAC mix / super-SILAC mix / pooled / pooled / \"super-SILAC heavy histone internal standard, aliquot spiked into sample n\"",
+   "source_ids": [
+    "paper",
+    "ref60",
+    "precedent",
+    "review1"
+   ],
+   "evidence": "Paper: heavy channel = internal standard \"super-SILAC mix; ref. 60\" (a super-SILAC mix is by definition a mix of labelled cell lines). Neither the paper nor ref 60 (Cuomo 2011, pairwise SILAC of MCF7, MDA-MB231, MDA-MB453, T-47D vs normal) names the components of the mix used here, so no component cell line is asserted (rule 8/18). The cell-lines template forbids not available/not applicable for cell line and TERMS.tsv sets its allow_pooled=false (not enforced by parse_sdrf/structure), so the free text \"super-SILAC mix\" (curated PXD002098) is used, and factor value[cell line] mirrors it (review round 2). The heavy rows are identified as the spiked-in reference, not study samples, by characteristics[sample type] = reference and characteristics[pooled sample] = pooled (also biological replicate = pooled); treatment, adaptation phase and sampling time factors are not applicable. age and sex = pooled: the human template allows pooled for both (review F4). One source per aliquot so (source, replicate, fraction) stays unique."
+  },
+  {
+   "location": "characteristics[organism] rows 1-86",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "paper",
+    "ref60"
+   ],
+   "evidence": "PRIDE organisms: Homo sapiens. MCF-7 and T-47D: NCBI_TaxID=9606. Heavy rows: the mix is a human super-SILAC standard (ref 60 human breast cancer lines; deposit is human-only); species of the mix components is not explicitly stated (see limitations)."
+  },
+  {
+   "location": "characteristics[cell line], factor value[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] light rows of samples 1-33 (rows 1-65 odd) / light rows of samples 34-43 (rows 67-85 odd)",
+   "value": "MCF-7 / CVCL_0031 / MCF-7 ; T-47D cell / CVCL_0553 / T-47D",
+   "source_ids": [
+    "paper",
+    "legend",
+    "tableS8",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper Methods: \"Breast cancer cell lines MCF7 and T47D were kindly provided by Philippa Darbre\"; T47D described as \"p53-mutant L194F T47D\" = Cellosaurus T-47D TP53 p.Leu194Phe (homozygous). Table S8 sheets \"MCF7\" (samples 1-33) and \"T47D\" (34-43). OLS: EFO:0001203 label \"MCF-7\"; EFO:0001247/BTO:0001248 label \"T-47D cell\". Cell line is a compared variable (factor value[cell line]): Table S8 has separate MCF7 and T47D sheets and Fig. 6A shows separate MCF7 and T47D heat maps, so MCF7 and T47D samples of the same treatment/phase/time are distinct conditions (review round 2, R2-F1)."
+  },
+  {
+   "location": "characteristics[organism part], characteristics[sampling site], characteristics[disease], characteristics[age], characteristics[sex], characteristics[ancestry category], characteristics[developmental stage] light rows (odd rows 1,3,...,85)",
+   "value": "breast; pleural effusion; invasive ductal breast carcinoma; 69Y (MCF-7) / 54Y (T-47D); female; European ancestry; adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0031 / CVCL_0553: DI NCIt C4194 \"Invasive breast carcinoma of no special type\" (MONDO:0004953 invasive ductal breast carcinoma is MONDO:equivalentTo NCIT:C4194); Derived from site: Metastatic; Pleural effusion (UBERON:0000175); breast carcinoma -> organism part breast (UBERON:0000310); SX Female; AG 69Y / 54Y (>=20Y -> adult EFO:0001272, rule 9); Population Caucasian -> HANCESTRO:0005 European ancestry."
+  },
+  {
+   "location": "characteristics[material type] rows 1-86",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "All samples are cultured MCF7/T47D cells; the heavy standard is histones from SILAC-labelled cultured cells (super-SILAC)."
+  },
+  {
+   "location": "characteristics[culture medium] light rows (odd rows 1,3,...,85)",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: cells cultured in DMEM + 10% FCS + E2; -E2 arm kept in phenol red-free DMEM (Gibco 11880028) + 10% charcoal-stripped FCS. NCIT:C185409."
+  },
+  {
+   "location": "characteristics[treatment], factor value[treatment] light rows (odd rows 1,3,...,85)",
+   "value": "untreated (POT) / Afimoxifene (T) / estrogen deprivation (AI)",
+   "source_ids": [
+    "paper",
+    "legend",
+    "tableS8",
+    "ols"
+   ],
+   "evidence": "Methods: POT = pretreatment population; TAM arm \"maintained in 100 nmol/L 4-Hydroxytamoxifen (TAM, Sigma H7904)\" -> NCIT:C975 Afimoxifene (4-hydroxytamoxifen); -E2 arm \"Estrogen deprivation\", named AI because it mimics aromatase-inhibitor therapy (Fig. legends \"-E2 (AI)\"); T47D carbon copies only under estrogen deprivation. Legend prefixes: POT, T, AI. No ontology term for estrogen deprivation (free text)."
+  },
+  {
+   "location": "characteristics[adaptation phase], factor value[adaptation phase], characteristics[sampling time], factor value[sampling time] light rows (odd rows 1,3,...,85)",
+   "value": "pretreatment (POT, 0 day) / latency (7 day, 14 day) / dormancy (30 day) / late dormancy (60 day) / awakening (not available) / late progression (TEP, not available)",
+   "source_ids": [
+    "tableS8",
+    "legend",
+    "paper"
+   ],
+   "evidence": "Table S8 group headers: \"Time zero\" (POT.1/2; Fig. 6A \"time zero (T0)\") -> sampling time 0 day since treatment onset. POT is the pretreatment baseline population, not the separate untreated (UT) arm of the paper, cultured in parallel for 170-180 days, which is not in this deposit. \"Latency (transition to dormancy)\" (7 and 14 days), \"Dormancy\" (30), \"Late dormancy\" (60), \"Awakening (relapse)\" (alpha... ). Methods: shared harvest time points day 7, day 14, 1 month, 2 months; awakening = harvest at resumption of proliferation (diverging per carbon copy, day not stated in text); TEP = awakened carbon copy further cultured 1 month with passaging = \"late progression\". Custom characteristics column (spec Extending Templates; rule 15)."
+  },
+  {
+   "location": "characteristics[biological replicate] light rows (odd rows 1,3,...,85)",
+   "value": "1..n restarting per factor-value group (cell line, treatment, adaptation phase, sampling time)",
+   "source_ids": [
+    "legend",
+    "paper"
+   ],
+   "evidence": "Each sample is a separate HYPERflask/carbon copy: \".1/.2\" duplicates at shared time points (\"shared time points for 2 replicates\"); awakening/TEP carbon copies alpha..zeta (MCF7) / A..F (T47D) numbered in Greek/alphabetical order within each group, e.g. MCF7 T TEP alpha..zeta = 1..6; T47D POT.1/.2 = 1/2, AI 30.1/.2 = 1/2, AI A/B awakening = 1/2, AI TEP A/B/D/F = 1..4. POT.1/POT.2 = two of the triplicate POT harvests."
+  },
+  {
+   "location": "characteristics[sample type], characteristics[pooled sample] light rows (odd rows 1,3,...,85)",
+   "value": "study sample / not pooled",
+   "source_ids": [
+    "legend",
+    "paper"
+   ],
+   "evidence": "Each light channel is one study sample (one flask) per Sample_legend."
+  },
+  {
+   "location": "comment[instrument] rows 1-86",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_headers",
+    "epiprofile",
+    "paper",
+    "pride"
+   ],
+   "evidence": "Raw headers of 6 files (both batches) contain \"Q Exactive HF - Orbitrap MS\"; xtract header \"Thermo_Q Exactive HF Orbitrap\"; paper and PRIDE agree."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[ms2 mass analyzer], comment[collision energy], comment[ms1 scan range] rows 1-86",
+   "value": "DDA PRIDE:0000627; beam-type CID MS:1000422; orbitrap MS:1000484; 28 NCE; 300m/z-1350m/z",
+   "source_ids": [
+    "raw_headers",
+    "epiprofile"
+   ],
+   "evidence": "Raw method (6 files): Full MS scan range 300 to 1350 m/z, TopN 10, isolation 2.0, (N)CE nce: 28, Fragmentation_HCD; .ms2 header \"DDA\", ActivationType HCD, InstrumentType FTMS."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-86",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"in-gel digested with trypsin\" after propionylation (lysines blocked, so cleavage is effectively Arg-C-like; rule 2: the digestion enzyme is recorded)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-86",
+   "value": "Phenylisocyanate UNIMOD:411 PP=Any N-term Fixed; Propionyl UNIMOD:58 K Variable; Acetyl UNIMOD:1 K; Methyl UNIMOD:34 K; Dimethyl UNIMOD:36 K; Trimethyl UNIMOD:37 K (Variable); Label:13C(6)15N(4) UNIMOD:267 R Variable",
+   "source_ids": [
+    "epiprofile",
+    "paper",
+    "silac_delta",
+    "ols"
+   ],
+   "evidence": "histone_logs.txt shows EpiProfile2.0_4Anhydrides\\EpiProfile2.0_pr_pic (propionyl + phenyl isocyanate variant) run \"histone with SILAC\"; histone_ratios.xls quantifies K ac/me1/me2/me3 only. Paper: \"chemically acylated with propionic anhydride... peptide N-terminal derivatization with phenyl isocyanate (PIC)\". Heavy label: precursor-mass differences between co-eluting MS2 precursors (RT within 1 min) in HF221020_RN_Magnani_17.ms2 peak at 10.01 Da (267 pairs) with 18.03 Da (Lys8+Arg10) at background (27) -> Arg10 only, as in Bonaldi-lab histone super-SILAC precedent PXD013288. Propionyl is Variable because it is only on unmodified/monomethyl K; MT=Variable for the SILAC label per rule 11."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-86",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Rule 1 and 10; templates filled by sdrf-tools build from the contract (contract.txt header). The spec submodule nested templates.yaml still says ms-proteomics latest 1.1.0 (older copy)."
+  },
+  {
+   "location": "comment[technical replicate], comment[fraction identifier] rows 1-86",
+   "value": "1 / 1",
+   "source_ids": [
+    "files",
+    "tableS8"
+   ],
+   "evidence": "One injection per sample deposited; the HF221020 re-runs of 11,13,14,16,17,18,38,43 replace the HF220914 originals, which are not deposited as RAW (only their EpiProfile intermediates are in Magnani.zip) and S8 uses the re-runs (\"bis\")."
+  }
+ ],
+ "limitations": [
+  "Heavy channel composition: the super-SILAC histone mix components are not named in the paper, ref 60 or the deposit; heavy rows carry cell line \"super-SILAC mix\" (free text; sdrf-tools check flags it), age and sex = pooled, and cellosaurus accession/name, disease, ancestry, organism part, developmental stage = not available; organism Homo sapiens is inferred (human super-SILAC standard, human-only deposit) rather than stated.",
+  "Precursor/fragment mass tolerance = not available: EpiProfile 2.0 is a targeted XIC tool, not a database search, and no tolerance is recorded in the deposit or paper. parse_sdrf convert-openms therefore fails on this file (kept per references/validation.md).",
+  "Modification parameters describe the EpiProfile pr_pic quantification scheme (no search-engine parameter file exists); Propionyl on monomethyl-K (methyl+propionyl) is represented by the separate Methyl and Propionyl entries.",
+  "Sampling time for awakening and TEP samples is not available: harvest days differ per carbon copy and are only plotted (Fig. 2A), not stated.",
+  "Samples 38 (T47D AI A), 39 (T47D AI B) and 43 (T47D AI F TEP) are deposited and quantified by EpiProfile but absent from Table S8 (likely excluded at the 50%-quantified filter); annotated from Sample_legend only.",
+  "POT samples (treatment untreated, phase pretreatment, sampling time 0 day) are the pretreatment baseline that Table S8 labels \"Time zero\". They are NOT the paper's separate untreated (UT) arm (serially passaged in parallel for 170-180 days), which was not measured by MS in this deposit. The Methods also use T0 for samples collected 48 h after seeding; the Sample_legend name POT was followed.",
+  "techsdrf is not installed; instrument/method values come from HTTP-range-read raw headers of 6 of 43 files (all consistent) and the EpiProfile .ms2 header.",
+  "Treatment \"estrogen deprivation\" has no NCIT/EFO term (validator warning); \"untreated\" (rule 4) also warns.",
+  "External review: round 1 FAIL (F1) led to removing factor value[cell line]; round 2 FAIL (R2-F1) showed that this merged MCF-7 and T-47D into shared conditions. Decision (round 4): cell line is a compared variable (Table S8 separate sheets, Fig. 6A separate heat maps), so factor value[cell line] is restored with heavy rows mirroring super-SILAC mix, and the reference is identified by sample type = reference / pooled sample = pooled. Replicates restart per (cell line, treatment, phase, time). Re-review pending (REVIEW_PENDING_EXTERNAL); no self-review."
+ ]
+}

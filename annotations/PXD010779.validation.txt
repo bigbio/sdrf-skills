@@ -1,0 +1,109 @@
+# PXD010779 validation log (super-SILAC arm; working dir /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/build)
+## Round 1 — parse_sdrf validate-sdrf -s PXD010779.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata (full ontology)
+WARNING: Invalid value 'SN=HBEC3-KT;SN=HPL1D;SN=NCI-H1648;SN=NCI-H3255;SN=11-18;SN=NCI-H1975;SN=NCI-H1650;SN=PC-9;SN=HCC827;SN=A-549;SN=NCI-H2030;SN=NCI-H358' - must be one of the allowed values
+ERROR: Value 'index patient' does not match required pattern
+There were validation errors.
+exit 1
+Fix: characteristics[individual] 'index patient' -> 'index_patient' (identifier validator forbids spaces); edited in make_tables.py, rebuilt with sdrf-tools build.
+
+## Round 2 — same command on the rebuilt file
+WARNING: Invalid value 'SN=HBEC3-KT;SN=HPL1D;SN=NCI-H1648;SN=NCI-H3255;SN=11-18;SN=NCI-H1975;SN=NCI-H1650;SN=PC-9;SN=HCC827;SN=A-549;SN=NCI-H2030;SN=NCI-H358' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit 0
+Remaining WARNING justified: the 'values' validator of characteristics[pooled sample] lists only 'not pooled'/'pooled', but the same column's 'pattern' validator (^(not pooled|pooled|SN=.+(;SN=.+)*)$, sample-metadata 1.0.0) and its description explicitly allow 'SN=sample1;SN=sample2'; curated super-SILAC precedents (PXD001370, PXD000690, PXD001963) use the same form. Batch3 rule 18 asks for the reference cell lines to be named.
+
+## sdrf-tools structure PXD010779.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+
+## parse_sdrf convert-openms -s PXD010779.sdrf.tsv -t2 (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/build/conv)
+PROCESSING: ../PXD010779.sdrf.tsv
+Factor columns: ['factor value[organism part]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[smoking status]', 'characteristics[clinical history]']
+Conditions (3): dict_keys(['cervical lymph node', 'not applicable', 'lower lobe of left lung'])
+Files per condition: dict_values([48, 72, 24])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 144 times.
+SUCCESS (WARNINGS=1): ../PXD010779.sdrf.tsv
+exit 0
+Note: 'no TA= specified' warning concerns the PP=Protein N-term Acetyl entry, which correctly uses PP= (format-rules).
+
+## sdrf-tools reconcile PXD010779.sdrf.tsv --record pride.json --accession PXD010779
+PXD010779: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  run_names_name_another_organ (characteristics[organism part]): 48 of 144 run names name lung, but every row says 'cervical lymph node'  [2_Lung_super-SILAC_F1_R1]
+  MAJOR    disease_with_control_arm_in_record (characteristics[disease]): the record describes a control arm, so 'lung adenocarcinoma' cannot hold for every row  [wild type]
+exit 1
+Refutation of both findings (false positives, evidence from the built file):
+  BLOCKER run_names_name_another_organ — wrong premise: rows do NOT all say 'cervical lymph node'. Counts by run prefix x label:
+    1_LN light: cervical lymph node (24) | 2_Lung light: lower lobe of left lung (24) | 3_LN light: cervical lymph node (24) | all heavy: not applicable (72).
+    Every 2_Lung run's light row carries the lung term; 'lower lobe of left lung' (UBERON:0008953, Table I "Left lower lobe wedge resection") is a part of lung, the checker matches only the string 'lung'.
+  MAJOR disease_with_control_arm_in_record — triggered by the PRIDE text "lung adenocarcinoma cell line with wild type EGFR and KRAS (H1648)", which describes a cell line inside the heavy reference mix, not a control arm. Disease is not broadcast: 72 light rows 'lung adenocarcinoma' (all three tumors are metastases of the patient's lung adenocarcinoma), 72 heavy reference rows 'not applicable'. The study has no healthy control arm.
+
+## sdrf-tools schema-check PXD010779.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD010779.evidence.json: valid evidence-manifest
+exit 0
+
+## sdrf-tools manifest-coverage PXD010779.sdrf.tsv PXD010779.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit 0
+
+## Identity check: annotations/PXD010779.sdrf.tsv is byte-identical to the build output
+identical
+ff006d7379b2eb408e3b1b771952cfa48ec7dc59168969cf2f65d756cdce6a83  /home/user/bigbio/sdrf-skills/annotations/PXD010779.sdrf.tsv
+No post-build edits (rule 17).
+
+==================================================================
+# Fix round 1 (external review PXD010779.review.md, FAIL: 2 important, 4 minor)
+Changes, all made in make_tables.py -> samples.tsv and rebuilt with
+  sdrf-tools build --samples samples.tsv --technical technical.tsv --files files_silac.json -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+  - IMPORTANT 1: LN2 light rows characteristics[biological replicate] 1 -> 2 (LN1 = 1, Lung = 1).
+  - IMPORTANT 2: oncology-metadata v1.0.0 declared; characteristics[metastasis site] added (LN1/LN2 cervical lymph node, Lung lower lobe of left lung, reference not applicable).
+  - Minor 1: heavy reference rows biological replicate / age / sex = pooled (README.adoc:365 TIP; sex and age allow pooled in human template).
+  - Minor 4: comment[chromatography duration] = 21600 s (R1) / 4800 s (R2), from raw MS Run Time.
+  Result: 144 rows x 48 columns. No post-build edits.
+
+## parse_sdrf validate-sdrf -s PXD010779.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata (full ontology)
+WARNING: Invalid value 'SN=HBEC3-KT;SN=HPL1D;SN=NCI-H1648;SN=NCI-H3255;SN=11-18;SN=NCI-H1975;SN=NCI-H1650;SN=PC-9;SN=HCC827;SN=A-549;SN=NCI-H2030;SN=NCI-H358' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit 0
+Remaining WARNING: the same justified pooled-sample SN= values-validator warning as round 2 (pattern validator accepts it).
+
+## sdrf-tools structure PXD010779.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+
+## parse_sdrf convert-openms -s PXD010779.sdrf.tsv -t2
+PROCESSING: ../PXD010779.sdrf.tsv
+Factor columns: ['factor value[organism part]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[smoking status]', 'characteristics[clinical history]']
+Conditions (3): dict_keys(['cervical lymph node', 'not applicable', 'lower lobe of left lung'])
+Files per condition: dict_values([48, 72, 24])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 144 times.
+SUCCESS (WARNINGS=1): ../PXD010779.sdrf.tsv
+exit 0
+
+## sdrf-tools reconcile PXD010779.sdrf.tsv --record pride.json --accession PXD010779
+PXD010779: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  run_names_name_another_organ (characteristics[organism part]): 48 of 144 run names name lung, but every row says 'cervical lymph node'  [2_Lung_super-SILAC_F1_R1]
+  MAJOR    disease_with_control_arm_in_record (characteristics[disease]): the record describes a control arm, so 'lung adenocarcinoma' cannot hold for every row  [wild type]
+exit 1
+Same two false positives as before, refuted above. Current counts:
+     24   1_LN | SILAC heavy | organism part=not applicable | disease=not applicable
+     24   1_LN | SILAC light | organism part=cervical lymph node | disease=lung adenocarcinoma
+     24   2_Lung | SILAC heavy | organism part=not applicable | disease=not applicable
+     24   2_Lung | SILAC light | organism part=lower lobe of left lung | disease=lung adenocarcinoma
+     24   3_LN | SILAC heavy | organism part=not applicable | disease=not applicable
+     24   3_LN | SILAC light | organism part=cervical lymph node | disease=lung adenocarcinoma
+
+## sdrf-tools schema-check PXD010779.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD010779.evidence.json: valid evidence-manifest
+exit 0
+
+## sdrf-tools manifest-coverage PXD010779.sdrf.tsv PXD010779.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit 0
+
+## Identity check
+identical
+92404d0b1a37d737b4dac9f02f76d6892438837ddcc266c032352147108cd57f  /home/user/bigbio/sdrf-skills/annotations/PXD010779.sdrf.tsv

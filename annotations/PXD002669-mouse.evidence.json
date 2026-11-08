@@ -1,0 +1,395 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD002669-mouse.sdrf.tsv",
+ "dataset": "PXD002669",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002669 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002669/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/files.json; 113 entries, every entry asserted to carry PXD002669 in projectAccessions; 62 .raw)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Noberini R, Uggetti A, Pruneri G, Minucci S, Bonaldi T. Mol Cell Proteomics 2016;15(3):866-877, PMID 26463340, PMC4813706, doi:10.1074/mcp.M115.054510 (Europe PMC fullTextXML, title verified; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/paper.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/paper.txt)"
+  },
+  {
+   "id": "supp_pdf",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4813706.1/10.1074_M115.054510_mcp.M115.054510-1.pdf (Supplemental Data: Figs S1-S7, Tables S1-S3; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/S1.pdf, text S1.txt; Fig S3A rendered at 400 dpi: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/s3a.png)"
+  },
+  {
+   "id": "dataset_s1",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4813706.1/10.1074_M115.054510_mcp.M115.054510-2.xlsx (Dataset S1, mouse AUC/%RA; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/S2.xlsx)"
+  },
+  {
+   "id": "dataset_s2",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4813706.1/10.1074_M115.054510_mcp.M115.054510-3.xlsx (Dataset S2, biopsies 1-3 heavy/light AUC; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/S3.xlsx)"
+  },
+  {
+   "id": "dataset_s3",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4813706.1/10.1074_M115.054510_mcp.M115.054510-4.xlsx (Dataset S3, subtype biopsies heavy/light AUC; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/supp/S4.xlsx)"
+  },
+  {
+   "id": "designs",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD002669/experimentalDesign*.txt (17 files; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/ed/)"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD002669/txt*.7z (17 archives, downloaded, members txt/summary.txt + txt/parameters.txt extracted; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/mq/<archive>/txt/)"
+  },
+  {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD002669/txtspleenacme1me2.7z, txtBiopsies1-3me1me2ac.7z, txtBiopsiessubtypesme1me2ac.7z, txtspleenothers.7z, txtliverothers.7z, txtliverme1me2ac.7z member txt/evidence.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/mq/<archive>/txt/evidence.txt)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "first 400 kB of 12 .raw files (one or more per acquisition date: F140408_RN_FF_H3, F140602_RN_SP_H4, F140814_Sample3_FFPE_H3_01, F140820_Sample10_Frozen_H3_01, F140821_Sample10_FFPE_H3_01, F140822_Sample2_Frozen_H3_01, F141028_H3_liver_RN_01, F141028_H4_spleen_RN_01, F141124_FFH3RN_1, F141124_LiverH4RN_1, F150414_RN_H3_1, F150414_RN_H3_20) via HTTP range, UTF-16LE decoded (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/rawhdr/)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools ols / sdrf-tools verify, OLS4 term API, 2026-11-08)"
+  },
+  {
+   "id": "unimod",
+   "kind": "ontology",
+   "location": "https://www.unimod.org/obo/unimod.obo (delta_mono_mass and specificity; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/unimod.obo)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:\"MDA-MB-231\" (and MDA-MB-468, MDA-MB-453, MDA-MB-361): CVCL_0062, CVCL_0419, CVCL_0418, CVCL_0620"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0; local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); the sdrf-skills spec submodule's nested templates copy is older. sdrf version v1.1.0 = spec README.adoc:27"
+  },
+  {
+   "id": "rules",
+   "kind": "campaign-rules",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md"
+  },
+  {
+   "id": "ratio_check",
+   "kind": "analysis",
+   "location": "inline python over mq_evidence evidence.txt: per raw file 'Labeling State' counts and sum(Intensity H)/sum(Intensity L) (commands in this session; outputs reproduced in /home/user/bigbio/sdrf-skills/annotations/PXD002669.validation.txt and the report)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[instrument] rows 1-24",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw_headers",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Every sampled raw header (12 files, all 7 acquisition dates) decodes 'Q Exactive' (no Plus/HF). Paper LC-MS/MS: 'connected online to a Q Exactive instrument'. The LTQ-Velos runs mentioned in the paper (cell-line set-up) are not deposited."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-24",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 'The Q Exactive instrument was operated in the data-dependent acquisition (DDA) mode'; top-5."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-24",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "rules",
+    "ols"
+   ],
+   "evidence": "Paper Histone Digestion: in-gel digestion 'with 100 ng/ul trypsin (Promega)' after D6-acetic anhydride derivatisation, giving an 'Arg-C like' digestion. MaxQuant search rule was Protease=Arg-C (summary.txt), recorded here as a note only; campaign rule 2: cleavage agent = digestion enzyme."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-24",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 'fragmented by HCD with a normalized collision energy setting of 25%'. MS:1000422 synonym HCD."
+  },
+  {
+   "location": "comment[collision energy] rows 1-24",
+   "value": "25 NCE",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: 'normalized collision energy setting of 25%'."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-24",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "designs",
+    "ols"
+   ],
+   "evidence": "Paper: histones 'separated on a 17% SDS-PAGE gel and bands corresponding to histones H3 and H4 were excised and in-gel digested'. PRIDE:0000568 is a descendant of PRIDE:0000550 (OLS ancestors)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-24",
+   "value": "6 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper/PRIDE data processing: 'The mass tolerance was set to 6 ppm for precursor and fragment ions' (MaxQuant 1.3.0.5 main-search tolerance; not written to parameters.txt in this version)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-24",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_summary"
+   ],
+   "evidence": "parameters.txt (all 17 jobs): 'MS/MS tol. (FTMS) 20 ppm' - HCD spectra in the Orbitrap are FTMS. The paper's prose says 6 ppm for fragments; the deposited search parameters win."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-24",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "Q Exactive acquires HCD MS/MS in the Orbitrap; MaxQuant applied the FTMS MS/MS tolerance."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-24",
+   "value": "300m/z-1650m/z",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: 'Survey full scan MS spectra (m/z 300-1650)'."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-24",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates",
+    "rules"
+   ],
+   "evidence": "Campaign rule 1: spec README.adoc:27."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-24",
+   "value": "NT=ms-proteomics;VV=v1.2.0 plus organism/clinical templates",
+   "source_ids": [
+    "templates",
+    "rules"
+   ],
+   "evidence": "Campaign rule 1; versions printed by sdrf-tools contract."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-24",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "rules"
+   ],
+   "evidence": "Campaign rule 10."
+  },
+  {
+   "location": "technology type rows 1-24",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-24",
+   "value": "one row per (raw file x channel); assay name = file stem",
+   "source_ids": [
+    "pride_files",
+    "designs"
+   ],
+   "evidence": "Every raw file in files/all appears exactly once per channel; file -> sample from experimentalDesign*.txt (Name -> Experiment)."
+  },
+  {
+   "location": "source name rows 1-24",
+   "value": "mouse spleen few weeks {FFPE|frozen} replicate {1|2}; mouse liver {FFPE|frozen}; mouse spleen 6 years {FFPE|frozen}",
+   "source_ids": [
+    "designs",
+    "dataset_s1"
+   ],
+   "evidence": "experimentalDesignspleen*.txt: F140408_RN_FF_* = 'FFPE 1', F140408_RN_SP_* = 'frozen 1', F140602_* = 'FFPE 2'/'frozen 2'; experimentalDesignliver*.txt: F141124_FFH3RN_n/FFH4RN_n = 'liver FFPE n', F141028_H3_liver_RN_0n + F141124_LiverH4RN_n = 'liver frozen n'; experimentalDesignspleen6years*.txt: spleenFF = FFPE, spleen = frozen. Dataset S1 legend: spleen = biological replicates a/b; liver and spleen 6 years = technical replicates a/b. Names do not assert that FFPE and frozen replicate n come from the same mouse."
+  },
+  {
+   "location": "characteristics[organism] rows 1-24",
+   "value": "Mus musculus",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: 'murine tissues', 'mouse spleen', 'mouse liver'; MaxQuant Uniprot MOUSE database. NCBITaxon:10090."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-8, 17-24",
+   "value": "spleen",
+   "source_ids": [
+    "designs",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Design files spleen* / spleen6years*; UBERON:0002106."
+  },
+  {
+   "location": "characteristics[organism part] rows 9-16",
+   "value": "liver",
+   "source_ids": [
+    "designs",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Design files liver*; 'Frozen cells and FFPE tissues were prepared similarly from mouse liver'. UBERON:0002107."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-24",
+   "value": "spleen-few-weeks 1/2; liver 3; spleen-6-years 4 (numbered within each preservation group)",
+   "source_ids": [
+    "dataset_s1",
+    "paper",
+    "rules"
+   ],
+   "evidence": "Paper Experimental Design: 'technical replicates for all samples with the exception of spleen samples, for which two biological replicates were analyzed'; Dataset S1 legend. Rule 3: numbers unique per independent biological sample within a factor group (FFPE / frozen); liver and 6-year spleen are single biological samples with two technical replicates (comment[technical replicate] 1/2)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-8",
+   "value": "acute promyelocytic leukemia",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Methods: 'Leukemic blasts were isolated from acute promyelocytic leukemia transgenic mice and 1x10^6 cells were i.v. injected in a syngenic recipient mouse to induce secondary leukemia. After massive splenomegaly was established, the mouse was sacrificed and its spleen was divided into two portions' (frozen cells / FFPE). MONDO:0012883. Applied to the few-weeks spleen only; the 6-year spleen ('derive from different mice') and liver are not described as leukemic -> not available."
+  },
+  {
+   "location": "characteristics[material type] rows 1-24",
+   "value": "tissue (FFPE rows) / cell (frozen rows)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "FFPE = paraffin-embedded tissue sections; frozen = 'spleen cells that were counted, pelleted by centrifugation, rapidly frozen'; 'Cells were obtained from fresh mouse spleen and liver' (Histone Isolation from Fresh-frozen Mouse Spleen and Liver)."
+  },
+  {
+   "location": "characteristics[preservation method] and factor value[preservation method] rows 1-24",
+   "value": "formalin-fixed paraffin-embedded / frozen",
+   "source_ids": [
+    "designs",
+    "paper"
+   ],
+   "evidence": "Design 'Experiment' names FFPE / frozen and file names FF/SP, FFH3RN/H3_liver, spleenFF/spleen. Spleen was fixed in 4% paraformaldehyde then paraffin-embedded; the paper calls all of these FFPE. FFPE vs frozen is the compared variable (Fig 2)."
+  },
+  {
+   "location": "factor value[storage duration] and factor value[organism part] rows 1-24 (added in review round 1)",
+   "value": "few weeks / 6 years; spleen / liver (mirror the characteristics columns)",
+   "source_ids": [
+    "paper",
+    "dataset_s1",
+    "designs"
+   ],
+   "evidence": "Paper Results: samples 'stored in paraffin for short periods (few weeks) or an extended time (6 years), to evaluate the effect of storage time' and spleen or liver 'to prove the applicability of the protocol to different tissues'; Fig 2A top/middle/bottom panels and Dataset S1 sheets #1 spleen, #2 liver, #3 spleen 6 years report the three sets separately. With factor value[preservation method] this gives 6 conditions x 4 files (convert-openms)."
+  },
+  {
+   "location": "comment[modification parameters] Label:13C(6)15N(4) rows 1-8 (kept after review round 1)",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable on label-free rows",
+   "source_ids": [
+    "mq_summary",
+    "ratio_check",
+    "rules"
+   ],
+   "evidence": "Kept deliberately: campaign rule 5 requires comment[modification parameters] to describe the search each file actually went through, and all four few-weeks-spleen jobs (txtspleenacme1me2, txtspleenacme1me3, txtspleenme1me2me3, txtspleenothers) ran Multiplicity 2 with Labels1 = Arg10. comment[label] = label free sample records the sample truth (no heavy material: summed H/L 0.005-0.10). A label-free reprocessing that wants a pure label-free search can drop this variable mod; it is restricted to rows 1-8 and is not applicable on rows 9-24."
+  },
+  {
+   "location": "characteristics[storage duration] rows 1-24",
+   "value": "few weeks (rows 1-16) / 6 years (rows 17-24)",
+   "source_ids": [
+    "paper",
+    "designs"
+   ],
+   "evidence": "Fig 1B/2A: 'mouse spleen and liver stored for few weeks or mouse spleen stored for 6 years'; design files 'spleen 6 years'."
+  },
+  {
+   "location": "comment[label] rows 1-24",
+   "value": "label free sample",
+   "source_ids": [
+    "dataset_s1",
+    "mq_summary",
+    "mq_evidence",
+    "ratio_check"
+   ],
+   "evidence": "Dataset S1 has only AUC and %RA per run (no heavy/light). Liver and 6-year spleen jobs: Multiplicity 1. Few-weeks spleen jobs ran Multiplicity 2 / Arg10, but summed Intensity H / Intensity L per raw file = 0.005-0.10 (human super-SILAC runs 0.39-1.41): no heavy spike-in. Campaign rule 14."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-24",
+   "value": "1 = histone H3 gel band, 2 = histone H4 gel band",
+   "source_ids": [
+    "designs",
+    "paper"
+   ],
+   "evidence": "experimentalDesign Fraction column: *_H3 files 1, *_H4 files 2 within the same Experiment; paper: H3 and H4 bands excised from one SDS-PAGE lane."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-24",
+   "value": "1 (spleen few weeks); 1/2 (liver, spleen 6 years)",
+   "source_ids": [
+    "designs",
+    "dataset_s1"
+   ],
+   "evidence": "Design suffix _1/_2 and 01/02; Dataset S1 'technical replicate a/b'."
+  },
+  {
+   "location": "comment[modification parameters] (9 columns) rows 1-24",
+   "value": "Acetyl:2H(3), Methyl+Acetyl:2H(3), Acetyl, Dimethyl, Trimethyl, Formyl, Thiazolidine, methylol, Label:13C(6)15N(4); not applicable where a file was not searched with that mod",
+   "source_ids": [
+    "mq_summary",
+    "mq_evidence",
+    "paper",
+    "unimod",
+    "ols"
+   ],
+   "evidence": "Modifications come from the deposited MaxQuant 1.3.0.5 jobs (summary.txt 'Variable modifications'; 'Fixed modifications' empty in all 17 jobs). Custom MaxQuant names mapped by mass (paper Data Analysis) and Unimod delta_mono_mass: D3 +45.0294 -> Acetyl:2H(3) UNIMOD:56 (45.029395); me-D3 +59.0454 -> Methyl+Acetyl:2H(3) UNIMOD:768 (59.045045, 'mono-methylated lysine labelled with Acetyl_heavy'); Acetyl (K) UNIMOD:1; Dimethyl (KR) UNIMOD:36 TA=K,R; Trimethyl (K) UNIMOD:37. evidence.txt Modified sequence shows d3/me/ac on K only and di on K and R; no N-terminal D3. No Carbamidomethyl: no reduction/alkylation with iodoacetamide is described and no fixed mod was searched. Mouse formalin job (txtspleenothers 'Form;methylene;methylol;D3', txtliverothers 'D3;formy;methylene;methyloil'): paper masses formylation +27.9949 -> Formyl UNIMOD:122; methylene adduct +12 Da -> UNIMOD:1009 (Unimod label 'Thiazolidine', composition C, 12.000, description 'Formaldehyde adduct', K among its sites); methylol +30.0106 -> UNIMOD:1875 'methylol' (K). Per sub-experiment: spleen few weeks rows 1-8 all nine (Arg10 because txtspleen* jobs ran Multiplicity 2 / Labels1 Arg10); liver rows 9-16 no Arg10 (Multiplicity 1); spleen 6 years rows 17-24 no formalin job deposited and Multiplicity 1. Trimethyl = not applicable on H4 rows (2,4,6,8,10,12,14,16,18,20,22,24): every Trimethyl-containing job lists H3 files only."
+  },
+  {
+   "location": "characteristics[cell type], [developmental stage], [strain or breed], [sex] rows 1-24",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Strain ('syngenic recipient mouse'), sex and age of the mice are not stated in the paper or PRIDE record."
+  }
+ ],
+ "limitations": [
+  "techsdrf is not installed: instrument checked by HTTP range-read of 12 raw headers only (one or more per acquisition date), not by full-file parsing; scan settings come from the paper.",
+  "Precursor tolerance 6 ppm is from paper prose (MaxQuant 1.3.0.5 parameters.txt does not record the main-search tolerance); fragment 20 ppm is from parameters.txt and contradicts the paper's '6 ppm for precursor and fragment ions'.",
+  "Search enzyme was Arg-C (MaxQuant) while the digestion reagent was trypsin after lysine D6-acetylation; comment[cleavage agent details] = Trypsin per campaign rule 2; sdrf-tools reconcile flags this (refuted in validation.txt). Reprocessing with an unrestricted trypsin rule would differ from the deposited Arg-C search.",
+  "The raw data were searched in 3-4 parallel MaxQuant jobs with different variable-modification subsets; comment[modification parameters] lists the union of the jobs each file went through, not one single search.",
+  "characteristics[preservation method] and characteristics[storage duration] are custom columns (no template column exists for FFPE vs frozen; spec 'Extending Templates').",
+  "Not deposited and therefore not annotated: the LTQ-Velos/Q Exactive super-SILAC set-up runs (five breast cancer lines + MCF10A spike-in, Fig S4), and the frozen LuA 6-10 / TN 6-10 samples (western blot only). PRIDE organismParts 'cell culture' and 'mammary gland epithelial cell' refer to that set-up work.",
+  "Mouse strain, sex and age are not reported; disease is annotated only for the few-weeks spleen (APL-transplanted recipient), the 6-year spleen and liver are 'not available' because the paper does not say whether they came from leukemic mice.",
+  "Whether FFPE replicate n and frozen replicate n of the few-weeks spleen come from the same mouse is implied by shared run dates (F140408, F140602) and the Methods ('spleen was divided into two portions') but not stated per file; characteristics[individual] is therefore omitted and source names do not link them.",
+  "The few-weeks spleen MaxQuant jobs were run with Arg10 SILAC multiplicity although no heavy material was present; Label:13C(6)15N(4) is listed as a variable modification on those rows because the deposited search used it (rule 5).",
+  "Only the 'D3;Dimethyl (KR);me-D3;Trimethyl (K)' and similar subset jobs exist per sub-experiment; the paper's statement that a formalin-adduct (fourth) job was run 'for the mouse samples' is not reflected by any deposited 6-year-spleen job, so the formalin mods are not applicable on rows 17-24."
+ ]
+}

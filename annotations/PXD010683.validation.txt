@@ -1,0 +1,73 @@
+# PXD010683 validation — round 1 (2026-11-08T13:45:33Z); sha256 add1bd27af5379a6afb7b0c691489d6a9f9ca25d4217ce92fe2e06baaa2c48b7
+# Build: sdrf-tools build run twice (screen 2: build/samples_screen2.tsv + technical_screen2.tsv; Nes-KO triplex: build/samples_nes.tsv + technical_nes.tsv), templates ms-proteomics human cell-lines; tables written deterministically by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010683/scripts/make_tables.py.
+# Post-build step /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010683/scripts/postbuild.py (deterministic): asserts the two part headers are identical, that there is exactly one
+#   comment[cleavage agent details] column holding NT=Trypsin;AC=MS:1001251 on every row, concatenates the parts (180 + 60 rows) and inserts a
+#   second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 directly after it. Why: the paper digests with Lys-C (3 h) then trypsin
+#   (overnight); batch rule 2 requires the second column; build emits only one because the column is not 'multiple' in the contract
+#   (same behaviour documented for PXD008327/PXD004245). No other cell is changed.
+#   Build commands:
+#   sdrf-tools build --samples samples_screen2.tsv --technical technical_screen2.tsv --files files.json -t ms-proteomics -t human -t cell-lines -o part_screen2.sdrf.tsv  -> 180 rows x 53 columns, exit 0
+#   sdrf-tools build --samples samples_nes.tsv --technical technical_nes.tsv --files files.json -t ms-proteomics -t human -t cell-lines -o part_nes.sdrf.tsv  -> 60 rows x 53 columns, exit 0
+#   python3 -I scripts/postbuild.py /home/user/bigbio/sdrf-skills/annotations/PXD010683.sdrf.tsv  -> 240 rows x 54 columns
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD010683.sdrf.tsv -t ms-proteomics -t human -t cell-lines   (full ontology run)
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD010683.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD010683.sdrf.tsv -t2   (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010683/openms)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD010683.sdrf.tsv
+Factor columns: ['factor value[genotype]', 'factor value[phenotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (3): dict_keys(['NES wild type|vemurafenib sensitive', 'NES wild type|vemurafenib resistant', 'NES knockout|not available'])
+Files per condition: dict_values([110, 110, 20])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 240 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD010683.sdrf.tsv
+exit code: 0
+NOTE: the TA= warning concerns the Protein N-term Acetyl (PP=) and the not-applicable modification cells; same benign warning as in the passed campaign examples.
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD010683.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010683/pride.json --accession PXD010683
+PXD010683: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD010683.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD010683.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD010683.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD010683.evidence.json
+Manifest covers every column with a value (34 column(s)).
+exit code: 0
+
+# Accession checks (sdrf-tools verify <acc> --label <label>, OLS4), all Exists: True, Label match: True:
+#   PRIDE:0000627 | Accession: PRIDE:0000627 Exists: True Label match: True OLS label: Data-dependent acquisition Ontology: pride 
+#   MS:1002523 | Accession: MS:1002523 Exists: True Label match: True OLS label: Q Exactive HF Ontology: ms 
+#   MS:1001251 | Accession: MS:1001251 Exists: True Label match: True OLS label: Trypsin Ontology: ms 
+#   MS:1001309 | Accession: MS:1001309 Exists: True Label match: True OLS label: Lys-C Ontology: ms 
+#   MS:1000422 | Accession: MS:1000422 Exists: True Label match: True OLS label: beam-type collision-induced dissociation Ontology: ms 
+#   PRIDE:0000564 | Accession: PRIDE:0000564 Exists: True Label match: True OLS label: High-pH reversed-phase chromatography (hpHRP) Ontology: pride 
+#   PRIDE:0000608 | Accession: PRIDE:0000608 Exists: True Label match: True OLS label: Dithiothreitol (DTT) Ontology: pride 
+#   PRIDE:0000599 | Accession: PRIDE:0000599 Exists: True Label match: True OLS label: Iodoacetamide (IAA) Ontology: pride 
+#   UNIMOD:4 | Accession: UNIMOD:4 Exists: True Label match: True OLS label: Carbamidomethyl Ontology: unimod 
+#   UNIMOD:35 | Accession: UNIMOD:35 Exists: True Label match: True OLS label: Oxidation Ontology: unimod 
+#   UNIMOD:1 | Accession: UNIMOD:1 Exists: True Label match: True OLS label: Acetyl Ontology: unimod 
+#   UNIMOD:21 | Accession: UNIMOD:21 Exists: True Label match: True OLS label: Phospho Ontology: unimod 
+#   UNIMOD:188 | Accession: UNIMOD:188 Exists: True Label match: True OLS label: Label:13C(6) Ontology: unimod 
+#   UNIMOD:481 | Accession: UNIMOD:481 Exists: True Label match: True OLS label: Label:2H(4) Ontology: unimod 
+#   UNIMOD:267 | Accession: UNIMOD:267 Exists: True Label match: True OLS label: Label:13C(6)15N(4) Ontology: unimod 
+#   UNIMOD:259 | Accession: UNIMOD:259 Exists: True Label match: True OLS label: Label:13C(6)15N(2) Ontology: unimod 
+#   MS:1000484 | Accession: MS:1000484 Exists: True Label match: True OLS label: orbitrap Ontology: ms 
+#   PRIDE:0000326 | Accession: PRIDE:0000326 Exists: True Label match: True OLS label: SILAC light Ontology: pride 
+#   PRIDE:0000327 | Accession: PRIDE:0000327 Exists: True Label match: True OLS label: SILAC medium Ontology: pride 
+#   PRIDE:0000325 | Accession: PRIDE:0000325 Exists: True Label match: True OLS label: SILAC heavy Ontology: pride 
+#   EFO:0010806 | Accession: EFO:0010806 Exists: True Label match: True OLS label: enrichment of phosphorylated protein Ontology: efo 
+#   MONDO:0002971 | Accession: MONDO:0002971 Exists: True Label match: True OLS label: amelanotic melanoma Ontology: mondo 
+#   UBERON:0001511 | Accession: UBERON:0001511 Exists: True Label match: True OLS label: skin of leg Ontology: uberon 
+#   HANCESTRO:0005 | Accession: HANCESTRO:0005 Exists: True Label match: True OLS label: European ancestry Ontology: hancestro 
+#   EFO:0001272 | Accession: EFO:0001272 Exists: True Label match: True OLS label: adult Ontology: efo 
+#   EFO:0002103 | Accession: EFO:0002103 Exists: True Label match: True OLS label: A375 Ontology: efo 
+#   NCIT:C178973 | Accession: NCIT:C178973 Exists: True Label match: True OLS label: Roswell Park Memorial Institute 1640 Medium Ontology: ncit 
+#   NCBITaxon:9606 | Accession: NCBITaxon:9606 Exists: True Label match: True OLS label: Homo sapiens Ontology: ncbitaxon 
+# Note: parse_sdrf does not check column licensing. characteristics[phenotype] and characteristics[genotype] are custom columns (licensed only by clinical-metadata/single-cell/invertebrates, none declared) used under spec README 'Extending Templates' (batch rule 15); parse_sdrf accepted them without warning.

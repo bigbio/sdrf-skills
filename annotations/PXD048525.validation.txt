@@ -1,0 +1,252 @@
+# PXD048525 validation — round 2 (2026-11-08T14:30:01Z), after external review round 1 (PXD048525.review.md)
+# Review verdict: bm-library and bm-dia PASS -> left byte-identical; luad FAIL (L1 important) -> fixed here.
+# Artifacts (sha256):
+#   50a5bceb55d00f4119e0cc58b1a814574be17caea74e78bb79890300a0c1176c  PXD048525-luad.sdrf.tsv
+#   aeab6cb5b965e6c7726f62aef16ee79a7e8dc32feeaf4109dabca8f33c2ff4d4  PXD048525-bm-library.sdrf.tsv
+#   3beb47b73e0afb8c6e344f5e7263b7c1794a60dc37f2efee625759c9580cd4fa  PXD048525-bm-dia.sdrf.tsv
+#   (bm-library / bm-dia hashes verified unchanged against the round-1 values with sha256sum -c.)
+# Changes (all in scratch/PXD048525/scripts/make_tables.py, luad section only; rebuilt with sdrf-tools build;
+#  postbuild.py copies luad unchanged; no post-build edit of luad):
+#  L1 (important): factor value[histologic subtype] removed; characteristics[histologic subtype] kept.
+#     New constant factor value[disease] = 'lung adenocarcinoma' (49 light rows) / 'not applicable' (49 heavy
+#     rows), mirroring characteristics[disease] (precedent PXD000690, consistent with the BM parts). Manifest
+#     limitation added: the study comparison (5-year BM development yes/no) cannot be annotated per sample, with
+#     the list of sources checked.
+#  L3 (minor): heavy-row source names now read 'super-SILAC reference (HCC827, NCI-H520, NCI-H460, Lys8/Arg10)
+#     aliquot in <label>' (no ';').
+#  L2 (minor, no action requested): tolerances stay 'not available'; convert-openms still fails on them.
+#  Shape unchanged: 98 rows x 42 columns.
+#
+$ parse_sdrf validate-sdrf -s PXD048525-luad.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=HCC827;SN=NCI-H520;SN=NCI-H460' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD048525-luad.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile PXD048525-luad.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pride.json --accession PXD048525
+PXD048525: 2 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'timsTOF Pro', the annotation says 'Orbitrap Elite'  [timsTOF Pro]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Lys-C digest but only Trypsin is declared  [missing: Lys-C]
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/val/conv2) parse_sdrf convert-openms -s PXD048525-luad.sdrf.tsv -t2
+PROCESSING: PXD048525-luad.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[histologic subtype]']
+ValueError: Cannot read precursor mass tolerance: not available
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+# Assessment: validate-sdrf exit 0 with the same single justified warning (pooled-sample values validator vs
+# its own SN= pattern validator, see round 1). structure OK. reconcile: the same two cross-arm false positives as
+# round 1 (timsTOF Pro / Trypsin-LysC belong to the BM arm; all 49 UHN raw headers say Orbitrap Elite; primary
+# tumours were "digested overnight with trypsin"), REFUTED as in round 1. convert-openms: fails only on
+# the 'not available' tolerances (review L2, accepted as minor); conditions now come from factor value[disease].
+# ---------------- Manifest checks (round 2) ----------------
+$ sdrf-tools schema-check PXD048525-luad.evidence.json
+PXD048525-luad.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage PXD048525-luad.sdrf.tsv PXD048525-luad.evidence.json
+Manifest covers every column with a value (26 column(s)).
+exit code: 0
+$ sdrf-tools schema-check PXD048525-bm-library.evidence.json
+PXD048525-bm-library.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage PXD048525-bm-library.sdrf.tsv PXD048525-bm-library.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+$ sdrf-tools schema-check PXD048525-bm-dia.evidence.json
+PXD048525-bm-dia.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage PXD048525-bm-dia.sdrf.tsv PXD048525-bm-dia.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+######################################## ROUND 1 (superseded for luad; still current for bm-library / bm-dia) ########################################
+# PXD048525 validation — round 1 (2026-11-08T14:12:01Z)
+# Artifacts (sha256):
+#   47c7bb2abcc5c90513bf7d22f216a0fc3bbca7aa79d7fb76ffdb94390966058f  PXD048525-luad.sdrf.tsv
+#   aeab6cb5b965e6c7726f62aef16ee79a7e8dc32feeaf4109dabca8f33c2ff4d4  PXD048525-bm-library.sdrf.tsv
+#   3beb47b73e0afb8c6e344f5e7263b7c1794a60dc37f2efee625759c9580cd4fa  PXD048525-bm-dia.sdrf.tsv
+#
+# Build provenance (campaign rule 17):
+#  1. scratch/PXD048525/scripts/make_tables.py writes samples.tsv / technical.tsv / files.json for three builds
+#     (luad, bmlib, bmdia) from the deposited sample list and the 7z member listings (assertions inside).
+#  2. sdrf-tools build, once per part:
+#     luad : -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata                     -> 98 rows x 42 cols
+#     bmlib: -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata                     -> 60 rows x 48 cols
+#     bmdia: -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata -t dia-acquisition  -> 50 rows x 52 cols
+#  3. Post-build step scratch/PXD048525/scripts/postbuild.py (deterministic):
+#     - luad copied unchanged.
+#     - bm-library and bm-dia: insert a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309
+#       directly after the Trypsin column on every row. Why: the BM digestion used Promega Trypsin/Lys-C mix
+#       (V5072, paper Methods); comment[cleavage agent details] is not 'multiple' in the ms-proteomics contract, so
+#       build emits only the first '|' value (campaign rule 2, same as PXD008327/PXD004245). The script asserts
+#       exactly one existing cleavage column whose value is Trypsin on every row and the expected row counts.
+#  Part split (rule 12): SILAC (luad) vs label-free (bm); the BM spectral-library DDA runs are a separate file from
+#  the diaPASEF runs because dia-acquisition rejects DDA rows: a first attempt with both in one file failed
+#  validate-sdrf (exit 1: "Invalid value 'NT=Data-dependent acquisition;AC=PRIDE:0000627'" / "Column
+#  'comment[proteomics data acquisition method]' has multiple unique values"). That combined file was deleted.
+#
+$ parse_sdrf validate-sdrf -s PXD048525-luad.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=HCC827;SN=NCI-H520;SN=NCI-H460' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD048525-bm-library.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD048525-bm-dia.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata -t dia-acquisition
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure PXD048525-luad.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD048525-bm-library.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD048525-bm-dia.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile PXD048525-luad.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pride.json --accession PXD048525
+PXD048525: 2 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'timsTOF Pro', the annotation says 'Orbitrap Elite'  [timsTOF Pro]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Lys-C digest but only Trypsin is declared  [missing: Lys-C]
+exit code: 0
+
+$ sdrf-tools reconcile PXD048525-bm-library.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pride.json --accession PXD048525
+PXD048525: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+exit code: 1
+
+$ sdrf-tools reconcile PXD048525-bm-dia.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pride.json --accession PXD048525
+PXD048525: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+exit code: 1
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/val/conv/luad) parse_sdrf convert-openms -s PXD048525-luad.sdrf.tsv -t2
+PROCESSING: PXD048525-luad.sdrf.tsv
+Factor columns: ['factor value[histologic subtype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]']
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+    OpenMS().openms_convert(sdrf, onetable, legacy, verbose, conditionsfromcolumns, extension_convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+    self._process_tolerances(row, f2c, raw)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not available
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+PXD048525-luad.sdrf.tsv
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/val/conv/bm-library) parse_sdrf convert-openms -s PXD048525-bm-library.sdrf.tsv -t2
+PROCESSING: PXD048525-bm-library.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[material type]', 'characteristics[spiked compound]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[histologic subtype]']
+Conditions (1): dict_keys(['metastatic malignant neoplasm in the brain'])
+Files per condition: dict_values([60])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 60 times.
+SUCCESS (WARNINGS=1): PXD048525-bm-library.sdrf.tsv
+exit code: 0
+PXD048525-bm-library.sdrf.tsv
+experimental_design.tsv
+openms.tsv
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/val/conv/bm-dia) parse_sdrf convert-openms -s PXD048525-bm-dia.sdrf.tsv -t2
+PROCESSING: PXD048525-bm-dia.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[material type]', 'characteristics[spiked compound]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[histologic subtype]']
+Conditions (1): dict_keys(['metastatic malignant neoplasm in the brain'])
+Files per condition: dict_values([50])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 50 times.
+SUCCESS (WARNINGS=1): PXD048525-bm-dia.sdrf.tsv
+exit code: 0
+PXD048525-bm-dia.sdrf.tsv
+experimental_design.tsv
+openms.tsv
+
+# ---------------- Assessment of findings ----------------
+# validate-sdrf: all three exit 0.
+#  - luad WARNING "Invalid value 'SN=HCC827;SN=NCI-H520;SN=NCI-H460' - must be one of the allowed values":
+#    sample-metadata 1.0.0 defines pooled sample with a 'values' validator AND a pattern validator
+#    "^(not pooled|pooled|SN=.+(;SN=.+)*)$" whose description says to list source names with SN=. The value
+#    matches the pattern; the warning comes from the values validator. Kept (precedent PXD000690/PXD001963/PXD003138).
+# structure: OK for all three.
+# reconcile — every finding is a cross-arm false positive (the PRIDE record is project-wide over three arms):
+#  - luad instrument_contradicted ("protocol names timsTOF Pro"): timsTOF Pro is the BM arm's instrument. All 49
+#    UHN .raw headers read "Orbitrap Elite MS" (scratch evidence/uhn_raw_headers.json) and the paper/PRIDE
+#    protocol for primary tumours names an Orbitrap Elite. REFUTED.
+#  - luad cleavage_agent_incomplete ("record names a Trypsin/Lys-C digest"): the Trypsin/LysC sentence is in the
+#    PRIDE "Brain Metastasis Sample Preparation" paragraph; the primary-tumour paragraph and the paper say
+#    "After overnight digestion by trypsin" / "digested overnight with trypsin". REFUTED.
+#  - bm-library / bm-dia BLOCKER labelled_annotated_as_label_free (record quantificationMethods = SILAC): SILAC is
+#    the UHN LUAD super-SILAC arm (proteinGroups Ratio H/L). The BM arm is label-free: DIA-NN 1.8.1 on diaPASEF
+#    (no label channels in the DIA-NN command, report.log.txt) and a FragPipe/IonQuant label-free library (PRIDE
+#    data protocol "IonQuant ... for label-free quantitation"); PRIDE also lists diaPASEF. REFUTED.
+# convert-openms:
+#  - bm-library, bm-dia: SUCCESS (1 warning: "no TA= specified" for Acetyl PP=Protein N-term, expected).
+#  - luad: FAILS "Cannot read precursor mass tolerance: not available". Expected and kept: the MaxQuant tolerances
+#    of this search are recorded nowhere (no mqpar/parameters.txt deposited; paper defers to ref 45 which states
+#    none). The converter cannot parse either reserved word; campaign precedent (PXD006676, PXD009868) keeps the
+#    honest reserved word rather than a MaxQuant default. Everything else in the luad file converts (checked by
+#    the traceback location: _process_tolerances is the first per-row step that fails).
+# ---------------- Manifest checks ----------------
+$ sdrf-tools schema-check PXD048525-luad.evidence.json
+PXD048525-luad.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage PXD048525-luad.sdrf.tsv PXD048525-luad.evidence.json
+Manifest covers every column with a value (26 column(s)).
+exit code: 0
+$ sdrf-tools schema-check PXD048525-bm-library.evidence.json
+PXD048525-bm-library.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage PXD048525-bm-library.sdrf.tsv PXD048525-bm-library.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+$ sdrf-tools schema-check PXD048525-bm-dia.evidence.json
+PXD048525-bm-dia.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage PXD048525-bm-dia.sdrf.tsv PXD048525-bm-dia.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0

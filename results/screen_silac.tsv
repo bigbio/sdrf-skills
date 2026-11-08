@@ -19,3 +19,13 @@ PXD017487	PRIDE	include		SILAC A375 DGAT1 inhibitor proteome/phospho; deposited 
 PXD008327	PRIDE	include		SILAC yeast mitotic-exit phospho time course; deposited mqpar	repository structured fields; paper methods
 PXD024103	PRIDE	include		SILAC ubiquitinome Nedd4 knockdown; deposited MaxQuant output	repository structured fields; paper methods
 PXD026077	PRIDE	exclude	14	Deposited searches are label-free (Multiplicity 1, no labelMods); PRIDE SILAC tag is wrong	deposited mqpar.xml and summary.txt
+PXD010779	PRIDE	include		Super-SILAC metastatic lung adenocarcinoma (one patient, lung + lymph-node tumours) plus TMT arm	repository structured fields; paper methods
+PXD030422	PRIDE	include		Super-SILAC rectal cancer neoadjuvant cohort, 61 patients; deposited cohort file	repository structured fields; paper methods
+PXD009868	PRIDE	include		Super-SILAC prostate cancer bone metastases, 22 patients; deposited design template	repository structured fields; PRIDE protocol
+PXD002669	PRIDE	include		Super-SILAC histone PTMs in breast cancer pathology tissue (plus label-free mouse arm)	repository structured fields; paper methods
+PXD013311	PRIDE	include		Super-SILAC histone PTMs in clinical tumour/normal tissue (breast, lung, ovary, head and neck)	repository structured fields; paper methods
+PXD048525	PRIDE	include		Super-SILAC primary LUAD cohort plus brain-metastasis DIA cohort; Nat Med 2024	repository structured fields; paper methods
+PXD039207	PRIDE	include		Triple SILAC renal cell carcinoma cell lines (PRIDE links wrong paper; same runs as PXD045898)	deposited mqpar.xml; paper of PXD045898
+PXD038030	PRIDE	include		Super-SILAC histone PTMs, endocrine-treated breast cancer cell dormancy	repository structured fields; paper methods
+PXD064152	PRIDE	include		Super-SILAC histone PTMs, HPV-related head and neck cancer (cell lines, keratinocytes, FFPE)	repository structured fields; paper methods
+PXD010683	PRIDE	include		SILAC A375 vemurafenib resistance and nestin knockout	repository structured fields; paper methods

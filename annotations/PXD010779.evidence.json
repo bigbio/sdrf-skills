@@ -1,0 +1,441 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD010779.sdrf.tsv",
+ "dataset": "PXD010779",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD010779 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD010779/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/files.json; 122 entries, all projectAccessions contain PXD010779)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Zhang X et al. Mol Cell Proteomics 2019;18(4):622-641, PMID 30617155, PMC6442362, doi:10.1074/mcp.RA118.001266; full text from https://pmc.ncbi.nlm.nih.gov/articles/PMC6442362/ (local text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/paper.txt)"
+  },
+  {
+   "id": "design",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/01/PXD010779/super-SILAC_proteins_experimentalDesignTemplate.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/dl/)"
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/01/PXD010779/super-SILAC_proteins_mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/dl/)"
+  },
+  {
+   "id": "mqparams",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/01/PXD010779/super-SILAC_proteins_parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/dl/)"
+  },
+  {
+   "id": "proteingroups",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/01/PXD010779/super-SILAC_proteins_proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/dl/ss_proteinGroups.txt)"
+  },
+  {
+   "id": "rawheaders",
+   "kind": "raw-file",
+   "location": "HTTP range reads (first 60 KB) of all 72 *_super-SILAC_*.raw files under https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/01/PXD010779/; decoded summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/raw_summary.tsv; 4 MB reads of 2_Lung_super-SILAC_F5_R1/R2 in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD010779/raw/"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/search/cell-line (queries for the 12 reference lines)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 via sdrf-tools verify (MONDO:0005061, UBERON:0002429, UBERON:0008953, HANCESTRO:0568, NCIT:C65108 (ancestor NCIT:C19796), EFO:0001272, MS:1001910, MS:1000422, MS:1000484, PRIDE:0000608, PRIDE:0000599, PRIDE:0000564, PRIDE:0000627, PRIDE:0000899, PRIDE:0001013, UNIMOD:188)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec submodule nested templates copy is older; batch3_rules.md rules 1 and 10"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-144",
+   "value": "PXD010779_patient_{LN1|Lung|LN2}_metastasis (light); PXD010779_super-SILAC_reference_aliquot_in_{LN1|Lung|LN2}_mix (heavy)",
+   "source_ids": [
+    "design",
+    "paper",
+    "proteingroups"
+   ],
+   "evidence": "MaxQuant experiments #1_LN_super-SILAC, #2_Lung_super-SILAC, #3_LN_super-SILAC (design template). Paper: \"Lysates from three distinct metastatic tumors (LN1, Lung and LN2) were combined with the heavy standard\". #1_LN=LN1 confirmed by deposited ratios: 18.8% of proteins with L/H<0.5 in #1_LN vs 8.6% (#2_Lung) and 9.3% (#3_LN), matching Fig. 2C (LN1 19%, Lung/LN2 8-9%); #3_LN=LN2 by elimination. Each experiment received its own aliquot of the reference, hence one reference source per mix."
+  },
+  {
+   "location": "comment[label] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "SILAC light",
+   "source_ids": [
+    "paper",
+    "mqpar",
+    "proteingroups"
+   ],
+   "evidence": "Tumor lysates unlabelled; mqpar labelMods = [\"\", \"Arg6;Lys6\"], multiplicity 2. Deposited ERBB2 (NP_004439) H/L normalized = 0.022 in #2_Lung vs 1.55 (#1_LN) and 0.48 (#3_LN), i.e. ERBB2 strongly up in the light channel of the lung run, as the paper reports for the lung tumor."
+  },
+  {
+   "location": "comment[label] rows 13-24, 37-48, 61-72, 85-96, 109-120, 133-144 (SILAC heavy)",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "paper",
+    "mqpar"
+   ],
+   "evidence": "Paper: 12 cell lines labelled with L-13C6-arginine (R6) and L-13C6-lysine (K6), pooled and spiked in as the standard; mqpar heavy labels Arg6;Lys6."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "study sample",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Patient tumor biopsies under study; PRIDE:0001013."
+  },
+  {
+   "location": "characteristics[sample type] rows 13-24, 37-48, 61-72, 85-96, 109-120, 133-144 (SILAC heavy)",
+   "value": "reference",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Heavy super-SILAC mix \"used as a reference for the super-SILAC experiments\"; PRIDE:0000899 (batch3 rule 18)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-144",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "Human patient and human cell lines."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-12, 25-36 (LN1) and 97-108, 121-132 (LN2)",
+   "value": "cervical lymph node",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table I: \"Right cervical lymph node excision (5/2011)-LN1\" and \"Right cervical lymph node excision (11/2013)-LN2\"; UBERON:0002429."
+  },
+  {
+   "location": "characteristics[organism part] rows 49-60, 73-84 (Lung)",
+   "value": "lower lobe of left lung",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table I: \"Left lower lobe wedge resection of progressive lung metastasis (11/2011)-L\"; UBERON:0008953."
+  },
+  {
+   "location": "factor value[organism part] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "cervical lymph node / lower lobe of left lung",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper compares lung vs lymph node metastatic sites (\"specific signaling networks were enriched in lung compared with the lymph node metastatic sites\"). Mirrors characteristics[organism part]; heavy reference rows not applicable."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-12, 25-36 (LN1) and 49-60, 73-84 (Lung)",
+   "value": "1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Each is one independent tumor; Lung is alone in its factor group (lower lobe of left lung), LN1 is the first sample in the cervical lymph node group. Paper: \"There was not enough tissue left to conduct biological replicates.\""
+  },
+  {
+   "location": "characteristics[biological replicate] rows 97-108, 121-132 (LN2)",
+   "value": "2",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "LN2 (right cervical lymph node excised 11/2013) is a second, independent tumor in the same factor group as LN1 (excised 5/2011); the paper compares LN1 and LN2 directly (Fig. 2B, IPA LN1 vs LN2). Numbering restarts per factor-value group and must be unique per independent sample (spec README.adoc:330; batch3 rule 3; review round 1 finding 1)."
+  },
+  {
+   "location": "characteristics[biological replicate] / characteristics[age] / characteristics[sex] rows 13-24, 37-48, 61-72, 85-96, 109-120, 133-144 (SILAC heavy)",
+   "value": "pooled",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Reference is a pool of 12 cell lines from different donors of both sexes; spec README.adoc:365 TIP: use pooled for individual-specific fields (biological replicate, age, sex) of pooled samples (review round 1 minor 1)."
+  },
+  {
+   "location": "characteristics[metastasis site] rows 1-12, 25-36 (LN1) and 97-108, 121-132 (LN2)",
+   "value": "cervical lymph node",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table I: LN1 and LN2 are metastases excised from right cervical lymph nodes; UBERON:0002429."
+  },
+  {
+   "location": "characteristics[metastasis site] rows 49-60, 73-84 (Lung)",
+   "value": "lower lobe of left lung",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table I: \"Left lower lobe wedge resection of progressive lung metastasis (11/2011)-L\"; UBERON:0008953."
+  },
+  {
+   "location": "comment[chromatography duration] rows with comment[technical replicate]=1 (R1) and =2 (R2)",
+   "value": "21600 s (R1) / 4800 s (R2)",
+   "source_ids": [
+    "rawheaders"
+   ],
+   "evidence": "Raw method headers: R1 top15HCD_360min.meth \"MS Run Time (min): 360.00\"; R2 top15HCD_80min.meth \"MS Run Time (min): 80.00\"; identical across all 36 R1 and 36 R2 files. Value is the instrument method run time (review round 1 minor 4)."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "not pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Each light sample is a single tumor lysate."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 13-24, 37-48, 61-72, 85-96, 109-120, 133-144 (SILAC heavy)",
+   "value": "SN=HBEC3-KT;SN=HPL1D;SN=NCI-H1648;SN=NCI-H3255;SN=11-18;SN=NCI-H1975;SN=NCI-H1650;SN=PC-9;SN=HCC827;SN=A-549;SN=NCI-H2030;SN=NCI-H358",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "Paper/PRIDE: mix of HBEC3KT, HPL1D, H1648, H3255, 11-18, H1975, H1650, PC9, HCC827, A549, H2030, H358, equal protein amounts. Names are Cellosaurus IDs: CVCL_X491, CVCL_8880, CVCL_1482, CVCL_6831, CVCL_6659, CVCL_1511, CVCL_1483, CVCL_B260, CVCL_2063, CVCL_0023, CVCL_1517, CVCL_1559. Precedent: curated PXD001370/PXD000690/PXD001963."
+  },
+  {
+   "location": "characteristics[disease] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "lung adenocarcinoma",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "All three are metastases of the patient's lung adenocarcinoma; MONDO:0005061."
+  },
+  {
+   "location": "characteristics[material type] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "tissue",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Surgical tumor specimens, macro-dissected, snap frozen."
+  },
+  {
+   "location": "characteristics[material type] rows 13-24, 37-48, 61-72, 85-96, 109-120, 133-144 (SILAC heavy)",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Pooled lysate of 12 cultured cell lines."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "African American",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Results: \"A 50-year old African American never smoker was diagnosed...\" (single index patient, individual-level statement); HANCESTRO:0568."
+  },
+  {
+   "location": "characteristics[sex] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "male",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper refers to the index patient as \"his 7-year treatment course\" (individual-level)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "adult",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Patient was 50 at diagnosis (2008); samples taken 2011-2013. EFO:0001272."
+  },
+  {
+   "location": "characteristics[individual] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "index_patient",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper names him only the \"Index patient\"; all light rows are the same individual. No patient ID published."
+  },
+  {
+   "location": "characteristics[individual] rows 13-24, 37-48, 61-72, 85-96, 109-120, 133-144 (SILAC heavy)",
+   "value": "pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Reference derives from 12 different cell-line donors."
+  },
+  {
+   "location": "characteristics[smoking status] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "Never Smoker",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"African American never smoker\"; NCIT:C65108, descendant of NCIT:C19796 Smoking Status."
+  },
+  {
+   "location": "characteristics[clinical history] rows 1-12, 25-36, 49-60, 73-84, 97-108, 121-132 (SILAC light)",
+   "value": "per-site text from Table I",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Diagnosis at age 50, HER2 amplification, and the regimen and date preceding each excision copied from Table I (LN1 5/2011 after lapatinib 2/2011-5/2011; L 11/2011 during lapatinib+capecitabine 7/2011-7/2012; LN2 11/2013 after pertuzumab/trastuzumab/vinorelbine 10/2012-11/2013). Only facts the article publishes."
+  },
+  {
+   "location": "assay name / comment[data file] / comment[fraction identifier] rows 1-144",
+   "value": "file stem / <file>.raw / F1-F12 -> 1-12",
+   "source_ids": [
+    "files",
+    "design"
+   ],
+   "evidence": "All 72 *_super-SILAC_*.raw files in files/all; fraction from the design template Fraction column (F1-F12), which matches the _F<n>_ token; 1_LN_super-SILAC_F7_R2_150110215046.raw is fraction 7 of R2 per the design template."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-144",
+   "value": "1 (R1) / 2 (R2)",
+   "source_ids": [
+    "rawheaders",
+    "design"
+   ],
+   "evidence": "Each fraction was injected twice: R1 files used method top15HCD_360min.meth (acquired 20140909, 360 min), R2 files top15HCD_80min.meth (acquired 20150108, 80 min), all 36+36 consistent; MaxQuant assigns R1 and R2 of a fraction to the same experiment and fraction, so they are repeat injections of one sample."
+  },
+  {
+   "location": "comment[instrument] rows 1-144",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "rawheaders",
+    "paper",
+    "pride"
+   ],
+   "evidence": "All 72 raw headers: \"Orbitrap Elite MS\"; paper: LTQ-Orbitrap Elite."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-144",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "rawheaders",
+    "paper"
+   ],
+   "evidence": "Raw method: \"FTMS + p norm Dep MS/MS Most intense ion\", top 15."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-144",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "rawheaders",
+    "paper"
+   ],
+   "evidence": "Raw: Activation Type HCD in all 72 files."
+  },
+  {
+   "location": "comment[collision energy] rows 1-144",
+   "value": "32 NCE",
+   "source_ids": [
+    "rawheaders"
+   ],
+   "evidence": "Raw: \"Normalized Coll. Energy: 32.0\" in all 72 files. The paper says 40%; raw wins (brief: raw > Methods)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-144",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "rawheaders",
+    "paper"
+   ],
+   "evidence": "Scan event 2 \"FTMS ... Dep MS/MS\"; paper: HCD MS/MS at resolution 30,000."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-144",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mqpar"
+   ],
+   "evidence": "Digestion with sequencing-grade trypsin (Promega); MaxQuant search rule Trypsin/P (batch3 rule 2: digestion enzyme recorded)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-144",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Basic RPLC on XBridge C18 with TEABC, 96 fractions concatenated to 12."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-144",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"reduced with 45 mM dithiothreitol\"."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-144",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"alkylated with 100 mM iodoacetamide\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-144",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "mqpar mainSearchTol 4.5 (ppm; first search 20 ppm). Paper says 7 ppm; deposited search wins."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-144",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqparams",
+    "paper"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"; MS2 acquired in the Orbitrap."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-144",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Phospho STY, Label:13C(6) R, Label:13C(6) K Variable",
+   "source_ids": [
+    "mqpar",
+    "mqparams"
+   ],
+   "evidence": "mqpar fixedModifications Carbamidomethyl (C); variableModifications Oxidation (M), Acetyl (Protein N-term), Phospho (STY); labelMods Arg6;Lys6 (13C6 = UNIMOD:188, batch3 rule 11 MT=Variable). The paper also lists deamidation (NQ), but the deposited super-SILAC search does not include it, so it is omitted."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] rows 1-144",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch3 rules 1 and 10. Templates: patient tissue (human + clinical-metadata, rule 18); oncology-metadata because this is a cancer study and it defines characteristics[clinical history] and [metastasis site] (TERMS.tsv usage oncology-metadata; review round 1 finding 2); cell-lines not declared because no row is a single cell line (the reference is encoded by pooled sample SN=)."
+  }
+ ],
+ "limitations": [
+  "SCOPE PARTIAL: the 24 TMT10plex runs (patient_TMT10plex_protein_F1-F12.raw, patient_TMT10plex_pST_F1-F12.raw) are NOT annotated. Only TMT126 = pool of all tumors and TMT128C = PDX are stated; the assignment of LN1, Lung, LN2 and MET1-5 to 127N, 127C, 128N, 129N, 129C, 130N, 130C, 131N is in no accessible source (paper text, deposited mqpar/parameters/proteinGroups which carry only \"Reporter intensity 0-9\"). Supplementary Tables S1-S5 (PMC bin/142441_1_supp_*.xlsx) were behind an NCBI proof-of-work bot check and the publisher site (mcponline.org) returned 403; Europe PMC says the article is not open access. The bioRxiv preprint 10.1101/398313 lists no supplementary files and its full-text PDF returned HTTP 429. Headers of patient_TMT10plex_protein_F1.raw and patient_TMT10plex_pST_F1.raw carry only paths and method names (top15HCD_90min_10uL_TMT_HCD40.meth), no channel names. Logged in BLOCKED.md (batch3 rule 7).",
+  "Supplementary Table S1 (super-SILAC) could not be read for the same reason; the light-sample identities were instead cross-checked against the deposited proteinGroups ratios (Fig. 2C percentages and ERBB2).",
+  "Non-RAW deposits are not runs and are not annotated: 23 MaxQuant search-output files (PRIDE category SEARCH) (mqpar/parameters/proteinGroups/peptides/PhosphoSTYSites/experimentalDesignTemplate), SupplementaryMRMresults_mutantpeptides.zip (the targeted MRM results behind PRIDE experimentType SRM/MRM; no MRM raw files are deposited), SupplementarypSTannotatedspectra.zip and Supplementary_snvs2_repor-high.zip (annotated variant-peptide spectra, PEAK).",
+  "characteristics[age] = not available on tumor rows: the paper gives only the age at diagnosis (50, 2008); the exact age at each excision (5/2011, 11/2011, 11/2013) is not published and was not derived.",
+  "characteristics[cell type] = not available on tumor rows (bulk tumor tissue, >=40% tumor cellularity; no cell type stated).",
+  "Conflicts resolved toward raw/search output: collision energy 32 NCE (raw) vs 40% (paper); precursor tolerance 4.5 ppm (mqpar) vs 7 ppm (paper); LC is EASY-nLC in the raw headers vs UltiMate 3000 in the paper (not encoded); deamidation listed in the paper but absent from the super-SILAC search (omitted).",
+  "Super-SILAC R1 (360 min, 2014) and R2 (80 min, 2015) injections differ in gradient; encoded as technical replicates 1 and 2 of the same fractionated sample, with the different run times in comment[chromatography duration]. The paper does not describe the duplicate injections.",
+  "Reference rows: the reference mix mixes immortalised normal lines and lung adenocarcinoma lines, so disease and organism part are not applicable; culture medium (RPMI 1640 with dialysed FBS) is not encoded because cell-lines is not declared.",
+  "techsdrf not installed; raw metadata were taken from HTTP range reads of the .raw headers.",
+  "Not machine-reviewed: review handed to an external sdrf-adversarial-review (REVIEW_PENDING_EXTERNAL)."
+ ]
+}

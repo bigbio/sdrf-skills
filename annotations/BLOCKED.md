@@ -1161,3 +1161,127 @@ Sources checked:
 The first external review (`annotations/PXD027138.review.md`) failed an earlier SDRF that relied on these. That SDRF has been withdrawn.
 
 **Unblocked by:** the paper's STAR Methods or figure legends (BioID section), or a label sheet from the authors (C.H. Vieira-Vieira, M. Selbach, MDC Berlin), giving the channel map for each orientation. The technical values are resolved in `annotations/PXD027138.report.md`.
+
+## PXD010779 — Metastatic lung adenocarcinoma proteogenomics (super-SILAC + TMT10plex), TMT10plex arm only (partial block)
+
+**Blocker: the TMT10plex channel→sample map is only partly published. Two of ten channels are stated (TMT126 = pool of all nine tumors, TMT128C = PDX). Which of 127N, 127C, 128N, 129N, 129C, 130N, 130C and 131N carries LN1, Lung, LN2 and MET1–5 is not in any source reachable here. The super-SILAC arm (72 RAW) is annotated in `annotations/PXD010779.sdrf.tsv`.**
+
+| | |
+|---|---|
+| Publication | Zhang *et al.*, Mol Cell Proteomics 2019 18:622, PMID:30617155, PMC6442362, doi:10.1074/mcp.RA118.001266 (full text read from the PMC HTML render) |
+| Deposited | 96 RAW: 72 super-SILAC (annotated) + 24 TMT. 26 non-RAW, not runs: 23 MaxQuant search outputs (super-SILAC and 4 TMT searches, patient DB ± mouse DB: mqpar.xml, parameters.txt, proteinGroups/peptides/PhosphoSTYSites, experimentalDesignTemplate); `SupplementaryMRMresults_mutantpeptides.zip` (targeted MRM results behind PRIDE's SRM/MRM experiment type; no MRM RAW deposited); `SupplementarypSTannotatedspectra.zip` and `Supplementary_snvs2_repor-high.zip` (annotated spectra) |
+| Blocked | `patient_TMT10plex_protein_F1–F12.raw` (proteome) and `patient_TMT10plex_pST_F1–F12.raw` (TiO2 phosphopeptides): 24 files |
+| SDRF would need | 24 files × 10 TMT channels = 240 rows; 126 = pooled reference, 128C = PDX (from a left jugular / right axillary lymph node excision, 9/2014), and the other 8 channels = LN1, Lung, LN2, MET1–5 in an unknown order |
+
+Sources checked:
+
+| source | result |
+|---|---|
+| Paper text (Methods, Results, Experimental Design, figure legends) | only "labeled with TMT10–126" (pool) and "PDX sample (channel 128C)" |
+| PRIDE protocol, description, files/all | same two statements; no sample sheet |
+| TMT mqpar.xml ×4 | `<experiments>` empty; isobaric labels only, no sample names |
+| TMT proteinGroups.txt header | `Reporter intensity [corrected] 0–9` only |
+| TMT RAW headers (`patient_TMT10plex_protein_F1.raw`, `patient_TMT10plex_pST_F1.raw`, HTTP range read) | file paths and method `top15HCD_90min_10uL_TMT_HCD40.meth` only; no channel or sample names |
+| bioRxiv preprint 10.1101/398313 (same title, 2018-08-22) | API record resolves; supplementary-material page lists no files; full-text PDF HTTP 429 |
+| Supplementary Tables S1–S5 (PMC `bin/142441_1_supp_*.xlsx`) | NCBI proof-of-work bot check, not bypassed |
+| Europe PMC supplementaryFiles | "not open access" |
+| Publisher (mcponline.org / linkinghub) | HTTP 403 |
+
+**Deliberately not used:** inferring the channel order from correlation with the super-SILAC ratios (that would place only LN1/Lung/LN2, and it is inference, not a label statement; campaign rule 6) or from the heatmap column order in Fig. 5A.
+
+**Unblocked by:** supplementary Table S3 (TMT proteome) or S2/S4 column headers, which very probably name each channel's sample, or a channel sheet from the authors (X. Zhang, U. Guha, NCI). The technical values for the TMT arm (same Orbitrap Elite, MaxQuant isobaric labels TMT10plex-Nter and -Lys 126C–131N, variable Oxidation (M), Acetyl (Protein N-term) and Phospho (STY) per the mqpar files) are already established and would need only the map.
+
+## PXD010683 — Nestin / vemurafenib resistance in A375 melanoma (SILAC + dimethyl FFPE), screen 1 and FFPE arms only (partial block)
+
+**Blockers:**
+- **Screen 1 (33 runs):** no explicit channel map exists. The deposited MaxQuant experiment names (all "ML") contradict the deposited ratios.
+- **FFPE (2 runs):** the label state of the deposited runs and the per-patient clinical data are undocumented.
+
+The screen-2 duplex (90 RAW) and the Nes-KO/S/R triplex (20 RAW) are annotated in `annotations/PXD010683.sdrf.tsv`.
+
+| | |
+|---|---|
+| Publication | Schmitt *et al.*, Mol Cell Proteomics 2019 18:1096, PMID:30890564, PMC6553926, doi:10.1074/mcp.RA119.001302 (full text read from the PMC HTML render) |
+| Blocked: screen 1 | `20150812_A375SR_Phospho_BR1_01-10`, `20150814_A375SR_Phospho_BR2_01-10`, `20150822_A375SR_Phospho_BR3_01-10`, `20150818_A375SR_Proteome_BR1`, `20150818_A375SR_Proteome_BR2`, `20150822_A375SR_Proteome_BR3` (33 files; A375 S vs R SILAC light/medium) |
+| Blocked: FFPE | `20181129_MaS_meltissue_preBRAFi_FFPE_01`, `20181129_MaS_meltissue_postBRAFi_FFPE_01` (2 files; one patient before and after BRAFi; dimethyl light/heavy) |
+
+**Screen 1: what the data show.** Orientation from per-raw-file ratios on 207 marker groups, and from nestin:
+
+| run set | S channel implied by the ratios |
+|---|---|
+| Proteome_BR1 | medium |
+| Proteome_BR2, Proteome_BR3 | light |
+| Phospho_BR1 | light |
+| Phospho_BR2, Phospho_BR3 | medium |
+
+All six experiments are named "ML" in `txt_A375_S_R/experimentalDesignTemplate.txt`. The paper says only "light, medium and vice versa".
+
+**FFPE: what is deposited.** `txt_FFPE_pre_post_tissue` searched `20181211_MaS_prepostBRAfi_dimethyl_LH_1ug`, a mixed light/heavy run that is not deposited. Patient details are in Supplementary Information S3.
+
+Sources checked:
+
+| source | result |
+|---|---|
+| Paper text (PMC HTML) | label-swap design stated without per-replicate assignment; FFPE pre/post labelled light/heavy in the mixed run only |
+| PRIDE protocol, files/all | no sample sheet |
+| MaxQuant zips (experimentalDesignTemplate, summary, mqpar, proteinGroups, evidence) | as above |
+| Supplementary Information S1/S3, Supplementary Figures (PMC `bin/142829_1_supp_*`) | NCBI bot check |
+| Europe PMC supplementaryFiles | empty archive |
+| mcponline / Unpaywall PDF | HTTP 403 |
+
+**Deliberately not used:** the data-derived screen-1 orientation (rules 6/7), and a label-free reading of the FFPE runs.
+
+**Unblocked by:**
+- Supplementary Fig. S1A or Information S1, or an author label sheet (M. Schmitt / B. Macek, Proteome Center Tuebingen), giving the screen-1 S/R channel per replicate and per proteome/phospho run.
+- Supplementary Information S3 plus the authors' statement of whether the deposited FFPE runs were labelled. Annotating the FFPE runs would also need the `clinical-metadata` template in a separate SDRF part.
+
+---
+
+## PXD064152 — NSD2 / HPV E6/E7 in HPV-associated head and neck cancer (histone super-SILAC), FFPE arm only (partial block)
+
+**Blocker: no source keys the FFPE raw files to HPV status or patient.** The cell-line arm (15 runs) and the keratinocyte arm (6 runs) are annotated in `PXD064152-celllines.sdrf.tsv` and `PXD064152-keratinocytes.sdrf.tsv`. The FFPE arm (22 runs) is not annotated. Its study factor, HPV+ vs HPV− oropharyngeal SCC (Fig. 1A), is also a per-patient clinical value. It needs an individual-level source (rule 18), and none exists.
+
+Blocked runs (22 `.raw`, all present in PRIDE files/all):
+- HF220822_RN_Lavinia_FFPE_2T
+- HF220822_RN_Lavinia_FFPE_7T
+- HF220822_RN_Lavinia_FFPE_9T
+- HF220822_RN_Lavinia_FFPE_12T
+- HF220822_RN_Lavinia_FFPE_14T
+- HF220822_RN_Lavinia_FFPE_15T
+- HF220822_RN_Lavinia_FFPE_17T
+- HF220822_RN_Lavinia_FFPE_21T
+- HF220822_RN_Lavinia_FFPE_22T
+- HF220822_RN_Lavinia_FFPE_26T
+- QEP230822_RN_Lavinia_2T
+- QEP230822_RN_Lavinia_3
+- QEP230822_RN_Lavinia_4
+- QEP230822_RN_Lavinia_5
+- QEP230822_RN_Lavinia_6
+- QEP230822_RN_Lavinia_7
+- QEP230822_RN_Lavinia_10
+- QEP230822_RN_Lavinia_13
+- QEP230822_RN_Lavinia_14
+- QEP230822_RN_Lavinia_15T
+- QEP230822_RN_Lavinia_17
+- QEP230822_RN_Lavinia_18T
+
+Sources checked:
+
+| source | result |
+|---|---|
+| PRIDE project record (v3) | protocol prose only; no per-sample HPV status; `diseases` empty |
+| PRIDE files/all (48 files) | `Sample_list.txt` is the only sample sheet |
+| `Sample_list.txt` | 29 "FFPE tissue" entries in two unlabelled blocks (#1–#10, then #1–#19); no HPV, patient or clinical field. Only 3 of the 10 block-A entries have a deposited raw |
+| Paper PMC12882316 (CC BY, full text) | cohort: 19 HPV+ and 9 HPV− OPSCC; no file or sample key |
+| Supplementary Tables (MOESM1, Table S4) | cohort-level counts only (sex, histology, grade, pT, pN, stage per HPV group) |
+| Supplementary Data (MOESM2, sheet 1) | L/H ratios with columns HPV− #1–#9 and HPV+ #1–#19; no file names |
+| EpiProfile outputs (FFPE2208.zip, FFPE2308.zip: `histone_ratios_SILAC.xls`, `histone_ratios.xls`, `histone_logs.txt`) | keyed by raw file name only; no HPV or patient field |
+| MOESM3 (figure legends), MOESM4–9 (figure TIFFs) | no sample key |
+| GEO GSE313615 (linked RNA-seq) | not fetched: paper Methods say the RNA-seq covers HKs and HNSCC cell lines only, not the FFPE MS samples |
+
+**Deliberately not used:**
+- Matching recomputed L/H %RA ratios against Supplementary Data columns. The producer's map (block A = HPV−, block B = HPV+) was not reproduced by the reviewer's independent recomputation: for example, supp HPV+ #4 best-matches a block-A file, and HPV+ #12 and #13 and HPV− #5 and #7 move between blocks. The method is too sensitive to serve as a documented map.
+- FFPE_15T could not be placed in any supp column.
+- The sample list's HPV− block has 10 entries against the paper's 9.
+
+**Unblocked by:** an explicit file → HPV-status (and ideally patient-ID) key from the submitters (R. Noberini / T. Bonaldi, IEO), for example an updated `Sample_list.txt` with an HPV column, or the mapping of Supplementary Data sheet 1 columns (HPV± #n) to raw file names. That key must also state whether FFPE_15T is in the published set. The technical values are already settled and are in `PXD064152.report.md`.

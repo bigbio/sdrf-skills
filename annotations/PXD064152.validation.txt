@@ -1,0 +1,297 @@
+[Round-1 section below covers the deleted FFPE part as history; current files: see ROUND 2 at the end.]
+PXD064152 validation log (annotator round 1). Three SDRF parts, each built by sdrf-tools build from scratch tables
+(/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/tables/*.samples.tsv, *.technical.tsv via scripts/make_tables.py + scripts/build_all.sh). No post-build edits.
+NOTE: in the parse_sdrf validate-sdrf blocks the printed 'exit code' was captured after a '| grep -v Downloading' pipe (grep's status);
+parse_sdrf's own result line is the authoritative status: 'Everything seems to be fine' / 'There were only warnings' = exit 0;
+round-0 run below showed 'There were validation errors' + exit 1 when it failed.
+
+=== ROUND 0 (pre-fix; individual IDs contained '#','+',' ' - fixed in make_tables.py, rebuilt) ===
+$ parse_sdrf validate-sdrf -s PXD064152-ffpe.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+ERROR: Value 'HPV- #8' does not match required pattern
+ERROR: Value 'HPV- #9' does not match required pattern
+ERROR: Value 'HPV- #10' does not match required pattern
+ERROR: Value 'HPV+ #1' does not match required pattern
+ERROR: Value 'HPV+ #2' does not match required pattern
+ERROR: Value 'HPV+ #3' does not match required pattern
+ERROR: Value 'HPV+ #4' does not match required pattern
+ERROR: Value 'HPV+ #5' does not match required pattern
+ERROR: Value 'HPV+ #6' does not match required pattern
+ERROR: Value 'HPV+ #7' does not match required pattern
+ERROR: Value 'HPV+ #8' does not match required pattern
+ERROR: Value 'HPV+ #9' does not match required pattern
+ERROR: Value 'HPV+ #10' does not match required pattern
+ERROR: Value 'HPV+ #11' does not match required pattern
+ERROR: Value 'HPV+ #12' does not match required pattern
+ERROR: Value 'HPV+ #13' does not match required pattern
+ERROR: Value 'HPV+ #14' does not match required pattern
+ERROR: Value 'HPV+ #15' does not match required pattern
+ERROR: Value 'HPV+ #16' does not match required pattern
+ERROR: Value 'HPV+ #17' does not match required pattern
+ERROR: Value 'HPV+ #18' does not match required pattern
+ERROR: Value 'HPV+ #19' does not match required pattern
+There were validation errors.
+exit code: 1
+
+=== ROUND 1 (current files) ===
+$ parse_sdrf validate-sdrf -s PXD064152-ffpe.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+Everything seems to be fine. Well done.
+exit code: 0
+$ parse_sdrf validate-sdrf -s PXD064152-celllines.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: UM-SCC-4 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: super-SILAC mix of heavy-labelled breast cancer cell lines in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-6 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-10A in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-17A in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-17B in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-18 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-19 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-23 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UD-SCC-2 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-47 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UPCI-SCC-090 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-104 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UPCI-SCC-152 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UPCI-SCC-154 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: VU-SCC-147 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ parse_sdrf validate-sdrf -s PXD064152-keratinocytes.sdrf.tsv -t ms-proteomics -t human
+WARNING: Term: transduced with empty pLXSN retroviral vector in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: transduced with HPV16 E6/E7 pLXSN retroviral vector in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+[exited with code 0]
+
+$ sdrf-tools structure PXD064152-ffpe.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ sdrf-tools reconcile PXD064152-ffpe.sdrf.tsv --record ev/pride.json --accession PXD064152
+PXD064152: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive Plus', the annotation says 'Q Exactive HF'  [Q Exactive Plus]
+exit code: 0
+
+$ sdrf-tools structure PXD064152-celllines.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ sdrf-tools reconcile PXD064152-celllines.sdrf.tsv --record ev/pride.json --accession PXD064152
+PXD064152: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive Plus', the annotation says 'Q Exactive HF'  [Q Exactive Plus]
+exit code: 0
+
+$ sdrf-tools structure PXD064152-keratinocytes.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ sdrf-tools reconcile PXD064152-keratinocytes.sdrf.tsv --record ev/pride.json --accession PXD064152
+PXD064152: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive Plus', the annotation says 'Q Exactive HF'  [Q Exactive Plus]
+exit code: 0
+
+NOTE (annotator) on reconcile MAJOR instrument_contradicted (all three parts): FALSE POSITIVE. The paper/PRIDE protocol prose names only
+'Q Exactive Plus', but the HTTP-range-read header of every HF* raw file (28 files: HF190703_*, HF220822_*) reads 'Q Exactive HF - Orbitrap MS'
+and every QEP* file (15) reads 'Q Exactive Plus - Orbitrap MS' (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD064152/ev/raw_instruments.txt). PRIDE 'instruments' lists both
+Q Exactive Plus (MS:1002634) and Q Exactive HF (MS:1002523); ref [44] (cited for the LC-MS set-up) names 'a Q Exactive HF or a Q Exactive Plus'.
+Raw > paper (brief precedence rule); comment[instrument] is set per file. reconcile exits 0.
+
+$ parse_sdrf convert-openms -s annotations/PXD064152-ffpe.sdrf.tsv -t2   (run in scratch dir)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD064152-ffpe.sdrf.tsv
+Factor columns: ['factor value[hpv status]']
+ValueError: Cannot read precursor mass tolerance: not available
+The above exception was the direct cause of the following exception:
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+$ parse_sdrf convert-openms -s annotations/PXD064152-celllines.sdrf.tsv -t2   (run in scratch dir)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD064152-celllines.sdrf.tsv
+Factor columns: ['factor value[hpv status]']
+ValueError: Cannot read precursor mass tolerance: not available
+The above exception was the direct cause of the following exception:
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+$ parse_sdrf convert-openms -s annotations/PXD064152-keratinocytes.sdrf.tsv -t2   (run in scratch dir)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD064152-keratinocytes.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+ValueError: Cannot read precursor mass tolerance: not available
+The above exception was the direct cause of the following exception:
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+NOTE (annotator) on convert-openms exit 1: 'Cannot read precursor mass tolerance: not available'. EpiProfile 2.0 (targeted XIC extraction)
+parameters are not deposited and no tolerance is stated in the paper; a value would be a guess. Same outcome as campaign precedents
+PXD009868 / PXD006676 / PXD024103. Diagnostic: scratch copies with only the two tolerance columns removed convert successfully:
+
+$ [diagnostic] parse_sdrf convert-openms -s diag_ffpe.sdrf.tsv -t2   (scratch copy with the two tolerance columns removed)
+PROCESSING: diag_ffpe.sdrf.tsv
+Factor columns: ['factor value[hpv status]']
+Conditions (3): dict_keys(['HPV-negative', 'not applicable', 'HPV-positive'])
+Files per condition: dict_values([3, 22, 19])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 44 times.
+WARNING: "No fragment mass tolerance set. Assuming 20 ppm." occurred 44 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 44 times.
+SUCCESS (WARNINGS=3): diag_ffpe.sdrf.tsv
+exit code: 0
+
+$ [diagnostic] parse_sdrf convert-openms -s diag_celllines.sdrf.tsv -t2   (scratch copy with the two tolerance columns removed)
+PROCESSING: diag_celllines.sdrf.tsv
+Factor columns: ['factor value[hpv status]']
+Conditions (3): dict_keys(['HPV-negative', 'not applicable', 'HPV-positive'])
+Files per condition: dict_values([8, 15, 7])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 30 times.
+WARNING: "No fragment mass tolerance set. Assuming 20 ppm." occurred 30 times.
+SUCCESS (WARNINGS=2): diag_celllines.sdrf.tsv
+exit code: 0
+
+$ [diagnostic] parse_sdrf convert-openms -s diag_keratinocytes.sdrf.tsv -t2   (scratch copy with the two tolerance columns removed)
+PROCESSING: diag_keratinocytes.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Conditions (3): dict_keys(['transduced with empty pLXSN retroviral vector', 'not applicable', 'transduced with HPV16 E6/E7 pLXSN retroviral vector'])
+Files per condition: dict_values([3, 6, 3])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 12 times.
+WARNING: "No fragment mass tolerance set. Assuming 20 ppm." occurred 12 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=3): diag_keratinocytes.sdrf.tsv
+exit code: 0
+
+NOTE (annotator) on warnings: celllines 'characteristics[cell line] not found in clo;bto;efo' - none of these HNSCC lines exists in CLO/BTO/EFO
+(OLS search for UM-SCC-4, UM-SCC-47, UPCI:SCC090, 93-VU-147T, UD-SCC-2, SCC-154 in clo/bto/efo: no match); identity is carried by
+characteristics[cellosaurus accession]. Heavy rows use free text (PXD000332 precedent). keratinocytes: free-text characteristics[treatment]
+(no NCIT/EFO term for empty-vector / HPV16 E6/E7 retroviral transduction; PXD069185 / PXD012128 precedent).
+
+$ sdrf-tools schema-check annotations/PXD064152-ffpe.evidence.json
+annotations/PXD064152-ffpe.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage annotations/PXD064152-ffpe.sdrf.tsv annotations/PXD064152-ffpe.evidence.json
+Manifest covers every column with a value (22 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD064152-celllines.evidence.json
+annotations/PXD064152-celllines.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage annotations/PXD064152-celllines.sdrf.tsv annotations/PXD064152-celllines.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD064152-keratinocytes.evidence.json
+annotations/PXD064152-keratinocytes.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage annotations/PXD064152-keratinocytes.sdrf.tsv annotations/PXD064152-keratinocytes.evidence.json
+Manifest covers every column with a value (24 column(s)).
+exit code: 0
+
+sha256:
+f4b462987b9ba1a3233e7d536906ca40e7bfe98632c9e08280ddbb2e7f1ff278  annotations/PXD064152-celllines.sdrf.tsv
+63dc56a8e3fba1da632baf038727ae02b5fe92450aae741c867fb75433c78a28  annotations/PXD064152-ffpe.sdrf.tsv
+9dbea32ce9f493390eafb1925e64dd7aa3803bbb9bac90ae79f4fb6194ee09f5  annotations/PXD064152-keratinocytes.sdrf.tsv
+
+==================================================================
+ROUND 2 (after external review round 1 FAIL, coordinator decisions):
+ - FFPE part BLOCKED: annotations/PXD064152-ffpe.sdrf.tsv + .evidence.json deleted (round-1 FFPE results above are historical); BLOCKED.md section added.
+ - celllines: custom characteristics/factor value[hpv status] removed; HPV status carried by characteristics[disease]/factor value[disease] with
+   NCIT:C207803 / NCIT:C171023 (verified live in OLS4; sample-metadata disease validator lists ncit); 'margin of tongue' lower-cased.
+ - keratinocytes: characteristics[individual] = not available; source names without donor numbers; bio rep 1-3 per arm (no pairing implied);
+   heavy-row disease 'cancer' (MONDO:0004992) and material type 'cell line' (reviewer minor).
+ - All changes made in make_tables.py and rebuilt with sdrf-tools build (scripts/build_all.sh); no post-build edits.
+ - parse_sdrf exit codes below are the real process exit codes (captured before any filtering).
+
+$ parse_sdrf validate-sdrf -s annotations/PXD064152-celllines.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: UM-SCC-4 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: super-SILAC mix of heavy-labelled breast cancer cell lines in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-6 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-10A in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-17A in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-17B in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-18 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-19 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-23 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UD-SCC-2 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-47 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UPCI-SCC-090 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UM-SCC-104 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UPCI-SCC-152 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: UPCI-SCC-154 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: VU-SCC-147 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD064152-keratinocytes.sdrf.tsv -t ms-proteomics -t human
+WARNING: Term: transduced with empty pLXSN retroviral vector in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: transduced with HPV16 E6/E7 pLXSN retroviral vector in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD064152-celllines.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ sdrf-tools reconcile annotations/PXD064152-celllines.sdrf.tsv --record <scratch>/ev/pride.json --accession PXD064152
+PXD064152: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive Plus', the annotation says 'Q Exactive HF'  [Q Exactive Plus]
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD064152-keratinocytes.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ sdrf-tools reconcile annotations/PXD064152-keratinocytes.sdrf.tsv --record <scratch>/ev/pride.json --accession PXD064152
+PXD064152: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive Plus', the annotation says 'Q Exactive HF'  [Q Exactive Plus]
+exit code: 0
+
+NOTE (annotator): reconcile instrument_contradicted is the same FALSE POSITIVE refuted in round 1 (raw headers of HF* files read 'Q Exactive HF - Orbitrap MS').
+
+$ parse_sdrf convert-openms -s annotations/PXD064152-celllines.sdrf.tsv -t2   (in scratch openms/; traceback trimmed)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD064152-celllines.sdrf.tsv
+Factor columns: ['factor value[disease]']
+ValueError: Cannot read precursor mass tolerance: not available
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+$ [diagnostic] parse_sdrf convert-openms -s diag_celllines.sdrf.tsv -t2   (scratch copy, two tolerance columns removed)
+PROCESSING: diag_celllines.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Conditions (3): dict_keys(['Human Papillomavirus-Independent Head and Neck Mucosal Squamous Cell Carcinoma', 'not applicable', 'Human Papillomavirus-Related Head and Neck Mucosal Squamous Cell Carcinoma'])
+Files per condition: dict_values([8, 15, 7])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 30 times.
+WARNING: "No fragment mass tolerance set. Assuming 20 ppm." occurred 30 times.
+SUCCESS (WARNINGS=2): diag_celllines.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s annotations/PXD064152-keratinocytes.sdrf.tsv -t2   (in scratch openms/; traceback trimmed)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD064152-keratinocytes.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+ValueError: Cannot read precursor mass tolerance: not available
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+$ [diagnostic] parse_sdrf convert-openms -s diag_keratinocytes.sdrf.tsv -t2   (scratch copy, two tolerance columns removed)
+PROCESSING: diag_keratinocytes.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Conditions (3): dict_keys(['transduced with empty pLXSN retroviral vector', 'not applicable', 'transduced with HPV16 E6/E7 pLXSN retroviral vector'])
+Files per condition: dict_values([3, 6, 3])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 12 times.
+WARNING: "No fragment mass tolerance set. Assuming 20 ppm." occurred 12 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=3): diag_keratinocytes.sdrf.tsv
+exit code: 0
+
+NOTE (annotator): convert-openms exit 1 on 'not available' tolerances, as in round 1 and campaign precedents; diagnostics without the tolerance columns succeed.
+
+$ sdrf-tools schema-check annotations/PXD064152-celllines.evidence.json
+annotations/PXD064152-celllines.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage annotations/PXD064152-celllines.sdrf.tsv annotations/PXD064152-celllines.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD064152-keratinocytes.evidence.json
+annotations/PXD064152-keratinocytes.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage annotations/PXD064152-keratinocytes.sdrf.tsv annotations/PXD064152-keratinocytes.evidence.json
+Manifest covers every column with a value (24 column(s)).
+exit code: 0
+
+sha256 (round 2):
+5edb504737706c8ffbb40d150c8675f513c657bab50c0c8c24e8c4e7ad43a015  annotations/PXD064152-celllines.sdrf.tsv
+ecaa4de09363bf5f4783d84b1b654a782c627a540a2e9987b1f70b3ca8be99a3  annotations/PXD064152-keratinocytes.sdrf.tsv

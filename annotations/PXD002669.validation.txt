@@ -1,0 +1,318 @@
+# PXD002669 validation log (three SDRF parts, campaign rule 12)
+#   PXD002669-mouse.sdrf.tsv              label-free, Mus musculus          templates ms-proteomics, vertebrates
+#   PXD002669-human-ffpe-frozen.sdrf.tsv  super-SILAC, biopsies 1-3          templates ms-proteomics, human, clinical-metadata, oncology-metadata
+#   PXD002669-human-subtypes.sdrf.tsv     super-SILAC, 20 subtype biopsies   templates ms-proteomics, human, clinical-metadata, oncology-metadata
+#
+# Build provenance (rule 17): every row comes from `sdrf-tools build` on the tables written by
+#   /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/gen_tables.py
+# Five builds (mouse_spleenweeks, mouse_liver, mouse_spleen6y, human_ffpe_frozen, human_subtypes), e.g.
+#   sdrf-tools build --samples tables/mouse_liver/samples.tsv --technical tables/mouse_liver/technical.tsv \
+#     --files raw_names.json -t ms-proteomics -t vertebrates -o build/mouse_liver.sdrf.tsv
+# Post-build step (scripted, deterministic): .../scratchpad/PXD002669/postedit.py
+#   (a) concatenates the three mouse builds after asserting identical headers;
+#   (b) on the 12 mouse H4 rows (comment[fraction identifier]=2, file name asserted to contain _H4/H4RN)
+#       sets the single cell holding NT=Trimethyl;AC=UNIMOD:37;TA=K;MT=Variable to 'not applicable'.
+#       Justification (rule 5): the deposited MaxQuant jobs that include Trimethyl (K)
+#       (txtspleenme1me2me3, txtspleenacme1me3, txtliverme1me2me3, txtliverme1me3ac,
+#       txtspleen6yearsme1me2me3, txtspleen6yearsme1me3ac) list only H3 raw files in summary.txt;
+#       H4 files were searched only in the *me1me2ac and *others jobs (no Trimethyl).
+#       build cannot express a per-file value in one of several repeated columns, hence the script.
+#   (c) copies the two human builds unchanged.
+#
+# ===================== ROUND 1 =====================
+$ sdrf-tools reconcile annotations/PXD002669-mouse.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json --accession PXD002669
+PXD002669: 4 value(s) disagree with the deposit record:
+
+  BLOCKER  run_names_name_another_organ (characteristics[organism part]): 4 of 24 run names name liver, but every row says 'spleen'  [F141028_H3_liver_RN_01]
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin' but the record's digest names Arg-C
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD002669-mouse.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD002669-human-ffpe-frozen.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json --accession PXD002669
+PXD002669: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin' but the record's digest names Arg-C
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD002669-human-ffpe-frozen.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD002669-human-subtypes.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json --accession PXD002669
+PXD002669: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin' but the record's digest names Arg-C
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD002669-human-subtypes.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD002669-mouse.sdrf.tsv -t ms-proteomics -t vertebrates
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD002669-human-ffpe-frozen.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD002669-human-subtypes.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361' - must be one of the allowed values
+ERROR: Value 'LuA 1' does not match required pattern
+ERROR: Value 'LuA 2' does not match required pattern
+ERROR: Value 'LuA 3' does not match required pattern
+ERROR: Value 'LuA 4' does not match required pattern
+ERROR: Value 'LuA 5' does not match required pattern
+ERROR: Value 'TN 1' does not match required pattern
+ERROR: Value 'TN 2' does not match required pattern
+ERROR: Value 'TN 3' does not match required pattern
+ERROR: Value 'TN 4' does not match required pattern
+ERROR: Value 'TN 5' does not match required pattern
+ERROR: Value 'HER 1' does not match required pattern
+ERROR: Value 'HER 2' does not match required pattern
+ERROR: Value 'HER 3' does not match required pattern
+ERROR: Value 'HER 4' does not match required pattern
+ERROR: Value 'HER 5' does not match required pattern
+ERROR: Value 'LuB 1' does not match required pattern
+ERROR: Value 'LuB 2' does not match required pattern
+ERROR: Value 'LuB 3' does not match required pattern
+ERROR: Value 'LuB 4' does not match required pattern
+ERROR: Value 'LuB 5' does not match required pattern
+There were validation errors.
+exit code: 1
+
+# Round-1 fix: characteristics[individual] 'LuA 1' etc. failed the human template's identifier
+# validator (space). Changed in gen_tables.py to the published ID with '_' (LuA_1 ...); rebuilt.
+#
+# ===================== ROUND 2 (final; files as delivered) =====================
+$ sdrf-tools reconcile annotations/PXD002669-mouse.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json --accession PXD002669
+PXD002669: 4 value(s) disagree with the deposit record:
+
+  BLOCKER  run_names_name_another_organ (characteristics[organism part]): 4 of 24 run names name liver, but every row says 'spleen'  [F141028_H3_liver_RN_01]
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin' but the record's digest names Arg-C
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD002669-mouse.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD002669-human-ffpe-frozen.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json --accession PXD002669
+PXD002669: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin' but the record's digest names Arg-C
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD002669-human-ffpe-frozen.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD002669-human-subtypes.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json --accession PXD002669
+PXD002669: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin' but the record's digest names Arg-C
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD002669-human-subtypes.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD002669-mouse.sdrf.tsv -t ms-proteomics -t vertebrates
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD002669-human-ffpe-frozen.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD002669-human-subtypes.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD002669-mouse.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD002669-mouse.sdrf.tsv
+Factor columns: ['factor value[preservation method]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]', 'characteristics[storage duration]']
+Conditions (2): dict_keys(['formalin-fixed paraffin-embedded', 'frozen'])
+Files per condition: dict_values([12, 12])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD002669-mouse.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-ffpe-frozen.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-ffpe-frozen.sdrf.tsv
+Factor columns: ['factor value[preservation method]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[tumor grading]', 'characteristics[histologic subtype]', 'characteristics[clinical data]']
+Conditions (3): dict_keys(['formalin-fixed paraffin-embedded', 'not applicable', 'frozen'])
+Files per condition: dict_values([9, 18, 9])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-ffpe-frozen.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-subtypes.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-subtypes.sdrf.tsv
+Factor columns: ['factor value[histologic subtype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[tumor grading]', 'characteristics[clinical data]', 'characteristics[preservation method]']
+Conditions (5): dict_keys(['Luminal A Breast Carcinoma', 'not applicable', 'Triple-Negative Breast Carcinoma', 'HER2-Positive Breast Carcinoma', 'Luminal B Breast Carcinoma'])
+Files per condition: dict_values([5, 20, 5, 5, 5])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-subtypes.sdrf.tsv
+exit code: 0
+
+# ===================== Refutation of reconcile findings (rule 13) =====================
+# reconcile exits 1 on all three files; each finding was checked against the record:
+#
+# 1. cleavage_agent_contradicted / cleavage_agent_incomplete (all three files): FALSE POSITIVE.
+#    The record's "Arg-C" is the SEARCH enzyme rule (PRIDE dataProcessingProtocol "Enzyme specificity
+#    was set to Arg-C"; MaxQuant summary.txt Protease=Arg-C). The DIGESTION reagent was trypsin:
+#    paper Methods (PMC4813706, Histone Digestion): "in-gel digestion was performed overnight with
+#    100 ng/ul trypsin (Promega) ... in order to obtain an 'Arg-C like' in-gel digestion" after lysine
+#    derivatisation with D6-acetic anhydride. Campaign rule 2: cleavage agent = digestion enzyme
+#    (NT=Trypsin;AC=MS:1001251); no Arg-C enzyme was used, so a second cleavage column would be false.
+#    The Arg-C search rule is recorded in the manifests and report.
+#
+# 2. run_names_name_another_organ (mouse): FALSE POSITIVE (tool defect). record_reconcile.py line 558
+#    takes only the FIRST non-empty characteristics[organism part] value ('spleen') and compares all run
+#    names against it. The 8 liver runs (F141028_H3_liver_RN_0[12], F141124_FFH[34]RN_[12],
+#    F141124_LiverH4RN_[12]) carry characteristics[organism part] = liver in the SDRF.
+#
+# 3. labelled_annotated_as_label_free (mouse): FALSE POSITIVE. The project-level SILAC tag describes the
+#    human super-SILAC arm. The mouse runs are label-free: (a) Dataset S1 (supplementary xlsx -2) reports
+#    only AUC/%RA per run, no heavy/light columns, while Datasets S2/S3 report heavy and light AUCs;
+#    (b) the liver and spleen-6-year MaxQuant jobs have Multiplicity=1; (c) the spleen-few-weeks jobs
+#    were run with Multiplicity=2/Arg10, but evidence.txt (txtspleenacme1me2) gives summed
+#    Intensity H / Intensity L = 0.005-0.10 per raw file (human super-SILAC runs: 0.39-1.41), i.e. no
+#    heavy material was spiked. Arg10 is nevertheless kept as a variable modification on those 8 rows
+#    because the deposited search used it (rule 5).
+#
+# 4. parse_sdrf WARNING on characteristics[pooled sample] 'SN=MDA-MB-231;SN=...': spec-internal
+#    inconsistency. sample-metadata 1.0.0 (lines 143-156) attaches BOTH a 'values' validator
+#    (not pooled|pooled) and a 'pattern' validator ^(not pooled|pooled|SN=.+(;SN=.+)*)$ that the value
+#    satisfies; its own description prescribes the SN= form. Warning only; kept (precedent:
+#    curated PXD001370 / PXD000332 / PXD002098 super-SILAC SDRFs use the same encoding).
+# ===================== Manifest checks =====================
+$ sdrf-tools schema-check annotations/PXD002669-mouse.evidence.json
+annotations/PXD002669-mouse.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD002669-mouse.sdrf.tsv annotations/PXD002669-mouse.evidence.json
+Manifest covers every column with a value (23 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD002669-human-ffpe-frozen.evidence.json
+annotations/PXD002669-human-ffpe-frozen.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD002669-human-ffpe-frozen.sdrf.tsv annotations/PXD002669-human-ffpe-frozen.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD002669-human-subtypes.evidence.json
+annotations/PXD002669-human-subtypes.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD002669-human-subtypes.sdrf.tsv annotations/PXD002669-human-subtypes.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+
+# ===================== ROUND 3 (review round 1 fixes; mouse + human-ffpe-frozen rebuilt) =====================
+# Changes made in gen_tables.py, then all five builds and postedit.py were re-run:
+#  - mouse: added factor value[storage duration] and factor value[organism part] (mirroring the characteristics
+#    columns) -> convert-openms 6 conditions x 4 files. Label:13C(6)15N(4) kept on rows 1-8 per rule 5
+#    (deposited spleen jobs Multiplicity 2 / Arg10); justified as a manifest claim.
+#  - human-ffpe-frozen: added characteristics[tumor stage] (pT2N1a / pT1cN0M0 / pT1cN0M0 from Fig S3A;
+#    'not applicable' on heavy rows); clinical data now ER/PR/HER2/Ki-67 only.
+#  - human-subtypes: rebuilt from unchanged tables; `cmp` against the round-1 file = identical (sha unchanged);
+#    its manifest is also unchanged.
+#  - Optional single reference source: tried in tables/test_single_ref; build refused:
+build refused: samples.tsv: two rows for source 'super-SILAC histone reference mix' share biological replicate 'pooled', technical replicate 1 and fraction 1 (files 'F140822_Sample2_FFPE_H3_01.raw' and 'F140814_Sample3_FFPE_H3_01.raw'). Separate replicate runs need a different 'characteristics[biological replicate]' or 'technical replicate'; fractions of one injection go in one row's 'files'.
+#    Kept per-sample heavy source names (renumbering technical replicates would be false; no hand edit allowed by rule 17).
+#  - New parse_sdrf warning: tumor stage 'pT2N1a'/'pT1cN0M0' not found in NCIT. These are TNM strings, which the oncology-metadata 1.0.0 description prescribes ('TNM notation ... Prefix with p for pathological'). Warning only.
+
+$ sdrf-tools reconcile annotations/PXD002669-mouse.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json --accession PXD002669
+PXD002669: 4 value(s) disagree with the deposit record:
+
+  BLOCKER  run_names_name_another_organ (characteristics[organism part]): 4 of 24 run names name liver, but every row says 'spleen'  [F141028_H3_liver_RN_01]
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin' but the record's digest names Arg-C
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD002669-mouse.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD002669-human-ffpe-frozen.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD002669/pride.json --accession PXD002669
+PXD002669: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'Trypsin' but the record's digest names Arg-C
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+
+$ sdrf-tools structure annotations/PXD002669-human-ffpe-frozen.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD002669-mouse.sdrf.tsv -t ms-proteomics -t vertebrates
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD002669-human-ffpe-frozen.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=MDA-MB-231;SN=MDA-MB-468;SN=MDA-MB-453;SN=MDA-MB-361' - must be one of the allowed values
+WARNING: Term: pT2N1a in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+WARNING: Term: pT1cN0M0 in column 'characteristics[tumor stage]', is not found in the given ontology list ncit
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD002669-mouse.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD002669-mouse.sdrf.tsv
+Factor columns: ['factor value[organism part]', 'factor value[preservation method]', 'factor value[storage duration]']
+Conditions (6): dict_keys(['spleen|formalin-fixed paraffin-embedded|few weeks', 'spleen|frozen|few weeks', 'liver|formalin-fixed paraffin-embedded|few weeks', 'liver|frozen|few weeks', 'spleen|formalin-fixed paraffin-embedded|6 years', 'spleen|frozen|6 years'])
+Files per condition: dict_values([4, 4, 4, 4, 4, 4])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD002669-mouse.sdrf.tsv
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-ffpe-frozen.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-ffpe-frozen.sdrf.tsv
+Factor columns: ['factor value[preservation method]']
+Conditions (3): dict_keys(['formalin-fixed paraffin-embedded', 'not applicable', 'frozen'])
+Files per condition: dict_values([9, 18, 9])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD002669-human-ffpe-frozen.sdrf.tsv
+exit code: 0
+
+# ===================== Manifest checks (round 3) =====================
+$ sdrf-tools schema-check annotations/PXD002669-mouse.evidence.json
+annotations/PXD002669-mouse.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD002669-mouse.sdrf.tsv annotations/PXD002669-mouse.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD002669-human-ffpe-frozen.evidence.json
+annotations/PXD002669-human-ffpe-frozen.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD002669-human-ffpe-frozen.sdrf.tsv annotations/PXD002669-human-ffpe-frozen.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD002669-human-subtypes.evidence.json
+annotations/PXD002669-human-subtypes.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD002669-human-subtypes.sdrf.tsv annotations/PXD002669-human-subtypes.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+

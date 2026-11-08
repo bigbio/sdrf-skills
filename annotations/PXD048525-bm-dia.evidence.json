@@ -1,0 +1,311 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD048525-bm-dia.sdrf.tsv",
+ "dataset": "PXD048525",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD048525 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD048525/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/files_all.json; 9 entries, all asserted to carry PXD048525; raw data only inside three .7z archives)"
+  },
+  {
+   "id": "archive_lists",
+   "kind": "repository",
+   "location": "7z central headers read by HTTP range (py7zr) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD048525/UHN_Lung_Tissue_IMPACT_Samples_Raw_Data.7z (49 .raw), Brain-Metastasis-Samples-Raw-DIA-Data.7z (50 .d), Brain-Metastasis-Library-Raw-Data.7z (60 .d) (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/7z_*.json; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/scripts/list7z.py, list7z_reader.py)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Zuccato JA et al. Prediction of brain metastasis development with DNA methylation signatures. Nat Med 2025;31(1):116-125, PMID 39379704, PMC11750707, doi:10.1038/s41591-024-03286-y (NCBI efetch db=pmc id=11750707, title verified; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pmc.xml, sentences /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pmc_sent.txt lines 300-404 = Methods). Only supplementary item is MOESM1 (reporting summary PDF, image-only)."
+  },
+  {
+   "id": "tdf_meta",
+   "kind": "raw-file",
+   "location": "analysis.tdf (SQLite) of 20230119_tims_CDS_MuazzamA_1888_B4_1_1133.d and 20221221_tims_Aurora_CDS_BrainMets_Pool_F10_A10_1_937.d, extracted from the 7z solid folder 0 of each archive by HTTP range + LZMA2 (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/scripts/extract_small.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/dl/bruker/): InstrumentName timsTOF Pro; MzAcqRange 100-1700; 1/K0 0.70-1.50; DIA run MethodName SPARC_dia-PASEF_25VarWin_400-1350_BrainMets_Aurora.m, MsMsType 9, DiaFrameMsMsWindows 25 window groups 400.18-1350.97 m/z, widths 12.5-68.9; library run MethodName SPARC_PASEF_DDA_FastProtoemics_CE_Opt.m, MsMsType 8 (PASEF DDA)"
+  },
+  {
+   "id": "pepxml",
+   "kind": "search-output",
+   "location": "search_summary of 20221221_tims_Aurora_CDS_BrainMets_Pool_F10_A10_1_937.pepXML in https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD048525/Brain-Metastasis-Library-Generation-Peptide-Identification-Files.7z (first 60 kB; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pepxml_F10_head.xml): MSFragger-3.6, stricttrypsin, C +57.02146 fixed, variable M +15.9949, protein N-term +42.0106, STY +79.96633, nQ/nC -17.0265, nE -18.0106; precursor window -50..+50 ppm (true tolerance 20 ppm), fragment 20 ppm"
+  },
+  {
+   "id": "diann_log",
+   "kind": "search-output",
+   "location": "report.log.txt member of https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD048525/Brain-Metastasis-Samples-DIA-NN-Results.7z (folder 2, extracted by HTTP range + LZMA2; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/diann_report.log.txt): DIA-NN 1.8.1 command: 50 --f runs (= the 50 deposited .d), --lib library-Full-2-8-2023.tsv, --cut K*,R*, --var-mod UniMod:35 M, UniMod:1 *n, UniMod:21 STY, --mass-acc 20 --mass-acc-ms1 20"
+  },
+  {
+   "id": "library",
+   "kind": "search-output",
+   "location": "First 3 MB of Brain-Metastasis-Library.tsv in https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD048525/Brain-Metastasis-Library.7z (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/dl/lib_head.tsv): ModifiedPeptideSequence carries UniMod:4 (1898x), 35, 27, 28, 1, 26 - the library DIA-NN searched against"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools ols and OLS search by obo_id, 2026-11-08): every accession checked live, none obsolete"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), 79 (human 1.1.0), 41 (clinical-metadata 1.0.0), 160 (oncology-metadata 1.0.0), 61 (dia-acquisition 1.1.0); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. The spec submodule nested templates copy is older. sdrf version v1.1.0 from spec README.adoc:27; annotation tool per campaign rule 10"
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "specification",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (campaign rules 1-18)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[sdrf version] all rows",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates",
+    "campaign_rules"
+   ],
+   "evidence": "Spec README.adoc:27 / campaign rule 1."
+  },
+  {
+   "location": "comment[sdrf annotation tool] all rows",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "campaign_rules"
+   ],
+   "evidence": "Campaign rule 10."
+  },
+  {
+   "location": "technology type all rows",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from the ms-proteomics template."
+  },
+  {
+   "location": "characteristics[organism] all rows",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; paper: patients managed at University Health Network Toronto (in the LUAD file the super-SILAC lines are human too, see pooled sample claim / Cellosaurus). NCBITaxon:9606."
+  },
+  {
+   "location": "comment[technical replicate] all rows; comment[fraction identifier]",
+   "value": "1 (fractions 1-60 in library file)",
+   "source_ids": [
+    "archive_lists",
+    "paper"
+   ],
+   "evidence": "One injection per sample; library fractions numbered from the _F<n>_ token of the .d names (F1-F60 = 60 high-pH fractions, paper/PRIDE protocol)."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "label free sample",
+   "source_ids": [
+    "paper",
+    "diann_log",
+    "pride"
+   ],
+   "evidence": "BM samples were analysed label-free (DIA-NN quantification; library by FragPipe/IonQuant label-free). The PRIDE SILAC tag refers to the UHN LUAD arm only (reconcile refutation in validation.txt)."
+  },
+  {
+   "location": "characteristics[organism part] all rows",
+   "value": "brain",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Brain metastasis tumour tissue (\"metastatic brain carcinoma sample\", PRIDE protocol); UBERON:0000955."
+  },
+  {
+   "location": "characteristics[disease] and factor value[disease] all rows",
+   "value": "metastatic malignant neoplasm in the brain",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper \"For 50 BM samples from LUAD\"; MONDO:1040026 \"A malignant neoplasm that has spread to the brain from another anatomic site\". Single-condition arm (study analysed it by NMF clustering), so the factor is constant."
+  },
+  {
+   "location": "characteristics[histologic subtype] all rows",
+   "value": "Lung Adenocarcinoma",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cohort inclusion criterion stated for every sample: \"50 BM samples from LUAD\" (primary tumour histology, not a demographic). NCIT:C3512."
+  },
+  {
+   "location": "characteristics[material type] all rows",
+   "value": "tissue",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "Frozen carcinoma tissue thawed on ice and lysed (PRIDE protocol)."
+  },
+  {
+   "location": "comment[instrument] all rows",
+   "value": "NT=timsTOF Pro;AC=MS:1003005",
+   "source_ids": [
+    "tdf_meta",
+    "paper",
+    "ols"
+   ],
+   "evidence": "analysis.tdf InstrumentName \"timsTOF Pro\" (library and DIA runs, same serial 1854399.00284); paper agrees."
+  },
+  {
+   "location": "comment[cleavage agent details] (two columns) all rows",
+   "value": "NT=Trypsin;AC=MS:1001251 + NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "pride",
+    "campaign_rules"
+   ],
+   "evidence": "Paper: digested with \"trypsin/Lys-C (cat. no. V5072, Promega)\"; PRIDE \"digested with trypsin/LysC\". Second column added by the scripted post-build step (campaign rule 2/17). DIA-NN --cut K*,R* and MSFragger stricttrypsin are search rules only."
+  },
+  {
+   "location": "comment[dissociation method]; comment[ms2 mass analyzer] all rows",
+   "value": "collision-induced dissociation; time-of-flight",
+   "source_ids": [
+    "tdf_meta",
+    "paper",
+    "ols"
+   ],
+   "evidence": "timsTOF Pro PASEF: collision cell CID with TOF detection; paper \"advanced collision energy 20.0-77.32 eV\". MS:1000133, MS:1000084."
+  },
+  {
+   "location": "comment[reduction reagent]; comment[alkylation reagent] all rows",
+   "value": "TCEP; Chloroacetamide",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper BM lysis buffer: \"10 mM Tris(2-carboxyethyl)phosphine hydrochloride, 40 mM chloroacetamide\". PRIDE:0000609, PRIDE:0000600."
+  },
+  {
+   "location": "comment[modification parameters] 1-4 all rows",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Phospho S,T,Y Variable",
+   "source_ids": [
+    "pepxml",
+    "diann_log",
+    "library",
+    "paper",
+    "ols"
+   ],
+   "evidence": "MSFragger search_summary (library) and DIA-NN command (--var-mod UniMod:35 M, UniMod:1 *n = protein N-term, UniMod:21 STY); C +57.021 fixed in MSFragger and present as UniMod:4 on library peptides DIA-NN searched; paper lists the same four."
+  },
+  {
+   "location": "comment[modification parameters] 5-7 all rows",
+   "value": "Gln->pyro-Glu UNIMOD:28, Glu->pyro-Glu UNIMOD:27, Pyro-carbamidomethyl UNIMOD:26 (Any N-term, Variable)",
+   "source_ids": [
+    "pepxml",
+    "library",
+    "ols"
+   ],
+   "evidence": "MSFragger variable_mod_04 \"-17.0265 nQnC\", variable_mod_05 \"-18.0106 nE\"; the resulting library (searched by DIA-NN) contains UniMod:28/27/26 precursors."
+  },
+  {
+   "location": "comment[ms1 scan range]; comment[ms min im]; comment[ms max im] all rows",
+   "value": "100m/z-1700m/z; 0.7; 1.5",
+   "source_ids": [
+    "tdf_meta",
+    "paper"
+   ],
+   "evidence": "tdf MzAcqRange 99.99-1700, OneOverK0AcqRange 0.70-1.50; paper \"100 to 1,700 m/z ... 0.70 and 1.5 Vs cm-2\"."
+  },
+  {
+   "location": "comment[sdrf template] all rows",
+   "value": "ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0, dia-acquisition v1.1.0",
+   "source_ids": [
+    "templates",
+    "campaign_rules",
+    "tdf_meta"
+   ],
+   "evidence": "Patient tumour tissue measured by diaPASEF."
+  },
+  {
+   "location": "source name rows 1-50",
+   "value": "BM-<run token>",
+   "source_ids": [
+    "archive_lists",
+    "diann_log"
+   ],
+   "evidence": "Numeric token after MuazzamA_ in each of the 50 unique .d names (all 50 distinct; DIA-NN processed exactly these 50 runs). Not asserted to be a patient ID."
+  },
+  {
+   "location": "characteristics[sample type]; characteristics[pooled sample]; characteristics[biological replicate] rows 1-50",
+   "value": "study sample; not pooled; 1",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "One run per individual BM sample (\"For individual BM analysis\"). PRIDE:0001013."
+  },
+  {
+   "location": "characteristics[spiked compound] rows 1-50",
+   "value": "CT=mixture;CN=Pierce Peptide Retention Time Calibration Mixture;CV=Thermo Fisher Scientific;QY=100 fmol",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"Peptides were diluted to 325 ng 5 ul-1 with 100 fmol of Pierce Peptide Retention Time Calibration Mixture (cat. no. 88321, Thermo Fisher Scientific)\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-50",
+   "value": "NT=Data-independent acquisition;AC=PRIDE:0000450",
+   "source_ids": [
+    "tdf_meta",
+    "paper"
+   ],
+   "evidence": "tdf MethodName SPARC_dia-PASEF_25VarWin_400-1350..., MsMsType 9, DiaFrameMsMsWindows populated."
+  },
+  {
+   "location": "comment[precursor mass tolerance]; comment[fragment mass tolerance] rows 1-50",
+   "value": "20 ppm; 20 ppm",
+   "source_ids": [
+    "diann_log",
+    "paper"
+   ],
+   "evidence": "DIA-NN --mass-acc 20 --mass-acc-ms1 20."
+  },
+  {
+   "location": "comment[scan window lower limit]; comment[scan window upper limit] rows 1-50",
+   "value": "400.18; 1350.97",
+   "source_ids": [
+    "tdf_meta"
+   ],
+   "evidence": "Min/max of IsolationMz -/+ IsolationWidth/2 over DiaFrameMsMsWindows (method name \"400-1350\"). comment[isolation window width] not applicable: 25 variable windows 12.5-68.9 m/z (pydiAID-optimised)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-50",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Individual samples were injected unfractionated."
+  },
+  {
+   "location": "comment[data file]; assay name rows 1-50",
+   "value": "50 .d members of Brain-Metastasis-Samples-Raw-DIA-Data.7z",
+   "source_ids": [
+    "archive_lists",
+    "diann_log"
+   ],
+   "evidence": "All 50 = the 50 --f inputs of the deposited DIA-NN log."
+  }
+ ],
+ "limitations": [
+  "BM sample metadata beyond the cohort level is not deposited or published: no link between the numeric run token (e.g. 1888) and a patient, and no per-sample age/sex/stage/treatment. Age, sex, ancestry, individual -> not available; cell type not available.",
+  "Raw data are deposited only inside 7z archives; comment[data file] gives the .d member names.",
+  "techsdrf not installed; Bruker metadata read from analysis.tdf of one DIA run and one library run (both same instrument serial); the other runs are assumed identical (same archives, same methods per paper).",
+  "PRIDE-level SILAC / Orbitrap Fusion Lumos annotations do not apply to this arm (reconcile refuted in validation.txt)."
+ ]
+}
