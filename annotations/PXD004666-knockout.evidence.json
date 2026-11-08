@@ -215,13 +215,13 @@
   },
   {
    "location": "comment[technical replicate], comment[fraction identifier], comment[fractionation method] rows",
-   "value": "mito: T<n> -> technical replicate n, fraction 1, fractionation not applicable; whole-cell: F1-F6 -> fraction 1-6, technical replicate 1, SCX (PRIDE:0000561)",
+   "value": "mito: T<n> -> technical replicate = rank of T<n> among the deposited injections (equals n except R-005 T3 -> 2), fraction 1, fractionation not applicable; whole-cell: F1-F6 -> fraction 1-6, technical replicate 1, SCX (PRIDE:0000561)",
    "source_ids": [
     "mq_main",
     "raw_header",
     "pride"
    ],
-   "evidence": "experimentalDesignTemplate groups T1/T2/T3 of one run in one Experiment (e.g. 001+ELITE180_D-040-NDUFA1-HL_T1..T3 -> D-040-NDUFA1-HL); the T1/T2 raw headers of 001ELITE180_D-040 show the same vial (RB5) re-injected; the MaxQuant 'Fraction' values 8/10/12 for these files are matching groups ('Experimental groups ... were given odd numbered fractions to avoid falsely matched identifications', PRIDE), not fractions. 035ELITE180_R-005 has only T1 and T3 deposited, kept as technical replicates 1 and 3. Whole-cell F1-F6 = SCX fractions per Kulak et al. (PRIDE)."
+   "evidence": "experimentalDesignTemplate groups T1/T2/T3 of one run in one Experiment (e.g. 001+ELITE180_D-040-NDUFA1-HL_T1..T3 -> D-040-NDUFA1-HL); the T1/T2 raw headers of 001ELITE180_D-040 show the same vial (RB5) re-injected; the MaxQuant 'Fraction' values 8/10/12 for these files are matching groups ('Experimental groups ... were given odd numbered fractions to avoid falsely matched identifications', PRIDE), not fractions. 035ELITE180_R-005 has only T1 and T3 deposited (no T2 in the deposit or the search); they are numbered technical replicates 1 and 2 (rank of the deposited injections, so that replicates run 1..n). Whole-cell F1-F6 = SCX fractions per Kulak et al. (PRIDE)."
   },
   {
    "location": "characteristics[biological replicate] rows",
