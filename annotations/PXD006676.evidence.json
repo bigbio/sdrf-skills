@@ -1,0 +1,303 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD006676.sdrf.tsv",
+ "dataset": "PXD006676",
+ "sources": [
+  {
+   "id": "pride_project",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD006676 (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD006676/evidence/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD006676/files/all (local copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD006676/evidence/files_all.json; 13 entries, all projectAccessions=PXD006676: 12 RAW + txt.zip)"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/12/PXD006676/txt.zip member txt/summary.txt (HTTP-range extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD006676/mq/summary.txt)"
+  },
+  {
+   "id": "mq_parameters",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/12/PXD006676/txt.zip member txt/parameters.txt (HTTP-range extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD006676/mq/parameters.txt)"
+  },
+  {
+   "id": "mq_proteingroups",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/12/PXD006676/txt.zip member txt/proteinGroups.txt (HTTP-range extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD006676/mq/proteinGroups.txt)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/12/PXD006676/TXI_S{1..12}_TotProt_F01.raw, first 1.5 MB of each range-read, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD006676/raw/S*.head)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "doi:10.1002/pmic.201700238, PMID 29178193 (Xia et al., Proteomics 2018). Closed access: only the Europe PMC abstract was readable"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4/api/ontologies/{efo,ms,pride,uberon,ncbitaxon,unimod}/terms (queried 2026-11-08)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0), invertebrates latest 1.1.0; local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; sdrf version from spec/sdrf-proteomics/README.adoc line 27 (Version v1.1.0)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, comment[data file], assay name, comment[label] rows 1-24",
+   "value": "Per run TXI_S<n>_TotProt_F01.raw: Rep1/Rep2 runs (S1-S8) nid-1=SILAC light, N2=SILAC heavy; Rep3 runs (S9-S12) nid-1=SILAC heavy, N2=SILAC light",
+   "source_ids": [
+    "mq_summary",
+    "mq_proteingroups",
+    "raw_headers",
+    "pride_files"
+   ],
+   "evidence": "summary.txt Experiment column names every run explicitly: e.g. 'S1 - L1 NID1(L) N2(H) Rep1' ... 'S8 - L4 NID1(L) N2(H) Rep2', 'S9 - L1 NID1(H) N2(L) Rep3' ... 'S12 - L4 NID1(H) N2(L) Rep3'; Labels0 empty (light), Labels1 = Lys8 (heavy); Multiplicity 2. MaxQuant raw names are 20160425_EV_TC_TXI_Nid_S<n>_TotProt_F01; each deposited TXI_S<n>_TotProt_F01.raw header embeds the original path D:\\TOM\\WORM\\Apr2016\\20160425_EV_TC_TXI_Nid_S<n>_TotProt_F01.raw (verified for all 12). Cross-check against data (rule 6): proteinGroups nid-1 (Q93791) intensity is non-zero only in the channel the map calls N2 and zero in the NID1 channel in all 9 runs where it was detected (S1,S3,S4,S5,S6,S7: H>0,L=0; S9,S10,S11: L>0,H=0; S2,S8,S12 not detected) - consistent with NID1 = nid-1 loss-of-function and confirming the Rep3 label swap. Global median log2 H/L ~0 in every run (1:1 mix as protocol states)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-24",
+   "value": "1,2,3 = MaxQuant Rep1/Rep2/Rep3, restarting within each (developmental stage, genotype) group",
+   "source_ids": [
+    "mq_summary",
+    "pride_project"
+   ],
+   "evidence": "Experiment names carry Rep1-Rep3; PRIDE description: 'four larval developmental stages (L1-L4) ... in biological triplicate'. Each (stage, genotype) group has three distinct cultures numbered 1-3 (batch rule 3)."
+  },
+  {
+   "location": "characteristics[developmental stage], factor value[developmental stage] rows 1-24",
+   "value": "L1 larva (EFO:0005508) / L2 larva (EFO:0002719) / L3 larva (EFO:0002720) / L4 larva (EFO:0005509) per run",
+   "source_ids": [
+    "mq_summary",
+    "pride_project",
+    "ols"
+   ],
+   "evidence": "Experiment names L1 (S1,S5,S9), L2 (S2,S6,S10), L3 (S3,S7,S11), L4 (S4,S8,S12). Protocol: 'L1, L2, L3 and L4 stage nematodes were sampled 6 h, 24 h, 32 h and 48 h post-feeding'. OLS EFO definitions are 'C. elegans first/second/third/fourth stage larva'."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-24",
+   "value": "6 hour (L1), 24 hour (L2), 32 hour (L3), 48 hour (L4)",
+   "source_ids": [
+    "pride_project"
+   ],
+   "evidence": "sampleProcessingProtocol: 'L1, L2, L3 and L4 stage nematodes were sampled 6 h, 24 h, 32 h and 48 h post-feeding, respectively' (time after release of L1-arrested larvae onto food)."
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype] rows with source name N2_* (rows 2,4,6,...,24)",
+   "value": "wild type",
+   "source_ids": [
+    "mq_summary"
+   ],
+   "evidence": "Channel named 'N2' in every Experiment name; N2 is the C. elegans wild-type (Bristol) reference strain."
+  },
+  {
+   "location": "characteristics[strain or breed] rows with source name N2_* (rows 2,4,6,...,24)",
+   "value": "N2",
+   "source_ids": [
+    "mq_summary"
+   ],
+   "evidence": "Channel named 'N2' in every MaxQuant Experiment name."
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype] rows with source name nid-1_* (rows 1,3,5,7,9,11,13,15,17,19,21,23)",
+   "value": "nid-1 mutant",
+   "source_ids": [
+    "mq_summary",
+    "mq_proteingroups"
+   ],
+   "evidence": "Channel named 'NID1' in every Experiment name; raw file names contain '_Nid_'. NID-1 protein (Q93791, nidogen) intensity is zero in this channel in all 12 runs while present in the paired N2 channel in 9 of them, i.e. a nid-1 loss-of-function strain. The allele and strain designation are not stated anywhere readable (paper closed), so strain or breed = not available and the genotype is written without an allele."
+  },
+  {
+   "location": "characteristics[organism] rows 1-24",
+   "value": "Caenorhabditis elegans",
+   "source_ids": [
+    "pride_project",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:6239 Caenorhabditis elegans; title; MaxQuant FASTA CAEEL.fasta; OLS NCBITaxon:6239."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-24",
+   "value": "multicellular organism (UBERON:0000468)",
+   "source_ids": [
+    "pride_project",
+    "ols"
+   ],
+   "evidence": "Whole worms lysed: 'C. elegans were washed off the plates ... lysed in 1 mL lysis buffer'. Same encoding as curated C. elegans SDRF PXD001364."
+  },
+  {
+   "location": "characteristics[material type] rows 1-24",
+   "value": "whole organism",
+   "source_ids": [
+    "pride_project"
+   ],
+   "evidence": "Whole larvae were lysed (sampleProcessingProtocol)."
+  },
+  {
+   "location": "comment[instrument] rows 1-24",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw_headers",
+    "pride_project",
+    "ols"
+   ],
+   "evidence": "All 12 raw headers contain 'Q Exactive - Orbitrap MS' and 'Method of Q Exactive' and no 'Q Exactive Plus'/'HF' string; PRIDE instruments MS:1001911; protocol 'Thermo Fisher Q-Exactive'."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-24",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride_project",
+    "ols"
+   ],
+   "evidence": "Protocol: 'The Q-Exactive was run using the DD-MS2 top10 method'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-24",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "pride_project",
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "Protocol: 'digested with LysC (1:100) overnight at 37'C' (only enzyme used); MaxQuant Enzyme = LysC, Specific, 2 missed cleavages. Rule 2: digestion enzyme."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-24",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "pride_project",
+    "raw_headers"
+   ],
+   "evidence": "Q Exactive fragments only by HCD; protocol gives 'normalized collision energy of 25%' with MS2 in the Orbitrap at 17,500 resolution."
+  },
+  {
+   "location": "comment[collision energy] rows 1-24",
+   "value": "25% NCE",
+   "source_ids": [
+    "pride_project"
+   ],
+   "evidence": "Protocol: 'a normalized collision energy of 25%'."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-24",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "pride_project"
+   ],
+   "evidence": "Protocol: 'MS2 spectra were obtained at a resolution of 17,500' (Orbitrap; Q Exactive has no other analyzer)."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-24",
+   "value": "300m/z-1750m/z",
+   "source_ids": [
+    "pride_project"
+   ],
+   "evidence": "Protocol: 'scan range of 300-1750 m/z'."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-24",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_parameters"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm' (Orbitrap MS2 = FTMS)."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-24",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "pride_project",
+    "ols"
+   ],
+   "evidence": "Protocol: 'reduced in 1 mM dithiothreitol for 30 min'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-24",
+   "value": "NT=Chloroacetamide (ClAA);AC=PRIDE:0000600",
+   "source_ids": [
+    "pride_project",
+    "ols"
+   ],
+   "evidence": "Protocol: 'followed by addition of 5 mM 2-chloroacetamide'."
+  },
+  {
+   "location": "comment[modification parameters] (column 1) rows 1-24",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "mq_parameters",
+    "ols"
+   ],
+   "evidence": "parameters.txt 'Fixed modifications Carbamidomethyl (C)'."
+  },
+  {
+   "location": "comment[modification parameters] (columns 2-5) rows 1-24",
+   "value": "Acetyl UNIMOD:1 PP=Protein N-term; Oxidation UNIMOD:35 TA=M; Deamidated UNIMOD:7 TA=N,Q; Gln->pyro-Glu UNIMOD:28 TA=Q PP=Any N-term; all MT=Variable",
+   "source_ids": [
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "summary.txt Variable modifications for all 12 runs: 'Acetyl (Protein N-term);Oxidation (M);Deamidation (NQ);Gln->pyro-Glu'. The PRIDE protocol's hydroxyproline is NOT in the deposited search and is omitted (search output wins)."
+  },
+  {
+   "location": "comment[modification parameters] (column 6) rows 1-24",
+   "value": "NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_summary",
+    "pride_project",
+    "ols"
+   ],
+   "evidence": "summary.txt Labels1 = Lys8; PRIDE data processing 'K8 heavy labeled Lysine'; Lys8 = +8.014 Da = UNIMOD:259 (OLS label 'Label:13C(6)15N(2)'). MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-24",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "spec README.adoc 'Version v1.1.0' (batch rule 1)."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-24",
+   "value": "NT=ms-proteomics;VV=v1.2.0 and NT=invertebrates;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 'latest: 1.2.0' for ms-proteomics; invertebrates latest 1.1.0. The sdrf-skills spec submodule's nested templates.yaml (spec/sdrf-proteomics/sdrf-templates) is older and still says ms-proteomics latest 1.1.0. Invertebrates chosen because the organism is C. elegans (templates.md decision tree)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-24",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rule 10 campaign convention."
+  },
+  {
+   "location": "technology type, comment[technical replicate], comment[fraction identifier] rows 1-24",
+   "value": "proteomic profiling by mass spectrometry; 1; 1",
+   "source_ids": [
+    "pride_project",
+    "pride_files"
+   ],
+   "evidence": "Protocol: 'Each sample was run unfractionated as a single-shot fraction'; one raw file per mixed sample pair, no repeat injections deposited."
+  }
+ ],
+ "limitations": [
+  "Publication (doi:10.1002/pmic.201700238) is closed access: Unpaywall closed, not in PMC, Wiley pages 403. Methods, figures and supplementary tables were not read; only the abstract and PRIDE protocol text.",
+  "Neither the PRIDE description nor the paper abstract mentions the nid-1 strain; the genotype dimension comes solely from the deposited MaxQuant experiment names ('NID1(L) N2(H)'), cross-validated by NID-1 protein intensity in proteinGroups.txt. Whether the paper analysed only the N2 channel is unknown.",
+  "nid-1 allele and strain designation are not stated in any readable source: characteristics[strain or breed] = not available on nid-1 rows; genotype written as 'nid-1 mutant' without allele.",
+  "How worms were SILAC-labelled (e.g. heavy-lysine-fed E. coli) is not described in readable sources; not needed for any column.",
+  "comment[precursor mass tolerance] = not available: no mqpar.xml or combined/andromeda/*.apar is deposited and MaxQuant 1.5 parameters.txt does not record the precursor tolerance. Consequently parse_sdrf convert-openms fails ('Cannot read precursor mass tolerance: not available'); a MaxQuant default (20 ppm first / 4.5 ppm main search) was NOT assumed.",
+  "techsdrf not installed; instrument verified by range-reading raw headers only (not scan-level tolerances/acquisition).",
+  "characteristics[disease] = not applicable: no disease concept applies to the wild-type/nid-1 nematodes studied.",
+  "parse_sdrf warning 'N2 ... not found in ontology ncbitaxon' for characteristics[strain or breed]: the contract defines this column as free text; N2 is the WormBase/CGC strain name and matches curated SDRF PXD001364.",
+  "sdrf-tools curated could not run (GitHub 403); Step 0.5 settled by the caller from the local bigbio/sdrf-annotated-datasets clone (not present) and PRIDE (no deposited SDRF)."
+ ]
+}

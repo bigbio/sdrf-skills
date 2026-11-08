@@ -1,0 +1,103 @@
+# PXD028934 validation log — round 1 (2026-11-08T12:40:48Z)
+$ parse_sdrf validate-sdrf -s PXD028934.sdrf.tsv -t ms-proteomics -t clinical-metadata
+WARNING: Term: heat shock in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: proteinase K treatment in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD028934.sdrf.tsv
+1 structural problem(s):
+  technical-replicate-varies-within-file [comment[technical replicate]]: 6 data file(s) carry more than one technical replicate value ('MSZ23_LiP_100k.baf' has ['1', '2']; 'MSZ23_LiP_1k.baf' has ['1', '5']; 'MSZ23_LiP_200.baf' has ['1', '6']; ...); every row of one run shares its injection, so give a sample that two runs share one source name per run instead
+exit code: 1
+
+$ sdrf-tools reconcile PXD028934.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/pride.json --accession PXD028934
+PXD028934: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/openms) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD028934.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD028934.sdrf.tsv
+Factor columns: ['factor value[dose]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[compound]', 'characteristics[exposure duration]', 'characteristics[genotype]']
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+    OpenMS().openms_convert(sdrf, onetable, legacy, verbose, conditionsfromcolumns, extension_convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+    self._process_tolerances(row, f2c, raw)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not available
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+# Round 2 (2026-11-08T12:43:38Z) — after: per-run source names for the medium reference aliquots (technical replicate 1 everywhere); tolerances 0.07 Da / 40 ppm (MaxQuant Q-TOF defaults per Beck et al. 2015)
+$ parse_sdrf validate-sdrf -s PXD028934.sdrf.tsv -t ms-proteomics -t clinical-metadata
+WARNING: Term: heat shock in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: proteinase K treatment in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD028934.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile PXD028934.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/pride.json --accession PXD028934
+PXD028934: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/openms) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD028934.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD028934.sdrf.tsv
+Factor columns: ['factor value[dose]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[compound]', 'characteristics[exposure duration]', 'characteristics[genotype]']
+Conditions (8): dict_keys(['not applicable|heat shock', 'not applicable|untreated', '10 mg/kg|proteinase K treatment', '50 mg/kg|proteinase K treatment', '200 mg/kg|proteinase K treatment', '1000 mg/kg|proteinase K treatment', '5000 mg/kg|proteinase K treatment', '20000 mg/kg|proteinase K treatment'])
+Files per condition: dict_values([8, 9, 2, 2, 2, 2, 2, 2])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 29 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD028934.sdrf.tsv
+exit code: 0
+$ sdrf-tools schema-check PXD028934.evidence.json
+PXD028934.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD028934.sdrf.tsv PXD028934.evidence.json
+Manifest covers every column with a value (23 column(s)).
+exit code: 0
+
+## Notes on the round-2 results
+- parse_sdrf: exit 0. 3 warnings: free-text values in characteristics[treatment] ('heat shock', 'proteinase K treatment', 'untreated'). The validator is warning-level and the template's own examples are free text ('untreated', 'drought stress'). OLS4 (NCIT, EFO) has no heat-shock or PK treatment term: NCIT:C17888 and EFO:0022044 are the response process, EFO:0001762 is a study design type and NCIT:C15415 is therapeutic hyperthermia. 'untreated' is prescribed by the template for controls (campaign rule 4). Accepted.
+- reconcile MINOR cleavage_agent_unsupported is a FALSE POSITIVE. The PRIDE sample_processing_protocol says "200μg of protein samples ... were cleaned up and trypsin digested using ... SP3". data_processing_protocol says "trypsin enzyme specificity". The paper's Methods (Mass spectrometry) say the same. Trypsin MS:1001251 is the digestion enzyme (campaign rule 2).
+- convert-openms: SUCCESS. The "no TA=" warning comes from the PP=Protein N-term Acetyl and is expected.
+- structure round 1 failure (technical replicate varying within a LiP file) was fixed in round 2: each run's medium-reference aliquot now has its own source name, and every row has technical replicate 1.
+- Round 1 convert-openms failure ("not available" precursor tolerance) was fixed in round 2 with the inferred MaxQuant QTOF defaults (0.07 Da / 40 ppm; Beck et al. 2015). See manifest limitations.

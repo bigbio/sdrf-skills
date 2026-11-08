@@ -1,0 +1,101 @@
+# PXD005246 validation — round 1 (2026-11-08T12:47:04Z)
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: Flp-In-T-REx-293 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv --record pride.json --accession PXD005246
+PXD005246: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ (cd scratch/openms) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['untreated', 'doxycycline'])
+Files per condition: dict_values([9, 9])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 18 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv
+exit code: 0
+experimental_design.tsv
+openms.tsv
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD005246.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD005246.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD005246.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+## Notes on findings
+- parse_sdrf: exit 0, 0 errors, 2 warnings, both justified:
+  * `untreated` (characteristics[treatment]) is not an NCIT/EFO label — template-prescribed control word (batch rule 4); the light channel is the uninduced culture.
+  * `Flp-In-T-REx-293` (characteristics[cell line]) is not a CLO/BTO/EFO label — Cellosaurus ID of CVCL_U427; the column is warning-level and no CLO/BTO/EFO term exists for this line.
+- reconcile MINOR `cleavage_agent_unsupported` is a FALSE POSITIVE: the PRIDE record (pride.json, sample_processing_protocol) reads "Proteins were digested with trypsin gold, MS grade overnight at 37°C at an enzyme-to-substrate ratio of 1:50"; the paper (PMC5393388, section (B)) says the same ("trypsin gold, MS grade (Promega)"). The MaxQuant rule was Trypsin/P (mqpar.xml), recorded in the manifest only (batch rule 2). reconcile exits 0.
+- convert-openms -t2: SUCCESS, 2 conditions (untreated, doxycycline), 9 files per condition, 6 samples (3 BR x 2 channels), SILAC labels 1/2. Its only warning ("no TA= specified", 18x) is the PP=Protein N-term Acetyl, which is correctly positional.
+- One validation round; no fixes were needed.
+
+# Round 2 — after external review round 1 FAIL (F1: cell line -> Flp-In-T-REx, EFO:0022682) (2026-11-08T13:02:21Z)
+$ sdrf-tools verify EFO:0022682
+Accession: EFO_0022682
+Label: Flp-In-T-REx
+Ontology: efo
+Description: T-REx cell derivative with targeted integration of a Flp-In expression vector
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv --record pride.json --accession PXD005246
+PXD005246: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ (cd scratch/openms) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['untreated', 'doxycycline'])
+Files per condition: dict_values([9, 9])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 18 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD005246.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD005246.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD005246.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+## Round 2 notes
+- F1 applied: characteristics[cell line] = Flp-In-T-REx (EFO:0022682, verified live) on all 18 rows; cellosaurus accession/name unchanged. parse_sdrf: 0 errors, 1 warning (untreated, template-prescribed control word, batch rule 4). sdrf-tools check: CLEAN (17/17 verified).
+- F2: comment[file uri] is not licensed by the declared templates (absent from `sdrf-tools contract` and TERMS.tsv), so it was not added. Each .raw ships inside a same-named .zip; recorded in the report and manifest limitations.
+- reconcile MINOR cleavage_agent_unsupported: same false positive as round 1 (PRIDE protocol: "digested with trypsin gold, MS grade"); exit 0.

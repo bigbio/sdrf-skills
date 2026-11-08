@@ -1,0 +1,47 @@
+$ parse_sdrf validate-sdrf --sdrf_file /home/user/bigbio/sdrf-skills/annotations/PXD017487.sdrf.tsv --template ms-proteomics --template human --template cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: A922500 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD017487.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD017487.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD017487.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['untreated', 'A922500'])
+Files per condition: dict_values([24, 24])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 48 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD017487.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD017487.sdrf.tsv --record pride.json --accession PXD017487
+PXD017487: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+# Annotator notes on the findings above (not tool output)
+- parse_sdrf WARNING 'untreated' / 'A922500' not in NCIT/EFO: the template's treatment ontology validator is error_level: warning and its own examples list 'untreated' as the control value (sdrf-templates sample-metadata 1.0.0 lines 284-302; batch rule 4). A922500 (DGAT1 inhibitor, Stratech A4382) has no NCIT/EFO/ChEBI-by-name term: OLS search 'A922500' (smart and fuzzy) returned 0 hits; the nearest class, CHEBI:64919 'EC 2.3.1.20 (diacylglycerol O-acyltransferase) inhibitor', is ChEBI (not licensed for this column) and less specific. Kept as free text.
+- convert-openms 'no TA= specified' x48: emitted for the Acetyl Protein N-term mod, which correctly uses PP= (format-rules.md); conversion succeeds with 2 conditions x 24 files.
+- reconcile MINOR cleavage_agent_unsupported: FALSE POSITIVE. The PRIDE record's protocol does not name the enzyme, but the paper Methods (PMC9638004, 'Sample preparation for mass spectrometry analysis') state in-gel digestion 'with sequence-grade trypsin (Sigma)', and the MaxQuant summary for these 24 runs (github.com/JoWatson2011/DGAT_2019 data/Proteomics/summary_LT.txt, column Enzyme) gives 'Trypsin/P'. Per batch rule 2 the cleavage agent is the digestion enzyme, NT=Trypsin;AC=MS:1001251; Trypsin/P is the search rule (recorded in the manifest). Exit code 0.
+$ sdrf-tools schema-check PXD017487.evidence.json
+PXD017487.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD017487.sdrf.tsv PXD017487.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+# Documentation fix round 1 (external review FAIL, finding 1 + minors; SDRF unchanged)
+$ sdrf-tools schema-check PXD017487.evidence.json
+PXD017487.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD017487.sdrf.tsv PXD017487.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+

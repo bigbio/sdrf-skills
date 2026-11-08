@@ -1,0 +1,377 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD028934.sdrf.tsv",
+ "dataset": "PXD028934",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD028934 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/pride_v3.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/pride.json)"
+  },
+  {
+   "id": "pride-files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD028934/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/files_all.json; 13 entries, all projectAccessions contain PXD028934; RAW list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/files.json)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Zhu M et al. Cell Rep 2022;40(3):111096, PMID 35858568, PMC9893312, doi:10.1016/j.celrep.2022.111096 — full text (author manuscript NIHMS1864204) via NCBI efetch db=pmc id=9893312 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/efetch.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/fulltext.txt). Sections: EXPERIMENTAL MODEL AND SUBJECT DETAILS (Yeast strains), METHOD DETAILS (Yeast culture and sample preparation; Mass spectrometry), Results (Exp 1, LiP), Figure 7 legend, Data availability"
+  },
+  {
+   "id": "mq-sup",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD028934/MSZ20_MaxQuant_1.6.14_Analyzed_20210810_sup_proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/dl/MSZ20_MaxQuant_1.6.14_Analyzed_20210810_sup_proteinGroups.txt)"
+  },
+  {
+   "id": "mq-lip",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD028934/MSZ23_MaxQuant_1.6.14_Analyzed_20210613_peptides.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/dl/MSZ23_MaxQuant_1.6.14_Analyzed_20210613_peptides.txt)"
+  },
+  {
+   "id": "raw-header",
+   "kind": "raw-file",
+   "location": "HTTP range bytes 0-1048575 of https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD028934/MSZ20_Sup_1.baf and https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD028934/MSZ23_LiP_Ref.baf (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/hdr/*.bin); strings \"impact 2\", \"Bruker otofControl\""
+  },
+  {
+   "id": "beck2015",
+   "kind": "publication",
+   "location": "Beck S et al. Mol Cell Proteomics 2015;14:2014-2029, PMC4587313 (cited by the paper for the Impact II method) via NCBI efetch db=pmc id=4587313 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD028934/beck2015.xml)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools ols and OLS4 search API, 2026-11-08)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 \"latest: 1.2.0\" (ms-proteomics) and clinical-metadata 1.0.0 (local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); spec/sdrf-proteomics README.adoc:27 sdrf version v1.1.0; the spec submodule nested sdrf-templates copy (a9cb494) is older than upstream"
+  },
+  {
+   "id": "curated-yeast",
+   "kind": "community-annotation",
+   "location": "/home/user/bigbio/sdrf-annotated-datasets — yeast SDRFs PXD000554, PXD000955, PXD001162 (organism part / cell type / disease not applicable, material type cell)"
+  },
+  {
+   "id": "campaign-rules",
+   "kind": "specification",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch2_rules.md (SILAC campaign rules 1-13)"
+  },
+  {
+   "id": "validation",
+   "kind": "validation",
+   "location": "/home/user/bigbio/sdrf-skills/annotations/PXD028934.validation.txt"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-29",
+   "value": "YTM1173_exp1_... / YTM1173_LiP_...",
+   "source_ids": [
+    "paper",
+    "mq-sup",
+    "mq-lip"
+   ],
+   "evidence": "YTM1173 = the SILAC strain named in Yeast strains (\"For SILAC, a modified BY4741 strain was used (YTM1173: ...)\"). exp1 heat-shock supernatant rep1-4 = MaxQuant experiments MSZ20_S_1..4; LiP names encode the PK:lysate w/w dilution from the file tag. \"pre-existing-proteome\" (light), \"newly-synthesized-proteome\" (heavy pulse) and \"medium-SILAC_reference-lysate\" are the channel roles stated in Methods and the Fig. 7 legend. Medium reference rows carry one source name per run (aliquot mixed into that run) because one reference extract was mixed into all 7 LiP runs."
+  },
+  {
+   "location": "comment[data file] rows 1-29; assay name rows 1-29",
+   "value": "11 .baf files",
+   "source_ids": [
+    "pride-files"
+   ],
+   "evidence": "files/all lists 11 RAW (.baf) + 2 SEARCH files; every RAW file is annotated; assay name = file stem."
+  },
+  {
+   "location": "characteristics[organism] rows 1-29",
+   "value": "Saccharomyces cerevisiae",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE organism \"Saccharomyces cerevisiae (baker's yeast)\"; paper: BY4741-derived strains; NCBITaxon:4932."
+  },
+  {
+   "location": "characteristics[genotype] rows 1-29",
+   "value": "MATa his3delta1 leu2delta0 ura3delta0 MET15 arg4delta::KanMX6 lys2delta0",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Yeast strains: \"For SILAC, a modified BY4741 strain was used (YTM1173: MATa, his3Δ1, leu2Δ0, ura3Δ0, MET15, arg4Δ::KanMX6, lys2Δ0)\". Δ written as \"delta\" (ASCII), as in curated yeast SDRF PXD000554. Applies to all SILAC experiments (Exp1 and LiP)."
+  },
+  {
+   "location": "characteristics[organism part] / characteristics[cell type] / characteristics[disease] rows 1-29",
+   "value": "not applicable",
+   "source_ids": [
+    "curated-yeast",
+    "paper"
+   ],
+   "evidence": "Unicellular yeast culture: no anatomical part, no CL cell type, no disease; same encoding as curated yeast SDRFs."
+  },
+  {
+   "location": "characteristics[material type] rows 1-29",
+   "value": "cell",
+   "source_ids": [
+    "paper",
+    "curated-yeast"
+   ],
+   "evidence": "Cultured yeast cells lysed by cryo-grinding; curated yeast SDRFs use \"cell\"."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-8 (MSZ20_Sup_1..4)",
+   "value": "1-4",
+   "source_ids": [
+    "paper",
+    "mq-sup",
+    "campaign-rules"
+   ],
+   "evidence": "Results: Experiment 1 \"We quantified 3,410 proteins in four biological replicates\"; the supernatant search has four MaxQuant experiments MSZ20_S_1..4 (one file each, ~1,180-1,220 protein groups each, pairwise intensity r 0.92-0.94 -> replicates, not high-pH fractions). Light and heavy rows of one file come from the same culture and share its number (rule 3)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 9-29 (MSZ23_LiP_*)",
+   "value": "1 (pulsed culture), 2 (medium reference culture)",
+   "source_ids": [
+    "paper",
+    "campaign-rules"
+   ],
+   "evidence": "LiP Methods describe one pulsed culture (lysate split across PK amounts) and one separate medium-labelled culture; within the \"untreated\" factor group the two cultures get different numbers (rule 3)."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 1-8 (MSZ20_Sup_1..4)",
+   "value": "heat shock",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Exp1: after 15 min in heavy medium at 25°C cells were heat shocked \"for 20 minutes at 45°C\". No NCIT/EFO term for a heat-shock treatment exists (OLS: NCIT:C17888/EFO:0022044 are the response process, EFO:0001762 a design type, NCIT:C15415 therapeutic hyperthermia), so free text; validator warning accepted."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 9-29 (MSZ23_LiP_*)",
+   "value": "proteinase K treatment (PK runs, light+heavy) / untreated (Ref light+heavy, all medium rows)",
+   "source_ids": [
+    "paper",
+    "campaign-rules"
+   ],
+   "evidence": "LiP Methods: lysates received 0, 0.01, 0.05, 0.2, 1, 5, 20 ng PK per µg lysate for 5 min at 20°C; \"No PK was added to medium SILAC labeled cells\". Controls written \"untreated\" (rule 4). LiP cells were not heat shocked (Discussion: \"in the LiP experiment (in which no heat shock was performed)\")."
+  },
+  {
+   "location": "characteristics[compound] rows 9-29 (MSZ23_LiP_*)",
+   "value": "Proteinase K",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "PK = SIGMA P2308; CHEBI:201492 \"Proteinase K\". not applicable on untreated rows and Exp1 rows."
+  },
+  {
+   "location": "characteristics[dose] / factor value[dose] rows 9-29 (MSZ23_LiP_*)",
+   "value": "10, 50, 200, 1000, 5000, 20000 mg/kg (files 100k, 20k, 5k, 1k, 200, 50)",
+   "source_ids": [
+    "paper",
+    "mq-lip"
+   ],
+   "evidence": "File tag = PK:lysate dilution: Results \"the sample treated with a 1:1,000 protease dilution (1 ng of PK per microgram of sample)\" -> 1k = 1 ng/µg; hence 50=1:50=20 ng/µg, 200=5, 5k=0.2, 20k=0.05, 100k=0.01 ng/µg, matching the 7 amounts in Methods (0 = Ref). Written as mass ratio in mg/kg (1 ng/µg = 1 mg/g = 1000 mg/kg) because ng/ug is not an allowed unit. Data check: summed light/medium intensity in peptides.txt falls only at the highest PK amounts (50: 0.49, 200: 0.84, 1k-100k/Ref: 0.96-1.02), as expected if 50 is the largest dose."
+  },
+  {
+   "location": "characteristics[exposure duration] rows 1-8 and PK rows of rows 9-29 (MSZ23_LiP_*)",
+   "value": "20 minute (heat shock) / 5 minute (PK)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Exp1 heat shock 20 min at 45°C; LiP PK incubation 5 min at 20°C; not applicable on untreated rows."
+  },
+  {
+   "location": "comment[label] rows 1-8 (MSZ20_Sup_1..4)",
+   "value": "SILAC light / SILAC heavy",
+   "source_ids": [
+    "paper",
+    "mq-sup"
+   ],
+   "evidence": "Exp1: grown in light Lys0/Arg0, pulsed in heavy D4 Lys-4 + 13C6 Arg-6 for 15 min + 20 min heat shock; MaxQuant has a 2-plex L/H design. Data check: median H/L 0.089-0.102 per replicate = small newly-synthesised fraction, consistent with H = pulse (paper: median H/L ~11% in TCL)."
+  },
+  {
+   "location": "comment[label] rows 9-29 (MSZ23_LiP_*)",
+   "value": "SILAC light / SILAC medium / SILAC heavy",
+   "source_ids": [
+    "paper",
+    "mq-lip"
+   ],
+   "evidence": "LiP Methods + Fig. 7A: light = pre-existing proteome of the pulsed culture, heavy = 15-min pulse (Lys-8/Arg-10) in the same culture, medium = separately grown Lys4/Arg6 reference without PK, mixed 1:1. Data check (peptides.txt): Ref M/L median 0.98 (1:1 mix), H/L 0.23 median / summed H/L 0.09 (small pulse); L/M falls with PK amount while M is untreated."
+  },
+  {
+   "location": "comment[modification parameters] (Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term Variable) rows 1-29",
+   "value": "UNIMOD:4, UNIMOD:35, UNIMOD:1",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq-sup",
+    "mq-lip",
+    "ols"
+   ],
+   "evidence": "Data processing: \"fixed modifications - carbamidomethyl, variable modifications - methionine oxidation and N-acetyl peptides\" in MaxQuant 1.6.14 (both searches); deposited tables carry only an \"Oxidation (M) site IDs\" site table, consistent with MaxQuant Acetyl (Protein N-term), which gets no site table. PRIDE modifications list monohydroxylated residue and iodoacetamide derivatized residue."
+  },
+  {
+   "location": "comment[modification parameters] (Label:13C(6) R UNIMOD:188, Label:2H(4) K UNIMOD:481) rows 1-29",
+   "value": "Variable",
+   "source_ids": [
+    "paper",
+    "campaign-rules"
+   ],
+   "evidence": "Exp1 heavy = \"D4 Lys-4 and 13C6 Arg-6\"; LiP medium = \"D4 Lys-4 and 13C6 Arg-6\". Mass shifts -> UNIMOD:481 (+4.025) and UNIMOD:188 (+6.020); MT=Variable per rule 11."
+  },
+  {
+   "location": "comment[modification parameters] (Label:13C(6)15N(4) R UNIMOD:267, Label:13C(6)15N(2) K UNIMOD:259) rows 9-29 (MSZ23_LiP_*); not applicable rows 1-8 (MSZ20_Sup_1..4)",
+   "value": "Variable / not applicable",
+   "source_ids": [
+    "paper",
+    "mq-lip",
+    "mq-sup",
+    "campaign-rules"
+   ],
+   "evidence": "LiP heavy = \"Lys-8\" and \"Arg-10\" (the LiP paragraph prefixes them \"D4\"/\"13C6\", a copy error: D4-Lys is +4 and 13C6-Arg is +6, identical to the medium channel, which MaxQuant could not have separated; the Exp3 paragraph of the same Methods gives \"13C6 15N2 Lys-8 and 13C6 15N4 Arg-10\"). Nominal +8/+10 -> UNIMOD:259/267. The LiP search is 3-plex (Ratio M/L, H/L, H/M columns). The Exp1 search is 2-plex L/H, so those two columns are not applicable on rows 1-8 (rule 5)."
+  },
+  {
+   "location": "comment[instrument] rows 1-29",
+   "value": "NT=impact II;AC=MS:1002666",
+   "source_ids": [
+    "raw-header",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": ".baf headers contain \"impact 2\" and \"Bruker otofControl\"; Methods \"Impact II (Bruker)\"; PRIDE instruments \"impact II\"."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-29",
+   "value": "NT=time-of-flight;AC=MS:1000084",
+   "source_ids": [
+    "paper",
+    "beck2015"
+   ],
+   "evidence": "Impact II is a quadrupole time-of-flight instrument (Beck 2015 title); MS/MS read out in the TOF."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-29",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "beck2015",
+    "ols"
+   ],
+   "evidence": "QTOF collision-cell CID with collision energy 23-65 eV (Methods). Beam-type CID = CID in a beam-type collision cell (MS:1000422 definition); inferred from the instrument geometry, not named in the paper."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-29",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"data-dependent auto-MS/MS mode ... fragmenting the 20 most abundant ions\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-29",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "campaign-rules"
+   ],
+   "evidence": "Methods: \"trypsin digested using ... SP3\"; search: \"trypsin enzyme specificity\". Rule 2: digestion enzyme. reconcile flags MINOR cleavage_agent_unsupported because the PRIDE record text is not parsed for the digest; refuted in validation.txt."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-29",
+   "value": "200m/z-2000m/z",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"full-range scan from m/z 200 Th to m/z 2000 Th\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-29",
+   "value": "0.07 Da",
+   "source_ids": [
+    "paper",
+    "beck2015"
+   ],
+   "evidence": "INFERRED. Paper: MaxQuant 1.6.14 \"with default software instrument specific search settings\" (no parameters.txt/mqpar deposited). Beck 2015 (the MaxQuant QTOF adaptation the paper cites): \"initial allowed mass deviation of the precursor ion of up to 0.07 Da\"."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-29",
+   "value": "40 ppm",
+   "source_ids": [
+    "paper",
+    "beck2015"
+   ],
+   "evidence": "INFERRED, as above: Beck 2015 \"The allowed fragment mass deviation was 40 ppm\" (MaxQuant TOF default)."
+  },
+  {
+   "location": "comment[fractionation method] / comment[reduction reagent] / comment[alkylation reagent] rows 1-29",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "High-pH fractionation into 12 fractions is described for Exp1-3 pellet/TCL (PXD024336); the supernatant search has one file per replicate and LiP \"A single fraction was analyzed per dilution\", so whether these runs were fractionated is not stated. SP3 per Hughes 2019; reagents not named (Carbamidomethyl is fixed in the search)."
+  },
+  {
+   "location": "comment[fraction identifier] / comment[technical replicate] rows 1-29",
+   "value": "1",
+   "source_ids": [
+    "pride-files",
+    "mq-sup",
+    "mq-lip"
+   ],
+   "evidence": "One file per MaxQuant experiment; no repeated injections deposited."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-29",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates",
+    "campaign-rules"
+   ],
+   "evidence": "Rule 1; spec README.adoc:27."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-29",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=clinical-metadata;VV=v1.0.0",
+   "source_ids": [
+    "templates",
+    "campaign-rules"
+   ],
+   "evidence": "ms-proteomics (MS data; latest 1.2.0 upstream 7da1747). clinical-metadata (\"Applicable to any organism\") is declared only to license characteristics[compound], [dose], [exposure duration] and [genotype]. No organism layer fits yeast (human/vertebrates/invertebrates/plants all exclude it); cell-lines does not apply (no Cellosaurus line)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-29",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "campaign-rules"
+   ],
+   "evidence": "Rule 10."
+  },
+  {
+   "location": "technology type rows 1-29",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "Precursor (0.07 Da) and fragment (40 ppm) tolerances are inferred from MaxQuant QTOF defaults as published in Beck et al. 2015; no mqpar.xml/parameters.txt was deposited.",
+  "The heavy LiP label (Lys8/Arg10 -> UNIMOD:259/267) rests on the nominal masses \"Lys-8\"/\"Arg-10\"; the LiP paragraph prefixes them \"D4\"/\"13C6\", which is internally inconsistent. No deposited table carries label masses (no evidence.txt/mqpar).",
+  "Mapping of LiP file tags (50 ... 100k) to PK amounts rests on the paper equating \"1:1,000 protease dilution\" with \"1 ng of PK per microgram\"; PRIDE protocol omits the 0.01 ng/µg amount that file 100k represents (paper lists it).",
+  "MSZ20_Sup_1..4 = biological replicates 1-4 is inferred from \"four biological replicates\" for Experiment 1 plus four separate MaxQuant experiments; no file-to-replicate table exists.",
+  "Heat shock, proteinase K treatment and untreated have no NCIT/EFO term; free text gives three validator warnings.",
+  "Dose written as mg/kg (1 ng/µg = 1000 mg/kg) to stay inside the allowed unit list; the source unit is ng PK per µg lysate.",
+  "Pulse duration (15 min heavy before heat shock in Exp1; 15 min heavy in LiP), the heat-shock temperature (45°C), culture medium (SD + 2% dextrose) and the LC system (EASY-nLC 1000 or nanoElute, per-run unknown) have no licensed column and are recorded only in the report.",
+  "Strain name (BY4741-derived YTM1173) has no licensed column without an organism template (characteristics[strain or breed] is licensed by vertebrates/invertebrates/plants only); it is in the source names and genotype.",
+  "The LiP MaxQuant search also contains an experiment \"ref_3hr\" with no deposited raw file; it is not annotated.",
+  "Collision energy (23-65 eV, stepped by m/z and charge) is not a single value and is omitted.",
+  "techsdrf is not installed; the .baf files were checked only by HTTP-range header reads (instrument string).",
+  "Supplementary tables S1/S3 (PMC zip) could not be downloaded (Europe PMC supplementaryFiles: connection refused; NCBI PMC / Europe PMC bin URLs returned HTML pages, not the zip); the design was taken from the Methods/Results text and the deposited search tables.",
+  "Review hand-off: external sdrf-adversarial-review pending; review-gate track/gate not run per the request."
+ ]
+}

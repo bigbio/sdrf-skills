@@ -1,0 +1,117 @@
+# PXD046891 validation — round 1 (2026-11-08T12:42:03Z); sha256 8502653e60dc3e6ccc956c9bfe0fb1cc98b59c5be9d52b824df248d6699d6213
+$ parse_sdrf validate-sdrf -s annotations/PXD046891.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t immunopeptidomics -t clinical-metadata
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: Ma-Mel-51 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD046891.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD046891.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/evidence/pride.json --accession PXD046891
+PXD046891: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names unspecific cleavage as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv
+Factor columns: ['factor value[genotype]', 'factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[cell line authentication]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[mhc protein complex]', 'characteristics[immunopeptidome enrichment method]', 'characteristics[mhc typing]', 'characteristics[mhc typing method]', 'characteristics[antibody enrichment]', 'characteristics[dose]']
+Conditions (8): dict_keys(['dox-inducible scrambled control shRNA (scr)|24 hour|Doxycycline', 'dox-inducible scrambled control shRNA (scr)|24 hour|untreated', 'dox-inducible scrambled control shRNA (scr)|48 hour|Doxycycline', 'dox-inducible scrambled control shRNA (scr)|48 hour|untreated', 'dox-inducible shRNA targeting p14ARF (CDKN2A)|24 hour|Doxycycline', 'dox-inducible shRNA targeting p14ARF (CDKN2A)|24 hour|untreated', 'dox-inducible shRNA targeting p14ARF (CDKN2A)|48 hour|Doxycycline', 'dox-inducible shRNA targeting p14ARF (CDKN2A)|48 hour|untreated'])
+Files per condition: dict_values([2, 2, 2, 2, 2, 2, 2, 2])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD046891.evidence.json
+annotations/PXD046891.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD046891.sdrf.tsv annotations/PXD046891.evidence.json
+Manifest covers every column with a value (39 column(s)).
+exit code: 0
+
+## Notes on findings (round 1; no errors, so no round 2 was needed)
+- parse_sdrf WARNING 'untreated' not in ncit;efo (characteristics[treatment]): the value is prescribed for controls by the sample-metadata template example and by batch rule 4. It is warning-level only. Accepted.
+- parse_sdrf WARNING 'Ma-Mel-51' not in clo;bto;efo (characteristics[cell line]): OLS searches for Ma-Mel-51 / MaMel51 / MaMel-51 in CLO, BTO and EFO return no term, and `sdrf-tools cellline lookup` has no entry. The Cellosaurus name is used, with CVCL_A186 in characteristics[cellosaurus accession]. Accepted.
+- reconcile MINOR cleavage_agent_unsupported (unspecific cleavage) is a FALSE POSITIVE. The PRIDE record does not describe a digest because none took place. HLA-I peptides are eluted from immunoaffinity-purified HLA complexes (paper Methods 2.13). MaxQuant ran with digestion mode "no digestion" against a database of already-identified peptides (paper 2.13). PEAKS de novo is enzyme-independent. MS:1001956 "unspecific cleavage" is the immunopeptidomics convention in the curated corpus (394 rows, including same-lab PXD054097), and it is the setting a reprocessing search needs. reconcile exit code was 0.
+- convert-openms: SUCCESS (WARNINGS=0). 8 conditions; labels heavy -> 3, medium -> 2. Light is intentionally absent; see report.
+
+# ===== Round 2 (2026-11-08T13:03:58Z): fixes after external review round 1 (PXD046891.review.md, FAIL on 8502653e…) =====
+# New artifact sha256 0b32ecfcbd3120fa11f80fd047adb4981968e3a75a427913721a11e1270c982a
+# Build + deterministic post-build step (build cannot vary a comment column between the fractions of one samples.tsv row,
+# and comment[dissociation method] is not 'multiple' in the contract, so build emits only one such column):
+$ sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/evidence/files.json -t ms-proteomics -t human -t cell-lines -t immunopeptidomics -t clinical-metadata -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/build_raw.sdrf.tsv
+wrote /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/build_raw.sdrf.tsv: 16 rows x 66 columns
+exit code: 0
+
+$ python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/postbuild.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/build_raw.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv
+postbuild: 16 rows x 67 cols; ETD on 8 rows
+exit code: 0
+
+# postbuild.py (scratch dir) is a scripted, asserting transformation, not a hand edit. It:
+#  - inserts a second comment[dissociation method] column directly after the first. Rows whose data file is a Meth13K run
+#    (36993/36998/37003/37008, fraction 2) get NT=electron transfer dissociation;AC=MS:1000598 (verified live in OLS: label match True);
+#    all other rows get 'not applicable'. Same-lab precedent: PXD054097-immunopeptidome-silac.sdrf.tsv repeats this column.
+#  - sets comment[ms1 scan range] per data file (Meth10J 376-801, Meth13K 251-1601, from the RAW method summaries).
+#  - asserts that every Meth13K file has fraction identifier 2 and every other file has 1, and that the first dissociation cell is HCD.
+#  - sorts rows by data file, then label.
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t immunopeptidomics -t clinical-metadata
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: Ma-Mel-51 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv
+Factor columns: ['factor value[genotype]', 'factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[cell line authentication]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[mhc protein complex]', 'characteristics[immunopeptidome enrichment method]', 'characteristics[mhc typing]', 'characteristics[mhc typing method]', 'characteristics[antibody enrichment]', 'characteristics[compound]', 'characteristics[dose]']
+Conditions (8): dict_keys(['dox-inducible scrambled control shRNA (scr)|24 hour|Doxycycline', 'dox-inducible scrambled control shRNA (scr)|24 hour|untreated', 'dox-inducible scrambled control shRNA (scr)|48 hour|Doxycycline', 'dox-inducible scrambled control shRNA (scr)|48 hour|untreated', 'dox-inducible shRNA targeting p14ARF (CDKN2A)|24 hour|Doxycycline', 'dox-inducible shRNA targeting p14ARF (CDKN2A)|24 hour|untreated', 'dox-inducible shRNA targeting p14ARF (CDKN2A)|48 hour|Doxycycline', 'dox-inducible shRNA targeting p14ARF (CDKN2A)|48 hour|untreated'])
+Files per condition: dict_values([2, 2, 2, 2, 2, 2, 2, 2])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/evidence/pride.json --accession PXD046891
+PXD046891: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names unspecific cleavage as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD046891.sdrf.tsv
+  Terms checked:     20
+  Verified:          19
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]: 'Ma-Mel-51' in characteristics[cell line]
+exit code: 1
+
+$ sdrf-tools schema-check annotations/PXD046891.evidence.json
+annotations/PXD046891.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD046891.sdrf.tsv annotations/PXD046891.evidence.json
+Manifest covers every column with a value (40 column(s)).
+exit code: 0
+
+## Round 2 notes
+- parse_sdrf exits 0 and reports the same 2 accepted warnings as round 1: 'untreated' is the template-prescribed control value, and 'Ma-Mel-51' has no CLO/BTO/EFO term.
+- sdrf-tools check exits 1. Its only flag is 'Ma-Mel-51' in characteristics[cell line], and that flag is a FALSE POSITIVE. Ma-Mel-51 is the Cellosaurus ID of CVCL_A186, and the paper gives it as RRID:CVCL_A186. OLS searches for Ma-Mel-51, MaMel51 and MaMel-51 in CLO, BTO and EFO return no term, and `sdrf-tools cellline lookup` has no entry. The brief also lists `check` false positives as a known tool defect. Round 1 had not recorded this run (review finding 5). The other 19 of 20 terms verified, including the new CHEBI doxycycline and MS:1000598.
+- reconcile exits 0. Its MINOR cleavage_agent_unsupported finding is the same false positive refuted in round 1: no digestion took place.
+- convert-openms reports SUCCESS with 0 warnings. experimental_design.tsv now shows Fraction_Group 1 with Fraction 1 and 2 for each sample (e.g. 36992 = fraction 1, 36993 = fraction 2), so OpenMS combines the charge-state runs as fractions, which matches the authors' MaxQuant setup.
+- Review findings applied:
+  1. ETD is now a second dissociation column on the fraction-2 rows.
+  2. The runs are encoded as fraction 1/2 with technical replicate 1.
+  3. Biorepository and mhc typing now cite Table S1.
+  4. characteristics[compound] = doxycycline is added, and the 6-day pre-induction is noted in the manifest and report.
+  5. This check run is now recorded.

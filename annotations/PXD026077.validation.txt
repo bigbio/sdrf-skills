@@ -1,0 +1,29 @@
+PXD026077 — validation log
+
+No SDRF was built: the dataset is BLOCKED (no run -> sample map in any deposited or published
+source; see PXD026077.report.md). Therefore none of the Step 9 commands
+(parse_sdrf validate-sdrf, sdrf-tools structure, parse_sdrf convert-openms, sdrf-tools reconcile)
+were run — there is no file to run them on.
+
+Checks that were run (evidence integrity):
+$ python3 assert: every entry of https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD026077/files/all has 'PXD026077' in projectAccessions
+-> 64 entries, all pass (60 RAW, 2 mqpar.xml, 2 txt .7z)
+exit 0
+
+$ md5sum ijms-22-05597-s001.zip (from pmc-oa-opendata S3)
+8165943beb0e00cc361c7a2810113105  -> matches PMC8198273.1.json media_urls md5
+exit 0
+
+$ efetch db=pmc id=8198273 -> <article-title> "Mitochondrial Retrograde Signaling Contributes to Metabolic Differentiation in Yeast Colonies" (matches PRIDE reference PMID 34070491)
+exit 0
+
+$ sdrf-tools verify (OLS) for the resolved technical terms
+MS:1002416 Orbitrap Fusion            Exists: True  Label match: True
+MS:1001251 Trypsin                    Exists: True  Label match: True
+UNIMOD:4 Carbamidomethyl              Exists: True  Label match: True
+UNIMOD:35 Oxidation                   Exists: True  Label match: True
+UNIMOD:1 Acetyl                       Exists: True  Label match: True
+PRIDE:0000627 Data-dependent acquisition  Exists: True  Label match: True
+MS:1000422 beam-type collision-induced dissociation  Exists: True  Label match: True
+NCBITaxon:4932 Saccharomyces cerevisiae  Exists: True  Label match: True
+exit 0 (each)

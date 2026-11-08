@@ -1,0 +1,83 @@
+$ sdrf-tools reconcile annotations/PXD024103.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/pride.json --accession PXD024103
+PXD024103: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD024103.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD024103.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
+WARNING: Term: Nedd4 siRNA in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: low GC control siRNA in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: NCU10K in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD024103.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD024103.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[enrichment process]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+    OpenMS().openms_convert(sdrf, onetable, legacy, verbose, conditionsfromcolumns, extension_convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+    self._process_tolerances(row, f2c, raw)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not applicable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not applicable
+exit code: 1
+
+$ parse_sdrf convert-openms -s /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/convert/searched_only.sdrf.tsv -t2
+PROCESSING: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/convert/searched_only.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[enrichment process]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['Nedd4 siRNA', 'low GC control siRNA'])
+Files per condition: dict_values([40, 40])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 80 times.
+SUCCESS (WARNINGS=1): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/convert/searched_only.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD024103.evidence.json
+annotations/PXD024103.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD024103.sdrf.tsv annotations/PXD024103.evidence.json
+Manifest covers every column with a value (27 column(s)).
+exit code: 0
+
+## Notes on the results above (producer, not a review)
+- parse_sdrf validate-sdrf (full ontology, union of ms-proteomics v1.2.0 + vertebrates v1.1.0 + cell-lines v1.1.0): exit 0, 0 errors, 3 warnings.
+  * 'Nedd4 siRNA' / 'low GC control siRNA' not in NCIT/EFO: free-text treatment, no ontology term for these reagents exists (same pattern as curated PXD069185 treatment values).
+  * 'NCU10K' not in CLO/BTO/EFO: the line is absent from Cellosaurus (API search NCU10K / NCU-10K / "NCU 10K": 0 hits) and OLS; written verbatim, cellosaurus accession/name = not available.
+- sdrf-tools reconcile: exit 0, no findings to refute.
+- parse_sdrf convert-openms -t2 on the full file: exit 1 "Cannot read precursor mass tolerance: not applicable". Cause: rows 81-96 (PM20131206_Total_1uL1-8) were never database-searched in the deposit, so their tolerances are `not applicable` per batch rule 5 (same consequence as PXD004817 targeted rows). On rows 1-80 (all searched runs; scratch copy searched_only.sdrf.tsv) convert-openms exits 0 with 2 conditions x 40 files; its only warning ("no TA= specified", for the PP=Protein N-term Acetyl) is benign.

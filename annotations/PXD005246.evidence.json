@@ -1,0 +1,411 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD005246.sdrf.tsv",
+ "dataset": "PXD005246",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD005246 via MCP get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/pride.json): title, description, sample_processing_protocol, data_processing_protocol"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD005246/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/files_all.json; 12 entries, all projectAccessions contain PXD005246): 9 RAW .zip, 1 SEARCH zip, FASTA zip, MaxQuant_1.3.0.5.zip"
+  },
+  {
+   "id": "rawzip",
+   "kind": "raw-file",
+   "location": "HTTP range read of each RAW zip central directory under https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/02/PXD005246/ : each zip holds exactly one member <stem>.raw (list in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/raw/raw_headers.txt lines starting ##); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/files.json lists those 9 .raw names"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read + inflate of the first ~3 MB of each zipped .raw (Thermo header, utf-16-le): summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/raw/raw_headers.txt, header bytes /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/raw/*.head"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Greseth MD et al., Mol Cell Proteomics 2017;16(4 Suppl 1):S124-S143, doi:10.1074/mcp.M116.065003, PMID 28183815, PMCID PMC5393388; full text from https://pmc.ncbi.nlm.nih.gov/articles/PMC5393388/ (text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/paper_html.txt). Experimental Procedures sections (A) SILAC Labeling, (B) Trypsin Digestion and Phosphopeptide Enrichment, (C) LC MS/MS Analysis; Experimental Design and Statistical Rationale; Cell Lines"
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/02/PXD005246/Traktman_2013_MaxQuantOutput-full.zip member mqpar.xml (range-read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/mq/mqpar.xml)"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/02/PXD005246/Traktman_2013_MaxQuantOutput-full.zip members combined/txt/parameters.txt, combined/txt/summary.txt, combined/experimentalDesignTemplate.txt (range-read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/mq/parameters.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/mq/summary.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/mq/experimentalDesignTemplate.txt)"
+  },
+  {
+   "id": "mq_sites",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/02/PXD005246/Traktman_2013_MaxQuantOutput-full.zip members combined/txt/Phospho (STY)Sites.txt and combined/txt/proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/mq/phosphosites.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/mq/proteinGroups.txt)"
+  },
+  {
+   "id": "map_check",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/channel_direction_check.txt (DIAPH1 S22 normalized H/L per experiment; script inline in run log)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_U427?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/cvcl_u427.txt); search https://api.cellosaurus.org/search/cell-line?q=Flp-In%20T-REx%20293 (no entry for the derived 293-F10 line)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4/api live lookups 2026-11-08 via sdrf-tools verify/ols (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD005246/ols_verify.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; installed sdrf_pipelines bundle); upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t/templates.yaml. The spec submodule nested templates copy is older (lists only 1.1.0)."
+  },
+  {
+   "id": "spec_readme",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc line 27 (Version v1.1.0) and line 330 (biological replicate numbering restarts per factor value group)"
+  },
+  {
+   "id": "batch_rules",
+   "kind": "specification",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch2_rules.md (campaign conventions: rules 1,2,4,10,11)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-18",
+   "value": "293-F10_BR<n>_uninduced / 293-F10_BR<n>_doxycycline-induced",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_params"
+   ],
+   "evidence": "One source per independent SILAC culture per channel. \"293-F10\" is the paper's name for the FLP-In T-REx 293 c.o.-3xFLAG-F10 line. BR1/BR2/BR3 are the MaxQuant experiment names in experimentalDesignTemplate.txt (BR1 = SILAC1 files 2013-10-02, BR2 = SILAC2 files 2013-10-02, BR3 = SILAC files 2013-12-03). Paper: \"Three biological replicates were obtained from separately passaged cultures and doxycycline inductions.\""
+  },
+  {
+   "location": "comment[label] rows 1-3,7-9,13-15 and rows 4-6,10-12,16-18; characteristics[treatment]/factor value[treatment]",
+   "value": "SILAC light = uninduced (untreated); SILAC heavy = doxycycline-induced",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_params",
+    "mq_sites",
+    "map_check"
+   ],
+   "evidence": "Explicit: paper (A) and PRIDE protocol \"Cells grown in the presence of heavy media were then induced with 50 ng/ml doxycycline for 10 h. Cells were harvested and mixed 1:1 (heavy/light)\"; Experimental Design: \"H-labeled cells were treated with doxycycline ... mixed with uninduced, L-labeled cells\". MaxQuant Labels1 = Arg10;Lys8 (heavy). Data check: DIAPH1 (mDia1) pS22, which the paper reports as increased on F10 induction, has normalized H/L 14.7 / 16.5 / 12.8 in BR1/BR2/BR3 -> heavy = induced in all 3 replicates, 0 discrepancies."
+  },
+  {
+   "location": "comment[label] rows 1-18",
+   "value": "SILAC light / SILAC heavy (PRIDE:0000326 / PRIDE:0000325)",
+   "source_ids": [
+    "mq_params",
+    "ols"
+   ],
+   "evidence": "MaxQuant multiplicity 2: Labels0 empty (light), Labels1 Arg10;Lys8 (heavy). Labels written bare as in the batch-1 examples."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 4-6,10-12,16-18",
+   "value": "doxycycline",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Heavy cells induced with 50 ng/ml doxycycline for 10 h to express F10 (tet-inducible pcDNA5/FRT/TO-c.o.-3xFLAG-F10). NCIT:C457 Doxycycline verified live; written lower case as a bare value."
+  },
+  {
+   "location": "characteristics[treatment] and factor value[treatment] rows 1-3,7-9,13-15",
+   "value": "untreated",
+   "source_ids": [
+    "paper",
+    "pride",
+    "batch_rules"
+   ],
+   "evidence": "Light cells were uninduced (no doxycycline). Batch rule 4: controls = untreated (template-prescribed). Validator warning: untreated is not an NCIT/EFO label."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-18",
+   "value": "1,2,3 within each treatment group (BR1->1, BR2->2, BR3->3)",
+   "source_ids": [
+    "paper",
+    "mq_params",
+    "spec_readme"
+   ],
+   "evidence": "Three independent cultures/inductions per condition; numbering restarts per factor value group (README.adoc:330). Each culture in a condition has its own number."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-18",
+   "value": "1,2,3 = injection _01/_02/_03",
+   "source_ids": [
+    "paper",
+    "pride",
+    "files"
+   ],
+   "evidence": "\"Each sample was analyzed in triplicate by LC-MS/MS\"; file suffixes _01.._03 per mixed sample; MaxQuant puts all three files of a BR in one experiment with no fraction numbers."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-18",
+   "value": "1",
+   "source_ids": [
+    "mq_params",
+    "paper"
+   ],
+   "evidence": "No fractionation: experimentalDesignTemplate.txt Fraction column empty; the three files per BR are replicate injections, not fractions."
+  },
+  {
+   "location": "comment[data file] and assay name rows 1-18",
+   "value": "9 .raw files (2 rows each)",
+   "source_ids": [
+    "files",
+    "rawzip"
+   ],
+   "evidence": "PRIDE deposits each raw file inside a single-member .zip (OT2_Traktman_*_TiO2_0n.zip); the central directory of each zip lists exactly one <stem>.raw, which is the vendor RAW named here (rule: vendor RAW only). Names match the mqpar filePaths."
+  },
+  {
+   "location": "characteristics[organism] rows 1-18",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_U427 OX NCBI_TaxID=9606; PRIDE organism Homo sapiens."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-18",
+   "value": "Flp-In-T-REx (EFO:0022682)",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper Cell Lines: \"Flp-In T-REx 293 cells (Invitrogen) ... cotransfected with pOG44 and ... pcDNA5/FRT/TO-c.o.-3xFLAG-F10\"; SILAC used \"FLP-In T-REx 293 c.o.-3xFLAG-F10 cells\". Cellosaurus CVCL_U427 cross-references \"DR EFO; EFO_0022682\" and \"DR BTO; BTO_0006149\"; OLS EFO:0022682 label \"Flp-In-T-REx\" (T-REx cell derivative with targeted integration of a Flp-In expression vector), verified live, not obsolete. The derived 293-F10 line has no Cellosaurus or ontology record of its own, so the parental line term is used."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] and characteristics[cellosaurus name] rows 1-18",
+   "value": "CVCL_U427 / Flp-In-T-REx-293",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus record CVCL_U427, ID Flp-In-T-REx-293 (synonyms include \"Flp-In T-REx 293\"); parental line of 293-F10 (no Cellosaurus entry for the derivative)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-18",
+   "value": "kidney",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_U427 \"Derived from site: In situ; Fetal kidney; UBERON=UBERON_0002113\" -> UBERON:0002113 kidney."
+  },
+  {
+   "location": "characteristics[disease] rows 1-18",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_U427 (and parent HEK293 CVCL_0045) has no disease (DI) line; donor not diseased -> PATO:0000461 normal."
+  },
+  {
+   "location": "characteristics[material type] rows 1-18",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "templates"
+   ],
+   "evidence": "Cultured established cell line; fixed vocabulary value."
+  },
+  {
+   "location": "characteristics[sex] rows 1-18",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_U427 SX Female."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-18",
+   "value": "late embryonic stage",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "batch_rules"
+   ],
+   "evidence": "Cellosaurus AG \"Fetus\"; UBERON:0007220 (in EFO) label \"late embryonic stage\", exact synonyms \"fetal stage\", \"fetus stage\", \"fetus\". Batch rule 9: developmental stage from Cellosaurus age."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-18",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "TiO2-based phosphopeptide enrichment (paper (B), PRIDE protocol). EFO:0010806 is a descendant of EFO:0009090; definition cites TiO2."
+  },
+  {
+   "location": "comment[instrument] rows 1-18",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 9 raw headers read \"LTQ Orbitrap Velos MS\" (not Velos Pro); paper and PRIDE agree."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-18",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "raw",
+    "mq_params"
+   ],
+   "evidence": "Raw scan events \"Activation Type: CID\"; MaxQuant spectra files allSpectra.CID.ITMS.*."
+  },
+  {
+   "location": "comment[collision energy] rows 1-18",
+   "value": "35 NCE",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "All 9 raw headers: \"Normalized Coll. Energy: 35.0\"."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-18",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw scan events 2..: \"ITMS + c norm Dep MS/MS\"; the LTQ is a linear ion trap. Method name Phospho-MSA98-196_Top10_240min."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-18",
+   "value": "375m/z-2000m/z",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw scan event 1: \"FTMS + p norm res=60000 o(375.0-2000.0)\" in all 9 files."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-18",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw scan events \"Dep MS/MS Most intense ion from (1)\" (Top10 DDA)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-18",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mqpar",
+    "batch_rules"
+   ],
+   "evidence": "Paper (B)/PRIDE protocol: \"digested with trypsin gold, MS grade (Promega)\". The MaxQuant search rule was Trypsin/P, max 2 missed cleavages (mqpar <protease>Trypsin/P</protease>); per batch rule 2 the digestion enzyme is annotated and the search rule is recorded here only."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-18",
+   "value": "6 ppm",
+   "source_ids": [
+    "mqpar",
+    "paper"
+   ],
+   "evidence": "mqpar mainSearchTol 6 (ppm), firstSearchTol 20. The paper/PRIDE \"20ppm\" is the first-search tolerance; the deposited main search wins."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-18",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mq_params",
+    "paper",
+    "raw"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (ITMS) 0.5 Da\"; MS2 is ion trap (raw); paper \"MS/MS tolerance of 0.5Da\"."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-18",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"treated with 10 mM DTT for 30 min at 37 C\"."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-18",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"followed by 50 mM iodoacetamide for 30 min at room temperature\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-18 (6 columns)",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Phospho STY, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mqpar",
+    "mq_params",
+    "ols",
+    "batch_rules"
+   ],
+   "evidence": "mqpar fixedModifications Carbamidomethyl (C); variableModifications Oxidation (M), Acetyl (Protein N-term), Phospho (STY); labels \"Arg10; Lys8\" (multiplicity 2). parameters.txt agrees. The isobaricLabels iTRAQ list in mqpar is the unused MaxQuant default (multiplicity-2 SILAC search). UNIMOD 4/35/1/21/267/259 verified live; SILAC labels MT=Variable per batch rule 11 (Arg10 -> 267, Lys8 -> 259). Paper lists the same mods."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-18",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec_readme",
+    "batch_rules"
+   ],
+   "evidence": "README.adoc:27 \"Version v1.1.0\"."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-18",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=human;VV=v1.1.0 | NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "templates",
+    "batch_rules"
+   ],
+   "evidence": "Templates: MS DDA proteomics, human cells, established cell line. ms-proteomics v1.2.0 = upstream latest (templates.yaml line 150 at 7da1747)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-18",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "batch_rules"
+   ],
+   "evidence": "Batch rule 10."
+  },
+  {
+   "location": "technology type rows 1-18",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "techsdrf is not installed; instrument, activation, NCE, MS2 analyzer, TopN and MS1 range come from HTTP-range-read .raw headers (inflated from the first ~3 MB of each single-member zip), not from spectra-level refinement.",
+  "The deposited raw files are zipped: each <stem>.raw ships inside a same-named <stem>.zip at https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/02/PXD005246/ ; comment[data file] names the .raw member (verified from each zip central directory). comment[file uri] is not licensed by ms-proteomics/human/cell-lines (absent from the contract and TERMS.tsv), so the archive mapping is recorded here and in the report (review round 1 F2).",
+  "The derived line 293-F10 (Flp-In T-REx 293 with tet-inducible c.o.-3xFLAG-F10) has no Cellosaurus record; the parental Flp-In-T-REx-293 (CVCL_U427) is annotated. No template column licenses genetic modification without clinical-metadata, so the transgene is recorded only in source name and the report.",
+  "characteristics[culture medium] = not available: SILAC labelling used \"SILAC media (Sigma) supplemented with 10% FCS\" whose base medium (DMEM vs RPMI) is not stated; routine maintenance was in DMEM but that is not the medium of the analysed cultures.",
+  "characteristics[ancestry category] = not available (Cellosaurus gives no population for CVCL_U427/HEK293); age = not available (Cellosaurus AG \"Fetus\" has no numeric age); cell type = not available (Cellosaurus states none); individual, passage number and sample storage temperature are not stated.",
+  "Version conflicts: paper/PRIDE say MaxQuant 1.2.2.5 and 20 ppm precursor tolerance; the deposited search (paper: \"the uploaded version was generated by MaxQuant v. 1.3.0.5\") has mainSearchTol 6 ppm / firstSearchTol 20 ppm. The deposited search was used.",
+  "Paper/PRIDE say the viral F10 sequence was added to the search database; the deposited proteinGroups.txt contains no non-human, non-contaminant entry. Not encoded; does not affect the SDRF values.",
+  "The samples are post-nuclear supernatant (cytoplasm + membranes) of the cells; no licensed column captures the subcellular fraction, so it is recorded here only.",
+  "parse_sdrf warning (1): untreated is not an NCIT/EFO label (template-prescribed control word, batch rule 4). Review round 1 F1 fixed: cell line was the Cellosaurus ID Flp-In-T-REx-293 and is now the EFO label Flp-In-T-REx (EFO:0022682).",
+  "sdrf-tools reconcile reports a MINOR cleavage_agent_unsupported; it is a false positive: pride.json sample_processing_protocol says \"digested with trypsin gold, MS grade\" (refuted in PXD005246.validation.txt).",
+  "Review is handed to an external sdrf-adversarial-review (REVIEW_PENDING_EXTERNAL); no gate run here."
+ ]
+}

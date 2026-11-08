@@ -1,0 +1,432 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD008327.sdrf.tsv",
+ "dataset": "PXD008327",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD008327 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/evidence/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD008327/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/evidence/files_all.json; 42 entries, all asserted projectAccessions contains PXD008327; 40 .raw + 2 MaxQuant txt ZIPs)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Touati SA, Kataria M, Jones AW, Snijders AP, Uhlmann F. Phosphoproteome dynamics during mitotic exit in budding yeast. EMBO J 2018;37(10):e98745. PMID 29650682, PMC5978319, doi:10.15252/embj.201798745 (Europe PMC fullTextXML, local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/evidence/PMC5978319.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/evidence/manuscript.txt). Methods sections: Yeast strains and culture; SILAC; Sample preparation for mass spectrometry; Mass spectrometry data analysis; Phosphosite abundance change analysis; Data availability names PXD008327."
+  },
+  {
+   "id": "epmc_search",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PXD008327 (returns PMID 29650682 / PMC5978319 as the paper citing PXD008327)"
+  },
+  {
+   "id": "mqpar_phos",
+   "kind": "search-output",
+   "location": "\"CSL7326 Phospho txt/mqpar.xml\" + parameters.txt + summary.txt inflated by HTTP range read from https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/10/PXD008327/CSL7326Phosphotxt.zip (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/dl/phospho/; reader /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/scripts/zipls.py)"
+  },
+  {
+   "id": "mqpar_prot",
+   "kind": "search-output",
+   "location": "\"CSL7326 Protein Level txt/mqpar.xml\" + parameters.txt + summary.txt from https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/10/PXD008327/CSL7326ProteinLeveltxt.zip (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/dl/prot/)"
+  },
+  {
+   "id": "sites",
+   "kind": "search-output",
+   "location": "\"CSL7326 Phospho txt/Phospho (STY)Sites.txt\" from CSL7326Phosphotxt.zip (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/dl/phospho/sites.txt)"
+  },
+  {
+   "id": "proteingroups",
+   "kind": "search-output",
+   "location": "\"CSL7326 Protein Level txt/proteinGroups.txt\" from CSL7326ProteinLeveltxt.zip (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/dl/prot/proteinGroups.txt)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "First 2,000,001 bytes of all 40 deposited .raw files, HTTP range read from https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/10/PXD008327/CSL7326*.raw, decoded UTF-16LE (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/raw/*.head); instrument method text incl. sample description \"<tt> min - <CID|HCD|MSA>\", method path, Creator, Scan Event Details"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 via sdrf-tools ols / sdrf-tools verify (log: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/verify.log): NCBITaxon:4932, MS:1001742, MS:1000133, MS:1000422, MS:1000291, MS:1000484, MS:1001251, PRIDE:0000627, PRIDE:0000599, PRIDE:0000608, EFO:0010806, UNIMOD:4/35/1/21/267/259 all Label match: True"
+  },
+  {
+   "id": "templates",
+   "kind": "spec",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0 for ms-proteomics (local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); sdrf-tools contract -t ms-proteomics prints v1.2.0. The spec submodule nested templates copy is older. sdrf version v1.1.0 = spec README.adoc:27"
+  },
+  {
+   "id": "batch_rules",
+   "kind": "campaign-rules",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch2_rules.md (campaign conventions: rules 1,2,3,4,5,10,11)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-80",
+   "value": "W303 GAL1-CDC20 light culture <tt> min after release, <phospho-enriched|TiO2 flow-through> / W303 GAL1-CDC20 heavy (Arg10 Lys8) metaphase-arrest reference aliquot mixed with <tt> min sample, <...>",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mqpar_phos",
+    "mqpar_prot"
+   ],
+   "evidence": "Paper SILAC section: heavy GAL1-CDC20 culture grown >8 generations in SC with (13C6,15N4)-Arg and (13C6,15N2)-Lys, arrested in metaphase, 10 aliquots harvested; light culture in YP similarly arrested and released by galactose re-addition, sampled at the indicated times and each mixed with one heavy metaphase aliquot. Strains are W303 background (Methods: Yeast strains and culture). Timepoint per run from mqpar Experiment (00..45 min). Phospho-enriched vs flow-through suffix from Methods (TiO2 enrichment; flow-through retained for non-phosphorylated peptides) and the two MaxQuant searches. The phospho-enriched source and the TiO2 flow-through source of one timepoint (and likewise of its heavy aliquot) are the SAME mixed light+heavy digest split by TiO2 enrichment (Methods: \"Flow-through fractions were retained for analysis of non-phosphorylated peptides\"); they are two source names for one biological sample, distinguished by characteristics[enrichment process], so the 20 light (and 20 heavy) source names correspond to 10 light samples (and 10 heavy aliquots), not 20 biological samples. The suffix keeps the (source, bio rep, tech rep, fraction) coordinate unique. Aliquot numbering by timepoint is a naming device; the paper only says each timepoint was mixed with one of the 10 heavy aliquots."
+  },
+  {
+   "location": "assay name rows 1-80; comment[data file] rows 1-80",
+   "value": "CSL7326A<i>RW<n>_ST_<well>[.raw]",
+   "source_ids": [
+    "pride_files",
+    "mqpar_phos",
+    "mqpar_prot"
+   ],
+   "evidence": "All 40 .raw files in PRIDE files/all are annotated (30 in the Phospho mqpar filePaths, 10 in the Protein Level mqpar filePaths); each file appears in exactly 2 rows (light, heavy). The 2 ZIPs are search outputs, not raw data."
+  },
+  {
+   "location": "characteristics[sample type] rows 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79",
+   "value": "study sample",
+   "source_ids": [
+    "paper",
+    "ols",
+    "templates"
+   ],
+   "evidence": "Light channel = the released time-course samples under study. PRIDE:0001013 study sample, a direct child of PRIDE:0000895 sample type (OLS parents checked); the base template default."
+  },
+  {
+   "location": "characteristics[sample type] rows 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80",
+   "value": "reference",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Results: the heavy metaphase culture \"served as a reference\"; an equal aliquot was combined with each light sample. PRIDE:0000899 reference, child of PRIDE:0000898 multiplex sample, child of PRIDE:0000895 sample type (OLS parents checked)."
+  },
+  {
+   "location": "comment[label] rows 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79",
+   "value": "SILAC light",
+   "source_ids": [
+    "paper",
+    "mqpar_phos",
+    "mqpar_prot",
+    "sites",
+    "proteingroups"
+   ],
+   "evidence": "Paper: \"light\" culture in regular rich YP medium = the released time-course culture. mqpar labels: state 0 empty (light), state 1 \"Arg10; Lys8\", multiplicity 2. Data cross-check: (i) 152 full Cdk-consensus (S/T)Px(K/R) phosphosites (loc prob >0.85) have median log2[(H/L 45 min)/(H/L 00 min)] = +1.12, i.e. the light channel loses phosphorylation over mitotic exit as the paper describes (Cdk sites dephosphorylated early); all other sites centre at 0.00. (ii) GAL-induced proteins fall in H/L over time in proteinGroups (GAL7 1.13 -> 0.69, GAL1 1.21 -> 0.84, GAL10 1.33 -> 0.89): galactose re-added to the light culture only. Both consistent with light = time course; an inverted map would give the opposite sign."
+  },
+  {
+   "location": "comment[label] rows 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "paper",
+    "mqpar_phos",
+    "mqpar_prot",
+    "sites",
+    "proteingroups"
+   ],
+   "evidence": "Paper: heavy = metaphase-arrested reference grown with 13C6,15N4-Arg and 13C6,15N2-Lys; mqpar heavy label \"Arg10; Lys8\". Same ratio cross-checks as the light claim. Label isotopes: paper Methods (13C6,15N4)-Arg / (13C6,15N2)-Lys and mqpar Arg10;Lys8 agree; the paper Results text says \"13C6-arginine and 13C6-lysine\" and the PRIDE protocol says \"13C10-arginine and 13C8-lysine\" (loose notation for +10/+8). The deposited search wins: Phospho summary.txt Total row has 294,278 MS/MS identified as SILAC pairs (MS/MS Identified (SIL)) under the Arg10/Lys8 search, which would not happen with the wrong label masses."
+  },
+  {
+   "location": "characteristics[organism] rows 1-80",
+   "value": "Saccharomyces cerevisiae",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Budding yeast, W303 background (paper Methods); PRIDE organisms NEWT:4932; NCBITaxon:4932 verified in OLS. Search FASTA UniProt taxonomy 559292 (S288C reference proteome) per parameters.txt."
+  },
+  {
+   "location": "characteristics[material type] rows 1-80",
+   "value": "cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Unicellular yeast cultures; protein extracts from TCA-fixed cells (paper SILAC section). Value from the template's fixed list; follows the curated yeast SILAC convention (e.g. PXD001162, PXD000554 in bigbio/sdrf-annotated-datasets)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-80",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "batch_rules"
+   ],
+   "evidence": "The deposit contains only the paper's core experiment: one light culture sampled at 10 timepoints (each timepoint is its own factor group, one culture each) and one heavy culture split into 10 aliquots (all in the single factor group 0 minute|untreated, same culture -> same number). The paper also describes a repeat SILAC time-course experiment (Results; Fig EV3, 5,723 phosphosites), but it is NOT in PXD008327: PRIDE holds only the CSL7326 series (40 raw files, two MaxQuant searches whose mqpar filePaths list exactly these 40 files), and the deposited Phospho (STY)Sites.txt gives 3,452 non-contaminant, non-reverse sites with localization probability >0.85 and H/L in >=6 of 10 timepoints, matching the core dataset's 3,456 (paper) and not the repeat's 5,723. Rule 3: numbers restart per factor group and are unique per independent culture."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-80; factor value[sampling time] rows 1-80",
+   "value": "light: 0,5,10,...,45 minute; heavy: 0 minute",
+   "source_ids": [
+    "mqpar_phos",
+    "mqpar_prot",
+    "raw_headers",
+    "paper"
+   ],
+   "evidence": "mqpar Experiment names \"00 min\"..\"45 min\" per file, and each raw file's embedded sample description (\"<tt> min - CID/HCD/MSA\"); A1..A10 -> 00..45 min in 5-min steps, consistent across all 40 files. Heavy reference was harvested upon metaphase arrest; paper: L/H normalised to 100% \"at time 0, corresponding to the time when cells grown in the different media ... were arrested in metaphase\"."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-80; factor value[treatment] rows 1-80",
+   "value": "light: galactose re-addition (CDC20 re-induction, release from metaphase arrest); heavy: untreated",
+   "source_ids": [
+    "paper",
+    "batch_rules"
+   ],
+   "evidence": "Paper: light culture \"released to progress through mitosis by re-addition of galactose\" (GAL1-CDC20 re-induction); heavy metaphase culture was arrested by shift to raffinose and harvested without release. Rule 4: the reference/control arm is \"untreated\". Free text: no NCIT/EFO term for the release procedure (parse_sdrf warns; accepted). The second factor keeps the heavy reference out of the light 0-minute group."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-60",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "paper",
+    "mqpar_phos",
+    "ols"
+   ],
+   "evidence": "TiO2 phosphopeptide enrichment (paper Sample preparation); these 30 files are the Phospho mqpar search with Phospho (STY). EFO:0010806 verified."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-60",
+   "value": "1 (RW7, CID), 2 (RW8, HCD), 3 (RW9, MSA)",
+   "source_ids": [
+    "paper",
+    "raw_headers",
+    "mqpar_phos"
+   ],
+   "evidence": "Paper: phosphopeptide mixtures run in triplicate, one MS/MS activation method per run (CID, MSA, HCD); MaxQuant groups the three files under one Experiment per timepoint. Activation per file from raw method text. Numbering follows the RW run number."
+  },
+  {
+   "location": "comment[technical replicate] rows 61-80",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "mqpar_prot"
+   ],
+   "evidence": "One CID run per timepoint of the non-phosphopeptide flow-through."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-80",
+   "value": "1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "No peptide fractionation; each injection is one run."
+  },
+  {
+   "location": "comment[instrument] rows 1-80",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "raw_headers",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 40 raw headers: \"Creator: LTQ Orbitrap Velos\"; paper and PRIDE agree."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-80",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw_headers",
+    "ols"
+   ],
+   "evidence": "Method \"Nth Order Double Play\", Top10 data-dependent MS/MS (\"Scan Event 2 repeated for top 10 peaks\")."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-2, 5-8, 11-14, 17-20, 23-26, 29-32, 35-38, 41-44, 47-50, 53-56, 59-80",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "raw_headers",
+    "paper",
+    "ols"
+   ],
+   "evidence": "RW7 and RW10: Activation Type CID; RW9: Activation Type CID with \"Multistage activation is enabled\" (MSA). PSI-MS has no multistage-activation term (OLS ms/pride searched), so MSA runs carry the parent CID term."
+  },
+  {
+   "location": "comment[dissociation method] rows 3-4, 9-10, 15-16, 21-22, 27-28, 33-34, 39-40, 45-46, 51-52, 57-58",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw_headers",
+    "paper",
+    "ols"
+   ],
+   "evidence": "RW8 files: Activation Type HCD (method 50cm_Top10HCD_...)."
+  },
+  {
+   "location": "comment[collision energy] rows 1-80",
+   "value": "RW7/RW10 30 NCE; RW8 45 NCE; RW9 35 NCE",
+   "source_ids": [
+    "raw_headers"
+   ],
+   "evidence": "Normalized Coll. Energy in each method's Scan Event Details, identical across all 10 files of each run type."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-80",
+   "value": "RW7/RW9/RW10 linear ion trap MS:1000291; RW8 orbitrap MS:1000484",
+   "source_ids": [
+    "raw_headers",
+    "ols"
+   ],
+   "evidence": "Scan event 2: \"ITMS + c norm Dep ... MS/MS\" for CID/MSA runs; \"FTMS + c norm Dep ... MS/MS\" for HCD runs. The Velos ion trap is a linear ion trap."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-80",
+   "value": "300m/z-2000m/z",
+   "source_ids": [
+    "raw_headers"
+   ],
+   "evidence": "Scan event 1 \"FTMS + p norm o(300.0-2000.0)\" in all 40 files."
+  },
+  {
+   "location": "comment[cleavage agent details] (1st column) rows 1-80",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mqpar_phos",
+    "batch_rules",
+    "ols"
+   ],
+   "evidence": "Trypsin digestion overnight (paper Sample preparation; PRIDE protocol). Rule 2: the digestion enzyme, not the MaxQuant search rule Trypsin/P (mqpar protease Trypsin/P, max 2 missed cleavages, recorded here as a note)."
+  },
+  {
+   "location": "comment[cleavage agent details] (2nd column) rows 1-80",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "\"To ensure complete digestion, peptides were further digested using Lys-C in 10% acetonitrile and 50 mM ammonium bicarbonate (37 C, 2 h), followed by trypsin digestion (37 C, overnight)\" (paper and PRIDE protocol). MS:1001309 Lys-C verified in OLS (Label match: True). Column inserted by the deterministic post-build step scripts/postbuild.py (see validation.txt). sdrf-tools reconcile now reports every value agrees with the record."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-80",
+   "value": "6 ppm",
+   "source_ids": [
+    "mqpar_phos",
+    "mqpar_prot"
+   ],
+   "evidence": "mqpar parameter group mainSearchTol=6 (ppm) in both searches; firstSearchTol=20 ppm."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-2, 5-8, 11-14, 17-20, 23-26, 29-32, 35-38, 41-44, 47-50, 53-56, 59-80",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mqpar_phos",
+    "mqpar_prot",
+    "raw_headers"
+   ],
+   "evidence": "parameters.txt MS/MS tol. (ITMS) 0.5 Da; these runs record MS/MS in the ion trap (ITMS)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 3-4, 9-10, 15-16, 21-22, 27-28, 33-34, 39-40, 45-46, 51-52, 57-58",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqpar_phos",
+    "raw_headers"
+   ],
+   "evidence": "parameters.txt MS/MS tol. (FTMS) 20 ppm; HCD MS/MS recorded in the Orbitrap (FTMS)."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-80",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "reduced with 5 mM dithiothreitol (56 C, 25 min)."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-80",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "alkylated with 10 mM iodoacetamide (RT, 30 min, dark)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-80",
+   "value": "Carbamidomethyl UNIMOD:4 C Fixed; Oxidation UNIMOD:35 M Variable; Acetyl UNIMOD:1 Protein N-term Variable",
+   "source_ids": [
+    "mqpar_phos",
+    "mqpar_prot",
+    "ols"
+   ],
+   "evidence": "mqpar fixedModifications \"Carbamidomethyl (C)\"; variableModifications \"Oxidation (M)\", \"Acetyl (Protein N-term)\" in both searches."
+  },
+  {
+   "location": "comment[modification parameters] (4th column) rows 1-60",
+   "value": "NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable",
+   "source_ids": [
+    "mqpar_phos",
+    "ols"
+   ],
+   "evidence": "Phospho mqpar variableModifications includes \"Phospho (STY)\". Rows 61-80 (Protein Level search, which lacks it) carry not applicable in this column (rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] (5th, 6th columns) rows 1-80",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable; NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "mqpar_phos",
+    "mqpar_prot",
+    "paper",
+    "batch_rules",
+    "ols"
+   ],
+   "evidence": "mqpar heavy labels \"Arg10; Lys8\"; paper (13C6,15N4)-Arg (+10) and (13C6,15N2)-Lys (+8). MT=Variable per rule 11."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-80",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates",
+    "batch_rules"
+   ],
+   "evidence": "Rule 1: spec README.adoc:27."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-80",
+   "value": "NT=ms-proteomics;VV=v1.2.0",
+   "source_ids": [
+    "templates",
+    "batch_rules"
+   ],
+   "evidence": "Only ms-proteomics declared: no organism template covers fungi (human/vertebrates/invertebrates/plants), no cell-line template (yeast strain, not a Cellosaurus line), DDA not DIA."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-80",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "batch_rules"
+   ],
+   "evidence": "Rule 10."
+  },
+  {
+   "location": "technology type rows 1-80",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from the ms-proteomics contract."
+  }
+ ],
+ "limitations": [
+  "PRIDE references field cites the wrong paper (Ferreira SA et al., Nat Commun 2018 9:4049, PMID 30282987, a stem-cell study). The correct publication (Touati et al. EMBO J 2018, PMC5978319) was identified by Europe PMC full-text search for PXD008327 and its Data availability statement; title/accession verified in the fetched XML.",
+  "The SDRF is the concatenation of two sdrf-tools build outputs (phospho search RW7-9, 60 rows; protein-level search RW10, 20 rows) with identical headers, required because comment[modification parameters] differs per search (rule 5). Working tables: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/build/{samples,technical}-{phospho,protein}.tsv, generated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/scripts/make_tables.py; the concatenation and the insertion of the second comment[cleavage agent details] column (Lys-C) are done by the deterministic post-build step /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/scripts/postbuild.py, outside sdrf-tools build, because build emits only one column for this non-multiple contract term and silently drops a second |-separated value (tested; see validation.txt). parse_sdrf convert-openms takes only the first enzyme column (Trypsin) into openms.tsv.",
+  "Multistage activation (MSA, RW9) has no PSI-MS/PRIDE term; it is encoded as collision-induced dissociation MS:1000133, with collision energy 35 NCE distinguishing it from the plain CID runs (30 NCE). The MSA neutral-loss list (32.70/49.00/98.00) is not encodable.",
+  "Strain genotype (W303 background, GAL1-CDC20; full genotype in Table EV3, not retrieved) and the culture media (heavy: synthetic complete raffinose+galactose with heavy Arg/Lys; light: YP raffinose+galactose) are not encodable: ms-proteomics licenses neither characteristics[genotype]/[strain or breed] nor [culture medium]. They are given in the source names and report only.",
+  "characteristics[treatment] values are free text (no NCIT/EFO term for galactose-induced release from a GAL1-CDC20 metaphase arrest); parse_sdrf emits ontology warnings for both values.",
+  "Heavy reference sampling time 0 minute is the time of metaphase arrest, not a time after release (the heavy culture was never released). The two-factor encoding (sampling time x treatment) keeps it separate from the light 0-minute sample.",
+  "Technical replicate numbers 1/2/3 for the CID/HCD/MSA phospho runs follow the RW run number; the three injections differ in activation method, so they are not identical technical replicates.",
+  "The paper's repeat SILAC time-course experiment (Results; Fig EV3, 5,723 phosphosites, 2,931 overlapping the core 3,456) is not deposited in PXD008327, although the Data availability statement says \"The full mass spectrometry proteomics data obtained in this study have been deposited ... PXD008327\". Only the core experiment (CSL7326 series) is annotated; deposited Phospho (STY)Sites.txt reproduces the core count (3,452 vs 3,456).",
+  "Phospho-enriched and flow-through source names of the same timepoint denote one mixed digest (two source names per biological sample); count biological samples by timepoint, not by source name.",
+  "Label isotope notation conflicts between paper Results (13C6-Arg/13C6-Lys), Methods (13C6,15N4-Arg/13C6,15N2-Lys) and PRIDE protocol (13C10-Arg/13C8-Lys); resolved to Arg10/Lys8 by the deposited MaxQuant search (294,278 SILAC-pair MS/MS identifications).",
+  "The 10 heavy aliquots are named by the timepoint they were mixed with; no aliquot identifiers are given in the paper.",
+  "Precursor tolerance is the MaxQuant main-search value (6 ppm); MaxQuant also recalibrates and the first search used 20 ppm.",
+  "techsdrf is not installed; instrument/activation/analyzer/scan range were read from the instrument method text in the first 2 MB of every raw file instead."
+ ]
+}

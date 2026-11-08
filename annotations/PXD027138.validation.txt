@@ -1,0 +1,65 @@
+$ sdrf-tools reconcile annotations/PXD027138.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027138/pride.json --accession PXD027138
+PXD027138: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD027138.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: induced expression of RBM20 S635A in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: induced expression of RBM20 wild type in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD027138.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd scratch/convert) parse_sdrf convert-openms -s PXD027138.sdrf.tsv -t2
+PROCESSING: PXD027138.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (3): dict_keys(['untreated', 'induced expression of RBM20 S635A', 'induced expression of RBM20 wild type'])
+Files per condition: dict_values([4, 4, 4])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=1): PXD027138.sdrf.tsv
+exit code: 0
+===== ROUND 2 (added factor value[enrichment process] so Input and BioID are separate conditions) =====
+$ sdrf-tools reconcile annotations/PXD027138.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD027138/pride_v3.json --accession PXD027138
+PXD027138: 1 value(s) disagree with the deposit record:
+
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Lys-C digest but only Trypsin is declared  [missing: Lys-C]
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD027138.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: induced expression of RBM20 S635A in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: induced expression of RBM20 wild type in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD027138.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd scratch/convert) parse_sdrf convert-openms -s PXD027138.sdrf.tsv -t2
+PROCESSING: PXD027138.sdrf.tsv
+Factor columns: ['factor value[enrichment process]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (6): dict_keys(['not applicable|untreated', 'not applicable|induced expression of RBM20 S635A', 'not applicable|induced expression of RBM20 wild type', 'sample enrichment|untreated', 'sample enrichment|induced expression of RBM20 S635A', 'sample enrichment|induced expression of RBM20 wild type'])
+Files per condition: dict_values([2, 2, 2, 2, 2, 2])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=1): PXD027138.sdrf.tsv
+exit code: 0
+
+===== Notes on findings (producer) =====
+- reconcile MAJOR cleavage_agent_incomplete (missing Lys-C): TRUE for the 2 Input runs only (PRIDE protocol: "digested with LysC for 3h ... digested overnight with Trypsin"); the 2 BioID runs were digested with trypsin only ("Beads were eluted in ammonium bicarbonate and proteins were digested with trypsin"). Not encodable on the build path: the contract declares comment[cleavage agent details] single-cardinality and sdrf-tools build emits exactly one column. Trypsin (common to all runs, batch rule 2) is kept; the Lys-C pre-digest of Input is a manifest limitation. Exit code 0.
+- round-1 reconcile MINOR cleavage_agent_unsupported against the MCP-reshaped pride.json is a false positive: the raw PRIDE v3 record (pride_v3.json, used from round 2) names Trypsin in sampleProcessingProtocol.
+- parse_sdrf warnings: free-text characteristics[treatment] (no NCIT/EFO term for induced expression of an RBM20 variant); 'untreated' is the template-prescribed control value (batch rule 4). Warning-level only.
+- convert-openms "no TA= specified" x12: from PP=Protein N-term on Acetyl; benign.
+
+===== ROUND 3: WITHDRAWN =====
+The external review (PXD027138.review.md) returned FAIL with a BLOCKER: the RBM20ctl medium/heavy assignment and the Reverse map have no explicit source. The coordinator decided to block the whole dataset unless one more targeted attempt found an explicit label statement. That attempt failed:
+- MCP get_pdf_by_unpaywall 10.1101/2021.07.12.452044 -> HTTP 429
+- Europe PMC PPR368916 fullTextXML -> HTTP 500
+PXD027138.sdrf.tsv and PXD027138.evidence.json have been deleted. The rounds 1-2 results above describe the withdrawn file (sha256 de423db0...) and do not validate any current artifact. Status: BLOCKED.

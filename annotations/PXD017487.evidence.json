@@ -1,0 +1,355 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD017487.sdrf.tsv",
+ "dataset": "PXD017487",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD017487 via MCP get_project_details (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD017487/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/files_all.json; 37 entries, all asserted projectAccessions contains PXD017487; in-scope list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/files_scope.json)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "HTTP-range-read first 400 KB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD017487/20190618_CF_COLLAB_Dan_A375_SILAC_0_72_PRO_01_01.raw, ..._PRO_03_08.raw, ..._0_30_120_STY_01_01.raw (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/dl/*.raw.head); UTF-16LE string \"Q Exactive HF - Orbitrap MS\" in all three"
+  },
+  {
+   "id": "mq_parameters",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD017487/parameters.txt and parameters_phosphoproteome.txt (MaxQuant 1.6.2.6; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/dl/parameters.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/dl/parameters_phosphoproteome.txt)"
+  },
+  {
+   "id": "mq_design",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD017487/experimentalDesignTemplate.txt and experimentalDesignTemplate_phosphoproteome.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/dl/)"
+  },
+  {
+   "id": "mq_proteingroups",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD017487/proteinGroups.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/dl/proteinGroups.txt); header of proteinGroups_phosphoproteome.txt and PhosphoSTYSites.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/dl/*.head); direction check output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/labeldir_check.txt"
+  },
+  {
+   "id": "mq_summary_LT",
+   "kind": "search-output",
+   "location": "https://github.com/JoWatson2011/DGAT_2019 @ 1f9fafa392bbd9f1cd3cf52ee052cdf453e01f3b data/Proteomics/summary_LT.txt (MaxQuant summary of the 24 deposited 0_72_PRO runs: Experiment, Fraction, Multiplicity, Labels0/1, Fixed/Variable modifications, Enzyme; local clone: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/gh_DGAT/)"
+  },
+  {
+   "id": "mq_summary_ST",
+   "kind": "search-output",
+   "location": "https://github.com/JoWatson2011/DGAT_2019 @ 1f9fafa392bbd9f1cd3cf52ee052cdf453e01f3b data/Proteomics/summary_ST.txt (MaxQuant summary of the phospho search: 0_30_120_PRO x24 + STY x6, multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8; local clone: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/gh_DGAT/)"
+  },
+  {
+   "id": "analysis_code",
+   "kind": "code",
+   "location": "https://github.com/JoWatson2011/DGAT_2019 @ 1f9fafa392bbd9f1cd3cf52ee052cdf453e01f3b src/Proteomics/4_proteinGroupsLT_DJWQC.R line 89 (H/L ratio named PRO_72h), src/Proteomics/2_PhosphoSTYSites_extraction-QC.R lines 74-75 (M/L named STY_30m, H/L named STY_4h); results/Proteomics/proteinFinal_3RLT.csv"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Wilcock DJ et al. Cell Rep 2022;39(12):110995, PMID 35732120, PMC9638004, doi:10.1016/j.celrep.2022.110995; full text https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9638004/fullTextXML (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/paper.xml, flattened /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/paper.txt). STAR Methods sections: Proteomics/SILAC labelling, Sample preparation for mass spectrometry analysis, Mass spectrometry analysis, Data analysis of quantitative MS data, Compounds and antibodies, Cell lines, Key resources table; Figure 5A legend"
+  },
+  {
+   "id": "preprint",
+   "kind": "publication",
+   "location": "bioRxiv doi:10.1101/2020.06.23.166603 v1 (Europe PMC PPR179548), full 53-page PDF read; it was retrieved by the external reviewer with mcpcall get_pdf_by_unpaywall (my own call got HTTP 429), and I copied it to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/preprint/preprint.pdf (sha256 dd74e4643d9617164017f17411473adf1b89545b15c81a590bdf8270877d323e; PDF title and DOI verified). Cited: lines 229-231 (4h A922500 phospho-proteomics), lines 235-238 and Fig. 3B (pS6 loss after A922500), Fig. 3A p.49 (A375 Light = DMSO, Heavy = A922500, 4h), Fig. 6A p.52 (A375 Light = DMSO, Heavy = A922500, 72h, in-gel digestion, QE-HF, MaxQuant), line 3018 (PXD017487); text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/preprint/preprint.txt, rendered pages /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/preprint/p49-49.png, p52-52.png"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0132?format=txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/cellosaurus_CVCL_0132.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via sdrf-tools verify/ols and MCP search mode fuzzy (local log: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/verify_terms.txt)"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/spec/sdrf-proteomics/README.adoc line 27 (spec v1.1.0); bigbio/sdrf-templates commit 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested sdrf-templates copy is older. sample-metadata 1.0.0 lines 284-302 (treatment: use 'untreated' for controls)"
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "specification",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch2_rules.md (SILAC campaign batch-2 rules)"
+  },
+  {
+   "id": "mq_stysites",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD017487/PhosphoSTYSites.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/dl/PhosphoSTYSites.txt); RPS6 check output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD017487/rps6_check.txt"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-48",
+   "value": "A375_DMSO_rep1..3 (rows 1-24), A375_A922500_72h_rep1..3 (rows 25-48)",
+   "source_ids": [
+    "mq_summary_LT",
+    "analysis_code",
+    "paper"
+   ],
+   "evidence": "One source per independent SILAC culture: MaxQuant experiments PROlong_01/02/03 each mix one light and one heavy A375 population (summary_LT Experiment column; Methods: two SILAC populations mixed 1:1). Condition names from the channel map (see comment[label] claim). Fig 5A legend: DMSO n = 3, A922500 n = 3."
+  },
+  {
+   "location": "comment[data file] rows 1-48; assay name rows 1-48",
+   "value": "20190618_CF_COLLAB_Dan_A375_SILAC_0_72_PRO_0{1..3}_0{1..8}.raw",
+   "source_ids": [
+    "pride_files",
+    "mq_design",
+    "mq_summary_LT"
+   ],
+   "evidence": "24 deposited RAW files of the long-term proteome; experimentalDesignTemplate.txt lists exactly these 24 runs; each file holds both SILAC channels -> 2 rows per file."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-48",
+   "value": "1-8",
+   "source_ids": [
+    "mq_summary_LT",
+    "paper",
+    "pride"
+   ],
+   "evidence": "summary_LT.txt Fraction = 1..8 matching file suffix _01.._08; Methods: each gel lane cut into eight segments; PRIDE protocol: in-gel digestion, 8 fractions."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-48",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Methods: lysates resolved on SDS-PAGE (8-12%), lane cut into eight segments, in-gel digested. Accession verified in OLS."
+  },
+  {
+   "location": "comment[label] rows 1-48",
+   "value": "SILAC light (rows 1-24) / SILAC heavy (rows 25-48)",
+   "source_ids": [
+    "mq_summary_LT",
+    "paper",
+    "analysis_code",
+    "mq_proteingroups"
+   ],
+   "evidence": "summary_LT Multiplicity 2, Labels0 empty (light), Labels1 Arg10;Lys8 (heavy). Methods SILAC labelling: light Lys0/Arg0 and heavy Lys8/Arg10, two populations."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-48; factor value[treatment] rows 1-48",
+   "value": "untreated (light, rows 1-24) / A922500 (heavy, rows 25-48)",
+   "source_ids": [
+    "preprint",
+    "analysis_code",
+    "paper",
+    "pride",
+    "mq_proteingroups",
+    "spec",
+    "campaign_rules"
+   ],
+   "evidence": "Explicit channel map: bioRxiv preprint Fig. 6A (p.52) shows the A375 whole-proteome workflow as Light = DMSO, Heavy = A922500, 72h, then in-gel digestion, QE-HF and MaxQuant. This is the workflow the Cell Rep Fig. 5A legend references (\"DMSO n = 3, A922500 n = 3\", 114 up-regulated proteins with NRF2/FAO/PPAR themes). Supporting sources: the authors' code names the H/L ratio of these experiments PRO_72h (4_proteinGroupsLT_DJWQC.R:89), the file names encode 0_72, and the PRIDE keywords name A922500 (spelled a229500) and A375. Data check (labeldir_check.txt) on H/L:\n- HMOX1 4.7-5.8, NQO1 1.4, SQSTM1 1.7-1.9 and SOD2 1.2-1.3 up;\n- CPT1A, ACADVL and ACSL1 1.2-1.5 up;\n- PLIN2 0.51-0.54 down (lipid-droplet loss);\n- median log2 H/L about 0;\n- 111 proteins with mean ratio >1.5 in the authors' table, against 114 in the paper.\nThis confirms heavy = A922500. The control (DMSO vehicle) is written as untreated per the template example and campaign rule 4. A922500 has no NCIT/EFO term (OLS 0 hits), so it is free text. The concentration (30 uM, paper Compounds section) is not encoded."
+  },
+  {
+   "location": "characteristics[sampling time] rows 25-48",
+   "value": "72 hour",
+   "source_ids": [
+    "preprint",
+    "analysis_code",
+    "pride_files",
+    "paper"
+   ],
+   "evidence": "Heavy rows: 72 hour (preprint Fig. 6A \"72h\"; file names 0_72; code label PRO_72h; PRIDE title \"long-term proteome\"; the paper's lipidomics design also uses A375 72 h A922500). Light rows (1-24) are deliberately not available. Fig. 6A draws a single 72h arrow after both dishes, which suggests a 72 h DMSO exposure, but no text states the vehicle duration. The \"0\" in the file names is a time-point label, not a stated duration. So no specific value is asserted."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-48",
+   "value": "1,2,3 within each treatment group",
+   "source_ids": [
+    "mq_summary_LT",
+    "paper",
+    "campaign_rules"
+   ],
+   "evidence": "PROlong_01..03 = three independent SILAC mixes; numbering restarts per factor group and each culture gets a unique number within its group (rule 3)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-48",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-48; characteristics[cellosaurus accession] rows 1-48; characteristics[cellosaurus name] rows 1-48",
+   "value": "A375 / CVCL_0132 / A-375",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Methods: A375 cells SILAC-labelled; Key resources: A375 ATCC CRL-1619 (parental, Cellosaurus ST ATCC=CRL-1619); file names A375. EFO:0002103 label A375 verified; Cellosaurus ID A-375, AC CVCL_0132."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-48",
+   "value": "skin of leg",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: Derived from site: In situ; Leg, skin; UBERON=UBERON_0001511 (OLS label skin of leg)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-48",
+   "value": "amelanotic melanoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3802 Amelanotic melanoma; MONDO:0002971 amelanotic melanoma in OLS."
+  },
+  {
+   "location": "characteristics[material type] rows 1-48",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured A375 cell line."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-48",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CC Population: Caucasian -> HANCESTRO:0005 European ancestry (OLS verified)."
+  },
+  {
+   "location": "characteristics[age] rows 1-48; characteristics[sex] rows 1-48; characteristics[developmental stage] rows 1-48",
+   "value": "54Y / female / adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 54Y, SX Female; 54Y >= 20Y -> adult (EFO:0001272)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-48",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods SILAC labelling: A375 cells labelled in SILAC DMEM with 10% dialyzed FBS for 15 days; Cell lines: melanoma lines cultured in high-glucose DMEM. NCIT:C185409. Key resources also list RPMI 1640 Medium for SILAC (Thermo 88365); the A375-specific Methods text says DMEM and was preferred."
+  },
+  {
+   "location": "comment[instrument] rows 1-48",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_headers",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "RAW headers: Q Exactive HF - Orbitrap MS; paper QE HF; PRIDE Q Exactive HF."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-48",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: data dependent analysis, top 12 for proteome."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-48; comment[collision energy] rows 1-48; comment[ms2 mass analyzer] rows 1-48",
+   "value": "HCD (MS:1000422) / 28 NCE / orbitrap (MS:1000484)",
+   "source_ids": [
+    "paper",
+    "mq_parameters",
+    "ols"
+   ],
+   "evidence": "Methods: HCD-MS/MS peak lists, MS2 resolution 30,000 (Orbitrap), collision energy of 28 (QE HF normalized collision energy); parameters.txt uses FTMS MS/MS tolerance."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-48",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_summary_LT",
+    "campaign_rules"
+   ],
+   "evidence": "Methods: in-gel digestion with sequence-grade trypsin (Sigma). MaxQuant search rule Trypsin/P (summary_LT Enzyme), recorded as note only (rule 2)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-48",
+   "value": "7 ppm",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: mass tolerance of 7 ppm on precursor masses. Not re-derivable from deposit (no mqpar.xml deposited; parameters.txt lacks group tolerances)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-48",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_parameters",
+    "paper"
+   ],
+   "evidence": "parameters.txt MS/MS tol. (FTMS) 20 ppm; Methods 0.02 Da or 20 ppm."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-48; comment[alkylation reagent] rows 1-48",
+   "value": "DTT (PRIDE:0000608) / chloroacetamide (PRIDE:0000600)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: reduced with DTT and alkylated with CAA before SDS-PAGE."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-48",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Deamidated N,Q, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mq_summary_LT",
+    "mq_parameters",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "summary_LT: Fixed Carbamidomethyl (C); Variable Oxidation (M);Acetyl (Protein N-term);Deamidation (NQ); Labels1 Arg10;Lys8. parameters.txt: mods in protein quantification Oxidation (M);Acetyl (Protein N-term);Deamidation (NQ). SILAC labels as MT=Variable per rule 11; UNIMOD 267 (+10.008 R) and 259 (+8.014 K) from the stated mass shifts."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-48; comment[sdrf template] rows 1-48; comment[sdrf annotation tool] rows 1-48",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "spec",
+    "campaign_rules"
+   ],
+   "evidence": "Spec README.adoc line 27 v1.1.0; upstream templates.yaml line 150 ms-proteomics latest 1.2.0; annotation tool per campaign rule 10."
+  },
+  {
+   "location": "technology type rows 1-48; comment[technical replicate] rows 1-48",
+   "value": "proteomic profiling by mass spectrometry; 1",
+   "source_ids": [
+    "paper",
+    "mq_summary_LT"
+   ],
+   "evidence": "MS proteomics; each fraction injected once (one raw file per fraction per experiment)."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: the 6 phosphoproteome RAW files (20190618_CF_COLLAB_Dan_A375_SILAC_0_30_120_STY_01_01/_01_02/_02_01/_02_02/_03_01/_03_02.raw) are NOT annotated (rule 7). The preprint WAS read: lines 229-231 say \"4h treatment with A922500\", and Fig. 3A shows A375 Light = DMSO, Heavy = A922500, 4h, so the agent is known. Three real blockers remain:\n(1) The deposit is triple SILAC (summary_ST Multiplicity 3, M = Arg6;Lys4), but no text or figure documents the medium channel; it appears only in the code name STY_30m.\n(2) The file names say 0_30_120 (heavy = 120 min), which conflicts with the 4h stated in the preprint text, Fig. 3A and the code (STY_4h).\n(3) The stated map fails the rule-6 data check. RPS6 S235/S236 H/L normalized is 1.42-1.55 / 2.02-2.29 (up) in all 3 experiments (rps6_check.txt), while the preprint reports loss of pS6 within 2-4 h of A922500 (lines 235-238, Fig. 3B).\nUnblocked by: author confirmation of the medium channel and the label orientation. See annotations/BLOCKED.md.",
+  "The 24 short-term proteome runs (20190618_CF_COLLAB_Dan_A375_SILAC_0_30_120_PRO_0[1-3]_0[1-8]) were searched together with the phospho runs (experimentalDesignTemplate_phosphoproteome.txt, summary_ST.txt) but are not deposited in PRIDE; nothing to annotate.",
+  "Precursor mass tolerance 7 ppm is from paper prose only; no mqpar.xml was deposited. The paper also states MaxQuant 1.5.6.5 while the deposited parameters.txt says 1.6.2.6 (deposit preferred; version not encoded in the SDRF).",
+  "DMSO-vehicle exposure duration for the light channel is not stated -> characteristics[sampling time] not available on rows 1-24.",
+  "A922500 has no NCIT/EFO term; written as free text (parser warning). Dose 30 uM (paper Compounds section, general statement) not encoded.",
+  "Label-direction cross-check: NRF2/FAO markers and PLIN2 behave as expected for heavy=A922500, but SESN2 (H/L 0.84-1.04) and SOD1 (1.02-1.16) are not clearly up in this proteome although the paper reports their induction by western blot in Figure S6B (different experiment); not treated as contradicting the map.",
+  "techsdrf not installed; instrument verified by HTTP-range reading RAW headers instead. parse_sdrf exit 0 proves well-formedness only.",
+  "GitHub analysis repository read via anonymous git clone of a public repo (commit 1f9fafa); add_repo was not used.",
+  "cell type, individual, passage number and sample storage temperature are not stated -> not available."
+ ]
+}

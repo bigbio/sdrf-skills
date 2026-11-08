@@ -1,0 +1,78 @@
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD006676.sdrf.tsv --record evidence/pride.json --accession PXD006676
+PXD006676: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD006676.sdrf.tsv -t ms-proteomics -t invertebrates
+WARNING: Term: N2 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD006676.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD006676.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD006676.sdrf.tsv
+Factor columns: ['factor value[developmental stage]', 'factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[strain or breed]']
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+    OpenMS().openms_convert(sdrf, onetable, legacy, verbose, conditionsfromcolumns, extension_convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+    self._process_tolerances(row, f2c, raw)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not available
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD006676.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD006676.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD006676.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD006676.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit code: 0
+
+## Notes on the results above (producer, round 1 — the only round; no errors to fix)
+- reconcile: exit 0, no findings.
+- parse_sdrf validate-sdrf (ms-proteomics + invertebrates, full ontology): exit 0, one WARNING:
+  "N2 in column 'characteristics[strain or breed]' not found in ncbitaxon". Justified: the column is
+  free text in the resolved contract (`sdrf-tools contract -t ms-proteomics -t invertebrates`:
+  "characteristics[strain or breed] [req] bare value ... <- free text"); N2 is the canonical C. elegans
+  wild-type strain name, also used in curated datasets/PXD001364.
+- convert-openms: exit 1 "Cannot read precursor mass tolerance: not available". Expected and kept
+  (references/validation.md "Readable tolerances"): the precursor tolerance is not recorded in any
+  deposited file (no mqpar.xml / andromeda .apar; MaxQuant 1.5.1.2 parameters.txt lacks it;
+  `sdrf-tools search-params` on parameters.txt and summary.txt yields no precursor tolerance).
+  The file cannot be converted for quantms as is; a MaxQuant default was not assumed.
+- Instrument check: all 12 raw headers range-read (Q Exactive, original paths match MaxQuant raw names).

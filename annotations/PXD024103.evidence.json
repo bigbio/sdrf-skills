@@ -1,0 +1,393 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD024103.sdrf.tsv",
+ "dataset": "PXD024103",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD024103 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/pride.json)"
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD024103/files/all (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/files_all.json; 52 entries, all asserted to carry PXD024103; 48 .raw)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Lohraseb I et al. Nat Commun 2022;13:2018, PMID 35440627, PMC9018756, doi:10.1038/s41467-022-29660-3 (NCBI efetch db=pmc id=9018756, title verified; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/paper.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/paper_f.txt)"
+  },
+  {
+   "id": "mq_ub",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD024103/Ub_enrich_txt.zip members txt/parameters.txt, txt/summary.txt, txt/GlyGly (K)Sites.txt (HTTP range-read; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/ub/)"
+  },
+  {
+   "id": "mq_total",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD024103/Total_txt.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (HTTP range-read; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/tot/)"
+  },
+  {
+   "id": "design_ub",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD024103/Ub_enrich_experimentalDesignTemplate.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/Ub_enrich_experimentalDesignTemplate.txt)"
+  },
+  {
+   "id": "design_total",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD024103/Total_experimentalDesignTemplate.txt (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/Total_experimentalDesignTemplate.txt)"
+  },
+  {
+   "id": "raw_headers",
+   "kind": "raw-file",
+   "location": "first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD024103/OK20130809_PMSILACUb_P1.raw, OK20130818_PMSILACTotalS_P1.raw, PM20131206_Total_1uL1.raw, PM20131210_Ub_3uL1.raw (HTTP range, UTF-16LE decoded; local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/rawhdr/)"
+  },
+  {
+   "id": "ratio_check",
+   "kind": "analysis",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD024103/ratios.py run on mq_ub GlyGly (K)Sites.txt and mq_total proteinGroups.txt"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools ols --exact / sdrf-tools verify, 2026-11-08)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=NCU10K (and NCU-10K, 'NCU 10K'): 0 hits; sdrf-tools cellline lookup NCU10K: not found"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), lines 27-28 (cell-lines 1.1.0), 210-211 (vertebrates 1.1.0); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. The spec submodule's nested templates copy is older. sdrf version v1.1.0 from spec README.adoc:27"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-96",
+   "value": "NCU10K_<siNedd4|siControl>_rep<1-3>_<KGG-enriched|total>",
+   "source_ids": [
+    "paper",
+    "pride",
+    "design_ub",
+    "design_total",
+    "raw_headers"
+   ],
+   "evidence": "One source per (SILAC state x preparation series x arm). State: paper Methods '5 mg K8R10 Nedd4 siRNA and 5 mg K0R0 control siRNA'. Series: OK20130809 = MaxQuant Total 'Rep1' / Ub 'Exp2'; OK20130818 = Total 'Rep2' / Ub 'Exp3'; PM2013 = Ub 'Exp1' (PM20131210_Ub_3uL, raw folder OK20131217_PeterUb) and PM20131206_Total_1uL (raw folder OK20131206_PMNedd4Total_1uL, never searched). Arm suffix keeps the (source, bio rep, tech rep, fraction) coordinate unique: total and K-eps-GG material of one series are the 50 uL pre-enrichment aliquot and the enriched remainder of the same fractions (paper Methods). Linking PM20131206_Total to the PM20131210_Ub series is inferred from operator prefix/folder name/date."
+  },
+  {
+   "location": "comment[data file] rows 1-96; assay name rows 1-96",
+   "value": "48 deposited .raw files x 2 SILAC channels",
+   "source_ids": [
+    "pride_files"
+   ],
+   "evidence": "files/all lists 48 RAW + 2 MaxQuant txt zips + 2 experimentalDesignTemplate.txt; every RAW is annotated (8 fractions x 6 series)."
+  },
+  {
+   "location": "comment[label] rows 1-96",
+   "value": "SILAC heavy (odd source rows: siNedd4) / SILAC light (siControl)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_ub",
+    "mq_total",
+    "ratio_check",
+    "ols"
+   ],
+   "evidence": "Explicit label statement: paper Methods and PRIDE protocol '5 mg K8R10 Nedd4 siRNA and 5 mg K0R0 control siRNA'; Fig. 1a legend 'low GC (control, light - red) or Nedd4 (heavy, green) siRNA'. summary.txt Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8. Data check (rule 6): NEDD4 protein normalized H/L 0.28 (Rep1) and 0.18 (Rep2) in Total proteinGroups; NEDD4 K-GG sites H/L 0.04-0.30 in Ub Exp1, Exp2 and Exp3; ubiquitin K48 (0.36/0.35) and K63 (0.32/0.38/0.44) linkage peptides reduced, matching paper Fig. 2e. Heavy = Nedd4 knockdown in every searched experiment, no label swap. PRIDE:0000325/PRIDE:0000326 verified in OLS."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-96; factor value[treatment] rows 1-96",
+   "value": "Nedd4 siRNA (heavy rows) / low GC control siRNA (light rows)",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "PRIDE protocol: 'Nedd4 Stealth siRNA or low GC control siRNA for 48hrs before harvesting'; paper Fig. 1a legend. Free text: no NCIT/EFO term for these siRNAs (validator warning accepted). Control kept as 'low GC control siRNA' rather than 'untreated' because the control cells were transfected with a control siRNA."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-96",
+   "value": "48 hour",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'treated for 48 h with previously validated control and Nedd4 siRNAs'; PRIDE '48hrs before harvesting'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-96",
+   "value": "1 (OK20130809 series), 2 (OK20130818 series), 3 (PM2013 series), numbered within each treatment group",
+   "source_ids": [
+    "design_total",
+    "design_ub",
+    "mq_ub",
+    "ratio_check",
+    "paper"
+   ],
+   "evidence": "Total search defines OK20130809 as Rep1 and OK20130818 as Rep2 (paper: two biological replicates). The Ub search defines a third experiment (Exp1 = PM20131210_Ub_3uL1-8). Its K-GG site log2 H/L correlates with Exp2 and Exp3 at r=0.79/0.81, the same as Exp2 vs Exp3 (r=0.81); a re-injection of either would correlate far higher, so it is treated as a separate preparation (3). Paper text reports only two biological replicates: conflict recorded in limitations."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-96",
+   "value": "1-8 from file suffix _P<n> / _3uL<n> / _1uL<n>",
+   "source_ids": [
+    "design_ub",
+    "design_total",
+    "paper"
+   ],
+   "evidence": "Design templates give Fraction = suffix number for every listed file; paper: 80 bRP fractions pooled into 8. PM20131206_Total_1uL<n> is not in any design template; fraction = suffix inferred by analogy."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-96",
+   "value": "1",
+   "source_ids": [
+    "design_ub",
+    "design_total"
+   ],
+   "evidence": "Each fraction of each series injected once in the deposit."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-48",
+   "value": "sample enrichment",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "PTMScan ubiquitin remnant motif (K-eps-GG) antibody enrichment of each fraction. No more specific child of EFO:0009090 exists for ubiquitin-remnant enrichment (descendants listed via OLS); EFO:0009106 'sample enrichment' verified. Rows 49-96 (pre-enrichment 'total') are not applicable."
+  },
+  {
+   "location": "characteristics[organism] rows 1-96",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Mouse NCU10K cells; searched against mouse UniProtKB. NCBITaxon:10090."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-96",
+   "value": "NCU10K",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "'The immortalized neural crest cell line NCU10K was obtained from Perry Bartlett'. Not in Cellosaurus, CLO, BTO or EFO -> free text (validator warning accepted); cellosaurus accession/name not available."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-96",
+   "value": "neural crest cell",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Stated: 'immortalized neural crest cell line'. CL:0011012 (definition 'A cell of the neural crest') verified; CL:0000333 is not this term."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-96",
+   "value": "neural crest",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE organismParts lists Neural crest (UBERON:0002342) alongside 'cell culture'; neural crest cell line. UBERON:0002342 verified."
+  },
+  {
+   "location": "characteristics[disease] rows 1-96",
+   "value": "normal",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Immortalized non-tumour neural crest line; no disease stated. PATO:0000461."
+  },
+  {
+   "location": "characteristics[material type] rows 1-96",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured NCU10K cell line."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-96",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "'DMEM minus arginine and lysine (A33822)' with K8/R10 or K0/R0 and 10% dialysed FCS. NCIT:C185409 verified."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-96; comment[sdrf template] rows 1-96",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0, NT=vertebrates;VV=v1.1.0, NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rule 1; templates: MS proteomics, mouse (vertebrates), cell line."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-96",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rule 10."
+  },
+  {
+   "location": "comment[instrument] rows 1-96",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw_headers",
+    "mq_ub",
+    "mq_total",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Raw headers of one file from each of the 4 run series name 'Q Exactive' (no Plus/HF); summary.txt Instrument = Q Exactive for all searched runs; PRIDE and paper agree."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-96",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "pride",
+    "raw_headers"
+   ],
+   "evidence": "'operated in the data-dependent mode ... 12 most intense multiply charged ions'; method names *_12N_* (top 12) in raw headers."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-96",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "HCD, NCE 27%."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-96",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "mq_ub",
+    "mq_total"
+   ],
+   "evidence": "MS/MS at 17,500 resolution in the Orbitrap; MaxQuant FTMS MS/MS tolerance used."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-96",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_ub",
+    "mq_total"
+   ],
+   "evidence": "Digested with trypsin-TPCK (Worthington). Batch rule 2: digestion enzyme. MaxQuant search rule was Trypsin/P, max 2 missed cleavages (manifest note only)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-96",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Off-line basic RP (pH 10, Zorbax Extend-C18), 80 fractions pooled non-contiguously into 8; enrichment done per fraction."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-96",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'reduced with dithiothreitol (4.5 mM final)'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-96",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "'carbamidomethylated with iodoacetamide (10 mM final)' (PRIDE text omits the reagent name)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-80",
+   "value": "6 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'20 ppm for the first search ... and 6 ppm for the main search' (MaxQuant 1.3.0.5 parameters.txt does not print it). Rows 81-96 not applicable: PM20131206_Total_1uL1-8 are in neither deposited search (Total summary.txt lists OK20130809_PMSILACTotal/TotalS and OK20130818_PMSILACTotalS only)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-80",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_ub",
+    "mq_total"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm'. Rows 81-96 not applicable (never searched)."
+  },
+  {
+   "location": "comment[modification parameters] (1st) rows 1-96",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "mq_ub",
+    "mq_total",
+    "paper"
+   ],
+   "evidence": "parameters.txt 'Fixed modifications Carbamidomethyl (C)' in both searches; on unsearched rows 81-96 kept as a chemical fact (IAA alkylation stated in Methods)."
+  },
+  {
+   "location": "comment[modification parameters] (2nd, 3rd) rows 1-80",
+   "value": "Oxidation M Variable; Acetyl PP=Protein N-term Variable",
+   "source_ids": [
+    "mq_ub",
+    "mq_total"
+   ],
+   "evidence": "summary.txt Variable modifications 'Oxidation (M);Acetyl (Protein N-term)[;GlyGly (K)]'. not applicable on rows 81-96 (search choices; those runs were never searched)."
+  },
+  {
+   "location": "comment[modification parameters] (4th) rows 1-48",
+   "value": "NT=GG;AC=UNIMOD:121;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_ub",
+    "ols"
+   ],
+   "evidence": "Ub search variable 'GlyGly (K)' on all 24 enriched runs; Total search has no GlyGly -> not applicable on rows 49-96."
+  },
+  {
+   "location": "comment[modification parameters] (5th, 6th) rows 1-96",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable; NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_ub",
+    "mq_total",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt Labels1 'Arg10;Lys8'; paper: L-Lysine-13C6 15N2 (K8, 89988) and L-Arginine-13C6 15N4 (R10, 88433). Arg10 = +10.008 = UNIMOD:267, Lys8 = +8.014 = UNIMOD:259 (batch rule 11, MT=Variable). Kept on unsearched rows 81-96 as stated labelling chemistry."
+  }
+ ],
+ "limitations": [
+  "Paper reports TWO biological replicates (Results; Fig. 1b, 2a), but the deposit holds THREE run series per arm. The Ub MaxQuant search treats PM20131210_Ub_3uL1-8 as a third experiment (Exp1); it correlates with the other two no better than they do with each other (r 0.79/0.81 vs 0.81), so it is annotated as biological replicate 3. Whether it is an independent culture or a second preparation from a replicate-1/2 lysate is not stated anywhere.",
+  "PM20131206_Total_1uL1-8 (8 runs, rows 81-96) are in neither deposited MaxQuant search nor the Total experimentalDesignTemplate. Their label map rests on the generic protocol statement (all SILAC mixes = K8R10 Nedd4 siRNA + K0R0 control siRNA) and cannot be data-checked; their pairing with the PM20131210_Ub series (biological replicate 3) is inferred from operator prefix, raw-folder name 'OK20131206_PMNedd4Total_1uL' and date. Tolerances not applicable (batch rule 5), which makes parse_sdrf convert-openms fail on the full file (it succeeds on rows 1-80).",
+  "Modification columns on the unsearched rows 81-96: Carbamidomethyl and the Arg10/Lys8 labels are kept (stated sample chemistry); Oxidation, Acetyl and GG (search choices) are not applicable.",
+  "The deposited Total search also contains OK20130809_PMSILACTotal_P1-8 (non-'S' runs, pooled with TotalS as Rep1) which were NOT deposited; they are not annotated.",
+  "Paper numbers (e.g. 4988 total protein groups observed, 4381 quantified, 4015 Ub sites) exceed the deposited searches (4147 / 3609 protein groups; 3294 quantified non-contaminant Ub sites over three experiments), so the published tables likely came from a search that is not deposited.",
+  "NCU10K is absent from Cellosaurus/CLO/BTO/EFO: cellosaurus accession/name not available; developmental stage, strain, sex and passage number of the line are not stated in the paper or the cited origin paper abstract (PMID 24080509) -> not available.",
+  "Precursor tolerance (6 ppm main search) comes from paper/PRIDE prose; MaxQuant 1.3.0.5 parameters.txt does not record it and no mqpar.xml was deposited.",
+  "MaxQuant search enzyme rule was Trypsin/P with 2 missed cleavages; SDRF carries the digestion enzyme Trypsin (batch rule 2).",
+  "K-eps-GG enrichment has no specific ontology term; 'sample enrichment' (EFO:0009106) used.",
+  "Sample storage temperature not stated -> not available.",
+  "techsdrf not installed; raw verification limited to UTF-16 header strings of 4 files (one per run series).",
+  "sdrf-tools fetch not used (Europe PMC fullTextXML HTTP 500); paper obtained via NCBI efetch (numeric PMC id, title verified).",
+  "Treatment values are free text (no NCIT/EFO term for these siRNAs); parse_sdrf warns. Control encoded as 'low GC control siRNA', not 'untreated' (batch rule 4 forbids not applicable; the controls were transfected with a control siRNA, so 'untreated' would misstate them)."
+ ]
+}

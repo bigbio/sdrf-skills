@@ -1,0 +1,55 @@
+# PXD008327 validation — round 2 (after review round 1 FAIL: F1 Lys-C, F2 manifest, M1 sample type, M2 manifest note) (2026-11-08T13:02:49Z); sha256 16da06812f15ad6512348c5845efbf54d2a3081a9f0009d84563a7ee9f7e7df0
+# Round 1 (sha256 ddb1c84c…) passed validate-sdrf (exit 0, 2 warnings), structure, convert-openms; reconcile flagged cleavage_agent_incomplete. That refutation is WITHDRAWN: the review showed it was wrong (F1).
+# Build procedure:
+#  1. scripts/make_tables.py writes build/{samples,technical}-{phospho,protein}.tsv (samples now carry characteristics[sample type]).
+#  2. sdrf-tools build -t ms-proteomics, run once per part (60 + 20 rows, identical headers; rule 5).
+#  3. Post-build step scripts/postbuild.py (deterministic). It concatenates the two parts and inserts a second
+#     comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 directly after the Trypsin column on all 80 rows.
+#     Why: comment[cleavage agent details] is not 'multiple' in the ms-proteomics contract, so build emits ONE
+#     column. Tested: technical.tsv value 'NT=Trypsin;AC=MS:1001251|NT=Lys-C;AC=MS:1001309' gave 39 columns
+#     and 0 Lys-C cells; build silently drops the second value. Same behaviour PXD004245 reported in batch 1.
+#     postbuild.py asserts identical part headers, exactly one existing cleavage column = Trypsin on every row,
+#     and that deleting the inserted column restores the concatenation exactly.
+#  4. Check against the round-1 SDRF: dropping the new columns 2 (characteristics[sample type]) and 22 (Lys-C)
+#     gives back the round-1 file (sha256 ddb1c84c…) cell for cell: True. Nothing else changed.
+$ sdrf-tools reconcile annotations/PXD008327.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD008327/evidence/pride.json --accession PXD008327
+PXD008327: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD008327.sdrf.tsv -t ms-proteomics
+WARNING: Term: galactose re-addition (CDC20 re-induction, release from metaphase arrest) in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD008327.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd scratch/convert) parse_sdrf convert-openms -s PXD008327.sdrf.tsv -t2
+PROCESSING: PXD008327.sdrf.tsv
+Factor columns: ['factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]']
+Conditions (11): dict_keys(['0 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '0 minute|untreated', '5 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '10 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '15 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '20 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '25 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '30 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '35 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '40 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)', '45 minute|galactose re-addition (CDC20 re-induction, release from metaphase arrest)'])
+Files per condition: dict_values([4, 40, 4, 4, 4, 4, 4, 4, 4, 4, 4])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 80 times.
+SUCCESS (WARNINGS=1): PXD008327.sdrf.tsv
+exit code: 0
+
+# Disposition (round 2)
+# - reconcile: exit 0, no findings (Lys-C now declared). The round-1 refutation is withdrawn.
+# - parse_sdrf WARNING characteristics[treatment] free text / 'untreated' not in NCIT/EFO: accepted. 'untreated' is the
+#   campaign-prescribed control value (rule 4). No NCIT/EFO term exists for galactose-induced release from GAL1-CDC20
+#   arrest (OLS NCIT 'untreated' hits are tumour-stage terms only). Template error_level for this column is warning.
+# - convert-openms 'no TA= specified' x80: comes from the Acetyl PP=Protein N-term modification (correct per format
+#   rules). Conversion SUCCESS, 11 conditions. openms.tsv Enzyme = Trypsin: the converter reads only the first
+#   cleavage column.
+# - characteristics[sample type] (study sample PRIDE:0001013 / reference PRIDE:0000899, both descendants of
+#   PRIDE:0000895, checked live in OLS) validated with no error.
+$ sdrf-tools schema-check annotations/PXD008327.evidence.json
+annotations/PXD008327.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage annotations/PXD008327.sdrf.tsv annotations/PXD008327.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit code: 0
+# final sha256 16da06812f15ad6512348c5845efbf54d2a3081a9f0009d84563a7ee9f7e7df0

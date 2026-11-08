@@ -1,0 +1,142 @@
+# PXD014436 validation log — round 1 (2026-11-08T12:45:53Z)
+sha256 f1e794dff046a7afe16edce69e02e1c1a9df02f22f24b1d415086c326e415234
+
+$ sdrf-tools reconcile PXD014436.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/pride.json --accession PXD014436
+PXD014436: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD014436.sdrf.tsv -t ms-proteomics -t clinical-metadata
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure PXD014436.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (in scratch/openms) parse_sdrf convert-openms -s PXD014436.sdrf.tsv -t2
+PROCESSING: PXD014436.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]']
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+    OpenMS().openms_convert(sdrf, onetable, legacy, verbose, conditionsfromcolumns, extension_convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+    self._process_tolerances(row, f2c, raw)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not available
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+PXD014436.sdrf.tsv
+
+$ sdrf-tools search-params (each of the 11 deposited MaxQuant searches; precursor tolerance line only)
+lepA_2plex1 (mqpar.xml): comment[precursor mass tolerance]	0.006 Da
+lepA_2plex2 (parameters.txt): no precursor tolerance recorded
+lepA_3plex1 (parameters.txt): no precursor tolerance recorded
+lepA_3plex2 (parameters.txt): no precursor tolerance recorded
+lepA_3plex3 (parameters.txt): no precursor tolerance recorded
+rsgA_2plex1 (parameters.txt): no precursor tolerance recorded
+rsgA_2plex2 (parameters.txt): no precursor tolerance recorded
+rsgA_3plex1 (parameters.txt): no precursor tolerance recorded
+rsgA_3plex2 (mqpar.xml): comment[precursor mass tolerance]	10 ppm
+rsgA_3plex3 (mqpar.xml): comment[precursor mass tolerance]	10 ppm
+rsgA_3plex4 (mqpar.xml): comment[precursor mass tolerance]	10 ppm
+exit code: 0
+
+## Notes on the findings above (round 1; no fix round needed)
+- reconcile MINOR cleavage_agent_unsupported — refuted: the PRIDE record defers all protocol text to the paper
+  (PMID 28096346), whose SI Methods say only that bands were "digested out of the gel as described" (ref. Chan et al. 2006);
+  every one of the 11 deposited MaxQuant searches (summary.txt 'Enzyme' column, mqpar.xml <enzymes>) used
+  Trypsin/P. Per batch rule 2 the SDRF records the digestion enzyme as Trypsin (MS:1001251); the Trypsin/P search
+  rule is recorded in the manifest. reconcile exits 0.
+- validate-sdrf: exit 0, no errors, no warnings (full ontology pass, union ms-proteomics v1.2.0 + clinical-metadata v1.0.0).
+  parse_sdrf does not check column licensing: characteristics[genotype] is licensed by clinical-metadata (resolved template).
+- convert-openms: FAILS on comment[precursor mass tolerance] = 'not available' (297 of 448 rows; round-1 note originally said 316, corrected per review finding 3). Per
+  references/validation.md the value was looked for in every deposited search output (search-params above):
+  only 4 of 11 searches deposited mqpar.xml (lepA_2plex1: 0.006 Da; rsgA_3plex2/3/4: 10 ppm); parameters.txt
+  and summary.txt of the other 7 do not record it, and the two recorded values differ, so no value is
+  asserted for the 7 searches. The file cannot be converted for quantms as is; this is a known, reported limitation.
+- comment[fraction identifier] was set after build by tools/assemble.py (scratch) from run_fraction.tsv (MaxQuant
+  'Experiment' cross-checked against the run name); the script asserts no other cell changed and that the
+  (source, biological replicate, technical replicate, fraction, label) coordinate stays unique.
+$ sdrf-tools schema-check PXD014436.evidence.json
+PXD014436.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD014436.sdrf.tsv PXD014436.evidence.json
+Manifest covers every column with a value (17 column(s)).
+exit code: 0
+
+
+==================================================================
+# Round 2 — fixes for external review round 1 (PXD014436.review.md: FAIL, findings 1-3) (2026-11-08T13:02:00Z)
+# changes: clinical-metadata template dropped (genotype kept as custom column); sucrose-gradient fraction modelled as characteristics[sucrose gradient fraction] + factor value; one source per search x strain x gradient fraction; comment[fraction identifier]=1 everywhere (from build; no post-build cell edit)
+sha256 710009a8b61ee5b1080ae1adb265f67149934d77c88a7115b220de41e3914ee2
+
+$ (scratch) python3 -I tools/assemble.py build_2plex.sdrf.tsv build_3plex.sdrf.tsv files.json annotations/PXD014436.sdrf.tsv  # pure concatenation, batch rule 5
+wrote /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/concat_check.tsv: 448 rows x 36 cols; 437 sources; keys unique
+output byte-identical to header + build_2plex rows + build_3plex rows
+exit code: 0
+
+$ sdrf-tools reconcile PXD014436.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/pride.json --accession PXD014436
+PXD014436: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD014436.sdrf.tsv -t ms-proteomics
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure PXD014436.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (in scratch/openms) parse_sdrf convert-openms -s PXD014436.sdrf.tsv -t2
+PROCESSING: PXD014436.sdrf.tsv
+Factor columns: ['factor value[genotype]', 'factor value[sucrose gradient fraction]']
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not available
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1 (traceback trimmed; same precursor-tolerance error as round 1)
+$ sdrf-tools schema-check PXD014436.evidence.json
+PXD014436.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD014436.sdrf.tsv PXD014436.evidence.json
+Manifest covers every column with a value (19 column(s)).
+exit code: 0
+
+(manifest regenerated after a source-location wording fix; checks re-run: schema-check exit 0, manifest-coverage exit 0)

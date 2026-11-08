@@ -1,0 +1,646 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD046891.sdrf.tsv",
+ "dataset": "PXD046891",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD046891 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD046891/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/evidence/files_all.json; 13 files = 8 RAW + MQ_evidence.txt, MQ_peptides.txt, results_table_peptidePRISM.txt, MaMel51_peptide_db.fasta, sample_overview.xlsx; every entry's projectAccessions contains PXD046891)"
+  },
+  {
+   "id": "sample_overview",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD046891/sample_overview.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/dl/sample_overview.xlsx): columns condition | time [h] | sample name | Raw data"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Wohlfarth J et al., Mol Oncol 2024 18(10):2449-2470, PMID 38807304, PMC11459041, doi:10.1002/1878-0261.13660; Europe PMC fullTextXML (title verified), local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/paper.xml and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/paper.txt; Methods 2.1, 2.2, 2.13; Fig. 4 legend"
+  },
+  {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD046891/MQ_evidence.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/dl/MQ_evidence.txt): Raw file/Experiment/Fraction columns, Modifications column, Intensity L/M/H, Ratio H/M"
+  },
+  {
+   "id": "mq_peptides",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD046891/MQ_peptides.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/dl/MQ_peptides.txt): Ratio H/M per experiment MaMel51_scr_24h/48h, MaMel51_p14_24h/48h"
+  },
+  {
+   "id": "prism",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD046891/results_table_peptidePRISM.txt (UTF-16; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/dl/results_table_peptidePRISM.txt): patient (=sample name), Source File, Peptide with mass shifts (+3.02 L, +4.03 K, +6.02 L/R, +8.01 K, +10.01 R), Symbol, HLA allele"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "All 8 RAW files, first 1 MiB HTTP-range-read from https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD046891/, UTF-16LE decoded (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/rawhdr/*.bin): instrument 'Orbitrap Fusion', method names, Method Summary (scan ranges, charge filters, activation types, stepped NCE)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_A186?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/cellosaurus_CVCL_A186.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 via sdrf-tools verify / sdrf-tools ols (live, 2026-11-08)"
+  },
+  {
+   "id": "contract",
+   "kind": "spec",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines -t immunopeptidomics -t clinical-metadata (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0, immunopeptidomics v1.0.0, clinical-metadata v1.0.0)"
+  },
+  {
+   "id": "spec_readme",
+   "kind": "spec",
+   "location": "spec/sdrf-proteomics/README.adoc:27 'Version v1.1.0' (sdrf version); README.adoc:330-331 biological/technical replicate definitions"
+  },
+  {
+   "id": "templates_yaml",
+   "kind": "spec",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 'latest: 1.2.0' (ms-proteomics); immunopeptidomics latest 1.0.0, human/cell-lines 1.1.0, clinical-metadata 1.0.0 (local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t/templates.yaml). The spec submodule's nested templates copy is older."
+  },
+  {
+   "id": "batch_rules",
+   "kind": "campaign-rules",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch2_rules.md (rules 1-13)"
+  },
+  {
+   "id": "precedent",
+   "kind": "curated-sdrf",
+   "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD054097/PXD054097-immunopeptidome-silac.sdrf.tsv and datasets/PXD051190/PXD051190.sdrf.tsv (same Wuerzburg lab, same pSILAC immunopeptidomics design; annotate SILAC medium + heavy only, unspecific cleavage)"
+  },
+  {
+   "id": "table_s1",
+   "kind": "supplementary",
+   "location": "Wohlfarth et al. 2024 Supplementary Table S1 'Cell line characteristics' (MOL2-18-2449-s003.xlsx; Europe PMC /PMC11459041/supplementaryFiles). Retrieved and quoted by the external reviewer (annotations/PXD046891.review.md, finding 3). This producer's re-fetch failed: Europe PMC returned errorBean 'Connection refused', so the content is cited at second hand."
+  },
+  {
+   "id": "review_r1",
+   "kind": "review",
+   "location": "annotations/PXD046891.review.md (external adversarial review round 1, FAIL on sha256 8502653e...)"
+  },
+  {
+   "id": "postbuild",
+   "kind": "script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD046891/postbuild.py (deterministic post-build step; command and output recorded in PXD046891.validation.txt round 2)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-16",
+   "value": "IPM95_MaMel51_<1-4>_<scr|p14>_<24|48>h_<dox|untreated>",
+   "source_ids": [
+    "sample_overview",
+    "paper"
+   ],
+   "evidence": "Curator-chosen identifiers: sample_overview.xlsx sample names IPM95_MaMel51_1..4 (scr 24h, scr 48h, p14 24h, p14 48h); each mixed sample combines a dox-treated (heavy) and an untreated (medium) culture 1:1 (paper 2.13), so one source per culture."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-16",
+   "value": "2023-04-17_Fusion_<n>.raw",
+   "source_ids": [
+    "files",
+    "sample_overview",
+    "mq_evidence"
+   ],
+   "evidence": "sample_overview.xlsx: IPM95_MaMel51_1 = 36992, 36993; _2 = 36997, 36998; _3 = 37002, 37003; _4 = 37007, 37008. MQ_evidence Raw file -> Experiment agrees (36992/36993 -> MaMel51_scr_24h, 36997/36998 -> scr_48h, 37002/37003 -> p14_24h, 37007/37008 -> p14_48h). All 8 deposited RAW files annotated."
+  },
+  {
+   "location": "comment[label] rows 1,3,5,7,9,11,13,15",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "paper",
+    "mq_peptides",
+    "prism"
+   ],
+   "evidence": "Paper 2.13: 'dox-treated cells were kept in RPMI SILAC medium supplemented with heavy-labeled amino acids (Arg10, Lys8, Leu6) and dox'. Cross-check: median log2 H/M of HLA peptides = 0.10 / 0.09 (scr 24h/48h) vs 1.09 / 1.44 (p14 24h/48h), matching the paper's 'global immunopeptidome enhances upon p14 kd'; MDA peptides go down only in p14 (PMEL median log2 H/M -0.97/-0.51, DCT -2.09/-2.52) vs scr (PMEL 0.26/-0.14, DCT 0.44/0.70), matching Fig. 4C. Heavy = dox (knockdown-induced) is consistent."
+  },
+  {
+   "location": "comment[label] rows 2,4,6,8,10,12,14,16",
+   "value": "SILAC medium",
+   "source_ids": [
+    "paper",
+    "mq_peptides"
+   ],
+   "evidence": "Paper 2.13: 'whereas untreated cells were kept in medium with medium-heavy-labeled amino acids (Arg6, Lys4, Leu3)'. MaxQuant multiplicity 3 with medium = Arg6/Lys4/Leu3. SILAC light channel (pre-existing, unlabelled material from both mixed cultures in this pulsed design) is not a sample and is not annotated; see limitations."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 1,3,5,7,9,11,13,15",
+   "value": "Doxycycline",
+   "source_ids": [
+    "paper",
+    "sample_overview",
+    "ols"
+   ],
+   "evidence": "Paper 2.1: knockdown induced with 2 ug/mL doxycycline; 2.13 dox-treated cells -> heavy medium + dox. sample_overview condition 'scr +/- dox', 'p14 +/- dox'. NCIT:C457 'Doxycycline'."
+  },
+  {
+   "location": "characteristics[treatment] / factor value[treatment] rows 2,4,6,8,10,12,14,16",
+   "value": "untreated",
+   "source_ids": [
+    "paper",
+    "batch_rules",
+    "contract"
+   ],
+   "evidence": "Paper 2.13 'untreated cells' kept in medium-heavy medium. Batch rule 4 and the sample-metadata template example prescribe 'untreated' for controls (parse_sdrf warning: not an NCIT/EFO term; accepted)."
+  },
+  {
+   "location": "characteristics[dose] rows 1,3,5,7,9,11,13,15",
+   "value": "2 ug/mL",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper 2.1: 'induced by application of 2 ug/mL doxycycline (dox)'."
+  },
+  {
+   "location": "characteristics[genotype] / factor value[genotype] rows 1-8",
+   "value": "dox-inducible scrambled control shRNA (scr)",
+   "source_ids": [
+    "paper",
+    "sample_overview",
+    "mq_evidence"
+   ],
+   "evidence": "Paper 2.2: 'As a control, a scrambled (scr) shRNA targeting no human transcript was used' in the inducible lentiviral vector; sample_overview 'scr +/- dox' for IPM95_MaMel51_1/_2."
+  },
+  {
+   "location": "characteristics[genotype] / factor value[genotype] rows 9-16",
+   "value": "dox-inducible shRNA targeting p14ARF (CDKN2A)",
+   "source_ids": [
+    "paper",
+    "sample_overview",
+    "mq_evidence"
+   ],
+   "evidence": "Paper 2.2: lentiviral vector induc_shRNA_p14 allowing dox-induced expression of shRNA targeting p14 (NM_058195.4, CDKN2A ARF transcript) transduced into MaMel51; sample_overview 'p14 +/- dox' for IPM95_MaMel51_3/_4. Free text, licensed by clinical-metadata."
+  },
+  {
+   "location": "characteristics[sampling time] / factor value[sampling time] rows 1-4, 9-12",
+   "value": "24 hour",
+   "source_ids": [
+    "sample_overview",
+    "paper"
+   ],
+   "evidence": "sample_overview time [h] = 24 for IPM95_MaMel51_1 and _3; paper 2.13 'After 24 or 48 h, respectively, the metabolically labeled cells were combined'. Time since start of the pSILAC pulse."
+  },
+  {
+   "location": "characteristics[sampling time] / factor value[sampling time] rows 5-8, 13-16",
+   "value": "48 hour",
+   "source_ids": [
+    "sample_overview",
+    "paper"
+   ],
+   "evidence": "sample_overview time [h] = 48 for IPM95_MaMel51_2 and _4."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-16",
+   "value": "1",
+   "source_ids": [
+    "sample_overview",
+    "batch_rules",
+    "spec_readme"
+   ],
+   "evidence": "One culture per (genotype, treatment, time) factor group; no replicate cultures deposited (4 samples in sample_overview). Rule 3: numbering restarts per factor group."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1,2,5,6,9,10,13,14",
+   "value": "376m/z-801m/z",
+   "source_ids": [
+    "raw_header",
+    "postbuild"
+   ],
+   "evidence": "Meth10J Method Summary Experiment 1 MS: 'Scan Range (m/z) = 376-801'."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 3,4,7,8,11,12,15,16",
+   "value": "251m/z-1601m/z",
+   "source_ids": [
+    "raw_header",
+    "postbuild"
+   ],
+   "evidence": "Meth13K Method Summary Experiment 1: 'Scan Range (m/z) = 251-1601'."
+  },
+  {
+   "location": "comment[instrument] rows 1-16",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw_header",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 8 RAW headers read 'Orbitrap Fusion' / 'Orbitrap Fusion Method Summary'; PRIDE instruments MS:1002416; file names '_Fusion_'."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-16",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw_header",
+    "pride"
+   ],
+   "evidence": "Method Summary: 'Data Dependent Mode= Cycle Time' with MSn Level 2 dependent scans; PRIDE experimentTypes PRIDE:0000627."
+  },
+  {
+   "location": "comment[dissociation method] (1st column) rows 1-16",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "All methods: 'ActivationType = HCD', 'Collision Energy Mode = Stepped'."
+  },
+  {
+   "location": "comment[collision energy] rows 1-16",
+   "value": "30 NCE;35 NCE;40 NCE",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "'Collision Energies (%) = 30,35,40' (stepped HCD) in both methods."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-16",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Every MS2 experiment: 'Detector Type = Orbitrap', 'Orbitrap Resolution = 60K'."
+  },
+  {
+   "location": "comment[acquisition date] rows 1-16",
+   "value": "2023-04-17",
+   "source_ids": [
+    "raw_header",
+    "files"
+   ],
+   "evidence": "File names and RAW paths 'D:\\data\\2023-04-17\\2023-04-17_Fusion_<n>.raw'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-16",
+   "value": "NT=unspecific cleavage;AC=MS:1001956",
+   "source_ids": [
+    "paper",
+    "precedent",
+    "ols"
+   ],
+   "evidence": "HLA-I peptides are eluted from immunoaffinity-purified HLA complexes, not enzymatically digested (paper 2.13); MaxQuant run with digestion mode 'no digestion' against a custom database of the PEAKS/Peptide-PRISM-identified peptides, PEAKS de novo is enzyme-independent. Batch rule 2 (digestion enzyme) has no enzyme to record; community immunopeptidomics convention (394 curated rows incl. same-lab PXD054097) is unspecific cleavage, which is what a reprocessing search must use."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Variable",
+   "source_ids": [
+    "mq_evidence",
+    "paper"
+   ],
+   "evidence": "MQ_evidence has 'Carbamidomethyl (C) Probabilities' and 'Carbamidomethyl (C)' in the Modifications column (48 evidences) = variable mod; paper 2.13 PEAKS 'carbamidomethylation (Cys) ... as variable modifications'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "mq_evidence",
+    "paper"
+   ],
+   "evidence": "MQ_evidence 'Oxidation (M) Probabilities' column; 1485 evidences modified."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Gln->pyro-Glu;AC=UNIMOD:28;TA=Q;PP=Any N-term;MT=Variable",
+   "source_ids": [
+    "mq_evidence",
+    "paper"
+   ],
+   "evidence": "MQ_evidence 'Gln->pyro-Glu' column and Modifications entries; paper 'pyroglutamate formation on N-terminal glutamine' (variable)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Label:13C(6);AC=UNIMOD:188;TA=R;MT=Variable",
+   "source_ids": [
+    "paper",
+    "prism",
+    "ols"
+   ],
+   "evidence": "Arg6 medium label (paper 2.13); rule 11 Arg6 -> UNIMOD:188. peptidePRISM R(+6.02)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Label:2H(4);AC=UNIMOD:481;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "prism",
+    "ols"
+   ],
+   "evidence": "Lys4 medium label; peptidePRISM K(+4.03) = 2H(4) 4.025 Da; PRIDE PTM 'deuterium tetrasubstituted residue' MOD:00837."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Label:2H(3);AC=UNIMOD:262;TA=L;MT=Variable",
+   "source_ids": [
+    "paper",
+    "prism",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Leu3 medium label; peptidePRISM L(+3.02) = 2H(3) 3.0188 Da; PRIDE PTM MOD:00838 '3x(2)H labeled L-leucine'. UNIMOD:262 'Label:2H(3)' verified live."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable",
+   "source_ids": [
+    "paper",
+    "prism",
+    "ols"
+   ],
+   "evidence": "Arg10 heavy label; peptidePRISM R(+10.01)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "prism",
+    "ols"
+   ],
+   "evidence": "Lys8 heavy label; peptidePRISM K(+8.01)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-16",
+   "value": "NT=Label:13C(6);AC=UNIMOD:188;TA=L;MT=Variable",
+   "source_ids": [
+    "paper",
+    "pride",
+    "prism",
+    "ols"
+   ],
+   "evidence": "Leu6 heavy label (paper 2.13 'Arg10, Lys8, Leu6'); PRIDE PTM MOD:01332 '6x(13)C labeled L-leucine'; 13C(6) = 6.0201 Da on L. peptidePRISM L(+6.02) on 10964 residues."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-16",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "paper",
+    "mq_evidence"
+   ],
+   "evidence": "Paper 2.13: MaxQuant 2.0 with only the listed settings adapted, 'Apart from these adapted settings, the MaxQuant default parameters were used' -> default main-search tolerance 4.5 ppm. MQ_evidence: all MS/MS-identified evidences have |mass error| <= 4.5 ppm (only one MULTI-MATCH-MSMS entry exceeds, 5.8 ppm). Inferred from stated defaults; no mqpar/parameters.txt deposited."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-16",
+   "value": "20 ppm",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "MaxQuant default FTMS MS/MS match tolerance 20 ppm (Orbitrap MS2, 60K). Inferred from 'MaxQuant default parameters'; no parameters.txt deposited."
+  },
+  {
+   "location": "characteristics[organism] rows 1-16",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Cellosaurus OX NCBI_TaxID=9606; PRIDE organisms 9606."
+  },
+  {
+   "location": "characteristics[cell line] / characteristics[cellosaurus name] rows 1-16",
+   "value": "Ma-Mel-51",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper 2.1 'Ma-Mel-51 (MaMel51, RRID:CVCL_A186; provided by D. Schadendorf)'; Cellosaurus ID Ma-Mel-51. Not in CLO/BTO/EFO (OLS searched; parse_sdrf warning accepted)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-16",
+   "value": "CVCL_A186",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "RRID:CVCL_A186 stated in paper; Cellosaurus AC CVCL_A186."
+  },
+  {
+   "location": "characteristics[disease] rows 1-16",
+   "value": "melanoma",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3224 Melanoma; paper 'Human melanoma cell lines'; MONDO:0005105 'melanoma'."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-16",
+   "value": "lymph node",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029'. PRIDE organismParts (cell culture, melanocyte) not used: not anatomical sites of origin."
+  },
+  {
+   "location": "characteristics[age] rows 1-16",
+   "value": "48Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 48Y."
+  },
+  {
+   "location": "characteristics[sex] rows 1-16",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male (STR Amelogenin X only, consistent with loss of Y; Cellosaurus still records donor male)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-16",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "batch_rules",
+    "ols"
+   ],
+   "evidence": "Donor age 48Y >= 20Y (rule 9); EFO:0001272 'adult'."
+  },
+  {
+   "location": "characteristics[material type] rows 1-16",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "contract"
+   ],
+   "evidence": "Established melanoma cell line cultured in vitro."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-16",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper 2.1 complete medium RPMI-1640 + 10% FCS; 2.13 'RPMI SILAC medium'. NCIT:C178973."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-16",
+   "value": "University Hospital Essen (provided by D. Schadendorf)",
+   "source_ids": [
+    "paper",
+    "table_s1",
+    "precedent"
+   ],
+   "evidence": "Paper 2.1: 'Ma-Mel-51 (... provided by D. Schadendorf)'. Supplementary Table S1 gives the source as 'D. Schadendorf, University Hospital Essen' (as quoted by review_r1). The same-lab PXD054097 uses this wording."
+  },
+  {
+   "location": "characteristics[cell line authentication] rows 1-16",
+   "value": "genetic fingerprinting",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper 2.1 'Cell lines were authenticated via genetic fingerprinting'."
+  },
+  {
+   "location": "characteristics[mhc protein complex] rows 1-16",
+   "value": "MHC class I protein complex",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper 2.13 'HLA-I peptides were isolated by immunoaffinity purification'; PRIDE keywords 'Human immunopeptidome'; evidence lengths 8-13 aa (9-mers 10612 of 15027)."
+  },
+  {
+   "location": "characteristics[immunopeptidome enrichment method] rows 1-16",
+   "value": "immunoaffinity purification",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper 2.13 'HLA-I peptides were isolated by immunoaffinity purification'. The '(iodoacetamide)' variant not used: no alkylation described."
+  },
+  {
+   "location": "characteristics[mhc typing] rows 1-16",
+   "value": "HLA-A*01:01;HLA-A*02:01;HLA-B*08:01;HLA-B*18:01",
+   "source_ids": [
+    "paper",
+    "table_s1",
+    "prism"
+   ],
+   "evidence": "Paper Fig. 4A legend 'Expression of HLA-A*01:01, HLA-A*02:01, HLA-B*08:01, and HLA-B*18:01' (MaMel51 pSILAC); peptidePRISM 'HLA allele' column assigns peptides only to these four alleles (A*01:01 10866, B*08:01 6285, A*02:01 5985, B*18:01 2807). HLA-C not reported. Supplementary Table S1 gives the MaMel51 HLA-I phenotype as A*01:01, A*02:01, B*08:01, B*18:01 (as quoted by review_r1)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-16",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec_readme",
+    "batch_rules"
+   ],
+   "evidence": "Rule 1: spec README.adoc:27 Version v1.1.0."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-16",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=human;VV=v1.1.0 | NT=cell-lines;VV=v1.1.0 | NT=immunopeptidomics;VV=v1.0.0 | NT=clinical-metadata;VV=v1.0.0",
+   "source_ids": [
+    "templates_yaml",
+    "contract"
+   ],
+   "evidence": "Template versions per sdrf-tools contract and upstream templates.yaml. clinical-metadata declared solely to license characteristics[genotype] and characteristics[dose]."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-16",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "batch_rules"
+   ],
+   "evidence": "Rule 10."
+  },
+  {
+   "location": "technology type rows 1-16",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "contract"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-16",
+   "value": "1",
+   "source_ids": [
+    "mq_evidence",
+    "raw_header",
+    "review_r1"
+   ],
+   "evidence": "Each sample was injected once per method; there are no repeated measurements of the same precursor population."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1,2,5,6,9,10,13,14",
+   "value": "1",
+   "source_ids": [
+    "mq_evidence",
+    "raw_header"
+   ],
+   "evidence": "Meth10J runs (36992/36997/37002/37007): z=2 only, MS1 376-801 (e.g. 36992 has 2052 z=2 vs 3 z=3 evidences). MaxQuant Fraction 101-104 within each sample's Experiment."
+  },
+  {
+   "location": "comment[fraction identifier] rows 3,4,7,8,11,12,15,16",
+   "value": "2",
+   "source_ids": [
+    "mq_evidence",
+    "raw_header",
+    "precedent"
+   ],
+   "evidence": "Meth13K runs (36993/36998/37003/37008) 'charge1und3': z=1 and z=3 (e.g. 36993 has 792 z=1, 530 z=3, 15 z=2), MS1 251-1601. MaxQuant Fraction 201-204 in the same Experiment, so the authors combined the charge-state split as fractions. Same-lab PXD054097 encodes this method pair as fraction 1/2."
+  },
+  {
+   "location": "comment[dissociation method] (2nd column) rows 3,4,7,8,11,12,15,16",
+   "value": "NT=electron transfer dissociation;AC=MS:1000598",
+   "source_ids": [
+    "raw_header",
+    "ols",
+    "precedent",
+    "postbuild"
+   ],
+   "evidence": "Meth13K Method Summary (36993, 37008): a z=3 MS2 scan event with 'ActivationType = ETD' in addition to stepped HCD. MS:1000598 verified live. Repeated column as in PXD054097."
+  },
+  {
+   "location": "comment[dissociation method] (2nd column) rows 1,2,5,6,9,10,13,14",
+   "value": "not applicable",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Meth10J runs have a single HCD MS2 event and no ETD."
+  },
+  {
+   "location": "characteristics[compound] rows 1,3,5,7,9,11,13,15",
+   "value": "doxycycline",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper 2.1: knockdown induced with 2 ug/mL doxycycline for six days (renewed at day four). Paper 2.13: the dox-treated (heavy) cultures were kept in heavy medium with dox during the pulse. CHEBI:50845 'doxycycline'. Licensed by clinical-metadata. Medium rows: not applicable."
+  }
+ ],
+ "limitations": [
+  "SILAC light channel not annotated: in this pulsed SILAC design the light (Arg0/Lys0/Leu0) signal is pre-existing material from BOTH 1:1-mixed cultures, not a sample; MaxQuant quantified with multiplicity 3 but only H/M ratios were used (paper 2.13). Following the same lab's curated precedents PXD054097 and PXD051190 (medium + heavy rows only). 16 rows = 8 RAW x 2 channels.",
+  "The two runs per sample are a charge-state split of one sample: Meth10J is z=2 (MS1 376-801); Meth13K is z=1 and z=3 (MS1 251-1601) and adds an ETD MS2 event. They are encoded as fraction 1/2 with technical replicate 1, following MaxQuant's Fraction 1xx/2xx in one Experiment and the same-lab PXD054097. There is no physical fractionation, so comment[fractionation method] is omitted (no PRIDE:0000550 child describes a charge-state acquisition split).",
+  "Two values differ between the fractions of one source: comment[ms1 scan range] and a second comment[dissociation method] column (the contract's dissociation method column is not 'multiple'). sdrf-tools build cannot vary a column between the fractions of one samples.tsv row, so these are set by the deterministic, asserting postbuild.py step recorded in validation.txt round 2.",
+  "Dox exposure: the dox-treated cultures were pre-induced with 2 ug/mL dox for 6 days (renewed at day 4; paper 2.1) before the 24/48 h pulse, during which dox was continued (2.13). characteristics[sampling time] gives only the pulse time. Total dox exposure is about 7-8 days and is not encoded as exposure duration, because the paper does not state it as a single number.",
+  "Supplementary Table S1 (s003.xlsx) could not be re-fetched by this producer: Europe PMC supplementaryFiles returned errorBean 'Connection refused' twice in round 2. The HLA phenotype and the University Hospital Essen source rely on the reviewer's quotation. The HLA alleles are independently corroborated by Fig. 4A and the Peptide-PRISM allele column.",
+  "No mqpar.xml / parameters.txt deposited: precursor 4.5 ppm and fragment 20 ppm are MaxQuant 2.0 defaults inferred from the paper's 'MaxQuant default parameters'; PEAKS Xpro tolerances (identification search) are not reported.",
+  "Two searches were used: PEAKS Xpro de novo + Peptide-PRISM (identification, 10% FDR) and MaxQuant 2.0 (H/M quantification). Both declare the same variable mods (Carbamidomethyl C, Oxidation M, Gln->pyro-Glu, 6 SILAC labels); the encoded set is read from MQ_evidence.txt.",
+  "Antibody used for the HLA-I immunoprecipitation is not stated in this paper (W6/32 appears only as a blocking antibody in cocultures); Methods defer to Bernhardt et al. Anal Chem 2022 (doi:10.1021/acs.analchem.2c02198), closed access (Unpaywall oa_status closed). characteristics[antibody enrichment] = not available.",
+  "MHC typing method not stated; HLA-C alleles not reported (typing lists A and B only) -> mhc typing method = not available.",
+  "Reduction/alkylation not described for the immunopeptidome prep (the DTT/IAA statement in 2.13 belongs to the proteome analysis, whose runs are not deposited); Carbamidomethyl is a variable search mod only -> reduction/alkylation reagent = not available.",
+  "Proteome (gel-slice, trypsin) pSILAC runs described in paper 2.13 are not part of this deposit (only 8 HLA-peptide RAW files, all mapped in sample_overview.xlsx), so no trypsin/label-free part exists.",
+  "Channel map assumed identical for all four samples (no label swap described); confirmed by data for heavy=dox in p14 samples (H/M up globally, MDA peptides down). In scr samples H/M ~ 1, so a swap there would not be detectable from ratios; rests on the paper's single stated design and sample_overview.",
+  "cell type = not available: Cellosaurus gives none; PRIDE's 'melanocyte' is a submitter dropdown; ancestry = not available (Cellosaurus has no population); passage number not reported (only 'no longer than 30 passages'); storage temperature not reported.",
+  "characteristics[treatment] 'untreated' and characteristics[cell line] 'Ma-Mel-51' raise parse_sdrf ontology warnings (no NCIT/EFO/CLO/BTO term); accepted.",
+  "techsdrf is not installed; technical values were read by HTTP-range reads (first 1 MiB) of all 8 RAW headers instead.",
+  "sdrf-tools fetch/curated not used (Europe PMC 500 / GitHub 403 in this environment); record gathered by hand from PRIDE v3 API, Europe PMC fullTextXML of PMC11459041 (title verified) and deposited files.",
+  "ms-proteomics v1.2.0 is newer than the spec submodule's nested templates copy (rule 1).",
+  "External review pending (REVIEW_PENDING_EXTERNAL); not self-approved."
+ ]
+}

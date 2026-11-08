@@ -1,0 +1,353 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD014436.sdrf.tsv",
+ "dataset": "PXD014436",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD014436 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/pride.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/pride_mcp.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD014436/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/files_all.json; 24 files, every entry's projectAccessions asserted to contain PXD014436)"
+  },
+  {
+   "id": "zipdirs",
+   "kind": "raw-file",
+   "location": "HTTP-range-read ZIP64 central directories of the 11 RAW bundles https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/07/PXD014436/<lepA|rsgA>_<2|3>plex-<n>.zip (listings /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/rawlist/*.tsv; reader /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/tools/rzip.py); 172 Bruker .d folders"
+  },
+  {
+   "id": "rawmeta",
+   "kind": "raw-file",
+   "location": "Members of lepA_2plex-1.zip: JM_KurtF1_B8_01_1123.d/SampleInfo.xml and 1123.m/microTOFQImpactAcquisition.method, plus the .d member 'nlc impact ii system 2.hss' (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/rawmeta/)"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "Deposited MaxQuant 1.5.1.0 outputs, 11 *txt.zip archives on the PRIDE FTP (summary.txt, parameters.txt for all 11; mqpar.xml for lepA_2plex1, rsgA_3plex2, rsgA_3plex3, rsgA_3plex4), range-extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/dl/<search>/"
+  },
+  {
+   "id": "searchparams",
+   "kind": "search-output",
+   "location": "sdrf-tools search-params over the 11 searches (output appended to annotations/PXD014436.validation.txt)"
+  },
+  {
+   "id": "runmap",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/run_fraction.tsv (each .d -> deposited ZIP, MaxQuant 'Experiment' gradient fraction, search; built by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/tools/make_tables.py, which asserts that the .d set of each RAW zip equals the Raw-file set of its summary.txt and that the fraction parsed from the run name equals the MaxQuant Experiment)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Gibbs MR et al. PNAS 2017;114(5):980-985, PMID 28096346, PMC5293072, doi:10.1073/pnas.1613665114; read via WebFetch of https://pmc.ncbi.nlm.nih.gov/articles/PMC5293072/ (short exact quotes saved to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/evidence/paper_quotes.txt)"
+  },
+  {
+   "id": "marker",
+   "kind": "search-output",
+   "location": "proteinGroups.txt of lepA_3plex1, rsgA_3plex1, lepA_2plex1, rsgA_2plex1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/dl/<search>/proteinGroups.txt; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD014436/evidence/marker_crosscheck.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via sdrf-tools verify/ols (2026-11-08): NCBITaxon:679895, MS:1002666, MS:1001251, PRIDE:0000627, MS:1000422, MS:1000084, UNIMOD:4/35/1/188/481/267/259; children of PRIDE:0000550 listed"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; sdrf-tools contract -t ms-proteomics; spec README.adoc 'Extending Templates' (custom columns); curated /home/user/bigbio/sdrf-annotated-datasets/datasets/PXD004650/PXD004650.sdrf.tsv; spec README.adoc:27 (sdrf version v1.1.0)"
+  },
+  {
+   "id": "rules",
+   "kind": "campaign-rules",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch2_rules.md"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-448",
+   "value": "<MaxQuant search>_<strain code>_fr<gradient fraction>, e.g. lepA_3plex1_MRG04_fr07 (437 sources)",
+   "source_ids": [
+    "mq",
+    "paper",
+    "zipdirs"
+   ],
+   "evidence": "One source per (independent SILAC experiment x strain culture x sucrose-gradient fraction), following curated PXD004650 (fraction-specific source names) and review round 1 finding 2: each gradient fraction is a distinct particle population of that culture. The experiment id is the deposited search/RAW bundle name (lepA_2plex1..rsgA_3plex4); the strain code is the one the SI Methods assign to the SILAC state of that series (light MRG03/MRG06, medium MRG04/MRG07, heavy MRG05/MRG08). Strain codes are evidenced by paper quotes, not inferred."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype] rows 1-17,35-50,67-85,105-120,137-152,185-200,233-248,281-297,332-344,371-383,410-422",
+   "value": "wild type",
+   "source_ids": [
+    "paper",
+    "mq",
+    "marker"
+   ],
+   "evidence": "light-labelled strains MRG03 (lepA series) and MRG06 (rsgA series): SI \"MRG03 (WT, wild-type control)\", \"MRG06 (WT, control)\"; \"light (unlabeled Arg and Lys; strains MRG03 and MRG06)\". 172 rows. Free-text genotype as a custom column (spec README 'Extending Templates' permits custom characteristics; curated PXD004650 carries characteristics[genotype] under ms-proteomics only); ASCII wording chosen instead of the paper's Δ notation."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype] rows 18-34,51-66,153-168,201-216,249-264",
+   "value": "lepA deletion",
+   "source_ids": [
+    "paper",
+    "mq",
+    "marker"
+   ],
+   "evidence": "medium-labelled MRG04: \"MRG04 (M, mutant ΔlepA)\"; \"medium (Arg 13C6 and Lys 2H4; strains MRG04 and MRG07)\". 81 rows. Free-text genotype as a custom column (spec README 'Extending Templates' permits custom characteristics; curated PXD004650 carries characteristics[genotype] under ms-proteomics only); ASCII wording chosen instead of the paper's Δ notation."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype] rows 169-184,217-232,265-280",
+   "value": "lepA deletion complemented with lepA+",
+   "source_ids": [
+    "paper",
+    "mq",
+    "marker"
+   ],
+   "evidence": "heavy-labelled MRG05: \"MRG05 (C, complemented ΔlepA/lepA+)\"; \"heavy (Arg 13C6 15N4 and Lys 13C6 15N2; strains MRG05 and MRG08)\"; \"Plasmid pLEPA was transformed into MRG02 to generate MRG05.\". 48 rows. Free-text genotype as a custom column (spec README 'Extending Templates' permits custom characteristics; curated PXD004650 carries characteristics[genotype] under ms-proteomics only); ASCII wording chosen instead of the paper's Δ notation."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype] rows 86-104,121-136,298-314,345-357,384-396,423-435",
+   "value": "rsgA deletion",
+   "source_ids": [
+    "paper",
+    "mq",
+    "marker"
+   ],
+   "evidence": "medium-labelled MRG07: \"MRG07 (M, ΔrsgA)\". 91 rows. Free-text genotype as a custom column (spec README 'Extending Templates' permits custom characteristics; curated PXD004650 carries characteristics[genotype] under ms-proteomics only); ASCII wording chosen instead of the paper's Δ notation."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype] rows 315-331,358-370,397-409,436-448",
+   "value": "rsgA deletion complemented with rsgA+",
+   "source_ids": [
+    "paper",
+    "mq",
+    "marker"
+   ],
+   "evidence": "heavy-labelled MRG08: \"MRG08 (C, ΔrsgA/rsgA+)\". 56 rows. Free-text genotype as a custom column (spec README 'Extending Templates' permits custom characteristics; curated PXD004650 carries characteristics[genotype] under ms-proteomics only); ASCII wording chosen instead of the paper's Δ notation."
+  },
+  {
+   "location": "comment[label] rows 1-448 (channel -> strain/genotype map)",
+   "value": "SILAC light = WT; SILAC medium (Arg6/Lys4) = deletion mutant; SILAC heavy (Arg10/Lys8) = complemented strain",
+   "source_ids": [
+    "paper",
+    "mq",
+    "marker"
+   ],
+   "evidence": "Explicit label statement in SI Methods (see genotype claims; medium = \"Arg 13C6 and Lys 2H4\" = MaxQuant Arg6;Lys4, heavy = \"Arg 13C6 15N4 and Lys 13C6 15N2\" = Arg10;Lys8). Every search's summary.txt lists Labels0 empty (light), Labels1 Arg6;Lys4 and, for 3-plex, Labels2 Arg10;Lys8. Data cross-check (batch rule 6): lepA_3plex1 LepA (P60785) M/L 0.45, H/M 9.0 (mutant channel depleted, complemented channel overexpressed); rsgA_3plex1 RsgA (P39286) M/L 0.18, H/M 11.7; the non-targeted GTPase is flat (RsgA in lepA_3plex1 M/L 1.0). 2-plex searches contain no target-protein group, so the 2-plex map rests on the paper text (same medium label = mutant statement). The 2-plex Arg6;Lys4 state is written 'SILAC medium' (mass/label identity) although MaxQuant names it 'H' in a 2-plex search."
+  },
+  {
+   "location": "comment[label] rows 1-136",
+   "value": "SILAC light / SILAC medium (2-plex runs: 2 rows per run)",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "multiplicity 2 in summary.txt/mqpar.xml of lepA_2plex1/2 and rsgA_2plex1/2 (136 rows, 68 runs)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-448",
+   "value": "1..n per genotype group, unique per independent culture",
+   "source_ids": [
+    "paper",
+    "mq",
+    "rules"
+   ],
+   "evidence": "Batch rule 3; the number identifies the culture and is shared by all gradient-fraction sources of that culture. Each deposited search = one independent experiment (inferred: the counts match the paper exactly - Fig. 1 'Five independent experiments' = 5 lepA searches; Fig. 3 'Six' = 6 rsgA searches; Fig. S3 complemented ΔlepA 'Three' = 3 lepA 3-plex searches). wild type 1-5 = MRG03 cultures of lepA_2plex1,lepA_2plex2,lepA_3plex1..3; 6-11 = MRG06 cultures of rsgA_2plex1,rsgA_2plex2,rsgA_3plex1..4 (one 'wild type' group because both strains are described as WT controls; numbers kept unique across the 11 cultures). lepA deletion 1-5, lepA complemented 1-3, rsgA deletion 1-6, rsgA complemented 1-4. Re-injections share their culture's number."
+  },
+  {
+   "location": "characteristics[organism] rows 1-448",
+   "value": "Escherichia coli BW25113",
+   "source_ids": [
+    "paper",
+    "ols",
+    "pride"
+   ],
+   "evidence": "SI: strains \"were moved by P1 transduction into parental strain BW25113\", isogenic Lys- Arg- auxotroph derivatives; NCBITaxon:679895 'Escherichia coli BW25113' verified in OLS. PRIDE organism 'Escherichia coli' and the search FASTA 'uniprot-ecoli+k12' are consistent (BW25113 is a K-12 derivative)."
+  },
+  {
+   "location": "characteristics[organism part] / characteristics[cell type] / characteristics[disease] rows 1-448",
+   "value": "not applicable",
+   "source_ids": [
+    "paper",
+    "templates"
+   ],
+   "evidence": "Whole bacterial cultures: no anatomy, no cell type distinct from the organism, no disease. Reserved word permitted by the contract for all three columns."
+  },
+  {
+   "location": "comment[sample preparation batch] rows 1-448",
+   "value": "deposited MaxQuant search / RAW bundle id (lepA_2plex1 ... rsgA_3plex4)",
+   "source_ids": [
+    "files",
+    "mq",
+    "zipdirs"
+   ],
+   "evidence": "Groups the 2 or 3 strain cultures whose gradient fractions were mixed and measured together; equals the deposited <x>txt.zip / <x>-<n>.zip names."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-448",
+   "value": "Bruker .d folder name inside the deposited ZIP bundle",
+   "source_ids": [
+    "zipdirs",
+    "mq",
+    "runmap"
+   ],
+   "evidence": "PRIDE exposes only 11 RAW ZIP bundles (56-124 GB); their central directories list 172 .d folders, identical 1:1 to the Raw file column of the 11 summary.txt files (0 deposited-not-searched, 0 searched-not-deposited). Following the reviewed PXD004817 precedent, comment[data file] holds the member .d name; the containing ZIP is listed per run in run_fraction.tsv and the report. assay name = .d stem (build default)."
+  },
+  {
+   "location": "characteristics[sucrose gradient fraction] and factor value[sucrose gradient fraction] rows 1-448",
+   "value": "gradient fraction number 1-18",
+   "source_ids": [
+    "mq",
+    "runmap",
+    "paper"
+   ],
+   "evidence": "Each run is one sucrose-gradient fraction in which the corresponding WT/M/C fractions were mixed (\"Twenty-two fractions were collected from each gradient, and equivalent fractions were then combined\"; \"Corresponding fractions from WT, M, and C strains were mixed\"); the paper's readout is the per-fraction M/WT and C/WT ratio profile (Fig. 1 fractions 6-16, Fig. 3 6-18), and MaxQuant ran each fraction as its own Experiment. The number is the MaxQuant 'Experiment' (F1, fr01, Fr02 ...) cross-checked against the run name; rsgA_3plex2-4 cover fractions 6-18 (13 runs each), all other experiments 1-16. Modelled as a sample property and factor (custom column, curated PXD004650 precedent: characteristics[sucrose gradient fraction]) so downstream tools do not merge fractions."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-448",
+   "value": "1",
+   "source_ids": [
+    "mq",
+    "zipdirs"
+   ],
+   "evidence": "No peptide-level fractionation: each run is one injection of one gradient-fraction sample (build default; no post-build edit)."
+  },
+  {
+   "location": "comment[technical replicate] rows 2,19,68,70,72,87,89,91,292,309,326 (=2; all other rows =1)",
+   "value": "2 = second injection of an already-measured gradient-fraction sample (same source name)",
+   "source_ids": [
+    "mq",
+    "zipdirs"
+   ],
+   "evidence": "11 rows / 5 runs: JM_KurtF1REDO (lepA_2plex1 F1; MaxQuant puts it as fraction 2 of experiment F1), rsgA2plex-1-F01/F02/F03-redo (fractions 1-3 also deposited as originals), rsgA3plex-1-F11-redo (F11 original also deposited). Runs named redo/repeat whose original was NOT deposited (lepA_3plex1 fr11-redo, lepA_3plex3 f01/f02redo, rsgA_2plex2 F15-redo, rsgA_3plex1 F12-F14-redo, rsgA_3plex3 fr17repeat) are the only injection of that fraction and stay technical replicate 1."
+  },
+  {
+   "location": "comment[instrument] rows 1-448",
+   "value": "NT=impact II;AC=MS:1002666",
+   "source_ids": [
+    "paper",
+    "rawmeta",
+    "mq",
+    "ols"
+   ],
+   "evidence": "SI \"a quadrupole–time of flight mass spectrometer (Impact II; Bruker Daltonics)\"; every .d contains microTOFQImpactAcquisition.method and 'nlc impact ii system 2.hss'; mqpar msInstrument=1 (Bruker Q-TOF). PRIDE's 'Bruker Daltonics instrument model' is only the generic parent."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-448",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "mq",
+    "rawmeta"
+   ],
+   "evidence": "MaxQuant summary.txt reports MS/MS spectra identified per run from a standard (non-DIA) SILAC search; the method is a Bruker auto MS/MS ('m4-mann.m') method. No DIA settings anywhere."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-448",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "rawmeta",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Impact II Q-TOF fragments in its quadrupole collision cell; the acquisition method carries Collision_* cell parameters and CollisionEnergy settings, no ETD/ECD. Inferred from instrument architecture + method parameters, not stated in prose."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-448",
+   "value": "NT=time-of-flight;AC=MS:1000084",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Q-TOF: MS/MS read out by the TOF analyzer; MaxQuant used its TOF MS/MS parameter set (40 ppm)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-448",
+   "value": "40 ppm",
+   "source_ids": [
+    "mq",
+    "searchparams"
+   ],
+   "evidence": "parameters.txt of all 11 searches: 'MS/MS tol. (TOF) 40 ppm'; mqpar.xml msmsParams Name=TOF MatchTolerance 40, MatchToleranceInPpm=true."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-34",
+   "value": "0.006 Da",
+   "source_ids": [
+    "mq",
+    "searchparams"
+   ],
+   "evidence": "mqpar.xml mainSearchTol (0.006, searchTolInPpm=false) for lepA_2plex1; 34 rows."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 332-448",
+   "value": "10 ppm",
+   "source_ids": [
+    "mq",
+    "searchparams"
+   ],
+   "evidence": "mqpar.xml mainSearchTol (10, searchTolInPpm=true) for rsgA_3plex2, rsgA_3plex3, rsgA_3plex4; 117 rows."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-448",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mq",
+    "paper",
+    "rules",
+    "ols"
+   ],
+   "evidence": "All 11 searches: Enzyme 'Trypsin/P', specific, 2 missed cleavages. Batch rule 2 records the digestion enzyme (Trypsin) not the search rule (Trypsin/P, MS:1001313). The paper only says bands were \"digested out of the gel as described\" (Chan et al. 2006); trypsin is therefore inferred from the search, which is the standard of that cited Foster-lab in-gel protocol."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-448 (first 5 columns)",
+   "value": "Carbamidomethyl C Fixed; Oxidation M Variable; Acetyl Protein N-term Variable; Label:13C(6) R (UNIMOD:188) Variable; Label:2H(4) K (UNIMOD:481) Variable",
+   "source_ids": [
+    "mq",
+    "searchparams",
+    "ols",
+    "rules"
+   ],
+   "evidence": "parameters.txt 'Fixed modifications Carbamidomethyl (C)' (all 11); summary.txt 'Variable modifications Acetyl (Protein N-term);Oxidation (M)' (all 11); Labels1 'Arg6;Lys4' = +6.020 R (13C6, UNIMOD:188) and +4.025 K (2H4, UNIMOD:481), matching the paper's \"Arg 13C6 and Lys 2H4\". Labels written MT=Variable (batch rule 11)."
+  },
+  {
+   "location": "comment[modification parameters] columns 6-7 rows 137-448",
+   "value": "Label:13C(6)15N(4) R (UNIMOD:267) Variable; Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq",
+    "searchparams",
+    "ols",
+    "rules"
+   ],
+   "evidence": "3-plex searches only: Labels2 'Arg10;Lys8' (= paper \"Arg 13C6 15N4 and Lys 13C6 15N2\"). 312 rows."
+  },
+  {
+   "location": "comment[modification parameters] columns 6-7 rows 1-136",
+   "value": "not applicable",
+   "source_ids": [
+    "mq",
+    "rules"
+   ],
+   "evidence": "2-plex searches had no Arg10/Lys8 label (multiplicity 2); batch rule 5 keeps identical headers with 'not applicable' where a mod was not searched."
+  },
+  {
+   "location": "technology type / comment[sdrf template] / comment[sdrf annotation tool] / comment[sdrf version] rows 1-448",
+   "value": "proteomic profiling by mass spectrometry; NT=ms-proteomics;VV=v1.2.0; NT=sdrf-skills;VV=v0.1.0; v1.1.0",
+   "source_ids": [
+    "templates",
+    "rules"
+   ],
+   "evidence": "Batch rules 1 and 10. ms-proteomics latest 1.2.0 per upstream sdrf-templates 7da1747 templates.yaml:150 (the spec submodule's nested templates copy is older). No organism template applies to bacteria (human/vertebrates/invertebrates/plants are all eukaryote-specific). Only ms-proteomics is declared (review round 1 finding 1: clinical-metadata dropped); characteristics[genotype] and characteristics[sucrose gradient fraction] are custom columns per the spec's 'Extending Templates' section, as in curated PXD004650 and the curated E. coli SDRFs, which all declare ms-proteomics only."
+  }
+ ],
+ "limitations": [
+  "Paper full text is not open access in PMC/Europe PMC (fullTextXML HTTP 500, supplementaryFiles 'not open access', efetch front matter only, PNAS/Unpaywall PDF HTTP 403, PMC HTML behind reCAPTCHA for curl). Methods/SI were read through WebFetch of the PMC page, which passes text through a summarising model; only its short exact quotations (evidence/paper_quotes.txt) were used for values. A reviewer with institutional access should confirm the SI strain table and label sentence.",
+  "techsdrf is not installed; instrument/activation were read from range-extracted .d method files (SampleInfo.xml, microTOFQImpactAcquisition.method) of one run only (JM_KurtF1_B8_01_1123.d), not from every run; analysis.baf headers were not parsed.",
+  "comment[precursor mass tolerance] is 'not available' for 7 of 11 searches (297 of 448 rows): only lepA_2plex1 (0.006 Da) and rsgA_3plex2/3/4 (10 ppm) deposited mqpar.xml, parameters.txt does not record it, and the two recorded values differ, so neither is extrapolated. Consequence: parse_sdrf convert-openms refuses the file as is.",
+  "Digestion enzyme is not named in the paper (in-gel digestion 'as described', Chan et al. 2006); Trypsin is taken from the search (Trypsin/P). Reduction and alkylation reagents are unstated: 'not available' (Carbamidomethyl fixed in the search implies alkylation, the reagent is unknown).",
+  "No ontology term exists for sucrose-density-gradient fractionation under PRIDE:0000550 (children: off-gel electrophoresis, isoelectric focusing, HPLC, gel electrophoresis), so comment[fractionation method] is omitted; the short SDS-PAGE run was a clean-up, not fractionation. The gradient fraction is a sample property (characteristics[sucrose gradient fraction], custom column) and a factor; comment[fraction identifier] = 1.",
+  "The SDRF is the byte-identical concatenation of two sdrf-tools build outputs (2-plex and 3-plex searches, identical headers; batch rule 5) by scratch tools/assemble.py, which edits no cell. A single build cannot emit both because technical.tsv holds one constant modification set.",
+  "One independent experiment per deposited search is inferred from the matching counts (5/6/3) in the figure legends, not stated per file. MRG03 and MRG06 are both written 'wild type'; whether they differ (e.g. vector) is not stated in the quoted text.",
+  "Strain-level genotype details reported only by the WebFetch summary (pWSK29 empty vector, ΔlysA::kan argE::Tn10 markers) were not written to the SDRF.",
+  "The 2-plex channel map (light WT / medium mutant) cannot be checked against the data: neither LepA nor RsgA is quantified in the 2-plex proteinGroups.txt files examined (lepA_2plex1, rsgA_2plex1); it rests on the paper's label statement.",
+  "Review hand-off: external sdrf-adversarial-review requested by the caller (REVIEW_PENDING_EXTERNAL); no reviewer dispatched and no review-gate run in this task."
+ ]
+}

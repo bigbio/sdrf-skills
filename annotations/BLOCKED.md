@@ -1042,3 +1042,122 @@ Sources checked, all exhausted:
 **Deliberately not used:** inferring A/B conditions from ratio patterns or from the letter codes A/B/C that Supplementary Data 1 uses for *conditions* within lane C. Both would assert condition identities that no source states.
 
 **Unblocked by:** a lane A/B channel → condition map from the corresponding author (J.C. Norman, CRUK Beatson Institute). The technical values (Q Exactive HF, SILAC mods UNIMOD:188/481/267/259, Carbamidomethyl fixed, 4.5/20 ppm) are already resolved in `annotations/PXD027268.report.md`. Adding the lanes means adding rows to `samples.tsv` and rebuilding.
+
+---
+
+## PXD026077 — Mitochondrial retrograde signaling in yeast colonies (label-free, mis-tagged SILAC)
+
+**Blocker: no raw file → sample (strain / cell type / phase / replicate) map exists.**
+
+| | |
+|---|---|
+| Publication | Plocek *et al.*, Int J Mol Sci 2021 22:5597, PMID:34070491, PMC8198273 (CC BY, full text read via NCBI efetch) |
+| Deposited | 60 RAW (`437-1…437-30`, `452-31…452-60`), `mqpar.xml`, `2019_10_03_mqpar.xml`, `txt.7z`, `2019_10_03_txt.7z` (MaxQuant 1.6.3.4) |
+| SDRF would need | 60 label-free rows = 5 strains (wt, rtg1Δ, mks1Δ, rtg1Δmks1Δ, rtg2Δmks1Δ) × U/L cells × acidic/alkali phase × 3 replicates |
+
+Not SILAC despite PRIDE `quantificationMethods`: both mqpar.xml have multiplicity 1, no label mods, LFQ on;
+`summary.txt` Multiplicity 1; `proteinGroups.txt` has only LFQ columns. The paper never mentions SILAC.
+
+Sources checked, all exhausted:
+
+| source | result |
+|---|---|
+| PRIDE record + `files/all` | design prose only; no sample sheet |
+| `mqpar.xml` ×2 | `<experiments>` all empty |
+| `txt.7z` ×2 (stored members range-read) | `summary.txt` Experiment = run number 1…60; `parameters.txt`, mzTab `metadataSection.txt`, `proteinGroups*.txt` (incl. `_palkova`, `_palkova_`) name experiments by number only |
+| Thermo `.raw` headers, all 60 | sample name/ID/comment empty; vial + method + folder only |
+| Paper Methods / legends | design and counts only |
+| Supplementary zip (PMC open-data S3; MDPI 403, Europe PMC endpoint refused) | Tables S1–S3: group-level ratios; S4: primers; Figs S1–S3: blots |
+| Data Availability | PRIDE only |
+
+**Deliberately not used:** the period-10 LFQ structure in the 452 search (e.g. Rtg2 = 0 at runs 40/50/60) to
+infer strain and U/L per run. Mks1 is never quantified and Rtg1 only at trace, so genotype is not recoverable,
+and U/L / phase assignment would rest on the biology the study tests (campaign rules 6–8).
+
+**Unblocked by:** an author list mapping run numbers 1–60 to strain, cell type, phase and replicate
+(K. Harant, BIOCEV OMICS core; Z. Palková, Charles University). Technical values (Orbitrap Fusion, HCD/ion-trap
+MS2, DDA, trypsin, Carbamidomethyl fixed + Oxidation/Acetyl(Protein N-term) variable, 20/4.5 ppm, 0.5 Da) are
+resolved and OLS-verified in `annotations/PXD026077.report.md`.
+
+---
+
+## PXD017487 — DGAT1 phosphoproteome and long-term proteome (SILAC A375), phosphoproteome arm only (partial block)
+
+**Blocker: the deposited phosphoproteome is triple SILAC, but the only stated map is two-channel. The heavy time point conflicts between sources, and the stated orientation fails the data check. The long-term proteome (DMSO vs A922500 72 h) is annotated in `annotations/PXD017487.sdrf.tsv`.**
+
+| | |
+|---|---|
+| Publications | Wilcock *et al.*, Cell Rep 2022 39:110995, PMID:35732120, PMC9638004 (full text via Europe PMC fullTextXML). bioRxiv preprint doi:10.1101/2020.06.23.166603 v1 (53-page PDF via `get_pdf_by_unpaywall`, read in full) |
+| Deposited | 30 RAW, `parameters*.txt`, `experimentalDesignTemplate*.txt`, `proteinGroups*.txt`, `PhosphoSTYSites.txt` (MaxQuant 1.6.2.6) |
+| Annotated | 24 RAW `20190618_CF_COLLAB_Dan_A375_SILAC_0_72_PRO_0[1-3]_0[1-8].raw` (48 rows; light = DMSO, heavy = A922500 72 h, stated in preprint Fig. 6A) |
+| Blocked | 6 RAW `20190618_CF_COLLAB_Dan_A375_SILAC_0_30_120_STY_0[1-3]_0[1-2].raw` (MaxQuant experiments STY_01..03; the companion `0_30_120_PRO` runs used in that search were never deposited) |
+| SDRF would need | 6 files × 3 SILAC channels = 18 rows, each with a treatment and time. Labels per `summary_ST.txt` in the authors' GitHub repo: L = Arg0/Lys0, M = Arg6;Lys4, H = Arg10;Lys8 |
+
+**What is stated.** Preprint lines 229–231: "phosphorylated peptides from SILAC-labelled DGAT1high A375 melanoma cells following 4h treatment with A922500". The preprint Fig. 3A workflow shows a two-dish design: A375 Light = DMSO, Heavy = A922500, 4h → QE-HF → MaxQuant. The Data Availability names PXD017487. So the agent is known: A922500.
+
+**Why the arm is still blocked:**
+
+1. **The medium channel is undocumented.** The deposit is triple SILAC (`summary_ST.txt` Multiplicity 3, Labels1 = Arg6;Lys4). No text or figure in the paper or the preprint mentions a medium channel. Its only trace is the authors' code variable `STY_30m` (`2_PhosphoSTYSites_extraction-QC.R:74`).
+2. **The time points conflict.** The file names say `0_30_120` (heavy = 120 min). The preprint text, Fig. 3A and the code (`STY_4h`) say 4 h.
+3. **The stated map fails the data check (rule 6).** If heavy = A922500, pS6 should fall: the preprint reports rapid loss of pS6 within 2–4 h of A922500 (lines 235–238, Fig. 3B). Instead `Phospho (STY)Sites.txt` shows RPS6 heavy/light (normalized) rising in all 3 experiments:
+   - S235: 1.42 / 1.55 / 1.49
+   - S236: 2.17 / 2.29 / 2.02
+
+   Medium/light is 0.88–1.18. Either the orientation is reversed or a different design was run, so the stated map cannot be trusted for these files.
+
+**Deliberately not used:**
+- Assigning the medium channel from the code name `STY_30m`.
+- Flipping the heavy/light orientation to fit the pS6 data.
+
+Both would assert channel identities that no source states (campaign rules 6–8).
+
+**Unblocked by:** author confirmation of the medium (Arg6/Lys4) channel's condition and of the light/heavy orientation and time points of the STY runs. Contacts: C. Francavilla / M.P. Smith / A. Hurlstone, Manchester. All technical values (Q Exactive HF, variable Phospho (STY) + Gln->pyro-Glu, no Deamidation, labels Arg6/Lys4/Arg10/Lys8) are resolved in `annotations/PXD017487.report.md`.
+
+---
+
+## PXD027138 — RBM20 BioID (qRIC paper), whole dataset (8 RAW)
+
+**Blocker: no reachable source names the SILAC label (L/M/H) of each condition, in either arm or either label-swap orientation. Only the uninduced channel can be anchored, by its low RBM20 bait level, which fixes 1 of 3 channels in experiment 1 and none in experiment 2. No SDRF is deposited.**
+
+| | |
+|---|---|
+| Publication | Vieira-Vieira *et al.*, Mol Cell 2022 82:2069, PMID:35427468, doi:10.1016/j.molcel.2022.03.024 (not in PMC; bronze OA at the publisher, but unreadable here) |
+| Deposited | 8 RAW files (Orbitrap Exploris 480 + FAIMS), plus `txt.zip` (MaxQuant 1.6.0.1: mqpar.xml, parameters.txt, proteinGroups.txt, with Requantify on and off) |
+| Blocked | `Elmo_20210223_CV_HS_FAIMS_{Input,BioID}_RBM20ctl_{Forward,Reverse}.raw` (experiment 1: uninduced WT / S635A / induced WT); `..._Input_RBM20mut1_{Forward,Reverse}.raw`, `..._BioID_RBM20mut2_Forward.raw`, `..._BioID_RBM20mut2_Reverse_20210225171853.raw` (experiment 2: WT / A10 / D10) |
+| SDRF would need | 8 files × 3 SILAC channels = 24 rows. L = Lys0/Arg0, M = Lys4/Arg6, H = Lys8/Arg10 (per mqpar) |
+
+**What the PRIDE protocol says.** It lists each arm's conditions:
+- experiment 1: "uninduced WT, S635A mutant and induced WT";
+- experiment 2: "WT, A10 and D10";
+- Forward/Reverse is a "label swap".
+
+It never says which label each condition carries.
+
+**What the data show.** Comparing Forward and Reverse ratios across the proteome favours a cyclic shift between the orientations, not a plain L↔H swap:
+- the Forward light sample is in Reverse heavy;
+- the Forward medium sample is in Reverse light;
+- the Forward heavy sample is in Reverse medium.
+
+This is an inference, not a label statement. Only the uninduced channel is anchored: RBM20 is 10–45× lower in Forward light and in Reverse heavy.
+
+Sources checked:
+
+| source | result |
+|---|---|
+| PRIDE PXD027138 protocol, description, files/all | conditions listed, no label per condition |
+| MaxQuant mqpar.xml, parameters.txt, experimentalDesignTemplate.txt, proteinGroups.txt headers | experiment names only, no condition names |
+| Paper (Cell Press / ScienceDirect) | HTTP 403 |
+| bioRxiv preprint 10.1101/2021.07.12.452044 (direct, WebFetch, MCP get_pdf_by_unpaywall) | HTTP 429 on every attempt (about 25 min) |
+| Europe PMC PPR368916 fullTextXML | HTTP 500 |
+| Mendeley Data tcggv58kjk, n938bchmv2, d5h73x6xst, sp3xdygfxj, bdx89nn3tp | imaging data only. The method text gives the cell line (Flp-In T-REx HEK293, tetracycline-induced), no SILAC labels |
+| Sibling PRIDE projects PXD027137 / PXD030352 | qRIC experiments, no BioID label map |
+| MDC edoc eprint 21563 | metadata only, no full text |
+
+**Deliberately not used** (campaign rules 6–7):
+- the order of the PRIDE list;
+- the cytoplasmic RNP-granule proximity signature;
+- the data-derived cyclic map.
+
+The first external review (`annotations/PXD027138.review.md`) failed an earlier SDRF that relied on these. That SDRF has been withdrawn.
+
+**Unblocked by:** the paper's STAR Methods or figure legends (BioID section), or a label sheet from the authors (C.H. Vieira-Vieira, M. Selbach, MDC Berlin), giving the channel map for each orientation. The technical values are resolved in `annotations/PXD027138.report.md`.

@@ -9,3 +9,13 @@ PXD069185	PRIDE	include		Triple-SILAC APEX2 proximity labelling; deposited mqpar
 PXD012922	PRIDE	include		SILAC radioresistant MIA PaCa-2; deposited MaxQuant tables; not in sdrf-annotated-datasets	repository structured fields; paper methods
 PXD016211	PRIDE	include		Triple pulsed-SILAC U2OS TSA study; deposited MaxQuant output; not in sdrf-annotated-datasets	repository structured fields; PRIDE protocol
 PXD027268	PRIDE	include		Triple-SILAC H1299 endosome capture; deposited mqpar; not in sdrf-annotated-datasets	repository structured fields; paper methods
+PXD005246	PRIDE	include		SILAC 293-F10 phospho, dox-induced vs uninduced; deposited mqpar; not in sdrf-annotated-datasets	repository structured fields; PRIDE protocol
+PXD027138	PRIDE	include		SILAC RBM20 BioID / RNA interactome; deposited mqpar; not in sdrf-annotated-datasets	repository structured fields; PRIDE protocol
+PXD046891	PRIDE	include		Pulsed-SILAC HLA-I immunopeptidomics, Ma-Mel-51; deposited MaxQuant output	repository structured fields; paper methods
+PXD014436	PRIDE	include		SILAC E. coli ribosome biogenesis (lepA/rsgA); deposited MaxQuant searches	repository structured fields; paper methods
+PXD028934	PRIDE	include		Pulsed SILAC yeast heat shock / LiP; deposited MaxQuant tables	repository structured fields; paper methods
+PXD006676	PRIDE	include		SILAC C. elegans larval stages; deposited MaxQuant output	repository structured fields; PRIDE protocol
+PXD017487	PRIDE	include		SILAC A375 DGAT1 inhibitor proteome/phospho; deposited parameters	repository structured fields; paper methods
+PXD008327	PRIDE	include		SILAC yeast mitotic-exit phospho time course; deposited mqpar	repository structured fields; paper methods
+PXD024103	PRIDE	include		SILAC ubiquitinome Nedd4 knockdown; deposited MaxQuant output	repository structured fields; paper methods
+PXD026077	PRIDE	exclude	14	Deposited searches are label-free (Multiplicity 1, no labelMods); PRIDE SILAC tag is wrong	deposited mqpar.xml and summary.txt
