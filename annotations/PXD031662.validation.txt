@@ -106,3 +106,30 @@ Structure OK: acquisition, template declaration and column order are consistent.
 exit code: 0
 
 $ parse_sdrf validate-sdrf -s annotations/PXD031662.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+ERROR:sdrf_pipelines.ols.ols:OLS search term plasma cell error, retry number 0
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term plasma cell. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=plasma+cell&name=class&rows=10&start=0&ontology=cl&exact=on
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/ols/ols.py", line 902, in _perform_ols_search
+    req.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=plasma+cell&name=class&rows=10&start=0&ontology=cl&exact=on
+WARNING: Term: XG-2 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/openms4) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD031662.sdrf.tsv -t2
+Conditions (12): dict_keys(['SK-MM-1|BioID2 empty vector', 'SK-MM-1|BioID2-SLC3A2 + shCTRL', 'SK-MM-1|BioID2-SLC3A2 + shNRAS.1', 'XG-2|BioID2 empty vector', 'XG-2|BioID2-SLC3A2 + shKRAS.2', 'XG-2|BioID2-SLC3A2 + shCTRL', 'RPMI8226|BioID2 empty vector', 'RPMI8226|BioID2-SLC3A2 + shCTRL', 'RPMI8226|BioID2-SLC3A2 + shKRAS.2', 'SK-MM-1|shCTRL', 'SK-MM-1|shNRAS.1', 'SK-MM-1|shNRAS.2'])
+Files per condition: dict_values([23, 23, 23, 23, 23, 23, 23, 23, 23, 16, 16, 16])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 255 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD031662.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD031662.evidence.json
+annotations/PXD031662.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD031662.sdrf.tsv annotations/PXD031662.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+

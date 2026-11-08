@@ -1,5 +1,5 @@
 PXD020618 validation log (sdrf-skills producer run, 2026-11-08)
-Artifact: annotations/PXD020618.sdrf.tsv  sha256 beb4f05c93dca0b44cb5d34d2e6f6a466aa230a3de0cecb50186e306ebc86fb2  (676 rows x 52 columns)
+Artifact (current, after review round 1 fix): annotations/PXD020618.sdrf.tsv  sha256 86b24805a065f98d217a3cd64d4dd4c8ea02f36e7650254d89d3f80fb5b83360  (676 rows x 56 columns); rounds 1-3 below describe the earlier beb4f05c... artifact (52 columns)
 Build: scripts/make_tables.py -> sdrf-tools build x2 (searched 668 rows / unsearched 8 rows; identical headers; -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata)
 Post-build (rule 17, deterministic, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/scripts/postbuild.py): (1) concatenation; (2) second comment[cleavage agent details]
   inserted after the Trypsin column: NT=Lys-C;AC=MS:1001309 on all rows except TIL25/TIL33 (+their reference rows) = not applicable
@@ -79,4 +79,46 @@ annotations/PXD020618.evidence.json: valid evidence-manifest
 exit=0
 $ sdrf-tools manifest-coverage annotations/PXD020618.sdrf.tsv annotations/PXD020618.evidence.json
 Manifest covers every column with a value (37 column(s)).
+exit=0
+
+######## REVIEW ROUND 1 FIX (after external FAIL on beb4f05c...; PXD020618.review.md) ########
+Final artifact: sha256 86b24805a065f98d217a3cd64d4dd4c8ea02f36e7650254d89d3f80fb5b83360 (676 rows x 56 columns). Changes made only in scripts/make_tables.py, then sdrf-tools build x2 + postbuild.py (unchanged):
+ - IMPORTANT fixed: characteristics[treatment] + factor value[treatment] from S1A 'Immunotherapy group' (TIL -> Tumor Infiltrating Lymphocyte Therapy NCIT:C15524,
+   a-PD1 -> PD1 Inhibitor NCIT:C124946, a-CTLA4 -> Anti-CTLA-4 Monoclonal Antibody NCIT:C128036; verified live via OLS obo_id); heavy rows not applicable;
+   biological replicate groups now (treatment, organism part, genotype, response).
+ - minor: heavy-row cell-line composition moved from characteristics[clinical data] (now not applicable) to custom characteristics[reference cell lines];
+   characteristics[survival time] = S1A OS months rounded to 0.01 ('88.7 month'; NA -> not available); manifest states Lys-C inference for single-shot runs.
+$ parse_sdrf validate-sdrf -s PXD020618.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+Everything seems to be fine. Well done.
+exit=0
+(one transient OLS HTTP 500 retry for 'adrenal gland' logged; run completed clean)
+
+$ sdrf-tools structure annotations/PXD020618.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+$ sdrf-tools reconcile annotations/PXD020618.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/pride.json --accession PXD020618
+PXD020618: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names not applicable, Trypsin, Lys-C as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+$ sdrf-tools reconcile annotations/PXD020618.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/pride_v3.json --accession PXD020618
+PXD020618: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'not applicable' but the record's digest names Trypsin, Lys-C
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive HF', the annotation says 'Q Exactive Plus'  [Q-Exactive HF]
+exit=1
+Refutations unchanged from round 1 above (same 14 TIL25/TIL33 rows; both instruments named in the protocol).
+
+$ parse_sdrf convert-openms -s annotations/PXD020618.sdrf.tsv -t2   (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/openms4)
+ValueError: Error: Cannot read precursor mass tolerance: not applicable
+exit=1 (expected: 4 never-searched runs, tolerance not applicable; filter their 8 rows before conversion)
+$ parse_sdrf convert-openms -s probe_searched_only.sdrf.tsv -t2   (668 searched rows; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD020618/openms5)
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 668 times.
+SUCCESS (WARNINGS=1): probe_searched_only.sdrf.tsv
+exit=0
+$ sdrf-tools schema-check annotations/PXD020618.evidence.json
+annotations/PXD020618.evidence.json: valid evidence-manifest
+exit=0
+$ sdrf-tools manifest-coverage annotations/PXD020618.sdrf.tsv annotations/PXD020618.evidence.json
+Manifest covers every column with a value (41 column(s)).
 exit=0

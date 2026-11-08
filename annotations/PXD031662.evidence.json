@@ -66,12 +66,12 @@
   {
    "id": "ratio_checks",
    "kind": "analysis",
-   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/ratios.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/channel_occupancy_and_bait_ratios.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig3a_exact.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig3a_exact_match.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig4b.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig4b_correlation.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig1d.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig1d_exact_match.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/tmt_channel_occupancy.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/masserr.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/precursor_mass_error_cap.txt"
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/ratios.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/channel_occupancy_and_bait_ratios.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig3a_exact.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig3a_exact_match.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig4b.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig4b_correlation.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/fig1d.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/fig1d_exact_match.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/tmt_channel_occupancy.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/masserr.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/precursor_mass_error_cap.txt; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/runheader.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/analysis/runheader_last_scan.txt (RunHeader last scan of deposited raws vs MS+MS/MS in summary.txt)"
   },
   {
    "id": "cellosaurus",
    "kind": "database",
-   "location": "https://api.cellosaurus.org/search/cell-line?q=id:\"<name>\" for L-363, SK-MM-1, XG-2, RPMI-8226 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/cello/*.txt)"
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:\"<name>\" for SK-MM-1, XG-2, RPMI-8226 (local: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/cello/*.txt)"
   },
   {
    "id": "ols",
@@ -86,21 +86,21 @@
   {
    "id": "generator",
    "kind": "build-script",
-   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/build2/samples_*.tsv, technical_*.tsv, files_*.json; three sdrf-tools build runs (biotin_qehf, biotin_qe, phospho_qehf) concatenated with byte-identical headers (md5 a4c1311e4e0ccb326a94cff34851b780); excluded file list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/build2/excluded_files.txt"
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/build3/samples_*.tsv, technical_*.tsv, files_*.json; three sdrf-tools build runs (biotin_qehf, biotin_qe, phospho_qehf) concatenated with byte-identical headers (md5 a4c1311e4e0ccb326a94cff34851b780); excluded file list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/build3/excluded_files.txt"
   }
  ],
  "claims": [
   {
-   "location": "source name rows 1-324",
+   "location": "source name rows 1-255",
    "value": "<cell line> exp<experiment id> <genetic modification>",
    "source_ids": [
     "file_assignment",
     "generator"
    ],
-   "evidence": "Source names are built from the File_assignment Sample ID (136, 139, 983, 984, 96/96B) + cell line + per-channel condition; one source per SILAC channel per independent experiment. 96 and 96B share sources (one SILAC triple, see technical replicate claim)."
+   "evidence": "Source names are built from the File_assignment Sample ID (139, 983, 984, 96/96B) + cell line + per-channel condition; one source per SILAC channel per independent experiment. 96 and 96B share sources (one SILAC triple, see technical replicate claim)."
   },
   {
-   "location": "characteristics[organism] rows 1-324",
+   "location": "characteristics[organism] rows 1-255",
    "value": "Homo sapiens",
    "source_ids": [
     "pride",
@@ -109,18 +109,7 @@
    "evidence": "PRIDE organisms NEWT:9606; all four lines are human (Cellosaurus OX NCBI_TaxID=9606)."
   },
   {
-   "location": "characteristics[cell line] rows 1-69; factor value[cell line] same rows",
-   "value": "L-363",
-   "source_ids": [
-    "file_assignment",
-    "paper",
-    "cellosaurus",
-    "ols"
-   ],
-   "evidence": "File_assignment Cell line L363 (exp 136); paper table: L363 human MM cell line, DSMZ ACC 49 -> Cellosaurus CVCL_1357 (DR DSMZ ACC-49); EFO:0006450 label L-363."
-  },
-  {
-   "location": "characteristics[cell line] rows 70-138,277-324; factor value[cell line] same rows",
+   "location": "characteristics[cell line] rows 1-69,208-255; factor value[cell line] same rows",
    "value": "SK-MM-1",
    "source_ids": [
     "file_assignment",
@@ -131,7 +120,7 @@
    "evidence": "File_assignment SKMM1 (139, 96/96B); paper: SKMM1 from NCI; Cellosaurus CVCL_A478 synonym SKMM1; EFO:0005457 label SK-MM-1."
   },
   {
-   "location": "characteristics[cell line] rows 139-207; factor value[cell line] same rows",
+   "location": "characteristics[cell line] rows 70-138; factor value[cell line] same rows",
    "value": "XG-2",
    "source_ids": [
     "file_assignment",
@@ -142,7 +131,7 @@
    "evidence": "File_assignment XG2 (983); paper: XG2 from NCI; Cellosaurus CVCL_4798 synonym XG2. Cellosaurus lists no CLO/BTO/EFO cross-reference and OLS search for XG-2 in efo/bto/clo returns no cell line, so the Cellosaurus name is used (validator warning expected)."
   },
   {
-   "location": "characteristics[cell line] rows 208-276; factor value[cell line] same rows",
+   "location": "characteristics[cell line] rows 139-207; factor value[cell line] same rows",
    "value": "RPMI8226",
    "source_ids": [
     "file_assignment",
@@ -153,16 +142,7 @@
    "evidence": "File_assignment RPMI-8226 (984); paper: RPMI 8226 ATCC CCL-155 -> Cellosaurus CVCL_0014 (DR ATCC CCL-155); EFO:0002322 label RPMI8226."
   },
   {
-   "location": "characteristics[cellosaurus accession] and characteristics[cellosaurus name] rows 1-69",
-   "value": "CVCL_1357 / L-363",
-   "source_ids": [
-    "cellosaurus",
-    "paper"
-   ],
-   "evidence": "Cellosaurus AC CVCL_1357, ID L-363; vendor/catalogue in paper cell-line table matches."
-  },
-  {
-   "location": "characteristics[cellosaurus accession] and characteristics[cellosaurus name] rows 70-138,277-324",
+   "location": "characteristics[cellosaurus accession] and characteristics[cellosaurus name] rows 1-69,208-255",
    "value": "CVCL_A478 / SK-MM-1",
    "source_ids": [
     "cellosaurus",
@@ -171,7 +151,7 @@
    "evidence": "Cellosaurus AC CVCL_A478, ID SK-MM-1; vendor/catalogue in paper cell-line table matches."
   },
   {
-   "location": "characteristics[cellosaurus accession] and characteristics[cellosaurus name] rows 139-207",
+   "location": "characteristics[cellosaurus accession] and characteristics[cellosaurus name] rows 70-138",
    "value": "CVCL_4798 / XG-2",
    "source_ids": [
     "cellosaurus",
@@ -180,7 +160,7 @@
    "evidence": "Cellosaurus AC CVCL_4798, ID XG-2; vendor/catalogue in paper cell-line table matches."
   },
   {
-   "location": "characteristics[cellosaurus accession] and characteristics[cellosaurus name] rows 208-276",
+   "location": "characteristics[cellosaurus accession] and characteristics[cellosaurus name] rows 139-207",
    "value": "CVCL_0014 / RPMI-8226",
    "source_ids": [
     "cellosaurus",
@@ -189,16 +169,7 @@
    "evidence": "Cellosaurus AC CVCL_0014, ID RPMI-8226; vendor/catalogue in paper cell-line table matches."
   },
   {
-   "location": "characteristics[organism part], characteristics[sex], characteristics[age], characteristics[ancestry category], characteristics[developmental stage] rows 1-69",
-   "value": "blood / female / 36Y / European ancestry / adult",
-   "source_ids": [
-    "cellosaurus",
-    "ols"
-   ],
-   "evidence": "Cellosaurus: Derived from site Peripheral blood (UBERON_0000178 blood); SX Female; AG 36Y; Population Caucasian -> HANCESTRO:0005 European ancestry (campaign precedent); 36Y >= 20Y -> adult EFO:0001272."
-  },
-  {
-   "location": "characteristics[organism part], characteristics[sex], characteristics[age], characteristics[ancestry category], characteristics[developmental stage] rows 70-138,277-324",
+   "location": "characteristics[organism part], characteristics[sex], characteristics[age], characteristics[ancestry category], characteristics[developmental stage] rows 1-69,208-255",
    "value": "bone marrow / male / 55Y / not available / adult",
    "source_ids": [
     "cellosaurus",
@@ -207,7 +178,7 @@
    "evidence": "Cellosaurus: Derived from site Bone marrow (UBERON_0002371); SX Male; AG 55Y; no Population line -> ancestry not available; adult."
   },
   {
-   "location": "characteristics[organism part], characteristics[sex], characteristics[age], characteristics[ancestry category], characteristics[developmental stage] rows 139-207",
+   "location": "characteristics[organism part], characteristics[sex], characteristics[age], characteristics[ancestry category], characteristics[developmental stage] rows 70-138",
    "value": "pleural effusion / female / not available / not available / not available",
    "source_ids": [
     "cellosaurus",
@@ -216,7 +187,7 @@
    "evidence": "Cellosaurus: Derived from site Pleural effusion (UBERON_0000175); SX Female; AG Age unspecified -> age/developmental stage not available; no Population line -> ancestry not available."
   },
   {
-   "location": "characteristics[organism part], characteristics[sex], characteristics[age], characteristics[ancestry category], characteristics[developmental stage] rows 208-276",
+   "location": "characteristics[organism part], characteristics[sex], characteristics[age], characteristics[ancestry category], characteristics[developmental stage] rows 139-207",
    "value": "blood / male / 61Y / African American / adult",
    "source_ids": [
     "cellosaurus",
@@ -225,7 +196,7 @@
    "evidence": "Cellosaurus: Derived from site Peripheral blood (UBERON_0000178 blood); SX Male; AG 61Y; Population African American -> HANCESTRO:0568; adult."
   },
   {
-   "location": "characteristics[cell type] rows 1-324",
+   "location": "characteristics[cell type] rows 1-255",
    "value": "plasma cell",
    "source_ids": [
     "cellosaurus",
@@ -235,7 +206,7 @@
    "evidence": "Cellosaurus Cell type: Plasma cell; CL=CL_0000786 for all four lines; PRIDE organismParts lists CL:0000786 Plasma cell."
   },
   {
-   "location": "characteristics[disease] rows 1-324",
+   "location": "characteristics[disease] rows 1-255",
    "value": "plasma cell myeloma",
    "source_ids": [
     "pride",
@@ -246,7 +217,7 @@
    "evidence": "All lines are multiple myeloma lines (paper table \"Human multiple myeloma cell line\"; Cellosaurus DI NCIt C3242 Plasma cell myeloma); PRIDE DOID:9538 multiple myeloma; MONDO:0009693 label plasma cell myeloma (exact synonym multiple myeloma). Disease is a property of the line, so empty-vector/shCTRL rows keep it."
   },
   {
-   "location": "characteristics[material type] rows 1-324",
+   "location": "characteristics[material type] rows 1-255",
    "value": "cell line",
    "source_ids": [
     "file_assignment",
@@ -255,7 +226,7 @@
    "evidence": "All samples are cultured MM cell lines."
   },
   {
-   "location": "characteristics[biological replicate] rows 1-324",
+   "location": "characteristics[biological replicate] rows 1-255",
    "value": "1",
    "source_ids": [
     "source_data",
@@ -265,7 +236,7 @@
    "evidence": "Each (cell line, genetic modification) group is measured in exactly one deposited independent experiment in scope; Source Data sheets Fig. 3a and Fig. 4b state \"Data are shown from 1 biological replicate of mass spectrometry\"."
   },
   {
-   "location": "comment[technical replicate] rows 277-300 = 1, rows 301-324 = 2; all BioID2 rows = 1",
+   "location": "comment[technical replicate] rows 208-231 = 1, rows 232-255 = 2; all BioID2 rows = 1",
    "value": "1 / 2",
    "source_ids": [
     "file_assignment",
@@ -276,7 +247,7 @@
    "evidence": "File_assignment lists \"96 / 96B\" as ONE sample entry with one L/M/H map; MaxQuant_96_96B searched them as separate experiments R1_96 and R1_96B (8 fractions each, E1-E8); Fig. 4b source data: 1 biological replicate. Encoded as two technical replicates of one SILAC triple (inference: what distinguishes 96 from 96B is not documented)."
   },
   {
-   "location": "characteristics[enrichment process] rows 1-276",
+   "location": "characteristics[enrichment process] rows 1-207",
    "value": "sample enrichment",
    "source_ids": [
     "paper",
@@ -286,7 +257,7 @@
    "evidence": "Paper Methods: biotinylated proteins purified by streptavidin agarose pulldown (BioID2). No EFO descendant of EFO:0009090 names streptavidin/biotin affinity enrichment, so the parent-level EFO:0009106 sample enrichment is used (campaign precedent PXD024103)."
   },
   {
-   "location": "characteristics[enrichment process] rows 277-324",
+   "location": "characteristics[enrichment process] rows 208-255",
    "value": "enrichment of phosphorylated protein",
    "source_ids": [
     "pride",
@@ -296,7 +267,7 @@
    "evidence": "PRIDE protocol: phospho-peptide enrichment using titanium dioxide; paper Phosphoproteome Analysis; EFO:0010806."
   },
   {
-   "location": "characteristics[culture medium] rows 1-324",
+   "location": "characteristics[culture medium] rows 1-255",
    "value": "not available",
    "source_ids": [
     "paper"
@@ -304,28 +275,28 @@
    "evidence": "Paper: cells grown in \"SILAC media, containing amino acids labeled with stable isotopes of arginine and lysine\" (BioID2) / \"SILAC media\" (phospho); base medium of the SILAC media is not named (routine culture is advanced RPMI, but the labelling medium is not stated), so not available."
   },
   {
-   "location": "characteristics[genetic modification] and factor value[genetic modification] rows 1-23,70-92,139-161,208-230",
+   "location": "characteristics[genetic modification] and factor value[genetic modification] rows 1-23,70-92,139-161",
    "value": "BioID2 empty vector",
    "source_ids": [
     "file_assignment",
     "paper",
     "ratio_checks"
    ],
-   "evidence": "File_assignment: SILAC light = \"empty vector\" for 136, 139, 983, 984; paper: enrichment relative to empty vector (pBMN-Lyt2-BioID2) expressing BioID2 alone. Data: bait SLC3A2 is 2.3-3.7 log2 lower in light than in medium/heavy in all four experiments (analysis/channel_occupancy_and_bait_ratios.txt)."
+   "evidence": "File_assignment: SILAC light = \"empty vector\" for 139, 983, 984; paper: enrichment relative to empty vector (pBMN-Lyt2-BioID2) expressing BioID2 alone. Data: bait SLC3A2 is 2.3-3.7 log2 lower in light than in medium/heavy in all three experiments (analysis/channel_occupancy_and_bait_ratios.txt)."
   },
   {
-   "location": "characteristics[genetic modification] and factor value[genetic modification] rows 1-138,208-276 (non-light rows)",
-   "value": "BioID2-SLC3A2 + shCTRL (medium) / BioID2-SLC3A2 + shNRAS.1 (136, 139 heavy) / BioID2-SLC3A2 + shKRAS.2 (984 heavy)",
+   "location": "characteristics[genetic modification] and factor value[genetic modification] rows 1-69,139-207 (non-light rows)",
+   "value": "BioID2-SLC3A2 + shCTRL (medium) / BioID2-SLC3A2 + shNRAS.1 (139 heavy) / BioID2-SLC3A2 + shKRAS.2 (984 heavy)",
    "source_ids": [
     "file_assignment",
     "source_data",
     "ratio_checks",
     "paper"
    ],
-   "evidence": "File_assignment: medium \"SLC3A2 + shCTRL\", heavy \"SLC3A2 + shNRAS\" (136 L363, 139 SKMM1) / \"SLC3A2 +shKRAS\" (984 RPMI-8226). Confirmed by exact identity: Source Data Fig. 3a columns \"<line> shCTRL\" == log2(Ratio M/L normalized) and \"<line> shKRAS/shNRAS\" == log2(Ratio H/L normalized) for 3007/3012 (L363-136), 2358/2362 (SKMM1-139), 1692/1692 (8226-984) genes. Paper: BioID2-SLC3A2 with control shRNA or shRNAs targeting KRAS or NRAS corresponding to the mutant RAS isoform of each line; hairpin identity from the BioID2 Methods paragraph: \"In certain cases, cells were infected with pLKO-shKRAS.2 or pLKO-shNRAS.1\" (File_assignment says only shKRAS/shNRAS)."
+   "evidence": "File_assignment: medium \"SLC3A2 + shCTRL\", heavy \"SLC3A2 + shNRAS\" (139 SKMM1) / \"SLC3A2 +shKRAS\" (984 RPMI-8226). Confirmed by exact identity: Source Data Fig. 3a columns \"<line> shCTRL\" == log2(Ratio M/L normalized) and \"<line> shKRAS/shNRAS\" == log2(Ratio H/L normalized) for 2358/2362 (SKMM1-139) and 1692/1692 (8226-984) genes. Paper: BioID2-SLC3A2 with control shRNA or shRNAs targeting KRAS or NRAS corresponding to the mutant RAS isoform of each line; hairpin identity from the BioID2 Methods paragraph: \"In certain cases, cells were infected with pLKO-shKRAS.2 or pLKO-shNRAS.1\" (File_assignment says only shKRAS/shNRAS)."
   },
   {
-   "location": "characteristics[genetic modification] and factor value[genetic modification] rows 162-207",
+   "location": "characteristics[genetic modification] and factor value[genetic modification] rows 93-138",
    "value": "SILAC medium = BioID2-SLC3A2 + shKRAS.2; SILAC heavy = BioID2-SLC3A2 + shCTRL",
    "source_ids": [
     "source_data",
@@ -334,10 +305,10 @@
     "file_assignment",
     "paper"
    ],
-   "evidence": "CONFLICT resolved against File_assignment.txt (which lists medium = SLC3A2 +shCtrl, heavy = SLC3A2 +shKRAS for 983). Deciding evidence: the paper Source Data Fig. 3a, an author-labelled source, is bound to the deposit by exact numerical identity - column \"XG2 shKRAS\" == log2(Ratio M/L normalized, exp 983) and \"XG2 shCTRL\" == log2(Ratio H/L normalized, exp 983) for 2588/2589 genes; the File_assignment orientation matches 10 genes. The same test confirms File_assignment for 984/136/139 (1692/1692, 3007/3012, 2358/2362), so the method is calibrated. Hairpin identity shKRAS.2 per the paper Methods (see the shRNA claim). Rule 6: explicit label + data beat the single conflicting label."
+   "evidence": "CONFLICT resolved against File_assignment.txt (which lists medium = SLC3A2 +shCtrl, heavy = SLC3A2 +shKRAS for 983). Deciding evidence: the paper Source Data Fig. 3a, an author-labelled source, is bound to the deposit by exact numerical identity - column \"XG2 shKRAS\" == log2(Ratio M/L normalized, exp 983) and \"XG2 shCTRL\" == log2(Ratio H/L normalized, exp 983) for 2588/2589 genes; the File_assignment orientation matches 10 genes. The same test confirms File_assignment for 984 and 139 (1692/1692, 2358/2362), so the method is calibrated. Hairpin identity shKRAS.2 per the paper Methods (see the shRNA claim). Rule 6: explicit label + data beat the single conflicting label."
   },
   {
-   "location": "characteristics[genetic modification] and factor value[genetic modification] rows 277-324",
+   "location": "characteristics[genetic modification] and factor value[genetic modification] rows 208-255",
    "value": "shCTRL (light) / shNRAS.1 (medium) / shNRAS.2 (heavy)",
    "source_ids": [
     "paper",
@@ -348,7 +319,7 @@
    "evidence": "Paper Methods: cells in Light media transduced with shCtrl, Medium with shNRAS.1, Heavy with shNRAS.2. File_assignment 96/96B: light shCtrl, medium-heavy shNRAS.56, heavy shNRAS.57 (same order; .56/.57 read as clone suffixes of the paper's shNRAS.1/.2 - inference). Data: Fig. 4b \"median log2 M/L shNRAS.1\"/\"H/L shNRAS.2\" correlate r=0.87-0.88 with deposited site log2 M/L and 0.81-0.83 with H/L for R1_96 and R1_96B vs 0.47-0.51 for the swapped channels; RPS6 protein-group M/L and H/L < 0 (mTORC1 target down on NRAS knockdown)."
   },
   {
-   "location": "comment[label] rows 1-324",
+   "location": "comment[label] rows 1-255",
    "value": "SILAC light / SILAC medium / SILAC heavy",
    "source_ids": [
     "file_assignment",
@@ -361,7 +332,7 @@
    "evidence": "MaxQuant summary.txt Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 for every annotated run; File_assignment names light/medium-heavy/heavy for each annotated experiment; all three channels carry signal (channel share of intensity 0.21-0.43)."
   },
   {
-   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-324",
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-255",
    "value": "deposited .raw names; fraction = gel slice 1-23 (BioID2) or E1-E8 (phospho)",
    "source_ids": [
     "pride_files",
@@ -371,10 +342,10 @@
     "mq_96",
     "generator"
    ],
-   "evidence": "File names from files/all; the numeric suffix is the gel slice / elution number; summary.txt lists the same raw names per experiment (136, 139, 983, 984 x 23 runs; R1_96, R1_96B x 8). Paper: entire lane cut into 23 slices."
+   "evidence": "File names from files/all; the numeric suffix is the gel slice / elution number; summary.txt lists the same raw names as the deposit for every annotated experiment (139, 983, 984 x 23 runs; R1_96, R1_96B x 8). Not so for the removed 136 arm: summary.txt exp 136 is TO_R_Young_190220_060320_HFPlus_136_L2_* (never deposited), and the deposited TO_R_Young_190220_110320_HFPlus_136_L6_* raws are exp 140 by RunHeader last-scan number (fractions 1/2/7: 32624/33345/33984 = 140_L6 MS+MS/MS; 136_L2 = 33074/33569/36745); control 139_L5_1/7 last scans 32412/33817 = 139_L5 (analysis/runheader_last_scan.txt). Paper: entire lane cut into 23 slices."
   },
   {
-   "location": "comment[instrument] rows 139-276",
+   "location": "comment[instrument] rows 70-207",
    "value": "NT=Q Exactive;AC=MS:1001911",
    "source_ids": [
     "raw_headers",
@@ -383,17 +354,17 @@
    "evidence": "Raw headers of TO_R_Young_281119_100120_QEx1_983_L2_1.raw and _984_L3_1.raw read \"Q Exactive - Orbitrap MS\" (not HF), contradicting the paper Methods (Q Exactive HF) for these two runs; raw data wins."
   },
   {
-   "location": "comment[instrument] rows 1-138,277-324",
+   "location": "comment[instrument] rows 1-69,208-255",
    "value": "NT=Q Exactive HF;AC=MS:1002523",
    "source_ids": [
     "raw_headers",
     "paper",
     "ols"
    ],
-   "evidence": "Raw headers of HFPlus_136_L6_1, HFPlus_139_L5_1, phospho_96_E1 and phospho_96B_E1 read \"Q Exactive HF - Orbitrap MS\"."
+   "evidence": "Raw headers of HFPlus_139_L5_1, phospho_96_E1 and phospho_96B_E1 read \"Q Exactive HF - Orbitrap MS\"."
   },
   {
-   "location": "comment[proteomics data acquisition method] rows 1-324",
+   "location": "comment[proteomics data acquisition method] rows 1-255",
    "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
    "source_ids": [
     "paper",
@@ -402,7 +373,7 @@
    "evidence": "Paper: TopN data-dependent mode (top 30); PRIDE: shotgun LC-MS/MS."
   },
   {
-   "location": "comment[cleavage agent details] rows 1-324",
+   "location": "comment[cleavage agent details] rows 1-255",
    "value": "NT=Trypsin;AC=MS:1001251",
    "source_ids": [
     "paper",
@@ -415,7 +386,7 @@
    "evidence": "Paper: in-gel digestion with trypsin; PRIDE: tryptic digests. MaxQuant search rule Trypsin/P (recorded, campaign rule 2: cleavage agent = digestion enzyme)."
   },
   {
-   "location": "comment[dissociation method] rows 1-324",
+   "location": "comment[dissociation method] rows 1-255",
    "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
    "source_ids": [
     "paper",
@@ -424,7 +395,7 @@
    "evidence": "Paper: MS2 fragmentation at normalized collision energy 28 on Q Exactive-class instruments (HCD = beam-type CID)."
   },
   {
-   "location": "comment[ms2 mass analyzer] rows 1-324",
+   "location": "comment[ms2 mass analyzer] rows 1-255",
    "value": "NT=orbitrap;AC=MS:1000484",
    "source_ids": [
     "paper",
@@ -433,7 +404,7 @@
    "evidence": "Q Exactive / Q Exactive HF acquire MS2 in the Orbitrap (paper: MS2 at resolution 15,000)."
   },
   {
-   "location": "comment[fractionation method] rows 1-276",
+   "location": "comment[fractionation method] rows 1-207",
    "value": "NT=SDS PAGE;AC=PRIDE:0000568",
    "source_ids": [
     "paper",
@@ -443,7 +414,7 @@
    "evidence": "Paper: proteins separated by 1D gel electrophoresis (4-12% NuPAGE Bis-Tris), lane cut into 23 slices; PRIDE: SDS-PAGE, 23 bands. PRIDE:0000568 is a descendant of PRIDE:0000550."
   },
   {
-   "location": "comment[fractionation method] rows 277-324",
+   "location": "comment[fractionation method] rows 208-255",
    "value": "not available",
    "source_ids": [
     "pride",
@@ -452,7 +423,7 @@
    "evidence": "PRIDE: \"After pre-fractionation\" (method unnamed); paper: \"analyzed as previously described (ref 67, Fish et al. PNAS 2020)\"; the PMC body of ref 67 does not name the fractionation; 8 elution fractions E1-E8 deposited."
   },
   {
-   "location": "comment[fragment mass tolerance] rows 1-324",
+   "location": "comment[fragment mass tolerance] rows 1-255",
    "value": "20 ppm",
    "source_ids": [
     "mq_983",
@@ -462,10 +433,10 @@
     "paper",
     "pride"
    ],
-   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\" in all four searches; paper and PRIDE: 20 ppm fragment."
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\" in all annotated searches; paper and PRIDE: 20 ppm fragment."
   },
   {
-   "location": "comment[precursor mass tolerance] rows 1-324",
+   "location": "comment[precursor mass tolerance] rows 1-255",
    "value": "4.5 ppm",
    "source_ids": [
     "mq_983",
@@ -475,10 +446,10 @@
     "pride",
     "ratio_checks"
    ],
-   "evidence": "Deposited evidence.txt: the largest calibrated |Mass error [ppm]| of non-MULTI evidence is just under 4.5 ppm in every annotated experiment (MaxQuant_983 exp 983: n=38279 max |Mass error [ppm]| (non-MULTI) = 4.4999; MaxQuant_984 exp 984: n=20907 max |Mass error [ppm]| (non-MULTI) = 4.4989; MaxQuant_136_139 exp 136: n=47517 max |Mass error [ppm]| (non-MULTI) = 4.4989; MaxQuant_136_139 exp 139: n=26420 max |Mass error [ppm]| (non-MULTI) = 4.4940; MaxQuant_96_96B exp R1_96: n=15302 max |Mass error [ppm]| (non-MULTI) = 4.4537; MaxQuant_96_96B exp R1_96B: n=11865 max |Mass error [ppm]| (non-MULTI) = 4.4941), i.e. a hard 4.5 ppm main-search cutoff. PRIDE dataProcessingProtocol: \"After initial recalibration, a mass tolerance of 4.5 ppm and 20 ppm was allowed for precursor and fragment ions\". The paper Methods value (6 ppm) is contradicted by the deposited search output, which outranks the manuscript."
+   "evidence": "Deposited evidence.txt: the largest calibrated |Mass error [ppm]| of non-MULTI evidence is just under 4.5 ppm in every annotated experiment (MaxQuant_983 exp 983: n=38279 max |Mass error [ppm]| (non-MULTI) = 4.4999; MaxQuant_984 exp 984: n=20907 max |Mass error [ppm]| (non-MULTI) = 4.4989; MaxQuant_136_139 exp 139: n=26420 max |Mass error [ppm]| (non-MULTI) = 4.4940; MaxQuant_96_96B exp R1_96: n=15302 max |Mass error [ppm]| (non-MULTI) = 4.4537; MaxQuant_96_96B exp R1_96B: n=11865 max |Mass error [ppm]| (non-MULTI) = 4.4941), i.e. a hard 4.5 ppm main-search cutoff. PRIDE dataProcessingProtocol: \"After initial recalibration, a mass tolerance of 4.5 ppm and 20 ppm was allowed for precursor and fragment ions\". The paper Methods value (6 ppm) is contradicted by the deposited search output, which outranks the manuscript."
   },
   {
-   "location": "comment[modification parameters] (Carbamidomethyl, Oxidation, Acetyl) rows 1-324",
+   "location": "comment[modification parameters] (Carbamidomethyl, Oxidation, Acetyl) rows 1-255",
    "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed | NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
    "source_ids": [
     "mq_983",
@@ -490,7 +461,7 @@
    "evidence": "summary.txt: Fixed modifications Carbamidomethyl (C); Variable modifications Oxidation (M);Acetyl (Protein N-term);... for every annotated run."
   },
   {
-   "location": "comment[modification parameters] (Biotin slot) rows 1-276",
+   "location": "comment[modification parameters] (Biotin slot) rows 1-207",
    "value": "NT=Biotin;AC=UNIMOD:3;TA=K;MT=Variable",
    "source_ids": [
     "mq_983",
@@ -498,10 +469,10 @@
     "mq_136_139",
     "ols"
    ],
-   "evidence": "summary.txt Variable modifications include Biotin (K) for 136, 139, 983, 984; site table Biotin (K)Sites.txt. Phospho rows: not applicable (not searched)."
+   "evidence": "summary.txt Variable modifications include Biotin (K) for 139, 983, 984; site table Biotin (K)Sites.txt. Phospho rows: not applicable (not searched)."
   },
   {
-   "location": "comment[modification parameters] (Phospho slot) rows 277-324",
+   "location": "comment[modification parameters] (Phospho slot) rows 208-255",
    "value": "NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable",
    "source_ids": [
     "mq_96",
@@ -510,7 +481,7 @@
    "evidence": "MaxQuant_96_96B summary.txt Variable modifications include Phospho (STY). BioID2 rows: not applicable (not searched)."
   },
   {
-   "location": "comment[modification parameters] (SILAC labels) rows 1-324",
+   "location": "comment[modification parameters] (SILAC labels) rows 1-255",
    "value": "Label:2H(4) K UNIMOD:481; Label:13C(6) R UNIMOD:188; Label:13C(6)15N(2) K UNIMOD:259; Label:13C(6)15N(4) R UNIMOD:267; all MT=Variable",
    "source_ids": [
     "mq_983",
@@ -523,7 +494,7 @@
    "evidence": "summary.txt Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 (Lys4 = 2H4 +4, Arg6 = 13C6 +6, Lys8 = 13C6 15N2 +8, Arg10 = 13C6 15N4 +10); campaign rule 11 (MT=Variable)."
   },
   {
-   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-324",
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-255",
    "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
    "source_ids": [
     "contract"
@@ -531,7 +502,7 @@
    "evidence": "Campaign rules 1 and 10; template versions as printed by sdrf-tools contract."
   },
   {
-   "location": "technology type rows 1-324",
+   "location": "technology type rows 1-255",
    "value": "proteomic profiling by mass spectrometry",
    "source_ids": [
     "contract"
@@ -540,19 +511,21 @@
   },
   {
    "location": "Scope (whole file)",
-   "value": "108 of 319 deposited raw files annotated; 211 excluded (list in generator source excluded_files.txt)",
+   "value": "85 of 319 deposited raw files annotated; 234 excluded (list in generator source excluded_files.txt)",
    "source_ids": [
     "file_assignment",
     "ratio_checks",
     "mq_excluded",
+    "mq_136_139",
     "source_data",
     "paper"
    ],
-   "evidence": "Excluded: (a) BioID2 experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 (183 raws): File_assignment documents only 2 SILAC channels, but MaxQuant searched multiplicity 3 and all three channels carry substantial signal and bait enrichment (e.g. 366 medium = 68% of intensity, NRAS log2 M/L 5.0); Source Data Fig. 1d uses the HEAVY channel as the RAS bait for 1645, 1647 and 1649 where File_assignment puts the bait in MEDIUM. (b) TMT11 phospho 0118 (28 raws): File_assignment documents channels 126 and 128N only, all 11 channels carry comparable reporter intensity (analysis/tmt_channel_occupancy.txt), and its cell line (RPMI-8226) contradicts the paper (Fig. 2e/S3c: SLC3A2 knockdown phospho MS in SKMM1). Rule 7: runs with undocumented channels are left out rather than annotated with not available conditions."
+   "evidence": "Excluded: (0) the 23 TO_R_Young_190220_110320_HFPlus_136_L6_* raws: by RunHeader last-scan number they are MaxQuant exp 140, which no source documents (not in File_assignment, does not reproduce Source Data Fig. 3a L363); the L-363 exp 136 raws (060320_HFPlus_136_L2_*) were never deposited. (a) BioID2 experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 (183 raws): File_assignment documents only 2 SILAC channels, but MaxQuant searched multiplicity 3 and all three channels carry substantial signal and bait enrichment (e.g. 366 medium = 68% of intensity, NRAS log2 M/L 5.0); Source Data Fig. 1d uses the HEAVY channel as the RAS bait for 1645, 1647 and 1649 where File_assignment puts the bait in MEDIUM. (b) TMT11 phospho 0118 (28 raws): File_assignment documents channels 126 and 128N only, all 11 channels carry comparable reporter intensity (analysis/tmt_channel_occupancy.txt), and its cell line (RPMI-8226) contradicts the paper (Fig. 2e/S3c: SLC3A2 knockdown phospho MS in SKMM1). Rule 7: runs with undocumented channels are left out rather than annotated with not available conditions. Searched but never deposited (no raw in files/all): MaxQuant_136_139 experiments 135 (060320_HFPlus_135_L1), 136 (060320_HFPlus_136_L2), 137, 138; MaxQuant_96_96B R1_95, R2_95, R2_96, R2_96B; also MaxQuant_540 538-546 except 540, MaxQuant_915 916-918, MaxQuant_1645_1647_1649 1646/1648/1650/1651, MaxQuant_118 0122-batch2."
   }
  ],
  "limitations": [
-  "PARTIAL scope: 211 of 319 raw files are not annotated (183 BioID2 SILAC runs of experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 with an undocumented third SILAC channel; 28 TMT11 runs of experiment 0118 with 9 of 11 channels undocumented and a cell-line conflict). Listed in build2/excluded_files.txt and in the report; BLOCKED.md entry added.",
+  "PARTIAL scope: 234 of 319 raw files are not annotated (23 TO_R_Young_190220_110320_HFPlus_136_L6_* raws that are MaxQuant exp 140, undocumented - the L-363 exp 136 raws were never deposited; 183 BioID2 SILAC runs of experiments 341, 350, 366, 915, 540, 1645, 1647, 1649 with an undocumented third SILAC channel; 28 TMT11 runs of experiment 0118 with 9 of 11 channels undocumented and a cell-line conflict). Listed in build3/excluded_files.txt and in the report; BLOCKED.md entry added.",
+  "Searched but never deposited (no raw in files/all): MaxQuant_136_139 experiments 135 (060320_HFPlus_135_L1), 136 (060320_HFPlus_136_L2), 137, 138; MaxQuant_96_96B R1_95, R2_95, R2_96, R2_96B; also MaxQuant_540 538-546 except 540, MaxQuant_915 916-918, MaxQuant_1645_1647_1649 1646/1648/1650/1651, MaxQuant_118 0122-batch2.",
   "Experiment 983 (XG-2): medium/heavy assignment follows the paper Source Data (Fig. 3a exact log2 normalized-ratio identity, 2588/2589 genes), overriding the deposited File_assignment.txt, which states the reverse; also recorded in BLOCKED.md.",
   "96 vs 96B: encoded as technical replicates 1/2 of one SILAC triple (same sources); the deposit does not say what distinguishes them (separate enrichment, re-preparation or biological repeat). Fig. 4b source data states 1 biological replicate.",
   "File_assignment phospho labels shNRAS.56 / shNRAS.57 are written as the paper's shNRAS.1 / shNRAS.2 (same light/medium/heavy order in both sources); the .56/.57 = .1/.2 equivalence is inferred.",
