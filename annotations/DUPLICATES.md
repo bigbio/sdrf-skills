@@ -227,6 +227,15 @@ The previously curated `sdrf-annotated-datasets` PXD045898 SDRF annotates these 
 
 ---
 
+## Group 8 — PXD044434 ⊂ PXD044779 (Theil et al., EMBO Mol Med 2023, PMC10630875)
+
+All 12 RAW files of PXD044434 (`2427_*`) are present in PXD044779 with identical name, SHA-1 and byte size (comparison: batch-5 scratch `b5-PXD044434/compare.txt`). These runs are **label-free DIA** (raw method `180min_FTOT_3sec_DIA_variable_window…`, Spectronaut), not SILAC — PRIDE's SILAC tag on PXD044434 is wrong. PXD044434's only unique files are 3 Spectronaut reports.
+
+- PXD044434: not annotated (see `annotations/PXD044434.report.md`).
+- PXD044779: SDRF covers only the SILAC "Basal Complex" pull-downs; the `2427_*` DIA runs are out of scope there. A label-free SDRF for them, if wanted, belongs under PXD044434.
+
+---
+
 ## Why these were annotated anyway
 
 Each SDRF is correct *for its own accession* — that is what an SDRF describes, and a consumer

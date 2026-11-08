@@ -1,0 +1,337 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD029618.sdrf.tsv",
+ "dataset": "PXD029618",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029618 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029618/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/files_p0.json, files_p1.json, files_p2.json; 61 entries = 60 RAW + txt.zip; every entry projectAccessions contains PXD029618)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Braun F et al. Accumulation of alpha-synuclein mediates podocyte injury in Fabry nephropathy. J Clin Invest 2023;133(11):e157782, doi:10.1172/jci157782, PMID 37014703, PMC10232004 (https://pmc-oa-opendata.s3.amazonaws.com/PMC10232004.1/PMC10232004.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/paper.txt; Methods \"Cell culture\" and \"Proteomics analysis\")"
+  },
+  {
+   "id": "fig2",
+   "kind": "publication",
+   "location": "Paper Figure 2 (https://pmc-oa-opendata.s3.amazonaws.com/PMC10232004.1/jci-133-157782-g175.jpg, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/pmc/jci-133-157782-g175.jpg; zoom /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/fig2b_zoom.png): 2A labelling/mixing schematic, 2B per-replicate log2 GLA-KO/WT heatmap, columns 1-6"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "Supplemental PDF and tables (https://pmc-oa-opendata.s3.amazonaws.com/PMC10232004.1/jci-133-157782-s179.pdf, -s180.xlsx, -s181.xlsx; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/pmc/): no SILAC label key, no sample sheet"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/07/PXD029618/txt.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (zip central directory read by HTTP range, members inflated individually by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/scripts/zipget.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/mq/). MaxQuant 1.4.1.2; no mqpar.xml deposited"
+  },
+  {
+   "id": "fig2b_match",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/fig2b_match.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/scripts/fig2b_match.py: categorical match of deposited per-experiment log2 ratios of the 20 Figure 2B proteins to the 6 heatmap columns, for both channel orientations)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/scripts/orient.py: channel intensity shares per experiment and KO/WT ratio correlations)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 3 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/07/PXD029618/20150810_VD_CFP867_sample_1_05.RAW, 20151121_VD_CFP899_sample_1_5.RAW, 20160120_VD_CFP910_sample_1_5.RAW, 20160112_VD_CFP_911_2_05.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_W186?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/cello_CVCL_W186.txt); search ref:11856766 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD029618/cello_ref.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 search via mcpcall searchClasses (clo CIHP-1 -> CLO:0037390 \"CIHP-1 cell\"; cl podocyte CL:0000653; uberon kidney UBERON:0002113; mondo Fabry disease MONDO:0010526; pato normal PATO:0000461; ncit RPMI 1640 NCIT:C178973; efo juvenile stage UBERON:0034919; ms LTQ Orbitrap XL MS:1000556, linear ion trap MS:1000291, collision-induced dissociation MS:1000133; unimod 4, 35, 1, 188, 481, 267, 259) and sdrf-tools check (18 terms verified)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; batch rule 10 for annotation tool"
+  },
+  {
+   "id": "precedent",
+   "kind": "curation",
+   "location": "campaign precedent annotations/PXD010683.sdrf.tsv (characteristics[genotype] / factor value[genotype] for a knockout vs wild-type SILAC design)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-80",
+   "value": "CFP867_sample1_GLA-KO, CFP867_sample1_WT, CFP867_sample2_GLA-KO, CFP867_sample2_WT, CFP899_sample1_GLA-KO, CFP899_sample1_WT, CFP899_sample2_GLA-KO, CFP899_sample2_WT",
+   "source_ids": [
+    "mq",
+    "files",
+    "fig2b_match"
+   ],
+   "evidence": "One source per labelled culture in each of the 4 SILAC mixtures searched in the deposited MaxQuant run (summary.txt experiments #867_sample1, #867_sample2, #899_sample1, #899_sample2; raw names in summary.txt carry \"CFP#867\"/\"CFP#899\", deposited names drop the \"#\"). The genotype suffix comes from the channel map (comment[label] claim). Clone numbers (KO-1..3 / WT-1..3 of Fig. 2A) are NOT asserted."
+  },
+  {
+   "location": "comment[label] rows 1-80",
+   "value": "SILAC heavy / SILAC medium / SILAC light",
+   "source_ids": [
+    "mq",
+    "orientation",
+    "fig2b_match",
+    "fig2"
+   ],
+   "evidence": "Channels in use, from proteinGroups.txt summed intensities: #867 mixes are medium+heavy (L share 3.4%/4.4% = residual), #899 mixes are light+heavy (M share 3.8%/3.6% = residual); residual channels emitted no rows. Genotype per channel: KO/WT log2 ratios of the 20 Figure 2B proteins reproduce the heatmap columns only under: 867_sample1 KO=heavy WT=medium (19/20 cells match column 1; flipped 6/20); 867_sample2 KO=medium WT=heavy (18/20 column 2; flipped 11/20); 899_sample1 KO=heavy WT=light (17/20 column 3; flipped 4/20); 899_sample2 KO=light WT=heavy (16/20 column 4; flipped 4/20). Label-swap design per paper (\"WT and KO samples were mixed 1:1\"; Fig. 2A forward/reverse mixes). CONFLICT recorded: Fig. 2A schematic draws all mixes as Arg6Lys4 vs Arg10Lys8 with KO medium in mix 1; the deposited data show #899 used light (Arg0Lys0) instead of medium and column 1 has KO heavy. Deposited data were followed."
+  },
+  {
+   "location": "characteristics[genotype] rows 1-80 and factor value[genotype] rows 1-80",
+   "value": "GLA knockout / GLA wild type",
+   "source_ids": [
+    "paper",
+    "fig2",
+    "fig2b_match",
+    "precedent"
+   ],
+   "evidence": "Paper: \"analyzing 3 Fabry clones versus 3 WT clones\"; CRISPR/Cas9 GLA knockout of immortalized human podocytes. Per-row value from the channel map. Column naming follows campaign precedent PXD010683."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-80",
+   "value": "1-4 within each genotype",
+   "source_ids": [
+    "mq",
+    "paper"
+   ],
+   "evidence": "Each of the 4 mixtures contains an independently SILAC-labelled KO culture and WT culture (label swap); numbered 1 (867_sample1), 2 (867_sample2), 3 (899_sample1), 4 (899_sample2) within each genotype group (batch rule 3)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-80",
+   "value": "Fabry disease (KO rows) / normal (WT rows)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper calls the GLA-KO podocytes \"Fabry clones\"/\"Fabry podocytes\" (in vitro Fabry model); WT clones are unmodified CIHP-1 podocytes (Cellosaurus lists no disease). MONDO:0010526, PATO:0000461. Project-level disease not broadcast onto WT rows."
+  },
+  {
+   "location": "characteristics[organism] rows 1-80",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-80",
+   "value": "kidney",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_W186: Derived from site: Kidney; UBERON_0002113."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-80",
+   "value": "podocyte",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus Cell type: Podocyte; CL_0000653. PRIDE organismPart \"podocyte (sensu Diptera)\" CL:0000391 is a submitter error and was not used."
+  },
+  {
+   "location": "characteristics[material type] rows 1-80",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Conditionally immortalized human podocyte line."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus name], characteristics[cellosaurus accession] rows 1-80",
+   "value": "CIHP-1 / CIHP-1 / CVCL_W186",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"Conditionally immortalized human podocytes were provided by M. Saleem (University of Bristol)\", ref 26 = Saleem 2002 PMID 11856766. Cellosaurus record citing PMID 11856766: CIHP-1, CVCL_W186 (synonyms AB8/13, hiPOD, ciPOD). CLO:0037390 label is \"CIHP-1 cell\"; the bare Cellosaurus name is used (validator warning only)."
+  },
+  {
+   "location": "characteristics[age] rows 1-80",
+   "value": "3Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 3Y (donor age of the parental line)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-80",
+   "value": "juvenile stage",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 3Y (Cellosaurus) -> not adult (batch rule 9); EFO-imported UBERON:0034919 juvenile stage."
+  },
+  {
+   "location": "characteristics[sex] rows 1-80",
+   "value": "male",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"GLA-deficient immortalized male human podocytes (26)\". Cellosaurus says \"Sex unspecified\"; the paper statement was used."
+  },
+  {
+   "location": "characteristics[individual] rows 1-80",
+   "value": "CIHP-1_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All clones derive from the single CIHP-1 donor."
+  },
+  {
+   "location": "characteristics[ancestry category], characteristics[passage number], characteristics[sample storage temperature] rows 1-80",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Cellosaurus gives no population; paper gives no passage number or storage temperature."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-80",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Methods Cell culture: podocytes \"allowed to proliferate at 33 C in RPMI 1640 medium\" (all experiments). The SILAC labelling medium itself is described only by reference (Schell et al. 2017), presumably the SILAC version of RPMI 1640. NCIT:C178973."
+  },
+  {
+   "location": "assay name, comment[data file], comment[fraction identifier], comment[technical replicate] rows 1-80",
+   "value": "raw file stem / name; fractions 1-10 by file suffix; technical replicate 1",
+   "source_ids": [
+    "files",
+    "mq"
+   ],
+   "evidence": "Each mixture was acquired as 10 runs with suffix _01.._10 (867) or _1.._10 (899); all 40 are listed in summary.txt (with \"CFP#\" spelling). Fraction order = suffix. Separation method of the 10 fractions not documented."
+  },
+  {
+   "location": "technology type rows 1-80",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-80",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10."
+  },
+  {
+   "location": "comment[instrument] rows 1-80",
+   "value": "NT=LTQ Orbitrap XL;AC=MS:1000556",
+   "source_ids": [
+    "raw",
+    "mq",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of all 4 run groups read \"LTQ Orbitrap XL\"; summary.txt Instrument \"LTQ Orbitrap XL\"; PRIDE agrees."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-80",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Method header: FTMS full scan then \"ITMS + c norm Dep ... MS/MS Most intense ion from (1)\" (data-dependent)."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] rows 1-80",
+   "value": "CID; 35 NCE; linear ion trap",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Method header: Activation Type CID, Normalized Coll. Energy 35.0, MS/MS scans ITMS."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-80",
+   "value": "350m/z-2000m/z",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Method header scan event 1: FTMS + p norm res=60000 o(350.0-2000.0), identical in the 4 headers read."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-80",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "summary.txt Enzyme \"Trypsin/P\" (specific); digestion enzyme recorded as Trypsin per batch rule 2. The paper and PRIDE do not describe the digest (Methods refer to Weise et al. 2019)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-80",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; Arg6 UNIMOD:188, Lys4 UNIMOD:481, Arg10 UNIMOD:267, Lys8 UNIMOD:259 variable",
+   "source_ids": [
+    "mq",
+    "ols"
+   ],
+   "evidence": "parameters.txt \"Fixed modifications Carbamidomethyl (C)\"; summary.txt \"Variable modifications Acetyl (Protein N-term);Oxidation (M)\", Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 (all 40 runs). sdrf-tools search-params on summary.txt gives the same rows. Labels MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-80",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mq",
+    "raw"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (ITMS) 0.5 Da\"; MS2 spectra are ITMS."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-80",
+   "value": "not available",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "MaxQuant 1.4.1.2 parameters.txt and summary.txt do not record the precursor tolerance; no mqpar.xml was deposited."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-80",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "10 runs per mixture, but neither the paper nor PRIDE describes how the fractions were made (Methods cite Weise et al. 2019, whose fractionation is in its own supplement)."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 20 of 60 raw files are not annotated: 20160120_VD_CFP910_sample_1_1..10.RAW and 20160112_VD_CFP_911_2_01..10.raw. They are not in the deposited MaxQuant search (txt.zip summary.txt lists only the 40 CFP867/CFP899 runs), so their channel use (light or medium) and orientation cannot be documented; Fig. 2A does not tie mixes to file names. See annotations/BLOCKED.md section PXD029618.",
+  "Channel->genotype map rests on the deposited ratios reproducing the paper Figure 2B per-replicate heatmap (16-19/20 cells per experiment), not on an explicit per-file label statement. Fig. 2A schematic conflicts with the data on label identity (#899 mixes are light+heavy, not medium+heavy) and on which label carries KO in column/mix 1; the deposited data were followed.",
+  "Which clone pair (KO-1/WT-1, KO-2/WT-2, KO-3/WT-3) each mixture contains is not documented per file; clone identity is not asserted.",
+  "Precursor mass tolerance not recorded by MaxQuant 1.4.1.2 output; convert-openms therefore fails (expected).",
+  "Fractionation method of the 10 runs per mixture is undocumented (not available).",
+  "SILAC labelling medium is not named; RPMI 1640 is the paper's stated podocyte culture medium.",
+  "Sex: paper says male, Cellosaurus says unspecified.",
+  "proteinGroups.txt contains a MaxQuant buffer-corruption artefact in one row (non-UTF-8 bytes); parsed with latin-1 and non-numeric values skipped.",
+  "Review not performed in this run (caller instructions: no review-gate approve, no review file); status REVIEW_PENDING_EXTERNAL."
+ ]
+}

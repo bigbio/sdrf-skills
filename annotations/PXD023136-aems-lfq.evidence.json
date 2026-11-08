@@ -1,0 +1,302 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD023136-aems-lfq.sdrf.tsv",
+ "dataset": "PXD023136",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD023136 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/pride.json): sampleProcessingProtocol, dataProcessingProtocol, instruments, quantificationMethods"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD023136/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/files_all.json; 48 entries = 45 .raw + 3 MaxQuant txt zips; every entry projectAccessions contains PXD023136)"
+  },
+  {
+   "id": "preprint",
+   "kind": "publication",
+   "location": "Formosa LE et al. bioRxiv 10.1101/2020.09.18.303255 v1 (2020-09-18), https://www.biorxiv.org/content/biorxiv/early/2020/09/18/2020.09.18.303255.full.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/preprint.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/preprint.txt). Preprint of PNAS 2021;118(17):e2019665118 (PMID 33879611, PMC8092609; PMC body not open access, NCBI efetch /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/efetch.xml returns front matter only)."
+  },
+  {
+   "id": "mq_1B",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/04/PXD023136/Figure_1B_TMEM126A_SILAC.zip members txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/dl/1B/)"
+  },
+  {
+   "id": "mq_3B",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/04/PXD023136/Figure_3B_TMEM126A_FLAG_AEMS.zip members txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/dl/3B/)"
+  },
+  {
+   "id": "orientation_1B",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/orientation_1B.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/scripts/orient_1B.py on mq_1B proteinGroups: Ratio H/L normalized of complex I subunits, TMEM126A, CKMT1A per experiment)"
+  },
+  {
+   "id": "check_3B",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/check_3B.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/scripts/check_3B.py on mq_3B proteinGroups: LFQ intensity of TMEM126A, OXA1L, complex I subunits per experiment)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 2 MB of all 9 annotated .raw files under https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/04/PXD023136/ (decoded UTF-16-LE; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0063?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/cello_CVCL_0063.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 /api/terms?obo_id= and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD023136/ols_search.txt); getChildren EFO:0009090"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; batch rules 1, 10"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism] rows 1-6",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "preprint",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; preprint Methods: HEK293T cells (ATCC CRL-3216); Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-6",
+   "value": "HEK-293T cell; CVCL_0063; HEK293T",
+   "source_ids": [
+    "cellosaurus",
+    "preprint",
+    "ols"
+   ],
+   "evidence": "Preprint Methods \"HEK293T cells (ATCC; CRL-3216)\"; knockout lines were generated from them by CRISPR/Cas9. Cellosaurus CVCL_0063 ID HEK293T, DR BTO:0002181; OLS BTO:0002181 label \"HEK-293T cell\"."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-6",
+   "value": "kidney",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: \"Derived from site: In situ; Fetal kidney; UBERON=UBERON_0002113\"; OLS UBERON:0002113 = kidney."
+  },
+  {
+   "location": "characteristics[sex] rows 1-6",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Female."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-6",
+   "value": "fetal stage",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG Fetus. OLS: \"fetal stage\" is HsapDv:0000037 (not in EFO; validate-sdrf warns, see validation.txt)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-6",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0063 lists no disease (transformed embryonic kidney line); OLS PATO:0000461 normal. PRIDE disease \"optic atrophy\" is the study topic, not a property of the HEK293T samples."
+  },
+  {
+   "location": "characteristics[material type] rows 1-6",
+   "value": "cell line",
+   "source_ids": [
+    "preprint"
+   ],
+   "evidence": "All samples are derived from cultured HEK293T lines."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-6",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "preprint",
+    "ols"
+   ],
+   "evidence": "Preprint Methods: cells cultured in DMEM (SILAC: DMEM without lysine and arginine, dialysed FBS); OLS NCIT:C185409."
+  },
+  {
+   "location": "characteristics[cellular component] rows 1-6",
+   "value": "mitochondrion",
+   "source_ids": [
+    "preprint",
+    "pride",
+    "ols"
+   ],
+   "evidence": "SILAC: \"equal amounts of differently labeled control and T126AKO cells were mixed and mitochondria isolated\"; AE-MS: \"solubilized mitochondria ... subjected to affinity enrichment using anti-Flag agarose beads\" (Fig 3B legend). OLS GO:0005739. Custom characteristics column (curated precedents PXD004917, PXD005541)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-6",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw method headers: TopN data-dependent MS/MS."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-6",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "preprint",
+    "mq_1B",
+    "mq_3B"
+   ],
+   "evidence": "Protocols: digestion with 1 ug trypsin overnight. MaxQuant search rule Trypsin/P (summary.txt Enzyme) - recorded per batch rule 2."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-6",
+   "value": "NT=Tris(2-carboxyethyl)phosphine (TCEP);AC=PRIDE:0000609; NT=Chloroacetamide (ClAA);AC=PRIDE:0000600",
+   "source_ids": [
+    "pride",
+    "preprint",
+    "ols"
+   ],
+   "evidence": "SILAC: \"1% sodium deoxycholate, 100 mM Tris-Cl pH 8.1, 40 mM chloroacetamide and 10 mM TCEP\"; AE: \"5 mM TCEP and 50 mM chloroacetamide\"."
+  },
+  {
+   "location": "comment[technical replicate], comment[fraction identifier] rows 1-6",
+   "value": "1; 1",
+   "source_ids": [
+    "files",
+    "preprint"
+   ],
+   "evidence": "One unfractionated injection per sample/mixture; no fractionation described."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-6",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10."
+  },
+  {
+   "location": "technology type, assay name, comment[data file] rows 1-6",
+   "value": "proteomic profiling by mass spectrometry; raw file stem; raw file name",
+   "source_ids": [
+    "files",
+    "templates"
+   ],
+   "evidence": "Raw file names from the PRIDE file list; assay name = file stem (build default)."
+  },
+  {
+   "location": "source name rows 1-6",
+   "value": "HEK293T_control_FlagAE_{1,2,3}; HEK293T_TMEM126A-KO_TMEM126A-Flag_FlagAE_{1,2,3}",
+   "source_ids": [
+    "preprint",
+    "mq_3B",
+    "files"
+   ],
+   "evidence": "Fig 3B legend: \"solubilized mitochondria from control and T126AKO-1 +TMEM126AFlag expressing cells were subjected to affinity enrichment using anti-Flag agarose beads. Elutions were subjected to LFQ proteomics.\" MaxQuant experiments HEK293T_1-3 (raw LF_31-33-HEK293T) and TMEM126A-Flag_1-3 (raw LF_34-36-TMEM126A-FLAG)."
+  },
+  {
+   "location": "comment[label] rows 1-6",
+   "value": "label free sample",
+   "source_ids": [
+    "mq_3B",
+    "preprint",
+    "pride"
+   ],
+   "evidence": "summary.txt Multiplicity 1, no labels; preprint \"affinity-enrichment and label-free quantitative (LFQ) mass spectrometry\"."
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype], characteristics[bait] rows 1-6",
+   "value": "wild type / TMEM126A knockout expressing TMEM126A-Flag; bait no bait (anti-Flag affinity enrichment from control cells) / TMEM126A-Flag",
+   "source_ids": [
+    "preprint",
+    "check_3B"
+   ],
+   "evidence": "Fig 3B legend (above); KO line T126AKO-1 complemented with TMEM126AFlag (retroviral pBABE-puro). Data check: TMEM126A LFQ intensity 4.5-6.5e8 in TMEM126A-Flag_1-3 vs 0/0/8.3e5 in HEK293T_1-3; OXA1L (reported interactor) only in Flag runs."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-6",
+   "value": "sample enrichment",
+   "source_ids": [
+    "preprint",
+    "ols"
+   ],
+   "evidence": "Anti-Flag M2 affinity gel enrichment of digitonin-solubilised mitochondria; OLS EFO:0009106 (child of EFO:0009090; no specific affinity-purification child exists)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-6",
+   "value": "1-3 per genotype",
+   "source_ids": [
+    "mq_3B",
+    "preprint"
+   ],
+   "evidence": "Three enrichments per condition (MaxQuant experiments _1.._3). Independence of the cultures is not stated."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-6",
+   "value": "ATCC (control rows) / not available (KO+Flag rows)",
+   "source_ids": [
+    "preprint"
+   ],
+   "evidence": "Preprint: HEK293T (ATCC; CRL-3216); complemented KO line made in-house."
+  },
+  {
+   "location": "comment[instrument] rows 1-6",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All six raw headers: \"Orbitrap Elite MS\", method DAS_90min 20_rapidCID_upickup.meth. PRIDE instruments include LTQ Orbitrap Elite."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-6",
+   "value": "CID MS:1000133; 30 NCE; linear ion trap MS:1000291; 300m/z-1650m/z",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw method: scan 1 \"FTMS + p norm o(300.0-1650.0)\", scan 2 \"ITMS + c norm Dep Rapid MS/MS\", Activation Type CID, Normalized Coll. Energy 30.0, top 20."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-6",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mq_3B"
+   ],
+   "evidence": "parameters.txt MS/MS tol. (ITMS) 0.5 Da (ion-trap MS2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-6",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable",
+   "source_ids": [
+    "mq_3B",
+    "ols"
+   ],
+   "evidence": "summary.txt Fixed Carbamidomethyl (C); Variable Oxidation (M);Acetyl (Protein N-term); no labels."
+  }
+ ],
+ "limitations": [
+  "Partial scope: the 36 pulse-chase SILAC runs (Fig 3F/3G; 201119_Daniella_DH-1445_01..36.raw, Orbitrap Eclipse targeted method \"Dani Target.meth\") are NOT annotated. Their MaxQuant experiments are named only 01..36, and the per-run design (cell line, pulse/chase time point, IP vs input, replicate) is described only in the PNAS 2021 paper, whose full text, figure legends and SI are not retrievable (PMC body not open access; Europe PMC fullTextXML HTTP 500; pnas.org and pmc.ncbi.nlm.nih.gov served bot checks, not bypassed; Unpaywall only points to the bioRxiv v1 preprint, which predates the pulse-chase experiment). Recorded in annotations/BLOCKED.md.",
+  "Full PNAS text not available; methods come from bioRxiv v1 (10.1101/2020.09.18.303255), the PRIDE protocols, MaxQuant outputs and raw headers. The preprint says the instrument was an Orbitrap Fusion Lumos; the raw headers (authoritative) show Q Exactive Plus (SILAC) and Orbitrap Elite (AE-MS).",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.6.5.0 parameters.txt/summary.txt do not record first/main search tolerances, no mqpar.xml was deposited, and the cited parameter source (Formosa et al. 2020 Cell Rep) was not retrievable (cell.com bot check, not in PMC). Consequence: parse_sdrf convert-openms exits 1.",
+  "characteristics[developmental stage] = fetal stage (Cellosaurus AG Fetus) is an HsapDv term absent from EFO; validate-sdrf reports a warning only.",
+  "characteristics[ancestry category], age, passage number, storage temperature, cell type, individual: not available (Cellosaurus gives no population; not reported).",
+  "reconcile flags comment[label] (record lists SILAC) and comment[instrument] (protocol text names Q Exactive plus); both refuted in validation.txt: these 6 runs are label-free (Multiplicity 1) and were acquired on an Orbitrap Elite (raw headers).",
+  "Control enrichments use control (wild-type) HEK293T mitochondria with anti-Flag beads (mock IP); genotype of control from preprint \"control\" cells."
+ ]
+}

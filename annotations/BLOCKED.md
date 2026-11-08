@@ -1492,3 +1492,43 @@ Before any of the blocked BioID2 raws are unblocked, confirm their identity agai
 - The deposited experiment-915 raws are dated 221119, but MaxQuant searched experiment 915 from files dated 261119; 221119 is experiment 916's date.
 - The experiment-350 raw names in the deposit differ from those in the MaxQuant search.
 - The same pattern already mislabelled the L-363 files (deposited as `HFPlus_136_L6`, actually search experiment 140; see above).
+
+---
+
+## PXD044779 — Trichothiodystrophy MPLKIP interactome (SILAC GFP-Trap IP, MRC-5), UV and MMC experiments only (partial block)
+
+**Blocker: the light/heavy identities of the 'UV Complex' and 'MMC Complex' SILAC pull-downs are undocumented, and the deposited ratios show they do not follow the published map.**
+
+The 'Basal Complex' experiment (16 RAW, `1802_L_AlexPines_{high,low}_01..08`) is annotated in `annotations/PXD044779.sdrf.tsv` (light = MRC-5 parental, heavy = MRC-5 MPLKIP-GFP knock-in). The 12 `2427_*` RAW are label-free DIA, byte-identical to PXD044434, and are out of scope for this SILAC campaign (not blocked).
+
+| | |
+|---|---|
+| Publication | Theil AF *et al.*, EMBO Mol Med 2023 15(11):e17973, PMID:37800682, PMC10630875, doi:10.15252/emmm.202317973 (PMC OA full text read) |
+| Blocked | `1802_L_AlexPines_high_09` … `_high_24` and `1802_L_AlexPines_low_09` … `_low_24` (32 RAW, Orbitrap Fusion Lumos; MaxQuant 1.5.4.1 multiplicity 2, Labels1 Arg10;Lys8; experiments 'UV Complex' = 09-16, 'MMC Complex' = 17-24) |
+
+**What each source says:**
+
+| source | channel map |
+|---|---|
+| Paper Results, Fig 3A legend, Methods, PRIDE protocol | one SILAC experiment: light = MRC-5 parental (CTR), heavy = MRC-5 MPLKIP-GFP; no UV or MMC (mitomycin C?) treatment of SILAC cells is described anywhere |
+| `1802_summary.txt` | experiment names 'UV Complex' / 'MMC Complex' only; no channel or treatment description |
+| `1802_proteinGroups.txt`, Ratio H/L normalized | Basal: MPLKIP 21.4, DBR1 22.7, XAB2 21.6, ISY1 23.7 (heavy = bait, matches paper). UV: MPLKIP 0.64, DBR1 0.82, XAB2 0.47, ISY1 0.46. MMC: MPLKIP 0.97, DBR1 0.97, XAB2 7.3, ISY1 8.1. The bait is not enriched in heavy in either, so both channels likely carry MPLKIP-GFP (e.g. treated vs untreated) or a different control; which channel got which treatment, dose and time are unstated. |
+
+Sources checked: paper (full text incl. Methods, figure legends, Data availability), PRIDE v3 record and paginated file list (63 entries; no sample sheet, no mqpar/parameters), `1802_summary.txt`, `1802_proteinGroups.txt`, raw headers (instrument method only).
+
+**Unblocked by:** the authors stating, per experiment, the cell line, treatment (UV dose/time, MMC concentration/time) and SILAC label of each channel. The 32 runs (64 rows) would then be added to `PXD044779.sdrf.tsv` with the same search parameters as the Basal experiment.
+
+## PXD029618 — Podocyte injury in Fabry nephropathy (triple-SILAC GLA-KO vs WT podocytes), 20 raws of mixtures CFP910 / CFP911 (partial block)
+
+**Blocker: channel use and orientation of `20160120_VD_CFP910_sample_1_1..10.RAW` and `20160112_VD_CFP_911_2_01..10.raw` are undocumented.**
+
+| source | what it says |
+|---|---|
+| `txt.zip` (MaxQuant 1.4.1.2) `summary.txt` / `proteinGroups.txt` | only experiments #867_sample1/2 and #899_sample1/2 (40 raws); CFP910/CFP911 were not searched |
+| Paper Fig. 2A | 6 label-swap mixtures (KO vs WT clones, Arg6Lys4 vs Arg10Lys8), not tied to file names; its label identity already conflicts with the data for #899 (light+heavy, not medium+heavy) |
+| Paper Fig. 2B | 6 replicate columns; columns 1-4 match the four searched experiments; columns 5/6 presumably CFP910/CFP911, but which label carries KO, and whether light or medium was used, is not stated |
+| PRIDE protocol, supplementary PDF/xlsx | no label key or sample sheet |
+
+The 40 searched raws are annotated in `annotations/PXD029618.sdrf.tsv` (80 rows).
+
+**Unblocked by:** a MaxQuant search of the 20 raws (same parameters: Multiplicity 3, Arg6;Lys4 / Arg10;Lys8, Trypsin/P, Carbamidomethyl fixed, Oxidation + Acetyl N-term variable), then: channel intensity shares to find the two used labels, and the Fig. 2B column 5/6 match (scripts in the b5-PXD029618 scratch dir) for the KO/WT orientation. Or an author statement of the label per mixture.

@@ -1,0 +1,313 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD004548.sdrf.tsv",
+ "dataset": "PXD004548",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "MCP get_project_details(PXD004548) = PRIDE archive record (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/pride.json): title, description, sample/data processing protocols, instruments [LTQ Orbitrap Velos], quantification SILAC, modifications [6x(13)C labeled residue], organism parts [Cerebellar granule cell, Cell culture]; no publication linked in PRIDE"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004548/files?pageSize=100&page=0..1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/files_p0.json, files_p1.json; 42 entries = 32 RAW, 3 mgf, 3 pep.xml, 3 prot.xml, 1 xlsx; every entry projectAccessions contains PXD004548)"
+  },
+  {
+   "id": "pepxml",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/05/PXD004548/Schmidtkereplicate{1,2,3}.pep.xml, first 200000 bytes each by HTTP range (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/dl/rep1.pep.head, rep2.pep.head, rep3.pep.head): Proteome Discoverer search summary, 'Processing node 0: Spectrum Files' input lists, search names, Mascot node parameters, Precursor Ions Quantifier 'SILAC 2plex (Lys6 only)'"
+  },
+  {
+   "id": "xlsx",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/05/PXD004548/QuantificationandStatisticalAnalysisLysosome.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/dl/lyso.xlsx): sheet 'Proteins included in Analysis' header 'log2 Fold Changes cln3 ki/wt (Light/Heavy)', columns Replicate1..3 log2(cln3 ki/wt); sheets 'upregulated in cln3 ki' / 'downregulated in cln3 ki'"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 1500000 bytes of https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/05/PXD004548/{140606_P_077_TB_071,140606_P_077_TB_090,140606_P_077_TB_091,140626_P_077_TB_090_2,140627_P_077_TB_091}.raw, UTF-16LE decoded (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/rawhdr/*.bin): instrument 'LTQ Orbitrap Velos MS', method '70min CID Top25 330-1800 GradMax.meth', Activation Type CID, Normalized Coll. Energy 35.0, sample names 'P-077-TB 090' / 'P-077-TB 090 tr2' / 'P-077-TB 091'"
+  },
+  {
+   "id": "paper_abstract",
+   "kind": "publication",
+   "location": "Schmidtke C et al., J Biol Chem 2019 294(24):9592-9604, PMID 31040178, PMC6579452, doi:10.1074/jbc.RA119.008852 - only title/abstract/metadata available (NCBI efetch db=pmc id=6579452, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/efetch.xml; Europe PMC search core record). Full text not in PMC OA subset (Europe PMC fullTextXML HTTP 500, OA S3 bucket has no PMC6579452 keys, Unpaywall PDF 403, jbc.org Cloudflare 403, pmc.ncbi page bot-check - none bypassed)"
+  },
+  {
+   "id": "paper_refs",
+   "kind": "publication",
+   "location": "https://www.ebi.ac.uk/europepmc/webservices/rest/MED/31040178/references?format=json (57 references; includes PMID 15588329 Fossale et al. 2004 and PMID 28456973 SILAC lysosome method)"
+  },
+  {
+   "id": "fossale",
+   "kind": "publication",
+   "location": "Fossale E et al., BMC Neurosci 2004 5:57, PMID 15588329, PMC539297, https://pmc-oa-opendata.s3.amazonaws.com/PMC539297.1/PMC539297.1.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/fossale.xml): origin of the CbCln3 cerebellar cell lines (P4 cerebella of Cln3 delta ex7/8 knock-in mice and wild-type littermates, tsA58 SV40 T-antigen immortalization, G418 selection)"
+  },
+  {
+   "id": "gm3_paper",
+   "kind": "publication",
+   "location": "Somogyi A et al. (incl. Cotman SL), Int J Mol Sci 2018, PMID 29470438, PMC5855847 (Europe PMC abstract): 'cerebellar precursor cell lines generated from wildtype and Cln3 delta ex7/8 mice' (cited by the 2019 paper)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=CbCln3 (0 hits), q=Cln3 (only human CLN3 iPSC/HAP1 lines), q=rx:15588329 (0 hits), sdrf-tools cellline lookup CbCln3 (not found), 2026-11-08"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 https://www.ebi.ac.uk/ols4/api search/terms, 2026-11-08 (responses in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/ols/): UBERON:0002037 cerebellum, CL:0001031 cerebellar granule cell, MONDO:0008767 neuronal ceroid lipofuscinosis 3, PATO:0000461 normal, NCIT:C185409 Dulbecco's Modified Eagle Medium, GO:0005764 lysosome, PRIDE:0000568 SDS PAGE, MS:1000133 collision-induced dissociation, MS:1000291 linear ion trap, MS:1001742 LTQ Orbitrap Velos, PRIDE:0000627 Data-dependent acquisition, MS:1001251 Trypsin, NCBITaxon:10090 Mus musculus, UNIMOD:4/35/188/28/27/1"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates -t cell-lines (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/contract.txt; ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign batch rules"
+  },
+  {
+   "id": "precedent",
+   "kind": "repository",
+   "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD020600/PXD020600-mouse-silac.sdrf.tsv (characteristics[cellular component] = lysosome for a lysosome-enriched SILAC sample), PXD024227/PXD024227.sdrf.tsv (characteristics[genotype], SDS PAGE PRIDE:0000568)"
+  },
+  {
+   "id": "build",
+   "kind": "script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/build/samples_searched.tsv, samples_unsearched.tsv, technical_searched.tsv, technical_unsearched.tsv, files.json; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/scripts/build.sh runs sdrf-tools build twice and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/scripts/concat_fix.py concatenates (identical headers asserted) and sets comment[fraction identifier] = 10 on the two 140606_P_077_TB_090.raw rows"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-64",
+   "value": "CbCln3_<KI|WT>_rep<1-3>",
+   "source_ids": [
+    "xlsx",
+    "pride",
+    "pepxml"
+   ],
+   "evidence": "One source per (genotype, replicate): the xlsx quantifies cln3 ki/wt ratios separately for Replicate1, Replicate2, Replicate3, each a separate Proteome Discoverer search (Schmidtkereplicate1/2/3). Genotypes wild type and Cln3(delta ex7/8) stated in the PRIDE description."
+  },
+  {
+   "location": "comment[label] + characteristics[genotype] + factor value[genotype] + characteristics[cell line] + characteristics[disease] rows 1-64",
+   "value": "SILAC light = Cln3 delta ex7/8 knock-in (KI); SILAC heavy = wild type (WT), all three replicates (no label swap)",
+   "source_ids": [
+    "xlsx",
+    "pride",
+    "paper_abstract"
+   ],
+   "evidence": "xlsx sheet 1 header row: 'log2 Fold Changes cln3 ki/wt (Light/Heavy)' and 'cln3 ki/wt (Light/Heavy) Ratios' for Replicate1-3 -> light = cln3 ki, heavy = wt. Data check against the abstract ('28 soluble lysosomal proteins ... had reduced levels in CLN3-defective cells'): log2 L/H Rep1/2/3 CTSD -0.48/-0.81/-0.39, HEXB -0.73/-0.48/-0.44, GALC -1.13/-1.26/-1.19, ASAH1 -1.31/-1.43/-1.28, CTSZ -0.91/-0.73/-0.77, NPC2 -0.40/-0.48/-0.50 -> reduced in light = KI, same sign in all three replicates, so no swap. PRIDE: 'Medium contained either light or heavy labeled lysine (Lys/Lys(13C6))'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-64",
+   "value": "1, 2, 3 (restarts per genotype)",
+   "source_ids": [
+    "xlsx",
+    "pepxml"
+   ],
+   "evidence": "Three replicate SILAC experiments (Replicate1-3 columns, used as replicates in limma per the PRIDE data processing protocol); each searched separately (pep.xml search names '... 071-80 L1', '... 081-90 L2', '... 091-100 L3'). Each replicate is one independent lysosome isolation from a light+heavy cell mix; the paper body could not be read to confirm independent cultures (limitation)."
+  },
+  {
+   "location": "comment[data file] + comment[fraction identifier] rows 1-60",
+   "value": "replicate 1: 140606_071..080 = slices 1-10; replicate 2: 140606_081, 140627_082, 140606_083..089, 140626_090_2 = slices 1-10; replicate 3: 140627_091..100 = slices 1-10",
+   "source_ids": [
+    "pepxml",
+    "pride",
+    "files"
+   ],
+   "evidence": "PRIDE: 'the eluate band profile was divided into 10 fragments'. pep.xml 'Processing node 0: Spectrum Files' lists exactly these 10 raw files per replicate; search names 'L2 (082_0627__090_0626)' and 'L3 (ohne_091_0606)' record the substituted re-injections. Slice number = run-number order within the replicate (inferred from sequential run numbering; the slice-to-file order is not stated explicitly)."
+  },
+  {
+   "location": "comment[technical replicate] + comment[fraction identifier] rows 61-64",
+   "value": "140606_P_077_TB_090.raw: replicate 2, slice 10, technical replicate 2; 140606_P_077_TB_091.raw: replicate 3, slice 1, technical replicate 2",
+   "source_ids": [
+    "pepxml",
+    "raw_header",
+    "build"
+   ],
+   "evidence": "These two deposited runs are in no pep.xml input list. Raw header sample names: 140606_090 'P-077-TB 090' vs 140626_090_2 'P-077-TB 090 tr2' (same sample, second injection); 140606_091 and 140627_091 both 'P-077-TB 091'. Search names say 090 was taken from 0626 and the 091 from 0606 was left out ('ohne_091_0606'). Technical replicate 2 marks the superseded, never-searched injection (not injection order). Fraction 10 for 140606_090 set by concat_fix.py because build numbers single-file rows as fraction 1."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-60",
+   "value": "8 ppm; 0.6 Da",
+   "source_ids": [
+    "pepxml",
+    "pride"
+   ],
+   "evidence": "pep.xml Mascot node: 'Precursor Mass Tolerance: 8 ppm', 'Fragment Mass Tolerance: 0.6 Da' (identical across the three replicate files); PRIDE protocol same values."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] + comment[modification parameters] rows 61-64",
+   "value": "not applicable",
+   "source_ids": [
+    "pepxml"
+   ],
+   "evidence": "140606_P_077_TB_090.raw and 140606_P_077_TB_091.raw are absent from all three Proteome Discoverer input lists, so no search parameters apply (campaign rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-60",
+   "value": "Carbamidomethyl C Fixed; Oxidation M; Label:13C(6) K; Gln->pyro-Glu N-term Q; Glu->pyro-Glu N-term E; Acetyl Protein N-term (Variable)",
+   "source_ids": [
+    "pepxml",
+    "pride",
+    "ols"
+   ],
+   "evidence": "pep.xml first Mascot node: Static Carbamidomethyl (C); Dynamic Oxidation (M), Label:13C(6) (K), Gln->pyro-Glu (N-term Q), Glu->pyro-Glu (N-term E), Acetyl (Protein N-term); 'Label:13C(6) / +6.020 Da (K)' -> UNIMOD:188. Accessions verified in OLS unimod. Label as Variable per campaign rule 11."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-64",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "pepxml",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'subjected to tryptic in gel digestion ... 400 ng sequencing grade trypsin'; pep.xml 'Enzyme Name: Trypsin', 2 missed cleavages."
+  },
+  {
+   "location": "comment[instrument] rows 1-64",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "pride",
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol 'LTQ Orbitrap Velos mass spectrometer'; raw headers 'LTQ Orbitrap Velos MS'."
+  },
+  {
+   "location": "comment[dissociation method] + comment[collision energy] + comment[ms2 mass analyzer] rows 1-64",
+   "value": "CID; 35 NCE; linear ion trap",
+   "source_ids": [
+    "pride",
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'subjected to collision induced dissociation and fragments analyzed in the linear ion trap'; raw method 'Activation Type: CID', 'Normalized Coll. Energy: 35.0'."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-64",
+   "value": "330m/z-1800m/z",
+   "source_ids": [
+    "pride",
+    "raw_header"
+   ],
+   "evidence": "PRIDE: 'Ions between 330 and 1800 m/z were scanned in the Orbitrap'; method name '70min CID Top25 330-1800'."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-64",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'The 25 most intense precursor ions ... were subjected to collision induced dissociation'; method 'Top25'."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-64",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "ols",
+    "precedent"
+   ],
+   "evidence": "PRIDE: 'separated by 10 % SDS-PAGE ... divided into 10 fragments'."
+  },
+  {
+   "location": "characteristics[organism] rows 1-64",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "fossale",
+    "ols"
+   ],
+   "evidence": "PRIDE organism Mus musculus; cells from Cln3 knock-in mice; searched against mouse SwissProt."
+  },
+  {
+   "location": "characteristics[organism part] + characteristics[cell type] rows 1-64",
+   "value": "cerebellum; cerebellar granule cell",
+   "source_ids": [
+    "pride",
+    "fossale",
+    "ols"
+   ],
+   "evidence": "PRIDE description: 'Cultured, immortalized wild type and Cln3(delta ex7/8) cerebellar granule cells'; Fossale 2004: lines immortalized from granule neurons cultured from P4 cerebella."
+  },
+  {
+   "location": "characteristics[material type] rows 1-64",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "paper_abstract"
+   ],
+   "evidence": "Abstract: 'cerebellar cell lines derived from a CLN3 knock-in mouse model'."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-64",
+   "value": "CbCln3 wild-type; CbCln3 delta ex7/8",
+   "source_ids": [
+    "pride",
+    "paper_abstract",
+    "paper_refs",
+    "fossale",
+    "gm3_paper",
+    "cellosaurus"
+   ],
+   "evidence": "Not in Cellosaurus/CLO; free-text names follow the CbCln3 line family of Fossale 2004 (cited by the 2019 paper; co-author S.L. Cotman created them; 200 ug/ml Geneticin in the PRIDE medium matches the neo selection). Zygosity of the knock-in line is not asserted ('CLN3-defective cells'; Cln3(delta ex7/8) in PRIDE)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-64",
+   "value": "KI rows: neuronal ceroid lipofuscinosis 3 (MONDO:0008767); WT rows: normal (PATO:0000461)",
+   "source_ids": [
+    "paper_abstract",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Abstract: 'cerebellar cell lines derived from a CLN3 knock-in mouse model of human Batten disease and control cells'; CLN3 disease = MONDO 'neuronal ceroid lipofuscinosis 3'. Wild-type control cells are not given the disease."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-64",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'SILAC DMEM with 10 % FBS, 24 mM KCl, 200 ug/ml Geneticin ...'."
+  },
+  {
+   "location": "characteristics[cellular component] rows 1-64",
+   "value": "lysosome",
+   "source_ids": [
+    "pride",
+    "precedent",
+    "ols"
+   ],
+   "evidence": "All measured samples are lysosomal fractions: 'lysosomes were isolated by magnetic beads' (magnetite loading, MACS LS column elution). Custom characteristics column (spec 'Extending Templates'), as in curated PXD020600."
+  },
+  {
+   "location": "characteristics[genotype] + factor value[genotype] rows 1-64",
+   "value": "wild type; Cln3 delta ex7/8 knock-in",
+   "source_ids": [
+    "pride",
+    "xlsx",
+    "paper_abstract"
+   ],
+   "evidence": "Compared variable = genotype (cln3 ki vs wt ratios). Custom characteristics column."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] + technology type rows 1-64",
+   "value": "v1.1.0; ms-proteomics v1.2.0, vertebrates v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign batch rules 1 and 10; templates from sdrf-tools contract."
+  }
+ ],
+ "limitations": [
+  "Paper full text (Schmidtke et al. 2019, PMC6579452) not retrievable without bypassing bot checks: not in the PMC OA subset, Europe PMC fullTextXML 500, Unpaywall/Europe PMC render 403, jbc.org Cloudflare 403. Methods come from the PRIDE protocols, the deposited pep.xml search summaries, raw headers and the deposited xlsx.",
+  "Gel slice order within each replicate is inferred from sequential run numbers (071-080, 081-090, 091-100); the deposit does not state the slice-to-file order explicitly.",
+  "Independence of the three replicate cultures is not stated in available text; replicates 1-3 are treated as biological replicates because each is a separate SILAC mix, lysosome isolation and search and limma uses them as replicates.",
+  "Cell lines are not in Cellosaurus/CLO: cellosaurus accession/name = not available; cell line names are free text, and identity with the Fossale 2004 CbCln3 lines is an inference (citation, co-author, G418 selection), not a statement read in the paper body. Zygosity of the knock-in line not asserted.",
+  "Developmental stage, strain, sex and passage number = not available (Fossale 2004 gives P4 donor pups but the 2019 lines' donor is not confirmed).",
+  "Two deposited runs (140606_P_077_TB_090.raw, 140606_P_077_TB_091.raw) were never searched (superseded injections); tolerances and modification parameters = not applicable on rows 61-64, which makes parse_sdrf convert-openms fail on those rows (campaign precedent PXD004817).",
+  "Second-round Mascot search (semi-tryptic, 10 ppm, dynamic Phospho STY, Carbamidomethyl C, Propionamide C) on spectra without a confident first-round match, and a cRAP search (Propionamide C dynamic), are not encoded; comment[modification parameters] describes the primary search. Samples were alkylated with acrylamide (in-solution) and iodoacetamide (in-gel); reduction/alkylation reagent columns omitted because two reagents of each were used.",
+  "PRIDE experiment type 'Affinity purification coupled with mass spectrometry' refers to magnetic lysosome isolation, not a protein bait; no bait encoded."
+ ]
+}

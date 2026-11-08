@@ -1,0 +1,319 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD017530.sdrf.tsv",
+ "dataset": "PXD017530",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD017530 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD017530/files?pageSize=100&page=0..5 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/files_all.json; 460 entries = 456 .raw + 3 MaxQuant txt zips + 20190102_Uniprot_HOMSA.fasta; every entry's projectAccessions contains PXD017530)"
+  },
+  {
+   "id": "mqA",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/08/PXD017530/txr_2017_83_L1-L14.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/mqA/)"
+  },
+  {
+   "id": "mqB",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/08/PXD017530/txt_2017_83_L1-L82019_64_L01-L04.zip members combined_2017_83_L1-L8+2019_64_L01-L04_zip/txt/parameters.txt, summary.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/mqB/)"
+  },
+  {
+   "id": "mqC",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/08/PXD017530/txt_2017_83_L9-L142019_64_L1-L4.zip members txt_2017_83_L9-L14+2019_64_L1-L4/parameters.txt, summary.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/mqC/)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 2-3 MB of the first file of each of the 40 run-name groups under https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/08/PXD017530/ (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/scripts/rawhdr.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/scripts/rawmeth.py; results /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/rawhdr.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/rawmeth.log (its Lumos 'ce' field caught the unused 'Stepped Collision Energy (%) = 5'; the real CE of all 10 Lumos groups is in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/lumos_ce.txt via /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/scripts/lumos_ce.py); full method text of L_Cyganek_300817_081117_R1_L1_01.raw and L_Cyganek_230519_170719_L1_1.raw in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/hdr_*.raw)"
+  },
+  {
+   "id": "ratios",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/ratios.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/scripts/ratios.py: log2 'Ratio H/L normalized' per MaxQuant experiment for MRAS, HRAS, KRAS, NRAS, RIT1, LZTR1 from mqA/mqB/mqC proteinGroups.txt)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Hanses U et al. Intronic CRISPR Repair in a Preclinical Model of Noonan Syndrome-Associated Cardiomyopathy. Circulation 2020;142:1059-1076, doi:10.1161/CIRCULATIONAHA.119.044794, PMID 32623905. NOT RETRIEVED: not in PMC; ahajournals.org returned 403; the Unpaywall green copy (Goettingen Research Online, https://resolver.sub.uni-goettingen.de/purl?gro-2/136359) returned 403 (bot check, not bypassed). Only the Europe PMC abstract was read."
+  },
+  {
+   "id": "followup",
+   "kind": "publication",
+   "location": "Same group follow-up: Preclinical evaluation of CRISPR-based therapies for Noonan syndrome caused by deep-intronic LZTR1 variants. Mol Ther Nucleic Acids 2024, PMC10851011 (https://pmc-oa-opendata.s3.amazonaws.com/PMC10851011.1/PMC10851011.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/pmc10851011.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 lookups via sdrf-tools ols (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD017530/ols.txt)"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "sdrf-proteomics README.adoc:27 (sdrf version v1.1.0); bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0; the spec submodule's nested templates copy is older); sdrf-tools contract -t ms-proteomics -t human -t cell-lines"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, assay name, comment[data file], comment[fraction identifier], comment[technical replicate] rows 1-912",
+   "value": "source = MaxQuant experiment name (L1_H1_A1..L14_WT3_2; Corr02A_p42_2018_24, Corr02B_p42_2019_2, Corr4_2018_13, Corr4_2018_11); heavy source = 'super-SILAC standard spiked into <experiment>'; fraction = trailing number of the run name; technical replicate 1 = R1 / untagged series, 2 = R2 series",
+   "source_ids": [
+    "mqA",
+    "mqB",
+    "files"
+   ],
+   "evidence": "summary.txt 'Experiment' column assigns all 456 deposited .raw files: 14 experiments x 24 runs in mqA (R1 and R2 series x 12 fractions) and 4 Corr experiments x 30 runs in mqB/mqC (untagged and R2 series x 15 fractions). Every deposited raw is claimed exactly once (asserted in scripts/make_tables.py). R1/R2 are two complete fraction series of the same experiment; they are encoded as technical replicates 1/2 (inference from run names: the series share experiment, sample and fraction numbers)."
+  },
+  {
+   "location": "comment[label] + characteristics[sample type] rows 1-912",
+   "value": "SILAC light = individual iPSC-CM sample (study sample); SILAC heavy = spike-in super-SILAC standard (reference)",
+   "source_ids": [
+    "pride",
+    "mqA",
+    "mqB",
+    "mqC",
+    "ratios"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: heavy 13C6,15N2-Lys / 13C6,15N4-Arg labelled iPSC-CM cultures of the 4 patient-derived and 3 WT lines were pooled at equal protein as the spike-in super-SILAC standard; non-labelled (light) samples from two differentiations of each line were mixed 1:1 with the standard. summary.txt: Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8 in all 3 searches. Data check (ratios.txt): log2 H/L normalized of RAS GTPases is lower in H samples (MRAS -0.84..+0.05, HRAS -0.38..+0.11, NRAS -0.42..+0.19, KRAS -0.33..+0.19) than in WT samples (MRAS +1.24/+1.68, HRAS +0.67..+1.33, NRAS +0.37..+0.85, KRAS +0.45..+0.91), with Corr samples intermediate/WT-like (MRAS +0.45..+1.56): RAS accumulation in LZTR1-deficient cells (abstract; follow-up paper western blots) sits in the light channel, so light = individual sample."
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype], characteristics[disease] rows 1-384 (light rows (first and third 12-row block of each 48-row sample block in rows 1-672; first and third 15-row block of each 60-row block in rows 673-912))",
+   "value": "LZTR1 c.27dupG / c.1943-256C>T (biallelic); Noonan syndrome 10",
+   "source_ids": [
+    "mqA",
+    "pride",
+    "followup",
+    "ratios",
+    "ols"
+   ],
+   "evidence": "MaxQuant experiments L1-L8 are H1_A1..H2_B2: 4 lines (H1-A, H1-B, H2-A, H2-B) x 2 differentiations = PRIDE's '4 patient-derived' iPSC lines with 'two individual differentiations of each iPSC line'. The follow-up paper (PMC10851011) states the two affected brothers of Hanses et al. carry biallelic LZTR1 variants c.27dupG (maternal) and c.1943-256C>T (paternal, intron 16). MONDO:0014693 'Noonan syndrome 10' = Noonan syndrome caused by mutation in LZTR1. RAS accumulation in these samples (ratios) is consistent."
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype], characteristics[disease] rows 385-672 (light rows (first and third 12-row block of each 48-row sample block in rows 1-672; first and third 15-row block of each 60-row block in rows 673-912))",
+   "value": "wild type; normal",
+   "source_ids": [
+    "mqA",
+    "pride",
+    "ols"
+   ],
+   "evidence": "MaxQuant experiments L9-L14 = WT1_1..WT3_2: 3 WT lines x 2 differentiations = PRIDE's '3 WT iPSC lines'. normal = PATO:0000461."
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype], characteristics[disease] rows 673-912 (light rows (first and third 12-row block of each 48-row sample block in rows 1-672; first and third 15-row block of each 60-row block in rows 673-912))",
+   "value": "LZTR1 intron 16 CRISPR-repaired (patient-derived isogenic); Noonan syndrome 10",
+   "source_ids": [
+    "mqB",
+    "pride",
+    "followup",
+    "ratios"
+   ],
+   "evidence": "Experiments Corr02A/Corr02B/Corr4_2018_13/Corr4_2018_11 (2019 runs); PRIDE title 'Intronic CRISPR repair in LZTR1-deficient iPSC-cardiomyocytes from Noonan syndrome patients' and dataProcessingProtocol comparison 'NS-corr versus NS'. Follow-up paper: corrected lines are allele-specific edits of the intron 16 variant in the patients' iPSCs. Disease = the donor's disease (patient-derived lines); the repair is captured in genotype. Normalised RAS ratios (ratios.txt) consistent with repair."
+  },
+  {
+   "location": "characteristics[cell line] light rows",
+   "value": "H1-A, H1-B, H2-A, H2-B, WT1, WT2, WT3, Corr02, Corr4",
+   "source_ids": [
+    "mqA",
+    "mqB"
+   ],
+   "evidence": "Line labels taken from the depositors' MaxQuant experiment names (H<patient>_<clone><differentiation>, WT<line>_<differentiation>, Corr02A/B, Corr4_<differentiation id>). The deposit does not give Cellosaurus identities (see limitations)."
+  },
+  {
+   "location": "characteristics[cell line] heavy rows",
+   "value": "super-SILAC standard: equal-protein pool of Arg10/Lys8-labelled iPSC-CMs from 4 NS patient-derived and 3 WT iPSC lines",
+   "source_ids": [
+    "pride",
+    "mqA"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol, verbatim composition of the spike-in standard; labels Arg10;Lys8 from summary.txt."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-912",
+   "value": "light: NS 1-8 (L1..L8), WT 1-6 (L9..L14), corrected 1-4; heavy: pooled",
+   "source_ids": [
+    "mqA",
+    "mqB",
+    "pride"
+   ],
+   "evidence": "Each MaxQuant experiment is one independent differentiation (PRIDE: 'Two individual differentiations of each iPSC line'), numbered uniquely within its genotype group (batch rule 3). The standard is a pool."
+  },
+  {
+   "location": "characteristics[individual] rows 1-384 light",
+   "value": "H1 / H2",
+   "source_ids": [
+    "mqA",
+    "pride",
+    "followup"
+   ],
+   "evidence": "Experiment names group the 4 patient lines as H1 (A,B) and H2 (A,B); PRIDE/follow-up: two affected siblings. H1/H2 are the depositors' patient labels; mapping to Cellosaurus donors is unknown."
+  },
+  {
+   "location": "characteristics[sex] rows 1-384 and 673-912 light",
+   "value": "male",
+   "source_ids": [
+    "followup"
+   ],
+   "evidence": "Follow-up paper: 'We recently identified two brothers ... autosomal recessive NS' (the patients of Hanses et al.); the corrected lines are edited patient iPSCs."
+  },
+  {
+   "location": "characteristics[sampling site] NS and corrected light rows",
+   "value": "skin of body",
+   "source_ids": [
+    "followup",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Follow-up paper: patient-specific iPSC lines were generated from patient dermal fibroblasts (Sendai virus); PRIDE organism part lists skin; UBERON:0002097."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-912",
+   "value": "cardiac muscle cell",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: iPSC-derived cardiomyocytes (iPSC-CM) for all samples and for the standard; CL:0000746."
+  },
+  {
+   "location": "characteristics[organism] rows 1-912",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "mqA"
+   ],
+   "evidence": "PRIDE organism 9606; search against UniProt human."
+  },
+  {
+   "location": "characteristics[material type] rows 1-912",
+   "value": "cell",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Cultured iPSC-derived cardiomyocyte pellets (PRIDE protocol)."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-912",
+   "value": "not pooled (light) / pooled (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Individual differentiation pellets vs equal-protein pool of 7 heavy cultures (PRIDE protocol)."
+  },
+  {
+   "location": "characteristics[age] / characteristics[individual] heavy rows",
+   "value": "pooled",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Heavy channel is a pool of 7 lines (PRIDE protocol)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-912",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: SILAC cardio culture medium composed of SILAC RPMI 1640 with 2% B27, HEPES, Glutamax, L-proline and heavy Lys/Arg (heavy); light samples maintained in the respective medium with light Lys/Arg. NCIT:C178973."
+  },
+  {
+   "location": "comment[instrument], comment[ms2 mass analyzer], comment[dissociation method], comment[collision energy], comment[ms1 scan range] rows 1-672",
+   "value": "Q Exactive; orbitrap; HCD (beam-type CID); 25 NCE; 350m/z-1600m/z",
+   "source_ids": [
+    "raw",
+    "ols",
+    "pride"
+   ],
+   "evidence": "All 30 run-name groups of the 2017 runs (L_Cyganek_300817_*) carry the 'Q Exactive - Orbitrap MS' instrument string with Full MS scan range 350 to 1600 m/z, dd-MS2 TopN 10, NCE 25.0 (rawmeth.log) (QE fragments by HCD, MS2 in Orbitrap). PRIDE instruments: Q Exactive."
+  },
+  {
+   "location": "comment[instrument], comment[ms2 mass analyzer], comment[dissociation method], comment[collision energy], comment[ms1 scan range], comment[fragment mass tolerance] rows 673-912",
+   "value": "Orbitrap Fusion Lumos; radial ejection linear ion trap; HCD; 35 NCE; 350m/z-1500m/z; 0.5 Da",
+   "source_ids": [
+    "raw",
+    "mqB",
+    "ols"
+   ],
+   "evidence": "All 10 run-name groups of the 2019 corrected-line runs (L_Cyganek_230519_*) carry 'Orbitrap Fusion Lumos' (creator P1608-71\\Orbitrap_Lumos); method summary: MS1 Orbitrap 120K, Scan Range 350-1500, ddMSnScan ActivationType HCD, Collision Energy 35 % (stepped off) and Detector Type IonTrap in all 10 groups (lumos_ce.txt). MaxQuant MS/MS tol. (ITMS) 0.5 Da. PRIDE lists only Q Exactive (reconciled: Lumos files exist)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-672",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqA"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm' (Orbitrap MS2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-912",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mqA",
+    "mqB",
+    "mqC",
+    "ols"
+   ],
+   "evidence": "summary.txt (all 456 runs, all 3 searches): Fixed modifications 'Carbamidomethyl (C)', Variable modifications 'Oxidation (M);Acetyl (Protein N-term)', Labels1 'Arg10;Lys8'. Arg10 = +10.008 Da = UNIMOD:267, Lys8 = +8.014 Da = UNIMOD:259 (OLS); labels encoded MT=Variable (batch rule 11). The three parameters.txt files are identical except date and FASTA name; all three searches used the same settings for every file."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-912",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mqA",
+    "ols"
+   ],
+   "evidence": "PRIDE dataProcessingProtocol: 'The search was performed with trypsin as enzyme'; summary.txt Enzyme 'Trypsin/P' (search rule, recorded per batch rule 2). The digestion step itself is not described in the retrieved record (see limitations)."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-912",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE dataProcessingProtocol: 'iodoacetamide as cysteine-blocking agent'."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-912",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Methods: QE 'dd-MS2 TopN 10'; Lumos 'Data Dependent Properties ... ddMSnScan'."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool]",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "Batch rules 1 and 10; templates: MS proteomics of human iPSC-derived cell lines (clinical-metadata not declared: cultured iPSC lines, batch rule 15)."
+  },
+  {
+   "location": "characteristics[genotype] (custom column)",
+   "value": "free text",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "TERMS.tsv genotype (free text, EFO:0000513) is licensed by single-cell/invertebrates/clinical-metadata only; used here as a custom characteristics column (spec 'Extending Templates', batch rule 15) because the compared variable is the LZTR1 genotype."
+  }
+ ],
+ "limitations": [
+  "Primary paper (Circulation 2020, PMID 32623905) and its supplement could not be read: not in PMC, ahajournals 403, Goettingen repository green copy 403 (bot check, not bypassed). Sample identities therefore rest on the PRIDE protocol, the MaxQuant experiment names and the 2024 follow-up paper.",
+  "characteristics[cellosaurus accession] / [cellosaurus name] = not available: the follow-up paper names the patient lines UMGi030-A (isHOCMx1.14) and UMGi031-A (isHOCMx2.8) and corrected clones UMGi030-A-1 / UMGi031-A-1, but the deposit's labels (H1-A, H1-B, H2-A, H2-B, Corr02, Corr4, WT1-3) cannot be mapped to them (2 clones per patient in this study, and the WT lines are not named).",
+  "Corr02A vs Corr02B: encoded as two differentiations of one corrected line 'Corr02' (both p42, differentiation IDs 2018_24 / 2019_2, parallel to Corr4_2018_13 / _11); they could instead be two clones. Which patient each corrected line derives from is not stated.",
+  "Super-SILAC standard used for the 2019 corrected-line runs is assumed to be the one described in the PRIDE protocol (4 NS + 3 WT lines); no separate standard is described.",
+  "R1/R2 run series encoded as technical replicates 1/2 (repeat LC-MS series of the same fractionated sample) from run names only; fractionation method not described in any retrieved source (comment[fractionation method] = not available).",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.6.3.4 parameters.txt/summary.txt do not record it and no mqpar.xml was deposited; parse_sdrf convert-openms is expected to fail on it.",
+  "PRIDE dataProcessingProtocol says MaxQuant 1.5.2.8 and UniProt v2016.07; the deposited parameters.txt say MaxQuant 1.6.3.4 and FASTA 20190318_UP_Reference_HOMSA / 20190102_Uniprot_HOMSA. Search settings were taken from the deposited outputs.",
+  "Age, ancestry and passage number not available at sample level; WT donor sex not available.",
+  "characteristics[organism part] = not applicable: in vitro iPSC-derived cardiomyocytes; PRIDE's 'skin' / 'stem cell' describe the reprogramming source, captured as sampling site for the patient-derived lines."
+ ]
+}

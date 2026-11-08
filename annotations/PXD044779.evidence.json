@@ -1,0 +1,362 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD044779.sdrf.tsv",
+ "dataset": "PXD044779",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD044779 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/pride_v3.json): title, sample processing protocol (SILAC light = control, heavy = MPLKIP-GFP; GFP-Trap IP; SDS-PAGE lane slices; DTT/iodoacetamide; trypsin), data processing (MaxQuant 1.5.4.1), instruments [Orbitrap Fusion Lumos], quantification SILAC, otherOmicsLinks px:PXD044434"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD044779/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/files_all.json; 63 entries: 60 RAW (48 '1802_*' SILAC + 12 '2427_*' DIA) + 1802_summary.txt + 1802_proteinGroups.txt + one Spectronaut report; every entry's projectAccessions contains PXD044779). In-scope list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/files_scope.json (16 RAW)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Theil AF et al., EMBO Mol Med 2023 15(11):e17973, PMID 37800682, PMC10630875, doi:10.15252/emmm.202317973; text https://pmc-oa-opendata.s3.amazonaws.com/PMC10630875.1/PMC10630875.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/paper.txt): Results 'MPLKIP interacts with core spliceosome factors' + Fig 3A legend; Methods 'Cell culture', 'Identification of MPLKIP interactors by SILAC-based MS analysis', Data availability"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/08/PXD044779/1802_summary.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/1802_summary.txt): Raw file -> Experiment (Basal/UV/MMC Complex), Enzyme Trypsin/P, Variable modifications Oxidation (M);Acetyl (Protein N-term), Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8; no Fixed modifications column"
+  },
+  {
+   "id": "mq_pg",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/08/PXD044779/1802_proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/1802_proteinGroups.txt): per-experiment 'Ratio H/L normalized' columns"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 1.5 MB of each of the 16 in-scope .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/08/PXD044779/<file>.raw, UTF-16LE strings (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/rawhdr/; parsed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/scripts/rawmeth.py into /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/rawmeth.json)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0440?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/cvcl_0440.txt) and https://api.cellosaurus.org/search/cell-line?q=MRC-5%20SV40 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/cello_search.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 https://www.ebi.ac.uk/ols4/api lookups 2026-11-08: EFO:0002835 MRC5, UBERON:0002048 lung, CL:0002553 fibroblast of lung, PATO:0000461 normal, EFO:0009106 sample enrichment, NCIT:C185409 Dulbecco's Modified Eagle Medium, MS:1002732, MS:1000422, MS:1000083, MS:1001251, PRIDE:0000627, PRIDE:0000568 SDS PAGE (ancestor PRIDE:0000550), PRIDE:0000608, PRIDE:0000599, UNIMOD:35/1/267/259"
+  },
+  {
+   "id": "templates",
+   "kind": "spec",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (latest ms-proteomics 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/../tpl/t; the sdrf-skills spec submodule's nested templates copy is older. sdrf version v1.1.0 = spec README.adoc:27"
+  },
+  {
+   "id": "build",
+   "kind": "tool",
+   "location": "sdrf-tools build from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/samples.tsv + /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/technical.tsv (written by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/scripts/make_tables.py), files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/files_scope.json, -t ms-proteomics -t human -t cell-lines"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-32",
+   "value": "MRC-5 parental, GFP-Trap pull-down, basal (rows 1-16) / MRC-5 MPLKIP-GFP knock-in, GFP-Trap pull-down, basal (rows 17-32)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_summary"
+   ],
+   "evidence": "Paper Results: 'differential SILAC of MRC-5 MPLKIP-GFP knock-in cells and the MRC-5 parental control cell line ... performed on GFP-pull-down samples from whole cell extracts of both cell lines'; PRIDE protocol: GFP-Trap A beads. 'basal' = MaxQuant experiment 'Basal Complex' of these 16 files."
+  },
+  {
+   "location": "comment[label] rows 1-32",
+   "value": "SILAC light (rows 1-16) / SILAC heavy (rows 17-32)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_summary",
+    "mq_pg"
+   ],
+   "evidence": "Methods/PRIDE: unlabelled Arg/Lys 'control, light'; 13C6,15N4 Arg + 13C6,15N2 Lys 'MPLKIP-GFP, heavy'. Fig 3A legend: CTR light, MPLKIP-GFP heavy, ratio H/L = MPLKIP-GFP/CTR. summary.txt: Multiplicity 2, Labels1 Arg10;Lys8 on all 16 files (rule 14). Deposited-ratio check (rule 6), 1802_proteinGroups.txt 'Ratio H/L normalized Basal Complex': bait MPLKIP 21.4, paper's top interactors DBR1 22.7, CWF19L1 27.8, AQR 25.5, ISY1 23.7, XAB2 21.6, PLK1 10.7 vs ACTB 0.95, GAPDH 0.47 -> heavy carries the GFP bait."
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype] rows 1-32",
+   "value": "wild type (rows 1-16) / MPLKIP-GFP knock-in (rows 17-32)",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Fig EV2/Results: MRC-5 MPLKIP-TEV(2x)-FLAG-GFP knock-in cells vs MRC-5 parental (CTR); the compared variable of the SILAC IP is the presence of the GFP-tagged bait."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-32",
+   "value": "untreated",
+   "source_ids": [
+    "mq_summary",
+    "paper"
+   ],
+   "evidence": "These 16 files form MaxQuant experiment 'Basal Complex'; the paper's SILAC experiment describes no treatment. Template-prescribed control value (rule 4)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-32",
+   "value": "sample enrichment",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "GFP-Trap A immunoprecipitation of whole cell extracts before SDS-PAGE (PRIDE protocol/Methods); EFO:0009106 is the closest child of EFO:0009090 (no affinity-purification child exists)."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-32",
+   "value": "MRC5",
+   "source_ids": [
+    "paper",
+    "ols",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: 'SV40-immortalized MRC-5' (Methods cell culture), 'MRC-5 cells (CTR)' (Fig 3A). EFO:0002835 label 'MRC5' (synonym MRC-5)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-32",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism NEWT:9606; Cellosaurus CVCL_0440 OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-32",
+   "value": "lung",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0440 'Derived from site: In situ; Fetal lung' (shared by all SV40 derivatives via HI). UBERON:0002048."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-32",
+   "value": "fibroblast of lung",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0440 'Cell type: Fibroblast of lung; CL=CL_0002553'."
+  },
+  {
+   "location": "characteristics[sex] rows 1-32",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0440 and its SV40 derivatives: SX Male."
+  },
+  {
+   "location": "characteristics[disease] rows 1-32",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "MRC-5 is a normal fetal lung fibroblast line (Cellosaurus: no DI disease line); PATO:0000461."
+  },
+  {
+   "location": "characteristics[material type] rows 1-32",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured immortalized cell line."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-32",
+   "value": "study sample",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Both channels are experimental pull-downs, not references."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-32",
+   "value": "not pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Each channel is one cell population's pull-down; the two channels are mixed 1:1 in the run but are separate samples (Fig 3A legend)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-32",
+   "value": "1",
+   "source_ids": [
+    "mq_summary",
+    "paper"
+   ],
+   "evidence": "One pull-down per genotype in experiment 'Basal Complex'; numbering restarts per factor group (rule 3)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-32",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "SILAC culture 'in DMEM containing 10% dialysed FBS ... GlutaMAX ... penicillin-streptomycin'; NCIT:C185409."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier], comment[technical replicate] rows 1-32",
+   "value": "1802_L_AlexPines_high_01..08 = technical replicate 1, fractions 1-8; 1802_L_AlexPines_low_01..08 = technical replicate 2, fractions 1-8",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "raw_header",
+    "pride",
+    "build"
+   ],
+   "evidence": "summary.txt assigns exactly these 16 files to experiment 'Basal Complex' (MaxQuant Fraction column absent). Lanes were cut into 2-mm slices (Methods) -> the 8 numbered files per series are the gel slices; number = slice order (assumed from file numbering). Raw headers: high_* acquired with method '60min_FTIT_3sec_flex_75um_CSH_int_high__2E5' (precursor intensity range 2E5-5E10), low_* with '..._int_low__5E3' (5E3-2E5): the same slice set injected twice with complementary precursor-intensity windows -> technical replicates 1 and 2."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-32",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Eluates 'separated on 4-12% Bis-Tris NuPAGE gels. Lanes were cut into 2-mm slices'. PRIDE:0000568 is under PRIDE:0000550 Fractionation method."
+  },
+  {
+   "location": "comment[instrument] rows 1-32",
+   "value": "NT=Orbitrap Fusion Lumos;AC=MS:1002732",
+   "source_ids": [
+    "raw_header",
+    "pride"
+   ],
+   "evidence": "All 16 raw headers: 'Orbitrap Fusion Lumos', LC 'Thermo EASY-nLC'. PRIDE instrument agrees. The paper's SILAC Methods text (Q Exactive + Agilent 1100) is contradicted by the raw files; raw headers win."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-32",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw_header"
+   ],
+   "evidence": "'a data-dependent mode was used'; raw method: dependent scans with dynamic exclusion 20 s, charge 2-5."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-32",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Raw headers: ActivationType = HCD (all 16)."
+  },
+  {
+   "location": "comment[collision energy] rows 1-32",
+   "value": "30 NCE",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Raw headers: Collision Energy (%) = 30 (all 16), stepped CE off."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-32",
+   "value": "NT=radial ejection linear ion trap;AC=MS:1000083",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Method name 'FTIT' and Detector Type = IonTrap for the MS2 scan (Orbitrap for MS1, 60K); the Lumos ion trap is a linear ion trap."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-32",
+   "value": "350m/z-1400m/z",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Raw headers: Scan Range (m/z) = 350-1400 (all 16)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-32",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq_summary"
+   ],
+   "evidence": "In-gel digestion 'with trypsin (sequencing grade; Promega)'. MaxQuant search rule Trypsin/P (summary.txt) recorded here, not in the SDRF (rule 2)."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-32",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "'in-gel reduction with dithiothreitol'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-32",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "'alkylation with iodoacetamide (98%; D4, Cambridge Isotope Laboratories)' - see limitations for the D4 wording."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-32",
+   "value": "Oxidation (M) Variable; Acetyl (Protein N-term) Variable; Label:13C(6)15N(4) R Variable; Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "summary.txt Variable modifications 'Oxidation (M);Acetyl (Protein N-term)', Labels1 'Arg10;Lys8' (Arg10 -> UNIMOD:267, Lys8 -> UNIMOD:259; rule 11, MT=Variable). No fixed modification is listed because the deposited MaxQuant 1.5 summary.txt has no Fixed modifications column and no parameters.txt/mqpar.xml is deposited (see limitations)."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "mq_summary",
+    "paper"
+   ],
+   "evidence": "Neither the paper nor the deposit (no parameters.txt / mqpar.xml) states search tolerances."
+  },
+  {
+   "location": "characteristics[age], characteristics[ancestry category], characteristics[individual], characteristics[passage number], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "See limitations: the exact SV40-transformed MRC-5 derivative is not named; Cellosaurus gives donor age 14FW (fetal), which the age pattern {n}{Y/M/W/D} cannot express without implying postnatal age; no population recorded; passage not stated."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-32",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Campaign rule 1/10; templates written by build from -t."
+  },
+  {
+   "location": "technology type rows 1-32",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "build"
+   ],
+   "evidence": "Written by build for ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 16 of 60 deposited RAW files annotated (MaxQuant experiment 'Basal Complex'). 32 SILAC RAW files 1802_L_AlexPines_high_09..24 and 1802_L_AlexPines_low_09..24 (experiments 'UV Complex' and 'MMC Complex') are BLOCKED: the paper never describes UV- or MMC-treated SILAC pull-downs, and the deposited ratios show their channel map differs from the published one (bait MPLKIP H/L normalized 0.64 in UV, 0.97 in MMC, vs 21.4 in Basal), so the light/heavy identities are undocumented. See annotations/BLOCKED.md section PXD044779.",
+  "OUT OF SCOPE: 12 RAW files 2427_L_{15SEP22,20SEP22}_AlexPines_{1_Ctrl1..6_Clone7_3}.raw are label-free DIA (raw method '180min_FTOT_3sec_DIA_variable_window...'; Spectronaut report; paper Methods 'Label-free mass spectrometry analysis on MPLKIP-deficient epidermis') and are byte-identical (name+SHA-1+size) to the 12 RAW of PXD044434, which the paper's Data availability names as the accession for that nLC-MS/MS data. Not SILAC; not annotated in this SILAC campaign.",
+  "Technical replicate interpretation of high/low: inferred from the raw instrument methods (complementary precursor-intensity windows 2E5-5E10 vs 5E3-2E5) and identical 01..08 numbering within one MaxQuant experiment; no text states that the low_NN run is the same slice as high_NN.",
+  "Gel slice order = file number 01..08 (assumed; MaxQuant summary has no Fraction column).",
+  "Fixed modifications are not deposited (MaxQuant 1.5 summary.txt has no Fixed modifications column; no parameters.txt or mqpar.xml). The paper alkylated with iodoacetamide described as '(98%; D4, Cambridge Isotope Laboratories)', which may denote deuterated iodoacetamide-d4; whether the search used Carbamidomethyl (UNIMOD:4) or a deuterated variant is unknown, so no cysteine modification is written.",
+  "Search tolerances not documented -> 'not available'; parse_sdrf convert-openms therefore fails (expected, precedent PXD006676/PXD004817).",
+  "Instrument conflict: the paper's SILAC Methods (and PRIDE sample protocol) say 'Q-Exactive' with an Agilent 1100 LC; all 16 raw headers say Orbitrap Fusion Lumos with EASY-nLC. Raw headers used.",
+  "Label conflict: the Fig 3A legend says heavy = 'Arg10/Lys6'; Methods/PRIDE say 13C6,15N4-Arg + 13C6,15N2-Lys (= Arg10/Lys8) and the MaxQuant search used Arg10;Lys8. Arg10/Lys8 used.",
+  "Cell line: the paper says 'SV40-immortalized MRC-5' without naming the derivative; Cellosaurus has several SV40 transformants of MRC-5 (e.g. MRC-5V1 CVCL_D690, MRC-5V2 CVCL_2627, MRC-5 CV1 CVCL_E260). cell line written as the parent-strain name MRC5 (EFO:0002835); cellosaurus accession/name 'not available'.",
+  "Age: Cellosaurus AG 14FW (fetal week 14); not written (age pattern cannot express gestational age; developmental stage 'fetal stage' exists only in HsapDv, not in the EFO the template requires, so that optional column was omitted).",
+  "No review performed by the producer: REVIEW_PENDING_EXTERNAL."
+ ]
+}

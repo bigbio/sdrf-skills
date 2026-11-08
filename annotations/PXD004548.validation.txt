@@ -1,0 +1,81 @@
+# PXD004548 validation log (sdrf-pipelines parse_sdrf; sdrf-tools). Run from /home/user/bigbio/sdrf-skills/annotations, 2026-11-08.
+# SDRF produced by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/scripts/build.sh: two sdrf-tools build runs (searched rows 1-60; never-searched rows 61-64) with identical headers,
+# concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/scripts/concat_fix.py, whose only edit sets comment[fraction identifier] = 10 on the two 140606_P_077_TB_090.raw rows
+# (gel slice 10 of replicate 2; build numbers a one-file row as fraction 1). Asserted: identical headers, exactly 2 cells changed. No other post-build edit.
+
+## Round 1 (final artifact; no value changed after this round)
+$ parse_sdrf validate-sdrf -s PXD004548.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
+WARNING: Term: CbCln3 delta ex7/8 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: CbCln3 wild-type in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD004548.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD004548.sdrf.tsv
+Hallucination Report: PXD004548.sdrf.tsv
+  Terms checked:     18
+  Verified:          16
+  Hallucinated:      2
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+Hallucinated:
+  Row(s) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 61, 63]: 'CbCln3 delta ex7/8' in characteristics[cell line]
+  Row(s) [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 62, 64]: 'CbCln3 wild-type' in characteristics[cell line]
+exit code: 1
+
+$ sdrf-tools reconcile PXD004548.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/pride.json --accession PXD004548
+PXD004548: 1 value(s) disagree with the deposit record:
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD004548.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD004548.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[cellular component]']
+Traceback (most recent call last):
+ValueError: Cannot read precursor mass tolerance: not applicable
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+ValueError: Error: Cannot read precursor mass tolerance: not applicable
+exit code: 1
+
+$ sdrf-tools schema-check PXD004548.evidence.json
+PXD004548.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD004548.sdrf.tsv PXD004548.evidence.json
+Manifest covers every column with a value (26 column(s)).
+exit code: 0
+
+sha256: 11658db7b368d50a529f28cb85b610777240b5541f2f005e0b85942567998d8e  PXD004548.sdrf.tsv
+
+## Probe (scratch copy, not the artifact): rows 1-60 only (the database-searched runs)
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD004548/openms_probe && head -61 /home/user/bigbio/sdrf-skills/annotations/PXD004548.sdrf.tsv > probe_rows1-60.sdrf.tsv && parse_sdrf convert-openms -s probe_rows1-60.sdrf.tsv -t2)
+Conditions (2): dict_keys(['Cln3 delta ex7/8 knock-in', 'wild type'])
+Files per condition: dict_values([30, 30])
+SUCCESS (WARNINGS=1): probe_rows1-60.sdrf.tsv
+exit code: 0
+
+## Findings and refutations
+1. validate-sdrf exit 0; two WARNINGs: 'CbCln3 wild-type' / 'CbCln3 delta ex7/8' not in CLO/BTO/EFO. Expected: these conditionally immortalized
+   mouse cerebellar lines (Fossale et al. 2004, PMID 15588329) exist in no ontology and not in Cellosaurus (api.cellosaurus.org q=CbCln3: 0 hits;
+   q=rx:15588329: 0 hits; sdrf-tools cellline lookup: not found). characteristics[cell line] is required and has no reserved word, so free text is the only option;
+   cellosaurus accession/name = not available.
+2. sdrf-tools check exit 1: the same two cell-line names reported as 'hallucinated' (not found in an ontology). Same cause as 1; not a fabricated term:
+   the 16 ontology terms it could check all verified, 0 label mismatches, 0 UNIMOD swaps.
+3. reconcile exit 0, MINOR cleavage_agent_unsupported: false positive. The PRIDE sample_processing_protocol (pride.json) states
+   "Slices were excised and subjected to tryptic in gel digestion ... Dried slices were incubated with 400 ng sequencing grade trypsin at 37°C overnight",
+   and the deposited pep.xml search summary says "Enzyme Name: Trypsin" (dl/rep1.pep.head line 100). The reconcile heuristic apparently does not match 'tryptic'/'trypsin' in this phrasing.
+4. convert-openms exit 1 on the full file: "Cannot read precursor mass tolerance: not applicable" from rows 61-64 (140606_P_077_TB_090.raw,
+   140606_P_077_TB_091.raw). Those runs are in none of the three Proteome Discoverer input lists (never searched; superseded by the re-injections
+   140626_P_077_TB_090_2.raw / 140627_P_077_TB_091.raw), so campaign rule 5 requires tolerances 'not applicable' (precedent PXD004817).
+   The probe above shows rows 1-60 (all searched runs) convert cleanly: 2 conditions x 30 files, label SILAC, 8 ppm / 0.6 Da.
+   A quantms reprocessing should drop rows 61-64.
+5. structure, schema-check, manifest-coverage: exit 0.
+
+sha256 11658db7b368d50a529f28cb85b610777240b5541f2f005e0b85942567998d8e  PXD004548.sdrf.tsv (64 rows x 45 columns)

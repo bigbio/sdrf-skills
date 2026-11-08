@@ -1,0 +1,298 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD022985.sdrf.tsv",
+ "dataset": "PXD022985",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD022985 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD022985/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/files_all.json; 147 entries = 140 .raw/.RAW + summary.txt, parameters.txt, readme.txt, proteinGroups.txt, msms.txt, evidence.txt, experimentalDesign_pY_RDEB.txt; every entry projectAccessions contains PXD022985)"
+  },
+  {
+   "id": "readme",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD022985/readme.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/dl/readme.txt): submitter description with per-sample Light/Medium/Heavy time table"
+  },
+  {
+   "id": "design",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD022985/experimentalDesign_pY_RDEB.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/dl/experimentalDesign_pY_RDEB.txt): MaxQuant Name/Fraction/Experiment for all 140 raw files"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD022985/summary.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/dl/summary.txt): per-raw-file Instrument, Enzyme, Variable modifications, Multiplicity=3, Labels1=Arg6;Lys4, Labels2=Arg10;Lys8"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD022985/parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/dl/parameters.txt): MaxQuant 1.4.1.2, fixed Carbamidomethyl (C), MS/MS tol FTMS 20 ppm / ITMS 0.5 Da"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/orient.py over https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD022985/proteinGroups.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/dl/proteinGroups.txt): log2 normalized M/L, H/L, H/M per MaxQuant experiment for PDGFR and downstream pY proteins"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range reads (first 64 KiB, plus first 3 MB for 5 files) of all 140 RAW files under https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/11/PXD022985/; instrument model strings parsed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/inst.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/instrument_by_file.json"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Martinez E et al. Increased abundance of Cbl E3 ligases alters PDGFR signaling in recessive dystrophic epidermolysis bullosa. bioRxiv 2021, doi:10.1101/2021.05.10.443425 (Europe PMC PPR337942; PDF https://www.biorxiv.org/content/biorxiv/early/2021/05/10/2021.05.10.443425.full.pdf, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/preprint.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD022985/preprint.txt). Published version Matrix Biol 2021, doi:10.1016/j.matbio.2021.10.004, PMID 34706254 (not open access, not read). Data availability cites PXD022985."
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 (https://www.ebi.ac.uk/ols4) via mcp searchClasses / OLS search API, 2026-11-08"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, characteristics[individual], characteristics[biological replicate] rows 1-420",
+   "value": "sources <set>_<time>: NHF2, NHF4_set1, NHF4_set2, NHF8, RDEBD, RDEBM, RDEBR x {0min,5min,10min}; individual NHF2/NHF4/NHF8/RDEBD/RDEBM/RDEBR; biological replicate NHF 1-4, RDEB 1-3 per (disease, time) group",
+   "source_ids": [
+    "design",
+    "readme",
+    "paper"
+   ],
+   "evidence": "MaxQuant design has 7 Experiments (2NHF, 4NHF, 4NHFnew, 8NHF, RDEBD, RDEBM, RDEBR), 20 files each. readme: \"Seven sets of SILAC-based AP-MS experiments ... (including one replicate using the same cell type)\"; samples RDEB1-3, 2NHF, 4NHF_1, 4NHF_2, 8NHF. Paper Fig.1B legend: \"Three different NHF (NHF2, 4, 8) and RDEB (RDEB1, 4, 5) cells were analyzed\"; \"Three different RDEB fibroblasts and three different NHFs\". So 4NHF and 4NHFnew are two experiments from the same donor NHF4 (separate cultures -> distinct biological replicate numbers 2 and 3). The RDEB individual is given by the MaxQuant experiment code because the paper donor IDs (RDEB1/4/5) cannot be matched to RDEBD/M/R."
+  },
+  {
+   "location": "comment[label], characteristics[sampling time], characteristics[treatment], characteristics[compound], characteristics[dose], factor value[sampling time] rows 1-60, 121-240, 301-420 (NHF2, NHF4_set2, NHF8, RDEBM, RDEBR)",
+   "value": "SILAC light = 0 minute (untreated), SILAC medium = 5 minute, SILAC heavy = 10 minute",
+   "source_ids": [
+    "readme",
+    "orientation",
+    "mq_summary"
+   ],
+   "evidence": "readme table: RDEB2, RDEB3, 2NHF, 4NHF_2, 8NHF -> Light 0 min, Medium 5 min, Heavy 10 min. Data: log2 normalized M/L and H/L of PDGFRB are +3.6/+4.1 (2NHF), +3.9/+3.7 (4NHFnew), +4.6/+4.2 (8NHF), +3.8/+4.0 (RDEBM), +3.4/+3.7 (RDEBR): light is the unstimulated channel. MaxQuant Labels1 = Arg6;Lys4 (medium), Labels2 = Arg10;Lys8 (heavy). 4NHF_2 is matched to MaxQuant experiment 4NHFnew (naming order and data); RDEB2/RDEB3 are RDEBM/RDEBR in some order - both carry the same map, so the order does not change any row."
+  },
+  {
+   "location": "comment[label], characteristics[sampling time], characteristics[treatment], characteristics[compound], characteristics[dose], factor value[sampling time] rows 61-120, 241-300 (NHF4_set1, RDEBD)",
+   "value": "SILAC light = 10 minute, SILAC medium = 0 minute (untreated), SILAC heavy = 5 minute",
+   "source_ids": [
+    "readme",
+    "orientation"
+   ],
+   "evidence": "readme table: RDEB1 and 4NHF_1 -> Light 10 min, Medium 0 min, Heavy 5 min (paper: \"Biological replicates with SILAC-label swaps\"). Assignment of these two readme samples to MaxQuant experiments 4NHF and RDEBD is from the deposited ratios: only these two experiments have the unstimulated channel in medium - PDGFRB log2 M/L -3.8 (4NHF), -3.3 (RDEBD), H/M +3.7/+3.0, H/L ~0; PDGFRA, PLCG1, PTPN11, GAB1, RASA1, SHC1 agree. 4NHF_1 = 4NHF is also the naming order."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-420",
+   "value": "becaplermin (NCIT:C1668) for 5/10 minute channels; untreated for 0 minute",
+   "source_ids": [
+    "paper",
+    "readme",
+    "ols"
+   ],
+   "evidence": "Paper: \"Fibroblasts were serum-starved overnight prior to stimulation with 25 ng/mL of PDGF-BB for 0, 5, or 10 min\"; Fig.1B \"Unstimulated cells were used as controls\"; PDGF-BB = recombinant human PDGF-BB (PeproTech). Becaplermin is the INN of recombinant human PDGF-BB (NCIT:C1668 Becaplermin; CHEBI:749433 becaplermin). 0-min channel = untreated control (template-prescribed value)."
+  },
+  {
+   "location": "characteristics[compound], characteristics[dose] rows 1-420",
+   "value": "becaplermin (CHEBI:749433) / 0.025 ug/mL on stimulated channels; not applicable on 0 minute channels",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "25 ng/mL PDGF-BB (paper, phosphotyrosine enrichment section) = 0.025 ug/mL (unit converted because the clinical-metadata dose validator lists ug/mL but not ng/mL)."
+  },
+  {
+   "location": "characteristics[sampling time], factor value[sampling time] rows 1-420",
+   "value": "0 minute / 5 minute / 10 minute (duration of PDGF-BB stimulation before lysis)",
+   "source_ids": [
+    "paper",
+    "readme"
+   ],
+   "evidence": "Paper and readme: PDGF-BB treatment for 0, 5 and 10 min."
+  },
+  {
+   "location": "characteristics[disease], factor value[disease] rows 1-240",
+   "value": "normal (PATO:0000461)",
+   "source_ids": [
+    "paper",
+    "design",
+    "ols"
+   ],
+   "evidence": "NHF = normal human fibroblasts \"isolated from the foreskin of circumcised 2-, 4-, 8- and 9-year old healthy boys\" (paper). PRIDE disease field (RDEB) is project-level and not applied to the control arm."
+  },
+  {
+   "location": "characteristics[disease], factor value[disease] rows 241-420",
+   "value": "recessive dystrophic epidermolysis bullosa (MONDO:0009179)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "\"Primary dermal fibroblasts from RDEB patients ... selected based on the absence of C7\"; PRIDE disease DOID:0060642 Recessive dystrophic epidermolysis bullosa. MONDO:0009179 label verified in OLS."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-240",
+   "value": "skin of prepuce of penis (UBERON:0001471)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "NHF \"isolated from the foreskin of circumcised ... boys\"."
+  },
+  {
+   "location": "characteristics[organism part] rows 241-420",
+   "value": "skin of body (UBERON:0002097)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "RDEB fibroblasts \"obtained from skin specimens\" (site not given); PRIDE organism part BTO:0001253 Skin."
+  },
+  {
+   "location": "characteristics[cell type], characteristics[material type] rows 1-420",
+   "value": "skin fibroblast (CL:0002620); cell",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Primary human skin/dermal fibroblasts (paper Experimental Procedures; PRIDE description \"primary human skin fibroblasts\", cell type CL:0000057 fibroblast). Primary cells, not cell lines."
+  },
+  {
+   "location": "characteristics[organism] rows 1-420",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE organism NEWT:9606; human donors."
+  },
+  {
+   "location": "characteristics[sex] rows 1-240",
+   "value": "male",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "All NHF donors were \"healthy boys\" (foreskin from circumcision), so every NHF row is male."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-420",
+   "value": "pediatric stage (HsapDv:0000264)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "NHF donors 2-9 years old; RDEB donors \"less than one year of age\" (all 6 donors). Every donor is a child/infant, so the common stage is pediatric stage (HsapDv:0000264, OLS). Not an EFO term; validate-sdrf warns."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-420",
+   "value": "enrichment of phosphorylated protein (EFO:0010806, child of EFO:0009090)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Protein-level anti-phosphotyrosine IP with 4G10-agarose before SDS-PAGE (paper; PRIDE description)."
+  },
+  {
+   "location": "comment[fraction identifier], comment[fractionation method] rows 1-420",
+   "value": "1-10; NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "design",
+    "paper",
+    "readme"
+   ],
+   "evidence": "\"protein lanes were divided into 10 fractions\" (paper); readme \"10 slices per sample\"; MaxQuant design Fraction 1-10 per file."
+  },
+  {
+   "location": "comment[technical replicate], assay name, comment[data file] rows 1-420",
+   "value": "technical replicate 1 = files with \"_IP_\" in the name; 2 = \"_tR_\"/\"_tr_\" files and, for 4NHF/RDEBD, the 20160413 Q Exactive Plus series",
+   "source_ids": [
+    "design",
+    "files",
+    "raw"
+   ],
+   "evidence": "Each MaxQuant Experiment holds two complete 10-fraction series with the same fraction numbers 1-10 (e.g. 20160205_JuDo_2NHF_pY_IP_01..10 and 20160223_JuDo_2NHF_pY_tR_01..10), i.e. the same 10 gel slices measured twice; \"tR\" read as technical replicate. For 4NHF and RDEBD the second series (20160413_JuDo_4NHF_*, 20160413_JuDo_RDEB_*) was acquired on the Q Exactive Plus. Every one of the 140 RAW files maps to one series."
+  },
+  {
+   "location": "comment[instrument], comment[dissociation method], comment[collision energy], comment[fragment mass tolerance], comment[ms1 scan range] rows 1-90, 121-270, 301-420",
+   "value": "NT=LTQ Orbitrap XL;AC=MS:1000556; CID (MS:1000133); 35% NCE; 0.5 Da; 350m/z-2000m/z",
+   "source_ids": [
+    "raw",
+    "mq_summary",
+    "paper",
+    "mq_params",
+    "ols"
+   ],
+   "evidence": "RAW headers of these 120 files contain \"LTQ Orbitrap XL MS\"; MaxQuant summary Instrument \"LTQ Orbitrap XL\" (blank for the 30 20160504 IP files, resolved from RAW). Paper: \"collision energy in the linear ion trap was set to 35%\", scan range 350-2000 m/z for the LTQ Orbitrap XL; MaxQuant ITMS MS/MS tol 0.5 Da (paper: \"MS/MS tolerance was set to 0.5 Da\")."
+  },
+  {
+   "location": "comment[instrument], comment[dissociation method], comment[collision energy], comment[fragment mass tolerance], comment[ms1 scan range] rows 91-120, 271-300",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634; beam-type CID/HCD (MS:1000422); 25% NCE; 20 ppm; 200m/z-2000m/z",
+   "source_ids": [
+    "raw",
+    "mq_summary",
+    "paper",
+    "mq_params",
+    "ols"
+   ],
+   "evidence": "RAW headers of the 20 20160413 files: instrument \"Q Exactive Plus\", method \"Q Exactive Plus - Orbitrap MS\" (MaxQuant summary says \"Q Exactive\", PRIDE and paper \"Q Exactive\"/\"QExactive\"; the RAW header is the more specific record). Paper: 25% collision energy and 200-2000 m/z for the QExactive; MaxQuant FTMS MS/MS tol 20 ppm."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-420",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"Data acquisition was done data-dependent\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-420",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_summary"
+   ],
+   "evidence": "In-gel digestion with trypsin (paper). MaxQuant search rule was Trypsin/P (summary.txt Enzyme), recorded here only as the search rule."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-420",
+   "value": "DTT (PRIDE:0000608); iodoacetamide (PRIDE:0000599)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Elution in Laemmli buffer \"containing 1 mM dithiothreitol (DTT)\"; \"alkylated with 5.5 mM iodoacetamide (IAA)\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-420",
+   "value": "Carbamidomethyl C fixed; Acetyl Protein N-term, Oxidation M, Phospho STY variable; Label:13C(6) R, Label:2H(4) K, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K (SILAC, MT=Variable by campaign convention)",
+   "source_ids": [
+    "mq_summary",
+    "mq_params",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt every file: Variable modifications \"Acetyl (Protein N-term);Oxidation (M);Phospho (STY)\", Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8; parameters.txt Fixed modifications Carbamidomethyl (C). Paper: Lys4 = L-lysine-2H4 (UNIMOD:481), Arg6 = 13C6 (UNIMOD:188), Lys8 = 13C6-15N2 (UNIMOD:259), Arg10 = 13C6-15N4 (UNIMOD:267). One MaxQuant search covered all 140 files."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-420",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "ols"
+   ],
+   "evidence": "Campaign rules: sdrf version v1.1.0 (spec README.adoc:27); ms-proteomics latest 1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml (the spec submodule nested templates copy is older); clinical-metadata declared because samples are patient/donor-derived primary cells."
+  }
+ ],
+ "limitations": [
+  "Paper donor IDs (RDEB1, RDEB4, RDEB5 in Fig.1B) cannot be matched to MaxQuant experiments RDEBD/RDEBM/RDEBR; characteristics[individual] uses the deposit codes. Which of RDEBM/RDEBR is readme RDEB2 vs RDEB3 is unknown, but both carry the same channel map, so no row depends on it.",
+  "The assignment of readme samples RDEB1 and 4NHF_1 (label-swapped map) to MaxQuant experiments RDEBD and 4NHF rests on the deposited SILAC ratios (unstimulated channel = medium only in those two experiments; PDGFRB log2 M/L -3.3/-3.8), not on an explicit statement. The 5 vs 10 minute channels are taken from the readme; the data do not discriminate them strongly (H/M ~0).",
+  "characteristics[age] = not available: NHF donors were 2, 4, 8 and 9 years old and names NHF2/4/8 suggest the age, but no source states the per-donor age; RDEB donors only \"less than one year\". characteristics[sex] of RDEB donors and ancestry of all donors not reported (not available).",
+  "Technical replicate interpretation: the second 10-fraction series per experiment (\"tR\" files, and the 20160413 Q Exactive Plus series for 4NHF/RDEBD) is read as a re-measurement of the same gel-slice digests (same MaxQuant Experiment and fraction numbers 1-10); the paper does not describe the re-runs explicitly.",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.4.1.2 parameters.txt does not record first/main search precursor tolerance and no mqpar.xml was deposited; convert-openms therefore fails on this column (same as campaign precedents).",
+  "developmental stage \"pediatric stage\" is HsapDv:0000264, not an EFO term; validate-sdrf warns. Published Matrix Biol version (doi:10.1016/j.matbio.2021.10.004) not open access; the bioRxiv preprint was used.",
+  "Independent review not run here (per caller instructions: no review-gate approve, no review file). Status REVIEW_PENDING_EXTERNAL."
+ ]
+}

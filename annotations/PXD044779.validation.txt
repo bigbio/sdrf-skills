@@ -1,0 +1,82 @@
+# PXD044779 validation log (sdrf-pipelines parse_sdrf; sdrf-tools). Run from /home/user/bigbio/sdrf-skills/annotations, 2026-11-08.
+# SDRF sha256 8521a2bbf0bef4c2cdddd9e7cc073f52abbe034ba3bd7ff1888e1f2cbdcc1ca8; 32 rows x 49 columns
+
+## Round 1 (first build, not kept)
+$ parse_sdrf validate-sdrf -s PXD044779.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: MRC-5 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+(structure exit 0; check CLEAN exit 0; reconcile "every annotated value agrees" exit 0)
+
+Fixes (in samples.tsv via scripts/make_tables.py, then rebuilt with sdrf-tools build; no post-build edits of the SDRF):
+- characteristics[cell line] MRC-5 -> MRC5 (EFO:0002835 label; MRC-5 is its synonym).
+- characteristics[developmental stage] 'fetal stage' removed: the term exists only in HsapDv, not in EFO which the template requires (optional column; Cellosaurus 14FW noted in manifest limitations).
+
+## Round 2 (final artifact)
+
+$ parse_sdrf validate-sdrf -s PXD044779.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD044779.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD044779.sdrf.tsv
+Hallucination Report: PXD044779.sdrf.tsv
+  Terms checked:     16
+  Verified:          16
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD044779.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/pride_v3.json --accession PXD044779
+PXD044779: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD044779.sdrf.tsv -t2
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+$ sdrf-tools schema-check PXD044779.evidence.json
+PXD044779.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD044779.sdrf.tsv PXD044779.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+## Notes on remaining findings
+- WARNING 'untreated' (characteristics[treatment]): template-prescribed control value (campaign rule 4); accepted in every passed campaign file (e.g. PXD004245-hela-silac).
+- convert-openms exit 1: caused only by the reserved word 'not available' in comment[precursor mass tolerance] / comment[fragment mass tolerance]. No tolerance is documented anywhere (paper, PRIDE, deposit has no parameters.txt/mqpar.xml), so no value was invented (precedent PXD006676, PXD004817). Probe: a scratch copy with the two tolerance cells set to 20 ppm / 0.5 Da (scratch only, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b5-PXD044779/openms_probe/probe.sdrf.tsv) converts: "Conditions (2): wild type, MPLKIP-GFP knock-in; Files per condition 16, 16; SUCCESS (WARNINGS=1)" (the warning is the PP=Protein N-term Acetyl "no TA=" message). So nothing else blocks conversion.
+- reconcile: no findings, so nothing to refute.
