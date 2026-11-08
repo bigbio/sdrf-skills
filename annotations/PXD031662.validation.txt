@@ -94,3 +94,15 @@ exit code: 0
 #   (2) BioID2 hairpins shKRAS -> shKRAS.2, shNRAS -> shNRAS.1 (paper Methods: "infected with pLKO-shKRAS.2 or pLKO-shNRAS.1").
 # - The round-1 notes about convert-openms failing on 'not available' are superseded: convert-openms now succeeds on the deliverable (exit 0).
 # - parse_sdrf: 0 errors; only the expected XG-2 warning (see round-1 notes). reconcile and structure exit 0.
+
+# ===== Round 3 (after external review round 2: removed the 23 HFPlus_136_L6 raws = MaxQuant exp 140, undocumented) =====
+
+$ sdrf-tools reconcile annotations/PXD031662.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD031662/pride.json --accession PXD031662
+PXD031662: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD031662.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s annotations/PXD031662.sdrf.tsv -t ms-proteomics -t human -t cell-lines

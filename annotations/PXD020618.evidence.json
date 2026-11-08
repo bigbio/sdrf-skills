@@ -330,8 +330,8 @@
    "evidence": "Per-row text built only from that patient's S1A row: immunotherapy group (TIL / a-PD1 / a-CTLA4), sampling time relative to treatment, Response, LDH above normal, Overall survival (months), Death, Technical set, Low proteomic quality flag (exclusion per PRIDE data processing: samples with <3,500 proteins excluded)."
   },
   {
-   "location": "characteristics[clinical data] rows 6-10,16-20,26-30,36-40,46-50,56-60,66-70,76-80,86-90,96-100,106-110,116-120,126-130,136-140,142,148-152,158-162,168-172,178-182,184,190-194,200-204,210-214,220-224,230-234,238-240,246-250,256-260,263-264,266,273-278,284-288,294-298,304-308,314-318,324-328,334-338,344-348,354-358,364-368,374-378,384-388,394-398,404-408,414-418,424-428,434-438,444-448,454-458,464-468,474-478,484-488,494-498,504-508,510,512,514,516,522-526,528,530,536-540,546-550,552,554,560-564,570-574,580-584,590-594,596,598,604-608,614-618,624-628,634-638,644-648,654-658,664-668,671-672,674,676",
-   "value": "super-SILAC reference description",
+   "location": "characteristics[reference cell lines] rows 6-10,16-20,26-30,36-40,46-50,56-60,66-70,76-80,86-90,96-100,106-110,116-120,126-130,136-140,142,148-152,158-162,168-172,178-182,184,190-194,200-204,210-214,220-224,230-234,238-240,246-250,256-260,263-264,266,273-278,284-288,294-298,304-308,314-318,324-328,334-338,344-348,354-358,364-368,374-378,384-388,394-398,404-408,414-418,424-428,434-438,444-448,454-458,464-468,474-478,484-488,494-498,504-508,510,512,514,516,522-526,528,530,536-540,546-550,552,554,560-564,570-574,580-584,590-594,596,598,604-608,614-618,624-628,634-638,644-648,654-658,664-668,671-672,674,676",
+   "value": "super-SILAC reference composition (custom characteristics column)",
    "source_ids": [
     "pride",
     "harel2019",
@@ -355,6 +355,73 @@
     "harel2019"
    ],
    "evidence": "PRIDE: \"samples were prepared from slides of FFPE blocks that were macro-dissected\". Custom characteristics column (spec Extending Templates)."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-5,11-15,21-25,31-35,41-45,51-55,61-65,71-75,81-85,91-95,101-105,111-115,121-125,131-135,141,143-147,153-157,163-167,173-177,183,185-189,195-199,205-209,215-219,225-229,235-237,241-245,251-255,261-262,265,267-272,279-283,289-293,299-303,309-313,319-323,329-333,339-343,349-353,359-363,369-373,379-383,389-393,399-403,409-413,419-423,429-433,439-443,449-453,459-463,469-473,479-483,489-493,499-503,509,511,513,515,517-521,527,529,531-535,541-545,551,553,555-559,565-569,575-579,585-589,595,597,599-603,609-613,619-623,629-633,639-643,649-653,659-663,669-670,673,675",
+   "value": "NCIT therapy per row from S1A Immunotherapy group",
+   "source_ids": [
+    "suppl_S1",
+    "ols",
+    "pride"
+   ],
+   "evidence": "S1A \"Immunotherapy group\": TIL -> Tumor Infiltrating Lymphocyte Therapy (NCIT:C15524; 44 patients), a-PD1 -> PD1 Inhibitor (NCIT:C124946; 6), a-CTLA4 -> Anti-CTLA-4 Monoclonal Antibody (NCIT:C128036; 20); terms verified live in OLS 2026-11-08. This is the therapy whose response is recorded; most samples were taken before its start (see treatment status). CONFOUNDING: therapy group coincides with technical set and acquisition batch - TIL25/TIL33 set 1 (2014, QE Plus), TIL45-86 set 2 (2017, QE HF and QE Plus), PD samples set 2 (2016-17 QE HF; PD58 2018 QE Plus), CTLA set 3 (2018, QE Plus). Same-lab curated precedent PXD006003 carries therapy per sample."
+  },
+  {
+   "location": "factor value[treatment] rows 1-5,11-15,21-25,31-35,41-45,51-55,61-65,71-75,81-85,91-95,101-105,111-115,121-125,131-135,141,143-147,153-157,163-167,173-177,183,185-189,195-199,205-209,215-219,225-229,235-237,241-245,251-255,261-262,265,267-272,279-283,289-293,299-303,309-313,319-323,329-333,339-343,349-353,359-363,369-373,379-383,389-393,399-403,409-413,419-423,429-433,439-443,449-453,459-463,469-473,479-483,489-493,499-503,509,511,513,515,517-521,527,529,531-535,541-545,551,553,555-559,565-569,575-579,585-589,595,597,599-603,609-613,619-623,629-633,639-643,649-653,659-663,669-670,673,675",
+   "value": "mirrors characteristics[treatment]",
+   "source_ids": [
+    "paper",
+    "suppl_S1"
+   ],
+   "evidence": "Response is only meaningful within a therapy; abstract analyses immunotherapy response and the anti-PD1 epidemiology; S2E logistic regression controlled for immunotherapy treatment."
+  },
+  {
+   "location": "characteristics[survival time] rows 1-5,11-15,21-25,31-35,41-45,51-55,61-65,71-75,81-85,91-95,101-105,111-115,121-125,131-135,141,143-147,153-157,163-167,173-177,183,185-189,195-199,205-209,215-219,225-229,235-237,241-245,251-255,261-262,265,267-272,279-283,289-293,299-303,309-313,319-323,329-333,339-343,349-353,359-363,369-373,379-383,389-393,399-403,409-413,419-423,429-433,439-443,449-453,459-463,469-473,479-483,489-493,499-503,509,511,513,515,517-521,527,529,531-535,541-545,551,553,555-559,565-569,575-579,585-589,595,597,599-603,609-613,619-623,629-633,639-643,649-653,659-663,669-670,673,675",
+   "value": "S1A Overall survival (months), rounded to 0.01; NA -> not available",
+   "source_ids": [
+    "suppl_S1"
+   ],
+   "evidence": "Individual-level S1A \"Overall survival (months)\" (TIL25 and TIL33: NA -> not available)."
+  },
+  {
+   "location": "characteristics[clinical data] rows 6-10,16-20,26-30,36-40,46-50,56-60,66-70,76-80,86-90,96-100,106-110,116-120,126-130,136-140,142,148-152,158-162,168-172,178-182,184,190-194,200-204,210-214,220-224,230-234,238-240,246-250,256-260,263-264,266,273-278,284-288,294-298,304-308,314-318,324-328,334-338,344-348,354-358,364-368,374-378,384-388,394-398,404-408,414-418,424-428,434-438,444-448,454-458,464-468,474-478,484-488,494-498,504-508,510,512,514,516,522-526,528,530,536-540,546-550,552,554,560-564,570-574,580-584,590-594,596,598,604-608,614-618,624-628,634-638,644-648,654-658,664-668,671-672,674,676",
+   "value": "not applicable",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "Reference rows carry no clinical data; composition moved to characteristics[reference cell lines]."
+  },
+  {
+   "location": "characteristics[reference cell lines] rows 1-5,11-15,21-25,31-35,41-45,51-55,61-65,71-75,81-85,91-95,101-105,111-115,121-125,131-135,141,143-147,153-157,163-167,173-177,183,185-189,195-199,205-209,215-219,225-229,235-237,241-245,251-255,261-262,265,267-272,279-283,289-293,299-303,309-313,319-323,329-333,339-343,349-353,359-363,369-373,379-383,389-393,399-403,409-413,419-423,429-433,439-443,449-453,459-463,469-473,479-483,489-493,499-503,509,511,513,515,517-521,527,529,531-535,541-545,551,553,555-559,565-569,575-579,585-589,595,597,599-603,609-613,619-623,629-633,639-643,649-653,659-663,669-670,673,675",
+   "value": "not applicable",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "Patient rows."
+  },
+  {
+   "location": "characteristics[treatment] rows 6-10,16-20,26-30,36-40,46-50,56-60,66-70,76-80,86-90,96-100,106-110,116-120,126-130,136-140,142,148-152,158-162,168-172,178-182,184,190-194,200-204,210-214,220-224,230-234,238-240,246-250,256-260,263-264,266,273-278,284-288,294-298,304-308,314-318,324-328,334-338,344-348,354-358,364-368,374-378,384-388,394-398,404-408,414-418,424-428,434-438,444-448,454-458,464-468,474-478,484-488,494-498,504-508,510,512,514,516,522-526,528,530,536-540,546-550,552,554,560-564,570-574,580-584,590-594,596,598,604-608,614-618,624-628,634-638,644-648,654-658,664-668,671-672,674,676",
+   "value": "not applicable",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "Reference rows carry no patient attribute or compared variable."
+  },
+  {
+   "location": "characteristics[survival time] rows 6-10,16-20,26-30,36-40,46-50,56-60,66-70,76-80,86-90,96-100,106-110,116-120,126-130,136-140,142,148-152,158-162,168-172,178-182,184,190-194,200-204,210-214,220-224,230-234,238-240,246-250,256-260,263-264,266,273-278,284-288,294-298,304-308,314-318,324-328,334-338,344-348,354-358,364-368,374-378,384-388,394-398,404-408,414-418,424-428,434-438,444-448,454-458,464-468,474-478,484-488,494-498,504-508,510,512,514,516,522-526,528,530,536-540,546-550,552,554,560-564,570-574,580-584,590-594,596,598,604-608,614-618,624-628,634-638,644-648,654-658,664-668,671-672,674,676",
+   "value": "not applicable",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "Reference rows carry no patient attribute or compared variable."
+  },
+  {
+   "location": "factor value[treatment] rows 6-10,16-20,26-30,36-40,46-50,56-60,66-70,76-80,86-90,96-100,106-110,116-120,126-130,136-140,142,148-152,158-162,168-172,178-182,184,190-194,200-204,210-214,220-224,230-234,238-240,246-250,256-260,263-264,266,273-278,284-288,294-298,304-308,314-318,324-328,334-338,344-348,354-358,364-368,374-378,384-388,394-398,404-408,414-418,424-428,434-438,444-448,454-458,464-468,474-478,484-488,494-498,504-508,510,512,514,516,522-526,528,530,536-540,546-550,552,554,560-564,570-574,580-584,590-594,596,598,604-608,614-618,624-628,634-638,644-648,654-658,664-668,671-672,674,676",
+   "value": "not applicable",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "Reference rows carry no patient attribute or compared variable."
   },
   {
    "location": "characteristics[treatment status] rows 6-10,16-20,26-30,36-40,46-50,56-60,66-70,76-80,86-90,96-100,106-110,116-120,126-130,136-140,142,148-152,158-162,168-172,178-182,184,190-194,200-204,210-214,220-224,230-234,238-240,246-250,256-260,263-264,266,273-278,284-288,294-298,304-308,314-318,324-328,334-338,344-348,354-358,364-368,374-378,384-388,394-398,404-408,414-418,424-428,434-438,444-448,454-458,464-468,474-478,484-488,494-498,504-508,510,512,514,516,522-526,528,530,536-540,546-550,552,554,560-564,570-574,580-584,590-594,596,598,604-608,614-618,624-628,634-638,644-648,654-658,664-668,671-672,674,676",
@@ -572,7 +639,7 @@
     "harel2019",
     "build"
    ],
-   "evidence": "PRIDE: \"overnight digestion with Lys-C-Trypsin mix (1:100) and trypsin (1:50)\" for the TFE in-solution protocol used for technical sets 2-3 (SCX-fractionated runs). Second column inserted by postbuild.py (batch rule 2)."
+   "evidence": "PRIDE: \"overnight digestion with Lys-C-Trypsin mix (1:100) and trypsin (1:50)\" for the TFE in-solution protocol used for technical sets 2-3. INFERENCE: assigned per technical set (S1A), not per run statement; for the SCX-fractionated runs it is supported by the SCX method names matching the TFE/SCX protocol, but for the unfractionated single-shot 240-min runs of set 2/3 (TIL68, TIL69, TIL71, TIL74, TIL79, CTLA20) nothing run-specific confirms the digest - Lys-C is inferred from their technical set only. Second column inserted by postbuild.py (batch rule 2)."
   },
   {
    "location": "comment[cleavage agent details] (second column) rows 265-278",
@@ -749,6 +816,9 @@
   "Four deposited runs were never searched (not in summary.txt): tolerances and modification parameters \"not applicable\" (batch rule 5). parse_sdrf convert-openms therefore fails (\"Cannot read precursor mass tolerance: not applicable\"); the 668 searched rows convert cleanly (probe in validation.txt).",
   "techsdrf not installed: instrument, NCE, MS1 scan range read from HTTP-range reads (384 KB) of each raw header.",
   "Precursor tolerance 4.5 ppm is the Andromeda main-search value (.apar); MaxQuant first-search tolerance (mqpar.xml) not deposited.",
+  "Therapy group (characteristics/factor value[treatment]) is fully confounded with technical set, sample-preparation batch and instrument/acquisition period (TIL25/33 2014 set 1; TIL45-86 2017 set 2; PD 2016-18; CTLA 2018 set 3 on QE Plus); the paper corrected batch with limma, the SDRF cannot.",
+  "Lys-C for the unfractionated single-shot runs of sets 2-3 (TIL68/69/71/74/79, CTLA20) is inferred from technical set only.",
+  "convert-openms: filter out the 8 rows of the 4 never-searched runs (tolerance not applicable) before conversion for quantms.",
   "Eight annotated samples are flagged \"Low proteomic quality\" in S1A (TIL68, TIL69, TIL71, TIL74, TIL79, TIL25, TIL33, CTLA20) and were excluded from the paper analyses; kept and flagged in characteristics[clinical data]."
  ]
 }
