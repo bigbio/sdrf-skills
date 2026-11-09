@@ -304,6 +304,7 @@
   "characteristics[passage number] = not available (cells were cultured five passages in SILAC media; absolute passage not stated).",
   "techsdrf not installed; raw-file verification limited to range-read headers of 2 of 8 files (one per preparation round).",
   "sdrf-tools reconcile reports cleavage_agent_unsupported (BLOCKER) - a false positive: the trypsin sentence (\"saturated with 13 ng/uL sequence-grade modified trypsin ... incubated at 37 C overnight\") lacks the regex digest cues; refuted in validation.txt.",
+  "parse_sdrf validate-sdrf with online OLS exits 1 on a single ERROR (\"Mus musculus ... not found in ncbitaxon\") caused by OLS4 HTTP 500 responses to the validator's ncbitaxon searches (tracebacks in the log); the --use_ols_cache_only run of the same file exits 0 and NCBITaxon:10090 is labelled Mus musculus in OLS4. A clean online re-run when OLS is healthy is still owed.",
   "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."
  ]
 }
