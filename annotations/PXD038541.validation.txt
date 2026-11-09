@@ -1,0 +1,37 @@
+# PXD038541 validation log (2026-11-09T15:28Z); SDRF sha256 e08c52c5c3c0e7831433a47d352e91fac843f6cae9eb86fd5d45b0cfd5140c29; 624 data rows x 40 columns
+
+## Build: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/files_searched.json -t ms-proteomics -t human -t clinical-metadata -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/build.sdrf.tsv
+wrote build.sdrf.tsv: 624 rows x 40 columns  (exit=0)
+
+## Post-build edit (deterministic, rule 17): python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/scripts/postbuild.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/build.sdrf.tsv /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/fraction_fix.json annotations/PXD038541.sdrf.tsv
+edited rows 4 (exit=0)
+Justification: 07Mar2013_Turnover_cell42_24h_E.RAW and 07Mar2013_Turnover_cell42_24h_E_excl_list.RAW are band-E-only re-acquisitions (technical replicates 3/4 of cell42 24h, merged into 07Mar2013_Prot_turn_cell42_24h_tot_bis.msf). build numbers comment[fraction identifier] by position in the 'files' list and wrote 1; the script sets it to 5 (gel band E) on exactly these 4 rows (2 files x 2 SILAC channels). No other cell changed (diff build vs final = 4 lines).
+
+## parse_sdrf validate-sdrf -s annotations/PXD038541.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata  (full ontology)
+(output truncated to the tail; the earlier lines are repeated OLS4 HTTP 500 retries on a PATO fallback search for 'type 1 diabetes mellitus', an OLS outage, not a validation finding; the term resolves as MONDO:0005147, see /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/ols_ids.txt)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=type+1+diabetes+mellitus&name=class&rows=10&start=80&ontology=pato&exact=off
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD038541.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD038541.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/pride.json --accession PXD038541
+PXD038541: every annotated value agrees with the deposit record.
+exit=0
+Note: PRIDE instruments lists LTQ Orbitrap (MS:1000449), the parent of the annotated LTQ Orbitrap XL (MS:1000556, paper + raw header); reconcile raised no finding.
+
+## parse_sdrf convert-openms -s annotations/PXD038541.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/convert)
+Conditions (3): dict_keys(['4 hour', '7.5 hour', '24 hour'])
+Files per condition: dict_values([200, 200, 224])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD038541.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check annotations/PXD038541.evidence.json
+PXD038541.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD038541.sdrf.tsv annotations/PXD038541.evidence.json
+Manifest covers every column with a value (24 column(s)).
+exit=0
