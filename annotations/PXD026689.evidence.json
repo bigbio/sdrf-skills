@@ -1,0 +1,346 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD026689.sdrf.tsv",
+ "dataset": "PXD026689",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD026689 via sdrf-pride-pmc get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/pride.json): title, sample_processing_protocol, data_processing_protocol, instruments, quantification_methods"
+  },
+  {
+   "id": "px",
+   "kind": "repository",
+   "location": "https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD026689&outputMode=XML (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/px.xml): dataset FTP location https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/09/PXD026689, 16 Associated raw file URIs, contacts at Bioprocessing Technology Institute A*STAR Singapore; no publication reference"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/09/PXD026689/ directory listing (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/ftplist.html; scope list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/files.json = 16 .raw, identical to the px.xml raw URIs, asserted in scripts/make_tables.py). The PRIDE v3 files API returned an HTML error page / timed out on every attempt during this run, so the FTP listing + ProteomeXchange XML replace it."
+  },
+  {
+   "id": "metadata",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/09/PXD026689/CTCL-SILAC_metadata.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/CTCL-SILAC_metadata.xlsx), sheet Metadata, 16 rows: columns Source, Organism, Cell Type, Assay Name, SILAC Heavy, SILAC Light, Biological Replicate, Fraction, Data file"
+  },
+  {
+   "id": "deps",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/09/PXD026689/Supplementary_Table_2__DEPs_.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/Supplementary_Table_2__DEPs_.xlsx), Proteome Discoverer export sheets \"Proteins ID@1%FDR, min 2 pep\", \"Quantifiable proteins\", \"DEPs\", \"Annex\" with Abundance Ratios (by Bio. Rep.) (Resistant, Biological replicate 1|2) / (Parental, Biological replicate 1|2)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 2 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/09/PXD026689/CTCL-PL-RH-1-SILAC-20180903.raw and CTCL-PH-RL-8-SILAC-20180905.raw, UTF-16-LE strings (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0337?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/cello_CVCL_0337.txt); Cellosaurus search q=HuT78VR returned no entry"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/ontologies/<ont>/terms?obo_id=... and /api/search (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/ols_log.txt, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/scripts/ols.py); every term used checked is_obsolete=False"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign rules batch3_rules.md"
+  },
+  {
+   "id": "epmc",
+   "kind": "publication",
+   "location": "Europe PMC REST searches (vorinostat resistant HuT78 SILAC; HuT78VR; PXD026689; title phrase) returned no article describing this deposit; PRIDE and PX list no publication. No paper text was available."
+  },
+  {
+   "id": "precedent",
+   "kind": "specification",
+   "location": "/home/user/bigbio/sdrf-skills/annotations/PXD022482.sdrf.tsv + PXD022482.review.md (drug-resistant derivative lines without Cellosaurus entries carry the parental accession, kept apart by characteristics[phenotype]; also PXD018305, PXD010683)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-32",
+   "value": "<line>_SILAC<mixture>_<channel>: HuT78_SILAC1_light, HuT78VR_SILAC1_heavy (rows 1-16), HuT78VR_SILAC2_light, HuT78_SILAC2_heavy (rows 17-32)",
+   "source_ids": [
+    "metadata",
+    "files",
+    "pride"
+   ],
+   "evidence": "Two SILAC mixtures (metadata \"Biological Replicate\" 1 = files CTCL-PL-RH-1..8, 2 = CTCL-PH-RL-1..8), each the 1:1 mix of one HuT78 and one HuT78VR labelled culture (\"each pair of forward and reverse SILAC experiments\", PRIDE). One source name per labelled culture; each denotes one physical sample."
+  },
+  {
+   "location": "comment[label] + characteristics[phenotype] + factor value[phenotype] rows 1-16 (mixture 1, CTCL-PL-RH-*)",
+   "value": "SILAC light = HuT78 (vorinostat sensitive); SILAC heavy = HuT78VR (vorinostat resistant)",
+   "source_ids": [
+    "metadata",
+    "files",
+    "deps",
+    "pride"
+   ],
+   "evidence": "metadata rows run_fraction_1_1..1_8: SILAC Heavy = HuT78VR, SILAC Light = HuT78, Biological Replicate 1, Data file CTCL-PL-RH-<band>. Independent: the file-name code PL-RH = Parental Light / Resistant Heavy. Data check: PD Resistant/Parental ratio, bio rep 1: CASP3 log2 -1.42, STAT3 -1.14 (abstract: \"downregulation of caspase 3 and phosphorylated forms of STAT3 in HuT78VR\"); same sign in bio rep 2 (-1.06, -0.94), whose orientation is reversed, so the per-mixture assignment is internally consistent."
+  },
+  {
+   "location": "comment[label] + characteristics[phenotype] + factor value[phenotype] rows 17-32 (mixture 2, CTCL-PH-RL-*)",
+   "value": "SILAC light = HuT78VR (vorinostat resistant); SILAC heavy = HuT78 (vorinostat sensitive)",
+   "source_ids": [
+    "metadata",
+    "files",
+    "deps"
+   ],
+   "evidence": "metadata rows run_fraction_2_1..2_8: SILAC Light = HuT78VR, SILAC Heavy = \"HuT78\" in row 2_1 and HuT79..HuT85 in rows 2_2..2_8 (spreadsheet autofill increments of HuT78; no such lines exist in the study), Biological Replicate 2, files CTCL-PH-RL-<band> = Parental Heavy / Resistant Light. Ratio consistency as in the mixture-1 claim."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-32",
+   "value": "1 for mixture 1 (rows 1-16), 2 for mixture 2 (rows 17-32), within each phenotype group",
+   "source_ids": [
+    "metadata",
+    "deps",
+    "pride"
+   ],
+   "evidence": "metadata \"Biological Replicate\" 1/2; PD export columns \"Resistant,Biological replicate 1|2\" and \"Parental,Biological replicate 1|2\". The two mixtures are forward and reverse labelling, so each phenotype group has two distinct cultures (one in light, one in heavy medium) numbered 1..2 without reuse (campaign rule 3)."
+  },
+  {
+   "location": "comment[fraction identifier] + assay name + comment[data file] rows 1-32",
+   "value": "8 SDS-PAGE bands per mixture, fraction = band number in file name CTCL-<orient>-<band>-SILAC-<date>.raw",
+   "source_ids": [
+    "pride",
+    "metadata",
+    "files"
+   ],
+   "evidence": "PRIDE: \"fractionated by SDS-PAGE ... A total of 8 consecutive bands were excised for in-gel trypsin digestion\"; metadata Fraction 1..8 per replicate. The metadata Data file names carry date 20180903 for PL-RH-5..8 and 20180831 for PH-RL-7..8, while the deposited files are dated 20180904 / 20180905; matched by the unique prefix CTCL-<orient>-<band>- (scripts/make_tables.py asserts exactly one deposited match each)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-32",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"fractionated by SDS-PAGE on a 10% Mini-PROTEAN TGX precast gel\". OLS PRIDE:0000568 label \"SDS PAGE\"."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-32",
+   "value": "1",
+   "source_ids": [
+    "files",
+    "metadata"
+   ],
+   "evidence": "Each band of each mixture was injected once (one raw file per band)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-32",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "metadata",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; metadata Organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606; OLS NCBITaxon:9606."
+  },
+  {
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-32",
+   "value": "HuT78 / CVCL_0337 / HuT 78 (HuT78VR rows carry the parental line)",
+   "source_ids": [
+    "metadata",
+    "pride",
+    "cellosaurus",
+    "ols",
+    "precedent"
+   ],
+   "evidence": "PRIDE: \"acquired resistance to vorinostat in a CTCL line HuT78 (HuT78VR)\"; metadata Source \"HuT 78 cell line (HuT78) & Vorinostat-resistant derivative (HuT78VR)\". Cellosaurus CVCL_0337 ID \"HuT 78\", synonyms include HuT78, DR EFO_0002209; OLS EFO:0002209 label \"HuT78\". Cellosaurus has no entry for HuT78VR; following reviewed precedent the derivative carries the parental accession and is distinguished by characteristics[phenotype]. Human-only name, no cross-species collision found in Cellosaurus synonyms."
+  },
+  {
+   "location": "characteristics[phenotype] rows 1-32",
+   "value": "vorinostat sensitive (HuT78) / vorinostat resistant (HuT78VR)",
+   "source_ids": [
+    "pride",
+    "metadata",
+    "deps",
+    "precedent"
+   ],
+   "evidence": "PRIDE: HuT78VR developed by \"acquired resistance to vorinostat\" from HuT78; PD export condition names \"Resistant\" / \"Parental\". \"vorinostat sensitive\" denotes the parental, pre-selection line (custom column, precedent PXD022482)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-32",
+   "value": "Sezary syndrome",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Cellosaurus CVCL_0337 DI NCIt C3366 Sezary syndrome; OLS MONDO:0017844 \"Sezary syndrome\" (not obsolete). PRIDE calls HuT78 a CTCL line; Sezary syndrome is a leukemic CTCL."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-32",
+   "value": "blood",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: \"Derived from site: In situ; Peripheral blood; UBERON=UBERON_0000178\"; OLS UBERON:0000178 \"blood\". (PRIDE organism_parts \"T cell\" is a cell type, encoded in characteristics[cell type].)"
+  },
+  {
+   "location": "characteristics[cell type] rows 1-32",
+   "value": "T cell",
+   "source_ids": [
+    "metadata",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "metadata Cell Type \"cutaneous T lymphocyte\" (OLS CL search \"cutaneous T cell\" returned no matching term, top hit CL:0002487 mechanoreceptor cell is unrelated); PRIDE organism part \"T cell\"; Cellosaurus cell type T cell; OLS CL:0000084 \"T cell\"."
+  },
+  {
+   "location": "characteristics[material type] rows 1-32",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "metadata"
+   ],
+   "evidence": "Cultured HuT78 / HuT78VR cells."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-32",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Caucasian\"; OLS HANCESTRO:0005 \"European ancestry\"."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] rows 1-32",
+   "value": "53Y / male / adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 53Y, SX Male (donor of the parental line); 53Y >= 20Y -> OLS EFO:0001272 \"adult\"."
+  },
+  {
+   "location": "characteristics[individual] rows 1-32",
+   "value": "HuT78_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Constructed identifier: all samples derive from the single HuT 78 donor (CVCL_0337); no donor ID is published."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-32",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: cells grown in \"SILAC Protein Quantitation Kit (LysC) RPMI 1640\"; OLS NCIT:C178973 \"Roswell Park Memorial Institute 1640 Medium\"."
+  },
+  {
+   "location": "comment[instrument] rows 1-32",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"Orbitrap Elite MS (Thermo Fisher Scientific)\" (instruments field \"LTQ Orbitrap Elite\"); raw headers \"Orbitrap Elite MS\", \"Creator: Orbitrap Elite\"; OLS MS:1001910 \"Orbitrap Elite\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-32",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE \"data-dependent and top 15 CID mode\"; raw header \"Scan Event 2 repeated for top 15 peaks\", \"Dep MS/MS Most intense ion\"; OLS PRIDE:0000627."
+  },
+  {
+   "location": "comment[dissociation method] + comment[collision energy] rows 1-32",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133 / 35 NCE",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE \"top 15 CID\"; raw headers \"Activation Type: CID\", \"Normalized Coll. Energy: 35.0\"; OLS MS:1000133."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-32",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "raw header scan event 2 \"ITMS + c norm Dep MS/MS\"; OLS MS:1000291 \"linear ion trap\". Consistent with the 0.6 Da fragment tolerance."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-32",
+   "value": "350m/z-1600m/z",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "PRIDE \"full MS scan from 350 to 1,600 m/z\"; raw header \"FTMS + p norm o(350.0-1600.0)\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-32",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "ols",
+    "templates"
+   ],
+   "evidence": "PRIDE: \"in-gel trypsin digestion\"; search \"full trypsin digest\", max 2 missed cleavages. The labelling kit is named \"SILAC Protein Quantitation Kit (LysC)\" (Lys-only label), but no Lys-C digestion is described, so only trypsin is encoded (campaign rule 2). OLS MS:1001251 \"Trypsin\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-32",
+   "value": "10 ppm / 0.6 Da",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE data processing protocol: \"Mass tolerance was set at 10 ppm for precursor mass and 0.6 Da for fragment ion mass\" (Proteome Discoverer 2.2, all 16 runs in one search CTCL-SILAC.msf)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-32",
+   "value": "Carbamidomethyl C Fixed (UNIMOD:4); Oxidation M Variable (UNIMOD:35); Acetyl Protein N-term Variable (UNIMOD:1); Label:13C(6) K Variable (UNIMOD:188)",
+   "source_ids": [
+    "pride",
+    "ols",
+    "templates"
+   ],
+   "evidence": "PRIDE: \"Carbamidomethyl (C) was set as static modification; SILAC 13C6 labeling (K), oxidation (M), and acetylation (protein N-terminus) were set as variable\"; heavy medium 13C6 L-lysine (+6.0201 Da = UNIMOD:188 Label:13C(6)). PRIDE modifications field lists 6x(13)C labeled residue. MT=Variable for the label per campaign rule 11. OLS-checked UNIMOD:4/35/1/188 labels."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] + technology type rows 1-32",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates from sdrf-tools contract; technology type filled by sdrf-tools build."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] + characteristics[passage number] + characteristics[sample storage temperature] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "pride",
+    "epmc"
+   ],
+   "evidence": "Not stated: in-gel digestion \"as described previously (Bi X et al., Appl. Microbiol. Biotechnol. 102, 4159-4170)\" without naming reagents; no study paper found."
+  }
+ ],
+ "limitations": [
+  "No publication: PRIDE and ProteomeXchange list none and Europe PMC searches found no article for this deposit. All sample metadata come from the PRIDE protocol text, the deposited CTCL-SILAC_metadata.xlsx, the deposited PD export and Cellosaurus.",
+  "CTCL-SILAC_metadata.xlsx has typos: SILAC Heavy for replicate-2 fractions 2..8 reads HuT79..HuT85 (spreadsheet autofill of HuT78), and data-file dates for PL-RH-5..8 (20180903) and PH-RL-7..8 (20180831) differ from the deposited names (20180904 / 20180905). Interpreted as HuT78 and matched by unique file prefix; the file-name codes PL-RH / PH-RL independently give the same channel map.",
+  "Channel-map data check is consistency only: the PD ratios were computed by the depositor with the same design, so they cannot independently prove orientation; they do show both mixtures giving the same Resistant/Parental direction for CASP3 and STAT3, matching the abstract.",
+  "HuT78VR has no Cellosaurus entry; HuT78VR rows carry the parental HuT 78 accession (CVCL_0337) and are distinguished by characteristics[phenotype]. Whether HuT78VR was kept in vorinostat during SILAC labelling is not stated, so no treatment column is asserted.",
+  "Labelling kit \"SILAC Protein Quantitation Kit (LysC)\" labels only lysine; digestion was trypsin (PRIDE), so arginine-terminated peptides carry no label. Encoded as stated.",
+  "The 7.2 GB CTCL-SILAC.msf was not downloaded; search parameters (tolerances, modifications) come from the PRIDE data processing protocol, not from sdrf-tools search-params.",
+  "PRIDE v3 files API was unreachable (HTML error page/timeouts) throughout; the file scope comes from the FTP directory listing and the ProteomeXchange XML (identical 16 raw files).",
+  "Biological replicate independence: the two mixtures are forward/reverse labelling and therefore necessarily separate cultures; separate harvest dates are not stated.",
+  "techsdrf not installed; raw-file verification limited to range-read headers of 2 of 16 files (one per mixture).",
+  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."
+ ]
+}

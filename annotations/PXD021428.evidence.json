@@ -1,0 +1,426 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD021428.sdrf.tsv",
+ "dataset": "PXD021428",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021428 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/pride.json): title, sampleProcessingProtocol, dataProcessingProtocol"
+  },
+  {
+   "id": "ftp",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/04/PXD021428/ directory listing (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/ftp_PXD021428.html): 378 RAW-category .zip files (each wraps one .raw of the same stem; e.g. 290515_..._tCWR_r01_f003b.zip central directory lists 290515_..._tCWR_r01_f003b.raw) + MaxQuanttxt.zip, mqpar.xml, experimentalDesignTemplate.txt, README.txt, RFiles.zip, FullSetOutputwithLFQ_Perseus_v1.5.5.3.sps. PRIDE v3 files API timed out repeatedly; README.txt (PRIDE submission file list) confirms 378 RAW entries"
+  },
+  {
+   "id": "files",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/files.json written by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/scripts/make_tables.py from mqpar.xml + ftp listing (378 .raw names, all matching the 378 deposited zips)"
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/04/PXD021428/mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/dl/mqpar.xml): MaxQuant 1.5.2.8, 378 raw paths with experiment/fraction, multiplicity 2, labelMods [\"\", \"Arg10;Lys8\"], Trypsin/P, fixed Carbamidomethyl (C), variable Acetyl (Protein N-term) + Oxidation (M), firstSearchTol 20 / mainSearchTol 4.5 ppm, ITMS MS/MS tol 0.5 Da, fasta HUMAN_iso + MOUSE_20062016"
+  },
+  {
+   "id": "mq_txt",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/04/PXD021428/MaxQuanttxt.zip members \"MaxQuant txt/summary.txt\", \"parameters.txt\", \"proteinGroups.txt\" (zip central directory read by HTTP range; members inflated individually; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/mq/)"
+  },
+  {
+   "id": "edt",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/04/PXD021428/experimentalDesignTemplate.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/dl/experimentalDesignTemplate.txt)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/orientation.txt from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/scripts/orient.py on proteinGroups.txt (mouse-only vs human-only protein-group intensities per channel; SLFN5/AR/KLK3/TMPRSS2 log2 L/H)"
+  },
+  {
+   "id": "preprint",
+   "kind": "publication",
+   "location": "Martinez RS et al. Schlafen family member 5 (SLFN5) regulates LAT1-mediated mTOR activation in castration-resistant prostate cancer. Research Square preprint doi:10.21203/rs.3.rs-67753/v1 (Europe PMC PPR212586), PDF https://www.researchsquare.com/article/rs-67753/v1.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/dl/rs.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/dl/rs.txt). Same Results/Methods as published Cancer Res 2021;81(13):3664-3678 doi:10.1158/0008-5472.CAN-20-3694 (PMID 33985973; publisher PDF 403, not bypassed)"
+  },
+  {
+   "id": "iscience",
+   "kind": "publication",
+   "location": "Salji MJ et al. iScience 2022;25(4):104056, doi:10.1016/j.isci.2022.104056, PMID 35345457, PMC8957019 (https://pmc-oa-opendata.s3.amazonaws.com/PMC8957019.1/PMC8957019.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/dl/isci.txt); the PRIDE-linked reference; Data availability cites PXD021428"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/{CVCL_1045,CVCL_1379,CVCL_4791,CVCL_2235,CVCL_3967,CVCL_LI38,CVCL_4783}?format=txt and search q=CWR22* (queried 2026-11-09)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 3 MB of the .raw inside https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/04/PXD021428/290515_SEL_OT_MAS_R08_220515_tCWR_r01_f010.zip and 230216_SEL_OT_MAS_R08_010216_VCAP_r03_blue_f010.zip (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/rawhdr/)"
+  },
+  {
+   "id": "ols",
+   "kind": "database",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4 (MONDO:0005159, MONDO:0850353, NCIT:C15288, HANCESTRO:0005, NCIT:C178973, EFO:0005726 checked is_obsolete=false)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0). The spec submodule nested templates copy is older."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name all rows",
+   "value": "<MaxQuant experiment> orthograft tumour (light); super-SILAC standard aliquot spiked into <experiment> (heavy)",
+   "source_ids": [
+    "mqpar",
+    "mq_txt",
+    "preprint",
+    "iscience"
+   ],
+   "evidence": "18 tumours = MaxQuant experiments CWR_1-3, 22RV1_1-3, LNCAP_1-3, LNCAPAI_1-3, VCAP_1-3, VCAPCR_1-3 (21 fractions each; mqpar and summary.txt agree, every raw stem maps to one experiment). iScience: \"Triplicates were used for each HN and CR model resulting in 18 tumours\". Each tumour lysate \"mixed at 1:1 ratio with the super-SILAC standard prior to FASP\". The heavy source names are 18 aliquots of ONE physical super-SILAC standard pool (one name per tumour mixture, as required for a shared reference)."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "SILAC light = tumour lysate; SILAC heavy = super-SILAC standard",
+   "source_ids": [
+    "preprint",
+    "iscience",
+    "mqpar",
+    "mq_txt",
+    "orientation"
+   ],
+   "evidence": "iScience SILAC standard development: standard cell lines grown in RPMI with \"heavy labelled SILAC amino acid ... Arginine (Arg10) ... Lysine (Lys8)\"; \"Column means of normalised Light / Heavy SILAC ratio were generated as a measure of the increase in abundance of protein in the CRPC model\". mqpar labelMods = [\"\" (light), \"Arg10;Lys8\" (heavy)]; summary.txt Multiplicity 2, Labels1 Arg10;Lys8 on all 378 runs. Data check: mouse-only protein groups (host stroma; the standard is pure human cell culture) carry 87.5-95.0% of their intensity in L in every one of the 18 experiments, human-only groups are split L/H; SLFN5 log2 L/H CRPC minus HN = +1.4 (22RV1 vs CWR), +1.6 (LNCAPAI vs LNCAP; iScience reports 1.58), +1.15 (VCAPCR vs VCAP; iScience 1.05); AR strongly up in VCAPCR (+3.2 vs -0.2), as the preprint states (Fig 1d). Light = tumour confirmed."
+  },
+  {
+   "location": "characteristics[sample type] all rows",
+   "value": "study sample (light) / reference (heavy)",
+   "source_ids": [
+    "preprint",
+    "iscience"
+   ],
+   "evidence": "Tumour lysates are the study samples; the super-SILAC standard is the spiked-in reference (PRIDE:0001013 / PRIDE:0000899 under PRIDE:0000895)."
+  },
+  {
+   "location": "characteristics[organism] all rows",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "preprint",
+    "iscience",
+    "cellosaurus",
+    "mqpar"
+   ],
+   "evidence": "Tumours are orthografts of human PCa cell lines (preprint/iScience); standard is human cell lines; all lines NCBI_TaxID=9606 in Cellosaurus. Host is mouse (CD-1 nude); the search included the mouse proteome to split host stroma (mqpar fasta HUMAN + MOUSE, \"Split protein groups by taxonomy ID\"). Host recorded in characteristics[xenograft]."
+  },
+  {
+   "location": "characteristics[xenograft] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "free text: <cell line> cells orthotopically injected into anterior prostate of uncastrated / surgically castrated 10-week-old male CD-1 nude mice; harvested after 9 weeks",
+   "source_ids": [
+    "preprint",
+    "iscience"
+   ],
+   "evidence": "Preprint Methods: \"14x10^6 cells (in 50 ul) were injected into the anterior prostate of CD1-nude mice ... For CRPC conditions, orchidectomy was performed at the time of injection ... allowed to grow for 9 weeks\". iScience: \"10 week old male CD-1 Nude mice (Charles River Labs)\", strain Crl:CD1-Foxn1nu. TERMS.tsv term xenograft (EFO:0003942, free text)."
+  },
+  {
+   "location": "characteristics[organism part] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "prostate",
+   "source_ids": [
+    "preprint",
+    "iscience"
+   ],
+   "evidence": "Orthotopic tumours grown in the (anterior) prostate; all three model pairs are prostate carcinoma (organ of disease). Cell-line origin sites differ (LNCaP: lymph node; VCaP: vertebra; CWR22: prostate, Cellosaurus) - noted in limitations."
+  },
+  {
+   "location": "characteristics[organism part] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
+   "value": "not applicable",
+   "source_ids": [
+    "preprint"
+   ],
+   "evidence": "Mixed lysate of four cell lines with different origin sites."
+  },
+  {
+   "location": "characteristics[biological replicate] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "1-3 within each factor group (= MaxQuant experiment suffix _1/_2/_3, raw r01/r02/r03)",
+   "source_ids": [
+    "mqpar",
+    "iscience"
+   ],
+   "evidence": "Each tumour is an independent mouse orthograft (\"The first 3 tumours from each model was used\", iScience). Numbers restart per (cell line, treatment) group. Heavy rows: pooled."
+  },
+  {
+   "location": "characteristics[pooled sample] all rows",
+   "value": "not pooled (light); SN=CWR22Res;SN=LNCaP;SN=LNCaP-AI;SN=VCaP (heavy)",
+   "source_ids": [
+    "preprint",
+    "pride"
+   ],
+   "evidence": "PRIDE/preprint: \"equal amounts of SILAC-labelled cell lysates from CWR22res, LNCAP, LNCAPAI, and VCAP cell lines were mixed together\"."
+  },
+  {
+   "location": "characteristics[biological replicate] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
+   "value": "pooled",
+   "source_ids": [
+    "preprint"
+   ],
+   "evidence": "Reference pool of four cell-line lysates."
+  },
+  {
+   "location": "characteristics[disease] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "prostate carcinoma (CWR, LNCAP, VCAP: hormone naive) / castration-resistant prostate carcinoma (22RV1, LNCAPAI, VCAPCR)",
+   "source_ids": [
+    "preprint",
+    "iscience",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Preprint: HN cells injected into uncastrated mice; CRPC lines 22rv1, LNCaP AI injected into castrated mice; VCaP into both, castrated = VCaP-CR; \"All models develop CRPC tumours in vivo\". iScience: 9 HN tumours (CWR, LNCAP, VCAP) and 9 CR tumours (22RV1, LNCAPAI, VCAPCR). MONDO:0005159 / MONDO:0850353, both not obsolete."
+  },
+  {
+   "location": "characteristics[disease] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
+   "value": "prostate carcinoma",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All four standard lines are prostate carcinoma lines (Cellosaurus DI NCIt C4863; CWR22Res via parent CWR22 CVCL_3967)."
+  },
+  {
+   "location": "characteristics[material type] all rows",
+   "value": "tissue (light) / cell line (heavy)",
+   "source_ids": [
+    "preprint"
+   ],
+   "evidence": "Light = cryo-ground tumour tissue; heavy = cultured cell-line lysates."
+  },
+  {
+   "location": "characteristics[treatment] + factor value[treatment] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "orchiectomy (22RV1, LNCAPAI, VCAPCR hosts) / untreated (CWR, LNCAP, VCAP hosts)",
+   "source_ids": [
+    "preprint",
+    "ols"
+   ],
+   "evidence": "Preprint: \"In CRPC conditions, orthotopic injection was directly followed by orchidectomy to achieve ADT\"; HN cells \"injected orthotopically into the prostate of uncastrated mice\". The treatment is of the host mouse (androgen deprivation). NCIT:C15288 Orchiectomy; untreated per campaign rule 4. Heavy rows: not applicable (reference)."
+  },
+  {
+   "location": "factor value[cell line] all rows",
+   "value": "same as characteristics[cell line]",
+   "source_ids": [
+    "preprint",
+    "iscience"
+   ],
+   "evidence": "The study compares each CRPC model with its matched HN model; cell line + host treatment together define the 6 groups (VCaP appears with both treatments)."
+  },
+  {
+   "location": "characteristics[cell line] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "CWR22Res / 22Rv1 / LNCaP clone FGC / LNCaP-AI / VCaP",
+   "source_ids": [
+    "preprint",
+    "iscience",
+    "cellosaurus",
+    "mqpar"
+   ],
+   "evidence": "Raw names tCWR/22RV1/LNCAP/LNCAPAI/VCAP/VCAP-CR. Preprint: \"LNCaP (ATCC CRL-1740), 22Rv1 (ATCC CRL-2505), and VCAP (ATCC CRL-2876) were obtained from ATCC. CWR22Res cells (hormone-responsive variant of CWR22 cells) ... Case Western Reserve University ... LNCaP AI cells were obtained from Newcastle University\". ATCC CRL-1740 = Cellosaurus LNCaP clone FGC (CVCL_1379). VCAPCR tumours = VCaP cells grown in castrated mice (\"VCaP cells ... were injected into both uncastrated and castrated mice\"); no separate VCaP-CR cell line exists in the key resources table."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] + characteristics[cellosaurus name] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "CVCL_1045 22Rv1; CVCL_1379 LNCaP clone FGC; CVCL_4791 LNCaP-AI; CVCL_2235 VCaP; CWR22Res: not available",
+   "source_ids": [
+    "cellosaurus",
+    "preprint",
+    "iscience"
+   ],
+   "evidence": "Cellosaurus DR ATCC: CVCL_1379 CRL-1740, CVCL_1045 CRL-2505, CVCL_2235 CRL-2876. LNCaP-AI CVCL_4791 (iScience RRID). CWR22Res has no Cellosaurus entry (search CWR22*: CWR22, CWR22Pc, 22Rv1, CWR22Rv1-AR-EK). iScience gives RRID CVCL_LI38 (= CWR22Pc) for \"CWR\" and CVCL_4783 (= LNCaP C4) for LNCAP; both conflict with the line names/ATCC number in the preprint, so they were not used (limitations)."
+  },
+  {
+   "location": "characteristics[sex] all rows",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male for CWR22 (parent of CWR22Res and 22Rv1), 22Rv1, LNCaP clone FGC, LNCaP-AI, VCaP."
+  },
+  {
+   "location": "characteristics[age] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "50Y (LNCaP clone FGC, LNCaP-AI), 59Y (VCaP), not available (CWR22Res, 22Rv1: Cellosaurus AG \"Adult\" only)",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG lines. Heavy rows: pooled."
+  },
+  {
+   "location": "characteristics[developmental stage] all rows",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor ages 50Y / 59Y; CWR22 and 22Rv1 Cellosaurus AG \"Adult\"; all four standard lines from adult donors. EFO:0001272."
+  },
+  {
+   "location": "characteristics[ancestry category] all rows",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Caucasian\" for CWR22 (CVCL_3967), 22Rv1, LNCaP clone FGC, LNCaP-AI, VCaP -> HANCESTRO:0005 (campaign convention)."
+  },
+  {
+   "location": "characteristics[individual] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
+   "value": "CWR22_donor (CWR22Res, 22Rv1) / LNCaP_donor (LNCaP clone FGC, LNCaP-AI) / VCaP_donor",
+   "source_ids": [
+    "cellosaurus",
+    "preprint"
+   ],
+   "evidence": "Cellosaurus HI: 22Rv1 from CWR22 (CVCL_3967), CWR22Res described as variant of CWR22 (preprint); LNCaP-AI HI LNCaP clone FGC. Matched isogenic pairs share a donor. Heavy rows: pooled."
+  },
+  {
+   "location": "characteristics[culture medium] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "iscience",
+    "ols"
+   ],
+   "evidence": "iScience: \"RPMI SILAC media minus Arginine and Lysine ... replacing Arginine and Lysine with their heavy labelled SILAC amino acid\". NCIT:C178973. Light rows not applicable (in vivo tumour tissue)."
+  },
+  {
+   "location": "characteristics[cell line] + factor value[cell line] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
+   "value": "super-SILAC standard: equal-protein mix of Arg10/Lys8-labelled CWR22Res, LNCaP, LNCaP-AI and VCaP cell lysates",
+   "source_ids": [
+    "preprint",
+    "iscience"
+   ],
+   "evidence": "As pooled sample claim; precedent PXD017530 (descriptive cell line value for a super-SILAC reference)."
+  },
+  {
+   "location": "comment[data file] + assay name all rows",
+   "value": "<stem>.raw (deposited as <stem>.zip)",
+   "source_ids": [
+    "ftp",
+    "mqpar",
+    "files",
+    "mq_txt"
+   ],
+   "evidence": "Each deposited RAW-category zip wraps the .raw of the same stem; mqpar.xml and summary.txt use the .raw names. Two fraction files carry a \"b\" suffix (VCAP-CR_r01_black_f002b, tCWR_r01_f003b) and are fractions 2 and 3 in mqpar/summary (no f002/f003 file exists for those samples)."
+  },
+  {
+   "location": "comment[fraction identifier] all rows",
+   "value": "1-21",
+   "source_ids": [
+    "mqpar",
+    "mq_txt",
+    "pride"
+   ],
+   "evidence": "mqpar/summary Fraction 1-21 equals the _fNNN suffix of every file; PRIDE: \"30 fractions ... first 4 and the last 5 fractions were pooled resulting in 21 fractions\"."
+  },
+  {
+   "location": "comment[fractionation method] all rows",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE: \"fractionated using high pH reverse phase chromatography\" (C18, pH 10)."
+  },
+  {
+   "location": "comment[instrument] all rows",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "PRIDE instrument + protocol; both raw headers sampled read \"LTQ Orbitrap Velos MS\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE: \"used in data-dependent acquisition mode (DDA)\", top 10."
+  },
+  {
+   "location": "comment[dissociation method] + comment[ms2 mass analyzer] all rows",
+   "value": "CID (MS:1000133); linear ion trap (MS:1000291)",
+   "source_ids": [
+    "pride",
+    "iscience"
+   ],
+   "evidence": "PRIDE: \"selected for fragmentation in the linear ion trap using Collision Induced Dissociation (CID)\"."
+  },
+  {
+   "location": "comment[collision energy] all rows",
+   "value": "36 NCE",
+   "source_ids": [
+    "iscience"
+   ],
+   "evidence": "iScience Proteomics data acquisition: \"fragmented using normalized collision energy of 36 for 10 ms\"."
+  },
+  {
+   "location": "comment[cleavage agent details] (two columns) all rows",
+   "value": "NT=Trypsin;AC=MS:1001251 and NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "pride",
+    "preprint",
+    "mqpar"
+   ],
+   "evidence": "PRIDE/preprint: \"FASP digestion with Endoproteinase Lys-C (Alpha Laboratories, UK) and trypsin (Promega)\". MaxQuant search rule Trypsin/P (mqpar) - search rule, not the digestion enzyme (batch rule 2). Second column inserted by deterministic post-build script (build emits one cleavage column)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] all rows",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mqpar",
+    "pride"
+   ],
+   "evidence": "mqpar mainSearchTol 4.5 (ppm; first search 20 ppm); PRIDE: \"First and main searches ... 20 and 4.5 ppm\"."
+  },
+  {
+   "location": "comment[fragment mass tolerance] all rows",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mqpar",
+    "mq_txt",
+    "pride"
+   ],
+   "evidence": "mqpar ITMS MatchTolerance 0.5 Da; parameters.txt \"MS/MS tol. (ITMS) 0.5 Da\"; PRIDE \"MS/MS tolerance was set to 0.5 Da for the CID data\"."
+  },
+  {
+   "location": "comment[modification parameters] (5 columns) all rows",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) variable",
+   "source_ids": [
+    "mqpar",
+    "mq_txt"
+   ],
+   "evidence": "mqpar fixedModifications Carbamidomethyl (C); variableModifications Acetyl (Protein N-term), Oxidation (M); labelMods Arg10;Lys8 (Lys8 = +8.014 Da = UNIMOD:259; Arg10 = +10.008 Da = UNIMOD:267); MT=Variable per batch rule 11. summary.txt identical on all 378 runs."
+  },
+  {
+   "location": "comment[technical replicate] all rows",
+   "value": "1",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "One injection series per tumour mixture."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] all rows",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10."
+  }
+ ],
+ "limitations": [
+  "Scope: PART 1 (PXD021428) only. PART 2 = PXD021405 (published 2022-10-14, linked to Cancer Res 2021), a separate label-free experiment (SLFN5 KO vs SCR orthografts, run names 20190308_SEL_LU_SA_RAM_..._KO1/KO11/SCR_...) - not annotated here, not the same experiment split across deposits.",
+  "Published Cancer Res article (doi:10.1158/0008-5472.CAN-20-3694, no PMC) was not retrievable (publisher 403; bioRxiv JATS returned Cloudflare error 1015; not bypassed). The Research Square preprint (same title/authors) and the open iScience paper (PRIDE reference, same 18 tumours) were used.",
+  "CWR22Res has no Cellosaurus entry: cellosaurus accession/name = not available. iScience lists RRID CVCL_LI38 (CWR22Pc) for \"CWR\" - not used because CWR22Pc is a different named derivative and the same RRID list gives CVCL_4783 (LNCaP C4) for LNCaP, contradicting ATCC CRL-1740 (= LNCaP clone FGC, CVCL_1379) stated in the preprint.",
+  "VCAPCR tumours are annotated as cell line VCaP grown in castrated hosts (preprint: VCaP injected into both uncastrated and castrated mice); no in-vitro VCaP-CR line is described.",
+  "characteristics[organism part] = prostate (orthotopic tumour site). Cell-line origin sites differ (LNCaP: left supraclavicular lymph node; VCaP: vertebral bone metastasis; CWR22: primary prostate).",
+  "Tumour tissue contains mouse host stroma (organism annotated Homo sapiens; host in characteristics[xenograft]; search included mouse proteome).",
+  "experimentalDesignTemplate.txt is internally inconsistent: for each of the 18 samples the f021 file is assigned to a different experiment (cyclic off-by-one). mqpar.xml and summary.txt (the search actually run) assign all 21 fractions of each raw stem to one experiment; the SDRF follows mqpar/summary and raw names.",
+  "Runs deposited as .zip archives each wrapping one .raw; comment[data file] uses the .raw name (as searched).",
+  "Age not available for CWR22Res/22Rv1 (Cellosaurus \"Adult\" only). Passage number, cell type, storage temperature not reported.",
+  "parse_sdrf convert-openms reads only the first cleavage agent column.",
+  "Review: REVIEW_PENDING_EXTERNAL (no self-approval; no review-gate approve run)."
+ ]
+}

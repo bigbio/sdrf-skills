@@ -1,0 +1,352 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv",
+ "dataset": "PXD013461",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD013461 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/pride.json): sampleProcessingProtocol, dataProcessingProtocol, instruments, quantificationMethods SILAC, organismParts, diseases"
+  },
+  {
+   "id": "px",
+   "kind": "repository",
+   "location": "https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD013461&outputMode=json (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/px.json): 43 dataset files = 42 .raw + 1 MaxQuant zip; PRIDE v3 files endpoint timed out, file list cross-checked against the FTP directory listing https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD013461/ (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/ftp_names.txt; extra README.txt only) and README.txt (zip TYPE=SEARCH mapped to all 42 raws)"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD013461/20181213_F1_RM_CHS_0200_TIO2_RVhPH.zip members combined/txt/summary.txt, parameters.txt, mqpar.xml, proteinGroups.txt, Phospho (STY)Sites.txt, modificationSpecificPeptides.txt (HTTP range reads of the zip central directory + individual deflate members; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/mq/)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Stangl C, Post JB, et al. Diverse BRAF Gene Fusions Confer Resistance to EGFR-Targeted Therapy via Differential Modulation of BRAF Activity. Mol Cancer Res 2020;18(4):537-548, doi:10.1158/1541-7786.MCR-19-0529, PMID 31911540 (not open access; main text not retrieved, abstract from Europe PMC, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/epmc.json)"
+  },
+  {
+   "id": "supp_methods",
+   "kind": "supplementary",
+   "location": "AACR figshare 22516899 Supplementary Materials and Methods, https://ndownloader.figshare.com/files/39979491 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/supp/methods.docx, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/supp/methods.txt)"
+  },
+  {
+   "id": "supp_figs",
+   "kind": "supplementary",
+   "location": "AACR figshare 22516902 Supplementary Figures 1-11 https://ndownloader.figshare.com/files/39979494 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/supp/figs.pdf; Fig S3 page /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/supp/p-04.png, Fig S6 page /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/supp/p-07.png) and 22516905 Supplementary Figure Legends https://ndownloader.figshare.com/files/39979497 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/supp/legends.txt)"
+  },
+  {
+   "id": "supp_tableS4",
+   "kind": "supplementary",
+   "location": "AACR figshare 22516896 file https://ndownloader.figshare.com/files/39979488 (deposited under the title \"Supplementary Table 1\" but its content is the construct/primer table described as Table S4: per-construct attR1 cloning primers; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/supp/tableS1.xlsx)"
+  },
+  {
+   "id": "identity",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/identity.tsv (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/scripts/identity.py over mq/modificationSpecificPeptides.txt and mq/PhosphoSites.txt with UniProt canonical sequences P15056, O15164, Q96P47, Q12959 from rest.uniprot.org, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/*.fasta) and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/peppos.txt (scripts/peppos.py)"
+  },
+  {
+   "id": "sitecounts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/sitecounts.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/scripts/sitecounts.py over mq/PhosphoSites.txt): phosphosites up >1.5 log2 on dox in both experiments of each label-swap pair"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range reads of the first 3 MB / 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD013461/20181213_F1_RM_CHS_0200_TIO2_RVhPH_S1_F1.raw and ..._RVhpH_S14_F3.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/raw/*.head): instrument method summary"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0045?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/cello_CVCL_0045.txt); sdrf-tools cellline lookup HEK293"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/ols_ids.txt, responses /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/ols/): all used terms non-obsolete in their home ontology"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "campaign",
+   "kind": "specification",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (SILAC campaign rules) and batch9_prompt.md"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-72",
+   "value": "HEK293_<construct>_<dox|untreated>_S<experiment> (24 sources)",
+   "source_ids": [
+    "mq",
+    "px",
+    "pride",
+    "identity"
+   ],
+   "evidence": "MaxQuant summary.txt/mqpar.xml assign the 42 raws to experiments 1-14 (file tag _S<n>_F1..F3 = experiment n, fractions 1-3). Each experiment is one 1:1 SILAC mix of a light and a heavy HEK293 culture of the same transduced line, one given doxycycline and one ddH2O for 4 h (PRIDE sample protocol; Supp Fig S3A, S6D). Each source = one SILAC-labelled culture in one experiment, so no name denotes two physical samples. Experiments 13-14 are not annotated (see limitations)."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] rows 1-72",
+   "value": "dox channel = SILAC heavy in S1, S3, S5, S8, S9, S11; SILAC light in S2, S4, S6, S7, S10, S12; the other channel untreated",
+   "source_ids": [
+    "pride",
+    "supp_figs",
+    "supp_methods",
+    "mq",
+    "identity"
+   ],
+   "evidence": "Explicit design: light = Arg-0/Lys-0, heavy = Arg-10/Lys-8 (PRIDE protocol; summary.txt Labels1 Arg10;Lys8, Multiplicity 2); Supp Fig S3A forward scheme light -dox / heavy +dox (4 h); Supp Methods: phosphosites \"present in both forward and reverse (label-swap) experiments\"; Supp Fig S6D: both light and heavy lysates contain -dox and +dox samples of every construct. Which experiment is forward or reverse is not stated anywhere, so the orientation is read from the induced transgene itself: median log2 normalized H/L of BRAF peptides aa 380-766 (present in every BRAF construct) S1..S12 = +2.35, -2.67, +1.87, -1.80, +1.15, -1.44, -2.26, +2.32, +2.77, -2.36, +1.56, -1.89 (n = 6-15 peptides each; identity.tsv). Positive = heavy is the induced (+dox) culture. Every construct pair has one forward and one reverse experiment, as the label-swap design requires."
+  },
+  {
+   "location": "characteristics[genetic modification] + factor value[genetic modification] rows 1-72",
+   "value": "S1-S2 AGAP3-BRAF; S3-S4 DLG1-BRAF; S5-S6 TRIM24-BRAF; S7-S8 BRAF wild type; S9-S10 BRAF kinase domain (aa 381-766); S11-S12 BRAF V600E",
+   "source_ids": [
+    "supp_methods",
+    "supp_figs",
+    "supp_tableS4",
+    "identity",
+    "sitecounts",
+    "mq"
+   ],
+   "evidence": "Constructs: HEK293 lines transduced with pInducer20 (dox-inducible) GFP, BRAF-WT, BRAF-Kinase, BRAF-V600E, AGAP3-BRAF, DLG1-BRAF, TRIM24-BRAF (Supp Methods; Supp Fig S5/S6 legends) = 7 lines x forward/reverse = 14 experiments. The construct table (figshare 39979488) gives each construct's 5' cloning primer: AGAP3-BRAF, DLG1-BRAF (ATGCCGGTCCGGAAG = DLG1 MPVRK...), TRIM24-BRAF (ATGGAGGTGGCGGTGGAG = TRIM24 MEVAVE...), BRAF-WT and BRAF-V600E (ATGGCGGCGCTGAGC = BRAF MAALS..., full length), BRAF-kinase (ATGGACTTGATTAGAGACC = M + BRAF DLIRD at residue 381). No source states which experiment number holds which construct; the assignment is derived from the transgene products in the deposited MaxQuant tables (identity.tsv, peppos.txt), each pair matched one-to-one: (i) AGAP3 peptides (aa 217-316) change only in S1/S2 (+3.13/-3.63); (ii) DLG1 N-terminal peptides (aa 70-141) only in S3/S4 (+1.69/-1.38); (iii) TRIM24 N-terminal peptides (aa 8-88) only in S5/S6 (+1.81/-2.11); (iv) BRAF N-terminal peptides (aa 147-363, absent from the kinase and fusion constructs) only in S7/S8 (-2.10/+2.22) and S11/S12 (+1.43/-3.07) -> full-length BRAF-WT / BRAF-V600E; (v) S9/S10 carry BRAF aa 380-766 peptides (+2.77/-2.36) but no N-terminal BRAF and no partner peptides -> BRAF-kinase (aa 381-766); (vi) WT vs V600E: Supp Fig S3D gives BRAFV600E the largest set of up-regulated phosphosites (202, vs TRIM24 150, AGAP3 100, DLG1 65, Kinase 8); counts of sites >1.5 log2 up on dox in both experiments of a pair (sitecounts.txt) are S11/S12 149, S5/S6 99, S1/S2 84, S3/S4 51, S9/S10 14, S7/S8 7, i.e. the same rank order with S11/S12 = V600E, and S7/S8 shows almost no ERK activation (MAPK1 Y175 -0.57/+0.69 in dox orientation) as expected for BRAF-WT (Supp Fig S3C: no MAPK kinases among BRAF-WT KSEA hits). The resulting order AGAP3, DLG1, TRIM24, WT, kinase, V600E, (GFP) is also the row order of the construct table. Value strings name the pInducer20 vector (Supp Methods)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-72",
+   "value": "1 (forward/first experiment of a construct), 2 (label-swap/second experiment), per (construct, treatment) group",
+   "source_ids": [
+    "mq",
+    "pride",
+    "supp_methods",
+    "campaign"
+   ],
+   "evidence": "Each experiment is a separate SILAC labelling/mixing of independently cultured light and heavy cells (two experiments per construct, one per label orientation; Supp Methods label-swap). Numbered 1..2 within each factor-value group (campaign rule 3, spec README.adoc:330)."
+  },
+  {
+   "location": "characteristics[treatment] + characteristics[sampling time] rows 1-72",
+   "value": "Doxycycline / untreated; 4 hour",
+   "source_ids": [
+    "pride",
+    "supp_figs",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"After 4 hours of doxycycline or ddH2O administration, cells were lysed\"; Supp Fig S3A \"+ dox (4hrs)\"; Supp Fig S6D \"1 µg/ml ... for 4 hours\". ddH2O vehicle encoded as untreated (campaign rule 4). Doxycycline = NCIT:C457. Sampling time = time from dox/vehicle addition to lysis, both channels."
+  },
+  {
+   "location": "characteristics[organism] rows 1-72",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus CVCL_0045 OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-72",
+   "value": "HEK293 / CVCL_0045 / HEK293",
+   "source_ids": [
+    "pride",
+    "supp_methods",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE protocol and Supp Methods: \"HEK293 cells\" (not HEK293T, which is used only for virus production). Cellosaurus ID HEK293, AC CVCL_0045; EFO_0001182 HEK293 non-obsolete in OLS."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-72",
+   "value": "kidney",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0045: \"Derived from site: In situ; Fetal kidney; UBERON=UBERON_0002113\". UBERON:0002113 kidney."
+  },
+  {
+   "location": "characteristics[sex] rows 1-72",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0045 SX Female."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-72",
+   "value": "fetal stage",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG Fetus; HsapDv:0000037 fetal stage (non-obsolete). characteristics[age] = not available because Cellosaurus gives no gestational age."
+  },
+  {
+   "location": "characteristics[disease] rows 1-72",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols",
+    "campaign"
+   ],
+   "evidence": "Cellosaurus CVCL_0045 has no DI (disease) line; HEK293 is an Ad5-transformed embryonic kidney line, not a tumour. The PRIDE disease \"Colorectal cancer\" refers to the patient-derived organoids of the study, which are not in this deposit. PATO:0000461 normal (batch lesson: models without disease = normal)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-72",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "supp_methods"
+   ],
+   "evidence": "HEK293 cultured cell line (PRIDE organismParts CL:0000002 \"Permanent cell line cell\")."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-72",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: TiO2 phosphopeptide enrichment of every mix; summary/mqpar Phospho (STY) variable. EFO:0010806."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-72",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "pride",
+    "supp_methods",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"high-glucose (10% dialyzed FBS (BioWest)) DMEM (Thermo) lacking lysine and arginine supplemented with Lys-0/Arg-0 or Lys-8/Arg-10 (Silantes)\". NCIT:C185409."
+  },
+  {
+   "location": "assay name + comment[data file] + comment[fraction identifier] rows 1-72",
+   "value": "36 raws of experiments S1-S12, fractions 1-3",
+   "source_ids": [
+    "mq",
+    "px",
+    "pride"
+   ],
+   "evidence": "summary.txt: Experiment n, Fraction 1/2/3 for each raw _S<n>_F1/_F2/_F3; PRIDE protocol: high-pH stage-tip elution into three fractions (5%, 10%, 50% ACN). File names match summary.txt Raw file exactly (42/42)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-72",
+   "value": "1",
+   "source_ids": [
+    "mq",
+    "pride"
+   ],
+   "evidence": "Each fraction of each SILAC mix was injected once: summary.txt lists exactly one raw per (experiment, fraction), 42 raws = 14 experiments x 3 fractions."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-72",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"divided with high PH elution into three fractions (100 mM NH3/FA PH=10 in 5%, 10% or 50% ACN)\" on C18 stage-tips."
+  },
+  {
+   "location": "comment[instrument] rows 1-72",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "pride",
+    "px",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE instruments MS:1002416; raw header instrument name \"Orbitrap Fusion\" (S1_F1 and S14_F3)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-72",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "PRIDE: \"data dependent Top speed mode with a cycle time of 1 second\"; method ddMSnScan in raw header."
+  },
+  {
+   "location": "comment[dissociation method] + comment[collision energy] rows 1-72",
+   "value": "HCD (beam-type CID, MS:1000422); 30 NCE",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw method: ActivationType = HCD, Collision Energy (%) = 30; PRIDE \"HCD collision energy of 30%\"."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] + comment[fragment mass tolerance] rows 1-72",
+   "value": "NT=linear ion trap;AC=MS:1000291; 0.5 Da",
+   "source_ids": [
+    "raw",
+    "mq",
+    "pride"
+   ],
+   "evidence": "Raw method ddMSnScan Detector Type = IonTrap (Rapid); MaxQuant parameters.txt MS/MS tol. (ITMS) 0.5 Da applies to ion-trap MS2."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-72",
+   "value": "400m/z-1500m/z",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw method MasterScan Scan Range (m/z) = 400-1500, Orbitrap 240K; PRIDE \"400-1500 mass range\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-72",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "mqpar.xml mainSearchTol 4.5, searchTolInPpm true (firstSearchTol 20 ppm)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-72",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq",
+    "campaign"
+   ],
+   "evidence": "PRIDE: digested with trypsin (1:50, Worthington). MaxQuant enzyme rule Trypsin/P (summary.txt), recorded as search rule only (campaign rule 2)."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-72",
+   "value": "TCEP (PRIDE:0000609); Chloroacetamide (PRIDE:0000600)",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol lysis buffer \"10 mM Tris(2-carboxyethyl)phosphine hydrochloride (TCEP) and 40mM 2-chloro-acetamide\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-72",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Phospho STY, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K variable",
+   "source_ids": [
+    "mq",
+    "campaign",
+    "ols"
+   ],
+   "evidence": "mqpar.xml/parameters.txt: fixed Carbamidomethyl (C); summary.txt variable Oxidation (M);Acetyl (Protein N-term);Phospho (STY); labelMods Arg10;Lys8 (UNIMOD 267/259 from mass shift, MT=Variable per campaign rule 11). All 42 raws were one search (one parameter group). sdrf-tools search-params on mqpar.xml gives the same set."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-72",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "campaign"
+   ],
+   "evidence": "Campaign rules 1 and 10."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: experiments S13 and S14 (6 raws: 20181213_F1_RM_CHS_0200_TIO2_RVhPH_S13_F1/F2/F3.raw, _S14_F1/F2/F3.raw) are not annotated. By elimination they are the pInducer20-GFP control line (the 7th construct; no BRAF/partner peptide changes, median BRAF aa 380-766 log2 H/L +0.04 / +0.12), but GFP is not in the searched human database, so no transgene peptide shows which SILAC channel received doxycycline, and no source states it. Rows with a not-available treatment would pool unrelated cultures (campaign rule 7). Recorded in annotations/BLOCKED.md.",
+  "The experiment-number -> construct and label-orientation map is DATA-DERIVED (transgene-product peptides, BRAF N-terminal coverage vs the construct start codons in the construct table, and the rank order of up-regulated phosphosite counts vs Supp Fig S3D), not stated by the authors. Every pair is matched one-to-one, and the resulting order matches the construct-table row order; an author-confirmed key would strengthen it. Weakest link: BRAF-WT (S7/S8) vs BRAF-V600E (S11/S12), which both show full-length BRAF; separated by MAPK activation and phosphosite-response size (Fig S3D V600E 202 sites, the largest), not by a V600E-specific peptide (IGDFGLATV/EK not identified).",
+  "Main paper (Mol Cancer Res, not open access) was not retrieved; Methods come from the PRIDE protocols and the AACR figshare Supplementary Materials and Methods / Figures / legends. The figshare item titled \"Supplementary Table 1\" (KSEA) actually contains the construct/primer table (Table S4 content); the KSEA table was not found.",
+  "PRIDE v3 file-list endpoint timed out (project endpoint answered); the file list comes from the ProteomeXchange record, cross-checked with the FTP listing and README.txt (42 raws + 1 MaxQuant zip).",
+  "characteristics[passage number] = not available: Supp Methods says HEK293 \"were kept in culture for 16 passages until final experiments were performed\", which does not give the passage number of the SILAC cultures unambiguously. characteristics[age] / ancestry / individual = not available (Cellosaurus gives Fetus, no population).",
+  "Match between runs was on across all 42 raws (including S13/S14); the annotated runs keep the same search parameters, which describe the search they went through."
+ ]
+}

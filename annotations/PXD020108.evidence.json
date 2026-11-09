@@ -1,0 +1,489 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD020108.sdrf.tsv",
+ "dataset": "PXD020108",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD020108 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/pride.json; MCP get_project_details output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/details.json): sample processing and data processing protocols"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/03/PXD020108/ directory listing (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/ftp.html, parsed /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/ftp_list.tsv): 735 files = 666 .raw + 57 .txt + 12 mqpar.xml; PRIDE v3 files page 0 (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/files_p0.json, 100 entries, every projectAccessions = PXD020108) agrees; later v3 pages timed out"
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "12 deposited MaxQuant mqpar.xml + parameters.txt + experimentalDesignTemplate.txt (H1975_{AZR3_AZR4,COR1_COR10}_{protein(s),pST,pY}_{DMSO,osi,roci}_*), local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/dl/; parsed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/mqpar.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/mqpar_dump.txt and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/parse_runs.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/runs.json"
+  },
+  {
+   "id": "proteingroups",
+   "kind": "search-output",
+   "location": "4 deposited proteinGroups.txt (H1975_AZR3_AZR4_proteins_DMSO, H1975_AZR3_AZR4_protein_osi, H1975_COR1_COR10_protein_DMSO, H1975_COR1_COR10_protein_roci), local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/pg/; orientation check /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/orient.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/orientation.txt"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Zhang X, Maity TK, et al. Alterations in the Global Proteome and Phosphoproteome in Third Generation EGFR TKI Resistance Reveal Drug Targets to Circumvent Resistance. Cancer Res 2021;81(11):3051-3066. doi:10.1158/0008-5472.CAN-20-2435, PMID 33727228, PMC8182571 (author manuscript; text https://pmc-oa-opendata.s3.amazonaws.com/PMC8182571.1/PMC8182571.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/paper.txt). Supplementary Materials and Methods not retrievable (Europe PMC: not open access)."
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range reads (bytes 0-16383) of all 666 deposited .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/03/PXD020108/<file>.raw, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/raw16/, instrument model string per file in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/instr_by_file.tsv; 3 MB range reads with the embedded instrument method of 5 files (H1975_COR1_COR10_protein_nodrug_0709_F1, H1975_AZR3_AZR4_DMSO_pST_R1_F1, H1975_COR1_COR10_nodrug_0709_pY1000_BR1, BR3_F1, 20180213_H1975_AZR3_AZR4_SILAC_DMSO_R1_Total_F1), local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/rawm/"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_1511?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/cello_CVCL_1511.txt); children of CVCL_1511 via search q=hi:CVCL_1511 (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/cello_children_CVCL_1511.tsv, 28 entries); name collisions CVCL_5A63 Azr3 (Chinese hamster) and CVCL_A5EM Cor1 (mouse) (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/cello_CVCL_5A63.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/cello_CVCL_A5EM.txt); CVCL_WV99 NCI-H1975/OSIR (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/cello_CVCL_WV99.txt, PubMed 27835594, a different osimertinib-resistant line)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=<id> for every accession used, all is_obsolete=False (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/ols_ids.txt); EFO:0009090 descendants listing"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; spec README.adoc:330 biological replicate numbering"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/samples.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/technical.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/files.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/frac_map.json; sdrf-tools build -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/build.sdrf.tsv; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/postbuild.py (fraction identifier from file names) -> annotations/PXD020108.sdrf.tsv"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-1956",
+   "value": "<cell line>[_<set>set]_<treatment>_<experiment key>_<protein|pST|pY>, 156 names",
+   "source_ids": [
+    "mqpar",
+    "files",
+    "build"
+   ],
+   "evidence": "One source per (cell line/SILAC channel, MaxQuant experiment, sample type). The experiment key is taken from the MaxQuant experiment names in the deposited mqpar.xml files (COR set: dates 0701/0708/0709/0716/0720 and BR3/BR4/BR5; AZR set: R1-R3 for the Orbitrap Elite protein/pST experiments, 2018R1-R3 for the 20180213_..._SILAC_<cond>_R<n>_Total experiments, pYD1-3/pYA1-3 for 20180108_Andy_Tapan_pY_<D|A><n>, BR4-BR7 for the H1975_AZR3_AZR4_BR<n> pY experiments). H1975 names carry AZRset/CORset because each 3-state mix had its own H1975 culture. Protein (total proteome), pST (TiO2) and pY (anti-pY antibody) material of one mix get separate source names (separate pull-downs / aliquots, precedent PXD010683), sharing the biological replicate number."
+  },
+  {
+   "location": "comment[label] rows 1-1956",
+   "value": "SILAC light = NCI-H1975; SILAC medium = AZR3 / COR1; SILAC heavy = AZR4 / COR10",
+   "source_ids": [
+    "pride",
+    "mqpar",
+    "proteingroups"
+   ],
+   "evidence": "PRIDE sample protocol: \"The three state SILAC-labeled cells were TKI-sensitive cell line H1975 (light), the TKI-resistant cell lines AZR3 and COR1 (medium), and the TKI-resistant cell lines AZR4 and COR10 (heavy). The medium state cells were labeled with 13C6-Arg/D4-Lys and the heavy state cells were labeled with 13C615N4-Arg/13C615N2-Lys.\" All 12 mqpar.xml: multiplicity 3, labelMods [\"\", \"Arg6;Lys4\", \"Arg10;Lys8\"]. Data check (orientation.txt): in all 17 protein experiments the paper markers point the same way with L as the sensitive parent: TK1, PAK1, PIP4K2C log2 M/L and H/L < 0 (paper: decreased in all resistant lines); PTK7 > 0 (increased in all resistant); AXL > 0 where quantified (paper: up in resistant); NT5E, ALCAM > 0 and FN1, TGM2 < 0 in AZR experiments vs NT5E, ALCAM < 0 and FN1, TGM2 > 0 in COR experiments (paper Fig 3B / text: opposite in osimertinib- vs rociletinib-resistant cells); CDH1 < 0 in COR roci (paper: E-cadherin decreased). The medium-vs-heavy assignment (AZR3 vs AZR4, COR1 vs COR10) rests on the PRIDE protocol statement only; no deposited marker separates the two resistant clones."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-1956",
+   "value": "NCI-H1975; NCI-H1975/AZR3; NCI-H1975/AZR4; NCI-H1975/COR1; NCI-H1975/COR10",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"H1975 parental cell line was obtained from ATCC. The resistant cell lines AZR3/AZR4 (resistant to osimertinib) and COR1/COR10 (resistant to rociletinib) ... were obtained from AstraZeneca and Clovis Oncology\"; \"the corresponding isogenic osimertinib (AZR3 and AZR4) or rociletinib (COR1 and COR10) resistant cell lines\". NCI-H1975 = EFO:0002271 label NCI-H1975. The derived lines have no Cellosaurus entry (none of the 28 children of CVCL_1511 is AZR3/AZR4/COR1/COR10; CVCL_WV99 NCI-H1975/OSIR is a different line from PubMed 27835594). The bare names collide with other species (Azr3 CVCL_5A63 Chinese hamster; Cor1 CVCL_A5EM mouse), so they are written with the parental prefix NCI-H1975/."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-1956",
+   "value": "CVCL_1511",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "CVCL_1511 = NCI-H1975 (ID NCI-H1975, SY H1975). For the four derived resistant lines, which have no Cellosaurus entry, the parental accession is given (isogenic derivatives, paper), as accepted in campaign precedent PXD010683."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-1956",
+   "value": "NCI-H1975",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line of CVCL_1511 (parental for the derived lines)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-1956",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_1511 OX NCBI_TaxID=9606; PRIDE organism Homo sapiens; NCBITaxon:9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-1956",
+   "value": "lung",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_1511 \"Derived from site: In situ; Lung; UBERON=UBERON_0002048\"; UBERON:0002048 label lung."
+  },
+  {
+   "location": "characteristics[disease] rows 1-1956",
+   "value": "lung adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_1511 DI NCIt C3512 Lung adenocarcinoma; paper: \"EGFR mutant lung adenocarcinoma cell lines\"; MONDO:0005061 label lung adenocarcinoma (not obsolete). All lines including the parental are cancer lines, so no \"normal\" rows."
+  },
+  {
+   "location": "characteristics[material type] rows 1-1956",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "All samples are cultured cell lines."
+  },
+  {
+   "location": "characteristics[sex] rows 1-1956",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_1511 SX Female (derived lines inherit the donor)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-1956",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_1511 \"Population: Caucasian.\" mapped to HANCESTRO:0005 European ancestry (campaign convention)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-1956",
+   "value": "NCI-H1975_donor",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "All five lines are isogenic: the resistant lines were derived from NCI-H1975 (paper \"isogenic\"), so all rows come from the single NCI-H1975 donor. No donor identifier is published; the value is a neutral label."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-1956",
+   "value": "ATCC (NCI-H1975); AstraZeneca (AZR3, AZR4); Clovis Oncology (COR1, COR10)",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper: \"H1975 parental cell line was obtained from ATCC. The resistant cell lines AZR3/AZR4 ... and COR1/COR10 ... were obtained from AstraZeneca and Clovis Oncology, respectively.\" (PRIDE protocol spells it \"Colvis Oncology\"; the paper and acknowledgements say Clovis Oncology.)"
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-1956",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"cultured at 37 C, 5% CO2 in RPMI medium 1640 with 10% dialyzed fetal bovine serum and 1% penicillin/streptomycin\" (SILAC media); NCIT:C178973 label Roswell Park Memorial Institute 1640 Medium."
+  },
+  {
+   "location": "characteristics[phenotype] rows 1-1956",
+   "value": "EGFR TKI sensitive (NCI-H1975); osimertinib resistant (AZR3, AZR4); rociletinib resistant (COR1, COR10)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"H1975, an EGFR-L858R/T790M mutant 3rd generation EGFR TKI-sensitive cell line, and the corresponding isogenic osimertinib (AZR3 and AZR4) or rociletinib (COR1 and COR10) resistant cell lines\". Custom column (spec \"Extending Templates\"), as in precedents PXD010683/PXD018305."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-1956",
+   "value": "Dimethyl Sulfoxide (vehicle) | Osimertinib | Rociletinib",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"Each set of the SILAC labeled cells were treated either with DMSO or the corresponded drugs (50 nM osimertinib or 100 nM rociletinib) for one hour, respectively before harvesting.\" Paper Fig 1A: \"TKI-sensitive H1975, osimertinib-resistant AZR3/AZR4 cells, and rociletinib-resistant COR1/COR10 cells were treated with DMSO or the corresponding TKI\". The treatment of each run comes from the MaxQuant search it belongs to (*_DMSO_* vs *_osi_* / *_roci_* searches; raw names DMSO/nodrug vs AZD/CO1686). All three channels of a mix share the treatment. NCIT:C437 Dimethyl Sulfoxide, NCIT:C116377 Osimertinib, NCIT:C99905 Rociletinib. The DMSO arm is a vehicle control, so it is written as the vehicle rather than \"untreated\" (batch rule 4 targets controls with no agent)."
+  },
+  {
+   "location": "characteristics[dose] rows 1-1956",
+   "value": "50 nM (osimertinib); 100 nM (rociletinib); not available (DMSO)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE protocol \"(50 nM osimertinib or 100 nM rociletinib)\"; DMSO volume/concentration not stated."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-1956",
+   "value": "1 hour",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE protocol: treated \"for one hour ... before harvesting\" (both DMSO and drug arms)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-213,748-1395 and rows 214-312,1396-1488",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "pride",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "pST rows: TiO2 phosphopeptide enrichment of 9/10 of each bRPLC fraction (PRIDE protocol); pY rows: PhosphoScan p-Tyr-100 / p-Tyr-1000 immunoaffinity enrichment (PRIDE protocol). Run membership from the pST_* and pY_* MaxQuant searches. EFO:0010806 enrichment of phosphorylated protein (child of EFO:0009090). Source-name suffix _pST / _pY distinguishes the two enrichments."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 313-747,1489-1956",
+   "value": "not applicable",
+   "source_ids": [
+    "pride",
+    "mqpar"
+   ],
+   "evidence": "Total-proteome runs: \"1/10th of the peptides was injected directly for LC-MS/MS analysis\" (no enrichment); run membership from the protein(s)_* MaxQuant searches."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-1956",
+   "value": "numbered 1..n within each (cell line, treatment) group, one number per independent SILAC mix/culture",
+   "source_ids": [
+    "paper",
+    "mqpar",
+    "templates"
+   ],
+   "evidence": "Paper: \"Three and five biological replicates were processed for H1975/AZR3/AZR4 and H1975/COR1/COR10 SILAC Mass spectrometry experiments, respectively\" and \"more biological replicates were performed for the osimertinib experiments, especially for the phosphotyrosine enrichment\". COR set: the experiment dates/labels 0709, 0716, 0720 (DMSO) and 0701, 0708, BR3, BR4, BR5 (rociletinib) recur identically in the protein, pST and pY MaxQuant experiments, so protein/pST/pY sources of one label share one number (COR DMSO 1-3; COR rociletinib 1-5, matching the paper's five). AZR set: R1-R3 of the Orbitrap Elite protein experiments and of the pST experiments share labels and numbers (1-3); the 2018 QE HF *_Total experiments (2018R1-3), the 2018 pY experiments (pYD1-3 / pYA1-3) and pY BR4-BR7 carry no label linking them to R1-R3 or to each other, so each gets its own number (DMSO 1-9; osimertinib 1-13). NCI-H1975 DMSO appears in both sets (separate cultures per mix): COR mixes 1-3, AZR mixes 4-12."
+  },
+  {
+   "location": "assay name rows 1-1956",
+   "value": "raw file stem",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "Assigned by sdrf-tools build from comment[data file]."
+  },
+  {
+   "location": "technology type rows 1-1956",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "comment[data file] rows 1-1956",
+   "value": "652 deposited .raw files",
+   "source_ids": [
+    "files",
+    "mqpar"
+   ],
+   "evidence": "666 raw files deposited, every one listed in exactly one of the 12 mqpar.xml (0 unlisted, 0 in two searches); 652 annotated, 14 excluded (see limitations). The 3 mqpar entries H1975_AZR3_AZR4_SILAC_pY_R1-R3 were never deposited and have no rows."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-1956",
+   "value": "1-4",
+   "source_ids": [
+    "mqpar",
+    "files"
+   ],
+   "evidence": "Within one MaxQuant experiment, each injection series of the 12 bRPLC fractions (plain names, *_a re-injections, *_thermo_* / *_Thermo_* series, BR<n>_F# vs H1975_COR1_COR10_BR<n>_F#, R<n>_F# and Xu-BR3-# series) is one technical replicate; a timestamp-suffixed file (Xcalibur auto-rename, e.g. _151211215136) joins its base series when that series lacks the fraction, else it forms a further replicate (e.g. H1975_AZR3_AZR4_DMSO_protein_R1_F5_151205144804, the H1975_COR1_COR10_protein_CO1686_0708_F#_<timestamp> series). Rule in make_tables.py."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-1956",
+   "value": "protein/pST: bRPLC fraction number from the file name (1-12); pY: 1..n enumerating the pY runs of one experiment",
+   "source_ids": [
+    "pride",
+    "mqpar",
+    "build"
+   ],
+   "evidence": "PRIDE protocol: 96 bRPLC fractions concatenated into 12; raw names carry F1-F12 (or Xu-BR3-1..12). postbuild.py sets the identifier from the name because several series have gaps (AZD_pST_R2 lacks F1; R4_F# lacks F9). pY experiments are not bRPLC fractions: the deposited AZR pY experimentalDesignTemplate numbers ACN_Elute/ACN_FT/Elute/FT (and BR4/BR4_pY/BR4_pY_a etc.) as F1..Fn, and the COR pY template leaves fractions blank; the identifier enumerates the separate pY-IP runs (pY100/pY1000 antibody, 1st/2nd binding, re-injections) in mqpar order."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-213,313-1395,1489-1956",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"Basic-RPLC separation was performed with an XBridge C18 ... A total of 96 fractions ... concatenated into 12 fractions\"; paper Methods \"Basic reversed phase liquid chromatography (RPLC) fractionation\". Applies to the protein and pST runs (fraction-numbered files)."
+  },
+  {
+   "location": "comment[fractionation method] rows 214-312,1396-1488",
+   "value": "not available",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "The protocol describes pY enrichment from \"the lyophilized peptide\" without saying whether it was bRPLC-fractionated first."
+  },
+  {
+   "location": "comment[instrument] rows 1-213,421-528,637-1074,1111-1146,1255-1290,1324-1359,1396-1596,1813-1956",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw header model string \"Orbitrap Elite MS\" in 405 files (instr_by_file.tsv); paper: \"Peptides were analyzed on a LTQ-Orbitrap Elite mass spectrometer or a Q Exactive HF\"."
+  },
+  {
+   "location": "comment[instrument] rows 1075-1110,1147-1254,1291-1323,1360-1395,1597-1812",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw header model string \"Q Exactive - Orbitrap MS\" in 156 files (COR rociletinib BR3/BR4/BR5 protein runs, pST_BR3/BR4 plain series, R3/R4/R5 and Xu-BR3 series)."
+  },
+  {
+   "location": "comment[instrument] rows 214-420,529-636",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw header model string \"Q Exactive HF - Orbitrap MS\" in 105 files (all 2017-2018 AZR runs: *_Total, Andy_Tapan pY, BR4-BR7 pY)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-1956",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "Protocol: \"data dependent HCD MS/MS scans of the fifteen most abundant ions\"; raw methods: Elite \"Nth Order Double Play ... Scan Event 2 repeated for top 15 peaks\"; QE \"dd-MS2 TopN 10\"; QE HF method \"Top15\"."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-1956",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "Protocol \"HCD MS/MS\"; Elite methods \"Activation Type: HCD\" in the 3 sampled Elite files (protein, pST and pY); Q Exactive / Q Exactive HF fragment by HCD only."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-1956",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw",
+    "mqpar"
+   ],
+   "evidence": "Elite method \"2: FTMS + p norm Dep MS/MS\"; QE dd-MS2 resolution 17,500 (Orbitrap); QE HF Orbitrap only. MaxQuant used the FTMS MS/MS tolerance."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-1956",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "Protocol: \"digested with trypsin at 37 C overnight\". MaxQuant search rule Trypsin/P, 2 missed cleavages (mqpar) - search rule noted here only (batch rule 2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-1956",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term, Phospho STY, Label:13C(6) R, Label:2H(4) K, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K variable",
+   "source_ids": [
+    "mqpar",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 12 mqpar.xml (identical across searches, including the protein searches): fixedModifications Carbamidomethyl (C); variableModifications Oxidation (M), Acetyl (Protein N-term), Phospho (STY); labelMods Arg6;Lys4 (medium) and Arg10;Lys8 (heavy). Mass shifts -> UNIMOD: Arg6 188 Label:13C(6), Lys4 481 Label:2H(4) (protocol \"D4-Lys\"), Arg10 267 Label:13C(6)15N(4), Lys8 259 Label:13C(6)15N(2); MT=Variable (batch rule 11). The PRIDE/paper text also lists deamidation (NQ), which no mqpar.xml contains, so it is not listed."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-1956",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "mqpar.xml mainSearchTol 4.5 (ppm; firstSearchTol 20) in all 12 searches. The PRIDE data-processing text says 7 ppm; the deposited search parameters win."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-1956",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqpar",
+    "raw"
+   ],
+   "evidence": "mqpar.xml / parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"; all MS2 spectra are FTMS (see ms2 mass analyzer)."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-1956",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Protocol: \"reduced with 45 mM dithriothreitol\"."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-1956",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Protocol: \"alkylated with 100 mM iodoacetamide\"."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-1956",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "spec README.adoc:27 (batch rule 1)."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-1956",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=human;VV=v1.1.0 | NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by build from the contract; ms-proteomics latest 1.2.0 per upstream templates.yaml line 150. human: Homo sapiens samples; cell-lines: all samples are cell lines. clinical-metadata/oncology-metadata not declared (no patient material, batch rule 15)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-1956",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rule 10."
+  },
+  {
+   "location": "factor value[cell line] rows 1-1956",
+   "value": "copy of characteristics[cell line]",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Compared variable: resistant vs sensitive line (SILAC ratios M/L, H/L)."
+  },
+  {
+   "location": "factor value[treatment] rows 1-1956",
+   "value": "copy of characteristics[treatment]",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Compared variable: DMSO vs osimertinib / rociletinib (separate MaxQuant searches per treatment)."
+  },
+  {
+   "location": "characteristics[cell type] / age / developmental stage / passage number / sample storage temperature rows 1-1956",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Cellosaurus CVCL_1511 \"AG Age unspecified\" (so age and developmental stage not available); no cell type, passage number or sample storage temperature for the cells is stated (only \"peptides ... stored at -80 C\", which is not the sample)."
+  }
+ ],
+ "limitations": [
+  "Excluded runs (14 of 666, partial scope): R4_F9 and Xu-BR4-1..Xu-BR4-12 are named BR4/R4 but every deposited MaxQuant file (mqpar.xml and experimentalDesignTemplate.txt of H1975_COR1_COR10_pST_roci) assigns them to experiment H1975_COR1_COR10_CO1686_pST_BR3; H1975_COR1_COR10_CO1686_BR3_pY100_2ndbinding_a is named BR3 but assigned to experiment H1975_COR1_COR10_CO1686_0708 in H1975_COR1_COR10_pY_roci. The sample identity of these files cannot be settled from the deposit; they are left out and listed in annotations/BLOCKED.md.",
+  "Three runs listed in H1975_AZR3_AZR4_pY_osi mqpar.xml (H1975_AZR3_AZR4_SILAC_pY_R1, _R2, _R3) were never deposited; they have no rows.",
+  "Biological-replicate linkage in the AZR set is partly undocumented: the paper says three AZR biological replicates, but the deposit holds Orbitrap Elite protein/pST experiments R1-R3 (2015-2016), QE HF *_Total R1-R3 protein experiments (2018), QE HF pY experiments D1-D3/A1-A3 (2018) and pY BR4-BR7. Only R1-R3 protein and pST share labels and are linked; the others got separate numbers. If the 2018 Total and 2018 pY mixes are the same cultures (or the same as R1-R3), the replicate numbers overcount independent cultures.",
+  "Medium vs heavy channel identity (AZR3 vs AZR4, COR1 vs COR10) is supported by the PRIDE protocol statement only; deposited ratios confirm that light is the sensitive parent but cannot distinguish the two resistant clones.",
+  "The paper says the osimertinib (AZR) experiments used the Q Exactive HF and the rociletinib (COR) experiments the Orbitrap Elite; raw headers show AZR 2015-2016 protein/pST runs on the Orbitrap Elite and COR rociletinib BR3-BR5 runs on a Q Exactive. Per-file raw headers were used. PRIDE instruments field lists \"LTQ Orbitrap Elite, Q Exactive\". sdrf-tools reconcile flags instrument_contradicted because the PRIDE protocol text names only the Q Exactive HF; that is refuted by the raw headers.",
+  "Search parameters conflict between text and deposit: paper/PRIDE say MaxQuant 1.5.7.4, deamidation (NQ) variable, 7 ppm precursor; the deposited mqpar.xml/parameters.txt say MaxQuant 1.5.3.17/1.5.3.28/1.5.3.30, no deamidation, 4.5 ppm main search. The deposited parameters are used.",
+  "Collision energy not given: sampled methods show NCE 32 (Orbitrap Elite), 30 (Q Exactive BR3_F1) while the protocol says 40%; it was not verified per file, so the column is omitted.",
+  "Supplementary Materials and Methods of PMC8182571 are not retrievable (Europe PMC: not open access); cell culture, SILAC and pY enrichment details come from the PRIDE protocol text.",
+  "The pY runs (fraction identifier 1..n) mix antibody types (pY100/pY1000), first/second binding, eluate/flow-through and re-injections within one MaxQuant experiment; the deposit does not describe these sub-runs beyond their names, so they are enumerated, not interpreted. \"FT\" (flow-through) pY runs are still annotated with the enrichment process of their search.",
+  "NCI-H1975/AZR3, /AZR4, /COR1, /COR10 have no Cellosaurus entries; validate-sdrf may warn that they are not found in CLO/BTO/EFO.",
+  "PRIDE v3 file listing pages after page 0 timed out; the file inventory comes from the FTP directory listing (735 entries) instead.",
+  "Review status: REVIEW_PENDING_EXTERNAL (no self-review, no review-gate approve)."
+ ]
+}
