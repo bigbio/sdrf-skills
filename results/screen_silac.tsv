@@ -54,3 +54,14 @@ PXD023790	PRIDE	include		Batch 5 (rare disease): HAX1 Kostmann pulse SILAC PLB-9
 PXD027000	PRIDE	include		Batch 5 (rare disease): FXTAS CGG-repeat RNA pulldown triple SILAC	repository structured fields; paper methods
 PXD023136	PRIDE	include		Batch 5 (rare disease): TMEM126A optic atrophy SILAC + AE-MS	repository structured fields; paper methods
 PXD004666	PRIDE	include		Batch 5 (rare disease): complex I deficiency HEK293T knockouts SILAC + AP-MS	repository structured fields; paper methods
+PXD005854	PRIDE	include		Batch 6 (rare disease): Vanishing white matter Eif2b5 MEFs, SILAC spike-in	repository structured fields; paper methods
+PXD007546	PRIDE	include		Batch 6 (rare disease): mucolipidosis III gamma, M6P secretome SILAC	repository structured fields; paper methods
+PXD007547	PRIDE	include		Batch 6 (rare disease): mucolipidosis III gamma, lysosomal proteome SILAC	repository structured fields; paper methods
+PXD016521	PRIDE	include		Batch 6 (rare disease): complex III deficiency MT-CYB cybrids, complexome + IP SILAC	repository structured fields; paper methods
+PXD009311	PRIDE	include		Batch 6 (rare disease): CSF3R mutant G-CSFR phospho-SILAC Ba/F3	repository structured fields; paper methods
+PXD003446	PRIDE	include		Batch 6: Huntington's disease HttEx1 Neuro-2a SILAC (partial)	repository structured fields; paper methods
+PXD014577	PRIDE	include		Batch 6 (rare disease): prion infection dynamic SILAC N2a-Cl3	repository structured fields; paper methods
+PXD051673	PRIDE	include		Batch 6: Parkinson's SNCA A53T iPSC neurons SILAC	repository structured fields; paper methods
+PXD063206	PRIDE	include		Batch 6: TDP-43 / BORCS6 iPSC neurons dynamic SILAC	repository structured fields; paper methods
+PXD010027	PRIDE	include		Batch 6: disease mutations in IDRs, peptide-array SILAC pulldowns	repository structured fields; paper methods
+PXD004880	PRIDE	include		Batch 6: Down syndrome twin fibroblasts pulsed SILAC SWATH	repository structured fields; paper methods
