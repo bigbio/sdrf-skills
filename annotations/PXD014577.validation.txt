@@ -1,9 +1,12 @@
-# PXD014577 validation log (2026-11-09T07:19Z)
-64c4bcb98dd6316c7c5f3eeb67e95d4575122aad9cf1c43bca82bbf1385e0190  annotations/PXD014577-proteome.sdrf.tsv
-2a4f164c29c4e86548056d7a68458bde770ed0234f6d79de1c8368fe2316eaf2  annotations/PXD014577-prpsc.sdrf.tsv
+# PXD014577 validation log (2026-11-09T07:42Z) — round 2 (after external review FAIL, finding I1)
+ce11b2eede92b1ce9ca12b32e2a8dbf1d27046e5e0af08bd10b79411efebcd34  annotations/PXD014577-proteome.sdrf.tsv
+530fa805abad457c12b63dad7a7d9a46938d8abe00677b8ef195edaeb0717bcf  annotations/PXD014577-prpsc.sdrf.tsv
+
+## Round 1 (superseded): sha256 proteome 64c4bcb98dd6316c7c5f3eeb67e95d4575122aad9cf1c43bca82bbf1385e0190, prpsc 2a4f164c29c4e86548056d7a68458bde770ed0234f6d79de1c8368fe2316eaf2 — validate-sdrf 0, structure 0, reconcile 0, check --offline 0, convert-openms 1, schema-check 0, manifest-coverage 0 (full log kept at /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/validation_round1.txt). External review (annotations/PXD014577.review.md) FAILED both on I1: N2a-Cl3 is a transgenic PrP-overexpressing clone (paper line 67), not stated.
+Fix (tables only, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/gen_tables.py): added characteristics[genotype] = 'Prnp overexpression (transgenic)' to every row of both files (TERMS.tsv: genotype, characteristics, free text; custom column, not licensed by the declared templates). Manifest (gen_manifest.py): cell-line/cellosaurus claims reworded; fragment tolerance now cited from PRIDE 'default parameter settings' (MaxQuant FTMS default 20 ppm), not Table S6; arm-check claims extended (day 3/5 matches, +QA day-5 normalized ratio); prpsc limitations record the S2 PK sheet header conflict and the undeposited PK day 0/1 samples.
 
 ## Build: bash /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/build_all.sh (gen_tables.py -> sdrf-tools build x2 -> fix_fractions.py on the proteome file)
-Post-build edit (rule 17): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/fix_fractions.py sets comment[fraction identifier] to the high-pH fraction number in each data file name, asserting it equals MaxQuant msmsScans 'Fraction'. build numbers fractions by list position; with the contradicted Hutti_R1-7 / Hutti_R2-7 left out, R1-8 and R2-8 would otherwise be numbered 7. It changed 4 cells (R1-8, R2-8 x light/heavy). Single round of building; no validation-driven fixes were needed.
+Post-build edit (rule 17): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/fix_fractions.py sets comment[fraction identifier] to the high-pH fraction number in each data file name, asserting it equals MaxQuant msmsScans 'Fraction'. build numbers fractions by list position; with the contradicted Hutti_R1-7 / Hutti_R2-7 left out, R1-8 and R2-8 would otherwise be numbered 7. It changed 4 cells (R1-8, R2-8 x light/heavy).
 
 ## parse_sdrf validate-sdrf -s annotations/PXD014577-proteome.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
 WARNING: Term: N2a-Cl3 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
@@ -11,7 +14,7 @@ WARNING: Term: Eagle's Minimum Essential Medium in column 'characteristics[cultu
 WARNING: Term: A/J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
 Most seems to be fine. There were only warnings.
 exit=0
-Warnings accepted: N2a-Cl3 (paper's subclone name; no CLO/BTO/EFO/Cellosaurus entry), Eagle's Minimum Essential Medium (no NCIT term; OLS search), A/J (Cellosaurus breed; free-text column, not an NCBITaxon term).
+Warnings accepted: N2a-Cl3 (paper's transgenic subclone name; no CLO/BTO/EFO/Cellosaurus entry), Eagle's Minimum Essential Medium (no NCIT term; OLS search), A/J (Cellosaurus breed; free-text column, not an NCBITaxon term).
 
 ## sdrf-tools structure annotations/PXD014577-proteome.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
@@ -33,18 +36,33 @@ Hallucination Report: annotations/PXD014577-proteome.sdrf.tsv
   Status:            CLEAN
 exit=0
 
+## sdrf-tools check annotations/PXD014577-proteome.sdrf.tsv (online)
+Hallucination Report: annotations/PXD014577-proteome.sdrf.tsv
+  Terms checked:     18
+  Verified:          17
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108]: 'N2a-Cl3' in characteristics[cell line]
+exit=1
+Refutation: the online check cannot verify 'N2a-Cl3' because the transgenic N2a clone has no CLO/BTO/EFO term and no Cellosaurus entry (searched N2a-Cl3, ScN2a-cl3, N2a.3; reviewer also checked the 57 children of CVCL_0470). The name is the paper's (Results line 67, Methods); the parent line is given in characteristics[cellosaurus accession] CVCL_0470.
+
 ## parse_sdrf convert-openms -s annotations/PXD014577-proteome.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/convert_proteome)
     raise ValueError(msg) from ex
 ValueError: Error: Cannot read precursor mass tolerance: not available
 exit=1
-Expected failure: comment[precursor mass tolerance] = not available (not recorded in MaxQuant parameters.txt/Table S6; whole-proteome parameters.txt lost in the truncated zip). Campaign precedent PXD014368/PXD006676.
+Expected failure: comment[precursor mass tolerance] = not available (not recorded in MaxQuant parameters.txt; whole-proteome parameters.txt lost in the truncated zip). Campaign precedent PXD014368/PXD006676.
 
 ## sdrf-tools schema-check annotations/PXD014577-proteome.evidence.json
 annotations/PXD014577-proteome.evidence.json: valid evidence-manifest
 exit=0
 
 ## sdrf-tools manifest-coverage annotations/PXD014577-proteome.sdrf.tsv annotations/PXD014577-proteome.evidence.json
-Manifest covers every column with a value (33 column(s)).
+Manifest covers every column with a value (34 column(s)).
 exit=0
 
 ## parse_sdrf validate-sdrf -s annotations/PXD014577-prpsc.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
@@ -53,7 +71,7 @@ WARNING: Term: Eagle's Minimum Essential Medium in column 'characteristics[cultu
 WARNING: Term: A/J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
 Most seems to be fine. There were only warnings.
 exit=0
-Warnings accepted: N2a-Cl3 (paper's subclone name; no CLO/BTO/EFO/Cellosaurus entry), Eagle's Minimum Essential Medium (no NCIT term; OLS search), A/J (Cellosaurus breed; free-text column, not an NCBITaxon term).
+Warnings accepted: N2a-Cl3 (paper's transgenic subclone name; no CLO/BTO/EFO/Cellosaurus entry), Eagle's Minimum Essential Medium (no NCIT term; OLS search), A/J (Cellosaurus breed; free-text column, not an NCBITaxon term).
 
 ## sdrf-tools structure annotations/PXD014577-prpsc.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
@@ -75,16 +93,31 @@ Hallucination Report: annotations/PXD014577-prpsc.sdrf.tsv
   Status:            CLEAN
 exit=0
 
+## sdrf-tools check annotations/PXD014577-prpsc.sdrf.tsv (online)
+Hallucination Report: annotations/PXD014577-prpsc.sdrf.tsv
+  Terms checked:     17
+  Verified:          16
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 2, 3, 4, 5, 6]: 'N2a-Cl3' in characteristics[cell line]
+exit=1
+Refutation: the online check cannot verify 'N2a-Cl3' because the transgenic N2a clone has no CLO/BTO/EFO term and no Cellosaurus entry (searched N2a-Cl3, ScN2a-cl3, N2a.3; reviewer also checked the 57 children of CVCL_0470). The name is the paper's (Results line 67, Methods); the parent line is given in characteristics[cellosaurus accession] CVCL_0470.
+
 ## parse_sdrf convert-openms -s annotations/PXD014577-prpsc.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/convert_prpsc)
     raise ValueError(msg) from ex
 ValueError: Error: Cannot read precursor mass tolerance: not available
 exit=1
-Expected failure: comment[precursor mass tolerance] = not available (not recorded in MaxQuant parameters.txt/Table S6; whole-proteome parameters.txt lost in the truncated zip). Campaign precedent PXD014368/PXD006676.
+Expected failure: comment[precursor mass tolerance] = not available (not recorded in MaxQuant parameters.txt; whole-proteome parameters.txt lost in the truncated zip). Campaign precedent PXD014368/PXD006676.
 
 ## sdrf-tools schema-check annotations/PXD014577-prpsc.evidence.json
 annotations/PXD014577-prpsc.evidence.json: valid evidence-manifest
 exit=0
 
 ## sdrf-tools manifest-coverage annotations/PXD014577-prpsc.sdrf.tsv annotations/PXD014577-prpsc.evidence.json
-Manifest covers every column with a value (32 column(s)).
+Manifest covers every column with a value (33 column(s)).
 exit=0
