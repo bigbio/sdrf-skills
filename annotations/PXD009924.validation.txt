@@ -1,7 +1,63 @@
-# PXD009924 validation log (2026-11-09T15:19Z); SDRF sha256 a9504b7e15fd91462843cd362c3afbe52409c3364d52f1c383fe8e1c799f8592
+# PXD009924 validation log (2026-11-09T16:08Z); current SDRF sha256 323bb207c5be9b640d0673d634e88c3143568a287286e045b9e3d07bbcbead19
+
+## Round 2 (current file, 720 rows x 55 cols) — rebuild after independent review round 1 (annotations/PXD009924.review.md, FAIL on F1)
+Fixes, all in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_tables.py -> samples.tsv, rebuilt with sdrf-tools build (no post-build edit):
+  F1: + characteristics[sample storage temperature] = -80 °C (all rows; paper 'cell pellets were stored at -80 °C'), + characteristics[passage number] = not available, + characteristics[individual] = not available
+  F4: factor value[infection] = not applicable on the 240 SILAC light (reference) rows (characteristics[infection] stays uninfected)
+  F5: + characteristics[sampling time] = 24 hour (SILAC heavy, infected) / not available (medium control, light standard)
+  F2/F3: manifest only (Calu-1 fraction MW check /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/mwcheck.txt; PXD007809 companion relation)
+Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_tables.py && sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD009924.sdrf.tsv
+
+## parse_sdrf validate-sdrf -s annotations/PXD009924.sdrf.tsv -t ms-proteomics -t human -t cell-lines (online)
+Everything seems to be fine. Well done.
+exit=0
+(2 transient OLS4 HTTP 500 lines during search pagination omitted; full log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/v2_online.log)
+
+## parse_sdrf validate-sdrf ... --use_ols_cache_only
+WARNING: Term: study sample in column 'characteristics[sample type]', is not found in the given ontology list pride
+Most seems to be fine. There were only warnings.
+exit=0
+Refuted: 'study sample' is PRIDE:0001013 (OLS4 exact lookup, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/ols_obsolete.txt: 'PRIDE:0001013 | study sample | obsolete= False'); cache gap only. The online run resolves it (exit 0, no warning).
+
+## sdrf-tools structure annotations/PXD009924.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD009924.sdrf.tsv --offline
+Hallucination Report: annotations/PXD009924.sdrf.tsv
+  Terms checked:     15
+  Verified:          7
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD009924.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/pride.json --accession PXD009924
+PXD009924: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+exit=1
+Refuted false positive (cleavage_agent_unsupported): PRIDE protocol says only "in-gel digested"; paper Methods (PMC6166674, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/paper.txt line 131): "50 ul of 12.5 ng/ul trypsin (MS grade, Promega, Mannheim, Germany) were added ... proteolytically digested ON at 37 C"; MaxQuant summary.txt Enzyme Trypsin/P for all 240 files. Confirmed by the independent review. Value kept (batch rule 2).
+
+## parse_sdrf convert-openms -s annotations/PXD009924.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/convert)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.4.1.2 does not record it; no mqpar.xml). Same as campaign precedents PXD014368/PXD006676/PXD024103.
+
+## sdrf-tools schema-check annotations/PXD009924.evidence.json
+annotations/PXD009924.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD009924.sdrf.tsv annotations/PXD009924.evidence.json
+Manifest covers every column with a value (38 column(s)).
+exit=0
+
+# ---- Round 1 log (superseded build, sha256 a9504b7e15fd91462843cd362c3afbe52409c3364d52f1c383fe8e1c799f8592, 720 x 51) ----
 SDRF built only by: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_tables.py && sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD009924.sdrf.tsv (720 rows x 51 cols). No post-build edits.
 
-## Round 1 (current file): parse_sdrf validate-sdrf -s annotations/PXD009924.sdrf.tsv -t ms-proteomics -t human -t cell-lines (tail -20 of output)
+## Round 1 (superseded build): parse_sdrf validate-sdrf -s annotations/PXD009924.sdrf.tsv -t ms-proteomics -t human -t cell-lines (tail -20 of output)
   File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
     raise HTTPError(http_error_msg, response=self)
 requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=q+exactive+plus&name=class&rows=10&start=30&ontology=pride&exact=off
