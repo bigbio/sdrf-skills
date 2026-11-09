@@ -1840,3 +1840,15 @@ The technical values are already resolved in `annotations/PXD041509.report.md`:
 | A TMT SDRF would need | The TMT11 channel→sample map (8 used reporter channels per `proteinGroups_FASTKD5.txt`; Supplementary Table 6 / Fig. 7c give sh-FASTKD5 vs sh-Ctr, infected vs mock, 2 biological replicates, but no channel numbers were checked here). Technical values: MaxQuant 1.6.10.43, Carbamidomethyl fixed, Oxidation (M) + Acetyl (Protein N-term) variable, human UP000005640, 100-min gradient on Q Exactive HF-X (paper Methods). |
 
 **Sources checked:** PRIDE v3 project + files; paper PMC8087183 (PMC OA S3 text) and its supplementary xlsx (Supplementary Tables 4 and 6, Source Data Fig. 4); both MaxQuant parameters/proteinGroups files; HTTP-range headers of all 41 SILAC raws.
+
+## PXD021351 — HSV-1 whole-cell and plasma membrane proteomics / pUL56–GOPC (Soh et al., Cell Rep 2020; triple-SILAC PMP + triple-SILAC GFP-Trap IP + TMT), TMT runs excluded (excluded runs, not a blocker)
+
+**Annotated:** both SILAC experiments (10 raw files, 30 rows). `annotations/PXD021351-pmp.sdrf.tsv` — Experiment 4, HaCaT plasma membrane profiling 6 hpi, light = mock, medium = HSV-1 KOS WT, heavy = HSV-1 KOS ΔUL56 (MOI 10): `SILAC_PMP_UL56_WT_Unfrac.raw` (mixture 1) and `SILAC_PMP_UL56_WT_F1..F6.raw` (mixture 2, tip-SCX fractions). `annotations/PXD021351-ip.sdrf.tsv` — Experiment 2, HEK293T GFP-Trap IP, light = GFP, medium = pUL56(1-207)-GFP, heavy = GFP-pUL56(1-234): `SILAC_IP_Exp1..3.raw`. Channel maps are explicit in the deposited `Detailsofsamplesandrawfiles.docx` and agree with the deposited MaxQuant ratios.
+
+**Excluded runs (out of scope for the SILAC campaign, not missing evidence):** 34 TMT raw files searched with MassPike/Sequest (channel maps are in `Detailsofsamplesandrawfiles.docx`):
+- Experiment 1 (WCL time course, TMT10): `WCL_HSV_timecourse_Unfrac`, `_F1`..`_F10`, `_F11_1`, `_F11_2`, `_F12_1`, `_F12_2` (.raw, 15 files);
+- Experiment 3 (WCL WT vs ΔUL56, 6 TMT channels): `WCL_UL56_WT_F1`..`_F12` (.raw, 12 files);
+- Experiment 5 (GOPC-KO PMP, 4 TMT channels): `PMP_GOPC_KO_Unfrac`, `PMP_GOPC_KO_F1`..`_F6` (.raw, 7 files).
+They would go in a separate TMT SDRF (batch rule 12).
+
+**Not annotatable:** the combined SILAC MaxQuant search also contains `Exp2_2018_singleshot_SILAC_LMH_Mock_WT_dUL56` (MaxQuant experiment 5, fraction 55), which was not deposited.
