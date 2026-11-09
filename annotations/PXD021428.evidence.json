@@ -124,12 +124,13 @@
   },
   {
    "location": "characteristics[organism part] SILAC light rows (rows 1-21, 43-63, 85-105, ... i.e. the first 21-row block of each 42-row tumour block)",
-   "value": "prostate",
+   "value": "prostate gland",
    "source_ids": [
     "preprint",
-    "iscience"
+    "iscience",
+    "ols"
    ],
-   "evidence": "Orthotopic tumours grown in the (anterior) prostate; all three model pairs are prostate carcinoma (organ of disease). Cell-line origin sites differ (LNCaP: lymph node; VCaP: vertebra; CWR22: prostate, Cellosaurus) - noted in limitations."
+   "evidence": "UBERON:0002367 label prostate gland. Orthotopic tumours grown in the (anterior) prostate; all three model pairs are prostate carcinoma (organ of disease). Cell-line origin sites differ (LNCaP: lymph node; VCaP: vertebra; CWR22: prostate, Cellosaurus) - noted in limitations."
   },
   {
    "location": "characteristics[organism part] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
@@ -150,12 +151,12 @@
   },
   {
    "location": "characteristics[pooled sample] all rows",
-   "value": "not pooled (light); SN=CWR22Res;SN=LNCaP;SN=LNCaP-AI;SN=VCaP (heavy)",
+   "value": "not pooled (light); SN=CWR22Res;SN=LNCaP clone FGC;SN=LNCaP-AI;SN=VCaP (heavy)",
    "source_ids": [
     "preprint",
     "pride"
    ],
-   "evidence": "PRIDE/preprint: \"equal amounts of SILAC-labelled cell lysates from CWR22res, LNCAP, LNCAPAI, and VCAP cell lines were mixed together\"."
+   "evidence": "PRIDE/preprint: \"equal amounts of SILAC-labelled cell lysates from CWR22res, LNCAP, LNCAPAI, and VCAP cell lines were mixed together\". SN= tokens name the four cell-line lysates (using the same cell-line names as the light rows: LNCaP = ATCC CRL-1740 = LNCaP clone FGC), not source names in this SDRF (precedent PXD017530)."
   },
   {
    "location": "characteristics[biological replicate] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
@@ -272,7 +273,7 @@
     "cellosaurus",
     "preprint"
    ],
-   "evidence": "Cellosaurus HI: 22Rv1 from CWR22 (CVCL_3967), CWR22Res described as variant of CWR22 (preprint); LNCaP-AI HI LNCaP clone FGC. Matched isogenic pairs share a donor. Heavy rows: pooled."
+   "evidence": "Cellosaurus HI: 22Rv1 from CWR22 (CVCL_3967), CWR22Res described as variant of CWR22 (preprint); LNCaP-AI HI LNCaP clone FGC. Matched isogenic pairs share a donor. These IDs are curator-made placeholder donor keys (synthetic labels for grouping isogenic lines), not identifiers used by the study or by Cellosaurus. Heavy rows: pooled."
   },
   {
    "location": "characteristics[culture medium] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
@@ -284,8 +285,33 @@
    "evidence": "iScience: \"RPMI SILAC media minus Arginine and Lysine ... replacing Arginine and Lysine with their heavy labelled SILAC amino acid\". NCIT:C178973. Light rows not applicable (in vivo tumour tissue)."
   },
   {
+   "location": "characteristics[sample storage temperature] all rows",
+   "value": "-80 °C (heavy super-SILAC standard rows); not available (light tumour rows)",
+   "source_ids": [
+    "iscience"
+   ],
+   "evidence": "iScience STAR Methods (PMC8957019): \"Mixed super SILAC standard was then aliquoted and stored at -80°C.\" Tumours were \"snap-frozen in liquid nitrogen\" (preprint) but no storage temperature is stated for tumours or tumour lysates, hence not available."
+  },
+  {
+   "location": "characteristics[cell line authentication] all rows",
+   "value": "STR profiling (Promega GenePrint 10 System) for CWR22Res, 22Rv1, LNCaP clone FGC, LNCaP-AI rows; not available for VCaP/VCaP-CR rows and the heavy standard",
+   "source_ids": [
+    "iscience"
+   ],
+   "evidence": "iScience: \"Prostate Cancer (PC) cell line models CWR, 22RV1, LNCAP and LNCAPAI selected for study were tested in house for authentication and matching to known database using Promega GenePrint 10 Kit (multiplex PCR)\". An earlier sentence (\"Human PC cell lines were authenticated using the Promega GenePrint 10 System\", followed by RRIDs incl. VCAP) is ambiguous for VCaP, so VCaP rows and the mixed standard (which contains VCaP) are not available."
+  },
+  {
+   "location": "characteristics[biorepository] all rows",
+   "value": "ATCC (22Rv1, LNCaP clone FGC, VCaP); Case Western Reserve University (CWR22Res); Newcastle University (LNCaP-AI); heavy: ATCC; Case Western Reserve University; Newcastle University",
+   "source_ids": [
+    "preprint",
+    "iscience"
+   ],
+   "evidence": "Preprint Methods: \"LNCaP (ATCC CRL-1740), 22Rv1 (ATCC CRL-2505), and VCAP (ATCC CRL-2876) were obtained from ATCC. CWR22Res cells ... were obtained from Case Western Reserve University, Cleveland, Ohio. LNCaP AI cells were obtained from Newcastle University, UK.\" iScience key resources table gives the same sources. Heavy standard = mix of these four lines, so all three sources listed."
+  },
+  {
    "location": "characteristics[cell line] + factor value[cell line] SILAC heavy rows (rows 22-42, 64-84, ..., 736-756, the second 21-row block of each tumour block)",
-   "value": "super-SILAC standard: equal-protein mix of Arg10/Lys8-labelled CWR22Res, LNCaP, LNCaP-AI and VCaP cell lysates",
+   "value": "super-SILAC standard: equal-protein mix of Arg10/Lys8-labelled CWR22Res, LNCaP clone FGC, LNCaP-AI and VCaP cell lysates",
    "source_ids": [
     "preprint",
     "iscience"
@@ -419,9 +445,11 @@
   "Tumour tissue contains mouse host stroma (organism annotated Homo sapiens; host in characteristics[xenograft]; search included mouse proteome).",
   "experimentalDesignTemplate.txt is internally inconsistent: for each of the 18 samples the f021 file is assigned to a different experiment (cyclic off-by-one). mqpar.xml and summary.txt (the search actually run) assign all 21 fractions of each raw stem to one experiment; the SDRF follows mqpar/summary and raw names.",
   "Runs deposited as .zip archives each wrapping one .raw; comment[data file] uses the .raw name (as searched).",
-  "Age not available for CWR22Res/22Rv1 (Cellosaurus \"Adult\" only). Passage number, cell type, storage temperature not reported.",
+  "Age not available for CWR22Res/22Rv1 (Cellosaurus \"Adult\" only). Passage number and cell type not reported; storage temperature is reported only for the super-SILAC standard (-80 °C), not for the tumours (not available on light rows).",
+  "The light (tumour) channel is mixed-species: mouse-only protein groups (host stroma) carry ~31% of light-channel intensity of species-assignable groups overall (per experiment 18.6-68.2%; orient.py on proteinGroups.txt, mouse-only L / (mouse-only L + human-only L)). Organism is annotated Homo sapiens with characteristics[xenograft] per the TERMS.tsv xenograft rule; PRIDE lists both Homo sapiens and Mus musculus.",
+  "comment[data file] records the inner .raw names; the repository serves <stem>.zip archives (each containing exactly that .raw), so a consumer downloading by comment[data file] must fetch <stem>.zip.",
+  "characteristics[individual] values CWR22_donor / LNCaP_donor / VCaP_donor are curator-made placeholder keys, not study identifiers.",
   "parse_sdrf convert-openms reads only the first cleavage agent column.",
-  "Full-ontology parse_sdrf validation could not complete cleanly: OLS4 returned intermittent HTTP 500s (round 1 exit 1 with one outage-caused ERROR for PRIDE:0000899 reference; round 3 stopped by the 30-min limit). Cache-only validation exit 0. A reviewer may want to re-run the online validation when OLS is healthy.",
   "Review: REVIEW_PENDING_EXTERNAL (no self-approval; no review-gate approve run)."
  ]
 }
