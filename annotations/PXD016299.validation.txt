@@ -2,3 +2,49 @@
 # SDRF built by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/build/files.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/scripts/gen_tables.py); copied verbatim, no post-build edits.
 
 $ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv
+  Terms checked:     16
+  Verified:          16
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/pride.json --accession PXD016299
+PXD016299: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'TripleTOF 5600+', the annotation says 'Orbitrap Elite'  [TripleTOF 5600+]
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['wild type', 'STUB1 knockout'])
+Files per condition: dict_values([6, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD016299.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD016299.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD016299.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit code: 0
+
+# Notes
+- reconcile MAJOR instrument_contradicted ('TripleTOF 5600+') is a false positive for this SDRF: the PRIDE protocol names the TripleTOF 5600+ for the label-free SWATH arm (not annotated here) and states that the SILAC samples were run on an Orbitrap Elite; the Xcalibur header of all six CHIP_*.raw files reads "Orbitrap Elite MS" (range reads, scratch raw/*.head). reconcile still exits 0.
+- convert-openms warning "no TA= specified" refers to the Acetyl PP=Protein N-term modification (correct per format rules: position goes in PP=).
+- Disease: PRIDE lists "Spinocerebellar ataxia type 31" (DOID:0050980). Not used: the samples are SH-SY5Y neuroblastoma cells (Cellosaurus CVCL_0019) with a CRISPR STUB1 knockout as a model; SCA31 is not even the STUB1-associated ataxia (SCAR16/SCA48).
