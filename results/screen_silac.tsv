@@ -87,3 +87,16 @@ PXD021925	PRIDE	include		Batch 8: LPS tolerance RAW264.7 secretome	repository st
 PXD022482	PRIDE	include		Batch 8: Lenalidomide-resistant myeloma surfaceome	repository structured fields; paper methods
 PXD023565	PRIDE	include		Batch 8: HIV-1 / NLRX1 Jurkat	repository structured fields; paper methods
 PXD038541	PRIDE	include		Batch 8: T1D nephropathy fibroblast turnover dynamic SILAC	repository structured fields; paper methods
+PXD011013	PRIDE	include		Batch 9: CML stroma imatinib resistance trans-SILAC	repository structured fields; paper methods
+PXD013461	PRIDE	include		Batch 9: Oncogenic BRAF fusions HEK293 phospho	repository structured fields; paper methods
+PXD016505	PRIDE	include		Batch 9: KRAS G13D CRC AP-MS	repository structured fields; paper methods
+PXD016512	PRIDE	include		Batch 9: KRAS G13D CRC AP-MS (companion)	repository structured fields; paper methods
+PXD020108	PRIDE	include		Batch 9: EGFR-TKI resistance NSCLC	repository structured fields; paper methods
+PXD021428	PRIDE	include		Batch 9: CRPC xenografts super-SILAC SLFN5	repository structured fields; paper methods
+PXD025169	PRIDE	include		Batch 9: Murine norovirus nascent proteome RAW264.7	repository structured fields; paper methods
+PXD025781	PRIDE	include		Batch 9: Glioblastoma TIC LSD1 inhibitor histone super-SILAC	repository structured fields; paper methods
+PXD026689	PRIDE	include		Batch 9: Vorinostat-resistant CTCL HuT78	repository structured fields; paper methods
+PXD029030	PRIDE	include		Batch 9: miR-31 HEK293T (psoriasis study)	repository structured fields; paper methods
+PXD037057	PRIDE	include		Batch 9: Leishmania-infected THP-1 autophagosomes	repository structured fields; paper methods
+PXD035841	PRIDE	exclude	channel map	Batch 9: single-state SILAC search, no channel map (BLOCKED.md)	mqpar.xml; paper methods
+PXD013504	PRIDE	exclude	duplicate	Batch 9: raws identical to PXD011013 (DUPLICATES.md Group 10)	PRIDE checksums
