@@ -1,0 +1,351 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv",
+ "dataset": "PXD012186",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012186 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/p3.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012186/files?pageSize=100&page=0..1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/files_all.json; 136 entries = 132 .raw + MaxQuantoutput.zip + FASTA + Labellingscheme.xlsx + experimentalDesignTemplate.txt; every entry projectAccessions contains PXD012186)"
+  },
+  {
+   "id": "scheme",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/03/PXD012186/Labellingscheme.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/dl/Labellingscheme.xlsx; parsed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/scripts/xlsx.py, sheet List1 \"Labelling scheme\" B3:D30 and \"SILAC mixing scheme\" G5:L35)"
+  },
+  {
+   "id": "expdesign",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/03/PXD012186/experimentalDesignTemplate.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/dl/experimentalDesignTemplate.txt; MaxQuant Name/Fraction/Experiment for all 132 raw files)"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/03/PXD012186/MaxQuantoutput.zip members parameters.txt, summary.txt, proteinGroups.txt (HTTP-range read of the zip central directory with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/mq/)"
+  },
+  {
+   "id": "channelcheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/channel_check.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/scripts/channel_check.py: summed Chlamydia trachomatis protein-group intensity per channel and paper marker proteins CPPED1/LCP1 per channel, from mq proteinGroups.txt)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Yang R et al. Combined Transcriptome and Proteome Analysis of Immortalized Human Keratinocytes Expressing HPV16 Oncogenes ... mSphere 2019;4(2):e00129-19, doi:10.1128/mSphere.00129-19, PMID 30918060, PMC6437273 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC6437273.1/PMC6437273.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/paper.txt; Methods sections via Europe PMC JATS, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/methods.txt)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 2 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/03/PXD012186/06122017_19_JK_5-2017-YR_24h_1_fr3.raw and https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/03/PXD012186/06262017_25_JK_5-2017-YR_48h_8c_fr3.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:NOK , ?q=NOK AND ox:9606 , ?q=NOK AND keratinocyte , ?q=11854066 (queried 2026-11-09)"
+  },
+  {
+   "id": "ols",
+   "kind": "database",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=<id> (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/scripts/ols.py; all terms is_obsolete=false)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0), README.adoc:330 (biological replicate). The spec submodule nested templates copy is older than upstream."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-330",
+   "value": "NOK-<pWPI|E6E7>_<uninfected|Ctr>_<24h|48h>_sample<1..6|7a..8c>",
+   "source_ids": [
+    "scheme",
+    "expdesign"
+   ],
+   "evidence": "30 sources = one per (SILAC mix, channel): mixes 1-6 are triplex (3 channels), 7a-7c and 8a-8c duplex (2 channels) per Labellingscheme.xlsx; each source is one labelled culture lysate in one mix, so no name denotes two physical samples. Sample ids 1..8c = MaxQuant Experiment names 24h_1..48h_8c."
+  },
+  {
+   "location": "comment[label] + characteristics[genetic modification] + characteristics[infection] + factor values rows 1-330",
+   "value": "mix 1: L=E6E7 uninfected, M=E6E7 Ctr, H=pWPI | 2: L=pWPI, M=E6E7, H=E6E7 Ctr | 3: L=E6E7 Ctr, M=pWPI, H=E6E7 | 4 as 1 | 5 as 3 | 6 as 2 | 7a/8a: L=pWPI, M=pWPI Ctr | 7b/8b: L=pWPI Ctr, H=pWPI | 7c/8c: M=pWPI, H=pWPI Ctr",
+   "source_ids": [
+    "scheme",
+    "mq",
+    "channelcheck",
+    "paper"
+   ],
+   "evidence": "Explicit per-sample table in Labellingscheme.xlsx \"SILAC mixing scheme\" (Group/Isotope/Cell line/Infection/Time course/Sample). Consistent with the left \"Labelling scheme\" block (the three label permutations). summary.txt: experiments 1-6 Multiplicity 3 (Labels1 Arg6;Lys4, Labels2 Arg10;Lys8); 7a/8a Multiplicity 2 Labels0 empty, Labels1 Arg6;Lys4 (light+medium); 7b/8b Labels1 Arg10;Lys8 (light+heavy); 7c/8c Labels0 Arg6;Lys4, Labels1 Arg10;Lys8 (medium+heavy) = the scheme. Data check (channel_check.txt): summed intensity of 350 Chlamydia-only protein groups is highest, by 6-15x, in exactly the Ctr-infected channel of all 12 mixes; CPPED1 (paper: strongly down in E6E7) is highest and LCP1 (paper: up in E6E7) lowest in exactly the pWPI channel of all 6 triplex mixes. No conflict."
+  },
+  {
+   "location": "unused channels",
+   "value": "SILAC heavy of 7a/8a, SILAC medium of 7b/8b, SILAC light of 7c/8c: no rows",
+   "source_ids": [
+    "scheme",
+    "mq"
+   ],
+   "evidence": "Duplex mixes: the scheme lists only two channels and MaxQuant was run with Multiplicity 2 for these experiments."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-330",
+   "value": "1-3 per group; 1-6 for pWPI uninfected at each time point",
+   "source_ids": [
+    "scheme",
+    "pride",
+    "templates"
+   ],
+   "evidence": "Numbered per factor-value group (genetic modification x infection x sampling time), one number per independent culture (README.adoc:330, campaign rule 3). PRIDE: \"Triplicates were prepared in each group\" with \"triple label swap\" (each replicate grown in a different SILAC medium, hence separate cultures). pWPI uninfected occurs in part 1 (mixes 1-3 / 4-6) and part 2 (7a-c / 8a-c), which PRIDE describes as a separate second experiment, so 6 cultures per time point: mix 1,2,3,7a,7b,7c = 1..6 (24 h) and 4,5,6,8a,8b,8c = 1..6 (48 h)."
+  },
+  {
+   "location": "characteristics[genetic modification] + factor value[genetic modification] rows 1-330",
+   "value": "HPV16 E6 and E7 expression (lentiviral pWPI vector) | empty lentiviral vector pWPI",
+   "source_ids": [
+    "pride",
+    "paper",
+    "scheme"
+   ],
+   "evidence": "PRIDE: \"normal oral keratinocytes (NOKs pWPI) transduced with empty lentiviral vector, NOKs expressing HPV16 E6 and E7 oncogenes\". Paper Fig.1/Methods: HPV16 E7-Strep-P2A-3xFlag-E6 cassette in pWPI, lentiviral transduction, puromycin selection. Custom column (spec \"Extending Templates\"); precedent PXD012871/PXD024211."
+  },
+  {
+   "location": "characteristics[infection] + factor value[infection] rows 1-330",
+   "value": "Chlamydia trachomatis (NCBITaxon:813) | uninfected",
+   "source_ids": [
+    "pride",
+    "scheme",
+    "channelcheck",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"NOKs HPV16E6E7 infected with C. trachomatis (Ctr)\" and \"the influence of Ctr infection on NOKs was studied without HPV16E6E7 expression\"; scheme column Infection \"Ctr infected\"/\"no\". Pathogen named by its NCBITaxon label (NCBITaxon:813 Chlamydia trachomatis, OLS not obsolete); strain/serovar and MOI are not stated. Custom column."
+  },
+  {
+   "location": "characteristics[sampling time] + factor value[sampling time] rows 1-330",
+   "value": "24 hour (mixes 1-3, 7a-c) | 48 hour (4-6, 8a-c)",
+   "source_ids": [
+    "pride",
+    "scheme",
+    "expdesign"
+   ],
+   "evidence": "PRIDE: \"the protein profile was studied after 24 and 48 hours of Ctr infection\"; scheme \"Time Course\" 24h for groups 1-3 and 7, 48h for 4-6 and 8; MaxQuant experiment names 24h_*/48h_*. Applied to all channels of a mix (the uninfected controls of a mix were harvested alongside)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-330",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "Human oral keratinocytes; the HPV16 and C. trachomatis proteins are pathogen/transgene proteins in the human sample, not separate organisms of the sample (they are in the search database only)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-330",
+   "value": "oral epithelium (UBERON:0002424)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: \"immortalized human keratinocytes (normal oral keratinocytes [NOKs]) (29)\"; keratinocytes of the oral cavity form the oral epithelium. Inferred from the cell type + origin; the exact oral site is not stated."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-330",
+   "value": "keratinocyte (CL:0000312)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper and PRIDE organismParts CL:0000312 Keratinocyte."
+  },
+  {
+   "location": "characteristics[disease] rows 1-330",
+   "value": "normal (PATO:0000461)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "NOKs are normal oral keratinocytes, spontaneously immortalized; HPV16 E6E7 transduction and C. trachomatis infection are experimental manipulations recorded in their own columns. PRIDE diseases \"cervix carcinoma\" is the study motivation, not a property of these cells (reconcile exit 0)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-330",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Immortalized NOK cell line."
+  },
+  {
+   "location": "characteristics[sex] rows 1-330",
+   "value": "female",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper (Materials summary): \"Immortalized female human oral keratinocytes stably expressing the HPV16 oncogenes\"."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-330",
+   "value": "NOK (normal oral keratinocytes, Piboonniyom et al. 2002)",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper cites ref 29 Piboonniyom SO, Timmermann S, Hinds P, Munger K, Oral Oncol 2002 (PMID 11854066) for the NOKs. Cellosaurus has no entry for this line (no hit for PMID 11854066); id:NOK returns only mouse hybridomas NOK-1..NOK-5 (CVCL_E4A6..E4AA) and the unrelated, male, HaCaT-contaminated NOK-SI (CVCL_BW57). The value is therefore disambiguated with the originating publication."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] / characteristics[cellosaurus name] rows 1-330",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "No Cellosaurus entry for the Munger-lab NOK line; NOK-SI (CVCL_BW57) is a different line and deliberately not used."
+  },
+  {
+   "location": "assay name + comment[data file] + comment[fraction identifier] rows 1-330",
+   "value": "132 raw files, 11 per mix; fraction identifier 1-11",
+   "source_ids": [
+    "files",
+    "expdesign",
+    "pride"
+   ],
+   "evidence": "experimentalDesignTemplate.txt assigns each raw file to one Experiment with MaxQuant Fraction 3..13; SDRF fraction identifier k = MaxQuant fraction k+2 (1 = hpRP fr3 ... 10 = fr12, 11 = MaxQuant 13 = pooled fr1+fr2+fr13, file suffix fr1-2-13). PRIDE: \"13 fractions were collected, first two and the last one were combined\"; \"12 combined samples ... each one consisting of 11 fractions\"."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-330",
+   "value": "1",
+   "source_ids": [
+    "expdesign"
+   ],
+   "evidence": "One injection per fraction."
+  },
+  {
+   "location": "comment[instrument] rows 1-330",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Raw headers (both run dates): \"Q Exactive - Orbitrap MS\"; PRIDE and paper agree."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-330",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper: \"data-dependent tandem MS (MS/MS) scans on the 10 most intense precursors\"; raw method nan15_67min_Top10."
+  },
+  {
+   "location": "comment[dissociation method] + comment[collision energy] rows 1-330",
+   "value": "HCD (beam-type CID, MS:1000422); 27 NCE",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper: \"Normalized collision energy for ... HCD fragmentation was 27\"; raw method \"NCE / stepped NCE 27\"."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-330",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Q Exactive acquires MS/MS in the Orbitrap; paper \"MS/MS spectra were acquired with a resolution of 17,500\"; raw method Resolution 17500."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-330",
+   "value": "350m/z-1650m/z",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper \"survey MS (at 350 to 1,650 m/z)\"; raw method full MS \"Scan range 350 to 1650 m/z\"."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-330",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper: \"basic-pH reversed-phase LC fractionation ... 20 mM ammonium formate (pH 10)\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-330",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Paper: \"digested with sequencing-grade trypsin (Promega)\". MaxQuant search rule Trypsin/P, 2 missed cleavages (summary.txt) - recorded here per campaign rule 2."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-330",
+   "value": "DTT (PRIDE:0000608); iodoacetamide (PRIDE:0000599)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"reduced with 10 mM dithiothreitol ... alkylated with 20 mM iodoacetamide\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-330",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) R (UNIMOD:188), Label:2H(4) K (UNIMOD:481), Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt \"Fixed modifications Carbamidomethyl (C)\"; summary.txt Variable modifications \"Oxidation (M);Acetyl (Protein N-term)\" and Labels Arg6;Lys4 / Arg10;Lys8 for every raw file (one search covering all 132 files). Paper: Arg+6 [13C6], Lys+4 [D4] medium; Arg+10 [13C6 15N4], Lys+8 [13C6 15N2] heavy. UNIMOD accessions from mass shifts, labels MT=Variable (campaign rule 11)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-330",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "MaxQuant main-search tolerance \"for the second search from recalibrated spectra 4.5 ppm\" (first search 20 ppm). parameters.txt does not record it; source is the Methods/PRIDE text."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-330",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq",
+    "paper"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-330",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10. Templates: MS proteomics of a human cell line; clinical-metadata not declared (no patients)."
+  },
+  {
+   "location": "technology type rows 1-330",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "characteristics[culture medium] = not available: the SILAC medium is \"FAD\" (75% Ham's F-12 + 25% DMEM for SILAC, 5% FBS, insulin, EGF, cholera toxin, adenine, hydrocortisone; paper Cell culture / Cell labeling sections). NCIT (the column's ontology) has no term for FAD or Ham's F-12 medium; a free-text value failed parse_sdrf validation in round 1 (ERROR \"not a valid ontology term\"), and DMEM alone would misdescribe it.",
+  "characteristics[cellosaurus accession]/[cellosaurus name] = not available: the NOK line (Piboonniyom et al. 2002, Munger lab) has no Cellosaurus record; the cell-line value is disambiguated from the mouse hybridomas NOK-1..5 and from NOK-SI (CVCL_BW57) by naming the originating publication. parse_sdrf warns that this free-text cell line is not in CLO/BTO/EFO (warning only).",
+  "characteristics[age], [developmental stage], [ancestry category], [individual], [passage number] = not available: donor age/ancestry are not given in the paper or ref 29 as retrieved; passage only as \"within 10 passages after selection\" (not a number).",
+  "characteristics[organism part] \"oral epithelium\" is inferred from \"normal oral keratinocytes\"; the exact oral site of the donor tissue is not stated.",
+  "Biological-replicate numbering assumes the pWPI uninfected cultures of part 2 (mixes 7a-c/8a-c) are distinct from those of part 1 (mixes 1-3/4-6). PRIDE calls part 2 a separate experiment and the scheme lists them as separate samples, but no source states explicitly that new cultures were grown; if they were the same lysates, those numbers would collapse to 1-3.",
+  "Chlamydia trachomatis strain/serovar and MOI are not stated in PRIDE or the paper (the mSphere paper analyses only the uninfected E6E7 vs pWPI comparison; the infection arms are described only in the PRIDE record and Labellingscheme.xlsx). Hence only the species is encoded.",
+  "Uninfected channels show a residual ~5-15% Chlamydia protein signal relative to the infected channel of the same mix (MaxQuant requantify / ratio compression); it does not change the channel assignment.",
+  "parse_sdrf validate-sdrf ontology checks ran against an OLS4 service that intermittently returned HTTP 500 (logged in validation.txt); the terms were verified separately with OLS4 /api/terms lookups (scripts/ols.py).",
+  "Review status REVIEW_PENDING_EXTERNAL: no adversarial review was run by the producer."
+ ]
+}
