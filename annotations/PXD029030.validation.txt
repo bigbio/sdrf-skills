@@ -1,0 +1,54 @@
+# PXD029030 validation log; SDRF sha256 b60341d78483e3cba500f09af810d93122ef9e8b6a6ed85e041337be1df8ec53 (44 rows x 50 cols, built by sdrf-tools build, no post-build edit)
+
+## parse_sdrf validate-sdrf -s annotations/PXD029030.sdrf.tsv -t ms-proteomics -t human -t cell-lines --use_ols_cache_only
+WARNING: Term: hsa-miR-31-5p mimic in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: control miRNA mimic in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## parse_sdrf validate-sdrf -s annotations/PXD029030.sdrf.tsv -t ms-proteomics -t human -t cell-lines (live OLS)
+[144 traceback/OLS-retry log lines from OLS4 HTTP 500 errors omitted; full log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD029030/v_validate_full.txt]
+WARNING: Term: hsa-miR-31-5p mimic in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: control miRNA mimic in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: HEK293T in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure annotations/PXD029030.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD029030.sdrf.tsv
+(first attempt crashed with OLS4 HTTP 500 on q=Homo sapiens, exit 1; rerun:)
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD029030.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD029030.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD029030/pride_record.json --accession PXD029030
+PXD029030: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  organism_contradicted (characteristics[organism]): the record names only Mus musculus and never Homo sapiens  [declared 'Homo sapiens']
+exit=1
+Refutation (false positive): characteristics[organism] = Homo sapiens is correct. PRIDE organism field "Homo sapiens (human)"; Cellosaurus CVCL_0063 (HEK293T) species Homo sapiens; MaxQuant searched D:\HUMAN.fasta and identified human proteins (e.g. SBNO1_HUMAN). The only species word in the record prose is "a mouse model of psoriasis" (in vivo GLS-inhibitor experiment, not proteomics), which the checker reads as the study organism.
+Note: pride_record.json is the MCP get_project_details output re-keyed to PRIDE camelCase (scripts/record_camel.py) because the PRIDE v3 project endpoint timed out 3x; with the snake_case MCP file reconcile reported only MINOR cleavage_agent_unsupported (it could not see the protocol text), exit 0. With the camelCase record trypsin is found in "Proteins were digested overnight with 2% (w/w) trypsin".
+
+## parse_sdrf convert-openms -s annotations/PXD029030.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD029030/convert)
+Conditions (2): dict_keys(['hsa-miR-31-5p mimic', 'control miRNA mimic'])
+Files per condition: dict_values([22, 22])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 44 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD029030.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check annotations/PXD029030.evidence.json
+annotations/PXD029030.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD029030.sdrf.tsv annotations/PXD029030.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit=0
