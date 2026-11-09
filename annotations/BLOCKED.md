@@ -2015,7 +2015,7 @@ Why blocked:
 
 ## PXD008454 — Adaptive resistance to afatinib in PC9 NSCLC cells (Mulder et al., Mol Cancer Res 2018; SILAC Arg6/Lys4 full proteome + label-free kinobead and Fe-IMAC phosphoproteome), label-free runs excluded (excluded runs, not a blocker)
 
-**Annotated:** all 60 SILAC full-proteome raws (`OR13_20161126_TCM_exp19_SILAC-PC9_*`; 12 mixtures 24h/3D/5D/7D x R1-R3, 5 high-pH fractions each; 120 rows) in `annotations/PXD008454.sdrf.tsv`. Channel map heavy = afatinib 10 nM, light = DMSO, from the design statement "ratios of time points versus DMSO" (thesis Supp Fig S2A) checked against the deposited H/L direction of the proteins the paper names (CAPN2 down; ATP2C1, MARCKS, MARCKSL1, CNN2 up) and the cell-cycle signature. No explicit "heavy = treated" sentence exists: AACR supplementary is behind a bot check (not bypassed). See `PXD008454.evidence.json` limitations.
+**Annotated:** all 60 SILAC full-proteome raws (`OR13_20161126_TCM_exp19_SILAC-PC9_*`; 12 mixtures 24h/3D/5D/7D x R1-R3, 5 high-pH fractions each; 120 rows) in `annotations/PXD008454.sdrf.tsv`. Channel map heavy = afatinib 10 nM, light = DMSO, stated explicitly in the AACR Supplementary Material and Methods (figshare 22516368, DOI 10.1158/1541-7786.22516368.v1: "Light labelled cells were treated with DMSO, heavy labelled cells were treated with 10 nM Afatinib for 24 hours, 3 days, 5 days or 7 days") and checked against the deposited H/L direction of the proteins the paper names (CAPN2 down; ATP2C1, MARCKS, MARCKSL1, CNN2 up) and the cell-cycle signature. See `PXD008454.evidence.json`.
 
 **Excluded runs (out of scope: not SILAC; PRIDE: "Kinobead data and phospho data was quantified using LFQ"; 39 RAW):**
 - Kinobead pull-downs, 15 RAW: `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_24h_R1.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_24h_R2.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_24h_R3.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_48h_R1.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_48h_R2.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_48h_R3.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_72h_R1.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_72h_R2.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_72h_R3.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_7days_R1.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_7days_R2.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_7days_R3.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_DMSO_R1.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_DMSO_R2.raw`, `OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_DMSO_R3.raw`
@@ -2024,7 +2024,7 @@ Why blocked:
 
 **Would be annotated by:** a separate label-free SDRF part (`PXD008454-lfq`), outside this SILAC campaign.
 
-**Open points in the annotated part:** whether the 12 DMSO channels are time-matched independent cultures is undocumented (sampling time `not available`, replicate 1-12); precursor tolerance not recorded (MaxQuant 1.5.6.0 txt only, no mqpar.xml).
+**Open points in the annotated part:** whether the 12 DMSO channels are independent cultures is undocumented (Supp M&M: "Per condition, 3 dishes were made for 3 biological replicates"; replicate kept 1-12, sampling time `not available`); precursor tolerance not recorded (MaxQuant 1.5.6.0 txt only, no mqpar.xml).
 
 ## PXD002845 — Eutopic vs ectopic endometrial stromal cells, spike-in SILAC standard (Kasvandik et al., J Proteome Res 2016), 45 runs of six undocumented MaxQuant experiments (partial block)
 

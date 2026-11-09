@@ -24,6 +24,11 @@
    "location": "Mulder TC, PhD thesis \"Exploring Cellular Signalling: Perspectives on phosphoproteomic data use and interpretation in a model of drug resistance\", Utrecht University 2019, https://dspace.library.uu.nl/handle/1874/381148 (bitstream 5fb75b0e-38ba-4b2b-9e1d-eb96e656eb56; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/paper/thesis.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/paper/thesis.txt). Chapter 5 = the paper incl. Supplementary Figure S2 legend (text line 5246-5254) and Materials and Methods (lines 5403-5487)"
   },
   {
+   "id": "supp_mm",
+   "kind": "supplementary",
+   "location": "AACR Supplementary Material and Methods of doi:10.1158/1541-7786.MCR-18-0212, figshare article 22516368, DOI 10.1158/1541-7786.22516368.v1 (figshare resource_doi = 10.1158/1541-7786.MCR-18-0212), file https://ndownloader.figshare.com/files/39978906 (15417786mcr180212-sup-197874_2_supp_4779687_p98gy2.docx, sha256 f73fac1c6ba6688a15b2708565e28f7ec6762d64b395d9599d8d0828db62e658; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/supp/suppmm.docx, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/supp/suppmm.txt)"
+  },
+  {
    "id": "mq",
    "kind": "search-output",
    "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/10/PXD008454/SEARCHProteome.zip members experimentalDesignTemplate.txt, txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (HTTP range read with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/mq/)"
@@ -68,13 +73,14 @@
    "location": "comment[label] + characteristics[treatment] + factor value[treatment] rows 1-120",
    "value": "SILAC heavy = afatinib-treated PC-9; SILAC light = DMSO control (untreated)",
    "source_ids": [
+    "supp_mm",
+    "orientation",
     "thesis",
     "paper",
     "pride",
-    "mq",
-    "orientation"
+    "mq"
    ],
-   "evidence": "Design: thesis Supp Fig S2A legend \"PC9 cells were treated with 10nM Afatinib for 1, 3, 5 or 7 days for full proteome analysis. PCA showed separation of ratios of time points versus DMSO\" -> each mixture = afatinib time point vs DMSO. Paper/PRIDE: only the heavy label (Arg6/Lys4) is described; MaxQuant Multiplicity 2, Labels1 Arg6;Lys4, ratio H/L. Orientation (no explicit heavy=treated sentence exists; see limitations): the paper reports CAPN2 decreased and ATP2C1, MARCKS, MARCKSL1, CNN2 increased after afatinib (Fig 4B text); deposited log2 H/L 3D/5D/7D: CAPN2 -0.22..-0.36 at 3D/5D, ATP2C1 +0.30..+1.01, MARCKS +0.32..+0.61, MARCKSL1 +0.88..+1.14, CNN2 +0.43..+1.23; cell-cycle drug signature (EGFR inhibition) MKI67 -0.73..-1.36, MCM2/3/7, PCNA, CCNB1 all negative at 3D-7D. All 12 experiments correlate positively (Pearson 0.16-0.80), i.e. no label swap; 24h has weaker effects but correlates +0.35..+0.39 with 3D. Hence heavy = afatinib in all 12 mixtures. Controls written untreated (campaign rule 4); the vehicle was DMSO."
+   "evidence": "Explicit label map: Supp M&M, section MS/MS analysis - Samples: \"For proteomics analysis SILAC labelled cells were cultured in 10cm dishes. One dish per biological replicate was used. Light labelled cells were treated with DMSO, heavy labelled cells were treated with 10 nM Afatinib for 24 hours, 3 days, 5 days or 7 days. Per condition, 3 dishes were made for 3 biological replicates. Quantification was performed by mixing light labelled proteins from DMSO control with each heavy labelled time point.\" Data check against the deposited ratios follows. Design: thesis Supp Fig S2A legend \"PC9 cells were treated with 10nM Afatinib for 1, 3, 5 or 7 days for full proteome analysis. PCA showed separation of ratios of time points versus DMSO\" -> each mixture = afatinib time point vs DMSO. Paper/PRIDE: only the heavy label (Arg6/Lys4) is described; MaxQuant Multiplicity 2, Labels1 Arg6;Lys4, ratio H/L. Data check of the stated orientation: the paper reports CAPN2 decreased and ATP2C1, MARCKS, MARCKSL1, CNN2 increased after afatinib (Fig 4B text); deposited log2 H/L 3D/5D/7D: CAPN2 -0.22..-0.36 at 3D/5D, ATP2C1 +0.30..+1.01, MARCKS +0.32..+0.61, MARCKSL1 +0.88..+1.14, CNN2 +0.43..+1.23; cell-cycle drug signature (EGFR inhibition) MKI67 -0.73..-1.36, MCM2/3/7, PCNA, CCNB1 all negative at 3D-7D. All 12 experiments correlate positively (Pearson 0.16-0.80), i.e. no label swap; 24h has weaker effects but correlates +0.35..+0.39 with 3D. The data therefore agree with the stated map (heavy = afatinib) in all 12 mixtures. Controls written untreated (campaign rule 4); the vehicle was DMSO."
   },
   {
    "location": "characteristics[sampling time] + factor value[sampling time] rows 1-120",
@@ -82,27 +88,30 @@
    "source_ids": [
     "files",
     "mq",
-    "paper"
+    "paper",
+    "supp_mm"
    ],
-   "evidence": "Raw names / MaxQuant experiments 24h, 3D, 5D, 7D; paper: \"PC9 cells were treated with afatinib for 1 to 7 days at a concentration of 10 nmol/L\"; Fig 2A \"1, 3, 5, or 7 days\". No source says when the DMSO controls were harvested or whether they were time-matched, so light rows carry not available."
+   "evidence": "Supp M&M: heavy cells treated \"for 24 hours, 3 days, 5 days or 7 days\". Raw names / MaxQuant experiments 24h, 3D, 5D, 7D; paper: \"PC9 cells were treated with afatinib for 1 to 7 days at a concentration of 10 nmol/L\"; Fig 2A \"1, 3, 5, or 7 days\". No source says when the DMSO controls were harvested or whether they were time-matched, so light rows carry not available."
   },
   {
    "location": "characteristics[dose] rows 1-120",
    "value": "heavy: 10 nM; light: not applicable",
    "source_ids": [
+    "supp_mm",
     "paper",
     "thesis"
    ],
-   "evidence": "Paper: \"treated with afatinib for 1 to 7 days at a concentration of 10 nmol/L\"; thesis Supp Fig S2A \"10nM Afatinib\". Custom characteristics column (spec Extending Templates)."
+   "evidence": "Supp M&M: \"heavy labelled cells were treated with 10 nM Afatinib\". Paper: \"treated with afatinib for 1 to 7 days at a concentration of 10 nmol/L\"; thesis Supp Fig S2A \"10nM Afatinib\". Custom characteristics column (spec Extending Templates)."
   },
   {
    "location": "characteristics[biological replicate] rows 1-120",
    "value": "heavy: 1-3 per time point (R1-R3); light: 1-12",
    "source_ids": [
     "mq",
-    "files"
+    "files",
+    "supp_mm"
    ],
-   "evidence": "Replicates R1-R3 per time point (experiment names); numbered 1..n within each factor-value group (README.adoc:330, campaign rule 3). The 12 DMSO channels share one factor-value group (untreated / not available) and get 1-12, one per mixture; that they are 12 independent cultures rather than aliquots of fewer DMSO cultures is not documented (limitation)."
+   "evidence": "Supp M&M: \"One dish per biological replicate was used ... Per condition, 3 dishes were made for 3 biological replicates.\" Replicates R1-R3 per time point (experiment names); numbered 1..n within each factor-value group (README.adoc:330, campaign rule 3). The 12 DMSO channels share one factor-value group (untreated / not available) and get 1-12, one per mixture; that they are 12 independent cultures rather than aliquots of fewer DMSO cultures is not documented (see limitations)."
   },
   {
    "location": "characteristics[organism] rows 1-120",
@@ -242,11 +251,12 @@
    "location": "comment[cleavage agent details] (2 columns) rows 1-120",
    "value": "NT=Trypsin;AC=MS:1001251 and NT=Lys-C;AC=MS:1001309",
    "source_ids": [
+    "supp_mm",
     "pride",
     "paper",
     "mq"
    ],
-   "evidence": "PRIDE sampleProcessingProtocol: \"For full-proteome analysis, proteins were digested using Trypsin/LysC.\" The paper only says \"Proteins were overnight digested with Trypsin (Sigma)\" (in the phospho lysis paragraph). MaxQuant search rule Trypsin/P (summary.txt). Second column added deterministically by scripts/postbuild.py (rule 2)."
+   "evidence": "Supp M&M, proteomics cell lysis and digestion: \"Proteins were digested using Trypsin (1:100) and LysC (1:100) (Sigma) at 37oC overnight.\" PRIDE sampleProcessingProtocol: \"For full-proteome analysis, proteins were digested using Trypsin/LysC.\" The paper only says \"Proteins were overnight digested with Trypsin (Sigma)\" (in the phospho lysis paragraph). MaxQuant search rule Trypsin/P (summary.txt). Second column added deterministically by scripts/postbuild.py (rule 2)."
   },
   {
    "location": "comment[fractionation method] rows 1-120",
@@ -287,12 +297,10 @@
   }
  ],
  "limitations": [
-  "Channel orientation (heavy = afatinib, light = DMSO) has no explicit sentence in the paper, PRIDE protocol or thesis; the AACR Supplementary Materials and Methods / Tables S1 (proteome ratios) are behind a Cloudflare bot check at aacrjournals.org (HTTP 403, not bypassed). The map rests on (a) the explicit design \"ratios of time points versus DMSO\" (thesis Supp Fig S2A), (b) only the heavy label being described, and (c) the deposited H/L direction of 5 proteins the paper names plus the EGFR-inhibition cell-cycle signature, consistent in all 12 mixtures (orientation.txt, correlation.txt). It is a data-checked inference, not a stated label sheet.",
-  "Whether the 12 DMSO (light) channels are 12 independent, time-matched cultures or aliquots of fewer DMSO cultures is not documented; light rows carry sampling time not available and biological replicate 1-12 (one per mixture).",
-  "comment[precursor mass tolerance] = not available: MaxQuant 1.5.6.0 parameters.txt/summary.txt do not record precursor tolerances and no mqpar.xml was deposited. Consequence: parse_sdrf convert-openms exits 1 (\"Cannot read precursor mass tolerance: not available\"), as for campaign precedents PXD014368/PXD006676/PXD024103.",
-  "Cleavage agent: PRIDE says Trypsin/LysC for the full proteome while the paper mentions only trypsin; PRIDE was followed (explicitly about the full proteome).",
-  "Culture medium of the light (DMSO) cultures not stated (labeling medium DMEM described for heavy only; regular growth medium RPMI 1640).",
-  "Out of scope (not SILAC, LFQ per PRIDE dataProcessingProtocol \"Kinobead data and phospho data was quantified using LFQ\"): 15 kinobead raws (OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_*) and 24 Fe-IMAC phosphoproteome raws (*_TCM_PC9_Af_IMAC_*); plus the SEARCH/PEAK zips (search output and peak lists). Listed in annotations/BLOCKED.md (excluded runs).",
-  "Review: external sdrf-adversarial-review hand-off (REVIEW_PENDING_EXTERNAL); not self-approved."
+  "Light (DMSO) biological replicates numbered 1-12 (one per mixture, one source per run). Supp M&M says \"One dish per biological replicate was used ... Per condition, 3 dishes were made for 3 biological replicates. Quantification was performed by mixing light labelled proteins from DMSO control with each heavy labelled time point.\" This suggests the DMSO arm may be only 3 dishes reused across the 4 time points, in which case 1-12 over-counts independent control cultures; the dish-to-mixture mapping is not stated, and characteristics[biological replicate] does not allow not available (sample-metadata template), so 1-12 is kept. Downstream statistics should not treat the 12 light channels as 12 independent cultures without author confirmation. Harvest time of the DMSO cultures is also not stated (sampling time not available).",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.5.6.0 parameters.txt/summary.txt do not record precursor tolerances and no mqpar.xml was deposited. Supp M&M says only \"Mass tolerance was set at 20 ppm\", which does not say whether it is the precursor or fragment tolerance (MaxQuant first-search and main-search precursor tolerances differ; parameters.txt gives FTMS MS/MS tol. 20 ppm, used for the fragment tolerance), so it was not used for the precursor. Consequence: parse_sdrf convert-openms exits 1 (\"Cannot read precursor mass tolerance: not available\"), as for campaign precedents PXD014368/PXD006676/PXD024103.",
+  "Culture medium of the light (DMSO) cultures not stated in paper or Supp M&M (labeling medium DMEM described for heavy amino acids only; regular growth medium RPMI 1640).",
+  "Out of scope (not SILAC, LFQ per PRIDE dataProcessingProtocol \"Kinobead data and phospho data was quantified using LFQ\" and Supp M&M \"Kinobead pull down samples and phospho samples were quantified using label free quantification\"): 15 kinobead raws (OR13_A2_20161011_TCM_exp15_KBPD_PC9_Afat_*) and 24 Fe-IMAC phosphoproteome raws (*_TCM_PC9_Af_IMAC_*); plus the SEARCH/PEAK zips (search output and peak lists). Listed in annotations/BLOCKED.md (excluded runs).",
+  "Review: external sdrf-adversarial-review hand-off (REVIEW_PENDING_EXTERNAL); round 1 FAILED on provenance only (explicit label statement in Supp M&M not cited); this manifest revision cites it. Not self-approved."
  ]
 }
