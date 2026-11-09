@@ -1,0 +1,357 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD002810.sdrf.tsv",
+ "dataset": "PXD002810",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002810 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/pride_v3.json = raw v3 JSON used for reconcile; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/pride.json = same record via mcp get_project_details)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002810/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/files_all.json; 278 entries = 276 .RAW + combined.zip + combined_onetoone.zip; every entry projectAccessions contains PXD002810)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Mihailovich M et al. miR-17-92 fine-tunes MYC expression and function to ensure optimal B cell lymphoma growth. Nat Commun 2015;6:8725, doi:10.1038/ncomms9725, PMID 26555894, PMC4667639 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC4667639.1/PMC4667639.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/paper.txt)"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4667639.1/ncomms9725-s1.pdf (Supplementary Figures 1-9 + legends; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/supp.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/supp.txt, Supp Fig 2 image /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/im2-000.png)"
+  },
+  {
+   "id": "mqA",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002810/combined.zip members combined/experimentalDesignTemplate.txt, combined/txt/parameters.txt, combined/txt/summary.txt, combined/txt/proteinGroups.txt (zip central directory read by HTTP range, members inflated individually; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/mqA/)"
+  },
+  {
+   "id": "mqB",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002810/combined_onetoone.zip members combined_onetoone/combined/experimentalDesignTemplate.txt, .../txt/parameters.txt, .../txt/summary.txt, .../txt/proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/mqB/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/orientation_combined.txt and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/orientation_onetoone.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/scripts/orient.py: normalized H/L of the Western-blot-validated miR-17-19b targets of Supp Fig 2e + Pearson correlation of log2 normalized H/L between MaxQuant experiments)"
+  },
+  {
+   "id": "filemap",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/build/filemap.tsv (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002810/scripts/make_tables.py: deposited RAW name -> MaxQuant experiment, renamed run name and fraction position)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 3 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002810/F101217_EV_BCell_HL1to1_Rev1_Sort3_15.RAW, f080917TB_2567_8b.RAW, f090303_EV_2567BcellHL1to1_B07_F_06.RAW (instrument strings)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4/api (terms checked is_obsolete=false: MONDO:0015759, CL:0000236, MS:1000557, MS:1000133, MS:1000291, MS:1001251, MS:1001309, PRIDE:0000553, PRIDE:0000608, PRIDE:0000599, PRIDE:0000627)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); spec README.adoc:27 (sdrf version v1.1.0). The spec submodule nested sdrf-templates copy is older."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-462",
+   "value": "2567_<MaxQuant experiment design name>_<miR-17-19b|control> (16 names, rows 1-372); 2567_WTWT_heavy / 2567_WTWT_light (rows 373-462)",
+   "source_ids": [
+    "mqA",
+    "mqB",
+    "filemap",
+    "paper"
+   ],
+   "evidence": "combined.zip experimentalDesignTemplate.txt names 8 SILAC experiments A-I (no H) with run names F090801_Dir1_*, F091104_Dir1b_*, F090807_Dir2_*, F090804_Rev1_*, F090925_Rev1b_*, F091127_Dir2b_*, F101215_Dir2_*, F101217_Rev1_* (renamed from the deposited RAW names; mapping by date + OFFGEL well in filemap.tsv; 2010 sets suffixed -Sort3 after the deposited names \"..._Sort3_NN\" to keep the two \"Dir2\"/\"Rev1\" names distinct). Each experiment is one heavy+light SILAC mixture, so one source per (experiment, channel) = one physical labelled cell population. combined_onetoone.zip experiment \"Ele\" = the WT:WT 1:1 triplicate (paper Methods); its heavy and light populations are one source each, measured in three technical series."
+  },
+  {
+   "location": "comment[label] + characteristics[genotype] + factor value[genotype] rows 1-136, 229-324 (MaxQuant experiments A Dir1, B Dir1b, C Dir2, F Dir2b, G Dir2-Sort3)",
+   "value": "SILAC heavy = pMIG-miR-17-19b (miR cells); SILAC light = pMIG empty vector (control)",
+   "source_ids": [
+    "paper",
+    "supp",
+    "orientation",
+    "mqA"
+   ],
+   "evidence": "Paper Fig. 1b legend: \"Control and miR-17-19b overexpressing cells (miR cells) were cultured in light (L) and heavy (H) media, respectively\"; Supp Fig 2b legend: \"light = control; heavy= miR cells\". Data check (normalized H/L, mqA proteinGroups) on the Western-blot-confirmed down-regulated targets of Supp Fig 2e: Pbk 0.35/0.26/0.22/0.34/0.34, Ptk2b 0.39/0.34/0.39/0.32/0.15, Htra2 0.39/0.42/0.48/0.42/0.50 in A/B/C/F/G (paper reports Pbk 0.31/0.34, Ptk2b 0.33/0.35, Htra2 0.42/0.50) -> heavy = miR cells. Pairwise Pearson of log2 H/L among A,B,C,F,G all positive (0.35-0.67)."
+  },
+  {
+   "location": "comment[label] + characteristics[genotype] + factor value[genotype] rows 137-228, 325-372 (MaxQuant experiments D Rev1, E Rev1b, I Rev1-Sort3)",
+   "value": "SILAC heavy = pMIG empty vector (control); SILAC light = pMIG-miR-17-19b (label swap)",
+   "source_ids": [
+    "orientation",
+    "mqA",
+    "filemap",
+    "paper"
+   ],
+   "evidence": "Deposited RAW names and MaxQuant experiment names mark these mixtures \"Rev1\" / \"Rev1bis\" (reverse) versus \"Dir1\"/\"Dir2\" (direct). Data check: normalized H/L of the same validated targets is inverted in D/E/I: Pbk 4.40/3.03/2.50, Htra2 2.89/2.66/1.97, Aifm1 1.69/1.53/1.61, Gmfb 2.13/1.62/1.85, Pfkp 1.94/1.76/1.51; Pearson of log2 H/L D,E,I vs A,B,C,F,G all negative (-0.24 to -0.64), D/E/I among themselves positive (0.44-0.63). CONFLICT recorded: the paper only states the direct orientation (L = control, H = miR); the reverse orientation rests on the Rev naming + the inverted marker ratios (rule 6: label statement + data)."
+  },
+  {
+   "location": "comment[label] + characteristics[genotype] + factor value[genotype] rows 373-462",
+   "value": "SILAC heavy and SILAC light = wild type #2567 cells (WT:WT 1:1 self-mix)",
+   "source_ids": [
+    "paper",
+    "supp",
+    "mqB",
+    "orientation",
+    "filemap"
+   ],
+   "evidence": "Paper Methods: \"we made use of a triplicate SILAC proteome of WT:WT cells to examine technical variation\"; Supp Fig 4a: \"Protein ratio distributions from control cells, obtained by combining three technical replicates\". Deposited names \"2567BcellHL1to1\" / \"Bcell_HL1to1\" (heavy:light 1:1), search folder \"combined_onetoone\", MaxQuant experiment \"Ele\" = 3 x 15 OFFGEL fractions (series A, B, C). Data: Ele normalized H/L of Pbk 1.00, Htra2 0.95, Vcl 0.96, median log2 -0.014, sd 0.29 -> both channels same state."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-372",
+   "value": "1-8 within each genotype group, one per MaxQuant experiment (A=1, B=2, C=3, D=4, E=5, F=6, G=7, I=8)",
+   "source_ids": [
+    "mqA",
+    "paper"
+   ],
+   "evidence": "Each MaxQuant experiment is a separate heavy/light mixture with its own OFFGEL fractionation (22 or 24 fractions); label-swapped mixtures (Rev) necessarily come from separately labelled cultures. Numbered uniquely per experiment within each factor group (README.adoc:330; campaign rule 3). Whether the \"b\"/\"bis\" sets are re-preparations of the same cultures is undocumented (limitation)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 373-462",
+   "value": "heavy WT population = 1, light WT population = 2",
+   "source_ids": [
+    "paper",
+    "mqB"
+   ],
+   "evidence": "The heavy-labelled and light-labelled WT populations are two separately grown cultures in the same genotype group, so they carry distinct numbers."
+  },
+  {
+   "location": "comment[technical replicate] rows 373-462",
+   "value": "1, 2, 3 = series f090303 A01-A15, f090303 B01-B15, F090401 C01-C15",
+   "source_ids": [
+    "paper",
+    "supp",
+    "mqB",
+    "filemap"
+   ],
+   "evidence": "Paper: \"triplicate SILAC proteome of WT:WT cells\"; Supp Fig 4a: \"combining three technical replicates\". mqB experimentalDesignTemplate assigns the three 15-file series (fractions 1-15 each) to experiment Ele."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-372",
+   "value": "1",
+   "source_ids": [
+    "mqA"
+   ],
+   "evidence": "Each MaxQuant experiment is a single OFFGEL series; no repeated injections of the same fraction."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-462",
+   "value": "position of the OFFGEL well file in well order (1-22 or 1-24; 1-15 for Ele)",
+   "source_ids": [
+    "mqA",
+    "mqB",
+    "filemap",
+    "paper"
+   ],
+   "evidence": "Paper: peptides separated by isoelectric focusing with the Agilent 3100 OFFGEL kit. Files ordered by OFFGEL well number in the deposited names (pooled wells 17-18 and 19-20 in A/C/D are single files). MaxQuant experimentalDesignTemplate fraction numbers differ for B/E/F/G/I (wells 17+18 and 19+20 given the same fraction there); filemap.tsv lists both."
+  },
+  {
+   "location": "comment[data file] + assay name rows 1-462",
+   "value": "deposited RAW file name / its stem",
+   "source_ids": [
+    "files",
+    "mqA",
+    "mqB"
+   ],
+   "evidence": "231 of 276 deposited RAW files; summary.txt Multiplicity 2 for all 186 (combined) + 90 (combined_onetoone) runs."
+  },
+  {
+   "location": "characteristics[organism] rows 1-462",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE organism Mus musculus; paper: mouse B-lymphoma cell lines from lambda-MYC transgenic mice; search database IPI Mouse v3.87."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-462",
+   "value": "2567",
+   "source_ids": [
+    "paper",
+    "supp"
+   ],
+   "evidence": "Paper Methods: \"Mouse B-lymphoma cell lines (#2567, #2646, ...) were established after in vitro culture of primary lymphomas isolated from lambda-MYC transgenic mice\"; SILAC data are from #2567 (Methods \"#2567-1 and #2567-2\"; Supp Fig 1b \"clone #2567\"; RAW names \"2567\"). Not in Cellosaurus/CLO/BTO/EFO; free text as in campaign precedent PXD004548."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-462",
+   "value": "B cell",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: \"an expanding population of IgM+B220+ lymphoma cells was established\"; CL:0000236."
+  },
+  {
+   "location": "characteristics[disease] rows 1-462",
+   "value": "B-cell non-Hodgkin lymphoma",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: lambda-MYC B-cell lymphomas (\"MYC-driven lymphomas\", \"B cell lymphoma growth\"); MONDO:0015759 (not obsolete). No more specific subtype is stated for the mouse tumours."
+  },
+  {
+   "location": "characteristics[material type] rows 1-462",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Established in vitro B-lymphoma line #2567."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-462",
+   "value": "lambda-MYC transgenic",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"primary lymphomas isolated from lambda-MYC transgenic mice (ref 25)\". Background strain not stated."
+  },
+  {
+   "location": "characteristics[genotype] + factor value[genotype] rows 1-462",
+   "value": "pMIG-miR-17-19b / pMIG empty vector / wild type",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods: pMIG-miR-17-19b cloned into the GFP retroviral vector pMIG II; control = \"a retrovirus lacking the cluster\"; both GFP-sorted. WT:WT experiment named in Methods. Custom characteristics column (spec \"Extending Templates\"); the compared variable of the study."
+  },
+  {
+   "location": "comment[instrument] rows 1-462",
+   "value": "NT=LTQ FT Ultra;AC=MS:1000557",
+   "source_ids": [
+    "paper",
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE: \"LTQ-FT Ultra mass spectrometer\"; RAW headers \"LTQ FT Ultra MS\" in 3 sampled files across the 2008-2010 series."
+  },
+  {
+   "location": "comment[cleavage agent details] (both columns) rows 1-462",
+   "value": "NT=Trypsin;AC=MS:1001251 and NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mqA",
+    "mqB"
+   ],
+   "evidence": "Paper: \"digested by addition of 1 ug LysC for 3 h ... 1 ug trypsin was added ... overnight\". MaxQuant search rule Trypsin/P, 2 missed cleavages (summary.txt). Second column inserted by deterministic postbuild.py (rule 2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-462",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; Label:13C(6)15N(4) R (UNIMOD:267) and Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mqA",
+    "mqB",
+    "paper"
+   ],
+   "evidence": "parameters.txt: Fixed modifications Carbamidomethyl (C); summary.txt Variable modifications \"Oxidation (M);Acetyl (Protein N-term)\", Multiplicity 2, Labels1 \"Arg10;Lys8\" in all 276 runs. Paper: 13C6 15N2 Lys and 13C6 15N4 Arg."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-462",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mqA",
+    "mqB",
+    "paper"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (ITMS) 0.5 Da\"; MS/MS acquired in the LTQ ion trap (paper)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-462",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"In the LTQ MS/MS, spectra were acquired ...\""
+  },
+  {
+   "location": "comment[dissociation method] rows 1-462",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"the five most intense ions were isolated for CID-fragmentation\""
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-462",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"operated in a data-dependent mode\""
+  },
+  {
+   "location": "comment[fractionation method] rows 1-462",
+   "value": "NT=Isoelectric focusing;AC=PRIDE:0000553",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Peptide isoelectrofocusing, Agilent 3100 OFFGEL Fractionation Kit."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-462",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"reduction with 1 mM DTT\""
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-462",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"carboxymethylated with 5 mM IAA\""
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] rows 1-462",
+   "value": "v1.1.0; ms-proteomics v1.2.0, vertebrates v1.1.0, cell-lines v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rule 1. vertebrates: mouse; cell-lines: all samples are the cultured line #2567. clinical/oncology-metadata not declared (no patient samples, rule 15)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-462",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rule 10."
+  },
+  {
+   "location": "technology type rows 1-462",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "LC-MS/MS."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 45 of 276 RAW files are excluded and blocked (BLOCKED.md): MaxQuant experiment \"Lele\" of combined_onetoone.zip = f080904TB_yeast_2567_01..15 (15) and f080917TB_2567_1b..15b + 1c..15c (30). They are SILAC (Multiplicity 2, Arg10;Lys8) with H/L ~1 (median log2 0.003, sd 0.37), but the paper does not describe a 2008 experiment, the word \"yeast\" in 15 names is unexplained (possible yeast spike or different design), and the cells/channels are undocumented. The paper's WT:WT triplicate matches \"Ele\" (3 x 15 fractions), not \"Lele\".",
+  "Reverse (Rev1, Rev1b, Rev1-Sort3) channel map: no sentence in the paper states the swapped orientation; it rests on the deposited \"Rev\"/\"Rev1bis\" names plus inverted ratios of the Western-blot-validated targets (Pbk, Ptk2b, Htra2, Aifm1, Gmfb, Pfkp, Ppp2r2a, Bax) and negative global correlation with the Dir experiments. The paper's general statement (L = control, H = miR) holds for the Dir experiments only.",
+  "Biological replicate structure: the paper mentions two quantified sets \"#2567-1\" and \"#2567-2\" (analysed separately) and \"multiple biological replicates\", but does not say which MaxQuant experiments belong to which set, nor whether Dir1b/Dir2b/Rev1bis are new cultures or re-preparations of Dir1/Dir2/Rev1 lysates. Each of the 8 mixtures got its own number (1-8 per group); this may over-count independent cultures if b/bis are re-preparations. Not encoded: #2567-1/#2567-2 membership (2010 \"Sort3\" sets may be #2567-2 — unverified).",
+  "WT:WT (Ele) genotype \"wild type\" follows the Methods wording \"WT:WT cells\"; Supp Fig 4a calls them \"control cells\". Whether these were uninfected or empty-vector #2567 cells is not stated.",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.2.2.5 parameters.txt/summary.txt do not record first/main search precursor tolerance; no mqpar.xml deposited. convert-openms therefore fails (expected, as campaign precedents PXD014368/PXD006676).",
+  "characteristics[organism part], developmental stage, sex, culture medium = not available: tumour site, mouse age/sex not given; the SILAC medium (lysine/arginine-free DMEM/Ham's F12 1:1 + 10% dialysed FBS) has no NCIT term (NCIT has only \"Dulbecco's Modified Eagle Medium\", which would be inexact). Cellosaurus accession/name not available (in-house line).",
+  "Collision energy not reported; column omitted.",
+  "Paper/PRIDE say 1 ug LysC 3 h then trypsin overnight; MaxQuant used the Trypsin/P rule (recorded here as a note)."
+ ]
+}

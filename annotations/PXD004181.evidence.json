@@ -1,0 +1,275 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD004181.sdrf.tsv",
+ "dataset": "PXD004181",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004181 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/PXD004181.project.json): title, sample/data processing protocols (\"SILAC-labelled DG75 cells ... mixed 1:1 ... pY1000 ... two technical replicates ... Q Exactive HF\"; MaxQuant 1.5.5, 6 and 20 ppm, variable deamidation (N), oxidation (M), phospho (STY), fixed carbamidomethyl C), instruments field [Q Exactive], quantification SILAC"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004181/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/PXD004181.files.0.json; pages 1-3 empty): 33 entries = 32 RAW + MaxQuant.zip; every entry projectAccessions contains PXD004181"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Walter R, Pan KT, Doebele C, Comoglio F et al. Blood 2017;129(5):598-608, PMID 28064214, PMC5290984, doi:10.1182/blood-2016-06-721423; free full text https://pmc.ncbi.nlm.nih.gov/articles/PMC5290984/ (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/pmc.html, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/paper.txt): Methods \"Cells, vectors, and reagents\", \"MS and protein expression analysis\"; Results; Figure 2 and Figure 6 legends"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD004181/MaxQuant.zip member summary.txt (HTTP-range extracted by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/scripts/rzip.py to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/summary.txt): Raw file -> Experiment, Enzyme Trypsin/P, Variable modifications, Multiplicity, Labels0/1/2 for all 32 RAW files"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD004181/MaxQuant.zip member parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/parameters.txt): MaxQuant 1.5.5.1, Fixed modifications Carbamidomethyl (C), MS/MS tol. (FTMS) 20 ppm, MS/MS tol. (ITMS) 0.5 Da, Max. missed cleavages from summary.txt 2"
+  },
+  {
+   "id": "mq_ratios",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD004181/MaxQuant.zip members proteinGroups.txt and Phospho (STY)Sites.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/proteinGroups.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/phosphoSites.txt); marker tables /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/markers_proteinGroups.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/markers_etv6_b2m.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/psites_bcr.tsv made by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/scripts/markers.py, markers2.py, psites.py"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 1 MiB (4 MiB for proteome1) of each of the 32 .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD004181/<file>.raw, UTF-16LE decoded (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/raw/; instrument per file /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/raw_instruments.txt; autosampler vial per file /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/raw_vials.txt by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/scripts/vials.py)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:DG-75&format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/cellosaurus_DG75.txt) and sdrf-tools cellline lookup DG-75: CVCL_0244, Burkitt lymphoma, male, 10Y, Population Jewish; Ashkenazi, derived from pleural effusion (UBERON_0000175), cell type B cell"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=<id> lookups 2026-11-09 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/ols_checks.txt; none obsolete)"
+  },
+  {
+   "id": "build",
+   "kind": "tool",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/scripts/make_tables.py writes /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/build/samples_{dgii,telsyk_py,telsyk_pro}.tsv and technical_*.tsv; three `sdrf-tools build -t ms-proteomics -t human -t cell-lines` runs; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/scripts/concat.py concatenates the three identical-header parts"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0); the spec submodule nested templates copy is older"
+  },
+  {
+   "id": "pxd003492",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD003492 and files pages 0-3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/PXD003492.project.json, PXD003492.files.*.json): Corso et al. PNAS 2016, 400 files (398 RAW named DG75_BCRstim_GP_*); zero file-name and zero checksum overlap with PXD004181"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, characteristics[biological replicate] rows 1-34",
+   "value": "one source per (arm, SILAC channel, preparation); bio rep DGII-1=1, DGII-2=2, TelSyk light=3 in untreated/wild type group, TelSyk medium/heavy=1",
+   "source_ids": [
+    "mq_summary",
+    "raw_header",
+    "paper"
+   ],
+   "evidence": "summary.txt puts DGII_1 and DGII_2 in separate MaxQuant Experiments (two independent 2-plex SILAC experiments -> independent light and heavy cultures -> bio rep 1 and 2 per factor group); the TEL-SYK arm (Aug 2016) is a third independent light culture (bio rep 3 in the untreated/wild type group, numbering unique per culture within the group). All six DG_TelSyk files are one MaxQuant Experiment with one proteome vial (RA3) and two pY vials (RA1, RA2): treated as one SILAC experiment (bio rep 1) whose two pY immunoprecipitations get distinct source names (pYIP1, pYIP2) because they are separate physical preparations. Proteome and pY-enriched preparations of the same mix get distinct source names (same culture -> same bio rep)."
+  },
+  {
+   "location": "comment[technical replicate], assay name, comment[data file], comment[fraction identifier] rows 1-34",
+   "value": "-1/-2 (proteome1/proteome2) = injection 1/2 of one vial; fraction 1",
+   "source_ids": [
+    "raw_header",
+    "paper",
+    "pride",
+    "files"
+   ],
+   "evidence": "Paper/PRIDE: \"For each sample, 2 technical replicates were analysed by MS\". Raw headers: each file pair shares one autosampler vial (hsp_pro_1-1/1-2 RD1; hsp_pro_2-1/2-2 RD2; hsp_pY_1-1/1-2 RD1; hsp_pY_2-1/2-2 RD2; TEL-SYK pY_1-1/1-2 RA1; pY_2-1/2-2 RA2; Tel-SyK_proteome1/2 RA3). No peptide fractionation is described; MaxQuant \"Fraction\" values 1/10/21/30 in summary.txt are parameter/matching groups (one per enrichment type), not fractions."
+  },
+  {
+   "location": "comment[label] rows 1-34",
+   "value": "SILAC light/heavy (DGII rows 1-16); SILAC light/medium/heavy (TelSyk rows 17-34)",
+   "source_ids": [
+    "mq_summary",
+    "paper"
+   ],
+   "evidence": "summary.txt (rule 14): DGII_1/DGII_2 Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8; DG_TelSyk Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8. Paper Methods: light Arg0/Lys0, medium 13C6-Arg/D4-Lys, heavy 13C6 15N4-Arg/13C6 15N2-Lys."
+  },
+  {
+   "location": "characteristics[treatment], factor value[treatment], characteristics[compound] rows 1-16",
+   "value": "light: untreated (DMSO vehicle, compound Dimethyl Sulfoxide); heavy: HSP90 Inhibitor (compound not available)",
+   "source_ids": [
+    "paper",
+    "mq_ratios",
+    "ols"
+   ],
+   "evidence": "Paper Methods: \"For phosphoproteomic and protein expression profiling of DG75 and Daudi cells, the light-labeled cell batches were treated with dimethyl sulfoxide (DMSO), whereas the heavy-labeled cell batches were treated with the HSP90 inhibitors AT13387 or STA-9090.\" DGII is a 2-plex (light/heavy) design matching that sentence. Data check: in both DGII_1 and DGII_2 heavy/light shows the HSP90-inhibition heat-shock response (log2 H/L HSPA1A/B 3.74 and 2.92, DNAJB1 2.01/1.56, HSPH1 1.31/1.28) and loss of BCR-proximal pY (SYK pY352 -1.74/-2.29, LYN pY194 -2.55/-2.47, BTK pY223 -1.77/-2.26), as the paper reports for HSP90 inhibition. Which of AT13387/STA-9090 each experiment received is only in supplemental Figure 1C (not retrievable) -> compound not available. Control encoded as untreated (rule 4) with the vehicle in characteristics[compound]. NCIT:C156880 HSP90 Inhibitor, NCIT:C437 Dimethyl Sulfoxide."
+  },
+  {
+   "location": "characteristics[treatment], factor value[treatment], characteristics[genetic modification], factor value[genetic modification] rows 17-34",
+   "value": "light: untreated / wild type; medium: untreated / TEL-SYK fusion transduction; heavy: B cell receptor stimulation (5 min) / wild type",
+   "source_ids": [
+    "paper",
+    "mq_ratios"
+   ],
+   "evidence": "Figure 6B legend: \"Untreated wild-type DG75 cells were labeled with light SILAC amino acids, BCR-stimulated (5 minutes) DG75 cells were labeled with heavy SILAC amino acids, and TEL-SYK-expressing DG75 cells were labeled with medium SILAC amino acids.\" Fig 6 legend: cells \"transduced with ... a TEL-SYK fusion protein-encoding construct\". Data check (Phospho (STY)Sites DG_TelSyk): heavy shows strongest BCR pY induction (log2 H/L CD79A pY210 3.21, SYK pY525 5.22, CBL pY630 4.65, BTK pY551 2.83) and medium a weaker, partly overlapping one (M/L SYK pY348 3.48, CBL pY630 3.00, CD79A 1.14), consistent with the figure; no heat-shock response in M or H (HSPA1A log2 -0.12/0.00). Heavy cells are encoded wild type because the legend names only the medium batch as TEL-SYK-expressing."
+  },
+  {
+   "location": "characteristics[genetic modification], factor value[genetic modification] rows 1-16",
+   "value": "wild type",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "The HSP90-inhibitor profiling (Methods) uses DG75 cells with no construct; TEL-SYK transduction is described only for the Figure 6 experiment. Inferred (absence of a described modification), stated here as such."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-34",
+   "value": "enrichment of phosphorylated protein (pY files); not applicable (proteome files)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "files",
+    "ols"
+   ],
+   "evidence": "Methods: \"immunoprecipitation of phosphotyrosine-containing peptides using the pY1000 antibody\"; file names *_pY_* vs *_pro_*/*_proteome*; \"Protein expression profiling was performed as described previously\". SAMPLE-GUIDELINES PTM enrichment: phospho = enrichment of phosphorylated protein (EFO:0010806), none = not applicable."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-34",
+   "value": "DG75 (EFO:0002160 label) / CVCL_0244 / DG-75",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_summary",
+    "cellosaurus"
+   ],
+   "evidence": "TelSyk files are named DG75 (KT_Pan_010816_030816_DG75_Tel-SyK_proteome1; DG_TEL-SYK_pY) and Fig 6B is a DG75 pYome; DGII rows: MaxQuant Experiment names DGII_1/DGII_2 share the DG prefix (DD = Daudi, file names Daudi_hsp90/DD_hsp90), PRIDE protocol says \"SILAC-labelled DG75 cells\". Cellosaurus DG-75 = CVCL_0244 (no other species collision; sub-clones are CBF1 KO derivatives not used here)."
+  },
+  {
+   "location": "characteristics[organism], characteristics[disease], characteristics[organism part], characteristics[cell type], characteristics[material type] rows 1-34",
+   "value": "Homo sapiens; Burkitt lymphoma; pleural effusion; B cell; cell line",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0244: OX NCBI_TaxID=9606, DI Burkitt lymphoma (MONDO:0007243), \"Derived from site: In situ; Pleural effusion; UBERON=UBERON_0000175\", cell type B cell (CL:0000236); paper: BL cell line DG75."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[ancestry category], characteristics[individual] rows 1-34",
+   "value": "10Y; male; juvenile stage; Ashkenazi Jew; DG-75_donor",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: AG 10Y, SX Male, CC Population: Jewish; Ashkenazi (HANCESTRO:0324 Ashkenazi Jew); 10Y donor < 20Y -> juvenile stage (UBERON:0034919, in EFO), not adult (rule 9). individual = the single donor of the line."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-34",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: SILAC \"SILAC-RPMI 1640 medium devoid of arginine and lysine (Pierce) supplemented with 10% (DG75) ... dialyzed fetal calf serum\"; NCIT:C178973."
+  },
+  {
+   "location": "characteristics[sample type], characteristics[pooled sample] rows 1-34",
+   "value": "study sample; not pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Every channel is a single cultured cell batch of one condition (no reference/pool channel, no blanks)."
+  },
+  {
+   "location": "comment[instrument] rows 1-28 / rows 29-34",
+   "value": "Q Exactive HF (MS:1002523) / Orbitrap Fusion Lumos (MS:1002732)",
+   "source_ids": [
+    "raw_header",
+    "paper",
+    "pride"
+   ],
+   "evidence": "Raw headers: all DGII files and the four DG_TEL-SYK_pY files say \"Q Exactive HF - Orbitrap MS\" (paper: Q Exactive HF); KT_Pan_010816_030816_DG75_Tel-SyK_proteome1/2 say \"Orbitrap Fusion Lumos\" (method Universal_88min.meth). PRIDE instruments field [Q Exactive] is wrong at model level (precedence raw > paper > PRIDE)."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-28 / rows 29-34",
+   "value": "HCD (beam-type CID); 28 NCE / 30 NCE; orbitrap / linear ion trap; 350-1600 / 350-1500 m/z",
+   "source_ids": [
+    "raw_header",
+    "paper"
+   ],
+   "evidence": "QE HF method text (hsp_pro_1-1, hsp_pY_1-1, DG_TEL-SYK_pY_1-1): Full MS 350 to 1600 m/z at 120,000, dd-MS2 30,000, NCE 28 (paper: HCD NCE 28%). Lumos method (Tel-SyK_proteome1): MS1 Orbitrap 120K Scan Range 350-1500, ddMSn ActivationType = HCD, Collision Energy (%) = 30, MS2 Detector Type = IonTrap."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-34",
+   "value": "6 ppm; 20 ppm (Orbitrap MS2 rows 1-28) / 0.5 Da (ion-trap MS2 rows 29-34)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_params"
+   ],
+   "evidence": "Paper/PRIDE: \"Mass tolerance after recalibration of precursor mass and fragment ion mass were set as 6 and 20 ppm\". parameters.txt: MS/MS tol. (FTMS) 20 ppm, MS/MS tol. (ITMS) 0.5 Da; MaxQuant applies the ITMS tolerance to ion-trap MS2 spectra (Lumos proteome files)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-34",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Deamidated N, Phospho STY variable; SILAC labels Arg6 (UNIMOD:188), Lys4 (UNIMOD:481) [rows 17-34 only; not applicable rows 1-16], Arg10 (UNIMOD:267), Lys8 (UNIMOD:259)",
+   "source_ids": [
+    "mq_summary",
+    "mq_params"
+   ],
+   "evidence": "summary.txt Variable modifications for all files: Oxidation (M);Acetyl (Protein N-term);Deamidation (N);Phospho (STY); parameters.txt Fixed modifications Carbamidomethyl (C). Labels per experiment as in the label claim; DGII was searched without Arg6/Lys4, so those two columns are not applicable in rows 1-16 (rule 5). The paper omits Acetyl (Protein N-term), which the search used. MT=Variable for labels by batch convention (rule 11)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-34",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mq_summary",
+    "paper"
+   ],
+   "evidence": "Paper: proteins \"digested\" (enzyme not named in the text); summary.txt Enzyme Trypsin/P, Specific, max. 2 missed cleavages. Digestion enzyme encoded as Trypsin, the Trypsin/P search rule noted here (rule 2)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[fractionation method] rows 1-34",
+   "value": "Data-dependent acquisition; not applicable",
+   "source_ids": [
+    "paper",
+    "raw_header"
+   ],
+   "evidence": "Methods: \"operated in a data-dependent acquisition mode ... up to 20 most abundant\"; raw methods TopN 20 / ddMSnScan; no fractionation described."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-34",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Reagents not named (protocols deferred to Oellerich et al./Corso et al.); carbamidomethylation is in the search (fixed) so alkylation happened but the reagent is unstated."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-34",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates chosen for MS proteomics on a human cell line (no patient samples, so no clinical-metadata)."
+  },
+  {
+   "location": "characteristics[passage number] rows 1-34",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Passage not stated."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 14 of 32 RAW files annotated (arms DGII and DG_TelSyk). Excluded and listed in annotations/BLOCKED.md: MaxQuant Experiment DD (Daudi; 6 files: KT_Pan_010816_030816_Daudi_hsp90_proteome1/2, KT_Pan_010816_090816_DD_hsp90_pY_1-1, 1-2, 2-1, 2-2) and DGI_w/DGI_X/DGI_Y (DG75; 12 files: KT_Pan_260116_090216_proteome_P-A_w-1, w-2, P-A_x-1, x-2, P-S_y-1, y-2 and the six matching KT_Pan_260116_090216_pY_* files). DD is a 3-plex but the paper only states light = DMSO / heavy = inhibitor; the medium channel and the per-channel compound (AT13387 vs STA-9090) are in supplemental Figure 1C only. DGI 3-plex channel identities are not described anywhere retrievable, and the data show that in each DGI run one of medium/heavy carries no HSP90-inhibitor response (log2 HSPA1A M/L vs H/L: w 3.23/0.00, X 0.00/3.54, Y -0.21/3.35), so DGI is a different, undocumented design.",
+  "Supplemental Materials and methods / supplemental Figure 1C (Blood data supplement) not retrievable: ashpublications.org returns a Cloudflare bot check (not bypassed); PMC copy has no supplement (pmc-prop-has-supplement no); Europe PMC supplementaryFiles: not open access; PMC OA S3 has no copy.",
+  "DGII rows: the heavy HSP90 inhibitor is AT13387 or STA-9090; which experiment (DGII_1 vs DGII_2) got which is undocumented, so characteristics[compound] = not available and both heavy channels share factor value HSP90 Inhibitor (they may be different compounds rather than replicates of one compound). Exposure time (paper: 24 h for DG75 pYome) not encoded because the link of DGII to that statement is inferred.",
+  "DG_TelSyk: whether pY sample 1 and 2 (vials RA1/RA2) are independent cultures or two immunoprecipitations of one SILAC mix is undocumented; encoded as one experiment (bio rep 1, as MaxQuant combined them in one Experiment and only one proteome vial exists) with distinct source names. BCR stimulation reagent for MS not stated in the main text (anti-IgM is stated only for Ca2+ flux).",
+  "Precursor tolerance 6 ppm is the paper's stated post-recalibration value; MaxQuant main-search tolerance per parameter group is not in parameters.txt (no mqpar.xml deposited).",
+  "Reduction/alkylation reagents and passage number not available.",
+  "Related deposit PXD003492 (Corso et al. PNAS 2016, same group) shares no raw files (0 name and 0 checksum overlap), so it is not a duplicate and was not annotated here.",
+  "Review: not run by this producer (caller requested no review-gate approve / no review file); status REVIEW_PENDING_EXTERNAL."
+ ]
+}
