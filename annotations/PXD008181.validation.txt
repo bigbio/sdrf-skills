@@ -1,0 +1,22 @@
+# PXD008181 validation log (2026-11-09T13:22Z); SDRF sha256 37e39a50c5035b085cf2d874a48b3b3fa174a14a91933a9f16f00dc4df20e72f
+SDRF produced only by sdrf-tools build from samples.tsv/technical.tsv (written by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/scripts/make_tables.py). No post-build edits.
+
+## Round 1 (current file): parse_sdrf validate-sdrf -s annotations/PXD008181.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+WARNING: Term: MKL-1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: MKL-2 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: PeTa in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: WaGa in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: MCC13 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+Warnings refuted: MKL-1 (CVCL_2600), MKL-2 (CVCL_D027), PeTa (CVCL_LC73), WaGa (CVCL_E998), MCC13 (CVCL_2583) are real Cellosaurus cell lines (api.cellosaurus.org records in scratch cvcl/) with no CLO/BTO/EFO class (OLS searchClasses in clo, efo, bto returns no match). The cellosaurus accession column carries the identity. Same warning class as campaign precedent PXD014368 (WM-115).
+
+## sdrf-tools structure annotations/PXD008181.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD008181.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/pride.json --accession PXD008181
+PXD008181: every annotated value agrees with the deposit record.
+exit=0
+
+## sdrf-tools check annotations/PXD008181.sdrf.tsv

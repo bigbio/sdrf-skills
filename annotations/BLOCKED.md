@@ -1745,3 +1745,29 @@ None of these states a label (campaign rules 6–7).
 The technical values are already resolved in `annotations/PXD041509.report.md`:
 - SILAC arm: Orbitrap Exploris 480 MS:1003028, Arg10 UNIMOD:267, Lys8 UNIMOD:259, GG UNIMOD:121, Nethylmaleimide UNIMOD:108, MaxQuant 4.5 ppm / 20 ppm.
 - TMT arm: Orbitrap Fusion Lumos MS:1002732, SPS-MS3, Sequest HT 7 ppm / 0.5 Da.
+
+## PXD024211 — USP32 / LAMTOR1 ubiquitinome (Hertel et al., Cell Rep 2022; SILAC diGly + total proteome, RPE1), 36 "Mila" raws (partial block)
+
+| field | value |
+|---|---|
+| Deposited | 72 RAW (Q Exactive HF) + `txt_gg_ip.zip`, `txt_global_prot.zip` (MaxQuant txt; Multiplicity 2, light = unlabelled, heavy = Lys8). Both searches contain two series: "AlexK" (experiments A1–A3 / a1–a3) and "Mila" (M1–M3 / m1–m3). |
+| Annotated | The 36 AlexK files (USP32 study): `annotations/PXD024211.sdrf.tsv`. Light = RPE1 NHT, heavy = RPE1 USP32KO, from the first author's thesis (doi:10.21248/gups.62688, Fig. 3-4, Methods 6.2.10.1) and cross-checked against the deposited diGly-site ratios. |
+| Blocked | `20180320_FB_Mila_GGIP_{1,2,3}_{4,5,6,7,85,12}.raw` (18 diGly SCX fractions) and `20180403_FB_Mila_GGIP_Prot_{1,2,3}_{1..6}.raw` (18 gel slices): 36 files. |
+| SDRF would need | 36 × 2 = 72 rows with the cell line, the genotype/treatment of each channel (light, heavy) and the replicate structure. |
+
+**What the deposit does say:**
+- "Mila" is Mila Basic (Bremm lab; thesis acknowledgements and publication list). She works on USP11, not USP32.
+- Total-proteome `Ratio H/L normalized` for USP11 is m1 0.61 and m2 0.42 (A series about 0.9–1.0). That suggests USP11 depletion in the heavy channel, but no source states it.
+- The diGly-site ratios of Rab7/Rab11/TMEM192 are flat in M1–M3, so these runs are not a USP32 replicate.
+
+**Sources checked:**
+
+| source | result |
+|---|---|
+| PRIDE record (description, both protocols) | Describes only RPE1 NHT vs USP32KO. Nothing about a second series. |
+| Cell Rep paper (doi:10.1016/j.celrep.2022.111653) | Abstract only. No PMC copy, cell.com PDF 403 (not bypassed), Elsevier API returns metadata only. |
+| Hertel thesis (Goethe University OPUS) | Describes the USP32 diGly experiment only ("one SILAC sample set with three technical replications"). |
+| Basic et al., JBC 2021 (USP11; PMC8546420) | Data availability names PXD022143 (USP11 GFP-IP, 6 raws). No SILAC diGly experiment. |
+| MaxQuant summary/parameters/proteinGroups | Only the experiment names M1–M3 / m1–m3. No sample names. |
+
+**Unblocked by:** a source (author statement, or a later USP11 paper's methods) naming the cell line and the light/heavy condition of the Mila diGly and total-proteome sets.

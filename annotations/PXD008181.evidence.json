@@ -1,0 +1,318 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD008181.sdrf.tsv",
+ "dataset": "PXD008181",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD008181 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD008181/files?pageSize=100&page=0..1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/files_all.json; 84 entries = 14 RAW .baf, 14 Mascot .dat, 14 mzid.gz, 14 mgf + 14 PRIDE-generated mgf.gz, 14 PRIDE-generated mztab.gz; every entry projectAccessions contains PXD008181; build list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/files_raw.json)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Kotowski U, Erovic BM, Schnoll J, Stanek V, Janik S, Steurer M, Mitulovic G. Quantitative proteome analysis of Merkel cell carcinoma cell lines using SILAC. Clin Proteomics 2019;16:42. doi:10.1186/s12014-019-9263-z, PMID 31889939, PMC6921584 (https://pmc-oa-opendata.s3.amazonaws.com/PMC6921584.1/PMC6921584.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/paper.txt)"
+  },
+  {
+   "id": "supp1",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6921584.1/12014_2019_9263_MOESM1_ESM.docx (Additional file 1: HPLC gradient, Chromeleon program; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/supp/)"
+  },
+  {
+   "id": "supp23",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6921584.1/12014_2019_9263_MOESM2_ESM.xls and _MOESM3_ESM.xls (Tables S1/S2: per-cell-line protein lists, sheets HaCaT, BroLi, MKL-1, MKL-2, PeTa, WaGa, MCC13; no ratios; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/supp/)"
+  },
+  {
+   "id": "dat",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD008181/F0397NN.dat, first 20 kB of all 14 Mascot .dat files by HTTP range (parameters + masses sections; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/dat/*.head)"
+  },
+  {
+   "id": "mgf",
+   "kind": "peak-list",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD008181/2814749767260NN.mgf, first 1.5 kB of all 14 mgf by HTTP range (DataAnalysis export header naming the source analysis.baf and \"Instrument: maXis impact\"; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/mgf/*.head)"
+  },
+  {
+   "id": "mzid",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD008181/<name>.mzid.gz, all 14 downloaded (SpectraData -> mgf, SearchDatabase -> .dat; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/mzid/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/scripts/markers.py: passing rank-1 PSMs per marker protein in each mzid, split into K-containing peptides, which in this heavy-only search (fixed Label:13C(6) K) are necessarily 13C6-Lys heavy, vs K-free peptides)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_2600, CVCL_D027, CVCL_LC73, CVCL_E998, CVCL_2583, CVCL_0038 (?format=txt; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/cvcl/)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS via /home/user/bin/mcpcall searchClasses (MS:1003462 maXis impact; MONDO:0019210 cutaneous neuroendocrine carcinoma; UBERON:0001097, 0002429, 0007795, 0002097, 0001068; CL:0000312; PATO:0000461; EFO:0001272; HANCESTRO:0005; MS:1000084; MS:1000133; UNIMOD:188, 1, 4, 35)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; sdrf-proteomics README.adoc:27 (sdrf version v1.1.0). The spec submodule nested templates copy is older."
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file] + assay name rows 1-28",
+   "value": "14 .baf files, one per run, each on a heavy and a light row",
+   "source_ids": [
+    "files",
+    "mgf",
+    "mzid",
+    "dat"
+   ],
+   "evidence": "The 14 RAW-category files of the deposit are Bruker analysis.baf files renamed to the run name. Each mgf header names its source \"...\\<run>.d\\analysis.baf\"; each mzid names its mgf and its .dat. Chain: MKL-1: MKL1_RA1_01_8251/125/126 (mzid MKL_1_3/1/2, dat F039768/53/54, mgf ...013/010/011); MKL-2: MKL2_RA1_01_8254/134/135 (MKL_2_3/1/2; F039770/69/57; ...017/015/016); PeTa: Peta_RA1_01_8261/158/159 (Peta_3/1/2; F039772/56/58; ...022/019/020); WaGa: Waga_RA1_01_8271/122/123 (Waga_8271/122/123; F039777/59/60; ...028/025/026); MCC13: MCC13_RA1_01_8265/8266 (MCC13_2/1; F039765/66; ...008/009). Assay name = file name without .baf. Search outputs, peak lists and PRIDE-generated files are not data runs."
+  },
+  {
+   "location": "comment[label] + characteristics[cell line] + factor value[cell line] rows 1-28",
+   "value": "SILAC heavy = the MCC cell line named in the run file; SILAC light = HaCaT",
+   "source_ids": [
+    "paper",
+    "orientation",
+    "dat"
+   ],
+   "evidence": "Paper Methods: \"For SILAC labelling cells were grown in SILAC Media supplemented either with 13C6 l-Lysine-2HCl (heavy) and l-Arginine-HCl (light) or with l-Lysine-2HCl (light)\"; Fig. 1 legend: \"MCC cells were cultured in medium supplemented with 13C6 l-Lysine-2HCl (heavy) and HaCaT cells were cultured in medium supplemented with l-Lysine-2HCl (light)\"; Results: \"Proteins detected in MCC cells were compared to the reference cell line HaCaT\"; ratios reported as H/L MCC vs HaCaT. Cell line per run from the run-file prefix (MKL1, MKL2, Peta, Waga, MCC13), which matches the paper's line names. Data check (orientation.txt, weak because only 107-390 PSMs pass per mzid): heavy-only search (Mascot MODS fixed Label:13C(6) (K)) identifies 13C6-Lys peptides of the neuroendocrine MCC marker chromogranin A in MKL-1 (MKL_1_2), MKL-2 (MKL_2_1) and WaGa (Waga_122/123/8271) runs, of TBB3 in MKL-2 and ENO2 in MCC13; the keratinocyte marker KRT5 is never seen in MKL-1/MKL-2/PeTa/WaGa runs and in MCC13 runs mostly by K-free (label-agnostic) peptides (1 heavy vs 13 K-free PSMs). Consistent with heavy = MCC, light = HaCaT. No conflicting statement found."
+  },
+  {
+   "location": "source name rows 1-28",
+   "value": "<line>_SILAC_heavy; HaCaT_SILAC_light_reference_in_<line>_mix",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "One SILAC mixture per MCC line (paper: \"equimolar amounts of proteins, 1 µg total proteins, from control and the MCC cells were mixed and submitted for tryptic digestion\"; \"aliquots of 20 µl were prepared\"). The HaCaT light channel of each mixture gets its own source name per mixture (reference precedent PXD005854/PXD009766), so the row coordinate stays unique."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-28",
+   "value": "1-3 per line (MCC13 1-2)",
+   "source_ids": [
+    "paper",
+    "mgf"
+   ],
+   "evidence": "Paper: \"All samples were analysed as technical triplicates\". Runs per line: MKL-1, MKL-2, PeTa, WaGa 3 each; MCC13 only 2 deposited. Numbering: the run stored under folder D:\\Data\\muw\\hno\\150531silac (4-digit run number) = 1, then the D:\\Data\\muw\\hno_silac\\160817 runs in ascending run number = 2, 3 (mgf headers). Both MCC13 runs are in the 150531 folder (8265 = 1, 8266 = 2)."
+  },
+  {
+   "location": "characteristics[biological replicate] + characteristics[pooled sample] rows 1-28",
+   "value": "1; pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"Three biological replicates were cultured per each cell line, and these were merged into one sample upon cell lysis for further treatment.\" Each cell line is therefore one (pooled) sample -> biological replicate 1 within each factor-value (cell line) group, pooled sample = pooled. For HaCaT this assumes the same statement covers the reference line (the paragraph lists HaCaT among the cell lines cultured); the HaCaT rows of the five mixtures share biological replicate 1 because nothing indicates separate HaCaT cultures per mixture."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-28",
+   "value": "study sample (heavy MCC rows); reference (light HaCaT rows)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper calls HaCaT \"the reference cell line\" against which each MCC line is compared."
+  },
+  {
+   "location": "characteristics[organism] rows 1-28",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "dat"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606 for all six lines; Mascot TAXONOMY Homo sapiens."
+  },
+  {
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-28",
+   "value": "MKL-1 CVCL_2600; MKL-2 CVCL_D027; PeTa CVCL_LC73; WaGa CVCL_E998; MCC13 CVCL_2583; HaCaT CVCL_0038",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper names BroLi, MKL-1, MKL-2, PeTa, WaGa, MCC13 (gift of Prof. Houben) and HaCaT (AddexBio). Cellosaurus IDs as listed (MCC13 synonyms MCC13TC; WaGa found via search id:WaGa). The MCC lines have no CLO/EFO/BTO class (OLS search returns none); HaCaT = EFO:0002056 / BTO:0000552."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-28",
+   "value": "MKL-1 axillary lymph node; MKL-2 not available; PeTa skin of body; WaGa ascitic fluid; MCC13 cervical lymph node; HaCaT skin of back",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Derived from site\": MKL-1 Metastatic; Left axillary lymph node UBERON_0001097; PeTa In situ; Skin UBERON_0002097; WaGa Metastatic; Ascites UBERON_0007795 (OLS label ascitic fluid); MCC13 Metastatic; Cervical lymph node UBERON_0002429; HaCaT In situ; Back, skin, epidermis UBERON_0001068+UBERON_0001003. MKL-2: no derived site in Cellosaurus and paper says \"the localization is unknown\"."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-28",
+   "value": "keratinocyte (HaCaT); not available (MCC lines)",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"HaCaT, a human skin keratinocyte cell line\"; CL:0000312. No cell type is stated for the MCC lines."
+  },
+  {
+   "location": "characteristics[disease] rows 1-28",
+   "value": "cutaneous neuroendocrine carcinoma (MCC lines); normal (HaCaT)",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9231 Merkel cell carcinoma / ORDO Orphanet_79140 Cutaneous neuroendocrine carcinoma for all five MCC lines; MONDO:0019210 label \"cutaneous neuroendocrine carcinoma\" (Merkel cell carcinoma synonym). HaCaT: no DI line, spontaneously immortalized keratinocyte from normal skin (CA), so normal (PATO:0000461); the PRIDE project-level disease is not broadcast onto the control line."
+  },
+  {
+   "location": "characteristics[material type] rows 1-28",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "All samples are cultured cell lines."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] rows 1-28",
+   "value": "MKL-1 26Y male; MKL-2 72Y male; PeTa 65Y male; WaGa 67Y male; MCC13 80Y female; HaCaT 62Y male; all adult",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Cellosaurus AG/SX per line. Paper agrees for WaGa (67-year-old man), MKL-1 (26-year-old man), MKL-2 (72-year-old man), MCC13 (80-year-old female). Developmental stage adult (EFO:0001272) because every donor age is >= 26Y."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-28",
+   "value": "European ancestry (MKL-1, MCC13, HaCaT); not available (MKL-2, PeTa, WaGa)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Caucasian\" for MKL-1, MCC13 and HaCaT (MCC13 genome ancestry 96% European) -> HANCESTRO:0005; no population for MKL-2, PeTa, WaGa."
+  },
+  {
+   "location": "characteristics[individual] rows 1-28",
+   "value": "<cell line>_donor",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Each line derives from a different donor (paper: \"All cell lines originated from different old patients\"); identifier is the cell line name, no patient identifiers are added."
+  },
+  {
+   "location": "comment[instrument] rows 1-28",
+   "value": "NT=maXis impact;AC=MS:1003462",
+   "source_ids": [
+    "paper",
+    "mgf",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Paper: \"maXis Impact Q-Time-of-Flight mass spectrometer (Bruker)\"; every mgf header: \"Instrument: maXis impact\". MS:1003462 is the exact PSI-MS term; the PRIDE dropdown maXis (MS:1001541) is its less specific parent."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-28",
+   "value": "NT=time-of-flight;AC=MS:1000084",
+   "source_ids": [
+    "paper",
+    "dat"
+   ],
+   "evidence": "Q-TOF instrument; Mascot INSTRUMENT=ESI-QUAD-TOF."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-28",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"MS data was acquired using the data-dependent mode ... 20 most intense ions were fragmented\"."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-28",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"Data-Dependent collision-induced-dissociation was used for peptide fragmentation ... ramping the collisional energy from 15 to 35 eV\". Collision energy (a 15-35 eV ramp) is not encoded."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-28",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "dat"
+   ],
+   "evidence": "Digestion with sequencing grade (porcine) trypsin, 1:50, 16 h, 37 °C; Mascot CLE=Trypsin, PFA=2."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-28",
+   "value": "DTT; iodoacetamide",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"reduced with 5 mM DTT for 30 min at 60 °C, and alkylated for 30 min with 15 mM iodoacetamide in the dark\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-28",
+   "value": "50 ppm; 0.5 Da",
+   "source_ids": [
+    "dat"
+   ],
+   "evidence": "All 14 Mascot .dat parameter sections: TOL=50.0 TOLU=ppm, ITOL=0.5 ITOLU=Da."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-28",
+   "value": "Carbamidomethyl C fixed; Oxidation M variable; Acetyl K variable; Label:13C(6) K (UNIMOD:188) MT=Variable",
+   "source_ids": [
+    "dat",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 14 .dat files: MODS=Carbamidomethyl (C),Label:13C(6) (K); IT_MODS=Acetyl (K),Oxidation (M) (masses section FixedMod2=6.020129 Label:13C(6) (K), delta1=42.010565 Acetyl (K)). The Mascot identification search treated Label:13C(6) K as FIXED (heavy-only identification, light partner quantified by WARP-LC); the SDRF writes MT=Variable per campaign rule 11 because the label is present only on the heavy channel. UNIMOD:188 = Label:13C(6), +6.020 Da, matches the paper's 13C6-lysine. Arginine was light in both channels, so no Arg label."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-28",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "No fractionation: each tryptic aliquot injected directly (one .baf per injection)."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-28",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10. Templates: MS data, human samples, all cell lines; clinical/oncology templates not declared because the samples are established cell lines, not patient specimens (rule 15)."
+  },
+  {
+   "location": "characteristics[passage number] + characteristics[culture medium] + characteristics[sample storage temperature] rows 1-28",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Passage not stated. Routine culture was RPMI + 10% FBS, but the base of the \"SILAC Media\" used for the labelled cultures is not named, so culture medium is not asserted. Storage of the digests at -20 °C is stated, but not of the samples as such."
+  }
+ ],
+ "limitations": [
+  "Partial scope relative to the paper: the paper analysed six MCC lines incl. BroLi, but no BroLi run is deposited (14 .baf: MKL-1 x3, MKL-2 x3, PeTa x3, WaGa x3, MCC13 x2). MCC13 has 2 instead of 3 technical replicates. Nothing deposited was left out, so nothing is BLOCKED.",
+  "Channel-map data check is weak: the deposited mzid files contain only 107-390 passing PSMs per run and WARP-LC H/L ratios are not deposited (Tables S1/S2 list proteins without ratios; mzTab are PRIDE-generated identification files). The map rests on the explicit paper statement (Methods + Fig. 1 legend), supported by heavy 13C6-Lys chromogranin A/TBB3/ENO2 PSMs in MCC runs.",
+  "Runs of each line come from two acquisition folders (150531silac and 160817, mgf headers), i.e. probably acquired about 15 months apart. Whether the 2015 and 2016 injections are from the same SILAC mixture/aliquot series or a re-prepared mixture is not stated; they are annotated as technical replicates as the paper describes (\"technical triplicates\").",
+  "Whether one HaCaT light lysate served all five mixtures, and whether the \"three biological replicates merged\" statement covers HaCaT, is not explicit; HaCaT rows all carry biological replicate 1 and pooled.",
+  "Search: Mascot searched heavy-only (Label:13C(6) K fixed); recorded as MT=Variable per campaign rule 11. ProteinScape 3.1.5 / Mascot 2.6 / WARP-LC 1.3 were used; WARP-LC quantitation settings are not deposited.",
+  "comment[data file] lists the deposited Bruker analysis.baf files (renamed to the run name), not .d directories, because that is what PRIDE holds.",
+  "Collision energy (15-35 eV ramp) not encoded; MS1 range not encoded (the mgf 400-2200 values are DataAnalysis export settings, not acquisition settings).",
+  "sdrf-tools check flags the MCC cell line names as not found in CLO/BTO/EFO; they are real Cellosaurus entries without an ontology class (see validation.txt)."
+ ]
+}
