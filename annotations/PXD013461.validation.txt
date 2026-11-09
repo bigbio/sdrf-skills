@@ -50,3 +50,36 @@ exit=0
 - validate-sdrf WARNING 'fetal stage' not in EFO: the term is HsapDv:0000037 'fetal stage' (non-obsolete, OLS4 log ols_ids.txt), the human developmental-stage ontology; Cellosaurus CVCL_0045 AG = Fetus. Same encoding as campaign SDRF PXD004666 (HEK293T).
 - convert-openms WARNING 'no TA= specified': the Acetyl Protein N-term mod has PP=Protein N-term instead of TA= (format rule 4); conversion succeeds.
 - An earlier online `sdrf-tools check` attempt crashed on OLS HTTP 500 (not a file problem); `sdrf-tools check --offline` was also CLEAN (14 terms, 0 hallucinated). The run above, online, is CLEAN with 18/18 verified.
+
+# ===== Round 2 (2026-11-09T19:23Z) — after review F1-F3 (annotations/PXD013461.review.md) =====
+# Changes: evidence.json (new conflict claim; rewritten genetic-modification claim and limitations[1]; new F2/F3 limitations; new derived sources peppos/f2check, scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/scripts/manifest_r2.py + one scripted MAPK3 numbering replacement), report.md (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/scripts/report_r2.py), own BLOCKED.md section (scripted single replacement, all other headings verified unchanged). The SDRF was NOT changed: sha256 3b3f7fbf15a49a5a4c8090541b673d0fdacfc1fa34f67b2839a14f48afa32115 (same as round 1).
+
+## parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv -t ms-proteomics -t human -t cell-lines (online OLS4; 2 HTTP 500 retries, filtered; runtime 11m38s)
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## parse_sdrf validate-sdrf ... --use_ols_cache_only (run in parallel as a fallback while OLS4 was slow)
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD013461.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD013461.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD013461.evidence.json
+Manifest covers every column with a value (34 column(s)).
+exit=0
+
+## sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/pride.json --accession PXD013461
+PXD013461: every annotated value agrees with the deposit record.
+exit=0
+
+# Warnings unchanged from round 1 and explained above (untreated = rule-4 control value; fetal stage = HsapDv:0000037).
