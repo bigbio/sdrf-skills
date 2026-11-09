@@ -1,0 +1,396 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD009843.sdrf.tsv",
+ "dataset": "PXD009843",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009843 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009843/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/files_all.json; 81 entries = 75 .raw + 2 PD .msf + 2 pep.xml + 2 prot.xml; every projectAccessions contains PXD009843)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Tahir R et al. Mutation-Specific and Common Phosphotyrosine Signatures of KRAS G12D and G13D Alleles. J Proteome Res 2021;20(1):670-683, doi:10.1021/acs.jproteome.0c00587, PMID 32986951. Closed access: no PMCID, Unpaywall oa_status closed, pubs.acs.org returns 403 (not bypassed). Only the Europe PMC abstract was read (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/epmc_32986951.json)."
+  },
+  {
+   "id": "py_pepxml",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD009843/pY_TriplicateIsogenicKRASmutants.pep.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/dl/pY.pep.xml): Proteome Discoverer 2.2.0.388 processing-workflow summary (Sequest HT node settings) for the 3 pY runs"
+  },
+  {
+   "id": "py_msf",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD009843/pY_TriplicateIsogenicKRASmutants.msf (downloaded, sha256 2d602d9b4453d4f0e44c37575b8350b36cb0669a67d998ea2a8120bb4b15e41e, queried with sqlite3, then deleted for disk space). AnalysisDefinition XML kept at /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/dl/analysisdef.xml: QuanMethod \"SILAC 3plex (Arg6, Lys4 | Arg10, Lys8)\", channels Light/Medium/Heavy; study samples \"pY_Isogenic KRAS mutants_RepN - [Light]\" SampleType=\"Control\" for N=1..3, Medium and Heavy SampleType=\"Sample\"."
+  },
+  {
+   "id": "tp_pepxml",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD009843/TotalProteome_24Fractions_3SILAC_Triplicate_IsogenicKRASmutants_SW48.pep.xml (1.37 GB, streamed, not stored; header at /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/dl/tp_head.txt; every spectrum_query with a peptide starting LVVVGA extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/dl/tp_kras.xml by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/kras.awk). PD 2.2 workflow \"JEVON_3SILAC\", database \"human.RefSeq84_with KRAS G12D and G13D.fasta\", 72 input files RP01-RP03 x F01-F24."
+  },
+  {
+   "id": "kras",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/kras_states.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/kras_states.py): SILAC Lys state of every q<=0.01 PSM of the KRAS G12D peptide LVVVGADGVGK and G13D peptide LVVVGAGDVGK in the TP search"
+  },
+  {
+   "id": "py_orient",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/py_orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/py_orient.py on the pY msf): per-file median log2 Medium/Light and Heavy/Light Minora feature areas, and the MPZL1 pY peptide SESVVpYADIR"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read (first 3 MB) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD009843/pY_IsogenicKRASmutants_Rep1.raw, _Rep3.raw, RT_SW48_KRAS_TP_RP01_F01.raw, RP02_F12.raw, RP03_F24.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/raw/*.head): instrument \"Orbitrap Fusion Lumos\"; method 150min_OT120_OT30_HCD32_pY_040916.meth (both pY) / CPD_90min_TP_FT120_HCD_MS2_FT30_083016.meth (all three TP); all five: MS1 350-1550 m/z, HCD 32%, Orbitrap MS2 30K"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_1724, CVCL_LC92, CVCL_LC96 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/cello_SW48.txt, cello_LC92.txt, cello_LC96.txt; children of CVCL_1724 in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/cello_children.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (MONDO:0002271 colon adenocarcinoma, UBERON:0001155 colon, HANCESTRO:0005 European ancestry, EFO:0002367 SW48, EFO:0010806 enrichment of phosphorylated protein, EFO:0001272 adult; all is_obsolete false)"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/build/samples_tp.tsv, technical_tp.tsv, samples_py.tsv, technical_py.tsv; sdrf-tools build per part; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/concat.py concatenates tp (rows 1-216) then py (rows 217-225) after asserting identical headers"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 sdrf version v1.1.0. The spec submodule nested templates copy is older."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-225",
+   "value": "SW48_<parental|KRAS-G12D|KRAS-G13D>_<TP|pY>_rep<1-3>, 18 names",
+   "source_ids": [
+    "files",
+    "pride",
+    "build"
+   ],
+   "evidence": "One source per (cell line/SILAC channel, replicate mixture, material). TP = total proteome (24 bRPLC fractions, RT_SW48_KRAS_TP_RP0N_F01-F24), pY = anti-pY peptide IP (pY_IsogenicKRASmutants_RepN). PRIDE protocol: the pY IP used 60 mg of the mixed SILAC lysate digest per replicate and \"a 600 ug aliquot of SILAC mix was also subjected to a separate in-solution tryptic digestion\" for the total proteome, so TP and pY material of one replicate are separate aliquots/digests and get separate source names (precedent PXD020108), sharing the biological replicate number. The pairing TP RP0N <-> pY RepN is taken from the run-name index only."
+  },
+  {
+   "location": "comment[label] rows 1-225 / characteristics[genotype], characteristics[cellosaurus accession], characteristics[cellosaurus name], factor value[genotype] rows 1-225",
+   "value": "SILAC light = SW48 parental (KRAS wild type); SILAC medium (Arg6/Lys4) = SW48 KRAS G12D/+; SILAC heavy (Arg10/Lys8) = SW48 KRAS G13D/+; same in all 3 TP and all 3 pY mixtures",
+   "source_ids": [
+    "py_msf",
+    "tp_pepxml",
+    "kras",
+    "py_orient",
+    "pride",
+    "paper"
+   ],
+   "evidence": "No sentence in any reachable source states the label->line map (paper closed access; PRIDE protocols name the five label amino acids only). The map rests on three deposited, mutually consistent lines of evidence: (1) Genotype-specific peptides in the TP search (database explicitly supplemented with KRAS G12D and G13D, PRIDE data protocol and PD header): the G12D peptide LVVVGADGVGK was identified only with Lys4 (medium) - rep1 1 PSM, rep2 1, rep3 2 - never light or heavy; the G13D peptide LVVVGAGDVGK with Lys8 (heavy) in rep1 (1 PSM, q 2.8e-6) and rep3 (1 PSM, q 2.3e-6), never medium; one further rep3 PSM assigned light G13D (XCorr 2.80, q 1.3e-5, scan 14679, 54 scans after the heavy G13D PSM at 14625) is the only discordant hit and is outweighed; rep2 had no G13D PSM. (2) In the pY PD 2.2 study (msf AnalysisDefinition) the Light sample of each of Rep1-Rep3 is SampleType \"Control\" (the ratio denominator), and the PRIDE data protocol computes \"G12D/Parental ratios and G13D/Parental ratios\", i.e. Light = parental. (3) pY data check: MPZL1 pY263 peptide SESVVpYADIR log2 M/L +1.41/+1.30/+1.29 vs H/L -0.52/-0.68/-0.61 in Rep1/2/3 (file medians -0.52..-0.55 for both ratios), i.e. hyperphosphorylated in Medium only; the abstract states MPZL1 \"was found to be hyperphosphorylated in G12D cells\". The pY runs contain no KRAS peptide, so their medium/heavy assignment rests on (2)+(3) and on the protocol statement that TP is an aliquot of the same SILAC mix."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] / characteristics[cellosaurus name] rows 1-225",
+   "value": "CVCL_1724 SW48 (light); CVCL_LC92 SW48 KRAS (G12D/+) (medium); CVCL_LC96 SW48 KRAS (G13D/+) (heavy)",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE keywords \"Sw48\", \"G12d mutation\", \"G13d mutation\"; PRIDE description \"isogenic colorectal cancer cell lines bearing either G12D or G13D KRAS mutation\"; data protocol \"G12D/Parental ... G13D/Parental\". Cellosaurus lists exactly one SW48 KRAS G12D/+ (CVCL_LC92, Horizon HD 103-011) and one SW48 KRAS G13D/+ (CVCL_LC96, Horizon HD 103-002) knock-in among the children of CVCL_1724; the paper (closed) could not be read to confirm the supplier, see limitations."
+  },
+  {
+   "location": "characteristics[genotype] / factor value[genotype] rows 1-225",
+   "value": "KRAS wild type; KRAS G12D/+; KRAS G13D/+",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "kras"
+   ],
+   "evidence": "Custom characteristics column (spec Extending Templates; TERMS.tsv genotype = free text, EFO:0000513, licensed by single-cell/invertebrates/clinical-metadata only, none of which fit). Parental SW48 has no KRAS variant in Cellosaurus CVCL_1724 (only ACVR2A, APC, B2M, CTNNB1, TGFBR2 listed); derivatives are heterozygous knock-ins (Cellosaurus Zygosity=Heterozygous). The compared variable is the KRAS allele, so it is the factor."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-225",
+   "value": "1-3 within each genotype",
+   "source_ids": [
+    "files",
+    "pride",
+    "py_msf"
+   ],
+   "evidence": "Three replicate SILAC mixtures (TP RP01-RP03; pY Rep1-Rep3; PRIDE: \"the median values from the three replicates\"); each mixture contains an independent culture per line, numbered 1..3 within each genotype group; the TP and pY aliquots of mixture N share number N."
+  },
+  {
+   "location": "characteristics[organism] rows 1-225",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; SW48 is human (Cellosaurus OX NCBI_TaxID=9606)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-225",
+   "value": "colon",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_1724 derived from site: In situ; Colon; UBERON_0001155. PRIDE organismPart \"cell culture\" is a dropdown, not tissue of origin."
+  },
+  {
+   "location": "characteristics[disease] rows 1-225",
+   "value": "colon adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Cellosaurus DI NCIt C4349 Colon adenocarcinoma for SW48 and both derivatives; MONDO:0002271 colon adenocarcinoma. PRIDE disease DOID:9256 colorectal cancer is the broader dropdown. All rows are cancer cell lines (no normal control arm)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-225",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "All samples are cultured SILAC-labelled cell lines (PRIDE protocol \"SILAC labeled cell pellets\")."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 217-225",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"phosphotyrosine enrichment using phosphotyrosine rabbit monoclonal antibody kit (P-Tyr-1000; Cell Signaling Technology)\". EFO:0010806 (closest EFO term under EFO:0009090; same term as campaign precedent PXD020108 pY runs). Rows 1-216 (total proteome) not applicable."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-225",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus Population: Caucasian (CVCL_1724, LC92, LC96); genome ancestry European North 69.25% + South 29.21%. HANCESTRO:0005."
+  },
+  {
+   "location": "characteristics[age] rows 1-225",
+   "value": "83Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 83Y (live API, CVCL_1724 and both derivatives). The bundled sdrf-tools cellline DB says 82Y; the live record is used."
+  },
+  {
+   "location": "characteristics[sex] rows 1-225",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Female."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-225",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 83Y (>= 20Y, batch rule 9); EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[individual] rows 1-225",
+   "value": "SW48_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All three lines derive from the one SW48 donor (derivatives HI CVCL_1724 ! SW48)."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-225",
+   "value": "SW48",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "EFO:0002367 SW48 (resolves in the validator). The isogenic derivatives have no EFO/CLO/BTO term; they are distinguished by cellosaurus accession/name and genotype."
+  },
+  {
+   "location": "assay name rows 1-225",
+   "value": "raw file stem (build default)",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "One assay per raw file, shared by the three channels."
+  },
+  {
+   "location": "comment[data file] rows 1-225",
+   "value": "75 .raw files",
+   "source_ids": [
+    "files",
+    "tp_pepxml",
+    "py_msf"
+   ],
+   "evidence": "All 75 deposited .raw files: 72 TP (RP01-RP03 x F01-F24, the exact input list of the TP PD search) + 3 pY (Rep1-3, the exact input list of the pY msf WorkflowInputFiles). The .msf/.pep.xml/.prot.xml files are search output, not runs."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-225",
+   "value": "1-24 (TP, from _F01.._F24); 1 (pY)",
+   "source_ids": [
+    "files",
+    "pride",
+    "build"
+   ],
+   "evidence": "PRIDE: total proteome \"fractionated by basic reversed phase liquid chromatography into 24 fractions\"; pY single runs."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-225",
+   "value": "1",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Each mixture/fraction injected once (no repeated injections in the file list)."
+  },
+  {
+   "location": "technology type rows 1-225",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "build"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] rows 1-225",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Batch rules 1 and 10."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-225",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "py_pepxml"
+   ],
+   "evidence": "Raw method summaries: Orbitrap MS1 120K, quadrupole isolation 1.6 m/z, HCD MS2 Orbitrap 30K, cycle time 3 s, dynamic exclusion filter - data-dependent top-speed; searched with Sequest HT."
+  },
+  {
+   "location": "comment[instrument] rows 1-225",
+   "value": "NT=Orbitrap Fusion Lumos;AC=MS:1002732",
+   "source_ids": [
+    "raw",
+    "pride",
+    "py_msf"
+   ],
+   "evidence": "Raw headers \"Orbitrap Fusion Lumos\"; msf WorkflowInputFiles InstrumentDescription \"Orbitrap Fusion Lumos\"; PRIDE instruments MS:1002732."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-225",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "py_pepxml"
+   ],
+   "evidence": "PRIDE: \"subjected to trypsin in-solution digestion\"; PD Enzyme \"Trypsin (Full)\", max missed cleavages 2 in both searches (the PRIDE text says one)."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-225",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method summaries: ActivationType = HCD."
+  },
+  {
+   "location": "comment[collision energy] rows 1-225",
+   "value": "32% NCE",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method summaries (five headers, both run types): Collision Energy (%) = 32, stepped off."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-225",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw: MS2 Detector Type = Orbitrap, Orbitrap Resolution = 30K."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-225",
+   "value": "350m/z-1550m/z",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw: MS1 Scan Range (m/z) = 350-1550 in all five headers read (pY Rep1/Rep3; TP RP01_F01, RP02_F12, RP03_F24; one method file per run type); the remaining files are assumed to use the same method."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-216",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE: \"fractionated by basic reversed phase liquid chromatography into 24 fractions\". Rows 217-225 (pY) not applicable."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-225",
+   "value": "10 ppm",
+   "source_ids": [
+    "py_pepxml",
+    "tp_pepxml",
+    "pride"
+   ],
+   "evidence": "Sequest HT node: Precursor Mass Tolerance 10 ppm in both PD searches; PRIDE \"precursor tolerance was set at 10 ppm\". (The 20 ppm in the Spectrum Files RC node is the recalibration step, not the search.)"
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-225",
+   "value": "0.05 Da",
+   "source_ids": [
+    "py_pepxml",
+    "tp_pepxml",
+    "pride"
+   ],
+   "evidence": "Sequest HT node: Fragment Mass Tolerance 0.05 Da in both searches; PRIDE \"fragment match tolerance was set to 0.05 Da\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-216",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term, Label:13C(6) R, Label:2H(4) K, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K variable; Phospho not applicable",
+   "source_ids": [
+    "tp_pepxml",
+    "pride"
+   ],
+   "evidence": "TP PD Sequest HT node: dynamic Oxidation (M), Label:13C(6)15N(4) (R), Label:13C(6) (R), Label:2H(4) (K), Label:13C(6)15N(2) (K); protein N-terminal Acetyl; static Carbamidomethyl (C). No phospho in the TP search. UNIMOD accessions from mass shift (batch rule 11): 188, 481, 267, 259; labels MT=Variable as searched."
+  },
+  {
+   "location": "comment[modification parameters] rows 217-225",
+   "value": "as rows 1-216 plus NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable",
+   "source_ids": [
+    "py_pepxml",
+    "pride"
+   ],
+   "evidence": "pY PD Sequest HT node: dynamic Phospho / +79.966 Da (S, T, Y) besides the same label/oxidation/acetyl/carbamidomethyl settings. PRIDE text says \"phosphorylation at tyrosine\", the deposited search used S,T,Y; the search output wins."
+  }
+ ],
+ "limitations": [
+  "Channel map: no textual statement of which SILAC state carries which cell line exists in any reachable source (paper closed access; pubs.acs.org 403, not bypassed). The map is derived from deposited search results: KRAS G12D/G13D mutant peptides by SILAC state in the TP search (4/4 G12D PSMs medium; 2/3 G13D PSMs heavy, 1 light outlier), the PD pY study marking Light as Control, and MPZL1 pY263 up in Medium only (abstract: MPZL1 hyperphosphorylated in G12D). The pY medium/heavy assignment has no mutant-peptide evidence of its own. A reviewer applying batch rule 6 strictly (explicit statement required) may want to block these runs instead.",
+  "Pairing of TP mixture RP0N with pY mixture RepN (same biological replicate number) rests on the run-name index only.",
+  "Cellosaurus accessions CVCL_LC92 / CVCL_LC96 assume the Horizon SW48 knock-in lines, the only SW48 KRAS G12D/+ and G13D/+ entries in Cellosaurus; the paper methods (supplier) could not be read.",
+  "Culture medium, passage number, storage temperature and cell type are not available (paper closed; PRIDE protocol silent).",
+  "Reduction/alkylation reagents are not stated (carbamidomethyl search implies alkylation, reagent unknown); columns omitted.",
+  "Search database differs from the PRIDE text: PD headers show human.RefSeq84 (TP: with KRAS G12D and G13D entries; pY: plain RefSeq84), PRIDE text says RefSeq v73 + mutant KRAS. Missed cleavages 2 in PD vs \"one\" in PRIDE text. SDRF follows the deposited search.",
+  "pY quantification in the paper used PyQuant on the PD identifications; the SDRF only describes the PD search.",
+  "MS1 scan range / collision energy read from 5 of 75 raw headers (same method file per run type).",
+  "reconcile organism_contradicted is a false positive (rabbit antibody); refuted in validation.txt."
+ ]
+}
