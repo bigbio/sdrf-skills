@@ -1,0 +1,65 @@
+# PXD004181 validation log
+SDRF sha256 db02277b0e28350f3bf78dac54d968865e148c26cdf575b2563708c9fb8c1001 (34 rows x 57 columns)
+
+## Round 1 (first build)
+$ parse_sdrf validate-sdrf -s PXD004181.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+exit 1
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: B cell receptor stimulation in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: DG-75 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+ERROR: Value 'DG-75 donor' does not match required pattern
+There were validation errors.
+
+Fix (tables only, then rebuild): characteristics[individual] 'DG-75 donor' -> 'DG-75_donor' (pattern: no spaces); characteristics[cell line] 'DG-75' -> 'DG75' (EFO:0002160 label; cellosaurus name stays DG-75). Edited in scripts/make_tables.py, re-ran the 3 builds + concat.py.
+Round-1 structure/check/reconcile/convert-openms: all exit 0 (same outcomes as round 2).
+
+## Round 2 (final file)
+$ parse_sdrf validate-sdrf -s PXD004181.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: B cell receptor stimulation in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+validate exit 0
+
+$ sdrf-tools structure PXD004181.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+
+$ sdrf-tools check PXD004181.sdrf.tsv
+Hallucination Report: PXD004181.sdrf.tsv
+  Terms checked:     23
+  Verified:          23
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit 0
+
+$ sdrf-tools reconcile PXD004181.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/ev/PXD004181.project.json --accession PXD004181
+PXD004181: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit 0
+
+$ sdrf-tools schema-check PXD004181.evidence.json
+PXD004181.evidence.json: valid evidence-manifest
+exit 0
+
+$ sdrf-tools manifest-coverage PXD004181.sdrf.tsv PXD004181.evidence.json
+Manifest covers every column with a value (37 column(s)).
+exit 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004181/openms2) parse_sdrf convert-openms -s annotations/PXD004181.sdrf.tsv -t2
+Factor columns: ['factor value[genetic modification]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[compound]']
+Conditions (4): dict_keys(['wild type|untreated', 'wild type|HSP90 Inhibitor', 'TEL-SYK fusion transduction|untreated', 'wild type|B cell receptor stimulation'])
+Files per condition: dict_values([14, 8, 6, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 34 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD004181.sdrf.tsv
+exit 0
+
+## Notes
+- Remaining validate-sdrf WARNINGS: 'untreated' and 'B cell receptor stimulation' are not ontology terms in NCIT/EFO. 'untreated' is the template-prescribed control word (batch rule 4); BCR stimulation has no NCIT/EFO term (OLS search 2026-11-09), so it is free text. Warnings only.
+- reconcile MINOR cleavage_agent_unsupported (Trypsin not named in PRIDE record): refuted. MaxQuant summary.txt says Enzyme = Trypsin/P (Specific) for all files, and the paper says proteins were 'digested'. Encoded as Trypsin per batch rule 2.
+- convert-openms WARNING 'no TA= specified' comes from the PP=Protein N-term Acetyl entry and the 'not applicable' padding of the Arg6/Lys4 columns in DGII rows. Expected.
+- Post-build edits: none. The SDRF is the byte-exact concatenation (scripts/concat.py, asserts identical headers) of three sdrf-tools build outputs: build/part_dgii, part_telsyk_py, part_telsyk_pro. They were split because instrument/tolerance/analyzer/labels differ (batch rule 5/17).
