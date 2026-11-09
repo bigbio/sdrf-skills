@@ -1,0 +1,309 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD021925.sdrf.tsv",
+ "dataset": "PXD021925",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021925 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021925/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/files_all.json; 10 entries = 8 RAW + MQ_Results.zip + UniProt_10090_Sept2018_JG.fasta; every entry projectAccessions contains PXD021925)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Gillen J et al. LPS Tolerance Inhibits Cellular Respiration and Induces Global Changes in the Macrophage Secretome. Biomolecules 2021;11(2):164, doi:10.3390/biom11020164, PMID 33513762, PMC7918892 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC7918892.1/PMC7918892.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/paper.txt); sections 2.1, 2.4-2.7, Data Availability"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD021925/MQ_Results.zip members summary.txt, parameters.txt, proteinGroups.txt (ZIP HTTP range read, members inflated individually; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/mq/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/scripts/orient.py: per-run log2 Ratio M/L, H/L, H/M of LPS-marker proteins Tnf, Ccl4, Il1rn from proteinGroups.txt)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 3 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD021925/070318_Sun_SILAC_Mix_1A.raw and https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD021925/111918_RAW_Sec_Mix_1_A.raw, embedded instrument method decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0493?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/cello_CVCL_0493.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/ontologies/<ont>/terms?obo_id=... and /api/search (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021925/ols_ids.txt; all terms is_obsolete=False)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign batch rules 1, 10, 11"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-24",
+   "value": "RAW264.7_secretome_<Con|LR|LT>_<070318|111918>_Mix<1|2>",
+   "source_ids": [
+    "files",
+    "mq",
+    "paper",
+    "pride"
+   ],
+   "evidence": "One source per (condition, SILAC mixture): each mixture combines equal volumes of conditioned medium from one Con, one LR and one LT culture (paper 2.4, PRIDE protocol). Mixtures are identified by the raw-file prefixes 070318_Sun_SILAC_Mix_1/2 and 111918_RAW_Sec_Mix_1/2; the A/B suffix is the injection (technical replicate). Each source name therefore denotes one culture supernatant measured in two injections."
+  },
+  {
+   "location": "comment[label] rows 1-24; factor value[treatment] / characteristics[treatment] rows 1-24",
+   "value": "Con=SILAC light, LR=SILAC medium, LT=SILAC heavy",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq",
+    "orientation"
+   ],
+   "evidence": "Paper 2.4 and PRIDE sampleProcessingProtocol: \"The first group contained control cells that received no LPS (NT/NT or Con) and were grown in cDMEM labeled with Arg0 and Lys0. The second group ... (NT/LPS or LR) ... labeled with Arg+6 and Lys+4. The third group ... (LPS/LPS or LT) ... labeled with Arg+10 and Lys+8.\" summary.txt: Multiplicity 3, Labels1 Arg6;Lys4 (medium), Labels2 Arg10;Lys8 (heavy). Ratio check (orientation.txt): Tnf log2 M/L +5.0..+5.7 and H/M -3.7..-4.1 in the four 070318 runs; Ccl4 M/L +2.4..+3.6 and H/M -3.0..-3.7 in all eight runs, i.e. the medium (LR) channel carries the LPS cytokine burst and the heavy (LT) channel the tolerant suppression, as the paper reports (TNF, Ccl4 in the LRU group, increased vs both Con and LT). No conflict between sources."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-24",
+   "value": "1-4 per treatment group (070318 Mix1=1, Mix2=2; 111918 Mix1=3, Mix2=4)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "files",
+    "orientation"
+   ],
+   "evidence": "Paper 2.4: \"this method was repeated twice with two biological replicates each time to produce four biological replicates\"; PRIDE: \"Two sets of samples were prepared twice for 4 total biological replicates\". Four mixtures deposited (two per date prefix). Each mixture holds one independent culture per condition, so numbers 1-4 restart in each treatment group. Mix1 vs Mix2 ratios differ (e.g. Tnf H/L 0.98 vs 1.77 in 070318) while A/B pairs agree to within 0.1 log2, consistent with Mix = biological, A/B = technical."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-24",
+   "value": "1 (file suffix A) / 2 (file suffix B)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "files",
+    "mq"
+   ],
+   "evidence": "Paper 2.6: \"Each biological replicate was analyzed twice to create two technical replicates\"; PRIDE: \"eight total replicates\". Paired files *_A/*_B (or 1A/1B) per mixture; ratios of A/B pairs nearly identical in proteinGroups.txt."
+  },
+  {
+   "location": "comment[data file], assay name rows 1-24",
+   "value": "8 .raw files",
+   "source_ids": [
+    "files",
+    "mq"
+   ],
+   "evidence": "All 8 RAW files in the PRIDE file list; all 8 appear as raw files of the single MaxQuant search (summary.txt). MQ_Results.zip (search output) and the FASTA are not data runs."
+  },
+  {
+   "location": "characteristics[organism] rows 1-24",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:10090; RAW 264.7 mouse macrophage cells (paper 2.1); Cellosaurus OX NCBI_TaxID=10090; OLS NCBITaxon:10090 Mus musculus."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-24",
+   "value": "RAW 264.7; CVCL_0493; RAW 264.7",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper 2.1 \"RAW 264.7 mouse macrophage cells\"; PRIDE keyword \"Raw 264.7\". Cellosaurus CVCL_0493 ID \"RAW 264.7\" (synonyms RAW264.7, Raw 264.7), OX Mus musculus; EFO:0001231 label RAW264.7. The Cellosaurus ID string is used for cell line; it is the only Mus musculus parental RAW 264.7 entry (other hits are derived/engineered RAW 264.7 lines)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-24",
+   "value": "ascitic fluid",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0493 \"Derived from site: In situ; Ascites; UBERON=UBERON_0007795\"; OLS UBERON:0007795 label \"ascitic fluid\"."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-24",
+   "value": "macrophage",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: \"RAW 264.7 mouse macrophage cells\"; PRIDE organismParts CL:0000235 Macrophage; OLS CL:0000235 macrophage."
+  },
+  {
+   "location": "characteristics[disease] rows 1-24",
+   "value": "leukemia",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C21604 \"Mouse leukemia\" (Abelson murine leukemia virus-transformed, CA Cancer cell line); closest MONDO term OLS MONDO:0005059 leukemia. Disease is that of the cell line of origin; the study itself models endotoxin tolerance in vitro (no disease column value asserts sepsis)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-24",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Samples come from the RAW 264.7 cell line (conditioned medium of cultured cells)."
+  },
+  {
+   "location": "characteristics[cellular component] rows 1-24",
+   "value": "extracellular region",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Custom column (spec \"Extending Templates\"): the measured material is the secretome - culture medium collected, filtered 0.22 um and centrifuged to remove cells/debris (paper 2.4). OLS GO:0005576 extracellular region."
+  },
+  {
+   "location": "characteristics[treatment], factor value[treatment] rows 1-24",
+   "value": "untreated / LPS-responsive (single LPS stimulation) / LPS-tolerant (repeated LPS stimulation)",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper 2.3/2.4 groups: untreated (NT/NT or Con), LPS-responsive (NT/LPS or LR), LPS-tolerant (LPS/LPS or LT). Control = untreated per batch rule 4."
+  },
+  {
+   "location": "characteristics[treatment protocol] rows 1-24",
+   "value": "no LPS / 100 ng/mL Salmonella minnesota R595 LPS once 6 h before collection / twice 24 h apart, second 6 h before collection",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper 2.1: \"Lipopolysaccharide (LPS) from Salmonella minnesota R595 was purchased from Enzo\"; 2.4: \"single stimulation with 100 ng/mL LPS 6 h prior to the collection of the media\" / \"two stimulations with 100 ng/mL LPS separated by 24 h, with the second stimulation being 6 h prior to the sample collection\". Custom column. Purified LPS, not infection, so no infection/pathogen column."
+  },
+  {
+   "location": "characteristics[developmental stage], characteristics[sex], characteristics[strain or breed] rows 1-24",
+   "value": "adult; male; BALB/c",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0493: AG Adult, SX Male, \"Breed/subspecies: BALB/c\". OLS EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-24",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper 2.1: \"DMEM for SILAC purchased from Thermo Fisher Scientific ... supplemented with 10% FBS, 1x glutamine, 20 mM HEPES\" (FBS removed before stimulation, 2.4). OLS NCIT:C185409 Dulbecco's Modified Eagle Medium."
+  },
+  {
+   "location": "comment[instrument] rows 1-24",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "pride",
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE instruments MS:1002523 Q Exactive HF; paper 2.6; raw headers of both sets: \"Q Exactive HF - Orbitrap MS\", \"Method of Q Exactive HF\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-24",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Paper 2.6 \"top 20 data-dependent acquisition\"; raw method TopN 20."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-24",
+   "value": "HCD (MS:1000422); 27 NCE; orbitrap (MS:1000484); 400m/z-1600m/z",
+   "source_ids": [
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw instrument method (both 070318 and 111918 sets): full MS resolution 60,000, scan range 400 to 1600 m/z; dd-MS2 resolution 15,000 (Orbitrap; the Q Exactive HF has no ion trap), \"(N)CE / stepped (N)CE nce: 27\". Paper 2.6: HCD, NCE 27%, m/z 400-1600. The PRIDE protocol text (100,000 resolution, NCE 35%, ion-trap MS2) disagrees with both raw files and the paper and is not used."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-24",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq",
+    "ols"
+   ],
+   "evidence": "Paper 2.5 / PRIDE: \"The gel pieces were saturated with 13 ng/uL sequence-grade modified trypsin (Promega) ... incubated at 37 C overnight\" (in-gel digestion). MaxQuant enzyme Trypsin/P is the search rule (batch rule 2)."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-24",
+   "value": "DTT (PRIDE:0000608); Chloroacetamide (PRIDE:0000600)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper 2.5: \"50 uL of 10 mM dithriothreitol (DTT)\" and \"50 uL of 55 mM 2-chloroacetamide (CA)\". Carbamidomethyl (C) fixed in the search is consistent with chloroacetamide."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-24",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Deamidated N/Q, Phospho S/T/Y, Label:13C(6) R, Label:2H(4) K, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mq",
+    "ols",
+    "templates"
+   ],
+   "evidence": "summary.txt (one search, all 8 runs): \"Variable modifications Oxidation (M);Acetyl (Protein N-term);Deamidation (NQ);Phospho (STY)\", \"Fixed modifications Carbamidomethyl (C)\", Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8; parameters.txt site tables Deamidation/Oxidation/Phospho. The paper lists \"acetylation of lysine\" and no deamidation/phospho; the deposited search output is used (it is what produced the deposited results). Label accessions from mass shift (rule 11): Arg6 UNIMOD:188, Lys4 UNIMOD:481 Label:2H(4), Arg10 UNIMOD:267, Lys8 UNIMOD:259; MT=Variable per batch convention."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-24",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq",
+    "raw"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"; MS2 spectra are Orbitrap (FTMS) per raw method."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-24",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Each lane was cut into five gel sections that were digested separately and then \"recombined to make one sample per lane\" (paper 2.5) - one injection per sample, no fraction files."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-24",
+   "value": "v1.1.0; ms-proteomics v1.2.0, vertebrates v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; templates chosen: MS data, mouse (vertebrates), cell line samples."
+  }
+ ],
+ "limitations": [
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.6.3.3 parameters.txt/summary.txt do not record the first/main-search precursor tolerance and no mqpar.xml was deposited. Consequence: parse_sdrf convert-openms exits 1 (\"Cannot read precursor mass tolerance: not available\"), as for campaign precedents PXD014368/PXD006676/PXD024103.",
+  "Assignment of the four mixtures to the two preparation rounds (070318 vs 111918 prefixes) is inferred from the file-name dates and the different LC methods in the raw headers (176 min vs 140 min); the paper says only \"repeated twice with two biological replicates each time\". It does not affect replicate numbering (1-4 are unique per culture either way).",
+  "Deposited search vs. paper: MQ_Results parameters.txt reports MaxQuant 1.6.3.3, PSM/protein FDR 0.05, FASTA UniProt_10090_Sept2018_JG.fasta, variable Deamidation (NQ) and Phospho (STY) and no Acetyl (K); the paper/PRIDE state MaxQuant 1.6.5.0, FDR 0.01, FASTA downloaded 26.03.2019, and variable acetylation of lysine. The SDRF follows the deposited search output; the paper values may describe a different (undeposited) search.",
+  "PRIDE sampleProcessingProtocol states MS1 resolution 100,000, NCE 35% and ion-trap MS2, and a 400 mm ProntoPEARL column; raw instrument methods of both preparation rounds and the paper say 60,000, NCE 27 and Orbitrap MS2 at 15,000. The raw files were followed.",
+  "characteristics[passage number] = not available (cells were cultured five passages in SILAC media; absolute passage not stated).",
+  "techsdrf not installed; raw-file verification limited to range-read headers of 2 of 8 files (one per preparation round).",
+  "sdrf-tools reconcile reports cleavage_agent_unsupported (BLOCKER) - a false positive: the trypsin sentence (\"saturated with 13 ng/uL sequence-grade modified trypsin ... incubated at 37 C overnight\") lacks the regex digest cues; refuted in validation.txt.",
+  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."
+ ]
+}

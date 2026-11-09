@@ -1804,3 +1804,14 @@ The technical values are already resolved in `annotations/PXD041509.report.md`:
 **Sources checked:** PRIDE record and file list (92 files); paper (closed access, abstract only); MaxQuant `txt_IP.rar` summary/parameters/proteinGroups/evidence; raw headers of all 6 IP files; independent review `annotations/PXD012871.review.md`.
 
 **Would be fully settled by:** an author statement explaining the renaming of the IP files.
+
+
+---
+
+## PXD022482 — Cell surface proteome of multiple myeloma (Ferguson et al., Nat Commun 2022; SILAC LenR vs WT + label-free CSC), label-free runs excluded (excluded runs, not a blocker)
+
+**Annotated:** the SILAC lenalidomide-resistance arm — 16 raw files (NCI-H929 and OPM-2, LenR vs parental, 4 mixtures × tryptic + PNGase F fractions), 32 rows in `annotations/PXD022482.sdrf.tsv`. The channel map is explicit in the deposited `MMLenalidomideResistantfiledescription.csv` ("Resistent line SILAC label") and was checked against the deposited Skyline ratios (CD33 / PTPRC and Supplementary Data 6).
+
+**Excluded runs (out of scope for the SILAC campaign, not missing evidence):** 47 label-free cell-surface-capture runs searched in MaxQuant 1.6.2.1 (summary Multiplicity 1; `summary_MM_Leukemia.txt`, `summary_PI_resistant.txt`, `summary_Small_Molecule.txt`; sample identities in `MM_surfaceome_sample_list.xlsx`): Q20180308-22, Q20180324-07, Q20180324-09, Q20180410-05, Q20180420-03, Q20180428-11, Q20180430-01, Q20180512-03, Q20180512-05, Q20180512-07, Q20180512-09, Q20180512-11, Q20180512-13, Q20180720-04, Q20180720-06, Q20180720-08, Q20180720-10, Q20180722-15, Q20180801-03, Q20180801-05, Q20180810-10, Q20180810-16, Q20180811-01, Q20180811-03, Q20180811-05, Q20180811-07, Q20180811-09, Q20180811-11, Q20180811-13, Q20180818-06, Q20180818-08, Q20181215-03, Q20181215-04, Q20181215-05, Q20181215-07, Q20181215-09, Q20190113-04, Q20190113-05, Q20190113-07, Q20190113-09, Q20190124-05, Q20190124-07, Q20190124-09, Q20190124-11, Q20190125-03, Q20190125-05, Q20190125-07 (.raw). They would go in a separate label-free SDRF (`PXD022482-lfq.sdrf.tsv`, batch rule 12). Note for whoever annotates them: the sample list calls Q20190124-07 "L363 CarfR rep1" while `summary_PI_resistant.txt` names it "ARH CarfR 0124-07".
+
+**Would be fully settled by:** a label-free annotation pass of the 47 runs.

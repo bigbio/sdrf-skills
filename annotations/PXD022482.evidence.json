@@ -1,0 +1,329 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD022482.sdrf.tsv",
+ "dataset": "PXD022482",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD022482 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD022482/files?pageSize=100&page=0..1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/files_all.json; 114 entries, 63 .raw; every entry projectAccessions contains PXD022482)"
+  },
+  {
+   "id": "filedesc",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/05/PXD022482/MMLenalidomideResistantfiledescription.csv (deposited channel/file description for the 16 SILAC raws; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/dep/MMLenalidomideResistantfiledescription.csv)"
+  },
+  {
+   "id": "skyline",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/05/PXD022482/skylineH929tryp.csv, skylineH929PNG.csv, skylineOPM2tryp.csv, skylineOPM2PNG.csv (deposited Skyline MS1 light/heavy peak areas per raw file; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/dep/)"
+  },
+  {
+   "id": "samplelist",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/05/PXD022482/MM_surfaceome_sample_list.xlsx and summary_MM_Leukemia.txt / summary_PI_resistant.txt / summary_Small_Molecule.txt (label-free MaxQuant searches; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/dep/)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Ferguson ID et al. The surfaceome of multiple myeloma cells suggests potential immunotherapeutic strategies and protein markers of drug resistance. Nat Commun 2022;13:4121, doi:10.1038/s41467-022-31810-6, PMID 35840578, PMC9287322 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC9287322.1/PMC9287322.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/paper.txt; Methods sections Cell lines, Cell surface protein labeling, Macro-CSC, SILAC-CSC, LC-MS/MS operation, Proteomic data analysis)"
+  },
+  {
+   "id": "sd6",
+   "kind": "publication",
+   "location": "Supplementary Data 6 (Mass Spectrometry on Lenalidomide resistant and WT MM cell lines) = https://pmc-oa-opendata.s3.amazonaws.com/PMC9287322.1/41467_2022_31810_MOESM8_ESM.xlsx (identified via MOESM2_ESM.docx file descriptions; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/supp/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/orientation.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/scripts/orient.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/scripts/orient2.py: per-file log2 LenR/WT from Skyline areas under the deposited label map, CD33/PTPRC markers, sign agreement with SD6 LenR/WT for |log2|>1 proteins, median log2 H/L per file, modification sites and heavy-light mass shifts)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 2 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/05/PXD022482/Q20160815-01.raw, Q20160825-09.raw, Q20170210-06.raw, Q20170210-25.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_1600?format=txt and CVCL_1625?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/cello_CVCL_1600.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/cello_CVCL_1625.txt); lenalidomide search https://api.cellosaurus.org/search/cell-line?q=lenalidomide (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/cello_len.txt; no H929/OPM-2 LenR derivative entry)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/ontologies/<onto>/terms/<iri> and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/ols_search.txt; all terms is_obsolete=False)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/samples.tsv, technical_tryp.tsv, technical_png.tsv; sdrf-tools build (x2); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/scripts/assemble.py (row selection by fraction)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[label] + characteristics[phenotype] + factor value[phenotype] rows 1-32",
+   "value": "LenR channel per raw = \"Resistent line SILAC label\" column; WT = the other channel",
+   "source_ids": [
+    "filedesc",
+    "orientation",
+    "paper",
+    "sd6"
+   ],
+   "evidence": "Deposited MMLenalidomideResistantfiledescription.csv gives, per raw file, the local experiment name, fraction (tryptic / PNGase F) and \"Resistent line SILAC label\" (Light for *H* names, Heavy for *L* names). Paper SILAC-CSC: Len sensitive and resistant cells mixed 1:1, \"performed in duplicate in both forward and reverse SILAC labeling scheme such that a total of four biological replicates\". Data check under this map: CD33 log2 LenR/WT positive in all 8 H929 files (+1.1..+4.5) and in all 4 OPM2 PNG files (+0.5..+3.2), PTPRC positive in all 8 H929 files, matching paper Fig. (only CD33 and PTPRC/CD45 common increases) and SD6 (H929 CD33 +3.40); per-file sign agreement with SD6 proteins |log2|>1 is 12-71 agree vs 4-20 disagree in every one of the 16 files."
+  },
+  {
+   "location": "source name + characteristics[biological replicate] rows 1-32",
+   "value": "<line>_<WT|LenR>_mix<1-4>; biological replicate = mixture 1-4 within each (cell line, phenotype) group",
+   "source_ids": [
+    "filedesc",
+    "paper",
+    "orientation"
+   ],
+   "evidence": "Four SILAC mixtures per cell line: experiment 1 (2016 acquisitions, local names *_PNG1/*_tryp1) LenR-light (mix1) and LenR-heavy (mix2), experiment 3 (2017-02-10 acquisitions, *-PNG3/*-tryp3) LenR-light (mix3) and LenR-heavy (mix4). Paper: \"a total of four biological replicates\" (Fig. legend: n = 4 biological replicates; heavy and light channels swapped for two replicates each). Each source = one labelled cell population in one mixture."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-32",
+   "value": "fraction 1 = tryptic peptides (skyline*tryp.csv), fraction 2 = PNGase F-released peptides (skyline*PNG.csv) of the same mixture",
+   "source_ids": [
+    "filedesc",
+    "skyline",
+    "orientation",
+    "paper"
+   ],
+   "evidence": "The file description pairs one tryptic and one PNGase F raw per (line, experiment, orientation). Same-mixture pairing is supported by the shared per-mixture mixing offset (median log2 H/L tryp vs PNG: H929 mix1 -0.95/-1.28, mix2 -0.02/-0.18, mix3 -0.86/-0.66, mix4 +0.01/-0.02; OPM2 mix1 -0.18/-0.25, mix2 -0.36/-0.55, mix3 -0.24/-0.31, mix4 -0.51/-0.44). Macro CSC protocol: on-bead tryptic digestion of the neutravidin-captured surface glycoproteins; the PNGase F fraction carries N[+1] deamidation (deglycosylated sites). Each raw is listed in exactly one Skyline export."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-32",
+   "value": "1",
+   "source_ids": [
+    "filedesc"
+   ],
+   "evidence": "One raw file per (mixture, fraction)."
+  },
+  {
+   "location": "characteristics[cell line] + factor value[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-32",
+   "value": "NCI-H929 / CVCL_1600 (rows 1-16); OPM-2 / CVCL_1625 (rows 17-32)",
+   "source_ids": [
+    "paper",
+    "filedesc",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"Lenalidomide-resistant cell lines H929 and OPM-2 were grown in increasing concentrations of lenalidomide\". Cellosaurus CVCL_1600 ID NCI-H929 (SY H929), CVCL_1625 ID OPM-2 (SY OPM2); EFO:0001221 label NCI-H929, EFO:0006716 label OPM-2. The LenR derivatives have no Cellosaurus entry (lenalidomide search), so the parental accession is used for both phenotypes (precedent PXD018305/PXD010683)."
+  },
+  {
+   "location": "characteristics[phenotype] + factor value[phenotype] rows 1-32",
+   "value": "lenalidomide sensitive (WT parental) / lenalidomide resistant (LenR)",
+   "source_ids": [
+    "paper",
+    "filedesc"
+   ],
+   "evidence": "Paper: \"Len sensitive and resistant cells were harvested ... mixed at 1:1\"; LenR lines removed from drug 5-7 days before cell surface proteomics, so no treatment column is asserted. Custom characteristics column (spec Extending Templates), wording as campaign precedent PXD018305."
+  },
+  {
+   "location": "characteristics[organism] rows 1-32",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-16 (NCI-H929); rows 17-32 (OPM-2)",
+   "value": "pleural effusion (NCI-H929) / blood (OPM-2)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_1600 \"Derived from site: In situ; Pleural effusion; UBERON=UBERON_0000175\"; CVCL_1625 \"In situ; Peripheral blood; UBERON=UBERON_0000178\" (OLS label blood)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-32",
+   "value": "plasma cell myeloma",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3242 Plasma cell myeloma for both lines; MONDO:0009693 label plasma cell myeloma (not obsolete). PRIDE disease Multiple myeloma."
+  },
+  {
+   "location": "characteristics[material type] rows 1-32",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured myeloma cell lines."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-16 (NCI-H929); rows 17-32 (OPM-2)",
+   "value": "European ancestry / Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CC Population: Caucasian (CVCL_1600) -> HANCESTRO:0005 European ancestry; Population: Japanese (CVCL_1625) -> HANCESTRO:0019 Japanese (not obsolete)."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] rows 1-32",
+   "value": "NCI-H929 62Y female adult; OPM-2 56Y female adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 62Y / 56Y, SX Female; both >= 20Y -> adult (EFO:0001272)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-16 (NCI-H929); rows 17-32 (OPM-2)",
+   "value": "NCI-H929_donor / OPM-2_donor",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Constructed label: each LenR line was evolved in vitro from its parental line (paper ref 38), so WT and LenR channels of a line share one donor. Not a published patient ID."
+  },
+  {
+   "location": "characteristics[cell line authentication] rows 1-32",
+   "value": "short tandem repeat profiling",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Cell lines: \"Cell lines were verified by DNA short tandem repeat testing and assessed as mycoplasma negative.\""
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-32",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper SILAC-CSC: \"cultured in RPMI SILAC media (Thermo) supplemented with Dialyzed FBS for SILAC\"; NCIT:C178973 label."
+  },
+  {
+   "location": "characteristics[sample storage temperature] rows 1-32",
+   "value": "-80 °C",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Cell surface protein labeling: \"cell pellet were snap frozen and stored in -80 °C until lysis\"; the SILAC experiments used the macro CSC protocol \"as described above\"."
+  },
+  {
+   "location": "comment[modification parameters] (Carbamidomethyl, Oxidation, Label K/R) rows 1-32",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) Variable",
+   "source_ids": [
+    "paper",
+    "skyline",
+    "orientation",
+    "ols"
+   ],
+   "evidence": "Paper: ProteinProspector v5.13.2, \"cysteine carbamidomethyl was set as a fixed modification; methionine oxidation, lysine, and arginine SILAC labels were set as variable modifications\"; heavy = L-[13C6,15N2]lysine and L-[13C6,15N4]arginine. Skyline heavy-light mass shifts: 8.01 Da per K, 10.01 Da per R (orientation.txt). Labels MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[modification parameters] (Acetyl) rows 1-32",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "skyline",
+    "orientation"
+   ],
+   "evidence": "Deposited Skyline peptides carry M[+42] only at peptide N-terminal Met (340-372 tryptic, 28-40 PNG occurrences), i.e. protein N-terminal acetylation was in the identification. Not mentioned in the paper (conflict recorded in limitations)."
+  },
+  {
+   "location": "comment[modification parameters] (Deamidated) rows with comment[fraction identifier] 2 (PNGase F) = Deamidated N; fraction 1 (tryptic) = not applicable",
+   "value": "NT=Deamidated;AC=UNIMOD:7;TA=N;MT=Variable / not applicable",
+   "source_ids": [
+    "skyline",
+    "orientation",
+    "build"
+   ],
+   "evidence": "N[+1] appears 15384-18212 times in skyline*PNG.csv and 0 times in skyline*tryp.csv. Built twice with identical headers (technical_png.tsv / technical_tryp.tsv) and assembled per fraction by scripts/assemble.py (batch rule 5)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-32",
+   "value": "6 ppm / 0.4 Da",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"peptide mass tolerance was 6 ppm; fragment ion mass tolerance was 0.4 Da\" (ProteinProspector search of the SILAC data)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-32",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper Macro-CSC: trypsin protease (Thermo 90057), 10 ug, overnight; search enzyme trypsin with up to two missed cleavages. PNGase F releases N-glycopeptides and is not a peptide cleavage agent."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-32",
+   "value": "TCEP (PRIDE:0000609) / iodoacetamide (PRIDE:0000599)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Macro-CSC digestion buffer: \"1.5 M urea, 50 mM ABC, 10 mM 2-iodoacetamide, and 5 mM TCEP\"."
+  },
+  {
+   "location": "comment[instrument] rows 1-32",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride"
+   ],
+   "evidence": "Raw headers of 4 files: \"Q Exactive Plus - Orbitrap MS\", \"Method of Q Exactive Plus\"; paper: Q-Exactive Plus. PRIDE lists the generic Q Exactive (MS:1001911); the raw headers win."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-32",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw method: TopN 20; paper: \"data-dependent mode using a top 20 method\"."
+  },
+  {
+   "location": "comment[dissociation method] + comment[collision energy] + comment[ms2 mass analyzer] rows 1-32",
+   "value": "HCD (MS:1000422) / 27 NCE / orbitrap",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw headers: Fragmentation_HCD 27, \"NCE / stepped NCE 27\", MS2 Resolution 17,500 (Orbitrap); paper: normalized collision energy 27, MS2 resolution 17,500."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] + technology type rows 1-32",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; templates chosen: MS data, human cells, cultured cell lines (no clinical/oncology templates: commercial cell lines, batch rule 15)."
+  }
+ ],
+ "limitations": [
+  "Partial scope: 16 of 63 deposited .raw files annotated (the SILAC lenalidomide-resistance arm). The 47 label-free runs (MaxQuant searches MM_Leukemia, PI_resistant, Small_Molecule; MM_surfaceome_sample_list.xlsx) are out of scope for this SILAC campaign and recorded in annotations/BLOCKED.md: Q20180308-22, Q20180324-07, Q20180324-09, Q20180410-05, Q20180420-03, Q20180428-11, Q20180430-01, Q20180512-03, -05, -07, -09, -11, -13, Q20180720-04, -06, -08, -10, Q20180722-15, Q20180801-03, -05, Q20180810-10, -16, Q20180811-01, -03, -05, -07, -09, -11, -13, Q20180818-06, -08, Q20181215-03, -04, -05, -07, -09, Q20190113-04, -05, -07, -09, Q20190124-05, -07, -09, -11, Q20190125-03, -05, -07 (.raw).",
+  "Rule 14 (multiplex check): no MaxQuant search exists for the SILAC runs (searched in ProteinProspector, not deposited). SILAC multiplexing is verified from the deposited Skyline exports instead: every quantified precursor has light and heavy MS1 areas with 8.01 Da (K) / 10.01 Da (R) shifts. The three deposited MaxQuant summaries (Multiplicity 1) cover only the label-free runs.",
+  "Search parameters come from the paper text (ProteinProspector v5.13.2, 6 ppm / 0.4 Da) and the deposited Skyline modified sequences; no ProteinProspector parameter file was deposited. Acetyl (Protein N-term) and Deamidated (N, PNGase F fraction) are in the Skyline data but not in the paper text; the data were preferred.",
+  "Tryptic and PNGase F raws of one local experiment are taken as two fractions of one SILAC mixture (same source names). Supported by the file description pairing and the shared per-mixture H/L mixing offset; the paper text does not describe the PNGase F step for the SILAC arm explicitly (\"subjected to the macro CSC protocol as described above to include all tryptic fragments\").",
+  "Biological replicates 1-4 = the four mixtures (2 experiments x forward/reverse) as the paper calls them \"four biological replicates\"; whether forward and reverse mixtures of one experiment used independent cultures is not stated.",
+  "Global per-protein log2 LenR/WT correlations between forward and reverse files of one experiment are weakly negative (-0.29 to -0.51), i.e. a label-specific bias dominates the unregulated majority; the marker proteins (CD33, PTPRC) and SD6-significant proteins agree with the deposited map in all 16 files, so the map is kept.",
+  "The OPM-2 PNG mix2 raw Q20160815-17 has local name OPM2L_PNG1_2 (other three are _1); treated as the only deposited injection of that fraction.",
+  "characteristics[cellosaurus accession] uses the parental CVCL for the LenR derivatives (no Cellosaurus entry for in-vitro evolved lenalidomide-resistant H929/OPM-2).",
+  "characteristics[passage number] = not available (only \"5 passages\" in SILAC medium is stated, not a passage number); characteristics[cell type] = not available (not stated); cell source/biorepository of H929 and OPM-2 is not stated (vendors given only for RS4;11, MM.1S, AMO1, KMS12-PE, RPMI-8226), so the column is omitted.",
+  "Sample list conflict outside scope: MM_surfaceome_sample_list.xlsx calls Q20190124-07 \"L363 CarfR rep1\" while summary_PI_resistant.txt names it \"ARH CarfR 0124-07\" (label-free run, not annotated).",
+  "techsdrf not installed; raw verification by range-read headers of 4 of 16 SILAC files (one per experiment date and both lines).",
+  "Related deposits PXD022553 (micro CSC, 27 raws) and PXD032031 (primary myeloma micro/TMT, 17 raws) share no raw file names with the 16 SILAC raws; this is not a duplicate deposit.",
+  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."
+ ]
+}

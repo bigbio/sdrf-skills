@@ -1,0 +1,48 @@
+# PXD022482 validation log (2026-11-09T15:02Z); SDRF sha256 fbc2bcf25e97233c26999219b87a4c3994be109428d5c259a23f57199e1f3191
+
+## Build provenance (rule 17)
+python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/scripts/make_tables.py  -> samples.tsv, technical_tryp.tsv, technical_png.tsv, files.json
+sdrf-tools build --samples samples.tsv --technical technical_tryp.tsv --files files.json -t ms-proteomics -t human -t cell-lines -o build_tryp.sdrf.tsv  -> 32 rows x 49 columns
+sdrf-tools build --samples samples.tsv --technical technical_png.tsv  --files files.json -t ms-proteomics -t human -t cell-lines -o build_png.sdrf.tsv   -> 32 rows x 49 columns
+python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/scripts/assemble.py build_tryp.sdrf.tsv build_png.sdrf.tsv annotations/PXD022482.sdrf.tsv -> 32 rows x 49 cols
+Post-build step justification: the two builds share samples.tsv and identical headers and differ only in the 6th comment[modification parameters] column (tryptic: not applicable; PNGase F: Deamidated N). assemble.py asserts identical headers, row-by-row identical source name and fraction identifier, and keeps fraction-1 (tryptic) rows from build_tryp and fraction-2 (PNGase F) rows from build_png (batch rule 5: modification parameters per search actually applied). No cell is edited.
+
+## parse_sdrf validate-sdrf -s annotations/PXD022482.sdrf.tsv -t ms-proteomics -t human -t cell-lines   (round 1 = final; no fixes needed)
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD022482.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD022482.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/pride.json --accession PXD022482
+PXD022482: every annotated value agrees with the deposit record.
+exit=0
+Note: PRIDE lists instrument 'Q Exactive' (MS:1001911) and quantification 'Label free' + 'SILAC'; the SDRF states Q Exactive Plus (MS:1002634) from the raw headers; reconcile raised no finding.
+
+## sdrf-tools check annotations/PXD022482.sdrf.tsv (online OLS)
+Hallucination Report: PXD022482.sdrf.tsv
+  Terms checked:     24
+  Verified:          24
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD022482.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD022482/convert)
+Conditions (4): dict_keys(['NCI-H929|lenalidomide sensitive', 'NCI-H929|lenalidomide resistant', 'OPM-2|lenalidomide sensitive', 'OPM-2|lenalidomide resistant'])
+Files per condition: dict_values([8, 8, 8, 8])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 32 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD022482.sdrf.tsv
+exit=0
+The TA= warning concerns NT=Acetyl;PP=Protein N-term (no TA by design; format-rules.md positional mods use PP=). OpenMS output: tryptic files list Acetyl (Protein N-term), Label K/R, Oxidation; PNGase F files additionally Deamidated (N).
+
+## sdrf-tools schema-check annotations/PXD022482.evidence.json
+PXD022482.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD022482.sdrf.tsv annotations/PXD022482.evidence.json
+Manifest covers every column with a value (34 column(s)).
+exit=0
