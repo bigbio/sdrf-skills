@@ -1,0 +1,49 @@
+# PXD002388 validation log (2026-11-09T15:04Z); SDRF sha256 f3f0f7abebe8e993dec913e092942a73dfb55ed70fe434b990bfc27a2585d926; 108 data rows x 49 columns
+# SDRF = two sdrf-tools build outputs (searched: 52 runs/104 rows; unsearched: 2 runs/4 rows) concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/scripts/concat.sh with identical headers asserted; no other post-build edit.
+
+## parse_sdrf validate-sdrf -s annotations/PXD002388.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+ERROR:sdrf_pipelines.ols.ols:OLS search term homo sapiens error, retry number 3
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term homo sapiens. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=homo+sapiens&name=class&rows=10&start=30&ontology=ncbitaxon&exact=on
+ERROR:sdrf_pipelines.ols.ols:OLS search term lung adenocarcinoma error, retry number 1
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term lung adenocarcinoma. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=lung+adenocarcinoma&name=class&rows=10&start=10&ontology=ncit&exact=on
+WARNING: Term: Minimum Essential Medium in column 'characteristics[culture medium]', is not found in the given ontology list ncit
+Most seems to be fine. There were only warnings.
+exit=0
+Note: the two 'OLS error searching term' lines are transient OLS4 HTTP 500s on result pages start=30 / start=10 of the validator's own searches (retried); the run completed with only the culture-medium warning. Homo sapiens (NCBITaxon:9606) and lung adenocarcinoma (MONDO:0005061) were verified separately via OLS4 terms?obo_id (is_obsolete=False, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/ols_ids.txt). The culture-medium warning is expected: OLS NCIT has no Minimum Essential Medium term; the stated name is written.
+
+## sdrf-tools structure annotations/PXD002388.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD002388.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/pride.json --accession PXD002388
+PXD002388: every annotated value agrees with the deposit record.
+exit=0
+
+## sdrf-tools check annotations/PXD002388.sdrf.tsv
+First (online) attempt crashed on an OLS4 HTTP 500 (search?q=Homo+sapiens, ontology=ncbitaxon): exit=1, not a finding. Re-run offline:
+## sdrf-tools check annotations/PXD002388.sdrf.tsv --offline
+Hallucination Report: annotations/PXD002388.sdrf.tsv
+  Terms checked:     11
+  Verified:          4
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD002388.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/convert)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (SEQUEST/Elucidator search tolerances not reported in PRIDE or the Data Brief). Rows 105-108 carry not applicable (runs absent from the deposited results). validate-sdrf and the templates accept both reserved words. Same outcome as campaign precedents PXD014368/PXD006676.
+
+## sdrf-tools schema-check annotations/PXD002388.evidence.json
+annotations/PXD002388.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD002388.sdrf.tsv annotations/PXD002388.evidence.json
+Manifest covers every column with a value (36 column(s)).
+exit=0

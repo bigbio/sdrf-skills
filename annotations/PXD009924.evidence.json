@@ -1,0 +1,333 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD009924.sdrf.tsv",
+ "dataset": "PXD009924",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v2/projects/PXD009924 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/pride.json; the v3 endpoint and the MCP get_project_details timed out/unreachable on 2026-11-09, v2 answered)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009924/README.txt (PRIDE submission file list: 240 RAW + MaxQuant_Output.zip, all mapped to the search; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/README.txt) and the FTP directory listing https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009924/ (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/ftp.html, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/ftp_list.txt; identical 240 raw names). PRIDE v2 files endpoint returned empty bodies. build input /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/files.json"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Becker AC et al. Influenza A Virus Induces Autophagosomal Targeting of Ribosomal Proteins. Mol Cell Proteomics 2018;17(10):1909-21, doi:10.1074/mcp.RA117.000364, PMID 29980615, PMC6166674 (CC BY; text https://pmc-oa-opendata.s3.amazonaws.com/PMC6166674.1/PMC6166674.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/paper.txt)"
+  },
+  {
+   "id": "mq_readme",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009924/MaxQuant_Output.zip member readme.txt (HTTP range read of the zip central directory + member, raw-deflate inflated; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/dl/readme.txt; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/zipls.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/zipget.py)"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009924/MaxQuant_Output.zip members summary.txt, parameters.txt, experimentalDesignTemplate.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/dl/summary.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/dl/parameters.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/dl/experimentalDesignTemplate.txt)"
+  },
+  {
+   "id": "mq_pg",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009924/MaxQuant_Output.zip member proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/dl/proteinGroups.txt)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/orient.py: per-experiment L/M/H intensities and H/M ratios of the influenza protein groups) and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/markers.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/markers.py: normalized H/M of interferon-stimulated host proteins and median log2 H/M of viral protein groups per MaxQuant experiment)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 2 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009924/20180223_A549_C_1_1.raw, 20180309_ZH_CaRo_H1299_M_1_1.raw, 20180326_SA_Calu_Influenza_C_1_1.raw decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0023, CVCL_0608, CVCL_0060 ?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/cello_CVCL_0023.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/cello_CVCL_0608.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/cello_CVCL_0060.txt) and sdrf-tools cellline lookup"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via sdrf-tools verify/ols and https://www.ebi.ac.uk/ols4/api/ontologies/<o>/terms?obo_id= (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/ols_verify.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/ols_obsolete.txt: every term used is_obsolete=false); NCBITaxon strain search via rest.uniprot.org/taxonomy"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; base/1.1.0/base.yaml sample type PRIDE:0000895"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-720",
+   "value": "<cell line>_exp<1|2>_{IAV_infected|uninfected}_<compartment> and <cell line>_exp<n>_light_uninfected_fraction_pool_spiked_into_<compartment>_mix",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "mq_readme",
+    "paper"
+   ],
+   "evidence": "Run names <date>_<cell line>_<C|M|N|V|Mitos|Vesicles>_<1|2>_<slice>.raw; MaxQuant experimentalDesignTemplate assigns each 10-file set to one experiment (A549 C_3/C_4, M_3/M_4, N_3/N_4, V_3/V_4 for file replicates 1/2; Calu-1 C_C_1..C_V_2; NCI-H1299 H_C_1..H_V_2). Each mixture holds three physical samples: the heavy infected compartment, the medium control compartment and one aliquot of the light internal standard (paper: \"all light-labeled cell fractions of one experiment were combined and served as an internal standard. This standard was spiked in 1:2 ratio into the mixed compartment fractions\"), so every aliquot gets its own source name (24 mixtures x 3 = 72 sources)."
+  },
+  {
+   "location": "comment[label] + characteristics[infection] + factor value[infection] rows 1-720",
+   "value": "SILAC heavy (Arg10/Lys8) = IAV-infected; SILAC medium (Arg6/Lys4) = uninfected control; SILAC light (Arg0/Lys0) = uninfected internal standard",
+   "source_ids": [
+    "paper",
+    "mq_readme",
+    "mq_summary",
+    "orientation"
+   ],
+   "evidence": "Paper Fig. 2A legend: \"SILAC-labeled A549, Calu-1 and NCI-H1299 cells were IAV infected for 24 h (Arg10/Lys8) with a MOI of 2 or left untreated (Arg6/Lys4 and Arg0/Lys0)\"; text: \"medium-heavy labeled control and heavy labeled IAV infected cells were subsequently combined in a 1:1 ratio\". Deposit readme.txt: \"Light is the internal control spiked into all samples comparing IVA (heavy) versus control (medium heavy) compartments.\" summary.txt: all 240 files Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8. Data check: all 10 influenza protein groups are heavy-dominant in all 24 experiments (median log2 normalized H/M 2.7-4.7 per experiment); interferon-stimulated IFIT1/IFIT2/OASL H/M 2-15 in all A549 compartments (paper: IFITs significantly up \"exclusively in A549\")."
+  },
+  {
+   "location": "characteristics[infection] + factor value[infection] rows 1-720",
+   "value": "Influenza A virus (A/X-31(H3N2)) (NCBITaxon:132504) | uninfected",
+   "source_ids": [
+    "paper",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Paper Methods: \"influenza virus strain X:31 A/AICHI/68 (Charles River ...) ... at a multiplicity of infection (MOI) of 2 PFU per cell ... for 24 h\". NCBITaxon:132504 label \"Influenza A virus (A/X-31(H3N2))\" (not obsolete). PRIDE organism NEWT:553341 is \"Influenza A virus (A/Aichi/68/2007(H3N2))\", a 2007 isolate that does not match the 1968-derived X-31 reassortant named in the paper, so it was not used. Custom characteristics column (spec \"Extending Templates\"); the pathogen is not a characteristics[organism] of the host samples."
+  },
+  {
+   "location": "characteristics[cellular component] + factor value[cellular component] rows 1-720",
+   "value": "nucleus (GO:0005634), mitochondrion (GO:0005739), cytosol (GO:0005829), vesicle (GO:0031982); not applicable for the light pooled standard",
+   "source_ids": [
+    "paper",
+    "files",
+    "mq_readme",
+    "ols"
+   ],
+   "evidence": "Paper: differential centrifugation \"to collect nuclear (1000 x g), mitochondrial (3000 x g) and vesicular fractions (17,000 x g). The supernatant of the last centrifugation was collected as the cytosolic fraction\"; readme: \"Analyzed are vesicles (V), mitochondria (M), cytosol (C), and nuclei (N)\"; file tokens C/M/N/V (Calu-1: C/Mitos/N/Vesicles). Each compartment is a measured sample compared across mixtures (batch rule 16), hence a characteristics/factor value, not comment[fraction identifier]. The light standard is the pool of all four light compartments, so no single compartment applies. GO terms denote the enriched centrifugation fraction."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-720",
+   "value": "reference (light internal standard rows) | study sample (medium and heavy rows)",
+   "source_ids": [
+    "paper",
+    "mq_readme",
+    "ols",
+    "templates"
+   ],
+   "evidence": "Light = \"internal standard\" / \"internal control spiked into all samples\" (paper, readme). PRIDE:0000899 reference is a child of PRIDE:0000898 multiplex sample under PRIDE:0000895; PRIDE:0001013 study sample. base.yaml: rows not identified as control/reference default to study sample."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-720",
+   "value": "pooled (light standard) | not pooled (medium, heavy)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Fig. 2A: \"The light labeled fractions were combined ... the same amount of the combined light fraction was spiked in as an internal standard\" - the light sample is a pool of the four light compartment fractions of one experiment; medium and heavy rows are single compartments of one culture."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-720",
+   "value": "1 or 2 per (cell line, infection, compartment) group = experiment 1/2",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "paper",
+    "mq_readme"
+   ],
+   "evidence": "File token _1_/_2_ and MaxQuant experiments (A549 *_3/*_4 = files _1_/_2_; Calu-1 and NCI-H1299 *_1/*_2) are the two biological replicates per cell line (\"Analyzed are vesicles (V), mitochondria (M), cytosol (C), and nuclei (N), each in two biological replicates\"; paper: \"We minimally analyzed two biological replicates from all conditions\"). Each replicate is a separately labelled, infected and fractionated culture set; the four compartments of one replicate derive from the same culture and share its number. The paper's third A549 replicate (Fig. 2B n = 3) is not in this deposit (MaxQuant experiments C_1/C_2, M_1/M_2... with 2012 LTQ Orbitrap XL runs belong to companion PXD007809)."
+  },
+  {
+   "location": "characteristics[cell line] + factor value[cell line] rows 1-720",
+   "value": "per cell line",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "files",
+    "paper"
+   ],
+   "evidence": "A549, Calu1 (EFO:0002151 label; Cellosaurus Calu-1), NCI-H1299 per run-name token A549 / Calu / H1299; paper: \"human A549, Calu-1 and NCI-H1299 cells\". EFO labels verified in OLS."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-720",
+   "value": "per cell line",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "files",
+    "paper"
+   ],
+   "evidence": "CVCL_0023 A-549, CVCL_0608 Calu-1, CVCL_0060 NCI-H1299 (Cellosaurus ID/AC lines); all OX NCBI_TaxID=9606, no other-species namesake in the Cellosaurus search."
+  },
+  {
+   "location": "characteristics[disease] rows 1-720",
+   "value": "per cell line",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "files",
+    "paper"
+   ],
+   "evidence": "Cellosaurus DI: A-549 NCIt C3512 Lung adenocarcinoma -> MONDO:0005061 lung adenocarcinoma; Calu-1 C3493 Lung squamous cell carcinoma -> MONDO:0005097 \"squamous cell lung carcinoma\"; NCI-H1299 C4450 Lung large cell carcinoma -> MONDO:0003050 lung large cell carcinoma. PRIDE disease \"influenza\" (DOID:8469) is the in-vitro infection, not the donor disease; it is encoded in characteristics[infection]."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-720",
+   "value": "per cell line",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "files",
+    "paper"
+   ],
+   "evidence": "Cellosaurus \"Derived from site\": A-549 In situ; Lung (UBERON:0002048 lung); Calu-1 Metastatic; Pleural effusion (UBERON:0000175); NCI-H1299 Metastatic; Lymph node (UBERON:0000029)."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] rows 1-720",
+   "value": "per cell line",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "files",
+    "paper"
+   ],
+   "evidence": "Cellosaurus AG 58Y / 47Y / 43Y, SX Male for A-549 / Calu-1 / NCI-H1299; all >= 20Y -> adult (EFO:0001272)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-720",
+   "value": "per cell line",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "files",
+    "paper"
+   ],
+   "evidence": "Cellosaurus \"Population: Caucasian.\" for all three -> European ancestry (HANCESTRO:0005)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-720",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Human cell lines (Cellosaurus OX 9606); PRIDE organisms include Homo sapiens."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-720",
+   "value": "epithelial cell (CL:0000066)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: \"A549, Calu-1 and NCI-H1299 epithelial cells derived from human lung carcinomas\"; PRIDE organismParts CL:0000066 epithelial cell."
+  },
+  {
+   "location": "characteristics[material type] rows 1-720",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Established cancer cell lines."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-720",
+   "value": "Dulbecco's Modified Eagle Medium (NCIT:C185409)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: cells \"cultured ... in high glucose DMEM\"; \"For SILAC-labeling, cells were grown in SILAC-DMEM (high glucose)\"."
+  },
+  {
+   "location": "comment[instrument] rows 1-720",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "mq_summary"
+   ],
+   "evidence": "Raw headers of A549, NCI-H1299 and Calu-1 files: \"Q Exactive Plus\" / \"Q Exactive Plus - Orbitrap MS\"; paper: \"EasyLC 1000 nanoflow-HPLC connected online to a QExactive Plus\". PRIDE instruments and MaxQuant summary Instrument say \"Q Exactive\" (MaxQuant 1.4 does not distinguish the Plus); the raw header is more specific and is used."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] + comment[dissociation method] + comment[collision energy] + comment[ms2 mass analyzer] rows 1-720",
+   "value": "DDA; HCD (MS:1000422); 25 NCE; orbitrap",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper: \"Mass spectrometers were operated in the data-dependent mode ... For QExactive Plus analyses: after each MS scan ... a maximum of ten MS/MS scans were performed using a normalized collision energy of 25%, ... resolution of 17,500\" (Orbitrap MS2, HCD on a Q Exactive Plus)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-720",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_summary"
+   ],
+   "evidence": "Paper: in-gel digestion with \"trypsin (MS grade, Promega)\". MaxQuant search rule Trypsin/P, 3 missed cleavages (summary.txt Enzyme Trypsin/P; batch rule 2: SDRF records the digestion enzyme)."
+  },
+  {
+   "location": "comment[fractionation method] + comment[fraction identifier] rows 1-720",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568; fraction 1-10",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "files"
+   ],
+   "evidence": "Paper: \"Proteins were separated by SDS-PAGE using 4-12% Bis-Tris gels ... Gel lanes were cut into 10 slices\". comment[fraction identifier] = the MaxQuant experimentalDesignTemplate Fraction value. For A549 and NCI-H1299 it equals the file-name slice index; for all 80 Calu-1 files MaxQuant uses 11 - index (file _1 = fraction 10). The deposited search numbering is kept; which convention reflects the gel slice order is not stated."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-720",
+   "value": "DTT; iodoacetamide",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: \"reduced with 1 mm DTT for 10 min at 95 C and alkylated using 5.5 mm iodoacetamide\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-720",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term variable; SILAC Arg6 (UNIMOD:188), Lys4 (UNIMOD:481), Arg10 (UNIMOD:267), Lys8 (UNIMOD:259)",
+   "source_ids": [
+    "mq_summary",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt Fixed modifications \"Carbamidomethyl (C)\"; summary.txt Variable modifications \"Acetyl (Protein N-term);Oxidation (M)\", Labels1 \"Arg6;Lys4\", Labels2 \"Arg10;Lys8\" for all 240 files. Paper: Lys4 = \"l-lysine-2H4\" -> Label:2H(4) UNIMOD:481; Arg6 = 13C6 -> UNIMOD:188; Arg10 = 13C6 15N4 -> UNIMOD:267; Lys8 = 13C6 15N2 -> UNIMOD:259. Labels MT=Variable (batch rule 11). Search database: UniProt human March 2018 plus influenza A protein entries (fasta UNIPROT_Human_Mar_2018_FluA_H3N2.fasta)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-720",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_summary",
+    "paper"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"; Orbitrap MS2 spectra are FTMS."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] + technology type rows 1-720",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; build fills templates and technology type."
+  },
+  {
+   "location": "comment[data file] + assay name + comment[technical replicate] rows 1-720",
+   "value": "raw file names; file stems; 1",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "240 deposited .raw files, each in exactly one mixture (3 rows per file, one per SILAC channel); no injection repeated."
+  }
+ ],
+ "limitations": [
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.4.1.2 parameters.txt/summary.txt do not record the first/main-search precursor tolerance and no mqpar.xml was deposited (paper states only post-recalibration precision <1 ppm). parse_sdrf convert-openms therefore fails on this column.",
+  "Fraction numbering: Calu-1 files are numbered 11 - (file-name slice index) in the deposited MaxQuant design while A549/NCI-H1299 follow the file name; the SDRF follows the search. Gel-slice order is not documented.",
+  "The PRIDE organism NEWT:553341 (A/Aichi/68/2007) disagrees with the paper strain (X:31 A/AICHI/68 = reassortant on 1968 Aichi HA/NA); NCBITaxon:132504 A/X-31(H3N2) used from the paper.",
+  "Paper says three A549 compartment replicates; this deposit holds two (2018 Q Exactive Plus runs). The others (2012 LTQ Orbitrap XL, MaxQuant experiments C_1/C_2, M_1/M_2, N_1/N_2, V_1/V_2 and WCL), searched jointly with these files, are not in this deposit and presumably belong to companion PXD007809 (paper Data Availability lists PXD007809 and PXD009924), which was not annotated here (PRIDE v2/v3 metadata for it timed out). Not a duplicate: readme says \"This project is an addition to the project PXD007809\"; the joint MaxQuant search pairs the 240 2018 Q Exactive Plus files deposited here with 2012 LTQ Orbitrap XL runs (20120203_AZ_fractions_* etc.) that are not in this deposit. the file list of PXD007809 was not retrieved (PRIDE timeouts), so overlap was not checked from that side.",
+  "MOI 2, 24 h post infection, are stated but not encoded in a column (no licensed column for MOI; sampling time would be not applicable for controls).",
+  "PRIDE v3 API and the MCP PRIDE tools were unreachable/timed out on 2026-11-09; the record came from the v2 API and the FTP README/listing.",
+  "Review: per caller instruction no adversarial review, review file or review-gate approval in this run (REVIEW_PENDING_EXTERNAL)."
+ ]
+}

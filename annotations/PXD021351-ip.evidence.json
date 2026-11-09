@@ -1,0 +1,226 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD021351-ip.sdrf.tsv",
+ "dataset": "PXD021351",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021351 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/pride.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/pride_details.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021351/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/files_all.json; 53 entries, page 1 empty; every entry projectAccessions contains PXD021351): 44 RAW, 1 docx, 8 xlsx search results"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Soh TK et al. Temporal Proteomic Analysis of Herpes Simplex Virus 1 Infection Reveals Cell-Surface Remodeling via pUL56-Mediated GOPC Degradation. Cell Rep 2020;33(1):108235, doi:10.1016/j.celrep.2020.108235, PMID 33027661, PMC7539533 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC7539533.1/PMC7539533.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/paper.txt; STAR Methods: Cell lines, SILAC, Sample preparation for plasma membrane profiling, Offline tip-based SCX, LC-MS/MS and data analysis for SILAC-based plasma membrane experiments, Immunoprecipitation, Mass spectrometry of SILAC IP samples)"
+  },
+  {
+   "id": "details",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021351/Detailsofsamplesandrawfiles.docx (deposited sample/raw-file sheet; text extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/details.txt)"
+  },
+  {
+   "id": "mq_proteins",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021351/SILAC_IP_PMP_proteins.xlsx (MaxQuant proteinGroups, one combined search of the IP and PMP experiments, MaxQuant experiments 1-5; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/dl/)"
+  },
+  {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021351/SILAC_IP_PMP_peptides.xlsx (sheet \"Related to Figure 6\"; MaxQuant evidence table with Raw file / Fraction / Experiment / Labeling State columns; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/dl/; summaries /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/evidence_runs.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/evidence_rt.txt)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 2,000,000 bytes of https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021351/SILAC_IP_Exp1..3.raw and SILAC_PMP_UL56_WT_F1..F6.raw, SILAC_PMP_UL56_WT_Unfrac.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/raw/*.head; UTF-16 strings via /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/scripts/rawstr.py)"
+  },
+  {
+   "id": "checks",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/markers.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/viral.txt (scripts/markers.py, scripts/viral.py on proteinGroups ratios/intensities); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/labelcheck.txt (scripts/labelcheck2.py: light-to-medium/heavy m/z spacing x charge in evidence); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/masscheck.txt (scripts/masscheck.py: Cys residual mass)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0038?format=txt and CVCL_0063 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/cello_CVCL_0038.txt, cello_CVCL_0063.txt); sdrf-tools cellline lookup (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/cellline.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 terms API 2026-11-09 (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/ols1.txt; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/scripts/olsid.py): all terms is_obsolete false"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-9",
+   "value": "HEK293T_<bait>_GFP-Trap_IP_exp<1-3>",
+   "source_ids": [
+    "details",
+    "mq_evidence",
+    "raw",
+    "files"
+   ],
+   "evidence": "details Experiment 2 \"UL56 SILAC IP ... 3 biological replicates\", files SILAC_IP_Exp1..3. Raw headers: original names 090316_Exp1/2/3.raw (\"090316 Triple SILAC\"); MaxQuant evidence raw files 090316_Exp1/2/3 = experiments 1/2/3 (fractions 11/22/33). One source per (replicate, channel)."
+  },
+  {
+   "location": "comment[label] + characteristics[bait] + factor value[bait] rows 1-9",
+   "value": "SILAC light = GFP; SILAC medium = pUL56(1-207)-GFP; SILAC heavy = GFP-pUL56(1-234)",
+   "source_ids": [
+    "details",
+    "paper",
+    "mq_proteins",
+    "checks"
+   ],
+   "evidence": "details Experiment 2 \"SILAC labelling: Light GFP, Medium pUL56(1-207)-GFP, Heavy GFP-pUL56 (1-234)\". Paper: \"SILAC-labeled HEK293T cells were transfected with GFP-tagged pUL56 cytoplasmic domain (residues 1-207) or GFP alone and subjected to IP using a GFP affinity resin\"; Table S4 legend \"Two different constructs of pUL56 encompassing either the full-length protein or its cytoplasmic domain\"; \"light-, medium- and heavy-labeled bound samples were mixed in a 1:1:1 ratio\". Data check (proteinGroups exp 1/2/3): pUL56 (AFE62885.1) M/L 12.9/1.9/5.5, H/L 12.3/9.6/9.6; GOPC M/L 5.5/2.8/5.4, H/L 9.1/6.9/9.2; ITCH M/L 8.6/7.8/12.4; NEDD4 M/L 6.2/6.4/7.7; viral protein intensity L 2.7-3.1e8 vs M 1.6-2.1e9, H 3.5-5.3e9 -> light = GFP-only control, medium and heavy = pUL56 baits (which pUL56 construct is M vs H is from the details sheet; both are enriched, so the data do not discriminate them)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-9",
+   "value": "1, 2, 3 (Exp1, Exp2, Exp3) within each bait group",
+   "source_ids": [
+    "details",
+    "paper"
+   ],
+   "evidence": "\"Three biological repeats of each triple-labeled SILAC IP experiment were analyzed\"; details \"Experiment 2 had 3 biological replicates\"."
+  },
+  {
+   "location": "characteristics[transfection] rows 1-9",
+   "value": "transient transfection",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Custom column. \"Monolayers of HEK293T cells ... were transfected using lipofectamine 2000 or TransIT-LT1 with expression plasmids ... harvested 16-24 h post-transfection\"; \"For experiments with SILAC-labeled cells, the relevant labeled medium was used\"."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-9",
+   "value": "sample enrichment (EFO:0009106)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "GFP-Trap agarose immunoprecipitation; bound fraction eluted in SDS loading buffer."
+  },
+  {
+   "location": "comment[instrument]; comment[dissociation method]; comment[collision energy]; comment[ms1 scan range] rows 1-9",
+   "value": "Orbitrap Fusion (MS:1002416); CID (MS:1000133); 35 NCE; 350-1550 m/z",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw headers: \"Orbitrap Fusion\" (instrument method DDA_CID_SILAC_145min), \"ActivationType = CID\", \"Collision Energy (%) = 35\", MS1 \"Scan Range (m/z) = 350-1550\". Paper: \"Orbitrap Fusion Tribrid\", \"scan range (m/z) of 350-1550\", \"CID collision energy of 35%\". PRIDE lists both Fusion and Fusion Lumos for the project; Lumos is the PMP instrument."
+  },
+  {
+   "location": "comment[data file]; comment[fraction identifier]; comment[fractionation method] rows 1-9",
+   "value": "1; not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"Samples were run into precast SDS-PAGE gels for 5 minutes, the entire sample extracted from the gel as a single band\" -> one unfractionated injection per replicate."
+  },
+  {
+   "location": "comment[reduction reagent]; comment[alkylation reagent] rows 1-9",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"in-gel digested, reduced and alkylated using a ProGest automated digestion unit (Digilab)\" - reagents not named."
+  },
+  {
+   "location": "characteristics[organism]; characteristics[organism part]; characteristics[cell type]; characteristics[disease]; characteristics[material type]; characteristics[ancestry category]; characteristics[age]; characteristics[sex]; characteristics[developmental stage]; characteristics[cell line]; characteristics[cellosaurus accession]; characteristics[cellosaurus name] rows 1-9",
+   "value": "Homo sapiens / kidney / not available / normal / cell line / not available / not available / female / fetal stage / HEK-293T cell / CVCL_0063 / HEK293T",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"HEK293T cells: human embryonic kidney cell line, Adenovirus 5 and SV40 transformed, female (ATCC, CRL-3216)\". Cellosaurus CVCL_0063: SX Female, AG Fetus (HsapDv:0000037 fetal stage; no numeric age -> not available), derived from fetal kidney (UBERON:0002113), no population given, no disease (normal). Cell line label BTO:0002181 \"HEK-293T cell\" (Cellosaurus DR BTO_0002181), as campaign precedent PXD004666."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-9",
+   "value": "Dulbecco's Modified Eagle Medium (NCIT:C185409)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "SILAC medium: high glucose DMEM lacking arginine and lysine with dialyzed FBS."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Paper: \"operated in data-dependent acquisition mode\" (IP) / \"MS2 DDA acquisition\" (PMP); raw method summaries contain DynamicExclusion filters and MSn Level 2 data-dependent scans."
+  },
+  {
+   "location": "comment[cleavage agent details] all rows",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "PMP: \"Captured protein was digested on-bead with trypsin\"; IP: in-gel digestion (ProGest) with MaxQuant \"Trypsin/P digestion\" (search rule Trypsin/P recorded here as a note; batch rule 2: digestion enzyme = Trypsin). The IP methods name no other enzyme."
+  },
+  {
+   "location": "comment[modification parameters] (7 columns) all rows",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; Label:2H(4) K (UNIMOD:481), Label:13C(6) R (UNIMOD:188), Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) variable",
+   "source_ids": [
+    "paper",
+    "mq_evidence",
+    "checks",
+    "ols"
+   ],
+   "evidence": "Paper PMP: \"medium (Arg6, Lys4) and heavy (Arg10, Lys8) labels ... Carbamidomethyl (C) fixed, oxidation (M) and acetylation (protein N termini) variable\"; IP: light (Arg0, Lys0), medium (Arg6, Lys4), heavy (Arg10, Lys8), oxidation + N-terminal acetylation. The deposited combined search (evidence table) contains only Oxidation (M) and Acetyl (Protein N-term) variable mods; every Cys-containing peptide carries +57.021 Da (masscheck.txt) -> Carbamidomethyl fixed for both arms. Light->medium/heavy spacing x z: K +4.02/+8.01, R +6.02/+10.01 Da (labelcheck.txt) = Lys4/Lys8, Arg6/Arg10. SILAC labels MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] all rows",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw method summaries: MSn Level 2 \"Detector Type = IonTrap\" in all IP and PMP files; paper \"ITMS2\" (IP), \"ion trap scanning in rapid mode\" (PMP)."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] all rows",
+   "value": "not available",
+   "source_ids": [
+    "files",
+    "mq_evidence"
+   ],
+   "evidence": "The deposit holds no mqpar.xml / parameters.txt / summary.txt for the SILAC search (only proteinGroups and evidence exported to xlsx), and the paper gives no MaxQuant tolerances for these searches."
+  },
+  {
+   "location": "comment[sdrf version]; comment[sdrf template]; comment[sdrf annotation tool] all rows",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0 + NT=human;VV=v1.1.0 + NT=cell-lines;VV=v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "ols"
+   ],
+   "evidence": "Campaign batch rules 1 and 10 (spec README.adoc:27 sdrf version v1.1.0; upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 ms-proteomics latest 1.2.0; the spec submodule nested templates copy is older). Templates printed by sdrf-tools contract: ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0."
+  },
+  {
+   "location": "technology type; comment[technical replicate]; assay name all rows",
+   "value": "proteomic profiling by mass spectrometry; 1; raw-file stem",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One injection per raw file; no repeated injections deposited. Assay name = file stem (shared by the three SILAC channels of a run)."
+  }
+ ],
+ "limitations": [
+  "Partial scope: only the two SILAC experiments are annotated. The 34 TMT raw files (Experiment 1 WCL_HSV_timecourse_* 15 raws, Experiment 3 WCL_UL56_WT_* 12 raws, Experiment 5 PMP_GOPC_KO_* 7 raws; MassPike/Sequest TMT searches) are out of scope for this SILAC campaign; they are listed in BLOCKED.md (excluded runs) and would need a TMT annotation (channel maps are in Detailsofsamplesandrawfiles.docx).",
+  "Precursor/fragment mass tolerances not available: no mqpar.xml, parameters.txt or summary.txt was deposited for the combined SILAC MaxQuant search; parse_sdrf convert-openms therefore cannot derive tolerances.",
+  "MaxQuant version: paper states 1.5.7.4 for the IP search and 1.5.8.3 for the PMP search, but the deposited xlsx files are one combined search of both experiments (experiments 1-5); which version produced them is not recorded.",
+  "The deposited raw files were renamed after the search; the raw -> MaxQuant-raw mapping is established from the original file names embedded in the raw headers and from MS1 resolution / gradient length in the evidence table (see source name claims).",
+  "Review status REVIEW_PENDING_EXTERNAL: external sdrf-adversarial-review hand-off; not self-approved.",
+  "Reduction/alkylation reagents of the ProGest in-gel digestion are not named (not available).",
+  "Medium vs heavy bait identity (pUL56(1-207)-GFP vs GFP-pUL56(1-234)) rests on the deposited details sheet only; both baits enrich pUL56/GOPC/ITCH over light, so the data cannot discriminate the two constructs."
+ ]
+}

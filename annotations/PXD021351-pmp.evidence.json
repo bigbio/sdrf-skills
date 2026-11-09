@@ -1,0 +1,236 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD021351-pmp.sdrf.tsv",
+ "dataset": "PXD021351",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021351 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/pride.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/pride_details.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD021351/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/files_all.json; 53 entries, page 1 empty; every entry projectAccessions contains PXD021351): 44 RAW, 1 docx, 8 xlsx search results"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Soh TK et al. Temporal Proteomic Analysis of Herpes Simplex Virus 1 Infection Reveals Cell-Surface Remodeling via pUL56-Mediated GOPC Degradation. Cell Rep 2020;33(1):108235, doi:10.1016/j.celrep.2020.108235, PMID 33027661, PMC7539533 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC7539533.1/PMC7539533.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/paper.txt; STAR Methods: Cell lines, SILAC, Sample preparation for plasma membrane profiling, Offline tip-based SCX, LC-MS/MS and data analysis for SILAC-based plasma membrane experiments, Immunoprecipitation, Mass spectrometry of SILAC IP samples)"
+  },
+  {
+   "id": "details",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021351/Detailsofsamplesandrawfiles.docx (deposited sample/raw-file sheet; text extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/details.txt)"
+  },
+  {
+   "id": "mq_proteins",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021351/SILAC_IP_PMP_proteins.xlsx (MaxQuant proteinGroups, one combined search of the IP and PMP experiments, MaxQuant experiments 1-5; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/dl/)"
+  },
+  {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021351/SILAC_IP_PMP_peptides.xlsx (sheet \"Related to Figure 6\"; MaxQuant evidence table with Raw file / Fraction / Experiment / Labeling State columns; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/dl/; summaries /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/evidence_runs.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/evidence_rt.txt)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 2,000,000 bytes of https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/10/PXD021351/SILAC_IP_Exp1..3.raw and SILAC_PMP_UL56_WT_F1..F6.raw, SILAC_PMP_UL56_WT_Unfrac.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/raw/*.head; UTF-16 strings via /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/scripts/rawstr.py)"
+  },
+  {
+   "id": "checks",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/markers.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/viral.txt (scripts/markers.py, scripts/viral.py on proteinGroups ratios/intensities); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/labelcheck.txt (scripts/labelcheck2.py: light-to-medium/heavy m/z spacing x charge in evidence); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/masscheck.txt (scripts/masscheck.py: Cys residual mass)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0038?format=txt and CVCL_0063 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/cello_CVCL_0038.txt, cello_CVCL_0063.txt); sdrf-tools cellline lookup (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/cellline.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 terms API 2026-11-09 (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/ols1.txt; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/scripts/olsid.py): all terms is_obsolete false"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-21",
+   "value": "HaCaT_PMP_<exp1|exp2>_<mock|HSV1-WT|HSV1-dUL56>",
+   "source_ids": [
+    "details",
+    "mq_evidence",
+    "raw"
+   ],
+   "evidence": "details: Experiment 4 \"UL56 vs WT HSV-1 SILAC PMP\", files SILAC_PMP_UL56_WT_Unfrac + _F1.._F6. MaxQuant evidence: deposited raws were renamed; the search holds 8 PMP raws in two MaxQuant experiments: experiment 4 = \"Exp1_2018_singleshot_SILAC_LMH_Mock_WT_dUL56\" (fraction 44) and experiment 5 = \"Exp2_2018_Fraction1..6_SILAC_LMH_Mock_WT_dUL56\" (fractions 1-6) + \"Exp2_2018_singleshot_...\" (fraction 55, not deposited). Raw headers: F1..F6 = MPW_CD_HSV_pmp_{10,25,40,60,90,150}_080218_run1.raw (Orbitrap Lumos, 120-min MS2 HCD-IT method, MS1 60K); Unfrac = MPW_CD_HSV_PMP_130817_run1.raw (13 Aug 2017, 180-min method, MS1 120K). Evidence RT/resolution: Exp1 singleshot RT to 192 min, median resolution 77.9K (=120K MS1 method) while Exp2 fractions and Exp2 singleshot have ~39K (=60K MS1) -> the deposited Unfrac is Exp1 singleshot (MaxQuant experiment 4), a separate SILAC mixture from the fractionated Exp2 mixture. exp1/exp2 label these two mixtures; one source per (mixture, SILAC channel)."
+  },
+  {
+   "location": "comment[label] + characteristics[infection status] + characteristics[infectious agent] + characteristics[virus genotype] + characteristics[multiplicity of infection] + factor value[infection status] rows 1-21",
+   "value": "SILAC light = mock infected; SILAC medium = HSV-1 KOS wild type (MOI 10); SILAC heavy = HSV-1 KOS UL56 deletion mutant (MOI 10)",
+   "source_ids": [
+    "details",
+    "mq_evidence",
+    "mq_proteins",
+    "checks",
+    "paper",
+    "ols"
+   ],
+   "evidence": "details Experiment 4 \"SILAC labelling: Light Mock, Medium HSV-1, Heavy HSV-1 dUL56\"; MaxQuant raw names \"SILAC_LMH_Mock_WT_dUL56\" (L/M/H order). Paper: \"SILAC labeled HaCaT cells ... infected with gradient purified HSV-1 WT or HSV-1 dUL56 or mock infected ... at MOI 10\"; \"All HSV-1 strain KOS viruses were reconstituted from a BAC\"; dUL56 = three in-frame stop codons after residue 21. Data check (proteinGroups, MQ exp 4/5): viral protein intensity L 6.7e9/1.6e11 vs M 6.3e10/1.4e12 and H 3.6e10/9.8e11 (gB L 1.8e9 vs M 2.3e10 in exp 4) -> light = mock; paper Fig. 6 says TLR2, IL18R1, DUOX1 lost from surface with WT and rescued by dUL56: deposited M/L 0.37 / 0.19 / 0.32-0.41, H/M 2.0 / 3.7 / 2.7-3.7 -> medium = WT, heavy = dUL56; NECTIN-1 (removed by HSV-1 regardless) M/L 0.17-0.23, H/L 0.28-0.29; EGFR ~1. NCBITaxon:10306 \"Human alphaherpesvirus 1 strain KOS\" (OLS, not obsolete)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-21",
+   "value": "1 (exp1, Unfrac rows 1-3), 2 (exp2, F1-F6 rows 4-21), per infection-status group",
+   "source_ids": [
+    "mq_evidence",
+    "raw"
+   ],
+   "evidence": "Two separate SILAC mixtures: MaxQuant experiments 4 (\"Exp1_2018\") and 5 (\"Exp2_2018\") and raw acquisition 13 Aug 2017 vs 8 Feb 2018. Each condition has one culture per mixture, so numbering 1..2 restarts within each factor-value group (batch rule 3). The paper does not state the number of PMP replicates; independence of the two mixtures is inferred from the separate MaxQuant experiments and dates."
+  },
+  {
+   "location": "comment[data file]; comment[fraction identifier]; comment[fractionation method] rows 1-21",
+   "value": "Unfrac: fraction 1, not applicable; F1..F6: fractions 1..6, NT=Strong cation-exchange chromatography (SCX);AC=PRIDE:0000561",
+   "source_ids": [
+    "paper",
+    "raw",
+    "details",
+    "files",
+    "ols"
+   ],
+   "evidence": "Paper: \"Tryptic peptides were collected and fractionated by tip-based SCX ... generating six fractions\"; tip SCX elution at 10, 25, 40, 60, 90, 150 mM KCl; raw original names F1..F6 = pmp_10.._150 (KCl concentrations) in that order. details says \"6 HpRp fractions\" for Experiment 4: contradicted by paper and raw names (SCX); recorded as conflict. Unfrac is unfractionated."
+  },
+  {
+   "location": "comment[instrument]; comment[dissociation method]; comment[collision energy]; comment[ms1 scan range] rows 1-21",
+   "value": "Orbitrap Fusion Lumos (MS:1002732); F1-F6: HCD (MS:1000422) 35 NCE, 375-1500 m/z; Unfrac: CID (MS:1000133) 35 NCE, 380-1500 m/z",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw headers: \"Orbitrap Fusion Lumos\"; F1/F6 MS2 \"ActivationType = HCD\", \"Collision Energy (%) = 35\", MS1 \"Scan Range (m/z) = 375-1500\" (paper: HCD NCE 35, MS1 375-1500 Th). Unfrac was acquired with a MultiNotch MS3 method (180min_..._MS3_TMT...meth): MS1 380-1500, MS2 \"ActivationType = CID\", 35%, ion trap turbo; MS3 HCD 65% (SPS) is not used for SILAC quantification; the dissociation column records the MS2 (identification) activation."
+  },
+  {
+   "location": "comment[reduction reagent]; comment[alkylation reagent] rows 1-21",
+   "value": "DTT (PRIDE:0000608); Iodoacetamide (PRIDE:0000599)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "PMP protocol: \"Beads were incubated for 20 min at RT with PBS/0.5% (w/v) SDS/100 mM DTT ... alkylation ... with UC buffer containing 50 mM iodoacetamide\"."
+  },
+  {
+   "location": "characteristics[enrichment process]; characteristics[cellular component] rows 1-21",
+   "value": "sample enrichment (EFO:0009106); plasma membrane (GO:0005886)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Plasma membrane profiling: surface sialic acids oxidised and aminooxy-biotinylated, biotinylated glycoproteins enriched on streptavidin agarose, on-bead digestion. cellular component is a custom characteristics column (not in the declared templates; spec \"Extending Templates\"), precedent PXD004666-apms."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-21",
+   "value": "6 hour",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"At 6 hpi cells were washed twice in ice-cold PBS\" (mock harvested at the same time, Fig. 6A \"Samples were harvested 6 hpi\")."
+  },
+  {
+   "location": "characteristics[organism]; characteristics[organism part]; characteristics[cell type]; characteristics[disease]; characteristics[material type]; characteristics[ancestry category]; characteristics[age]; characteristics[sex]; characteristics[developmental stage]; characteristics[cell line]; characteristics[cellosaurus accession]; characteristics[cellosaurus name] rows 1-21",
+   "value": "Homo sapiens / skin of back / keratinocyte / normal / cell line / European ancestry / 62Y / male / adult / HaCaT / CVCL_0038 / HaCaT",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"SILAC labeled HaCaT cells\"; \"HaCaT cells: human keratinocyte cell line, spontaneously immortalized, male\". Cellosaurus CVCL_0038: OX 9606, SX Male, AG 62Y (adult, >=20Y), Population Caucasian (HANCESTRO:0005 European ancestry), Derived from site back, skin, epidermis (UBERON:0001068 skin of back), Cell type keratinocyte (CL:0000312), CA spontaneously immortalized, no disease (normal, PATO:0000461). Cell line label HaCaT = EFO:0002056 (OLS). Name is unique in Cellosaurus (no other-species collision)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-21",
+   "value": "Dulbecco's Modified Eagle Medium (NCIT:C185409)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"HEK293T or HaCaT cells were grown in SILAC medium (high glucose DMEM lacking arginine and lysine, Life Technologies) supplemented with 10% dialyzed FBS\"; infection \"in complete media\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Paper: \"operated in data-dependent acquisition mode\" (IP) / \"MS2 DDA acquisition\" (PMP); raw method summaries contain DynamicExclusion filters and MSn Level 2 data-dependent scans."
+  },
+  {
+   "location": "comment[cleavage agent details] all rows",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "PMP: \"Captured protein was digested on-bead with trypsin\"; IP: in-gel digestion (ProGest) with MaxQuant \"Trypsin/P digestion\" (search rule Trypsin/P recorded here as a note; batch rule 2: digestion enzyme = Trypsin). The IP methods name no other enzyme."
+  },
+  {
+   "location": "comment[modification parameters] (7 columns) all rows",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; Label:2H(4) K (UNIMOD:481), Label:13C(6) R (UNIMOD:188), Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) variable",
+   "source_ids": [
+    "paper",
+    "mq_evidence",
+    "checks",
+    "ols"
+   ],
+   "evidence": "Paper PMP: \"medium (Arg6, Lys4) and heavy (Arg10, Lys8) labels ... Carbamidomethyl (C) fixed, oxidation (M) and acetylation (protein N termini) variable\"; IP: light (Arg0, Lys0), medium (Arg6, Lys4), heavy (Arg10, Lys8), oxidation + N-terminal acetylation. The deposited combined search (evidence table) contains only Oxidation (M) and Acetyl (Protein N-term) variable mods; every Cys-containing peptide carries +57.021 Da (masscheck.txt) -> Carbamidomethyl fixed for both arms. Light->medium/heavy spacing x z: K +4.02/+8.01, R +6.02/+10.01 Da (labelcheck.txt) = Lys4/Lys8, Arg6/Arg10. SILAC labels MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] all rows",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw method summaries: MSn Level 2 \"Detector Type = IonTrap\" in all IP and PMP files; paper \"ITMS2\" (IP), \"ion trap scanning in rapid mode\" (PMP)."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] all rows",
+   "value": "not available",
+   "source_ids": [
+    "files",
+    "mq_evidence"
+   ],
+   "evidence": "The deposit holds no mqpar.xml / parameters.txt / summary.txt for the SILAC search (only proteinGroups and evidence exported to xlsx), and the paper gives no MaxQuant tolerances for these searches."
+  },
+  {
+   "location": "comment[sdrf version]; comment[sdrf template]; comment[sdrf annotation tool] all rows",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0 + NT=human;VV=v1.1.0 + NT=cell-lines;VV=v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "ols"
+   ],
+   "evidence": "Campaign batch rules 1 and 10 (spec README.adoc:27 sdrf version v1.1.0; upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 ms-proteomics latest 1.2.0; the spec submodule nested templates copy is older). Templates printed by sdrf-tools contract: ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0."
+  },
+  {
+   "location": "technology type; comment[technical replicate]; assay name all rows",
+   "value": "proteomic profiling by mass spectrometry; 1; raw-file stem",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One injection per raw file; no repeated injections deposited. Assay name = file stem (shared by the three SILAC channels of a run)."
+  }
+ ],
+ "limitations": [
+  "Partial scope: only the two SILAC experiments are annotated. The 34 TMT raw files (Experiment 1 WCL_HSV_timecourse_* 15 raws, Experiment 3 WCL_UL56_WT_* 12 raws, Experiment 5 PMP_GOPC_KO_* 7 raws; MassPike/Sequest TMT searches) are out of scope for this SILAC campaign; they are listed in BLOCKED.md (excluded runs) and would need a TMT annotation (channel maps are in Detailsofsamplesandrawfiles.docx).",
+  "Precursor/fragment mass tolerances not available: no mqpar.xml, parameters.txt or summary.txt was deposited for the combined SILAC MaxQuant search; parse_sdrf convert-openms therefore cannot derive tolerances.",
+  "MaxQuant version: paper states 1.5.7.4 for the IP search and 1.5.8.3 for the PMP search, but the deposited xlsx files are one combined search of both experiments (experiments 1-5); which version produced them is not recorded.",
+  "The deposited raw files were renamed after the search; the raw -> MaxQuant-raw mapping is established from the original file names embedded in the raw headers and from MS1 resolution / gradient length in the evidence table (see source name claims).",
+  "Review status REVIEW_PENDING_EXTERNAL: external sdrf-adversarial-review hand-off; not self-approved.",
+  "The MaxQuant search includes one PMP raw that is not deposited (\"Exp2_2018_singleshot_SILAC_LMH_Mock_WT_dUL56\", MaxQuant experiment 5, fraction 55); it cannot be annotated.",
+  "Detailsofsamplesandrawfiles.docx says Experiment 4 had \"6 HpRp fractions\"; the paper (tip-based SCX, six KCl steps) and the raw original names (pmp_10 ... pmp_150 = mM KCl) say SCX. SCX is used.",
+  "Biological replicate numbers 1/2 rest on the two mixtures being independent infections (separate MaxQuant experiments \"Exp1_2018\"/\"Exp2_2018\", acquisition 13 Aug 2017 vs 8 Feb 2018); the paper does not state the PMP replicate count.",
+  "SILAC_PMP_UL56_WT_Unfrac.raw was acquired with an SPS-MS3 TMT instrument method; for SILAC only MS1/MS2 matter, so dissociation is recorded as the MS2 CID.",
+  "pUL56 itself was not quantified in the PMP data, so heavy (dUL56) vs medium (WT) rests on the details sheet plus the TLR2/IL18R1/DUOX1 rescue pattern described in the paper."
+ ]
+}
