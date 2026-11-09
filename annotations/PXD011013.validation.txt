@@ -1,0 +1,52 @@
+# PXD011013 validation (batch 9). SDRF built by sdrf-tools build from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/samples.tsv + technical.tsv (scripts/make_tables.py); NO post-build edits. Commands run by scripts/validate.sh in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013; OLS HTTP-500 retry tracebacks (OLS4 under load) were filtered from the log, the run still completed with full ontology checks.
+
+sha256 f14bb5efb72882d648296b969134d5a70d0bca05f2e34530fa7afdeb2e9ca4fb  PXD011013.sdrf.tsv
+$ parse_sdrf validate-sdrf -s PXD011013.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure PXD011013.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD011013.sdrf.tsv --offline
+Hallucination Report: PXD011013.sdrf.tsv
+  Terms checked:     13
+  Verified:          6
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD011013.sdrf.tsv --record pride.json --accession PXD011013
+PXD011013: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check PXD011013.evidence.json
+PXD011013.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD011013.sdrf.tsv PXD011013.evidence.json
+Manifest covers every column with a value (34 column(s)).
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD011013.sdrf.tsv -t2 (in convert/)
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[co-culture]', 'characteristics[protein origin]']
+Conditions (2): dict_keys(['DiD positive', 'DiD negative'])
+Files per condition: dict_values([24, 24])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 48 times.
+SUCCESS (WARNINGS=1): ../PXD011013.sdrf.tsv
+exit code: 0
+experimental_design.tsv
+openms.tsv
+
+$ parse_sdrf validate-sdrf -s PXD011013.sdrf.tsv -t ms-proteomics -t human -t cell-lines --use_ols_cache_only
+Everything seems to be fine. Well done.
+exit code: 0
+
+## Notes
+- Round 1 of validate-sdrf (earlier build) reported: 'K-562 donor' / 'HS-5 donor' do not match the characteristics[individual] identifier pattern, and K-562 not found in clo;bto;efo for characteristics[cell line] (warning). Fixed in samples.tsv (K-562_donor, HS-5_donor; cell line K562 = EFO:0002067 label) and rebuilt; round 2 above passes.
+- convert-openms warning 'no TA= specified' (48x) refers to NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable, which correctly uses PP= for a positional modification (format rules); the converter maps it to N-term. Not an error.
+- reconcile exit 0. It does not flag the PRIDE structured instrument (Q Exactive, MS:1001911); the SDRF says Q Exactive Plus (MS:1002634) from the raw headers of the 24 annotated runs. PRIDE's value matches only the 8 excluded zar runs (raw header Q Exactive + nanoAcquity).

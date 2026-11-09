@@ -1,0 +1,313 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD011013.sdrf.tsv",
+ "dataset": "PXD011013",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD011013 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD011013/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/files_0.json; page 1 is empty/HTML = end of list; 35 entries = 32 .raw + MaxQuantOutput.tar.gz + andromeda.rar + samplenames.xls; every entry projectAccessions contains PXD011013)"
+  },
+  {
+   "id": "samplenames",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD011013/samplenames.xls (sha1 f0a2ce65bbecba81df2ff51d4b0641b88ebd4ba0; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/samplenames.xls, read with xlrd via /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/scripts/xls.py): columns Raw file / Experiment / Fraction / Biological repetition"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Kolba MD et al. Tunneling nanotube-mediated intercellular vesicle and protein transfer in the stroma-provided imatinib resistance in chronic myeloid leukemia cells. Cell Death Dis 2019;10(11):817, doi:10.1038/s41419-019-2045-8, PMID 31659149, PMC6817823 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC6817823.1/PMC6817823.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/paper.txt). Methods section \"Trans-SILAC\" (lines 124-146) and Results (lines 192-202)."
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD011013/MaxQuantOutput.tar.gz member MaxQuantOutput/mqpar.xml (sha1 c2089c4395cd40bdf90de15302f0e49aed784f33; streamed, only mqpar.xml and parameters.txt extracted; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/mq/MaxQuantOutput/mqpar.xml) and parameters.txt (sha1 fa12072404bf5d5de5ea4ecbc8f78463e1d39b31, byte-identical to https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD013504/parameters.txt); parsed with sdrf-tools search-params"
+  },
+  {
+   "id": "proteingroups",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD013504/proteinGroups.txt (sha1 8ef023fc1ebcacc6637aeca9228355b1ee8a9b53; the same combined MaxQuant 1.6.0.1 search of all 32 runs, experiments plus_01/02, minus_01/02 and the 8 zar runs; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013504/proteinGroups.txt). Deposited in PXD013504, whose 24 .raw files are SHA-1-identical to the 24 DiD runs of PXD011013."
+  },
+  {
+   "id": "hl",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/hl_summary.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/scripts/hl.py: per-experiment summed Intensity L / H, counts, median log2 H/L from proteinGroups.txt) and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/heavy_sets.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/scripts/heavy_sets.py: heavy-detected protein groups per sorted population)"
+  },
+  {
+   "id": "modmass",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/mod_mass_check.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/scripts/modmass.py on the first 8 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD013504/modificationSpecificPeptides.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013504/msp_head.txt): mass delta of peptides carrying only the MaxQuant modification \"mmts\""
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD011013/20171204_Q1_AWH_ColID_501_PojID_936_Proteomics_sample_{1,7,13,19}.raw, 710072209zar_k562_A.raw, 710072213zar_HS5_A.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/raw/*.head; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/raw_summary.txt via /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/scripts/rawhead.py)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0004?format=txt and CVCL_3720?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/cello_CVCL_0004.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/cello_CVCL_3720.txt; HS-5 search /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/cello_HS5_search.txt); sdrf-tools cellline lookup K562"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/ols_ids.txt, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/scripts/ols.py; all terms is_obsolete=False)"
+  },
+  {
+   "id": "dup",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013504/pride.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013504/files_0.json (PRIDE v3 PXD013504 record and file list) compared with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD011013/files_0.json by file name, fileSizeBytes and PRIDE SHA-1 checksum"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-48",
+   "value": "trans-SILAC<1|2>_K562-<DiDpos|DiDneg>_<light-K562-proteome|heavy-HS5-derived-proteins>",
+   "source_ids": [
+    "samplenames",
+    "mqpar",
+    "paper"
+   ],
+   "evidence": "samplenames.xls and mqpar.xml group the 24 DiD runs into 4 MaxQuant experiments plus_01, minus_01, plus_02, minus_02 (6 gel-slice fractions each). Paper: donor HS-5 cells SILAC-heavy labelled and DiD-stained, co-cultured 24 h with GFP K-562 acceptor cells, acceptor cells FACS-sorted into DiD+ and DiD- subpopulations; \"This experiment was performed in duplicate\". Each sorted-cell lysate is one physical sample; its two SILAC channels are given two source names (light = the acceptor K-562 proteome, heavy = HS-5-derived proteins inside the same K-562 cells) because they describe material of different cellular origin and the row coordinate (source, replicate, fraction) must be unique. The two names of a pair are channels of one lysate, not two samples."
+  },
+  {
+   "location": "comment[label] + characteristics[protein origin] + characteristics[cell line] rows with comment[label] = SILAC light (24 rows: 1-6, 13-18, 25-30, 37-42)",
+   "value": "SILAC light = acceptor K-562 proteome (unlabelled)",
+   "source_ids": [
+    "paper",
+    "hl"
+   ],
+   "evidence": "Paper Methods: \"Donor cells were labeled with heavy isotopologues of lysine and arginine\"; acceptor CML cells (K-562 GFP) were not labelled. Results: \"Liquid chromatography-tandem MS enabled to identify heavy-labeled proteins within the proteome of acceptor cells\". Data: in all four experiments light intensity is 98.4-99.5% of summed L+H intensity (hl_summary.txt), i.e. the light channel is the bulk acceptor proteome."
+  },
+  {
+   "location": "comment[label] + characteristics[protein origin] + characteristics[cell line] rows with comment[label] = SILAC heavy (24 rows: 7-12, 19-24, 31-36, 43-48)",
+   "value": "SILAC heavy = HS-5_donor-derived proteins (Lys8/Arg10)",
+   "source_ids": [
+    "paper",
+    "mqpar",
+    "hl"
+   ],
+   "evidence": "Paper: donor HS-5 stromal cells labelled with L-lysine 13C6 15N2 and L-arginine 13C6 15N4 for 9 days; \"In both samples, heavy proteins transferred from donor stromal cells, were identified.\" mqpar.xml: multiplicity 2, labelMods [light] / [Arg10;Lys8]. Heavy channel identity is therefore the cell of origin (HS-5), measured inside sorted K-562 cells; cell-line metadata on heavy rows (HS-5, CVCL_3720, bone marrow stroma, male 30Y) describes the protein donor."
+  },
+  {
+   "location": "characteristics[sorted cell population] + factor value[sorted cell population] rows 1-48",
+   "value": "DiD positive (plus_01, plus_02); DiD negative (minus_01, minus_02)",
+   "source_ids": [
+    "samplenames",
+    "paper",
+    "hl"
+   ],
+   "evidence": "Experiment names plus_/minus_ (samplenames.xls, mqpar.xml) correspond to the paper's DiD+ / DiD- sorted acceptor subpopulations (\"sorting of acceptor cells into two subpopulations: positive and negative for transferred vesicles (DiD+ vs DiD-)\"). Data check: plus_ experiments carry more heavy (donor-derived) material than minus_ (H/(L+H) 1.62% / 1.20% vs 0.55% / 0.57%; heavy-detected protein groups in both replicates 969 plus vs 808 minus at >=2 unique peptides), matching the paper's 646 DiD+ vs 481 DiD- donor-derived proteins (Fig. 7a). The absolute numbers differ because the deposited search is MaxQuant 1.6.0.1 while the paper reports 1.5.3.12."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-48",
+   "value": "1 = trans-SILAC experiment _01, 2 = experiment _02, within each sorted population",
+   "source_ids": [
+    "paper",
+    "samplenames",
+    "mqpar"
+   ],
+   "evidence": "Paper: \"trans-SILAC has been done in two biological replicates\"; SILAC labelling \"performed in duplicate\". Experiment suffixes _01/_02. Each replicate is an independent labelling + co-culture + sort; light and heavy rows of one lysate share the number."
+  },
+  {
+   "location": "characteristics[co-culture] rows 1-48",
+   "value": "24 h direct co-culture of SILAC-heavy DiD-labelled HS-5_donor cells with GFP-expressing K-562 acceptor cells",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods \"Co-cultures and cell sorting\": \"Twenty-four hour co-cultures were sorted using a BD FACSAria\"; GFP fluorescence (acceptor K-562) and DiD fluorescence (donor vesicles) gated. Custom characteristics column (spec \"Extending Templates\")."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows with comment[label] = SILAC light (24 rows: 1-6, 13-18, 25-30, 37-42)",
+   "value": "K562 / CVCL_0004 / K-562",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"K562 (ATCC#CCL-243)\"; Cellosaurus CVCL_0004 ID K-562 (synonym K562), DR ATCC CCL-243. cell line written as the paper and EFO spell it, K562 (EFO:0002067 label K562; parse_sdrf does not find K-562 in clo/bto/efo); cellosaurus name keeps K-562."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows with comment[label] = SILAC heavy (24 rows: 7-12, 19-24, 31-36, 43-48)",
+   "value": "HS-5 / CVCL_3720 / HS-5",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"HS-5 (ATCC#CRL-11882)\"; Cellosaurus CVCL_3720 ID HS-5, DR ATCC CRL-11882 (Cellosaurus search for id HS-5 also returns Hs 5.T CVCL_0778, a different line; disambiguated by the ATCC number)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-48",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606 for both lines; search fasta uniprot-proteome_human.fasta (mqpar)."
+  },
+  {
+   "location": "characteristics[organism part] rows with comment[label] = SILAC light (24 rows: 1-6, 13-18, 25-30, 37-42); rows with comment[label] = SILAC heavy (24 rows: 7-12, 19-24, 31-36, 43-48)",
+   "value": "pleural effusion (K-562, UBERON:0000175); stroma of bone marrow (HS-5, UBERON:0007195)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Derived from site\": K-562 Pleural effusion UBERON_0000175; HS-5 Bone marrow, stroma UBERON_0007195."
+  },
+  {
+   "location": "characteristics[cell type] rows with comment[label] = SILAC heavy (24 rows: 7-12, 19-24, 31-36, 43-48)",
+   "value": "stromal cell of bone marrow (CL:0010001)",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper calls HS-5 \"stromal cells\"/\"bone marrow stromal cells\"; Cellosaurus site bone marrow stroma. K-562 rows: not available (no cell type stated)."
+  },
+  {
+   "location": "characteristics[disease] rows with comment[label] = SILAC light (24 rows: 1-6, 13-18, 25-30, 37-42); rows with comment[label] = SILAC heavy (24 rows: 7-12, 19-24, 31-36, 43-48)",
+   "value": "blast phase chronic myelogenous leukemia, BCR-ABL1 positive (K-562, MONDO:0006115); normal (HS-5, PATO:0000461)",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus K-562 DI NCIt C9110 \"Blast phase chronic myelogenous leukemia, BCR-ABL1 positive\"; HS-5 has no DI line (CA Transformed cell line, HPV16 E6/E7-immortalised normal marrow stroma) -> normal."
+  },
+  {
+   "location": "characteristics[material type] rows 1-48",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Both are established cell lines (ATCC)."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[ancestry category], characteristics[developmental stage], characteristics[individual] rows 1-48",
+   "value": "K-562: 53Y, female, European ancestry, adult, K-562_donor; HS-5: 30Y, male, European ancestry, adult, HS-5_donor",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus K-562 AG 53Y, SX Female, Population Caucasian; HS-5 AG 30Y, SX Male, Population Caucasian. Caucasian -> HANCESTRO:0005 European ancestry; both ages >= 20Y -> adult (EFO:0001272). individual = the single donor of each line."
+  },
+  {
+   "location": "characteristics[sample storage temperature] rows 1-48",
+   "value": "-80 °C",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"Cell pellets were immediately frozen in liquid nitrogen and stored at -80 °C until further sample preparation.\""
+  },
+  {
+   "location": "assay name, comment[data file], comment[fraction identifier] rows 1-48",
+   "value": "20171204_Q1_AWH_ColID_501_PojID_936_Proteomics_sample_<n>.raw; fraction = gel slice 1-6",
+   "source_ids": [
+    "samplenames",
+    "mqpar",
+    "files",
+    "paper"
+   ],
+   "evidence": "samplenames.xls / mqpar.xml: sample_1-6 plus_01, 7-12 minus_01, 13-18 plus_02, 19-24 minus_02, Fraction 1-6. Paper/PRIDE: \"Lanes were cut into six pieces\"."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-48",
+   "value": "1",
+   "source_ids": [
+    "samplenames",
+    "mqpar",
+    "files"
+   ],
+   "evidence": "Each sorted-population lysate was injected once per gel slice: 24 raw files = 4 experiments x 6 fractions (samplenames.xls, mqpar.xml); no repeated injections deposited."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-48",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "\"DID+ and DID- samples were diluted with 4x Laemmli buffer ... loaded onto a sodium dodecyl sulfate-polyacrylamide electrophoresis gel. Lanes were cut into six pieces\"."
+  },
+  {
+   "location": "comment[instrument] rows 1-48",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of sample_1/7/13/19: \"Q Exactive Plus - Orbitrap MS\", \"Thermo EASY-nLC\"; paper and PRIDE protocol: EASY nLC 1000 coupled to a Q-Exactive Plus. PRIDE structured instrument \"Q Exactive\" (MS:1001911) applies to the excluded zar runs (raw header Q Exactive + nanoAcquity)."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range], comment[proteomics data acquisition method] rows 1-48",
+   "value": "HCD (MS:1000422), 27 NCE, orbitrap, 300-1750 m/z, DDA",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw method header: method 150min_Top10_proteome, Experiment \"FULL MS / DD-MS (TOPN)\", \"(N)CE / stepped (N)CE nce: 27\", Fragmentation_HCD, Full MS scan range 300 to 1750 m/z, MS2 resolution 17,500 (Orbitrap). PRIDE: \"ten most abundant peptides were subsequently selected for fragmentation\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-48",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mqpar"
+   ],
+   "evidence": "Paper: in-gel digestion with trypsin. MaxQuant search rule Trypsin/P (mqpar enzymes) - batch rule 2: the column records the digestion enzyme."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-48",
+   "value": "4.5 ppm; 20 ppm",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "mqpar.xml parameter group 1 (the 24 DiD runs; paramGroupIndices = 1): mainSearchTol 4.5 (ppm), firstSearchTol 20; FTMS MS/MS MatchTolerance 20 ppm (Orbitrap MS2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-48",
+   "value": "Oxidation M, Acetyl Protein N-term, Phospho STY, Methylthio C, Carbamidomethyl C (all Variable); Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) MT=Variable",
+   "source_ids": [
+    "mqpar",
+    "modmass",
+    "paper",
+    "ols"
+   ],
+   "evidence": "mqpar.xml group 1 variableModifications: Oxidation (M), Acetyl (Protein N-term), Carbamidomethyl (C), mmts, Phospho (STY); fixedModifications empty; labelMods Arg10;Lys8. The paper/PRIDE text says carbamidomethyl was fixed, but the deposited search has it variable and the column records the search actually run (batch rule 5). MaxQuant \"mmts\" (methyl methanethiosulfonate) = +45.988 Da on C in modificationSpecificPeptides.txt (all mmts peptides contain C) = UNIMOD:39 Methylthio (45.9877). Label accessions from the mass shifts: Arg 13C6 15N4 = UNIMOD:267, Lys 13C6 15N2 = UNIMOD:259 (batch rule 11)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-48",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; build fills technology type and templates."
+  }
+ ],
+ "limitations": [
+  "DUPLICATE: PXD013504 (cited by the paper's Data Availability) contains the same 24 DiD .raw files, SHA-1-identical, plus loose MaxQuant tables; it adds no runs. PXD011013 is the superset and is the annotated canonical deposit; recorded as a new group in annotations/DUPLICATES.md. PXD013504's proteinGroups.txt/parameters.txt are used here as evidence (same search).",
+  "PARTIAL SCOPE: 8 of 32 deposited .raw files are excluded: 710072209zar_k562_A, 710072210zar_k562_B, 710072211zar_k562IM_A, 710072212zar_k562IM_B, 710072213zar_HS5_A, 710072214zar_HS5_B, 710072215zar_HS5IM_A, 710072216zar_HS5IM_B (.raw). They are single-shot in-solution digests (Q Exactive + nanoAcquity) of K-562 and HS-5 +/- imatinib; samplenames.xls says the +IM runs are \"not discussed in this manuscript\". They were searched in MaxQuant parameter group 0 with multiplicity 2 (Arg10;Lys8) but nothing documents any SILAC labelling of these samples: light is 98.1-99.3% of L+H intensity even in HS-5 runs, so no heavy-labelled material is evident and the heavy channel has no documented identity (batch rule 7). Recorded in BLOCKED.md.",
+  "Trans-SILAC channel encoding: the light and heavy rows of one run are two channels of ONE physical sorted-K-562 lysate. Heavy rows carry the HS-5 cell-line metadata because the heavy label marks protein of HS-5 origin; the physical sample (sorted K-562 GFP+ acceptor cells) is stated in characteristics[co-culture]/[sorted cell population]/[protein origin]. There is no curated precedent for trans-SILAC in sdrf-annotated-datasets.",
+  "Paper says MaxQuant 1.5.3.12; the deposited mqpar/parameters.txt are MaxQuant 1.6.0.1 (PRIDE data protocol also says 1.6.0.1). The SDRF follows the deposited search; heavy-protein counts recomputed from the deposit (969 DiD+ / 808 DiD-) differ from the paper's 646 / 481.",
+  "plus_01 and minus_01 (and _02) are presumed to be the two subpopulations sorted from the same co-culture (paper: acceptor cells sorted \"into two subpopulations\"); not stated per file.",
+  "comment[reduction reagent] / comment[alkylation reagent] = not available: the paper names TCEP / iodoacetamide for the in-solution digest, but the DiD samples went through in-gel digestion \"according to standard protocols\" (Shevchenko 2007) without naming reagents.",
+  "characteristics[culture medium] = not available: maintenance medium is RPMI for both lines, but the SILAC labelling medium base and the co-culture medium are not named.",
+  "characteristics[passage number] = not available; K-562 cell type = not available.",
+  "Precursor tolerance = MaxQuant main-search 4.5 ppm (first search 20 ppm).",
+  "techsdrf not installed; raw verification limited to range-read headers of 4 of 24 annotated runs (one per experiment) and 2 excluded runs.",
+  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."
+ ]
+}
