@@ -1951,16 +1951,18 @@ Why they are blocked:
 
 **Excluded (not runs):** `20161111_F1_RM_RH_SCX_L125_L31.zip`, `20170620_V1_MJW_0083.zip` (MaxQuant search output).
 
-## PXD016505 + PXD016512 — EGFR network rewiring in KRAS G13D colorectal cancer cells (Kennedy et al., Nat Commun 2020; triple-SILAC FLAG AP-MS, HCT116 vs HKE3), 3 presumed-unsearched raws (excluded runs, not a blocker)
+## PXD016505 + PXD016512 — EGFR network rewiring in KRAS G13D colorectal cancer cells (Kennedy et al., Nat Commun 2020; triple-SILAC FLAG AP-MS, HCT116 vs HKE3), 1 stub raw excluded (excluded runs, not a blocker)
 
-**Annotated:** 349 of 350 RAW of PXD016505 (`annotations/PXD016505.sdrf.tsv`, 1047 rows) and 277 of 279 RAW of PXD016512 (`annotations/PXD016512.sdrf.tsv`, 831 rows). Channel map from the deposited `PRIMESDataSILACLabelExperiemntaldesign.txt` = Supplementary Methods 9 (FOR: H = HCT116 bait, M = HKE3 empty vector, L = HKE3 bait; REV: H = HKE3 bait, M = HCT116 empty vector, L = HCT116 bait).
+**Annotated:** all 350 RAW of PXD016505 (`annotations/PXD016505.sdrf.tsv`, 1050 rows) and 278 of 279 RAW of PXD016512 (`annotations/PXD016512.sdrf.tsv`, 834 rows). Channel map from the deposited `PRIMESDataSILACLabelExperiemntaldesign.txt` = Supplementary Methods 9 (FOR: H = HCT116 bait, M = HKE3 empty vector, L = HKE3 bait; REV: H = HKE3 bait, M = HCT116 empty vector, L = HCT116 bait).
 
-**Excluded runs (presumed not searched; no mqpar.xml/summary.txt deposited, so coverage was checked by counting raws against the MaxQuant experiment names of the deposited proteinGroups files):**
-- PXD016505 `LDY1098-S23-A-HDAC-F-2-No.raw` — superseded first acquisition of slot S23 / vial BB4 (raw header name `LDY1098-S23-A-HDAC-F-2.raw`; the deposited `LDY1098-S23-A-HDAC-F-2.raw` is the re-acquisition). 7 HDAC1 FOR raws vs 6 `HDAC1FOR` experiments.
-- PXD016512 `LDY1357-S24-A-PRKCA-R-4_010.raw` — superseded first acquisition of slot S24 / vial BE8 (header name `LDY1357-S24-A-PRKCA-R-4.raw`). 10 PRKCA REV raws vs 8 `KCAREV` experiments.
-- PXD016512 `ALI1442-S18-A-KCA-R.raw` — the second presumed-unsearched PRKCA REV run (inference: the only single-injection pool of the arm, while the KCAREV correlation matrix contains four pair-like blocks and no singleton). If wrong, one searched run is missing from the SDRF.
+**Excluded run:**
+- PXD016512 `LDY1357-S24-A-PRKCA-R-4_010.raw` — a 39,754-byte stub (FTP Content-Length and PRIDE fileSizeBytes 39754): raw header only, no scans, nothing to search. Its header name is `LDY1357-S24-A-PRKCA-R-4.raw` (vial BE8); the deposited `LDY1357-S24-A-PRKCA-R-4.raw` is the complete acquisition of that slot.
 
-**Out of scope, not blocked:** the companion AP-MS deposits PXD016461–PXD016465 (and PXD016549 expression profiling, PXD016431 phosphoproteomics) of the same paper were not part of this task. 17 RAC1 raws are deposited in both PXD016505 and PXD016512 and are annotated in both SDRFs.
+**Annotated but not matched one-to-one to a search experiment** (no mqpar.xml / summary.txt deposited; all carry the search parameters, recorded as manifest limitations):
+- PXD016505 HDAC1 FOR: 6 Velos raws vs 5 Velos-scale HDAC1FOR experiments — one Velos run unaccounted for (includes `LDY1098-S23-A-HDAC-F-2-No.raw`, first acquisition of vial BB4 slot S23, now annotated as technical replicate 2 of `HDAC1_LDY1098_FOR_pool1`).
+- PXD016512 PRKCA REV: 8 Velos raws vs 7 Velos-scale KCAREV experiments — one Velos run unaccounted for. `ALI1442-S18-A-KCA-R.raw` (Q Exactive Plus) was searched (KCAREV1 summed intensity 4.68e11, QE scale) and is annotated.
+
+**Out of scope, not blocked:** the further AP-MS deposits PXD016461–PXD016465 (and PXD016549, PXD016431) of the same paper. 17 RAC1 raws are deposited in both PXD016505 and PXD016512 and are annotated in both SDRFs.
 
 **Unblocked by:** the MaxQuant `mqpar.xml` / `summary.txt` (experiment → raw file assignment) of the searches.
 

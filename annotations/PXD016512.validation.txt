@@ -1,12 +1,18 @@
-# PXD016512 validation log (2026-11-09T18:51Z); SDRF sha256 b31ea5fe7e1aee0065f6119112639bebedde4fac587d5e58393452c9a9c75990
+# PXD016512 validation log (2026-11-09T19:30Z); SDRF sha256 95dcd36e789df2cde4cb1a126033a8869115dbc84bc0c24f5d719cbffad41105
 # SDRF = per-instrument sdrf-tools build outputs (LTQ Orbitrap Velos, Q Exactive Plus; identical headers asserted) concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/concat.sh — the only post-build step (header line once, then the data rows of each build). Tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/make_tables.py.
 
-## parse_sdrf validate-sdrf -s annotations/PXD016512.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology; one round, no errors)
-ERROR:sdrf_pipelines.ols.ols:OLS error searching term q exactive plus. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=q+exactive+plus&name=class&rows=10&start=60&ontology=pride&exact=off
-requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=q+exactive+plus&name=class&rows=10&start=60&ontology=pride&exact=off
+## Round history
+Round 1 (superseded SDRF sha256 b31ea5fe7e1aee0065f6119112639bebedde4fac587d5e58393452c9a9c75990, 831 rows): validate-sdrf exit 0 (transient OLS 500 for 'q exactive plus'; the round-1 log note wrongly said 'orbitrap'), structure 0, reconcile 0, check 0, schema-check 0, manifest-coverage 0, convert-openms exit 1. Independent review FAIL (annotations/PXD016512.review.md).
+Round 2 fixes (scripts/make_tables.py / scripts/manifest.py, rebuilt with sdrf-tools build, concatenated by scripts/concat.sh; no other post-build edit):
+ - ALI1442-S18-A-KCA-R.raw re-added (3 rows, sources PRKCA_ALI1442_REV_pool1_*, Q Exactive Plus values): searched, KCAREV1 summed intensity 4.68e11 = QE scale. One Velos PRKCA REV run is unaccounted for (limitation).
+ - LDY1357-S24-A-PRKCA-R-4_010.raw stays excluded: 39,754-byte stub, no scans.
+ - comment[fragment mass tolerance] 0.5 Da on the Q Exactive Plus rows (Supp. Methods 12 single value) -> convert-openms exit 0.
+ - Manifest: shared-RAC1 empty-vector numbering note.
+
+## parse_sdrf validate-sdrf -s annotations/PXD016512.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology, online; current file)
 Everything seems to be fine. Well done.
 exit=0
-Note: the logged OLS 500 for 'orbitrap' (if shown) was a transient server error during one search page; the run completed and reported no validation error.
+Note: no OLS errors in this run.
 
 ## sdrf-tools structure annotations/PXD016512.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
@@ -36,7 +42,8 @@ Manifest covers every column with a value (34 column(s)).
 exit=0
 
 ## parse_sdrf convert-openms -s annotations/PXD016512.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/convert/PXD016512)
-    raise ValueError(msg) from ex
-ValueError: Error: Cannot read fragment mass tolerance: not available
-exit=1
-Expected failure: comment[fragment mass tolerance] = not available on the Q Exactive Plus rows (HCD/FTMS MS/MS tolerance not stated; the Methods' 0.5 Da is the ion-trap tolerance and is set on the Velos rows). validate-sdrf and the template accept the reserved word; same outcome class as campaign precedents PXD014368/PXD006676 (tolerance not available).
+Files per condition: dict_values([10, 139, 10, 139, 14, 14, 18, 18, 14, 14, 16, 16, 14, 14, 14, 14, 17, 17, 17, 17, 10, 10, 12, 12, 7, 7, 14, 14, 14, 14, 11, 11, 16, 16, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 834 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD016512.sdrf.tsv
+exit=0
+Note: the single warning is 'no TA= specified' for Acetyl (PP=Protein N-term), expected for a positional modification (format-rules: positional values go in PP=).
