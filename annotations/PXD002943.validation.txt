@@ -1,0 +1,44 @@
+# PXD002943 validation (round 1; no errors, so no second round)
+SDRF: annotations/PXD002943.sdrf.tsv  sha256 01c1489bb6c426287a6248b6fa812a892b57e16b455650e6057d907fa07a1335  rows x cols: 234 x 57
+Built by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/build/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD002943.sdrf.tsv  (tables written by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/scripts/make_tables.py; no post-build edits)
+
+## parse_sdrf validate-sdrf -s annotations/PXD002943.sdrf.tsv -t ms-proteomics -t human -t cell-lines  (full ontology run)
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: heat shock in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit 0
+Note: both warnings are expected. 'untreated' is the template-prescribed control value (batch rule 4). 'heat shock' has no NCIT/EFO term in OLS4 (searched exact and fuzzy; only ZECO:0000166 'heat shock' exists, zebrafish condition ontology; log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/ols_search.txt) - the protocol term is kept as a free value.
+
+## sdrf-tools structure annotations/PXD002943.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+
+## sdrf-tools check annotations/PXD002943.sdrf.tsv
+Hallucination Report: annotations/PXD002943.sdrf.tsv
+  Terms checked:     21
+  Verified:          21
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit 0
+
+## sdrf-tools reconcile annotations/PXD002943.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/pride_v3.json --accession PXD002943
+PXD002943: every annotated value agrees with the deposit record.
+exit 0
+Note: a first run against the MCP-reshaped record (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/pride.json, snake_case keys) reported MINOR cleavage_agent_unsupported because that copy is not in PRIDE v3 field format; with the raw v3 record (sampleProcessingProtocol: 'in-gel digestion with trypsin') it exits 0 with no finding. False positive refuted.
+
+## sdrf-tools schema-check annotations/PXD002943.evidence.json
+annotations/PXD002943.evidence.json: valid evidence-manifest
+exit 0
+
+## sdrf-tools manifest-coverage annotations/PXD002943.sdrf.tsv annotations/PXD002943.evidence.json
+Manifest covers every column with a value (37 column(s)).
+exit 0
+
+## parse_sdrf convert-openms -s annotations/PXD002943.sdrf.tsv -t2  (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/convert)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit 1
+Note: expected failure. comment[precursor mass tolerance] = not available because MaxQuant 1.3.0.5 parameters.txt/summary.txt and the Document S1 parameter table do not state it and no mqpar.xml was deposited (manifest limitation 1; same as campaign precedents PXD014368, PXD002388). Not filled with a default to avoid an unverified value.

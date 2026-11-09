@@ -1,0 +1,45 @@
+PXD004707 validation log (cwd /home/user/bigbio/sdrf-skills/annotations; sdrf-skills venv). SDRF sha256: 67faa3c63dbacef4f9af70f333f840176be1309fd310e3b9e887de4574865ed3
+Build: scripts/make_tables.py -> 3x sdrf-tools build (-t ms-proteomics -t human -t cell-lines): part_qtof 44x51, part_orbi2 24x51, part_orbi34 40x51 (identical headers) -> scripts/postbuild.py (deterministic): concatenation; comment[fraction identifier] set to the SDS-PAGE band number parsed from the file name on the 8 SILAC1 '_lang' rows (technical replicate 2, bands 4-7) that build had numbered 1-4 by list position (asserted unchanged on all other rows); assay name of the 44 SILAC1 '.raw.7z' rows = file name minus '.raw.7z'. Scripts in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/scripts/.
+
+### parse_sdrf validate-sdrf -s PXD004707.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit=0
+
+### sdrf-tools structure PXD004707.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+### sdrf-tools check PXD004707.sdrf.tsv --offline
+Hallucination Report: PXD004707.sdrf.tsv
+  Terms checked:     19
+  Verified:          7
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+### sdrf-tools reconcile PXD004707.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/pride.json --accession PXD004707
+PXD004707: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+
+Refutation of reconcile MINOR cleavage_agent_unsupported: PRIDE sample_processing_protocol says 'The bands were subjected to tryptic in-gel digestion' and the thesis (Methods 6.3.14) 'Tryptic in-gel digestion was performed as described [She06]'; Trypsin is the digestion enzyme (campaign rule 2). False positive (the checker does not parse 'tryptic').
+
+### parse_sdrf convert-openms -s PXD004707.sdrf.tsv -t2 (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/openms)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD004707.sdrf.tsv
+Factor columns: ['factor value[infection status]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]', 'characteristics[cellular component]', 'characteristics[infectious agent strain]', 'characteristics[infectious agent]']
+Conditions (2): dict_keys(['infected', 'not infected'])
+Files per condition: dict_values([54, 54])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 108 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD004707.sdrf.tsv
+exit=0
+(experimental_design.tsv/openms.tsv written in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/openms; 2 conditions, 54 files each. The TA= warning concerns the Acetyl N-term mod, which carries PP= only.)
+
+### sdrf-tools schema-check PXD004707.evidence.json
+PXD004707.evidence.json: valid evidence-manifest
+exit=0
+### sdrf-tools manifest-coverage PXD004707.sdrf.tsv PXD004707.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit=0

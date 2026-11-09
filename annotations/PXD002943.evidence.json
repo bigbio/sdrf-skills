@@ -26,7 +26,7 @@
   {
    "id": "mq_IAV_SUMO2",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002943/IAV_SUMO2_txt.zip members parameters.txt, summary.txt, peptides.txt (this zip has no proteinGroups.txt; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mq/IAV_SUMO2_*.txt)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002943/IAV_SUMO2_txt.zip members parameters.txt, summary.txt, peptides.txt (this zip has no proteinGroups.txt; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mq/IAV_SUMO2_parameters.txt, IAV_SUMO2_summary.txt; the 45 MB peptides.txt was deleted after use to spare shared disk - re-extract with scripts/zipget.py)"
   },
   {
    "id": "mq_HS_SUMO2",
@@ -46,7 +46,7 @@
   {
    "id": "supp",
    "kind": "supplementary",
-   "location": "Document S1 Supplemental Experimental Procedures and Figures, https://pmc-oa-opendata.s3.amazonaws.com/PMC4660286.1/mmc1.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mmc1.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mmc1.txt; SILAC Cell Culture, TAP Procedure and Mass Spectrometry, MaxQuant Analyses, Fig. S3/S5 axis labels)"
+   "location": "Document S1 Supplemental Experimental Procedures and Figures, https://pmc-oa-opendata.s3.amazonaws.com/PMC4660286.1/mmc1.pdf (PDF deleted after use to spare shared disk; extracted text kept at /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mmc1.txt; SILAC Cell Culture, TAP Procedure and Mass Spectrometry, MaxQuant Analyses, Fig. S3/S5 axis labels)"
   },
   {
    "id": "raw",
