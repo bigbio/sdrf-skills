@@ -1,3 +1,59 @@
+# PXD006404 validation — ROUND 2 (after external review FAIL, annotations/PXD006404.review.md) 2026-11-09T21:05:19Z
+# artifact annotations/PXD006404.sdrf.tsv sha256 e90c8beae7383185df1a8bc68ff06ce73106e4e0a2a024f2ab6d5d9c5f2c48cf (108 rows x 51 columns)
+# Fix: review finding 1 (important). summary.txt 'Multi modifications' = 'Deamidation (NQ)' for all 36 SILAC raws, so
+#   NT=Deamidated;AC=UNIMOD:7;TA=N,Q;MT=Variable (OLS4 label 'Deamidated', not obsolete) was added to MODS_SEARCH in
+#   scripts/make_tables.py. It is emitted as the 6th of 10 comment[modification parameters] columns on all 108 rows.
+#   sdrf-tools search-params ignores the 'Multi modifications' column. Minor findings are handled in the manifest:
+#   the DMSO-not-'untreated' deviation from rule 4 is explained, and the IP-arm proteinGroups check is added
+#   (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/ipcheck.out).
+# Build: same procedure as round 1 (below): make_tables.py, then sdrf-tools build x3 (54+27+27 rows, now 50 cols each),
+#   then postbuild.py (concatenate and insert the second cleavage column; Lys-C step unchanged).
+#   Output: 108 rows x 51 cols; concat sha256 185675ec8edfeb45dd76847ce9ea6a8be03e0288ec029854e57264dd188e3be3
+
+$ parse_sdrf validate-sdrf -s annotations/PXD006404.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD006404.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check annotations/PXD006404.sdrf.tsv
+Hallucination Report: annotations/PXD006404.sdrf.tsv
+  Terms checked:     26
+  Verified:          26
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD006404.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/pride.json --accession PXD006404
+PXD006404: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'not applicable' but the record's digest names Trypsin, Lys-C
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive HF', the annotation says 'Q Exactive'  [Q Exactive HF]
+exit code: 1
+
+$ sdrf-tools schema-check annotations/PXD006404.evidence.json
+annotations/PXD006404.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD006404.sdrf.tsv annotations/PXD006404.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/openms && parse_sdrf convert-openms -s annotations/PXD006404.sdrf.tsv -t2)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+# Disposition, round 2: unchanged from round 1. validate-sdrf exit 0 with one warning (HsapDv child stage not in EFO).
+#   reconcile exit 1 with the same two false positives, refuted below. convert-openms exit 1 as expected
+#   (precursor tolerance not available). structure, check (26/26), schema-check and manifest-coverage exit 0.
+
+################ ROUND 1 (superseded artifact sha256 1a661eec...) ################
 # PXD006404 validation — 2026-11-09T20:43:48Z; artifact annotations/PXD006404.sdrf.tsv sha256 1a661eecad33d4a1061ac41c028c45225a55271d3bb12aa689edc8f8beb731a8 (108 rows x 50 columns)
 # Scope: 36 triple-SILAC raws only; 140 label-free raws excluded (manifest limitations, BLOCKED.md).
 # Build procedure (deterministic):
