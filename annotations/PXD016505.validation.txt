@@ -1,0 +1,42 @@
+# PXD016505 validation log (2026-11-09T18:46Z); SDRF sha256 3ad09d62a8169964e3dc5cd9113227d9a166a2e5cc66dfd6c1099e914f9ae9c8
+# SDRF = per-instrument sdrf-tools build outputs (LTQ Orbitrap Velos, Q Exactive Plus; identical headers asserted) concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/concat.sh — the only post-build step (header line once, then the data rows of each build). Tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/make_tables.py.
+
+## parse_sdrf validate-sdrf -s annotations/PXD016505.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology; one round, no errors)
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term orbitrap. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=orbitrap&name=class&rows=10&start=80&ontology=ms&exact=on
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=orbitrap&name=class&rows=10&start=80&ontology=ms&exact=on
+Everything seems to be fine. Well done.
+exit=0
+Note: the logged OLS 500 for 'orbitrap' (if shown) was a transient server error during one search page; the run completed and reported no validation error.
+
+## sdrf-tools structure annotations/PXD016505.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD016505.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/PXD016505.pride.v3.json --accession PXD016505
+PXD016505: every annotated value agrees with the deposit record.
+exit=0
+
+## sdrf-tools check annotations/PXD016505.sdrf.tsv --offline
+Hallucination Report: annotations/PXD016505.sdrf.tsv
+  Terms checked:     18
+  Verified:          8
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools schema-check annotations/PXD016505.evidence.json
+annotations/PXD016505.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD016505.sdrf.tsv annotations/PXD016505.evidence.json
+Manifest covers every column with a value (34 column(s)).
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD016505.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/convert/PXD016505)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read fragment mass tolerance: not available
+exit=1
+Expected failure: comment[fragment mass tolerance] = not available on the Q Exactive Plus rows (HCD/FTMS MS/MS tolerance not stated; the Methods' 0.5 Da is the ion-trap tolerance and is set on the Velos rows). validate-sdrf and the template accept the reserved word; same outcome class as campaign precedents PXD014368/PXD006676 (tolerance not available).
