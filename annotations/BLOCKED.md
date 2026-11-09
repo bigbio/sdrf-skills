@@ -1852,12 +1852,25 @@ They would go in a separate TMT SDRF (batch rule 12).
 
 ---
 
-## PXD038541 — Protein turnover in fibroblasts from T1DM patients with/without diabetic nephropathy (Di Camillo et al., IJMS 2023; dynamic SILAC Lys6), DN-status attribute only (partial block)
+## PXD038541 — Protein turnover in fibroblasts from T1DM patients with/without diabetic nephropathy (Di Camillo et al., IJMS 2023; dynamic SILAC Lys6) — RESOLVED, nothing blocked
 
-**What is blocked:** the per-subject diabetic nephropathy (DN) vs diabetic-control assignment, i.e. the study's main comparison. **No run is excluded:** all 312 RAW files are annotated in `annotations/PXD038541.sdrf.tsv` (624 rows; factor value[sampling time] 4 / 7.5 / 24 hour; disease `type 1 diabetes mellitus` for every subject, which the paper states for all 10).
+**Status:** resolved after the round-1 review. All 312 RAW files are annotated in `annotations/PXD038541.sdrf.tsv` (624 rows). Factors: `factor value[disease]` and `factor value[sampling time]` (4 / 7.5 / 24 hour).
 
-**Why:** the deposit identifies subjects only by culture code (cell36, cell42, cell80, cell160, cell268, cell304, cell325, cell504, cell511, cell515 — in raw and msf file names). The paper and Supplementary Tables S1–S5 (PMC9917874 `ijms-24-02811-s001.zip`) use only Diab1–5 / Nephro1–5. No retrieved source links the two: PRIDE protocols, paper text, all supplementary tables, Figure S4 (names Cell_268 only), and the msf metadata tables (FileInfos, WorkflowInfo, ProcessingNodeParameters) were checked. The paper defers patient characteristics to ref [20] (Millioni et al., Proteomics Clin Appl 2008, PMID 21136853), which is not open access. Assigning groups from data patterns alone would be inference without an explicit source (rule 6).
+**What had been blocked:** the per-subject DN vs diabetic-control assignment. The deposit codes subjects as cellNNN; the paper and Tables S1–S5 code them as Diab1–5 / Nephro1–5. No source states the link between the two.
 
-**Unblocked by:** an author key mapping cellNNN to Diab/Nephro numbers (or to DN status), or ref [20] if it lists the culture codes. A data cross-check is possible: recompute per-subject k from the deposited msf H/L ratios and match against the Diab/Nephro columns of Table S2. Once the map is known, add `characteristics[disease]` = diabetic kidney disease (MONDO:0005016) for DN subjects (keeping T1DM, e.g. via a second disease term or a custom column), and `factor value[...]` for the group, in `samples.tsv` via `scripts/make_tables.py`, then rebuild.
+**How it was resolved:** by a data-derived identity match, not an author key.
+- Per-subject turnover k was recomputed from the H/L ratios in all 30 deposited msf files (paper eq. 5).
+- Each culture matches exactly one per-subject k column of Table S2: best median |ln k ratio| 0.024–0.038, against ≥ 0.077 for every other column.
+- The matches form a one-to-one assignment.
+- The reviewer and the producer reached the same key with independent implementations.
+
+**Key:**
+
+| group | subjects |
+|---|---|
+| Diab (diabetic control) | Diab1 = cell268, Diab2 = cell160, Diab3 = cell36, Diab4 = cell42, Diab5 = cell504 |
+| Nephro (type 1 diabetes nephropathy, EFO:0004996) | Nephro1 = cell515, Nephro2 = cell325, Nephro3 = cell511, Nephro4 = cell80, Nephro5 = cell304 |
+
+**Would be strengthened by:** an author-confirmed key.
 
 **Also noted (not blocking):** `07Mar2013_Blank_02.RAW` was searched (in `07Mar2013_Prot_turn_cell42_24h_tot_bis.msf`) but not deposited.

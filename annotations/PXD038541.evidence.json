@@ -44,6 +44,11 @@
    "location": "sdrf-tools contract -t ms-proteomics -t human -t clinical-metadata (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; README.adoc:330 biological replicate numbering"
   },
   {
+   "id": "subject_key",
+   "kind": "derived",
+   "location": "Data-derived identity match (producer's own re-derivation, reproducing reviewer finding in annotations/PXD038541.review.md): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/scripts/msf_ratios.py (own SQLite range reader msf_range2.py; per-protein median H/L, channel 2 Heavy / channel 1 Light per msf QuantificationMethod XML, ConfidenceLevel 3, single-protein peptides) over all 30 msf -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/ratios/*.json; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/scripts/match_subjects.py (k by least squares through the origin of ln(r+1)=k*t, paper eq. 5; proteins with 24 h + >=1 other time point; score = median |ln(k_msf/k_TableS2)|; exhaustive one-to-one assignment) -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/match_subjects.out, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/subject_key.json. Reviewer's independent implementation: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/rev-PXD038541/scripts/match.py, match.out (same key)"
+  },
+  {
    "id": "scripts",
    "kind": "derived",
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/scripts/make_tables.py (samples.tsv/technical.tsv from msf FileInfos), sdrf-tools build, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/scripts/postbuild.py (fraction identifier fix, 4 rows)"
@@ -61,15 +66,26 @@
    "evidence": "Dynamic SILAC, not a mixture of samples: PRIDE/paper 4.3 'The fibroblasts were cultured in standard, light (L) DMEM medium until they reached confluence ... the heavy medium (containing the 13C6-Lysine) was added to the culture at time T=0. Cells were harvested at 4, 7.5 and 24 h'. So in every run the light channel is the pre-existing proteome and the heavy channel the protein synthesised after T=0 (paper 2.1/4.6: H/L ratio models PH/PL). msf ProcessingNodeParameters QuantificationMethod = 'SILAC 2plex (Lys6) (Custom)' in all 30 msf (multiplicity 2). One source per (subject, time point, channel); no two cultures share a source name."
   },
   {
-   "location": "characteristics[individual] rows 1-624; characteristics[biological replicate] rows 1-624",
-   "value": "individual = cell36, cell42, cell80, cell160, cell268, cell304, cell325, cell504, cell511, cell515; biological replicate = 1..10 in that order, restarting within each sampling-time group",
+   "location": "characteristics[individual] rows 1-624",
+   "value": "cell36, cell42, cell80, cell160, cell268, cell304, cell325, cell504, cell511, cell515",
    "source_ids": [
     "files",
     "msf",
-    "paper",
-    "templates"
+    "paper"
    ],
-   "evidence": "Raw/msf file names carry the subject code cellNNN; ten codes, matching the paper's '10 type 1 diabetic patients' and '300 LC-MS/MS analyses (2 analyses for each of the five gel bands, for the three time points, and for the 10 patients)'. Each subject is one independent primary culture, so within every factor-value group (sampling time) the ten subjects get the distinct numbers 1-10 (README.adoc:330, campaign rule 3). The same subject keeps the same number across time points."
+   "evidence": "Raw/msf file names carry the subject (primary culture) code cellNNN; every msf FileInfos lists files of one code and one time point only. Ten codes = the paper's '10 type 1 diabetic patients' and '300 LC-MS/MS analyses (2 analyses for each of the five gel bands, for the three time points, and for the 10 patients)'."
+  },
+  {
+   "location": "characteristics[disease], factor value[disease], characteristics[biological replicate] rows 1-624",
+   "value": "type 1 diabetes mellitus (MONDO:0005147) for cell268=Diab1, cell160=Diab2, cell36=Diab3, cell42=Diab4, cell504=Diab5 (rows 1-144,205-324,445-504); type 1 diabetes nephropathy (EFO:0004996) for cell515=Nephro1, cell325=Nephro2, cell511=Nephro3, cell80=Nephro4, cell304=Nephro5 (rows 145-204,325-444,505-624); biological replicate = the paper's subject number 1-5 within each disease x sampling-time group",
+   "source_ids": [
+    "subject_key",
+    "supp",
+    "msf",
+    "paper",
+    "ols"
+   ],
+   "evidence": "DATA-DERIVED IDENTITY MATCH, not an author statement: no source states the cellNNN -> Diab/Nephro key. Per-subject turnover constants k recomputed from the deposited msf H/L ratios reproduce the authors' own per-subject k columns of Table S2 (Diab1-5 / Nephro1-5 k (1/h)): for every culture exactly one column has median |ln(k_msf/k_S2)| = 0.024-0.038 while every other column is >= 0.077 (2.6-8.8x larger); the ten row-best matches are a one-to-one assignment (5 Diab + 5 Nephro) and equal the optimal assignment (summed score 0.292 vs 0.399 for the next-best assignment). Concordant with the reviewer's independent implementation (same key). Paper 4.1: 'Five Caucasian T1DM patients with DN (AER >200 mg/min ...) and five T1DM patients without DN (AER <20 mg/min)'; Table S2 labels the DN group 'Nephro' and the diabetic controls 'Diab'. All subjects have T1DM; the DN subjects get EFO:0004996 'type 1 diabetes nephropathy' (OLS4: not obsolete; EFO:0000401 'diabetic nephropathy' is obsolete). Biological replicates restart per factor-value group (README.adoc:330, campaign rule 3): within each (disease, sampling time) group the five subjects are numbered by their Table S2 number (Diab1..5 / Nephro1..5), one number per independent primary culture."
   },
   {
    "location": "characteristics[sampling time], factor value[sampling time] rows 1-624",
@@ -94,14 +110,14 @@
   },
   {
    "location": "comment[technical replicate] rows 1-624",
-   "value": "1 = first-pass injection; 2 = re-injection with static exclusion list (_excl_list); 3/4 = a second first-pass/exclusion-list acquisition merged into the same msf (rows 61-80,141-144)",
+   "value": "1 = first-pass acquisition; 2 = complementary re-acquisition of the same digest with a static exclusion list (_excl_list); 3/4 = a second first-pass / exclusion-list acquisition merged into the same msf (rows 61-80,141-144)",
    "source_ids": [
     "paper",
     "files",
     "msf",
     "raw"
    ],
-   "evidence": "Paper 4.4: 'each sample was analyzed twice ... All samples were analysed again under identical chromatographic and instrumental conditions, but with the application of the static exclusion list'; raw method of the _excl_list file is FT_IT_Top4_..._ExclList_04h_A.meth with 'Use global parent and reject mass lists enabled'. 09Feb2013_turnover_cell36_tot_24h_bis.msf contains both 01Feb/02Feb and 07Feb/08Feb cell36 24h series (20 files); 07Mar2013_Prot_turn_cell42_24h_tot_bis.msf contains 03Mar/04Mar series plus 07Mar 24h_E and 24h_E_excl_list re-acquisitions (04Mar2013_Turnover_cell42_24h_E_excl_list.RAW is only 26 MB). These repeats are injections of the same sample (same subject/time/band); whether the digest was re-prepared is not stated."
+   "evidence": "Paper 4.4: 'each sample was analyzed twice ... All samples were analysed again under identical chromatographic and instrumental conditions, but with the application of the static exclusion list'; raw method of the _excl_list file is FT_IT_Top4_..._ExclList_04h_A.meth with 'Use global parent and reject mass lists enabled'. 09Feb2013_turnover_cell36_tot_24h_bis.msf contains both 01Feb/02Feb and 07Feb/08Feb cell36 24h series (20 files); 07Mar2013_Prot_turn_cell42_24h_tot_bis.msf contains 03Mar/04Mar series plus 07Mar 24h_E and 24h_E_excl_list re-acquisitions (04Mar2013_Turnover_cell42_24h_E_excl_list.RAW is only 26 MB). These repeats are injections of the same sample (same subject/time/band); whether the digest was re-prepared is not stated. Encoding note: replicate 2 is not a pure repeat - the exclusion-list run uses a different instrument method (static exclusion list of peptides identified in the first pass, paper 4.4) to sample additional precursors, and PD merged both passes into one msf per subject and time point; it is encoded as a technical replicate because it is a second acquisition of the same digest and SDRF has no separate column for a complementary acquisition. Rows with replicate 3/4 follow the same 1/2 pattern."
   },
   {
    "location": "characteristics[organism] rows 1-624",
@@ -121,16 +137,6 @@
     "ols"
    ],
    "evidence": "Paper 4.2: 'The fibroblasts were obtained by skin biopsies ... skin explants'; primary cultures grown to passage 4-5 (not an established cell line, so material type 'cell' and no cell-lines template). Biopsy site not stated, hence the general UBERON:0002097 skin of body; CL:0000057 fibroblast (PRIDE organismParts lists CL:0000057 Fibroblast and BTO primary cell)."
-  },
-  {
-   "location": "characteristics[disease] rows 1-624",
-   "value": "type 1 diabetes mellitus",
-   "source_ids": [
-    "paper",
-    "pride",
-    "ols"
-   ],
-   "evidence": "Paper 4.1: 'Five Caucasian T1DM patients with DN ... and five T1DM patients without DN' - every subject has T1DM (MONDO:0005147; PRIDE diseases DOID:9744). Nephropathy status is per subject and cannot be assigned (see limitations), so it is not encoded."
   },
   {
    "location": "characteristics[culture medium] rows 1-624",
@@ -229,7 +235,7 @@
   }
  ],
  "limitations": [
-  "Diabetic nephropathy status per subject is NOT annotated: the paper and Supplementary Tables S1-S5 label subjects only as Diab1-5 / Nephro1-5, the deposit only as cell36, cell42, cell80, cell160, cell268, cell304, cell325, cell504, cell511, cell515; no retrieved source links the two codings (PRIDE protocol, paper, supplementary zip, Figure S4 which names only Cell_268, msf metadata). Ref [20] (patients' characteristics, Proteomics Clin Appl 2008, PMID 21136853) is not open access. The study's DN vs diabetic-control comparison therefore cannot be reproduced from this SDRF; recorded in BLOCKED.md (partial block, attribute only - no run is excluded).",
+  "Diabetic nephropathy status per subject (characteristics/factor value[disease]) rests on a data-derived identity match (msf-recomputed per-subject k vs the authors' Table S2 columns; see source subject_key), not on an author-supplied key: neither the paper, the supplementary files nor PRIDE links cellNNN to Diab/Nephro, and ref [20] (PMID 21136853) is not open access. The match is unambiguous (best column 0.024-0.038 vs >= 0.077 for any other; one-to-one; reproduced by two independent implementations).",
   "Per-subject age, sex, ancestry and developmental stage are not available (only cohort means; 'Caucasian' is stated for the DN group sentence only).",
   "Technical replicates 3/4 (cell36 24h second series; cell42 24h band-E re-acquisitions) are inferred to be re-injections of the same sample because they were merged into the same msf; the reason for the repeat is not stated.",
   "Instrument: paper and raw header say LTQ Orbitrap XL; the acquisition PC is named 'LTQ Orbitrap ETD', so the hardware may be the XL ETD variant (MS:1000639); MS:1000556 kept.",
@@ -237,6 +243,7 @@
   "Raw headers were checked on 2 of 312 files (one first-pass, one exclusion-list run).",
   "07Mar2013_Blank_02.RAW was searched in 07Mar2013_Prot_turn_cell42_24h_tot_bis.msf but not deposited; not annotated.",
   "parse_sdrf validate-sdrf logged OLS 500 errors on a PATO fallback search for 'type 1 diabetes mellitus' but finished 'Everything seems to be fine' (exit 0).",
-  "Independent review pending (external sdrf-adversarial-review hand-off); not self-approved."
+  "comment[fraction identifier] of the 4 cell42 band-E-only re-acquisition rows is set to 5 by scripts/postbuild.py: sdrf-tools build numbers fractions by position in the files list and its fixed columns override sample-table values (tools/build.py expand()), so the value cannot be supplied through samples.tsv/technical.tsv.",
+  "Independent review pending (external sdrf-adversarial-review hand-off, round 2 after the round-1 FAIL on DN status); not self-approved."
  ]
 }
