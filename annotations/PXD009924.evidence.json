@@ -79,7 +79,7 @@
     "mq_readme",
     "paper"
    ],
-   "evidence": "Run names <date>_<cell line>_<C|M|N|V|Mitos|Vesicles>_<1|2>_<slice>.raw; MaxQuant experimentalDesignTemplate assigns each 10-file set to one experiment (A549 C_3/C_4, M_3/M_4, N_3/N_4, V_3/V_4 for file replicates 1/2; Calu-1 C_C_1..C_V_2; NCI-H1299 H_C_1..H_V_2). Each mixture holds three physical samples: the heavy infected compartment, the medium control compartment and one aliquot of the light internal standard (paper: \"all light-labeled cell fractions of one experiment were combined and served as an internal standard. This standard was spiked in 1:2 ratio into the mixed compartment fractions\"), so every aliquot gets its own source name (24 mixtures x 3 = 72 sources)."
+   "evidence": "Run names <date>_<cell line>_<C|M|N|V|Mitos|Vesicles>_<1|2>_<slice>.raw; MaxQuant experimentalDesignTemplate assigns each 10-file set to one experiment (A549 C_3/C_4, M_3/M_4, N_3/N_4, V_3/V_4 for file replicates 1/2; Calu-1 C_C_1..C_V_2; NCI-H1299 H_C_1..H_V_2). Each mixture holds three physical samples: the heavy infected compartment, the medium control compartment and one aliquot of the light internal standard (paper: \"all light-labeled cell fractions of one experiment were combined and served as an internal standard. This standard was spiked in 1:2 ratio into the mixed compartment fractions\"), so each light standard - one physical pool per (cell line, experiment) - is spiked into four mixtures. It is encoded as one source name per mixture (24 mixtures x 3 = 72 source names; 6 physical light pools); all four names of a pool carry identical characteristics and the experiment's biological replicate number. The spec allows one source name for a reused sample (README.adoc: \"it can be present multiple times if the same sample is used several times in the same dataset\"), but that encoding repeats (source, biological replicate, technical replicate, fraction) across four runs and is refused by sdrf-tools build (check_coordinates) and sdrf-tools structure (duplicate-row-coordinate); skills/sdrf-annotate/references/validation.md:22-23 prescribes one source name per run for a shared reference. Open: independent review round 2 F1 asks for one name per pool (54 sources); needs a maintainer decision on the tooling rule."
   },
   {
    "location": "comment[label] + characteristics[infection] + factor value[infection] rows 1-720",
@@ -256,15 +256,6 @@
    "evidence": "Paper Methods (cell culture): \"cell pellets were stored at -80 °C for further use\"; fractionation starts from these pellets (\"Cell pellets were taken up in homogenization medium\"). Value format per cell-lines 1.1.0 example \"-80 °C\"."
   },
   {
-   "location": "characteristics[sampling time] rows 1-720",
-   "value": "24 hour (SILAC heavy, infected) | not available (medium control and light standard rows)",
-   "source_ids": [
-    "paper",
-    "templates"
-   ],
-   "evidence": "Paper: cells incubated with virus for 1 h, washed, \"incubated with complete DMEM (high glucose) for 24 h\"; Fig. 2A \"IAV infected for 24 h\". The harvest time of the untreated cultures is not stated, hence not available. sample-metadata template: number_with_unit, units hour/day/..."
-  },
-  {
    "location": "factor value[infection] rows of SILAC light",
    "value": "not applicable",
    "source_ids": [
@@ -311,7 +302,7 @@
     "files",
     "mwcheck"
    ],
-   "evidence": "Paper: \"Proteins were separated by SDS-PAGE using 4-12% Bis-Tris gels ... Gel lanes were cut into 10 slices\". comment[fraction identifier] = the MaxQuant experimentalDesignTemplate Fraction value. For A549 and NCI-H1299 it equals the file-name slice index; for all 80 Calu-1 files MaxQuant uses 11 - index (file _1 = fraction 10). The deposited search numbering is kept; which convention reflects the gel slice order is not stated."
+   "evidence": "Paper: \"Proteins were separated by SDS-PAGE using 4-12% Bis-Tris gels ... Gel lanes were cut into 10 slices\". comment[fraction identifier] = the MaxQuant experimentalDesignTemplate Fraction value. For A549 and NCI-H1299 it equals the file-name slice index; for all 80 Calu-1 files MaxQuant uses 11 - index (file _1 = fraction 10). The deposited search numbering is kept, and it follows gel order in all three cell lines: median protein MW of the PSMs (mwcheck) falls from fraction 1 to fraction 10 for A549 (file index 1-10: 117-149 -> 19 kDa) and NCI-H1299 (191 -> 24 kDa), and for Calu-1, whose file index runs the other way (27 -> 238 kDa), MaxQuant fraction 1 = file index 10 = 238 kDa. Fraction k is therefore the same gel region (high MW first) in every cell line."
   },
   {
    "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-720",
@@ -362,9 +353,9 @@
   "comment[precursor mass tolerance] = not available: MaxQuant 1.4.1.2 parameters.txt/summary.txt do not record the first/main-search precursor tolerance and no mqpar.xml was deposited (paper states only post-recalibration precision <1 ppm). parse_sdrf convert-openms therefore fails on this column.",
   "The PRIDE organism NEWT:553341 (A/Aichi/68/2007) disagrees with the paper strain (X:31 A/AICHI/68 = reassortant on 1968 Aichi HA/NA); NCBITaxon:132504 A/X-31(H3N2) used from the paper.",
   "Companion PXD007809 (not annotated here): the paper reports three A549 compartment replicates, this deposit holds two. The 132 runs of this deposit's joint MaxQuant design that are absent here (2012 AZ_fractions, 2013 WCL; MaxQuant experiments C_1/C_2, M_1/M_2, N_1/N_2, V_1/V_2, WCL) are in PXD007809 and no RAW file is shared (385 RAW 2008-2013 there; per the independent review's listing, not re-fetched by the producer). readme: \"This project is an addition to the project PXD007809\"; paper Data Availability lists both. Not a duplicate. If PXD007809 is annotated, coordinate A549 replicate numbers: here 1/2 = MaxQuant C_3/C_4 etc.",
-  "MOI 2 PFU/cell is stated but not encoded (no template column for MOI); the 24 h infection time is in characteristics[sampling time] on infected rows only.",
+  "MOI 2 PFU/cell and the 24 h infection duration are stated in the paper but not encoded: no template column for MOI, and characteristics[sampling time] (sample-metadata: time-course sampling point) would imply a time course and an artificial infected/control asymmetry (independent review round 2, minor F3), so the column was dropped. Both values are recorded here only.",
   "characteristics[passage number] and characteristics[individual] = not available: no passage number or donor identifier is given in any source.",
   "PRIDE v3 API and the MCP PRIDE tools were unreachable/timed out on 2026-11-09; the record came from the v2 API and the FTP README/listing.",
-  "Review: independent review round 1 (annotations/PXD009924.review.md, sha a9504b7e...) FAIL on F1 (missing recommended columns); F1-F5 addressed in this rebuild. No approval or review file written by the producer; new review pending (REVIEW_PENDING_EXTERNAL)."
+  "Review: independent review round 2 (annotations/PXD009924.review.md, sha 323bb207...) FAIL on F1 (light pool split into four source names). Minor F2 (fraction wording) and F3 (sampling time dropped) are addressed in this rebuild; F1 is not applied because the requested one-name-per-pool encoding is refused by sdrf-tools build and structure (see the source name claim); minor F4 (PXD007809 listing not re-fetched) unchanged. No approval or review file written by the producer (REVIEW_PENDING_EXTERNAL)."
  ]
 }
