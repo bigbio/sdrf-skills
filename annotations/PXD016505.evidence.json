@@ -181,7 +181,7 @@
     "proteingroups",
     "pools"
    ],
-   "evidence": "Raw files from files/all; each run is an unfractionated AP-MS injection. Excluded raws listed in limitations. 17 RAC1 raws are deposited in both PXD016505 and PXD016512 and are annotated in both SDRFs with the same source names: ALI0880-S06-A-RAC-FOR.raw, ALI0881-S06-A-RAC-1-REV.raw, ALI1013-S08-A-RAC1-FOR.raw, ALI1013-S21-A-RAC1-REV.raw, ALI1530-S22-A-RAC1-F.raw, ALI1530-S26-A-RAC1-R.raw, LDY0905-S10-A-RAC-1-REV-BIS.raw, LDY0995-S02-A-RAC1-REV.raw, LDY0995-S15-A-RAC1-FOR.raw, LDY1502-S02-A-RAC-F-1.raw, LDY1502-S05-A-RAC-F-2.raw, LDY1502-S08-A-RAC-F-3.raw, LDY1502-S11-A-RAC-F-4.raw, LDY1502-S15-A-RAC-R-1.raw, LDY1502-S18-A-RAC-R-2.raw, LDY1502-S21-A-RAC-R-3.raw, LDY1502-S24-A-RAC-R-4.raw."
+   "evidence": "Raw files from files/all; each run is an unfractionated AP-MS injection. All deposited raws are annotated. 17 RAC1 raws are deposited in both PXD016505 and PXD016512 and are annotated in both SDRFs with the same source names: ALI0880-S06-A-RAC-FOR.raw, ALI0881-S06-A-RAC-1-REV.raw, ALI1013-S08-A-RAC1-FOR.raw, ALI1013-S21-A-RAC1-REV.raw, ALI1530-S22-A-RAC1-F.raw, ALI1530-S26-A-RAC1-R.raw, LDY0905-S10-A-RAC-1-REV-BIS.raw, LDY0995-S02-A-RAC1-REV.raw, LDY0995-S15-A-RAC1-FOR.raw, LDY1502-S02-A-RAC-F-1.raw, LDY1502-S05-A-RAC-F-2.raw, LDY1502-S08-A-RAC-F-3.raw, LDY1502-S11-A-RAC-F-4.raw, LDY1502-S15-A-RAC-R-1.raw, LDY1502-S18-A-RAC-R-2.raw, LDY1502-S21-A-RAC-R-3.raw, LDY1502-S24-A-RAC-R-4.raw."
   },
   {
    "location": "comment[instrument] rows 1-972",
