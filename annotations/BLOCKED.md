@@ -253,6 +253,12 @@ them from using.
 
 ---
 
+`PXD016299` (CHIP/STUB1 KO vs WT SH-SY5Y): only the 6 pulse-SILAC Orbitrap Elite runs
+(`CHIP_{WT,KO}_1-3.raw`) are annotated. Out of this SILAC campaign's scope, not blocked: 12
+label-free SWATH runs on the TripleTOF 5600+ (`SWATH_SH-SY5Y_SY5Y_CHIP_{WT,KO}_biorep{1,2}_techrep{1-3}.wiff`)
+and 2 IDA spectral-library runs (`IDA_..._spectral_library_rep{1,2}.wiff`), each with its `.wiff.scan`.
+They could go into a separate label-free SDRF (rule 12).
+
 `PXD004880` (Down syndrome twin fibroblasts): 140 deposited vendor raw files → **36** annotated
 (the pulsed-SILAC SWATH runs `yanliu_Y151023_002_SW`–`037_SW`). The other 104 are outside this
 SILAC campaign, not blocked by a missing channel map: 56 label-free steady-state SWATH runs
