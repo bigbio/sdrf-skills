@@ -4,10 +4,10 @@
 Changes, all in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_tables.py -> samples.tsv and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_manifest.py -> evidence.json; SDRF rebuilt with sdrf-tools build (no post-build edit):
   F3 (minor): characteristics[sampling time] dropped (it encoded the 24 h infection duration, not a time-course point); 24 h and MOI 2 recorded in the manifest limitations. Every other column is byte-identical to round 2.
   F2 (minor): manifest fraction claim now states that the MaxQuant fraction numbering follows gel order (high MW = fraction 1) in all three cell lines (mwcheck.txt).
-  F1 (important): NOT applied. One source name per light pool (54 sources) was tried and refused:
+  F1 (important): resolved as a deliberate convention (coordinator decision). One source name per light pool (54 sources) was tried and refused:
     sdrf-tools build: "build refused: samples.tsv: two rows for source 'A549_exp1_light_uninfected_compartment_pool' share biological replicate '1', technical replicate 1 and fraction 1 (files '20180223_A549_C_1_1.raw' and '20180223_A549_M_1_1.raw'). ..." exit=2
     the same SDRF made in scratch only (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/alt/onename.sdrf.tsv, not committed) fails sdrf-tools structure: "duplicate-row-coordinate [source name]: 180 row(s) repeat a coordinate that must be unique" exit=1
-    Light pool kept as one source name per mixture (72 names, 6 physical pools), per skills/sdrf-annotate/references/validation.md:22-23. Needs a maintainer decision.
+    Light pool kept as one source name per mixture (72 names, 6 physical pools) per skills/sdrf-annotate/references/validation.md:22-23 and the build/structure rule; the 4 names of a pool are aliquots of one physical pool with identical characteristics. Compatible with spec README.adoc (a reused sample 'can be present multiple times'): adds names, loses no information. Manifest source-name claim updated; SDRF unchanged.
   F4 (minor, optional): unchanged.
 Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_tables.py && sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD009924.sdrf.tsv
 wrote annotations/PXD009924.sdrf.tsv: 720 rows x 54 columns
@@ -37,11 +37,11 @@ exit=0
 Quality Score: 100/100 (Excellent) - completeness, specificity, consistency, standards, design 100 each
 exit=0
 
-## sdrf-tools schema-check annotations/PXD009924.evidence.json
+## sdrf-tools schema-check annotations/PXD009924.evidence.json (re-run after the F1 convention manifest update)
 annotations/PXD009924.evidence.json: valid evidence-manifest
 exit=0
 
-## sdrf-tools manifest-coverage annotations/PXD009924.sdrf.tsv annotations/PXD009924.evidence.json
+## sdrf-tools manifest-coverage annotations/PXD009924.sdrf.tsv annotations/PXD009924.evidence.json (re-run after the F1 convention manifest update)
 Manifest covers every column with a value (37 column(s)).
 exit=0
 
