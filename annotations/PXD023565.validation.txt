@@ -1,4 +1,4 @@
-# PXD023565 validation log (2026-11-09T16:09Z); SDRF sha256 a6ea3f8bcbed4c51abea987791e18c75ce21df3b3baef2757ab77baa686c9164
+# PXD023565 validation log (2026-11-09T16:10Z); SDRF sha256 a6ea3f8bcbed4c51abea987791e18c75ce21df3b3baef2757ab77baa686c9164
 
 Build: sdrf-tools build --samples samples.tsv --technical technical.tsv --files files.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/scripts/gen_tables.py) -> 123 rows x 53 columns.
 Post-build edit (rule 17): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/scripts/postbuild.py sets comment[fraction identifier] 1 -> 12 on the 3 rows of 20170404_Ting_1_12_170408070646.raw (second injection of set-1 fraction 12, technical replicate 2); build numbers fractions by position within a samples.tsv row, so a one-file re-run row would otherwise be fraction 1. Nothing else edited.
@@ -33,8 +33,14 @@ During handling of the above exception, another exception occurred:
 exit=1
 
 ## sdrf-tools check --offline annotations/PXD023565.sdrf.tsv
-[7 OLS4 error/retry/traceback lines omitted: OLS4 returned HTTP 500 / read timeouts]
 Hallucination Report: annotations/PXD023565.sdrf.tsv
+  Terms checked:     15
+  Verified:          7
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
 exit=0
 
 ## sdrf-tools reconcile annotations/PXD023565.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/pride.json --accession PXD023565
