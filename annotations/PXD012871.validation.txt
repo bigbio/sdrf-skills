@@ -101,3 +101,45 @@ exit=0
 # ===== PXD012871-ip rebuild after review round 2 FAIL (annotations/PXD012871-ip.review.md) 2026-11-09T15:32Z: the 2 NFX1_2 runs were removed in make_tables_ip.py and the file rebuilt; SDRF annotations/PXD012871-ip.sdrf.tsv sha256 6cb4d5d3bb0633b8169b9683bef81738d1c9fe568350e7381bab6afd16cfe68b; 4 rows x 46 columns; supersedes the 6-row build (sha256 e045ecdf72e0f974212c3682b69ede486e73b096403150680b79bf4b2d9d9758). PXD012871.sdrf.tsv unchanged (3473dd2cd9ff9ccd1c5d27eb72313dbb8451d27eda56bdc8fed3df868dc08995).
 
 ## parse_sdrf validate-sdrf -s annotations/PXD012871-ip.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+ERROR:sdrf_pipelines.ols.ols:OLS search term kidney error, retry number 4
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term kidney. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=kidney&name=class&rows=10&start=40&ontology=uberon&exact=on
+ERROR:sdrf_pipelines.ols.ols:OLS search term normal error, retry number 9
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term normal. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=normal&name=class&rows=10&start=90&ontology=ncit&exact=on
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD012871-ip.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD012871-ip.sdrf.tsv
+Hallucination Report: annotations/PXD012871-ip.sdrf.tsv
+  Terms checked:     12
+  Verified:          12
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD012871-ip.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/pride.json --accession PXD012871
+PXD012871: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+exit=1
+Both findings are the same false positives as in the 6-row build and are refuted the same way (see the refutations above: enzyme unnamed in the protocol but the search was specific Trypsin/P; the project-level SILAC tag belongs to the SILAC arm, and txt_IP has Multiplicity 1).
+
+## parse_sdrf convert-openms -s annotations/PXD012871-ip.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/convert_ip)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: precursor mass tolerance not available.
+
+## sdrf-tools schema-check annotations/PXD012871-ip.evidence.json
+annotations/PXD012871-ip.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD012871-ip.sdrf.tsv annotations/PXD012871-ip.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit=0

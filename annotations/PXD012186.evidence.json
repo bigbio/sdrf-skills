@@ -128,7 +128,7 @@
     "scheme",
     "expdesign"
    ],
-   "evidence": "PRIDE: \"the protein profile was studied after 24 and 48 hours of Ctr infection\"; scheme \"Time Course\" 24h for groups 1-3 and 7, 48h for 4-6 and 8; MaxQuant experiment names 24h_*/48h_*. Applied to all channels of a mix (the uninfected controls of a mix were harvested alongside)."
+   "evidence": "PRIDE: \"the protein profile was studied after 24 and 48 hours of Ctr infection\"; scheme \"Time Course\" 24h for groups 1-3 and 7, 48h for 4-6 and 8; MaxQuant experiment names 24h_*/48h_*. Applied to all channels of a mix: on uninfected rows the value is the harvest time of the uninfected control alongside the paired infected culture of the same mix (24 h or 48 h post infection), not a time since infection; the scheme's merged Time Course cells span the uninfected rows too."
   },
   {
    "location": "characteristics[organism] rows 1-330",
@@ -213,6 +213,14 @@
    "evidence": "experimentalDesignTemplate.txt assigns each raw file to one Experiment with MaxQuant Fraction 3..13; SDRF fraction identifier k = MaxQuant fraction k+2 (1 = hpRP fr3 ... 10 = fr12, 11 = MaxQuant 13 = pooled fr1+fr2+fr13, file suffix fr1-2-13). PRIDE: \"13 fractions were collected, first two and the last one were combined\"; \"12 combined samples ... each one consisting of 11 fractions\"."
   },
   {
+   "location": "comment[data file] acquisition batches rows 1-330",
+   "value": "two file-name date prefixes: 06122017 (109 files) and 06262017 (23 files)",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "File-name prefixes are MMDDYYYY (26 cannot be a month), i.e. 12 June 2017 and 26 June 2017. 06262017 = all 11 fractions of 48h_8b and 48h_8c plus one fraction of 48h_8a (48h_8a_fr8); all other files incl. the remaining 10 fractions of 48h_8a are 06122017. Not encoded as comment[acquisition date] (the prefix is an operator file-name date, not read from the raw headers); noted for batch interpretation."
+  },
+  {
    "location": "comment[technical replicate] rows 1-330",
    "value": "1",
    "source_ids": [
@@ -293,14 +301,40 @@
    "evidence": "Paper: \"reduced with 10 mM dithiothreitol ... alkylated with 20 mM iodoacetamide\"."
   },
   {
-   "location": "comment[modification parameters] rows 1-330",
-   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) R (UNIMOD:188), Label:2H(4) K (UNIMOD:481), Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "location": "comment[modification parameters] (columns 1-3) rows 1-330",
+   "value": "Carbamidomethyl C Fixed; Oxidation M Variable; Acetyl Protein N-term (PP=) Variable",
    "source_ids": [
     "mq",
     "paper",
     "ols"
    ],
-   "evidence": "parameters.txt \"Fixed modifications Carbamidomethyl (C)\"; summary.txt Variable modifications \"Oxidation (M);Acetyl (Protein N-term)\" and Labels Arg6;Lys4 / Arg10;Lys8 for every raw file (one search covering all 132 files). Paper: Arg+6 [13C6], Lys+4 [D4] medium; Arg+10 [13C6 15N4], Lys+8 [13C6 15N2] heavy. UNIMOD accessions from mass shifts, labels MT=Variable (campaign rule 11)."
+   "evidence": "parameters.txt \"Fixed modifications Carbamidomethyl (C)\"; summary.txt Variable modifications \"Oxidation (M);Acetyl (Protein N-term)\" for every one of the 132 raw files."
+  },
+  {
+   "location": "comment[modification parameters] (label columns 4-7: UNIMOD:188 R, UNIMOD:481 K, UNIMOD:267 R, UNIMOD:259 K) - 242 rows of experiments 24h_1..48h_6, 24h_7c, 48h_8c",
+   "value": "all four label modifications, MT=Variable",
+   "source_ids": [
+    "mq",
+    "paper",
+    "ols"
+   ],
+   "evidence": "One MaxQuant 1.6.0.1 run, but the label groups are per experiment (summary.txt Labels0/Labels1/Labels2 per raw file): experiments 1-6 Multiplicity 3, Labels0 empty, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8; 24h_7c/48h_8c Multiplicity 2, Labels0 Arg6;Lys4, Labels1 Arg10;Lys8. Paper: Arg+6 [13C6], Lys+4 [D4] medium; Arg+10 [13C6 15N4], Lys+8 [13C6 15N2] heavy. UNIMOD accessions from the mass shifts (Label:13C(6) 188, Label:2H(4) 481, Label:13C(6)15N(4) 267, Label:13C(6)15N(2) 259), MT=Variable (campaign rule 11)."
+  },
+  {
+   "location": "comment[modification parameters] label columns - 44 rows of 24h_7a, 48h_8a",
+   "value": "UNIMOD:188 R and UNIMOD:481 K; UNIMOD:267 / UNIMOD:259 columns = not applicable",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "summary.txt 24h_7a and 48h_8a (all 22 files): Multiplicity 2, Labels0 empty, Labels1 Arg6;Lys4 - Arg10/Lys8 were not searched for these files (campaign rule 5). Built as a separate sdrf-tools build with identical headers and concatenated (scripts/build_parts.py)."
+  },
+  {
+   "location": "comment[modification parameters] label columns - 44 rows of 24h_7b, 48h_8b",
+   "value": "UNIMOD:267 R and UNIMOD:259 K; UNIMOD:188 / UNIMOD:481 columns = not applicable",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "summary.txt 24h_7b and 48h_8b (all 22 files): Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8 - Arg6/Lys4 were not searched for these files (campaign rule 5). Separate build, identical headers, concatenated (scripts/build_parts.py)."
   },
   {
    "location": "comment[precursor mass tolerance] rows 1-330",
@@ -338,7 +372,7 @@
   }
  ],
  "limitations": [
-  "characteristics[culture medium] = not available: the SILAC medium is \"FAD\" (75% Ham's F-12 + 25% DMEM for SILAC, 5% FBS, insulin, EGF, cholera toxin, adenine, hydrocortisone; paper Cell culture / Cell labeling sections). NCIT (the column's ontology) has no term for FAD or Ham's F-12 medium; a free-text value failed parse_sdrf validation in round 1 (ERROR \"not a valid ontology term\"), and DMEM alone would misdescribe it.",
+  "characteristics[culture medium] = not available: the SILAC medium is \"FAD\" (75% Ham's F-12 + 25% DMEM for SILAC, 5% FBS, insulin, EGF, cholera toxin, adenine, hydrocortisone; paper Cell culture / Cell labeling sections). NCIT (the column's ontology) has no term for FAD, Ham's F-12 or DMEM/F-12 medium, and DMEM or Ham's F-12 alone would misdescribe the 3:1 blend. The round-1 free-text value produced a parse_sdrf ERROR; see validation.txt for its origin (sdrf-pipelines 0.1.7 term-format parser, not the template error_level).",
   "characteristics[cellosaurus accession]/[cellosaurus name] = not available: the NOK line (Piboonniyom et al. 2002, Munger lab) has no Cellosaurus record; the cell-line value is disambiguated from the mouse hybridomas NOK-1..5 and from NOK-SI (CVCL_BW57) by naming the originating publication. parse_sdrf warns that this free-text cell line is not in CLO/BTO/EFO (warning only).",
   "characteristics[age], [developmental stage], [ancestry category], [individual], [passage number] = not available: donor age/ancestry are not given in the paper or ref 29 as retrieved; passage only as \"within 10 passages after selection\" (not a number).",
   "characteristics[organism part] \"oral epithelium\" is inferred from \"normal oral keratinocytes\"; the exact oral site of the donor tissue is not stated.",
