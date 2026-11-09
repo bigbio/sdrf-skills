@@ -1,0 +1,55 @@
+# PXD009843 validation log (2026-11-09T20:57Z); SDRF sha256 6fce2c1ec8b6e233a5f88d18b22bd0b93175d572092db10222b503bfb4502533
+
+Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/make_tables.py -> sdrf-tools build (tp: 216 rows, py: 9 rows, identical 50-column headers) -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/concat.py. No post-build edit of values (concat only, header equality asserted). Single round: no validation errors.
+
+## parse_sdrf validate-sdrf -s annotations/PXD009843.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit=0
+
+## parse_sdrf validate-sdrf -s annotations/PXD009843.sdrf.tsv -t ms-proteomics -t human -t cell-lines --skip-ontology
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD009843.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD009843.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/pride.json --accession PXD009843
+PXD009843: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  organism_contradicted (characteristics[organism]): the record names only Oryctolagus cuniculus and never Homo sapiens  [declared 'Homo sapiens']
+exit=1
+
+## sdrf-tools check annotations/PXD009843.sdrf.tsv --offline
+Hallucination Report: annotations/PXD009843.sdrf.tsv
+  Terms checked:     14
+  Verified:          8
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools schema-check annotations/PXD009843.evidence.json
+annotations/PXD009843.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD009843.sdrf.tsv annotations/PXD009843.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD009843.sdrf.tsv -t2 (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/convert)
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (3): dict_keys(['KRAS wild type', 'KRAS G12D/+', 'KRAS G13D/+'])
+Files per condition: dict_values([75, 75, 75])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 225 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD009843.sdrf.tsv
+exit=0
+
+## Refutation of reconcile organism_contradicted (false positive)
+The only species word in the title/description/sample protocol is 'rabbit' in 'phosphotyrosine rabbit monoclonal antibody kit (P-Tyr-1000; Cell Signaling Technology)', a reagent; tools/record_reconcile.py _SPECIES_AS_REAGENT matches 'rabbit antibod' but not 'rabbit monoclonal antibody'. The PRIDE structured organisms field is NEWT:9606 Homo sapiens, the data protocol searched 'a Human RefSeq database', and SW48 and both derivatives are human (Cellosaurus OX NCBI_TaxID=9606). Homo sapiens is kept. No other reconcile finding.
+
+## convert-openms warning
+'no TA= specified' comes from the Acetyl PP=Protein N-term modification (position-only, correct per format rules).
