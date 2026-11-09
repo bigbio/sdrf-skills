@@ -1,3 +1,70 @@
+# PXD038541 validation log — round 2 (2026-11-09T16:59Z); CURRENT SDRF sha256 09ab573ed8b8a2632f23b7b25c981b17fe772850ad583f973bf4c2cb955cf66b; 624 data rows x 41 columns
+# Round 2 = repair of the round-1 review FAIL (annotations/PXD038541.review.md: DN-status key recoverable from deposited data).
+
+## Subject key re-derivation: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/scripts/match_subjects.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541  (inputs: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/ratios/*.msf.json from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/scripts/msf_ratios.py over all 30 msf)
+best / second per culture:
+cell36    Diab3    0.029   Diab1    0.124   ratio 4.3x
+cell42    Diab4    0.038   Diab2    0.106   ratio 2.8x
+cell80    Nephro4  0.030   Diab4    0.261   ratio 8.8x
+cell160   Diab2    0.030   Diab5    0.083   ratio 2.8x
+cell268   Diab1    0.029   Nephro1  0.101   ratio 3.5x
+cell304   Nephro5  0.026   Diab5    0.077   ratio 3.0x
+cell325   Nephro2  0.024   Diab1    0.111   ratio 4.5x
+cell504   Diab5    0.027   Nephro5  0.082   ratio 3.1x
+cell511   Nephro3  0.027   Diab5    0.087   ratio 3.2x
+cell515   Nephro1  0.033   Diab1    0.086   ratio 2.6x
+
+optimal one-to-one assignment (sum score 0.292; second-best assignment 0.399):
+  cell36 -> Diab3
+  cell42 -> Diab4
+  cell80 -> Nephro4
+  cell160 -> Diab2
+  cell268 -> Diab1
+  cell304 -> Nephro5
+  cell325 -> Nephro2
+  cell504 -> Diab5
+  cell511 -> Nephro3
+  cell515 -> Nephro1
+assignment equals per-row best for all cultures: True
+Diab: ['cell268', 'cell160', 'cell36', 'cell42', 'cell504'] Nephro: ['cell515', 'cell325', 'cell511', 'cell80', 'cell304']
+Same key as the reviewer's independent implementation (rev-PXD038541/match.out). Written to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/subject_key.json and read by scripts/make_tables.py.
+
+## Build: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/files_searched.json -t ms-proteomics -t human -t clinical-metadata -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/build.sdrf.tsv
+wrote build.sdrf.tsv: 624 rows x 41 columns  (exit=0); a second build from the same tables is byte-identical (cmp).
+
+## Post-build edit (deterministic, rule 17): python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/scripts/postbuild.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/build.sdrf.tsv /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/fraction_fix.json annotations/PXD038541.sdrf.tsv
+edited rows 4 (exit=0)
+Justification: 07Mar2013_Turnover_cell42_24h_E.RAW and ..._E_excl_list.RAW are band-E-only re-acquisitions (cell42 24 h technical replicates 3/4). build numbers comment[fraction identifier] by list position (writes 1) and its fixed columns override any samples.tsv value (tools/build.py expand(): 'fixed' dict is consulted before sample values), so the fraction cannot be supplied through the tables; the script sets 5 on exactly these 4 rows (2 files x 2 channels). The coordinator's request to move fraction ids into the tables could therefore not be implemented without changing build.
+
+## parse_sdrf validate-sdrf -s annotations/PXD038541.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata  (full ontology)
+Everything seems to be fine. Well done.
+exit=0
+(no OLS errors in this run)
+
+## sdrf-tools structure annotations/PXD038541.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD038541.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/pride.json --accession PXD038541
+PXD038541: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD038541.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/convert)
+Conditions (6): dict_keys(['type 1 diabetes mellitus|4 hour', 'type 1 diabetes mellitus|7.5 hour', 'type 1 diabetes mellitus|24 hour', 'type 1 diabetes nephropathy|4 hour', 'type 1 diabetes nephropathy|7.5 hour', 'type 1 diabetes nephropathy|24 hour'])
+Files per condition: dict_values([100, 100, 124, 100, 100, 100])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD038541.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check annotations/PXD038541.evidence.json
+PXD038541.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD038541.sdrf.tsv annotations/PXD038541.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit=0
+
+==================================================================
+# SUPERSEDED round 1 log (sha256 e08c52c5…, 40 columns, no disease factor) kept for history:
 # PXD038541 validation log (2026-11-09T15:28Z); SDRF sha256 e08c52c5c3c0e7831433a47d352e91fac843f6cae9eb86fd5d45b0cfd5140c29; 624 data rows x 40 columns
 
 ## Build: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/files_searched.json -t ms-proteomics -t human -t clinical-metadata -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD038541/build.sdrf.tsv

@@ -242,7 +242,7 @@
   "Paper 4.5 says 'up to 1 missed cleavage'; every msf records MissedCleavages = 2 (no SDRF column; noted).",
   "Raw headers were checked on 2 of 312 files (one first-pass, one exclusion-list run).",
   "07Mar2013_Blank_02.RAW was searched in 07Mar2013_Prot_turn_cell42_24h_tot_bis.msf but not deposited; not annotated.",
-  "parse_sdrf validate-sdrf logged OLS 500 errors on a PATO fallback search for 'type 1 diabetes mellitus' but finished 'Everything seems to be fine' (exit 0).",
+  "Round-1 validate-sdrf run logged OLS 500 retries (outage); the round-2 run on the current file had none (exit 0).",
   "comment[fraction identifier] of the 4 cell42 band-E-only re-acquisition rows is set to 5 by scripts/postbuild.py: sdrf-tools build numbers fractions by position in the files list and its fixed columns override sample-table values (tools/build.py expand()), so the value cannot be supplied through samples.tsv/technical.tsv.",
   "Independent review pending (external sdrf-adversarial-review hand-off, round 2 after the round-1 FAIL on DN status); not self-approved."
  ]
