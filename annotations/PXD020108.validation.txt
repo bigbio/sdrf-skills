@@ -1,0 +1,57 @@
+# PXD020108 validation log (2026-11-09T18:45Z); SDRF sha256 10caee9d48f569b62f06d94a41018072ddae47a16ac597c14d79cdec8586fa5e
+# Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/make_tables.py ; sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/files.json -t ms-proteomics -t human -t cell-lines -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/build.sdrf.tsv (wrote 1956 rows x 55 columns)
+# Post-build edit (deterministic, batch rule 17): python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/postbuild.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/build.sdrf.tsv /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/frac_map.json annotations/PXD020108.sdrf.tsv
+#   -> 'fraction identifiers changed: 45 of 1956; coordinate and (source,assay,label) uniqueness OK'. Justification: build numbers comment[fraction identifier] by position in the 'files' list; several injection series have gaps (H1975_AZR3_AZR4_AZD_pST_R2 lacks F1; R4_F# lacks F9 (R4_F9 is blocked); timestamp-renamed files) so the identifier is set to the bRPLC fraction number in the raw name (F<n> / Xu-BR3-<n>). pY runs keep 1..n (mqpar order). No other cell is changed.
+
+## Round 1: parse_sdrf validate-sdrf -s annotations/PXD020108.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+WARNING: Term: NCI-H1975/AZR3 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: NCI-H1975/AZR4 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: NCI-H1975/COR1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: NCI-H1975/COR10 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+(stderr also held transient OLS4 HTTP 500 retries for 'homo sapiens', 'lung adenocarcinoma', 'rociletinib' searches; the run completed and reported only the 4 warnings above)
+exit=0
+Warnings explained: the four resistant lines NCI-H1975/AZR3, /AZR4, /COR1, /COR10 have no CLO/BTO/EFO or Cellosaurus entry (Cellosaurus children of CVCL_1511 searched; the bare names Azr3 CVCL_5A63 and Cor1 CVCL_A5EM belong to hamster and mouse lines, hence the NCI-H1975/ prefix). Expected; not fixable by a term.
+
+## parse_sdrf validate-sdrf ... --skip-ontology
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD020108.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD020108.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/pride.json --accession PXD020108
+PXD020108: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive HF', the annotation says 'Orbitrap Elite'  [Q Exactive HF]
+exit=0
+Refuted (false positive): the PRIDE sample-processing text names only 'Q Exactive HF', but the raw-file headers of all 666 runs (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/instr_by_file.tsv) give 405 'Orbitrap Elite MS', 156 'Q Exactive - Orbitrap MS' and 105 'Q Exactive HF - Orbitrap MS'; the paper says 'Peptides were analyzed on a LTQ-Orbitrap Elite mass spectrometer or a Q Exactive HF', and the PRIDE instruments field lists LTQ Orbitrap Elite and Q Exactive. comment[instrument] is set per file from the header.
+
+## sdrf-tools check annotations/PXD020108.sdrf.tsv --offline   (exit code of the command itself: 0)
+Hallucination Report: annotations/PXD020108.sdrf.tsv
+  Terms checked:     18
+  Verified:          8
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools check annotations/PXD020108.sdrf.tsv (online)
+Status: ISSUES FOUND, exit=1. The only 'Hallucinated' entries are 'NCI-H1975/AZR3', 'NCI-H1975/AZR4', 'NCI-H1975/COR1', 'NCI-H1975/COR10' in characteristics[cell line] and factor value[cell line] (row lists omitted): same cause as the validate-sdrf warnings (derived lines without an ontology/Cellosaurus entry). 0 label mismatches, 0 wrong ontology, 0 UNIMOD swaps.
+
+## parse_sdrf convert-openms -s annotations/PXD020108.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/convert)
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 1956 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD020108.sdrf.tsv
+exit=0
+The TA= warning concerns the Acetyl PP=Protein N-term modification (no residue by design).
+
+## sdrf-tools schema-check annotations/PXD020108.evidence.json
+annotations/PXD020108.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD020108.sdrf.tsv annotations/PXD020108.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit=0

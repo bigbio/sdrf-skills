@@ -1942,3 +1942,32 @@ Why they are blocked:
 - for the 4 unsearched Velos RAW, additionally a statement of what they are. They would get tolerances `not applicable` if annotated, since no search output covers them.
 
 **Excluded (not runs):** `20161111_F1_RM_RH_SCX_L125_L31.zip`, `20170620_V1_MJW_0083.zip` (MaxQuant search output).
+
+## PXD016505 + PXD016512 — EGFR network rewiring in KRAS G13D colorectal cancer cells (Kennedy et al., Nat Commun 2020; triple-SILAC FLAG AP-MS, HCT116 vs HKE3), 3 presumed-unsearched raws (excluded runs, not a blocker)
+
+**Annotated:** 349 of 350 RAW of PXD016505 (`annotations/PXD016505.sdrf.tsv`, 1047 rows) and 277 of 279 RAW of PXD016512 (`annotations/PXD016512.sdrf.tsv`, 831 rows). Channel map from the deposited `PRIMESDataSILACLabelExperiemntaldesign.txt` = Supplementary Methods 9 (FOR: H = HCT116 bait, M = HKE3 empty vector, L = HKE3 bait; REV: H = HKE3 bait, M = HCT116 empty vector, L = HCT116 bait).
+
+**Excluded runs (presumed not searched; no mqpar.xml/summary.txt deposited, so coverage was checked by counting raws against the MaxQuant experiment names of the deposited proteinGroups files):**
+- PXD016505 `LDY1098-S23-A-HDAC-F-2-No.raw` — superseded first acquisition of slot S23 / vial BB4 (raw header name `LDY1098-S23-A-HDAC-F-2.raw`; the deposited `LDY1098-S23-A-HDAC-F-2.raw` is the re-acquisition). 7 HDAC1 FOR raws vs 6 `HDAC1FOR` experiments.
+- PXD016512 `LDY1357-S24-A-PRKCA-R-4_010.raw` — superseded first acquisition of slot S24 / vial BE8 (header name `LDY1357-S24-A-PRKCA-R-4.raw`). 10 PRKCA REV raws vs 8 `KCAREV` experiments.
+- PXD016512 `ALI1442-S18-A-KCA-R.raw` — the second presumed-unsearched PRKCA REV run (inference: the only single-injection pool of the arm, while the KCAREV correlation matrix contains four pair-like blocks and no singleton). If wrong, one searched run is missing from the SDRF.
+
+**Out of scope, not blocked:** the companion AP-MS deposits PXD016461–PXD016465 (and PXD016549 expression profiling, PXD016431 phosphoproteomics) of the same paper were not part of this task. 17 RAC1 raws are deposited in both PXD016505 and PXD016512 and are annotated in both SDRFs.
+
+**Unblocked by:** the MaxQuant `mqpar.xml` / `summary.txt` (experiment → raw file assignment) of the searches.
+
+## PXD020108 — Third-generation EGFR TKI resistance proteome/phosphoproteome (Zhang et al., Cancer Res 2021; triple-SILAC H1975 vs AZR3/AZR4 and COR1/COR10), 14 raws of unresolved sample identity (partial block)
+
+**Annotated:** 652 of 666 deposited raws (`annotations/PXD020108.sdrf.tsv`, 1956 rows). **Blocked (sample identity conflicts between raw name and every deposited MaxQuant file):**
+
+| raw file(s) | name says | deposited `mqpar.xml` + `experimentalDesignTemplate.txt` say |
+|---|---|---|
+| `R4_F9.raw` | rociletinib replicate BR4 / R4 series | experiment `H1975_COR1_COR10_CO1686_pST_BR3` (search `H1975_COR1_COR10_pST_roci`) |
+| `Xu-BR4-1.raw` … `Xu-BR4-12.raw` (12) | BR4 | experiment `H1975_COR1_COR10_CO1686_pST_BR3` (search `H1975_COR1_COR10_pST_roci`) |
+| `H1975_COR1_COR10_CO1686_BR3_pY100_2ndbinding_a.raw` | BR3 | experiment `H1975_COR1_COR10_CO1686_0708` (search `H1975_COR1_COR10_pY_roci`) |
+
+Annotating them under either label would assert a biological replicate the deposit does not settle. **Unblock with:** an author statement (or a sample sheet) saying which SILAC mix (BR3 vs BR4; BR3 vs 0708) these runs came from.
+
+**Not deposited:** `H1975_AZR3_AZR4_SILAC_pY_R1/R2/R3.raw` are listed in `H1975_AZR3_AZR4_pY_osi_mqpar.xml` but absent from the archive (no rows; nothing to unblock).
+
+**Open but annotated (recorded in the manifest limitations, not blocked):** the AZR set's 2018 Q Exactive HF `*_Total` proteome mixes and 2018 pY mixes carry no label tying them to the Orbitrap Elite R1-R3 mixes, so they got their own biological-replicate numbers; the paper reports three AZR biological replicates.

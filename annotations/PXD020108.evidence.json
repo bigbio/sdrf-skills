@@ -21,7 +21,7 @@
   {
    "id": "proteingroups",
    "kind": "search-output",
-   "location": "4 deposited proteinGroups.txt (H1975_AZR3_AZR4_proteins_DMSO, H1975_AZR3_AZR4_protein_osi, H1975_COR1_COR10_protein_DMSO, H1975_COR1_COR10_protein_roci), local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/pg/; orientation check /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/orient.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/orientation.txt"
+   "location": "4 deposited proteinGroups.txt (H1975_AZR3_AZR4_proteins_DMSO, H1975_AZR3_AZR4_protein_osi, H1975_COR1_COR10_protein_DMSO, H1975_COR1_COR10_protein_roci), downloaded to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/pg/ and deleted after use to save shared disk (re-fetch from the FTP root); orientation check /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/scripts/orient.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/orientation.txt"
   },
   {
    "id": "paper",
@@ -31,7 +31,7 @@
   {
    "id": "raw",
    "kind": "raw-file",
-   "location": "HTTP range reads (bytes 0-16383) of all 666 deposited .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/03/PXD020108/<file>.raw, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/raw16/, instrument model string per file in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/instr_by_file.tsv; 3 MB range reads with the embedded instrument method of 5 files (H1975_COR1_COR10_protein_nodrug_0709_F1, H1975_AZR3_AZR4_DMSO_pST_R1_F1, H1975_COR1_COR10_nodrug_0709_pY1000_BR1, BR3_F1, 20180213_H1975_AZR3_AZR4_SILAC_DMSO_R1_Total_F1), local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/rawm/"
+   "location": "HTTP range reads (bytes 0-16383) of all 666 deposited .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/03/PXD020108/<file>.raw, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/raw16/, instrument model string per file in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/instr_by_file.tsv; 3 MB range reads with the embedded instrument method of 5 files (H1975_COR1_COR10_protein_nodrug_0709_F1, H1975_AZR3_AZR4_DMSO_pST_R1_F1, H1975_COR1_COR10_nodrug_0709_pY1000_BR1, BR3_F1, 20180213_H1975_AZR3_AZR4_SILAC_DMSO_R1_Total_F1), local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD020108/rawm/ deleted after use to save shared disk; extracted method text quoted in the claims"
   },
   {
    "id": "cellosaurus",
