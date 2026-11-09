@@ -1,0 +1,309 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD018566.sdrf.tsv",
+ "dataset": "PXD018566",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD018566 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD018566/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/files_p0.json, files_p1.json, files_p2.json; 220 entries = 219 .raw + Data_upload_for_LMP2A_manuscript.zip; page 3 empty; every entry projectAccessions contains PXD018566)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Fish K, ..., Oellerich T. Rewiring of B cell receptor signaling by Epstein-Barr virus LMP2A. PNAS 2020;117(42):26318-26327, doi:10.1073/pnas.2007946117, PMID 33020271, PMC7584892 (HTML https://pmc.ncbi.nlm.nih.gov/articles/PMC7584892/, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/pmc.html, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/paper.txt). Not in the PMC OA subset: Europe PMC fullTextXML 500, NCBI efetch abstract only, PMC OA S3 absent."
+  },
+  {
+   "id": "fig1",
+   "kind": "publication",
+   "location": "Fig. 1 image https://cdn.ncbi.nlm.nih.gov/pmc/blobs/cbdc/7584892/71a81683baf5/pnas.2007946117fig01.jpg (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/si/fig01.jpg)"
+  },
+  {
+   "id": "ratios",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/09/PXD018566/Data_upload_for_LMP2A_manuscript.zip (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/zip/d.zip): fc170923_proteome_lcl.csv (M_L_r1-5, H_L_r1-5), fc171012_gpome_lcl.csv (r1-4), fc171012_pyome_lcl.csv (r1-6), fc180322_pyome_lcl_bcr_stim.csv (r1-6), fc171021_pyome_mouse.csv (r1-4), fc180214_gpome_mouse.csv (r1-2)"
+  },
+  {
+   "id": "ratiocheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/scripts/check.py and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/scripts/repcorr.py run on the deposited csv files (marker-site ratios, Spearman between M/L and H/L medians, pairwise replicate Pearson)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/09/PXD018566/TO_K_Fish_210417_140717_pYome_rep1_195.raw, ..._pYome_rep2_195.raw, TO_K_Fish_071217_140218_pYome_773_rep2.raw, TO_K_Fish_220517_160817_GPome_192_L2_rep1_1.raw, YLJI_080817_310817_FISH_LCL_Phos_frac5a.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/raw/*.head; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/rawstr.py)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/search (exact) for NCBITaxon:9606, NCBITaxon:10376, CL:0000236, PATO:0000461, EFO:0010806, NCIT:C178973, PRIDE:0000568/0000564/0000599/0000608/0000609"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/build/samples_*.tsv, technical_*.tsv, files.json, out_of_scope.json; three sdrf-tools build runs concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD018566/scripts/concat.py"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[label] + characteristics[genotype] + characteristics[treatment] + factor values rows 1-345 (proteome); rows 346-513 (LCL GPome); rows 514-531 (LCL pYome-A, TO_K_Fish_210417_140717_pYome_*)",
+   "value": "SILAC light = LMP2A-KO unstimulated; SILAC medium = EBV-WT (LMP2A wild type) unstimulated; SILAC heavy = LMP2A-KO BCR-stimulated",
+   "source_ids": [
+    "fig1",
+    "paper",
+    "pride",
+    "ratios",
+    "ratiocheck"
+   ],
+   "evidence": "Fig. 1A schematic (proteome, GPome and pYome of LCLs): \"LMP2A KO K+0/R+0 Light\", \"EBV WT K+4/R+6 Medium\", \"LMP2A KO 5' a-BCR K+8/R+10 Heavy\", mixed 1:1:1. Methods (Global Proteome Analysis; also PRIDE protocol): \"light-labeled unstimulated LMP2A-KO, medium-labeled unstimulated LMP2A-WT, and heavy-labeled LMP2A-KO after ... BCR stimulation\". Fig. 1C: pYome of BCR-stimulated LMP2A-KO normalized to unstimulated LMP2A-KO. Data check: deposited csv headers are M_L and H_L; GPome H/L MAPK1 T185 12.7x, Y187 7.7x, MAPK3 T88 5.9x, BLNK T152 8.2x (BCR signature) vs M/L ~0.5-0.9; M/L RB1 sites ~0.2 and proteome M/L RB1 0.30, BCL2L1 1.69 (paper: LMP2A lowers RB1, dysregulates Bcl-xL); GPome Spearman(M/L,H/L)=0.37 (paper Fig. 1B r=0.38); pYome-A CD79A Y210 M/L 0.52, H/L 3.05 (Fig. 1C labels CD79A Y210 down in EBV WT, up with BCR)."
+  },
+  {
+   "location": "comment[label] + characteristics[genotype] + characteristics[treatment] + factor values rows 532-549 (LCL pYome-B, TO_K_Fish_071217_140218_pYome_*)",
+   "value": "SILAC light = LMP2A-KO unstimulated; SILAC medium = EBV-WT unstimulated; SILAC heavy = EBV-WT BCR-stimulated",
+   "source_ids": [
+    "fig1",
+    "paper",
+    "ratios",
+    "ratiocheck"
+   ],
+   "evidence": "Fig. 1D: \"Same as C, for BCR-stimulated EBV-WT LCLs\": x = LFC(EBV WT / LMP2A KO), y = LFC(EBV WT + 5' BCR / LMP2A KO), r = 0.94. Deposited fc180322_pyome_lcl_bcr_stim.csv (M_L, H_L): Spearman(M/L,H/L)=0.90 (vs 0.20 in fc171012_pyome_lcl.csv), i.e. heavy = stimulated EBV-WT, medium = unstimulated EBV-WT, light = LMP2A-KO."
+  },
+  {
+   "location": "assignment of raw files to sub-experiments rows 1-549",
+   "value": "proteome = TO_K_Fish_220517_*_GPome_192_L2_rep1-5_1-23; GPome = YLJI_080817_310817_FISH_LCL_Phos_frac*{a-d}; pYome-A (KO+BCR heavy) = TO_K_Fish_210417_140717_pYome_*; pYome-B (WT+BCR heavy) = TO_K_Fish_071217_140218_pYome_*",
+   "source_ids": [
+    "files",
+    "ratios",
+    "raw",
+    "paper"
+   ],
+   "evidence": "Counts match the deposited ratio tables: proteome 5 replicates x 23 gel slices (Methods: \"Each lane was cut into 23 slices\"; csv r1-5); LCL GPome 4 replicates (a-d) x 14 concatenated high-pH fractions (Methods: 14 fractions, \"0 to 5 min as fraction 5 and 54 to 64 min as fraction 14\"; Results: \"four biological replicates\"; csv r1-4); each pYome set 6 runs (csv r1-6). Raw headers: proteome runs use a TOP30 60K/15K 88-min method acquired Aug 2017 (D:\\DATA\\AUG_17\\160817); LCL GPome Phosph_TOP20 method Aug 2017. pYome-A raw files acquired 14 Jul 2017 (D:\\DATA\\Jul_17\\140717) before fc171012_pyome_lcl.csv (12 Oct 2017); pYome-B acquired 14 Feb 2018 (D:\\DATA\\Feb_18\\140218) after fc171012 and before fc180322_pyome_lcl_bcr_stim.csv (22 Mar 2018); so pYome-B can only be the bcr_stim experiment. GP9_TiO2 (2 replicates x 14) and J_Corso (8) runs match the mouse csvs and are out of scope."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-549",
+   "value": "file stem; fraction = slice number 1-23 (proteome), 1-14 in order frac5..frac17, frac54 (GPome), 1 (pYome)",
+   "source_ids": [
+    "files",
+    "paper",
+    "build"
+   ],
+   "evidence": "One row per (source, file); file names carry slice (_1.._23) and fraction (frac5..17, frac54) numbers."
+  },
+  {
+   "location": "comment[technical replicate] rows 514-531 (LCL pYome-A, TO_K_Fish_210417_140717_pYome_*); rows 532-549 (LCL pYome-B, TO_K_Fish_071217_140218_pYome_*)",
+   "value": "1 (rep1 files), 2 (rep2 files); proteome and GPome 1",
+   "source_ids": [
+    "files",
+    "ratiocheck",
+    "ratios"
+   ],
+   "evidence": "pYome file names pYome_rep{1,2}_{195,198,201} and pYome_{773,776,779}_rep{1,2}. Deposited replicate columns pair as r1/r4, r2/r5, r3/r6 with the highest Pearson (pYome-A M/L 0.96, 0.96, 0.97) and near-identical site counts (425/424, 224/221, 342/350; pYome-B 471/490, 399/407, 459/457), i.e. 3 samples each injected twice: rep1/rep2 = repeated injections of one sample."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-549",
+   "value": "numbered per genotype x treatment group across sub-experiments: KO-unstim and WT-unstim 1-5 proteome, 6-9 GPome, 10-12 pYome-A, 13-15 pYome-B; KO-BCR 1-5, 6-9, 10-12; WT-BCR 1-3 (pYome-B)",
+   "source_ids": [
+    "paper",
+    "files",
+    "ratiocheck",
+    "build"
+   ],
+   "evidence": "Results: proteome \"five biological replicates\", GPome \"four biological replicates\". pYome: 3 samples (195/198/201; 773/776/779) per set. Sub-experiments were prepared on different dates (file-name prefixes 220517, 080817, 210417, 071217) and pYome used a different (urea) lysis buffer, so each SILAC mix is numbered as its own culture within each group (README.adoc:330, batch rule 3)."
+  },
+  {
+   "location": "source name rows 1-549",
+   "value": "LCL <sub-experiment> <replicate> <EBV-WT|LMP2A-KO> <unstimulated|BCR-stimulated>",
+   "source_ids": [
+    "build",
+    "files"
+   ],
+   "evidence": "One source per SILAC channel per replicate mix (one physical lysate); pYome rep1/rep2 injections share the source."
+  },
+  {
+   "location": "characteristics[organism] rows 1-549",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Human LCLs (paper: \"primary human B cells\", \"EBV-transformed LCLs\"); search DB \"UniProtKB human database\"; NCBITaxon:9606."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-549",
+   "value": "B cell",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: EBV infects and transforms human B cells; LCLs are EBV-transformed B cells. CL:0000236."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-549",
+   "value": "LCL EBV-WT / LCL LMP2A-KO",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper names the lines \"EBV-WT\" and \"LMP2A-KO\" LCLs (\"EBV-transformed LCLs were generated as described previously (7)\"); lab-generated, no Cellosaurus entry named, so cellosaurus accession/name = not available."
+  },
+  {
+   "location": "characteristics[genotype] + factor value[genotype] rows 1-549",
+   "value": "LMP2A wild type / LMP2A knockout",
+   "source_ids": [
+    "paper",
+    "fig1"
+   ],
+   "evidence": "Paper: \"LMP2A-KO cells lacked LMP2A while retaining the expression of a functional BCR\"; EBV-WT cells express LMP2A."
+  },
+  {
+   "location": "characteristics[infectious agent], characteristics[infectious agent strain] rows 1-549",
+   "value": "human gammaherpesvirus 4 (NCBITaxon:10376); EBV wild type / EBV LMP2A-knockout",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "All LCLs are EBV-transformed; KO lines carry EBV lacking LMP2A. The search database was human only (\"UniProtKB human database containing 92,954 protein entries\"), so no EBV proteome is implied in the search."
+  },
+  {
+   "location": "characteristics[treatment] + factor value[treatment] rows 1-549",
+   "value": "BCR stimulation with anti-human Ig F(ab')2, 5 min / untreated",
+   "source_ids": [
+    "paper",
+    "fig1",
+    "ratiocheck"
+   ],
+   "evidence": "Methods: \"In LCLs, the BCR was subsequently stimulated for 5 min (for all proteome analyses) or 3 h (for RNA-seq) at 37 C with 20 ug/mL F(ab)2 anti-human pan-immunoglobulin (Ig) antibody\"; Fig. 1A \"5' a-BCR\", Fig. 1D \"EBV WT + 5' BCR\". Unstimulated controls = untreated (batch rule 4)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-549",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "LCLs are in-vitro EBV-transformed B cells, not patient tumour material; no donor disease stated. Infection encoded separately. PATO:0000461."
+  },
+  {
+   "location": "characteristics[material type] rows 1-549",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "LCL cell lines."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 346-549 (GPome + pYome)",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "GPome: TiO2 phosphopeptide enrichment; pYome: P-Tyr-1000 antibody enrichment of pY peptides. EFO:0010806. Proteome rows: not applicable (no enrichment)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-549",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: \"cells were cultured in SILAC-RPMI medium 1640 without arginine and lysine ... supplemented with 10% dialyzed fetal calf serum\"; NCIT:C178973."
+  },
+  {
+   "location": "comment[instrument] rows 1-549",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride"
+   ],
+   "evidence": "Raw headers \"Q Exactive HF - Orbitrap MS\"; Methods \"All samples were measured on a Q Exactive HF\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-549",
+   "value": "DDA; HCD (beam-type CID); 28 NCE; orbitrap; 350m/z-1600m/z",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw methods (all 5 headers): TopN DDA (TOP20 or TOP30), \"NCE / stepped NCE 28\", MS/MS resolution 30,000 or 15,000 (Orbitrap), full-scan \"Scan range 350 to 1600 m/z\". Methods: \"data-dependent acquisition ... Higher-energy collisional dissociation ... normalized collision energy setting of 28%\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-549",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "In-gel/in-solution digestion with trypsin (Promega); MaxQuant specificity \"trypsin allowing N-terminal cleavage to proline\" (search rule, batch rule 2)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-345 (proteome); rows 346-513 (LCL GPome)",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568 (proteome); NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564 (GPome)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Proteome: SDS/PAGE lane cut into 23 slices. GPome: \"fractionated using basic reverse phase chromatography ... XBridge C18 ... pH 10 ... concatenated into 14 fractions\". pYome rows: not applicable (single run per sample)."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-345 (proteome); rows 346-513 (LCL GPome)",
+   "value": "DTT + Iodoacetamide (IAA) (proteome); TCEP + Iodoacetamide (IAA) (GPome)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Proteome: \"reduced with dithiothreitol ..., alkylated with iodoacetamide\"; GPome: \"treated with 10 mM Tris(2-carboxyethyl)phosphine ... and 15 mM IAM\". pYome: prepared per CST PTMScan kit instructions, reagents not stated -> not available."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-549",
+   "value": "6 ppm / 20 ppm",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: \"precursor and fragment ion mass tolerances were set to 6 and 20 parts per million after initial recalibration\"; \"For proteome analysis ... all of the other parameter settings were identical\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-549",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term Variable; Label:2H(4) K (UNIMOD:481), Label:13C(6) R (UNIMOD:188), Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267); Phospho S,T,Y (UNIMOD:21) in GPome/pYome rows 346-549 only, not applicable in proteome rows 1-345",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: \"STY phosphorylation, protein N-terminal acetylation, and methionine oxidation were allowed as variable modifications. Cysteine carbamidomethylation ... fixed\"; \"multiplicity was set to 3 for triple (Lys+0/Arg+0, Lys+4/Arg+6, Lys+8/Arg+10) labeling\"; medium medium \"[13C6 14N4]-L-arginine and L-lysine-4,4,5,5-D4\", heavy \"[13C6 15N4]-L-arginine and [13C6 15N2]-L-lysine\"; \"For proteome analysis, variable modifications did not consist of STY phosphorylation\". SILAC labels MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-549",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: the 36 mouse runs are excluded (28 YLJI_310717_040817_FISH_GP9_TiO2_Phos_frac{5-17,54}{a,b}.raw = mouse GPome, fc180214_gpome_mouse.csv; 8 J_Corso_291116_LMP2A_{6,7}_pY_{1,2}.raw and J_Corso_161317_pY_MYC_{8,9}_1_{1,2}.raw = mouse pYome, fc171021_pyome_mouse.csv). The paper describes the mouse conditions (MYC unstimulated, MYC 5-min BCR-stimulated, MYC/LMP2A unstimulated; tumour cell lines from lambda-MYC and LMP2A/lambda-MYC mice) but states no SILAC channel for any of them (Fig. S2 is in the SI appendix, which is behind a PMC proof-of-work check and PNAS 403, not bypassed), and the 8 pYome runs vs 4 csv replicates are not mapped. Listed in BLOCKED.md.",
+  "Stimulation time conflict: Methods \"Global Proteome Analysis\" and \"Phosphopeptide Enrichment for pYome Analysis\" (and the PRIDE protocol) say \"after 3 h of BCR stimulation\", whereas Methods \"Cell Culture and BCR Stimulation\" says \"5 min (for all proteome analyses) or 3 h (for RNA-seq)\" and Fig. 1A/1D show 5'. 5 min is encoded; deposited proteome H/L shows only 22 of 4392 proteins with |log2| >= 1 and no immediate-early protein induction, consistent with 5 min.",
+  "pYome-A vs pYome-B file-set assignment rests on acquisition dates (raw header directories and file names) relative to the csv file-name dates; no source states it directly. The deposited ratio patterns (Spearman 0.20 vs 0.90) fit Fig. 1C vs 1D.",
+  "pYome samples 195/198/201 and 773/776/779 are treated as biologically independent mixes (replicates); the paper only says \"at least four replicates\" were required for the LCL pYome and does not say whether the three IPs per set came from independent cultures.",
+  "Biological-replicate numbering continues across sub-experiments (proteome, GPome, pYome-A, pYome-B) because each was prepared on a different date; whether any lysate was shared between sub-experiments is not stated.",
+  "Donor information (age, sex, ancestry, individual, organism part of the B-cell source) of the LCLs is not given in the paper (refers to ref. 7) -> not available. The proteome M/L ratios of HLA and Ig variable-region proteins differ strongly, which may indicate the EBV-WT and LMP2A-KO LCLs come from different donors; not asserted.",
+  "Supplementary Datasets S1-S7 and SI Appendix (Fig. S1A, S2) not retrievable (PMC bin URLs return a proof-of-work bot check, pnas.org 403, Europe PMC render 403).",
+  "pYome reduction/alkylation reagents not stated (CST PTMScan kit per manufacturer) -> not available.",
+  "techsdrf not installed; raw verification limited to range-read headers of 5 of 183 in-scope files.",
+  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."
+ ]
+}
