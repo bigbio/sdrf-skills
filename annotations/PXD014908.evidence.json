@@ -72,34 +72,34 @@
    "evidence": "Three SILAC mixtures deposited as rep1_MIX1_*, rep2_MIX2_*, rep3_MIX3-* (24 fractions each). Each mixture combined one light, one medium, one heavy lysate (PRIDE protocol \"20ug from heavy, middle and light conditions were mixed\"). Data S10 reports three replicates (Ratio rep1/rep2/rep3) of the conditions HepG2, HepAD38(Tet+), HepAD38(Tet-). One source = one lysate of one culture in one mixture."
   },
   {
-   "location": "comment[label] + characteristics[cell line] + characteristics[infection status] + factor values, rows 1-72 (rep1)",
+   "location": "comment[label] + characteristics[cell line] + characteristics[HBV replication status] + factor values, rows 1-72 (rep1)",
    "value": "rep1: SILAC light = HepG2, SILAC medium = HepAD38 Tet+, SILAC heavy = HepAD38 Tet-",
    "source_ids": [
     "dataS10",
     "mq",
     "chanmap"
    ],
-   "evidence": "Data S10 sheet HepAD38(Tet-)_HepG2 \"Ratio rep1\" equals proteinGroups \"Ratio H/L normalized 1\" for 2619 of 2636 proteins (direct); sheet HepAD38(Tet-)_HepAD38(Tet+) \"Ratio rep1\" equals \"Ratio H/M normalized 1\" for 1268 of 1276. So Tet- = H, HepG2 = L, Tet+ = M. Every other column/orientation matched <=42 values (chance)."
+   "evidence": "Data S10 sheet HepAD38(Tet-)_HepG2 \"Ratio rep1\" equals proteinGroups \"Ratio H/L normalized 1\" for 2619 of 2636 proteins (direct); sheet HepAD38(Tet-)_HepAD38(Tet+) \"Ratio rep1\" equals \"Ratio H/M normalized 1\" for 1268 of 1276. So Tet- = H, HepG2 = L, Tet+ = M. Every other column/orientation matched <=42 values (chance). Orientation: both S10 sheets share the Tet- arm, so reading each sheet name as first-named/second-named is the only reading that gives three distinct channels per replicate (reading either sheet as second/first puts Tet- on two channels or two conditions on one channel); it does so in all three replicates, giving a complete 3x3 label rotation."
   },
   {
-   "location": "comment[label] + characteristics[cell line] + characteristics[infection status] + factor values, rows 73-144 (rep2)",
+   "location": "comment[label] + characteristics[cell line] + characteristics[HBV replication status] + factor values, rows 73-144 (rep2)",
    "value": "rep2: SILAC light = HepAD38 Tet-, SILAC medium = HepG2, SILAC heavy = HepAD38 Tet+",
    "source_ids": [
     "dataS10",
     "mq",
     "chanmap"
    ],
-   "evidence": "Tet-/HepG2 \"Ratio rep2\" = 1 / \"Ratio M/L normalized 2\" for 2581 of 2600 proteins (Tet- = L, HepG2 = M); Tet-/Tet+ \"Ratio rep2\" = 1 / \"Ratio H/L normalized 2\" for 1237 of 1247 (Tet+ = H). Consistent label-swap design."
+   "evidence": "Tet-/HepG2 \"Ratio rep2\" = 1 / \"Ratio M/L normalized 2\" for 2581 of 2600 proteins (Tet- = L, HepG2 = M); Tet-/Tet+ \"Ratio rep2\" = 1 / \"Ratio H/L normalized 2\" for 1237 of 1247 (Tet+ = H). Consistent label-swap design. Orientation: both S10 sheets share the Tet- arm, so reading each sheet name as first-named/second-named is the only reading that gives three distinct channels per replicate (reading either sheet as second/first puts Tet- on two channels or two conditions on one channel); it does so in all three replicates, giving a complete 3x3 label rotation."
   },
   {
-   "location": "comment[label] + characteristics[cell line] + characteristics[infection status] + factor values, rows 145-216 (rep3)",
+   "location": "comment[label] + characteristics[cell line] + characteristics[HBV replication status] + factor values, rows 145-216 (rep3)",
    "value": "rep3: SILAC light = HepAD38 Tet+, SILAC medium = HepAD38 Tet-, SILAC heavy = HepG2",
    "source_ids": [
     "dataS10",
     "mq",
     "chanmap"
    ],
-   "evidence": "Tet-/HepG2 \"Ratio rep3\" = 1 / \"Ratio H/M normalized 3\" for 2463 of 2477 (Tet- = M, HepG2 = H); Tet-/Tet+ \"Ratio rep3\" = \"Ratio M/L normalized 3\" for 1122 of 1128 (Tet+ = L)."
+   "evidence": "Tet-/HepG2 \"Ratio rep3\" = 1 / \"Ratio H/M normalized 3\" for 2463 of 2477 (Tet- = M, HepG2 = H); Tet-/Tet+ \"Ratio rep3\" = \"Ratio M/L normalized 3\" for 1122 of 1128 (Tet+ = L). Orientation: both S10 sheets share the Tet- arm, so reading each sheet name as first-named/second-named is the only reading that gives three distinct channels per replicate (reading either sheet as second/first puts Tet- on two channels or two conditions on one channel); it does so in all three replicates, giving a complete 3x3 label rotation."
   },
   {
    "location": "file -> MaxQuant experiment, comment[data file] + comment[fraction identifier] rows 1-216",
@@ -132,24 +132,23 @@
    "evidence": "PRIDE protocol \"HepG2 or HepAD38 cell lines were passaged ... in heavy, middle or light SILAC media\"; paper \"HepG2-derived HepAD38 cells that harbors tetracycline-controlled HBV transgene\". EFO:0001187 label HepG2; HepAD38 is absent from EFO and CLO, BTO:0006298 label \"HepAD38 cell\". Cellosaurus CVCL_M177 HepAD38 (HI CVCL_0027 Hep-G2)."
   },
   {
-   "location": "characteristics[infection status] + factor value[infection status] rows 1-216",
-   "value": "HBV-negative (rows 1-24, 97-120, 193-216); HBV transgene repressed (rows 25-48, 121-144, 145-168); HBV replicating (rows 49-72, 73-96, 169-192)",
+   "location": "characteristics[HBV replication status] + factor value[HBV replication status] rows 1-216",
+   "value": "HBV-free (rows 1-24, 97-120, 193-216); HBV replication repressed (rows 25-48, 121-144, 145-168); HBV replicating (rows 49-72, 73-96, 169-192)",
    "source_ids": [
     "paper",
     "cellosaurus",
     "dataS10"
    ],
-   "evidence": "Paper: \"With HepAD38 (Tet+) as the control group that did not express HBV genes except HBsAg ... stable replication and expression of HBV genes in HepAD38 cells upon tetracycline withdrawal (Tet-)\". HepG2 is the HBV-free parental line. Cellosaurus CVCL_M177: \"Inducibly expresses a HBV genome under the control of a tet operator/CMV promoter\". Custom column (spec Extending Templates; campaign precedent PXD014577 infection status)."
+   "evidence": "Paper: \"With HepAD38 (Tet+) as the control group that did not express HBV genes except HBsAg, it was found that the stable replication and expression of HBV genes in HepAD38 cells upon tetracycline withdrawal (Tet-)\". HepG2 is the HBV-free parental line. Cellosaurus CVCL_M177: \"Inducibly expresses a HBV genome under the control of a tet operator/CMV promoter. Upon removal of tetracycline the cell line produces viral RNA and secrete virus-like particles\". No infection step was performed (integrated transgene), so the custom column describes HBV replication state rather than infection; \"repressed\" (not \"absent\") because HBsAg is still expressed in Tet+. Replaces the earlier infection-status wording after review (PXD014908.review.md important finding)."
   },
   {
-   "location": "characteristics[infectious agent]",
-   "value": "Hepatitis B virus (rows 25-96, 121-192); not applicable (rows 1-24, 97-120, 193-216)",
+   "location": "characteristics[genetic modification]",
+   "value": "stably integrated tetracycline-repressible HBV genome (rows 25-96, 121-192); not applicable (rows 1-24, 97-120, 193-216)",
    "source_ids": [
     "paper",
-    "cellosaurus",
-    "ols"
+    "cellosaurus"
    ],
-   "evidence": "HepAD38 carries a chromosomally integrated HBV genome (paper; Cellosaurus Virology comment); HepG2 has none. NCBITaxon:10407 \"Hepatitis B virus\" (OLS, not obsolete). Custom column."
+   "evidence": "Paper: \"HepG2-derived HepAD38 cells that harbors tetracycline-controlled HBV transgene by chromosomal integration\"; Cellosaurus CVCL_M177 Virology comment (tet operator/CMV-promoter-driven HBV genome). HepG2 carries no HBV genome. Custom column (the human template licenses genetic modification only via clinical-metadata, which does not fit cell-line samples; spec Extending Templates). Replaces characteristics[infectious agent], which wrongly implied an infection."
   },
   {
    "location": "characteristics[treatment]",
@@ -287,7 +286,7 @@
     "mq",
     "fixedmod"
    ],
-   "evidence": "Every Cys-containing peptide in peptides.txt carries +57.021 Da per Cys (156 peptides with 1 C at +57.021/57.022, 12 with 2 C at +114.043, 1 with 3 C at +171.064; no Cys peptide without it; 46103 Cys-free peptides at delta 0) -> fixed carbamidomethylation in the search."
+   "evidence": "Every Cys-containing peptide in peptides.txt carries +57.021 Da per Cys (169 Cys peptides: 156 with 1 C at +57.021/57.022, 12 with 2 C at +114.043, 1 with 3 C at +171.064; no Cys peptide without it; 46103 Cys-free peptides at delta 0) -> fixed carbamidomethylation in the search."
   },
   {
    "location": "comment[modification parameters] (Oxidation)",
@@ -326,7 +325,7 @@
  "limitations": [
   "No explicit sentence in the paper or PRIDE protocol states which SILAC state held which condition. The channel map comes from Supplementary Data S10 (sheet names give the condition pair, columns give per-replicate ratios) matched number-for-number against the deposited proteinGroups.txt normalized ratio columns (chanmap.out). This is a strong deterministic check, but it is a derivation, not a stated label assignment.",
   "Mapping of file prefix repN to MaxQuant experiment N is inferred from naming (rep1/rep2/rep3 = experiments 1/2/3 = Data S10 Ratio rep1/2/3); no summary.txt/mqpar.xml/evidence.txt with a raw-file column was deposited.",
-  "rep2_MIX2_1.raw was acquired under the internal name MIX1_19_180826125008.raw (Xcalibur adds the timestamp when the name already exists). The file differs from rep1_MIX1_19.raw (153245872 vs 162930784 bytes) and its timestamp suffix says it was acquired 2018-08-26 12:50:08, in the same folder as the MIX2 runs (MIX2_5 and MIX2_12 re-acquisitions are stamped 2018-08-29); the submitter deposited it as rep2 fraction 1, which is kept. The raw folder name 20180816_Rpn1_SILAC_RP is the instrument operator folder; the ratios match the HBV supplementary data.",
+  "rep2_MIX2_1.raw was acquired under the internal name MIX1_19_180826125008.raw (Xcalibur adds the timestamp when the name already exists). The file differs from rep1_MIX1_19.raw (153245872 vs 162930784 bytes) and its timestamp suffix says it was acquired 2018-08-26 12:50:08, in the same folder as the MIX2 runs (MIX2_5 and MIX2_12 re-acquisitions are stamped 2018-08-29). Autosampler vial positions in the raw headers (script scripts/vials.py): rep1_MIX1_19 = vial C8, rep2_MIX2_1 = vial D7, rep2_MIX2_2 = vial D8 (rep1_MIX1_1 = A6), so rep2_MIX2_1 is a different vial sitting directly before MIX2_2 in the MIX2 block; the sequence row carried a stale file name; the submitter deposited it as rep2 fraction 1, which is kept. The raw folder name 20180816_Rpn1_SILAC_RP is the instrument operator folder; the ratios match the HBV supplementary data.",
   "comment[precursor mass tolerance] / comment[fragment mass tolerance] = not available: no mqpar.xml, parameters.txt or summary.txt deposited. parse_sdrf convert-openms therefore fails (expected, as in campaign precedents).",
   "Variable modifications other than Oxidation (M) cannot be ruled out (e.g. MaxQuant default Acetyl (Protein N-term) leaves no site table in proteinGroups); only the evidenced ones are listed. The search also included a custom ncORF database (identifiers like R1_R6_peak_51 in proteinGroups); no HBV protein entries.",
   "Digestion enzyme not stated anywhere; trypsin inferred from fully tryptic peptides in the deposited search.",
@@ -335,6 +334,7 @@
   "Whether HepG2 cultures received tetracycline is not stated -> characteristics[treatment] not available for HepG2 rows.",
   "The PRIDE record cites the J Hepatol 2021 paper (PMID 33621634, doi:10.1016/j.jhep.2021.02.009), which is not open access and was not read; the Cell Discov 2021 paper (PMC8560872) names PXD014908 in its Data Availability and was used.",
   "parse_sdrf validate-sdrf warnings: \"tetracycline withdrawal\" not an NCIT/EFO term; \"15-year-old stage\" is HsapDv, not EFO. Both kept deliberately (stated procedure; campaign precedent HsapDv stages).",
-  "Independent review not run here (caller hands it to an external reviewer): REVIEW_PENDING_EXTERNAL."
+  "Only 169 of 46272 peptides (0.4%) contain Cys (all carrying +57.021 Da per Cys, none unmodified). Fixed Carbamidomethyl describes the search setting; whether the samples were actually alkylated is uncertain (no alkylation step is described), so comment[alkylation reagent] stays not available.",
+  "Independent review: first external review FAILED on characteristics[infectious agent] (fixed: replaced by custom characteristics[genetic modification]; infection status renamed to HBV replication status); re-review pending (REVIEW_PENDING_EXTERNAL)."
  ]
 }

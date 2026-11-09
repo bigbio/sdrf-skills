@@ -1792,21 +1792,18 @@ The technical values are already resolved in `annotations/PXD041509.report.md`:
 
 **Unblocked by:** an author sample sheet giving the day per S1803 vial (or per MaxQuant experiment 1–48) and the donor/replicate per `SILAC_sample_N`.
 
-## PXD012871 — USP9X substrate NFX1-123 (Chen et al., J Proteome Res 2019; SILAC HeLa shUSP9X vs shGFP + Flag-NFX1 IP-MS in HEK293T) — UNBLOCKED (IP arm annotated on deposited names by campaign-owner decision)
+## PXD012871 — USP9X substrate NFX1-123 (Chen et al., J Proteome Res 2019; SILAC HeLa shUSP9X vs shGFP + Flag-NFX1 IP-MS in HEK293T), 2 NFX1_2 IP runs (partial block; EV and NFX1_1 IP runs annotated on deposited names by campaign-owner decision)
 
 | field | value |
 |---|---|
 | Deposited | 84 SILAC RAW `20150422_GJ_U{1..6}_{1..14}.raw` (Q Exactive; `txt_SILAC.rar`: Multiplicity 2, Labels1 Arg10;Lys8) + 6 label-free IP RAW `20181216__Ludayun_293T_Over_{EV,NFX1_1,NFX1_2}_{Up,Down}.raw` (Q Exactive HF; `txt_IP.rar`: Multiplicity 1, experiments EV / NFX1_1 / NFX1_2, fractions Up=1, Down=2). |
-| Annotated | SILAC: all 84 runs in `annotations/PXD012871.sdrf.tsv` (168 rows). IP: all 6 runs in `annotations/PXD012871-ip.sdrf.tsv` (6 rows, label free; manifest `annotations/PXD012871-ip.evidence.json`). |
-| Former block (resolved) | Each IP raw header records an acquisition name that contradicts the deposited name: deposited `EV_*` = acquired `20181216__HF_ZHW_Ludayun_293T_Over_NFX1_Ub_*`; `NFX1_1_*` = `..._Over_NFX1_*`; `NFX1_2_*` = `..._Over_EV_*`. Bait/prey data support that deposited EV has no bait: NFX1 intensity 0 / 1.93e9 / 1.53e8 and co-IP USP9X 0 / 8.4e7 / 3.8e7 for deposited EV / NFX1_1 / NFX1_2. The deposited names do not explain NFX1_2's ubiquitin profile: ubiquitin protein group 4.06e8 / 6.98e8 / 9.03e9, and ubiquitin is 0.07–0.12% of run intensity in the EV and NFX1_1 runs vs 2.44–2.46% in NFX1_2_Up and 0.37% in NFX1_2_Down (polyubiquitin conjugates in the high-MW half). NFX1_2 may therefore be the sample acquired as `NFX1_Ub` (a ubiquitination experiment), not an independent replicate of NFX1_1. The authors' own MaxQuant search (txt_IP parameters.txt, 02/21/2019) already used the deposited names, so the files were renamed before that search. Following `annotations/PXD012871.review.md`, the campaign owner decided (2026-11-09) to annotate on the deposited names; the conflict is recorded in the IP manifest limitations. |
-| Remaining open points | No author statement explains the renaming. In EV, the Up file has lower median protein MW than Down, unlike both NFX1 samples. NFX1_2 replicate status is unknown: it may be the `NFX1_Ub` ubiquitination sample rather than a replicate of NFX1_1. |
+| Annotated | SILAC: all 84 runs in `annotations/PXD012871.sdrf.tsv` (168 rows). IP: the 4 EV and NFX1_1 runs in `annotations/PXD012871-ip.sdrf.tsv` (4 rows, label free; manifest `annotations/PXD012871-ip.evidence.json`). These follow the deposited names by campaign-owner decision. Bait/prey data support that deposited EV has no bait (NFX1 0 vs 1.93e9; co-IP USP9X 0 vs 8.4e7). The authors' own MaxQuant search (txt_IP parameters.txt, 02/21/2019) already used the deposited names. |
+| Blocked (whole runs) | `20181216__Ludayun_293T_Over_NFX1_2_Up.raw`, `20181216__Ludayun_293T_Over_NFX1_2_Down.raw`. The raw headers name three distinct samples: deposited `EV_*` was acquired as `..._Over_NFX1_Ub_*`, `NFX1_1_*` as `..._Over_NFX1_*`, and `NFX1_2_*` as `..._Over_EV_*`. Deposited EV has no bait, so NFX1_2 is most likely the `NFX1_Ub` (ubiquitination) sample. Its ubiquitin protein group is 9.03e9 against 6.98e8 in NFX1_1 (about 13×) and 4.06e8 in EV. Ubiquitin is 2.44–2.46% of run intensity in NFX1_2_Up against 0.07–0.12% in the EV and NFX1_1 runs. Its bait NFX1 is 1.53e8, about 12× less than NFX1_1. It is neither a documented control nor a defensible replicate of NFX1_1. |
+| SDRF would need | What NFX1_2 is (e.g. Flag-NFX1 IP from a ubiquitination experiment, and its treatment), so that it can be added to `PXD012871-ip.sdrf.tsv` with its own factor value. |
 
-**Sources checked:** PRIDE record and file list (92 files); paper (closed access, abstract only); MaxQuant `txt_IP.rar` summary/parameters/proteinGroups/evidence; raw headers of all 6 IP files; independent review `annotations/PXD012871.review.md`.
+**Sources checked:** PRIDE record and file list (92 files); paper (closed access, abstract only); MaxQuant `txt_IP.rar` summary/parameters/proteinGroups/evidence; raw headers of all 6 IP files; independent reviews `annotations/PXD012871.review.md` and `annotations/PXD012871-ip.review.md`.
 
-**Would be fully settled by:** an author statement explaining the renaming of the IP files.
-
-
----
+**Unblocked by:** an author statement on what the NFX1_2 sample is and why the IP files were renamed.
 
 ## PXD022482 — Cell surface proteome of multiple myeloma (Ferguson et al., Nat Commun 2022; SILAC LenR vs WT + label-free CSC), label-free runs excluded (excluded runs, not a blocker)
 
