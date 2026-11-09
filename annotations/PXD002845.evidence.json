@@ -1,0 +1,262 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD002845.sdrf.tsv",
+ "dataset": "PXD002845",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002845 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/pride_v3.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/pride.json): title, sample/data processing protocols, instrument Q Exactive, quantification SILAC"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002845/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/files_all.json; 161 entries = 160 RAW + kasvandik_et_al_2015_mq_output.zip; every entry projectAccessions contains PXD002845)"
+  },
+  {
+   "id": "mq_design",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/12/PXD002845/kasvandik_et_al_2015_mq_output.zip member experimentalDesignTemplate.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/mq/experimentalDesignTemplate.txt): 160 runs -> 22 Experiments with Fraction 1-6"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "same zip, member summary.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/mq/summary.txt): per-run Enzyme Trypsin/P, Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8, Variable modifications Acetyl (Protein N-term);Deamidation (NQ);Oxidation (M), Instrument Q Exactive, for all 160 runs"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "same zip, member parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/mq/parameters.txt): MaxQuant 1.4.0.8, Fixed Carbamidomethyl (C), MS/MS tol. (FTMS) 20 ppm, PSM/protein FDR 0.01, fasta uniprot-homo-sapiens-reference-proteome-20140901"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/scripts/orient.py on proteinGroups.txt of the same zip): median log2 Ratio H/L over the 22 experiments: KRT8 3.51, EPCAM 2.87, CDH1 2.95, KRT18 2.23, KRT19 1.82, VIM -0.80, COL1A1 -0.24"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "ontology",
+   "location": "https://api.cellosaurus.org (sdrf-tools cellline lookup Ishikawa): Ishikawa CVCL_2529, Homo sapiens, endometrial adenocarcinoma, female"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 searches (2026-11-09): CL:0002255 stromal cell of endometrium; UBERON:0001295 endometrium; UBERON:0002358 peritoneum; MONDO:0005133 endometriosis; PATO:0000461 normal; PRIDE:0000561 Strong cation-exchange chromatography (SCX); PRIDE:0001013 study sample; PRIDE:0000899 reference; MS:1001911 Q Exactive; UNIMOD:7 Deamidated; none obsolete"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/scripts/make_tables.py -> samples_main.tsv, samples_rerun1..3.tsv, technical.tsv; four sdrf-tools build runs; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/scripts/concat_fix.py concatenates them and sets comment[fraction identifier] from mq_design"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Kasvandik S et al. J Proteome Res 2016;15(2):390-404, doi:10.1021/acs.jproteome.5b00965, PMID 26654049. Closed access (Unpaywall is_oa false, no PMCID); ACS supplementary page returned 403 (bot check, not bypassed). Only the Europe PMC abstract was read."
+  },
+  {
+   "id": "thesis",
+   "kind": "publication",
+   "location": "Kasvandik S. PhD thesis, Univ. Tartu 2020 (dspace.ut.ee/items/8d4f28c2-ea62-43c1-aa07-57cffc746d52; core.ac.uk/download/322658074.pdf): dspace 503 / connection reset, CORE 403. Not read."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, light rows",
+   "value": "ctrl_euESC_1..6, euESC_1..5, ecESC_1..5",
+   "source_ids": [
+    "mq_design",
+    "pride"
+   ],
+   "evidence": "MaxQuant Experiment names. pride sample protocol: 'primary ESC cultures isolated from healthy EM (n=6), endometriotic EM (n=5) and endometriotic peritoneal lesions (n=5)'; the deposit has exactly 6 ctrl_euESC, 5 euESC and 5 ecESC experiments. ctrl = healthy-woman eutopic ESC, eu = eutopic ESC of endometriosis patients, ec = ectopic (peritoneal lesion) ESC, matching the title's eutopic/ectopic wording."
+  },
+  {
+   "location": "source name, heavy rows",
+   "value": "SILAC standard (Lys8/Arg10; secretory-phase ESC + Ishikawa 2:1) spiked into <experiment>",
+   "source_ids": [
+    "pride",
+    "orientation"
+   ],
+   "evidence": "pride: 'samples were spiked 1:1 with the SILAC standard. The standard consisted of 2:1 secretory phase ESCs and Ishikawa EM cancer cells labelled with heavy isotope lysine and arginine.' One heavy source name per spiked mixture (16), shared by that mixture's fractions and re-injections: these 16 names are aliquots of ONE physical standard pool. Encoding follows curated super-SILAC precedents (PXD009766, PXD000690)."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "SILAC light = patient ESC sample; SILAC heavy = spike-in standard",
+   "source_ids": [
+    "pride",
+    "mq_summary",
+    "orientation"
+   ],
+   "evidence": "Explicit: standard labelled with heavy Lys/Arg; MaxQuant Labels0 empty (light), Labels1 Arg10;Lys8. Data check: epithelial markers of the Ishikawa component (KRT8, EPCAM, CDH1, KRT18) have median log2 H/L +2 to +3.5 and stromal VIM -0.8, i.e. epithelial material is in the heavy channel."
+  },
+  {
+   "location": "characteristics[disease], factor value[disease]",
+   "value": "normal (ctrl_euESC); endometriosis (euESC, ecESC); not applicable (standard)",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'healthy EM' vs 'endometriotic EM' and 'endometriotic peritoneal lesions'. MONDO:0005133 endometriosis, PATO:0000461 normal. The peritoneal-lesion subtype is carried by organism part, not by a narrower MONDO term, since 'pelvic' is not stated."
+  },
+  {
+   "location": "characteristics[organism part], factor value[organism part]",
+   "value": "endometrium (ctrl_euESC, euESC, standard); peritoneum (ecESC)",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "Eutopic = endometrium (UBERON:0001295); ectopic = 'endometriotic peritoneal lesions' (UBERON:0002358). Standard: secretory-phase ESCs and Ishikawa (endometrial adenocarcinoma) are both endometrial."
+  },
+  {
+   "location": "characteristics[cell type]",
+   "value": "stromal cell of endometrium (study samples); not applicable (standard mixes stromal and epithelial cancer cells)",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'primary ESC cultures' (endometrial stromal cells); PRIDE organism_parts 'Stromal cell of endometrium'. CL:0002255."
+  },
+  {
+   "location": "characteristics[organism]",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism Homo sapiens (human); human primary ESCs and the human Ishikawa line; human UniProt reference proteome searched."
+  },
+  {
+   "location": "characteristics[sample type]",
+   "value": "study sample (light); reference (heavy spike-in standard)",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "Light = patient ESC lysate; heavy = SILAC spike-in standard (PRIDE:0001013 study sample, PRIDE:0000899 reference)."
+  },
+  {
+   "location": "characteristics[material type]",
+   "value": "cell",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "primary cell cultures; standard = mixture of primary ESCs and a cell line, 'cell' as in precedent PXD009766."
+  },
+  {
+   "location": "characteristics[biological replicate]",
+   "value": "1..6 (normal/endometrium), 1..5 (endometriosis/endometrium), 1..5 (endometriosis/peritoneum); pooled (standard)",
+   "source_ids": [
+    "mq_design",
+    "pride"
+   ],
+   "evidence": "One number per independent primary culture within each factor-value group (spec README.adoc:330; campaign rule 3); numbers equal the deposit's experiment index."
+  },
+  {
+   "location": "characteristics[pooled sample]",
+   "value": "not pooled (study samples); SN=secretory-phase endometrial stromal cells;SN=Ishikawa (standard)",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "Standard composition from the sample protocol; Ishikawa = CVCL_2529."
+  },
+  {
+   "location": "characteristics[sex]",
+   "value": "female",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Endometrial stromal cells / endometriotic lesions from women ('women of reproductive age'); Ishikawa is female (Cellosaurus). Anatomically determined, not a cohort-summary copy."
+  },
+  {
+   "location": "characteristics[age], characteristics[individual], characteristics[ancestry category]",
+   "value": "not available (study samples); pooled / not applicable (standard)",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "No individual-level patient table is deposited and the paper is closed access. Whether euESC_n and ecESC_n come from the same woman is not stated in the deposit, so individual is not asserted."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier], comment[technical replicate]",
+   "value": "115 raw files; SCX fractions 1-6; 19 later re-injections of single fractions = technical replicate 2",
+   "source_ids": [
+    "files",
+    "mq_design",
+    "build"
+   ],
+   "evidence": "Fraction from experimentalDesignTemplate Fraction column. Where a fraction has two raw files the earlier-dated (or -1) acquisition is technical replicate 1 and the later re-injection technical replicate 2 (precedent PXD004548). ctrl_euESC_2 fraction 1 has two same-day files (_2_1-1, _2_1-2); _2_1-2 is technical replicate 2. Deposited 140705_04_..._ecESC_34.raw = MaxQuant run ecESC_3_4 (fraction 4 of ecESC_3; the only name mismatch between summary.txt and the file list)."
+  },
+  {
+   "location": "comment[fractionation method]",
+   "value": "NT=Strong cation-exchange chromatography (SCX);AC=PRIDE:0000561",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'fractionated into 6 fractions using strong cation exchange and C18 StageTips'."
+  },
+  {
+   "location": "comment[instrument], comment[ms2 mass analyzer], comment[dissociation method], comment[collision energy], comment[ms1 scan range], comment[proteomics data acquisition method]",
+   "value": "Q Exactive; orbitrap; HCD (MS:1000422); 27 NCE; 350-1400 m/z; DDA",
+   "source_ids": [
+    "pride",
+    "mq_summary"
+   ],
+   "evidence": "'Q Exactive ... top-15 ... 350-1400 m/z MS scan ... higher-energy collisional dissociation fragmentation (normalized collision energy of 27) ... at R=17500'; summary.txt Instrument Q Exactive for every run."
+  },
+  {
+   "location": "comment[cleavage agent details]",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_summary"
+   ],
+   "evidence": "Digestion: 'proteomics grade dimethylated trypsin (Sigma-Aldrich)'. MaxQuant search rule Trypsin/P (summary.txt) - campaign rule 2 encodes the digestion enzyme."
+  },
+  {
+   "location": "comment[modification parameters]",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Deamidated N/Q, Acetyl Protein N-term, Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) variable",
+   "source_ids": [
+    "mq_summary",
+    "mq_params",
+    "pride"
+   ],
+   "evidence": "summary.txt: Variable modifications Acetyl (Protein N-term);Deamidation (NQ);Oxidation (M), Labels1 Arg10;Lys8, identical for all 160 runs; parameters.txt Fixed modifications Carbamidomethyl (C). SILAC labels MT=Variable by campaign convention (rule 11)."
+  },
+  {
+   "location": "comment[fragment mass tolerance]",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_params"
+   ],
+   "evidence": "parameters.txt MS/MS tol. (FTMS) 20 ppm; MS2 at R=17500 in the Orbitrap."
+  },
+  {
+   "location": "comment[precursor mass tolerance]",
+   "value": "not available",
+   "source_ids": [
+    "mq_params",
+    "pride"
+   ],
+   "evidence": "MaxQuant 1.4.0.8 parameters.txt/summary.txt do not record first/main-search precursor tolerance and no mqpar.xml was deposited; protocol says only 'All other parameters were set to default'. Not inferred (campaign precedent PXD001834). convert-openms therefore fails on this column."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool]",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "build"
+   ],
+   "evidence": "Campaign rule 1 and 10: ms-proteomics latest 1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (the spec submodule's nested templates copy is older). clinical-metadata declared because the samples are patient-derived primary cultures (rule 15/18)."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 45 of 160 raw files excluded - the MaxQuant experiments 1C8 (8 runs), 2C2 (8), 3C2 (7), 5C8 (8), 6C2 (7) and 5PEu (7), searched together with the 16 study samples but not described in the PRIDE protocols (which list only 6 healthy, 5 eutopic and 5 ectopic cultures). Their sample identity is undocumented (paper closed access, ACS SI 403, thesis unreachable); listed in excluded_runs.tsv and annotations/BLOCKED.md. Files: 140623_01_Orbi2_SK_CO_G240_T1275_2C2_1.raw, 140623_02_Orbi2_SK_CO_G240_T1275_2C2_2.raw, 140623_03_Orbi2_SK_CO_G240_T1275_2C2_3.raw, 140623_04_Orbi2_SK_CO_G240_T1275_2C2_4.raw, 140623_05_Orbi2_SK_CO_G240_T1275_2C2_5.raw, 140623_06_Orbi2_SK_CO_G240_T1275_2C2_6.raw, 140628_01_Orbi2_SK_CO_G240_T1275_5C8_1.raw, 140628_02_Orbi2_SK_CO_G240_T1275_5C8_2.raw, 140628_03_Orbi2_SK_CO_G240_T1275_5C8_3.raw, 140628_04_Orbi2_SK_CO_G240_T1275_5C8_4.raw, 140628_05_Orbi2_SK_CO_G240_T1275_5C8_5.raw, 140628_06_Orbi2_SK_CO_G240_T1275_5C8_6.raw, 140701_01_Orbi2_SK_CO_G240_T1275_1C8_1.raw, 140701_02_Orbi2_SK_CO_G240_T1275_1C8_2.raw, 140701_03_Orbi2_SK_CO_G240_T1275_1C8_3.raw, 140701_04_Orbi2_SK_CO_G240_T1275_1C8_4.raw, 140701_05_Orbi2_SK_CO_G240_T1275_1C8_5.raw, 140701_06_Orbi2_SK_CO_G240_T1275_1C8_6.raw, 140703_01_Orbi2_SK_CO_G240_T1275_5PEu_1.raw, 140703_02_Orbi2_SK_CO_G240_T1275_5PEu_2.raw, 140703_03_Orbi2_SK_CO_G240_T1275_5PEu_3.raw, 140703_04_Orbi2_SK_CO_G240_T1275_5PEu_4.raw, 140703_05_Orbi2_SK_CO_G240_T1275_5PEu_5.raw, 140703_06_Orbi2_SK_CO_G240_T1275_5PEu_6.raw, 140707_01_Orbi2_SK_CO_G240_T1275_3C2_1.raw, 140707_02_Orbi2_SK_CO_G240_T1275_3C2_2.raw, 140707_03_Orbi2_SK_CO_G240_T1275_3C2_3.raw, 140707_04_Orbi2_SK_CO_G240_T1275_3C2_4.raw, 140707_05_Orbi2_SK_CO_G240_T1275_3C2_5.raw, 140707_06_Orbi2_SK_CO_G240_T1275_3C2_6.raw, 140709_01_Orbi2_SK_CO_G240_T1275_6C2_1.raw, 140709_02_Orbi2_SK_CO_G240_T1275_6C2_2.raw, 140709_03_Orbi2_SK_CO_G240_T1275_6C2_3.raw, 140709_04_Orbi2_SK_CO_G240_T1275_6C2_4.raw, 140709_05_Orbi2_SK_CO_G240_T1275_6C2_5.raw, 140709_06_Orbi2_SK_CO_G240_T1275_6C2_6.raw, 140815_03_Orbi2_SK_CO_G240_T1275_5C8_2.raw, 140815_05_Orbi2_SK_CO_G240_T1275_1C8_2.raw, 140815_15_Orbi2_SK_CO_G240_T1275_2C2_2.raw, 140815_17_Orbi2_SK_CO_G240_T1275_3C2_2.raw, 140815_19_Orbi2_SK_CO_G240_T1275_6C2_2.raw, 140820_07_Orbi2_SK_CO_G240_T1275_5PEu_4.raw, 140822_09_Orbi2_SK_CO_G240_T1275_1C8_5.raw, 140822_13_Orbi2_SK_CO_G240_T1275_2C2_5.raw, 140825_05_Orbi2_SK_CO_G240_T1275_5C8_6.raw",
+  "Paper (J Proteome Res 2016) not read: closed access; only the abstract and the PRIDE protocols were used. Patient age, cycle phase, endometriosis stage, passage number and the eutopic/ectopic pairing are therefore not annotated.",
+  "characteristics[individual] = not available: the deposit does not say whether euESC_n and ecESC_n are from the same patient.",
+  "Precursor mass tolerance not available (MaxQuant 1.4.0.8 parameters.txt lacks it, no mqpar.xml); parse_sdrf convert-openms fails on it.",
+  "Technical replicate 2 = later re-injection of the same SCX fraction (19 files); which injection MaxQuant weighted is not recorded - both were searched (all in experimentalDesignTemplate).",
+  "The 16 heavy source names denote aliquots of one physical SILAC standard pool (one name per spiked mixture, per the campaign shared-reference rule); the secretory-phase ESC donors of the standard are not described.",
+  "Template versions: the spec submodule's nested sdrf-templates copy is older than upstream 7da1747 (ms-proteomics 1.2.0).",
+  "One post-build edit: scripts/concat_fix.py sets comment[fraction identifier] on the 36 re-injection rows (build numbers a one-file row as fraction 1); asserted no main-build row changes."
+ ]
+}

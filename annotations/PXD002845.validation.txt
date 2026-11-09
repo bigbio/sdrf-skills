@@ -1,0 +1,58 @@
+# PXD002845 validation (2026-11-09)
+# SDRF produced by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/scripts/make_tables.py + four sdrf-tools build runs (samples_main, samples_rerun1..3; identical headers) concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002845/scripts/concat_fix.py,
+# whose only edit sets comment[fraction identifier] on the 36 re-injection rows (19 files x light/heavy; 2 rows were already fraction 1) from the MaxQuant experimentalDesignTemplate Fraction column (build numbers a one-file row as fraction 1). Asserted: identical headers, no main-build row changed. No other post-build edit.
+# sha256 43ca598eaa0f753a4d6d53d489a841795c591481d0e4d70e1e301e500409b266  rows=230 cols=42
+
+$ parse_sdrf validate-sdrf -s PXD002845.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata
+WARNING: Invalid value 'SN=secretory-phase endometrial stromal cells;SN=Ishikawa' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+Refutation: the only WARNING is characteristics[pooled sample] 'SN=...' on the 115 heavy (standard) rows. The template's values validator lists only 'not pooled'/'pooled'; its pattern validator ^(not pooled|pooled|SN=.+(;SN=.+)*)$ accepts the value (sdrf-tools contract: 'fixed: not pooled, pooled; or pattern: SN=sample1;SN=sample2'). Same warning accepted on passed super-SILAC precedents PXD009766 / PXD013311.
+
+$ sdrf-tools structure PXD002845.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD002845.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD002845.sdrf.tsv
+  Terms checked:     20
+  Verified:          20
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD002845.sdrf.tsv --record pride_v3.json --accession PXD002845   (native PRIDE v3 record)
+PXD002845: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools reconcile PXD002845.sdrf.tsv --record pride.json --accession PXD002845   (MCP-reshaped copy; superseded)
+PXD002845: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+Refutation: the MINOR finding comes from the MCP-reshaped record, whose snake_case keys the reconciler does not read; against the native PRIDE v3 record (sampleProcessingProtocol: 'on-filter digested with 1:50 proteomics grade dimethylated trypsin') reconcile reports full agreement, exit 0.
+
+$ sdrf-tools schema-check --schema evidence-manifest PXD002845.evidence.json
+annotations/PXD002845.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD002845.sdrf.tsv PXD002845.evidence.json
+Manifest covers every column with a value (27 column(s)).
+exit code: 0
+
+$ parse_sdrf convert-openms -s PXD002845.sdrf.tsv -t2   (scratch dir)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+Expected: comment[precursor mass tolerance] = not available (MaxQuant 1.4.0.8 parameters.txt/summary.txt do not record it; no mqpar.xml deposited). Not inferred from MaxQuant defaults (campaign precedent PXD001834). The file cannot be converted for quantms as is.
+
+## Re-run after manifest limitation update (file list added); SDRF unchanged
+$ sdrf-tools schema-check --schema evidence-manifest PXD002845.evidence.json
+annotations/PXD002845.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage PXD002845.sdrf.tsv PXD002845.evidence.json
+Manifest covers every column with a value (27 column(s)).
+exit code: 0
