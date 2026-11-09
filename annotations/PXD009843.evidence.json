@@ -34,6 +34,11 @@
    "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD009843/TotalProteome_24Fractions_3SILAC_Triplicate_IsogenicKRASmutants_SW48.pep.xml (1.37 GB, streamed, not stored; header at /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/dl/tp_head.txt; every spectrum_query with a peptide starting LVVVGA extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/dl/tp_kras.xml by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/kras.awk). PD 2.2 workflow \"JEVON_3SILAC\", database \"human.RefSeq84_with KRAS G12D and G13D.fasta\", 72 input files RP01-RP03 x F01-F24."
   },
   {
+   "id": "tp_msf",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD009843/TotalProteome_24Fractions_Triplicate_IsogenicKRASmutants_SW48-2.msf (49.7 GB PD 2.2 study, not downloaded). Its AnalysisDefinition table was read by the independent reviewer with HTTP-range SQLite reads (apsw VFS, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/rev-PXD009843/scripts/httpvfs.py, ~33 range requests); the extracted XML (1,318,340 bytes, sha256 1e053de8fd0dc1a81abf22a2200e32bd5cd7b1a84837d6ea45aa715dd9deb0c1) is copied to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/dl/tp_analysisdef_reviewer.xml and was re-tallied by the producer with an independent parser (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/tp_factors.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/tp_factors.txt). QuanMethod \"SILAC 3plex (Arg6, Lys4 | Arg10, Lys8)\". Factor \"Cells\" (Kind Categorical, Id 913571c9-0886-4bd8-8a55-a14cd4a002a0) options Parental e89388c6-1026-47af-b22e-770876e6eae3, G12D 10a8ced9-449c-40d4-ad84-8df3be939845, G13D 311fa6e4-abd4-4a88-8dc0-8450c04bbabc; factor \"Replicates\" (Kind BiologicalReplicate, Id 6913a33c-6ff3-491b-9e81-2d76866e7c44) options Rep1 bbbe8472-ac0c-457b-86c2-073ff7f05bf4, Rep2 7557ff9d-3cf8-4cf3-a317-c4b2524bb1be, Rep3 2ea519ba-cad0-428c-864e-72d92ae1c0d4. Study samples \"RT_SW48_KRAS_TP_RP0N_Fxx - [Light|Medium|Heavy]\": Light = Parental (SampleType Control), Medium = G12D, Heavy = G13D, Replicates = RepN for RP0N, 24 files per (replicate, channel), no exceptions."
+  },
+  {
    "id": "kras",
    "kind": "derived",
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/kras_states.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009843/scripts/kras_states.py): SILAC Lys state of every q<=0.01 PSM of the KRAS G12D peptide LVVVGADGVGK and G13D peptide LVVVGAGDVGK in the TP search"
@@ -78,50 +83,54 @@
     "pride",
     "build"
    ],
-   "evidence": "One source per (cell line/SILAC channel, replicate mixture, material). TP = total proteome (24 bRPLC fractions, RT_SW48_KRAS_TP_RP0N_F01-F24), pY = anti-pY peptide IP (pY_IsogenicKRASmutants_RepN). PRIDE protocol: the pY IP used 60 mg of the mixed SILAC lysate digest per replicate and \"a 600 ug aliquot of SILAC mix was also subjected to a separate in-solution tryptic digestion\" for the total proteome, so TP and pY material of one replicate are separate aliquots/digests and get separate source names (precedent PXD020108), sharing the biological replicate number. The pairing TP RP0N <-> pY RepN is taken from the run-name index only."
+   "evidence": "One source per (cell line/SILAC channel, replicate mixture, material). TP = total proteome (24 bRPLC fractions, RT_SW48_KRAS_TP_RP0N_F01-F24), pY = anti-pY peptide IP (pY_IsogenicKRASmutants_RepN). PRIDE protocol: the pY IP used 60 mg of the mixed SILAC lysate digest per replicate and \"a 600 ug aliquot of SILAC mix was also subjected to a separate in-solution tryptic digestion\" for the total proteome, so TP and pY material of one replicate are separate aliquots/digests and get separate source names (precedent PXD020108), sharing the biological replicate number. The TP RP0N <-> RepN correspondence is the TP study factor Replicates; the pY study names its samples Rep1-Rep3."
   },
   {
    "location": "comment[label] rows 1-225 / characteristics[genotype], characteristics[cellosaurus accession], characteristics[cellosaurus name], factor value[genotype] rows 1-225",
    "value": "SILAC light = SW48 parental (KRAS wild type); SILAC medium (Arg6/Lys4) = SW48 KRAS G12D/+; SILAC heavy (Arg10/Lys8) = SW48 KRAS G13D/+; same in all 3 TP and all 3 pY mixtures",
    "source_ids": [
+    "tp_msf",
     "py_msf",
+    "pride",
     "tp_pepxml",
     "kras",
     "py_orient",
-    "pride",
     "paper"
    ],
-   "evidence": "No sentence in any reachable source states the label->line map (paper closed access; PRIDE protocols name the five label amino acids only). The map rests on three deposited, mutually consistent lines of evidence: (1) Genotype-specific peptides in the TP search (database explicitly supplemented with KRAS G12D and G13D, PRIDE data protocol and PD header): the G12D peptide LVVVGADGVGK was identified only with Lys4 (medium) - rep1 1 PSM, rep2 1, rep3 2 - never light or heavy; the G13D peptide LVVVGAGDVGK with Lys8 (heavy) in rep1 (1 PSM, q 2.8e-6) and rep3 (1 PSM, q 2.3e-6), never medium; one further rep3 PSM assigned light G13D (XCorr 2.80, q 1.3e-5, scan 14679, 54 scans after the heavy G13D PSM at 14625) is the only discordant hit and is outweighed; rep2 had no G13D PSM. (2) In the pY PD 2.2 study (msf AnalysisDefinition) the Light sample of each of Rep1-Rep3 is SampleType \"Control\" (the ratio denominator), and the PRIDE data protocol computes \"G12D/Parental ratios and G13D/Parental ratios\", i.e. Light = parental. (3) pY data check: MPZL1 pY263 peptide SESVVpYADIR log2 M/L +1.41/+1.30/+1.29 vs H/L -0.52/-0.68/-0.61 in Rep1/2/3 (file medians -0.52..-0.55 for both ratios), i.e. hyperphosphorylated in Medium only; the abstract states MPZL1 \"was found to be hyperphosphorylated in G12D cells\". The pY runs contain no KRAS peptide, so their medium/heavy assignment rests on (2)+(3) and on the protocol statement that TP is an aliquot of the same SILAC mix."
+   "evidence": "Primary (explicit) source: the authors' deposited TP Proteome Discoverer study (tp_msf) assigns factor Cells = Parental to the [Light], G12D to the [Medium] and G13D to the [Heavy] sample of every one of the 72 TP files (RP01-RP03 x F01-F24, 24 per replicate and channel), with factor Replicates = RepN for RP0N. The PD quan method fixes Medium = Arg6/Lys4 and Heavy = Arg10/Lys8. The pY PD study (py_msf AnalysisDefinition) defines no factors (only Light = SampleType Control in Rep1-3), so the pY runs (rows 217-225) take the map from the TP study through the PRIDE protocol statement that the TP sample is \"a 600 ug aliquot of SILAC mix\" whose remainder (60 mg per replicate) went to the pY IP; the TP orientation is identical in all three replicates, so it holds for every pY mixture. Data checks, all consistent: (1) mutant KRAS peptides in the TP search (database explicitly supplemented with KRAS G12D and G13D): G12D LVVVGADGVGK only with Lys4 (medium) - RP01 F21, RP02 F22, RP03 F21, RP03 F22 (4 PSMs); G13D LVVVGAGDVGK with Lys8 (heavy) in RP01 F22 and RP03 F22 (q <= 2.8e-6); the one light G13D PSM (RP03 F22 scan 14679, 1012.593 Da, 5.6 s after the heavy G13D PSM at scan 14625, 1020.608 Da; delta 8.014 Da = Lys8) is the unlabelled partner of the heavy G13D peptide, i.e. incomplete Lys8 incorporation in the G13D culture, not a map conflict; no G12D peptide outside medium, no G13D peptide in medium. (2) Light is SampleType Control in both PD studies and PRIDE computes \"G12D/Parental ratios and G13D/Parental ratios\". (3) pY: MPZL1 pY263 SESVVpYADIR log2 M/L +1.41/+1.30/+1.29 vs H/L -0.52/-0.68/-0.61 (file medians about -0.53 for both), and the abstract states MPZL1 \"was found to be hyperphosphorylated in G12D cells\"."
   },
   {
    "location": "characteristics[cellosaurus accession] / characteristics[cellosaurus name] rows 1-225",
    "value": "CVCL_1724 SW48 (light); CVCL_LC92 SW48 KRAS (G12D/+) (medium); CVCL_LC96 SW48 KRAS (G13D/+) (heavy)",
    "source_ids": [
+    "tp_msf",
     "cellosaurus",
     "pride",
     "paper"
    ],
-   "evidence": "PRIDE keywords \"Sw48\", \"G12d mutation\", \"G13d mutation\"; PRIDE description \"isogenic colorectal cancer cell lines bearing either G12D or G13D KRAS mutation\"; data protocol \"G12D/Parental ... G13D/Parental\". Cellosaurus lists exactly one SW48 KRAS G12D/+ (CVCL_LC92, Horizon HD 103-011) and one SW48 KRAS G13D/+ (CVCL_LC96, Horizon HD 103-002) knock-in among the children of CVCL_1724; the paper (closed) could not be read to confirm the supplier, see limitations."
+   "evidence": "The TP PD study factor Cells (Parental / G12D / G13D, tp_msf) names the three lines per channel. PRIDE keywords \"Sw48\", \"G12d mutation\", \"G13d mutation\"; PRIDE description \"isogenic colorectal cancer cell lines bearing either G12D or G13D KRAS mutation\"; data protocol \"G12D/Parental ... G13D/Parental\". Cellosaurus lists exactly one SW48 KRAS G12D/+ (CVCL_LC92, Horizon HD 103-011) and one SW48 KRAS G13D/+ (CVCL_LC96, Horizon HD 103-002) knock-in among the children of CVCL_1724; the paper (closed) could not be read to confirm the supplier, see limitations."
   },
   {
    "location": "characteristics[genotype] / factor value[genotype] rows 1-225",
    "value": "KRAS wild type; KRAS G12D/+; KRAS G13D/+",
    "source_ids": [
+    "tp_msf",
     "cellosaurus",
     "pride",
     "kras"
    ],
-   "evidence": "Custom characteristics column (spec Extending Templates; TERMS.tsv genotype = free text, EFO:0000513, licensed by single-cell/invertebrates/clinical-metadata only, none of which fit). Parental SW48 has no KRAS variant in Cellosaurus CVCL_1724 (only ACVR2A, APC, B2M, CTNNB1, TGFBR2 listed); derivatives are heterozygous knock-ins (Cellosaurus Zygosity=Heterozygous). The compared variable is the KRAS allele, so it is the factor."
+   "evidence": "Factor Cells in the TP PD study (tp_msf): Parental / G12D / G13D per channel. Custom characteristics column (spec Extending Templates; TERMS.tsv genotype = free text, EFO:0000513, licensed by single-cell/invertebrates/clinical-metadata only, none of which fit). Parental SW48 has no KRAS variant in Cellosaurus CVCL_1724 (only ACVR2A, APC, B2M, CTNNB1, TGFBR2 listed); derivatives are heterozygous knock-ins (Cellosaurus Zygosity=Heterozygous). The compared variable is the KRAS allele, so it is the factor."
   },
   {
    "location": "characteristics[biological replicate] rows 1-225",
    "value": "1-3 within each genotype",
    "source_ids": [
+    "tp_msf",
     "files",
     "pride",
     "py_msf"
    ],
-   "evidence": "Three replicate SILAC mixtures (TP RP01-RP03; pY Rep1-Rep3; PRIDE: \"the median values from the three replicates\"); each mixture contains an independent culture per line, numbered 1..3 within each genotype group; the TP and pY aliquots of mixture N share number N."
+   "evidence": "TP PD study factor Replicates (Kind BiologicalReplicate) Rep1-Rep3 = RP01-RP03 (tp_msf); pY study samples pY_Isogenic KRAS mutants_Rep1-3. Three replicate SILAC mixtures (TP RP01-RP03; pY Rep1-Rep3; PRIDE: \"the median values from the three replicates\"); each mixture contains an independent culture per line, numbered 1..3 within each genotype group; the TP and pY aliquots of mixture N share number N."
   },
   {
    "location": "characteristics[organism] rows 1-225",
@@ -383,8 +392,8 @@
   }
  ],
  "limitations": [
-  "Channel map: no textual statement of which SILAC state carries which cell line exists in any reachable source (paper closed access; pubs.acs.org 403, not bypassed). The map is derived from deposited search results: KRAS G12D/G13D mutant peptides by SILAC state in the TP search (4/4 G12D PSMs medium; 2/3 G13D PSMs heavy, 1 light outlier), the PD pY study marking Light as Control, and MPZL1 pY263 up in Medium only (abstract: MPZL1 hyperphosphorylated in G12D). The pY medium/heavy assignment has no mutant-peptide evidence of its own. A reviewer applying batch rule 6 strictly (explicit statement required) may want to block these runs instead.",
-  "Pairing of TP mixture RP0N with pY mixture RepN (same biological replicate number) rests on the run-name index only.",
+  "Channel map provenance: the explicit source is the TP Proteome Discoverer study factor table (tp_msf), read from the 49.7 GB msf by HTTP-range SQLite by the independent reviewer; the producer re-tallied the reviewer's extracted AnalysisDefinition XML (sha256 1e053de8...c1) with its own parser but did not repeat the range read. The pY study has no factors; the pY runs inherit the map via the PRIDE same-mix statement, supported by the MPZL1 check. The paper itself (closed access; pubs.acs.org 403, not bypassed) was not read.",
+  "Pairing of TP mixture RP0N with pY mixture RepN: TP RP0N = RepN by the TP study factor Replicates, and the pY study names its samples Rep1-Rep3; that the two RepN labels denote the same mixture is the authors' naming, not separately stated. The pairing cannot change any label, because the TP orientation is the same in every replicate.",
   "Cellosaurus accessions CVCL_LC92 / CVCL_LC96 assume the Horizon SW48 knock-in lines, the only SW48 KRAS G12D/+ and G13D/+ entries in Cellosaurus; the paper methods (supplier) could not be read.",
   "Culture medium, passage number, storage temperature and cell type are not available (paper closed; PRIDE protocol silent).",
   "Reduction/alkylation reagents are not stated (carbamidomethyl search implies alkylation, reagent unknown); columns omitted.",
