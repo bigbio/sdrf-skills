@@ -1,0 +1,71 @@
+# PXD014908 validation log (2026-11-09T15:24Z); SDRF sha256 6a7d50f7ff1d23b8e6a53309b0bd968f54b9a6a67eccd7a2663fdddf12cc5abf; 216 rows x 52 columns
+# Single round: the SDRF comes straight from sdrf-tools build (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD014908/scripts/make_tables.py); no post-build edits. OLS 500 retry tracebacks from sdrf_pipelines were filtered out of this log (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD014908/scripts/validate.sh).
+
+## parse_sdrf validate-sdrf -s annotations/PXD014908.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: tetracycline withdrawal in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: 15-year-old stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## parse_sdrf validate-sdrf -s annotations/PXD014908.sdrf.tsv -t ms-proteomics -t human -t cell-lines --use_ols_cache_only
+WARNING: Term: tetracycline withdrawal in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: 15-year-old stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure annotations/PXD014908.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD014908.sdrf.tsv --offline
+Hallucination Report: annotations/PXD014908.sdrf.tsv
+  Terms checked:     12
+  Verified:          6
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD014908.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD014908/pride.json --accession PXD014908
+PXD014908: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD014908.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD014908.sdrf.tsv
+Factor columns: ['factor value[cell line]', 'factor value[infection status]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[treatment]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[infectious agent]']
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
+ValueError: Cannot read precursor mass tolerance: not available
+
+The above exception was the direct cause of the following exception:
+
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+
+## sdrf-tools schema-check annotations/PXD014908.evidence.json
+annotations/PXD014908.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD014908.sdrf.tsv annotations/PXD014908.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit=0
+
+## Notes on non-clean results
+- validate-sdrf WARNINGs (exit 0): "tetracycline withdrawal" (characteristics[treatment], the paper's stated procedure for the Tet- arm; no NCIT/EFO term exists) and "15-year-old stage" (HsapDv:0000109; EFO has no age-stage term; campaign precedent uses HsapDv stages). Kept deliberately.
+- reconcile MINOR cleavage_agent_unsupported (exit 0): correct that neither PRIDE nor the paper names the digest enzyme. The value is supported by the deposited search output instead: all 46272 peptides in peptides.txt end in K/R or at the protein C-terminus and 45601 follow K/R/protein N-terminus, missed cleavages 0-2 (fully tryptic). Recorded as an inference in the manifest claims and limitations; batch rule 2 (cleavage agent = digestion enzyme, Trypsin MS:1001251).
+- convert-openms exit 1 "Cannot read precursor mass tolerance: not available": expected; no mqpar.xml/parameters.txt/summary.txt deposited, so tolerances are honestly not available (same as campaign precedents PXD014368/PXD006676/PXD024103). validate-sdrf and the template accept the reserved word.
