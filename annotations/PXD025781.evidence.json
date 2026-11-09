@@ -1,0 +1,242 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD025781.sdrf.tsv",
+ "dataset": "PXD025781",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "PRIDE PXD025781 via MCP get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/evidence/pride_mcp.json): title, sample/data processing protocols (\"About 4 ug of histones per run per sample were mixed with an approximately equal amount of a heavy-labelled histone super-SILAC mix, which was used as an internal standard\"; D6-acetic anhydride acylation; trypsin in-gel digestion; HCD NCE 28%; MS1 m/z 300-1350; MaxQuant; 6 ppm; PRO-PIC tissue arm searched with EpiProfile 2.0), instruments [Q Exactive Plus, Q Exactive HF], quantification SILAC"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD025781/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/evidence/files.json; 40 entries = 38 RAW + txt_cells.zip + tissue.zip; page 1 returned the HTML end-of-list page; every entry projectAccessions contains PXD025781)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Faletti S et al., Sci Transl Med 2021 13(623):eabf7036, PMID 34878824, doi:10.1126/scitranslmed.abf7036; author postprint https://iris.unito.it/bitstream/2318/1861687/5/LSD1%20POSTPRINT.pdf (via Unpaywall; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/dl/10.1126_scitranslmed.abf7036/paper.txt). Main text only; Supplementary Materials (MS methods, table S2 TIC info) at science.org returned HTTP 403 (not bypassed)."
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/04/PXD025781/txt_cells.zip member txt/summary.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/dl/cells/txt/summary.txt): 20 raw files (names with spaces instead of underscores), Enzyme ArgC, Multiplicity 2, Labels0 empty, Labels1 Arg10, Variable modifications \"D3 ;Dimethyl (K);Me-D3\", no fixed mods"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "txt_cells.zip member txt/parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/dl/cells/txt/parameters.txt): MaxQuant 1.6.2.3, Fasta HUMAN_HISTONES_1502_All.fasta, MS/MS tol. (FTMS) 20 ppm"
+  },
+  {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "txt_cells.zip member txt/evidence.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/dl/cells/txt/evidence.txt): modification sites K(d3)/K(me)/K(di); masses; Labeling State; Ratio H/L"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 2 MB of each of the 38 .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/04/PXD025781/ read by HTTP range with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/scripts/rawhead2.py (results /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/evidence/raw_headers.json): instrument model string and method \"Scan range 300 to 1350 m/z\""
+  },
+  {
+   "id": "tissue_zip",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/04/PXD025781/tissue.zip (2.8 GB; central directory listed by HTTP range with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/scripts/zipget.py; members histone_logs.txt, histone_ratios_SILAC.xls, histone_ratios.xls, *.RAW.rawInfo extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/dl/tissue/): EpiProfile output for QEPLus_210305_RN_glio_1..18 with LightR/HeavyR ratios"
+  },
+  {
+   "id": "noberini2018",
+   "kind": "publication",
+   "location": "Noberini R et al., Nucleic Acids Res 2018 46:3817 (PMC5934616; ref 73 of the paper; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/dl/PMC5934616.txt): same labs; GBM histones analysed against an Arg10-labelled breast-cancer-cell-line histone super-SILAC mix"
+  },
+  {
+   "id": "build",
+   "kind": "tool",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/build/samples.tsv + technical.tsv -> sdrf-tools build -t ms-proteomics -t human"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. The spec submodule nested sdrf-templates copy is older. sdrf version v1.1.0 per spec README.adoc:27 (batch rule 1)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via sdrf-tools ols / sdrf-tools verify (2026-11-09): MONDO:0018177 glioblastoma, UBERON:0000955 brain, MS:1002523 Q Exactive HF, MS:1001251 Trypsin, MS:1001303 Arg-C, MS:1000422 HCD, MS:1000484 orbitrap, PRIDE:0000627 DDA, UNIMOD:56 Acetyl:2H(3), UNIMOD:768 Methyl+Acetyl:2H(3), UNIMOD:36 Dimethyl, UNIMOD:267 Label:13C(6)15N(4); none obsolete"
+  }
+ ],
+ "claims": [
+  {
+   "location": "scope: rows 1-40 (20 HF*.raw files x 2 SILAC channels)",
+   "value": "cell arm only; 18 QEPLus_210305_RN_glio_1..18 tissue runs excluded (blocked)",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "tissue_zip",
+    "paper"
+   ],
+   "evidence": "The 20 HF* raw files are exactly the 20 raw files in txt_cells.zip summary.txt (human GBM TIC cultures treated with LSD1i or DMSO). The 18 QEPLus tissue runs (EpiProfile 2.0, SILAC mode, LightR/HeavyR) carry only numbers 1-18; no deposited file, protocol or the available paper text maps them to normal vs tumour tissue, vehicle vs LSD1i, or mouse. Fig. 1E legend gives only group sizes (\"normal (filled circles) and tumor (empty circles) tissues ... vehicle (n = 12) or LSD1i (n = 6)\"). Excluded: QEPLus_210305_RN_glio_1.raw, QEPLus_210305_RN_glio_2.raw, QEPLus_210305_RN_glio_3.raw, QEPLus_210305_RN_glio_4.raw, QEPLus_210305_RN_glio_5.raw, QEPLus_210305_RN_glio_6.raw, QEPLus_210305_RN_glio_7.raw, QEPLus_210305_RN_glio_8.raw, QEPLus_210305_RN_glio_9.raw, QEPLus_210305_RN_glio_10.raw, QEPLus_210305_RN_glio_11.raw, QEPLus_210305_RN_glio_12.raw, QEPLus_210305_RN_glio_13.raw, QEPLus_210305_RN_glio_14.raw, QEPLus_210305_RN_glio_15.raw, QEPLus_210305_RN_glio_16.raw, QEPLus_210305_RN_glio_17.raw, QEPLus_210305_RN_glio_18.raw. Listed in annotations/BLOCKED.md."
+  },
+  {
+   "location": "comment[label] rows 1-40",
+   "value": "SILAC light (GBM TIC histones) / SILAC heavy (histone super-SILAC internal standard)",
+   "source_ids": [
+    "mq_summary",
+    "pride",
+    "paper",
+    "mq_evidence"
+   ],
+   "evidence": "summary.txt: Multiplicity 2, Labels0 empty, Labels1 Arg10 for all 20 files (rule 14). Protocol: sample histones \"mixed with an approximately equal amount of a heavy-labelled histone super-SILAC mix ... internal standard\". Paper Fig. 1E legend: \"L is the sample and H is the internal standard\". Data check (rule 6): median L/H of H3K4me2 peptide TK(di)QTAR rises with LSD1i, as the paper reports (605051 DMSO 1.32 -> LSD1i 2.18; 700142 p34 DMSO 3.16 -> LSD1i 5.03; BT165 LSD1i 10.1), consistent with light = study sample."
+  },
+  {
+   "location": "source name rows 1-40",
+   "value": "GBM TIC <ID> <DMSO|LSD1i> [<passage>] <MS batch> glio_<n> (light); histone super-SILAC mix aliquot in <run> (heavy)",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "build"
+   ],
+   "evidence": "Each raw file name carries MS batch (HF170509/HF180122/HF180412/HF180607), run number, TIC culture ID (605051, BT165, 700142, 906080, 606012), treatment (DMSO / LSD1i) and for some a passage (p15/p24/p34/p41); MaxQuant Experiment names repeat them. Each light source = one histone preparation from one culture/treatment. The 20 heavy source names are aliquots of ONE physical pool (the histone super-SILAC mix), one name per run as required by validation.md:22-23 / sdrf-tools build."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-40",
+   "value": "1..10 within DMSO and within DDP_38003 (light); pooled (heavy)",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "build"
+   ],
+   "evidence": "Rule 3 / README.adoc:330: numbering restarts per factor value. Each of the 10 DMSO and 10 LSD1i samples is an independent culture preparation (different TIC, MS batch or passage), so each gets its own number; the DMSO and LSD1i halves of the same batch/TIC/passage pair share a number: 1=605051 HF170509, 2=BT165 HF170509, 3=BT165 HF180122, 4=700142 HF180412 p24, 5=700142 HF180412 p34, 6=906080 HF180412, 7=700142 HF180607, 8=906080 HF180607, 9=606012 HF180607 p41, 10=606012 HF180607 p15."
+  },
+  {
+   "location": "characteristics[individual] rows 1-40",
+   "value": "TIC culture ID from the file name (605051, BT165, 700142, 906080, 606012); pooled on heavy rows",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "paper"
+   ],
+   "evidence": "Paper: GBM TICs are patient-derived cultures, one per patient (\"Information for each patient-derived TIC culture is provided in table S2\"). The deposit IDs are the only identifiers available; their mapping to the paper GBM#n names (table S2) could not be read (403)."
+  },
+  {
+   "location": "characteristics[compound], factor value[compound] rows 1-40",
+   "value": "DDP_38003 (LSD1i) / DMSO (vehicle); not applicable on heavy reference rows",
+   "source_ids": [
+    "files",
+    "pride",
+    "paper",
+    "mq_summary"
+   ],
+   "evidence": "File names *_LSD1i / *_DMSO; protocol \"GBM primary cells treated with LSD1i or vehicle\"; paper: LSD1i = \"the selective lysine-specific histone demethylase 1 inhibitor DDP_38003\". Encoded as compound like the passed precedent PXD009444-silac (DMSO / FM247). Dose and duration of this histone experiment are in the inaccessible Supplementary Materials -> no dose column."
+  },
+  {
+   "location": "characteristics[organism], characteristics[organism part], characteristics[disease], characteristics[material type], characteristics[cell type] rows 1-40 (light rows)",
+   "value": "Homo sapiens; brain; glioblastoma; cell; cell type not available",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: \"human patient-derived GBM TICs\" grown as spheroids from human GBM specimens. TICs are primary patient-derived cultures, not Cellosaurus cell lines (BT165 has no Cellosaurus entry; sdrf-tools cellline returned an unrelated fuzzy hit BT-16), so the cell-lines template is not declared and material type = cell. No CL term for \"tumor-initiating cell\" is stated -> cell type not available."
+  },
+  {
+   "location": "characteristics[organism], characteristics[pooled sample], characteristics[sample type], characteristics[organism part], characteristics[disease], characteristics[material type] rows 1-40 (heavy rows; light rows: sample type study sample, pooled sample not pooled)",
+   "value": "Homo sapiens; pooled; reference; other fields not available",
+   "source_ids": [
+    "pride",
+    "noberini2018",
+    "mq_params"
+   ],
+   "evidence": "Protocol: \"heavy-labelled histone super-SILAC mix, used as internal standard\". Its composition is not stated for this deposit (Supplementary Materials inaccessible), so no SN= list. Organism Homo sapiens: the same labs analysed GBM histones against a super-SILAC mix of Arg10-labelled human breast cancer cell lines (Noberini 2018, PMC5934616: MDA-MB-231, MDA-MB-468, MDA-MB-453, MDA-MB-361 ...), and only the human histone FASTA was searched."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[ancestry category] rows 1-40",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Per-patient demographics are only in table S2 (Supplementary Materials, HTTP 403); not inferred."
+  },
+  {
+   "location": "comment[instrument] rows 1-40",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_header",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 20 HF* raw headers contain \"Q Exactive HF - Orbitrap MS\"; the 18 excluded QEPLus runs are Q Exactive Plus."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-40",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "Protocol: histones chemically acylated with D6-acetic anhydride, then \"in-gel digested with trypsin\". Because lysines are blocked, cleavage is effectively Arg-C-like and MaxQuant used Enzyme ArgC (summary.txt) - recorded as the search rule; the SDRF carries the digestion enzyme (batch rule 2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-40",
+   "value": "Acetyl:2H(3) K (UNIMOD:56), Methyl+Acetyl:2H(3) K (UNIMOD:768), Dimethyl K (UNIMOD:36), Label:13C(6)15N(4) R (UNIMOD:267), all Variable",
+   "source_ids": [
+    "mq_summary",
+    "mq_evidence",
+    "pride",
+    "ols"
+   ],
+   "evidence": "summary.txt variable mods \"D3 ;Dimethyl (K);Me-D3\", Labels1 Arg10, no fixed mods. evidence.txt sites only on K: K(d3), K(me), K(di). Mass check: TKQTAR + D3 = 748.4271 (evidence 748.427082), + Me-D3 = 762.4427 (762.442732), + Dimethyl = 731.4290 (731.428987), matching UNIMOD 56 / 768 / 36 delta masses. Arg10 label MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-40",
+   "value": "6 ppm / 20 ppm",
+   "source_ids": [
+    "pride",
+    "mq_params"
+   ],
+   "evidence": "parameters.txt: MS/MS tol. (FTMS) 20 ppm (fragment). Precursor: parameters.txt does not carry it and no mqpar.xml is deposited; the PRIDE data processing protocol states \"The mass tolerance was set to 6 ppm for precursor and fragment ions\" - used for precursor only, since its fragment value and its MaxQuant version (1.5.2.8 vs deposited 1.6.2.3) contradict the deposited search output."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range], comment[proteomics data acquisition method] rows 1-40",
+   "value": "HCD; 28 NCE; orbitrap; 300m/z-1350m/z; DDA",
+   "source_ids": [
+    "pride",
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "Protocol: DDA, \"fragmented by HCD with a normalized collision energy setting of 28%\", \"Survey full scan MS spectra (m/z 300-1350) were analyzed in the Orbitrap\"; raw method \"Scan range 300 to 1350 m/z\". MS2 analyzer orbitrap: Q Exactive HF has only an Orbitrap analyzer."
+  },
+  {
+   "location": "comment[data file], comment[technical replicate], comment[fraction identifier], assay name rows 1-40",
+   "value": "one raw file per run; technical replicate 1; fraction 1",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "pride",
+    "build"
+   ],
+   "evidence": "Each of the 20 HF raw files is one injection of one light+heavy histone mixture (H3 band excised from one SDS-PAGE lane; protocol). summary.txt lists no Fraction for any file; each sample was measured once in the deposit. Assay name = file stem (build default)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-40",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Batch rules 1 and 10. human template: human samples; heavy reference is a human cell-derived pool."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 18 of 38 raw files (mouse-xenograft brain tissue arm, QEPLus_210305_RN_glio_1..18, PRO-PIC + EpiProfile 2.0, SILAC internal standard) are not annotated: no run -> sample (normal/tumour, vehicle/LSD1i, mouse) map is deposited or in the accessible paper text. Listed in BLOCKED.md.",
+  "Supplementary Materials of the Sci Transl Med paper (MS methods, table S2 with TIC patient data, dose/duration of the histone experiment) returned HTTP 403 at science.org and were not bypassed; only the author postprint main text was read.",
+  "TIC IDs (605051, BT165, 700142, 906080, 606012) cannot be mapped to the paper GBM#n names; the paper reports fig. S2A for 4 TICs (GBM#22, #11, #10, #18) while the deposit holds 5 IDs.",
+  "Super-SILAC mix composition not stated for this deposit: pooled sample = pooled without SN= list; organism Homo sapiens inferred from the labs' published histone super-SILAC mixes (Noberini 2018) and the human-only search database.",
+  "Precursor mass tolerance 6 ppm taken from the PRIDE protocol text, which also states an outdated MaxQuant version and a fragment tolerance contradicted by parameters.txt (20 ppm). MaxQuant main-search tolerance not deposited.",
+  "Biological-replicate pairing (DMSO and LSD1i of the same batch/TIC/passage sharing a number) is inferred from file names; whether those halves come from one split culture is not stated.",
+  "MaxQuant raw-file names use spaces where the deposited files use underscores (e.g. \"HF170509_RN_glio_7 605051 DMSO\" = HF170509_RN_glio_7_605051_DMSO.raw); mapping is one-to-one.",
+  "Cleavage agent recorded as Trypsin (digestion enzyme, batch rule 2); MaxQuant searched with the ArgC rule because lysines were D3-acetylated before digestion.",
+  "techsdrf not installed: instrument and scan range read from HTTP-range raw headers with a regex script (scripts/rawhead2.py).",
+  "Status REVIEW_PENDING_EXTERNAL: not independently reviewed yet."
+ ]
+}

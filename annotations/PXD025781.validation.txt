@@ -1,0 +1,52 @@
+# PXD025781 validation log (sdrf-pipelines parse_sdrf; sdrf-tools). Run from /home/user/bigbio/sdrf-skills/annotations, 2026-11-09.
+## Note: a first full-ontology run (parse_sdrf validate-sdrf -s PXD025781.sdrf.tsv -t ms-proteomics -t human) was aborted: every OLS4 search returned HTTP 500 (https://www.ebi.ac.uk/ols4/api/search?...&name=class... -> 500; the same query without name=class -> 200, checked with curl 2026-11-09). Ontology terms were instead verified one by one with sdrf-tools verify/ols (manifest source 'ols'); parse_sdrf was run with --use_ols_cache_only.
+## Round 1 (final artifact)
+$ parse_sdrf validate-sdrf -s PXD025781.sdrf.tsv -t ms-proteomics -t human --use_ols_cache_only
+WARNING: Term: study sample in column 'characteristics[sample type]', is not found in the given ontology list pride
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure PXD025781.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ sdrf-tools check PXD025781.sdrf.tsv
+Hallucination Report: PXD025781.sdrf.tsv
+  Terms checked:     12
+  Verified:          12
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+$ sdrf-tools reconcile PXD025781.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/evidence/pride_v3.json --accession PXD025781
+PXD025781: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  disease_on_control_runs (characteristics[disease]): 20 of 40 run names mark a control arm, but every row asserts 'glioblastoma'  [HF170509_RN_glio_10_BT165_DMSO]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 1
+$ sdrf-tools reconcile PXD025781.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/evidence/pride_mcp.json --accession PXD025781
+PXD025781: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  disease_on_control_runs (characteristics[disease]): 20 of 40 run names mark a control arm, but every row asserts 'glioblastoma'  [HF170509_RN_glio_10_BT165_DMSO]
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 1
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025781/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD025781.sdrf.tsv -t2)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD025781.sdrf.tsv
+Factor columns: ['factor value[compound]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]']
+Conditions (3): dict_keys(['DMSO', 'not applicable', 'DDP_38003'])
+Files per condition: dict_values([10, 20, 10])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD025781.sdrf.tsv
+exit code: 0
+$ sdrf-tools schema-check PXD025781.evidence.json
+PXD025781.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage PXD025781.sdrf.tsv PXD025781.evidence.json
+Manifest covers every column with a value (24 column(s)).
+exit code: 0
+## Justification of remaining findings
+1. parse_sdrf WARNING "Term: study sample ... not found in the given ontology list pride" (cache-only run): 'study sample' is a value the ms-proteomics template lists for characteristics[sample type] (children of PRIDE:0000895, see `sdrf-tools contract`); the offline cache lacks it. Same warning accepted on other cache-only batch validations (e.g. PXD023565, PXD014908). Not an error (exit 0).
+2. reconcile BLOCKER disease_on_control_runs (both records): FALSE POSITIVE. The 'DMSO' rows are vehicle-treated patient-derived glioblastoma tumor-initiating cells (protocol: "GBM primary cells treated with LSD1i or vehicle"), not healthy controls; the compound (DMSO vs DDP_38003) is the compared factor, the disease is glioblastoma in both arms. Heavy reference rows already carry 'not available'.
+3. reconcile MAJOR cleavage_agent_incomplete (PRIDE v3 record) / MINOR cleavage_agent_unsupported (MCP record): the protocol states the histones were "chemically acylated with D6-acetic anhydride, in-gel digested with trypsin" and "Enzyme specificity was set to Arg-C" (summary.txt Enzyme ArgC). Only one enzyme was used for digestion (trypsin); Arg-C is the search rule reflecting that D3-acetylated lysines are not cleaved. Batch rule 2: cleavage agent = digestion enzyme, a second cleavage column only for a second digestion enzyme. Search rule recorded in the manifest. Not changed.
+4. Ontology: full-ontology parse_sdrf could not run (OLS4 search endpoint HTTP 500 for name=class queries, see note at top). Every ontology-backed value (12 terms) was checked with `sdrf-tools check` (CLEAN, 12/12 verified) and individually with `sdrf-tools verify` (manifest source 'ols').
+The SDRF was written only by `sdrf-tools build` from build/samples.tsv + build/technical.tsv generated by scripts/make_tables.py (deterministic); no post-build edits.
