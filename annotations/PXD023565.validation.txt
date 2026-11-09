@@ -1,0 +1,65 @@
+# PXD023565 validation log (2026-11-09T16:09Z); SDRF sha256 a6ea3f8bcbed4c51abea987791e18c75ce21df3b3baef2757ab77baa686c9164
+
+Build: sdrf-tools build --samples samples.tsv --technical technical.tsv --files files.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/scripts/gen_tables.py) -> 123 rows x 53 columns.
+Post-build edit (rule 17): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/scripts/postbuild.py sets comment[fraction identifier] 1 -> 12 on the 3 rows of 20170404_Ting_1_12_170408070646.raw (second injection of set-1 fraction 12, technical replicate 2); build numbers fractions by position within a samples.tsv row, so a one-file re-run row would otherwise be fraction 1. Nothing else edited.
+
+## parse_sdrf validate-sdrf -s annotations/PXD023565.sdrf.tsv -t ms-proteomics -t human -t cell-lines  (attempt 1, timeout 1700 s)
+[64 OLS4 error/retry/traceback lines omitted: OLS4 returned HTTP 500 / read timeouts]
+exit=124
+
+## parse_sdrf validate-sdrf -s annotations/PXD023565.sdrf.tsv -t ms-proteomics -t human -t cell-lines  (attempt 2, timeout 590 s)
+exit=124
+
+## parse_sdrf validate-sdrf -s annotations/PXD023565.sdrf.tsv -t ms-proteomics -t human -t cell-lines  (attempt 3, timeout 1500 s)
+Everything seems to be fine. Well done.
+exit=0
+
+## parse_sdrf validate-sdrf -s annotations/PXD023565.sdrf.tsv -t ms-proteomics -t human -t cell-lines --use_ols_cache_only
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD023565.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD023565.sdrf.tsv  (online)
+[78 OLS4 error/retry/traceback lines omitted: OLS4 returned HTTP 500 / read timeouts]
+
+The above exception was the direct cause of the following exception:
+
+
+During handling of the above exception, another exception occurred:
+
+exit=1
+
+## sdrf-tools check --offline annotations/PXD023565.sdrf.tsv
+[7 OLS4 error/retry/traceback lines omitted: OLS4 returned HTTP 500 / read timeouts]
+Hallucination Report: annotations/PXD023565.sdrf.tsv
+exit=0
+
+## sdrf-tools reconcile annotations/PXD023565.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/pride.json --accession PXD023565
+PXD023565: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD023565.sdrf.tsv -t2  (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/convert)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD023565.sdrf.tsv
+Factor columns: ['factor value[genetic modification]', 'factor value[infection]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (6): dict_keys(['non-targeting control shRNA (sh-Ctr, Horizon RHS6848)|Human immunodeficiency virus 1', 'non-targeting control shRNA (sh-Ctr, Horizon RHS6848)|uninfected', 'shRNA targeting NLRX1 (sh-NLRX1#1, TRCN0000128446)|uninfected', 'shRNA targeting NLRX1 (sh-NLRX1#1, TRCN0000128446)|Human immunodeficiency virus 1', 'shRNA targeting NLRX1 (sh-NLRX1#2, TRCN0000130325)|Human immunodeficiency virus 1', 'shRNA targeting NLRX1 (sh-NLRX1#2, TRCN0000130325)|uninfected'])
+Files per condition: dict_values([17, 41, 28, 11, 13, 13])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 123 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD023565.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check annotations/PXD023565.evidence.json
+annotations/PXD023565.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD023565.sdrf.tsv annotations/PXD023565.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit=0
+
+## Notes
+- OLS4 (www.ebi.ac.uk/ols4) returned HTTP 500 and read timeouts for most of this session (also observed by direct curl), so full-ontology parse_sdrf attempts 1-2 were killed by `timeout` (exit 124); attempt 3 (same file, same sha256) completed with exit 0, as did the cache-only run. The online `sdrf-tools check` crashes on an OLS ReadTimeout (tool error, exit 1, no finding); `check --offline` is CLEAN (exit 0). Every ontology accession in the file was also resolved individually against OLS4 earlier in the session while it answered (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/ols_ids.txt: all is_obsolete=False, labels match the SDRF).
+- convert-openms warning 'no TA= specified' = the Acetyl PP=Protein N-term modification (expected).
+- Custom characteristics columns (not template-licensed, spec 'Extending Templates', campaign rule 15): characteristics[genetic modification], characteristics[infection].
