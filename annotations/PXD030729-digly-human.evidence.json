@@ -309,7 +309,7 @@
    "evidence": "Paper: \"ALS patient-derived lymphoblastoid cell lines (LCLs)\". BTO:0002062 B-lymphoblastoid cell line (label verified in OLS)."
   },
   {
-   "location": "characteristics[disease] LCL rows: normal 17-18,21-22,25-26,29-30,33-34,37-38,41-42,45-46,49-50,53-54,57-58,61-62,65-66,69-70,73-74,77-78; sporadic ALS 19-20,23-24,27-28,31-32,35-36,39-40,43-44,47-48; familial ALS 51-52,55-56,59-60,63-64,67-68,71-72,75-76,79-80",
+   "location": "characteristics[disease] LCL rows: normal none; sporadic ALS none; familial ALS none",
    "value": "normal (controls); sporadic amyotrophic lateral sclerosis (V6604, V335M); familial amyotrophic lateral sclerosis (V7163, D628V)",
    "source_ids": [
     "paper",
@@ -328,13 +328,22 @@
    "evidence": "Reagent table: \"LCL, ctrl 1, female\", \"ctrl 2, female\", \"CCNF V335M, female\", \"ctrl 3, male\", \"ctrl 4, male\", \"CCNF D628V, male\"; Methods: D628V male patient, V335M female patient; mapped to codes by the Table S1 legend."
   },
   {
-   "location": "characteristics[developmental stage] LCL rows 17-80",
+   "location": "characteristics[developmental stage] LCL patient rows none",
    "value": "adult",
    "source_ids": [
     "paper",
     "ols"
    ],
-   "evidence": "Patients had disease onset at 47 y (D628V) and 62 y (V335M) and blood was collected from ALS patients; controls are \"gender- and age-matched\". EFO:0001272 adult."
+   "evidence": "Stated ages: disease onset at 47 y (D628V, V7163) and 62 y (V335M, V6604), blood collected from these ALS patients, so the donors were adults (>=20 y) at sampling. EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[developmental stage] LCL control rows none",
+   "value": "adult (INFERRED)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "INFERENCE, not a stated donor age: the paper describes the control LCLs only as \"gender- and age-matched control LCLs\" to the two patients (onset 47 y and 62 y). Age-matched to adults in their 40s-60s implies adult donors; kept as adult (EFO:0001272) rather than not available because the matching statement is explicit. Listed under limitations."
   },
   {
    "location": "characteristics[individual] LCL rows 17-80",
@@ -344,6 +353,16 @@
     "tableS_legends"
    ],
    "evidence": "Line/donor codes as published in the deposited MaxQuant experiment names and the Table S1 legend; one donor per LCL."
+  },
+  {
+   "location": "characteristics[cell line] + factor value[cell line] LCL rows 17-80",
+   "value": "LCL V3656, LCL V549, LCL V79, LCL V6719, LCL V6604, LCL V7163",
+   "source_ids": [
+    "mq_LCL_diGly",
+    "tableS_legends",
+    "build"
+   ],
+   "evidence": "Study LCL codes from the MaxQuant experiment names and the Table S1 key, prefixed \"LCL \" so that no name collides with a catalogued line: bare \"V79\" is the Chinese hamster lung line V79 (Cellosaurus CVCL_2234); the other five codes have no Cellosaurus hit. These patient/control LCLs are not in Cellosaurus (cellosaurus accession/name = not available). characteristics[individual] keeps the bare donor code."
   },
   {
    "location": "characteristics[genotype] + factor value[genotype] LCL rows 17-80",
@@ -390,6 +409,8 @@
   "LCL heavy channel: the MaxQuant experiment names say \"K8/R10\" but the paper says only lysine was replaced by K8 and the search used labelMods Lys8 only (no Arg10). The SDRF follows the search (Lys8 = UNIMOD:259 only).",
   "The mutant LCL in each heavy channel is numbered 1-8 on the assumption that each of its eight SILAC mixtures used an independently cultured lysate; the paper says \"eight biological replicates\" for LCLs but does not say whether one heavy lysate was shared between the two control pairings.",
   "LCL donor age at blood collection is not reported (only age at onset for patients): characteristics[age] = not available. Ancestry, passage number not reported: not available.",
+  "characteristics[developmental stage] = adult for the four control LCLs (V3656, V549, V79, V6719) is an inference from \"gender- and age-matched\" controls to patients with onset at 47 and 62 y; no control donor age is published.",
+  "clinical-metadata is not declared: half of the file is the SH-SY5Y cell line, and all samples (including the patient-derived LCLs) are cultured cell lines with no per-patient clinical record beyond sex, disease and mutation, which the human/cell-lines templates already carry; characteristics[genotype] is used as a custom column (spec \"Extending Templates\", batch rule 15).",
   "Independent sex/identity check of the LCL channels from Y-chromosome-unique peptides was inconclusive: no evidence row in the diGly-enriched LCL data maps only to Y-encoded genes (scripts/check_channels.py). The channel map rests on the explicit MaxQuant names + Table S1 key and on the directional ratio checks.",
   "characteristics[cell line] for LCLs uses the study codes (V3656 etc.); these lines have no Cellosaurus entry, so cellosaurus accession/name = not available, and parse_sdrf warns that the codes are not ontology terms.",
   "reconcile false positives refuted: none for this file."
