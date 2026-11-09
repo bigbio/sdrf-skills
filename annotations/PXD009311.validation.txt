@@ -1,29 +1,23 @@
-# PXD009311 validation log (2026-11-09T06:59Z); SDRF sha256 4dfa32b2aa0b6d87567513fbb8b7e1aa7360dd78a83997a27e0a357183df5e28; 292 rows x 50 columns
+# PXD009311 validation log (2026-11-09T07:25Z); SDRF sha256 9375c0be8b996f61088333c6929b2a7ded6d5eade2f2fa5607f8570783f1f346; 288 rows x 50 columns
+
+## Build history
+- Round 1 (instrument TripleTOF 5600): validate-sdrf exit 0; reconcile flagged instrument_contradicted (protocol names TripleTOF 5600+). Fixed in technical.tsv -> NT=TripleTOF 5600+;AC=MS:1002584 (the .wiff device string 'TripleTOF 5600' also appears in a known 5600+ .wiff from PXD001997, so it does not distinguish the models).
+- Round 2 (292 rows, sha256 4dfa32b2aa0b6d87567513fbb8b7e1aa7360dd78a83997a27e0a357183df5e28): all checks exit 0; independent review FAILED (annotations/PXD009311.review.md, IMPORTANT 1): failed, unsearched injections Data081416_04/_15 were annotated as searched technical replicate 1 and the searched re-injections Data081416_05/_16 as technical replicate 2.
+- Round 3 (current): fixed in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/scripts/make_tables.py -> samples.tsv (not a post-build edit): Data081416_04/_15 excluded like the Blank runs; Data081416_05/_16 moved into the technical-replicate-1 fraction list of T618I 12.5 min Rep 1 (positions 2 and 7). Rebuilt.
 
 ## Build: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/files_wiff.json -t ms-proteomics -t vertebrates -t cell-lines -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/build_raw.sdrf.tsv
-wrote build_raw.sdrf.tsv: 292 rows x 50 columns
+wrote build_raw.sdrf.tsv: 288 rows x 50 columns
 
 ## Post-build deterministic edit (batch rule 17): python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/scripts/fix_fractions.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/build_raw.sdrf.tsv /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/fraction_map.tsv annotations/PXD009311.sdrf.tsv
-12 of 292 rows changed fraction identifier
-Justification: build numbers fractions by position in samples.tsv 'files'. The true concatenated-fraction number is written in each .wiff's embedded Sample Name (fraction_map.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/wiff_samples_all.tsv). Positional numbering is wrong where WT90minRep2 lacks fraction 9 (Data112015_10-12 -> 10-12) and for the single-file technical-replicate-2 re-injection rows (Data030416_04 -> 3, Data081416_05 -> 2, Data081416_16 -> 7). The script only rewrites comment[fraction identifier] and asserts (source, biological replicate, technical replicate, fraction, label) stays unique.
+8 of 288 rows changed fraction identifier
+Justification: build numbers fractions by position in samples.tsv 'files'. The true concatenated-fraction number is written in each .wiff's embedded Sample Name (fraction_map.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/wiff_samples_all.tsv). Positional numbering is wrong only where WT90minRep2 lacks fraction 9 (Data112015_10-12 -> 10-12, 6 rows) and for the single-file technical-replicate-2 re-injection Data030416_04 (frac 3b -> 3, 2 rows). The script only rewrites comment[fraction identifier] and asserts (source, biological replicate, technical replicate, fraction, label) stays unique.
 
-## Round 1 (superseded build, instrument NT=TripleTOF 5600;AC=MS:1000932): parse_sdrf validate-sdrf -s annotations/PXD009311.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
+## parse_sdrf validate-sdrf -s annotations/PXD009311.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
 WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
 WARNING: Term: C3H in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
 Most seems to be fine. There were only warnings.
 exit=0
-## Round 1: sdrf-tools reconcile annotations/PXD009311.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/pride.json --accession PXD009311
-PXD009311: 1 value(s) disagree with the deposit record:
-  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'TripleTOF 5600+', the annotation says 'TripleTOF 5600'  [TripleTOF 5600+]
-exit=0
-Fix (technical.tsv, rebuilt): comment[instrument] -> NT=TripleTOF 5600+;AC=MS:1002584. The .wiff device string 'TripleTOF 5600' does not distinguish the models: a .wiff from PXD001997 (protocol: TripleTOF 5600+) carries the same string.
-
-## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD009311.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
-WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
-WARNING: Term: C3H in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
-Most seems to be fine. There were only warnings.
-exit=0
-Warnings justified: 'untreated' is the template-prescribed control value (batch rule 4); 'C3H' is the Cellosaurus breed of Ba/F3 and characteristics[strain or breed] is free text in the contract (validator looks it up in NCBITaxon, which has no C3H strain term).
+Warnings justified: 'untreated' is the template-prescribed control value (batch rule 4); 'C3H' is the Cellosaurus breed of Ba/F3 and characteristics[strain or breed] is free text in the contract (NCBITaxon has no C3H strain term).
 
 ## sdrf-tools structure annotations/PXD009311.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
@@ -32,7 +26,6 @@ exit=0
 ## sdrf-tools reconcile annotations/PXD009311.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/pride.json --accession PXD009311
 PXD009311: every annotated value agrees with the deposit record.
 exit=0
-Note: PRIDE disease 'Acute leukemia' is not on the rows (disease = normal, Ba/F3 is a non-leukaemic IL-3-dependent line); reconcile raised no finding.
 
 ## sdrf-tools check annotations/PXD009311.sdrf.tsv
 Hallucination Report: annotations/PXD009311.sdrf.tsv
@@ -46,10 +39,10 @@ Hallucination Report: annotations/PXD009311.sdrf.tsv
 exit=0
 
 ## parse_sdrf convert-openms -s annotations/PXD009311.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/convert)
-Conditions (9): dict_keys(['G-CSFR (CSF3R) Q741x truncation transduced|not applicable|untreated', 'G-CSFR (CSF3R) Q741x truncation transduced|12.5 minute|granulocyte colony-stimulating factor', 'G-CSFR (CSF3R) Q741x truncation transduced|90 minute|granulocyte colony-stimulating factor', 'G-CSFR (CSF3R) T618I transduced|not applicable|untreated', 'G-CSFR (CSF3R) T618I transduced|12.5 minute|granulocyte colony-stimulating factor', 'G-CSFR (CSF3R) T618I transduced|90 minute|granulocyte colony-stimulating factor', 'wild-type G-CSFR (CSF3R) transduced|not applicable|untreated', 'wild-type G-CSFR (CSF3R) transduced|12.5 minute|granulocyte colony-stimulating factor', 'wild-type G-CSFR (CSF3R) transduced|90 minute|granulocyte colony-stimulating factor'])
-Files per condition: dict_values([49, 25, 24, 50, 26, 24, 47, 24, 23])
+Files per condition: dict_values([49, 25, 24, 48, 24, 24, 47, 24, 23])
 SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD009311.sdrf.tsv
 exit=0
+T618I 12.5 min Rep 1 is now a single fraction group (Fraction_Group 6, fractions 1-12: _02,_05,_07,_09,_11,_13,_16,_19,_21,_23,_25,_27), matching its .group input list.
 
 ## sdrf-tools schema-check annotations/PXD009311.evidence.json
 annotations/PXD009311.evidence.json: valid evidence-manifest

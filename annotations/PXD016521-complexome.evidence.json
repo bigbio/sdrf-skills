@@ -46,7 +46,17 @@
   {
    "id": "ols",
    "kind": "ontology",
-   "location": "OLS4 via sdrf-tools ols / https://www.ebi.ac.uk/ols4/api: CLO:0001088 143B cell; MONDO:0009807 osteosarcoma; UBERON:0000981 femur; HANCESTRO:0005 European ancestry; HsapDv:0000086 adolescent stage (13-year-old stage HsapDv:0000107 is_a adolescent stage); NCIT:C185409 Dulbecco's Modified Eagle Medium; GO:0005739 mitochondrion; CHEBI:43769 dodecyl beta-D-maltoside; CHEBI:27729 digitonin; MS:1000556 LTQ Orbitrap XL; MS:1002634 Q Exactive Plus; MS:1000133 collision-induced dissociation; MS:1000422 beam-type collision-induced dissociation; MS:1000291 linear ion trap; MS:1000484 orbitrap; MS:1001251 Trypsin; PRIDE:0000627 Data-dependent acquisition; PRIDE:0000567 Gel electrophoresis; PRIDE:0000568 SDS PAGE (both descendants of PRIDE:0000550); PRIDE:0000325/0000326 SILAC heavy/light; UNIMOD:259, 267, 35, 24, 1, 122"
+   "location": "OLS4 via sdrf-tools ols / https://www.ebi.ac.uk/ols4/api: CLO:0001088 143B cell; MONDO:0009807 osteosarcoma; UBERON:0000981 femur; HANCESTRO:0005 European ancestry; HsapDv:0000107 13-year-old stage (is_obsolete false; the broader HsapDv:0000086 adolescent stage is obsolete in OLS4 and is not used); NCIT:C185409 Dulbecco's Modified Eagle Medium; GO:0005739 mitochondrion; CHEBI:43769 dodecyl beta-D-maltoside; CHEBI:27729 digitonin; MS:1000556 LTQ Orbitrap XL; MS:1002634 Q Exactive Plus; MS:1000133 collision-induced dissociation; MS:1000422 beam-type collision-induced dissociation; MS:1000291 linear ion trap; MS:1000484 orbitrap; MS:1001251 Trypsin; PRIDE:0000627 Data-dependent acquisition; PRIDE:0000567 Gel electrophoresis; PRIDE:0000568 SDS PAGE (both descendants of PRIDE:0000550); PRIDE:0000325/0000326 SILAC heavy/light; UNIMOD:259, 267, 35, 24, 1, 122"
+  },
+  {
+   "id": "refs",
+   "kind": "publication",
+   "location": "de Coo IF et al. (1999) Ann Neurol 45:130-133, PMID 9894888 (\"A 4-base pair deletion in the mitochondrial cytochrome b gene associated with parkinsonism/MELAS overlap syndrome\"; abstract: \"a young boy with an akinetic rigid syndrome and a mitochondrial encephalomyopathy with lactic acidosis and stroke-like episodes (MELAS)\", \"heteroplasmic frame shift mutation\"); Rana M et al. (2000) Ann Neurol 48:774-781, PMID 11079541 (\"We have isolated transmitochondrial cybrids containing a mitochondrial DNA cytochrome b 4-base pair deletion previously identified in a patient with parkinsonism\"); abstracts via Europe PMC REST search EXT_ID:<pmid>"
+  },
+  {
+   "id": "uniprot",
+   "kind": "database",
+   "location": "https://rest.uniprot.org/uniprotkb/stream?query=organism_id:9606+AND+reviewed:true&format=fasta (20,429 entries; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/uniprot_human_sp.fasta), mapped by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/scripts/nterm.py, output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/nterm_output.txt"
   },
   {
    "id": "templates",
@@ -63,16 +73,36 @@
     "cellosaurus",
     "ols"
    ],
-   "evidence": "Paper Results/Methods: \"Both cybrid clones, obtained from 143B TK− ρ° cells\"; \"143B‐TK− osteosarcoma‐derived cybrid cells were grown in High‐Glucose ... DMEM\". The cybrids (WT clone #4.1 and Δ4-CYB clone #17.3E) are not catalogued in Cellosaurus (search for MT-CYB cybrid: 0 hits), so the parental nuclear background 143B (CVCL_2270, synonym \"143B TK-\"; CLO:0001088 \"143B cell\") is recorded; the genotype column carries the mtDNA difference."
+   "evidence": "The samples are transmitochondrial cybrids: Paper Results: \"Both cybrid clones, obtained from 143B TK− ρ° cells (King & Attadi, 1996a; King & Attardi, 1996b), were populated with mitochondria from the same heteroplasmic patient (Rana et al, 2000)\"; Methods: \"143B‐TK− osteosarcoma‐derived cybrid cells\". The two clones (WT #4.1, Δ4-CYB #17.3E) have no Cellosaurus entry (search MT-CYB cybrid: 0 hits). The cell line / cellosaurus columns therefore name ONLY the nuclear parent 143B (CVCL_2270, synonym \"143B TK-\"; CLO:0001088 \"143B cell\"); this is made explicit by characteristics[cybrid nuclear parent], the mtDNA origin is given in characteristics[mitochondrial DNA donor], and the mtDNA genotype in characteristics[genotype]. (Cellosaurus models such cybrids as hybrid lines with two parents, e.g. GM16530 CVCL_IW03; no such entry exists for these clones.)"
+  },
+  {
+   "location": "characteristics[cybrid nuclear parent] all rows (custom column, campaign rule 15)",
+   "value": "143B TK- rho0 (parental 143B, CVCL_2270)",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"obtained from 143B TK− ρ° cells (King & Attardi 1996a,b)\". The specific rho0 derivative is not named; Cellosaurus 143B.206 (CVCL_U923, King & Attardi rho0 line, HI CVCL_2270) is a plausible but unconfirmed candidate, so only the documented parent 143B CVCL_2270 is cited."
+  },
+  {
+   "location": "characteristics[mitochondrial DNA donor] all rows (custom column, campaign rule 15)",
+   "value": "heteroplasmic MT-CYB 4-bp deletion patient, parkinsonism/MELAS overlap syndrome (de Coo 1999; Rana 2000)",
+   "source_ids": [
+    "paper",
+    "refs"
+   ],
+   "evidence": "Paper: both clones \"were populated with mitochondria from the same heteroplasmic patient (Rana et al, 2000)\" - the WT clone carries the patient's wild-type mtDNA, the Δ4-CYB clone the mutant mtDNA, so the value is identical on WT and Δ4-CYB rows. de Coo 1999: heteroplasmic 4-bp MT-CYB deletion in a young boy with akinetic rigid syndrome and MELAS (\"parkinsonism/MELAS overlap syndrome\"); Rana 2000 isolated the cybrids from this patient."
   },
   {
    "location": "characteristics[organism part], characteristics[disease], characteristics[sex], characteristics[age], characteristics[developmental stage], characteristics[ancestry category] all rows",
-   "value": "femur / osteosarcoma / female / 13Y / adolescent stage / European ancestry",
+   "value": "femur / osteosarcoma / female / 13Y / 13-year-old stage / European ancestry",
    "source_ids": [
     "cellosaurus",
-    "ols"
+    "ols",
+    "paper",
+    "refs"
    ],
-   "evidence": "These describe the donor of the 143B nuclear background (Cellosaurus CVCL_2270: SX Female, AG 13Y, DI Osteosarcoma, derived from site Bone, right femur UBERON_0000981, CC Population: Caucasian -> HANCESTRO:0005 European ancestry). 13Y maps to HsapDv:0000086 adolescent stage (parent of HsapDv:0000107 13-year-old stage). The mtDNA of the cybrids comes from other donors (not described in the record); no mitochondrial-disease term is broadcast because the compared variable is captured in genotype."
+   "evidence": "These describe the NUCLEAR donor only, i.e. the donor of 143B (Cellosaurus CVCL_2270: SX Female, AG 13Y, DI Osteosarcoma, derived from site Bone, right femur UBERON_0000981, CC Population: Caucasian -> HANCESTRO:0005 European ancestry; 13Y -> HsapDv:0000107 13-year-old stage, not obsolete). They do not describe the mtDNA donor (a boy with parkinsonism/MELAS overlap syndrome, de Coo 1999), who is recorded in characteristics[mitochondrial DNA donor]. Disease choice: characteristics[disease] stays osteosarcoma (MONDO:0009807) on every row, matching the nuclear-parent cell line named in characteristics[cell line]/[cellosaurus accession]. A MELAS/parkinsonism term was not put on the Δ4-CYB rows because the WT clone derives from the SAME patient (paper: \"the same heteroplasmic patient\"), so the donor disease does not differ between arms; giving it to Δ4-CYB rows only would turn the mtDNA genotype into a disease contrast, and giving it to both rows would assign a mitochondrial disease to a clone carrying 100% wild-type mtDNA. The compared variable is captured by genotype; the donor syndrome is stated in the mtDNA-donor column."
   },
   {
    "location": "characteristics[cell type], characteristics[passage number] all rows",
@@ -190,7 +220,7 @@
     "psm",
     "pride"
    ],
-   "evidence": "BN-PAGE lanes cut into 64 slices; fraction = rank of the slice number in the raw name (-CybMCo-<slice>-) within the lane. Lane digitonin rep1 holds slices 142-205; slice 205 was acquired as PRO4052A257 (run date 180309) and is the 64th file the lane3 PSM table lists; there is no PRO4052A129 in the deposit."
+   "evidence": "Rule 16 consideration: the BN-PAGE slices are gel fractions of ONE solubilized SILAC mixture per lane, each slice measured once; the 64 slices together reconstruct that lane (complexome profiles along the lane, Figs 3/5/EV1-5; Fig 2A pools all slices for H/L ratios). They are not independently prepared biochemical samples compared as conditions (unlike the sucrose-gradient precedent PXD004650), so they are encoded as comment[fraction identifier] with the slice order preserved, which keeps per-slice profiles reconstructable and lets pooled quantification group the 64 files per source. BN-PAGE lanes cut into 64 slices; fraction = rank of the slice number in the raw name (-CybMCo-<slice>-) within the lane. Lane digitonin rep1 holds slices 142-205; slice 205 was acquired as PRO4052A257 (run date 180309) and is the 64th file the lane3 PSM table lists; there is no PRO4052A129 in the deposit."
   },
   {
    "location": "comment[fractionation method] all rows",
@@ -220,14 +250,14 @@
     "pride",
     "ols"
    ],
-   "evidence": "Modifications observed in the Mascot PSM tables (orient.py): K(Label:13C(6)15N(2)), R(Label:13C(6)15N(4)), M(Oxidation), C(Propionamide), N-Term(Acetyl), N-Term(Formyl). Propionamide is variable (1,529 of 2,695 Cys-containing PSMs in MultiConsensus_psms.txt carry fewer Propionamide sites than Cys residues); labels are variable per campaign rule 11 and PRIDE (\"Mascot was configured to consider the possibility of the presence of the appropriate heavy-labeled amino acid residues\"). Acetyl/Formyl PP=Protein N-term inferred: every acetylated (16) and formylated (1) peptide that could be located in its UniProt sequence starts at residue 1/2; the Mascot setting itself is not deposited."
+   "evidence": "Modifications observed in the Mascot PSM tables (orient.py): K(Label:13C(6)15N(2)), R(Label:13C(6)15N(4)), M(Oxidation), C(Propionamide), N-Term(Acetyl), N-Term(Formyl). Propionamide is variable (1,529 of 2,695 Cys-containing PSMs in MultiConsensus_psms.txt carry fewer Propionamide sites than Cys residues); labels are variable per campaign rule 11 and PRIDE (\"Mascot was configured to consider the possibility of the presence of the appropriate heavy-labeled amino acid residues\"). Acetyl/Formyl PP=Protein N-term inferred from the full PSM tables (nterm.py against UniProt human reviewed): 15,542 of 15,715 N-Term(Acetyl) PSMs and 5,005 of 5,062 N-Term(Formyl) PSMs map to protein position 1/2 (155 and 35 not found in Swiss-Prot, 18 and 22 only internal - isoform/TrEMBL candidates); the Mascot setting itself is not deposited."
   }
  ],
  "limitations": [
   "Europe PMC fullTextXML returned HTTP 500; the paper was read from the PMC Open Access S3 copy (PMC6996572.1 txt/xml/figures).",
   "Search tolerances are not deposited for either search (PD/Mascot complexome, MaxQuant IP); comment[precursor/fragment mass tolerance] = not available, so parse_sdrf convert-openms cannot convert the file (campaign precedent PXD014368/PXD006676).",
   "The Δ4-CYB clone number conflicts in the paper (Results: #17.3E used for all figures; Methods complexome paragraph: \"#17.1 Δ4‐CYB\"); no clone number is written to the SDRF.",
-  "Cybrids are not in Cellosaurus; 143B (CVCL_2270) is the parental nuclear background. Donor attributes (sex, age, ancestry, organism part, disease) are those of the 143B donor; the 143B TK− ρ° subclone used to make the cybrids is not named.",
+  "Cybrids are not in Cellosaurus; 143B (CVCL_2270) is recorded as the nuclear parent only. Sex, age, developmental stage, ancestry, organism part and osteosarcoma describe the 143B (nuclear) donor; the mtDNA donor (same heteroplasmic MT-CYB Δ4 patient for both clones; male, parkinsonism/MELAS overlap, de Coo 1999) is given in characteristics[mitochondrial DNA donor]. The 143B TK− ρ° derivative used to make the cybrids is not named (143B.206, CVCL_U923, is a plausible but unconfirmed candidate). A second mutant clone #17.3B appears only in Fig 1C; clone E (#17.3E) was used for all later figures.",
   "Lane-to-detergent and lane-to-orientation assignments are data-derived (MT-CYB/UQCRC1 channel presence; cIII2–cI co-migration) and cross-checked against the Fig EV1 legend; no deposited table names the lanes. Whether the DDM and digitonin lanes of the same orientation come from the same mitochondrial preparation is not stated; replicate numbers therefore restart per detergent group and make no cross-detergent identity claim.",
   "Acetyl/Formyl position (Protein N-term) is inferred from the PSM data, not read from a Mascot parameter file. The MaxQuant re-quantification of the DDM complexome (Fig 2A, \"logarithmic ratios were calculated using MaxQuant\") is not deposited; this SDRF follows the deposited PD/Mascot search.",
   "The gel image 180206gelcomplexomic004.tif (non-MS file) is not represented."
