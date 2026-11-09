@@ -1,0 +1,296 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD012322.sdrf.tsv",
+ "dataset": "PXD012322",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012322 (MCP get_project_details; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012322/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/files_p0.json; 60 entries = 59 .raw + SILAC2.resultfiles.zip; page 1 empty; every entry projectAccessions contains PXD012322)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Elowsson Rendin L et al. Matrisome Properties of Scaffolds Direct Fibroblasts in Idiopathic Pulmonary Fibrosis. Int J Mol Sci 2019;20(16):4013, doi:10.3390/ijms20164013, PMID 31426504, PMC6719040 (Europe PMC fullTextXML, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/paper.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/paper.txt)"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6719040.1/ijms-20-04013-s001.pptx (md5 31c66b309ed4d22290758887ecd36413 = JATS suppdata-md5; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/supp/s001.pptx)"
+  },
+  {
+   "id": "mq_rep",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012322/SILAC2.resultfiles.zip members txt.repopulated/summary.txt, parameters.txt, proteinGroups.txt (zip central directory read by HTTP range, members inflated individually; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/dl/txt.repopulated__*)"
+  },
+  {
+   "id": "mq_scaf",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012322/SILAC2.resultfiles.zip members txt.scaffold/summary.txt, parameters.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/dl/txt.scaffold__*)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 64 KB of each of the 59 deposited .raw files (https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/08/PXD012322/<file>.raw), UTF-16-LE strings before the Study field (sample ID, vial position); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/rawhdr.json (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/scripts/rawhdr.py); first 1.5 MB of Emma_S1801_217/S1803_209/S1803_210 in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/raw/*.head (instrument string)"
+  },
+  {
+   "id": "datacheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/datacheck.tsv (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/scripts/datacheck.py): per MaxQuant experiment, raw-header sample ID, heavy share H/(H+L) of summed protein intensities, light intensity of IPF-discriminating basement-membrane proteins (LAMC2, LAMB3, COL4A3, COL4A4) and COL6A1/NID2, from txt.repopulated/proteinGroups.txt"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search?exact=true (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012322/ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t clinical-metadata (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; README.adoc:330 biological replicate numbering; spec \"Extending Templates\" for custom characteristics columns"
+  }
+ ],
+ "claims": [
+  {
+   "location": "scope / comment[data file] rows 1-94",
+   "value": "47 Emma_S1803_*.raw (repopulated-scaffold arm); 12 Emma_S1801_*.raw left out",
+   "source_ids": [
+    "files",
+    "mq_rep",
+    "mq_scaf",
+    "raw",
+    "paper"
+   ],
+   "evidence": "MaxQuant search txt.repopulated lists Emma_S1803_209..281 (+214, 285-287, S1804_005-008 which were not deposited) with Multiplicity 2, Labels1 Arg6;Lys8; 47 of them are deposited. txt.scaffold lists Emma_S1801_217..250 (Labels1 Lys6); the 12 deposited S1801 files are its Experiment 1 and match the decellularized-scaffold analysis (paper 2.2: 2 donors per group x triplicates; Supp. 2 heatmap columns HL 1:1..IPF 2:3). Those scaffolds contain no labelled material (H/L of summed intensity 0.15% in Experiment 1), and their raw sample IDs are SILAC_sample_1..12 with no donor key, so they are not SILAC-multiplexed samples and their identity is undocumented: left out (BLOCKED.md section PXD012322)."
+  },
+  {
+   "location": "comment[label] rows 1-94",
+   "value": "SILAC light = pre-existing scaffold proteins; SILAC heavy = proteins newly synthesized by the seeded fibroblasts",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_rep",
+    "datacheck"
+   ],
+   "evidence": "Paper 4.6: fibroblasts were pre-cultured 5 days in SILAC DMEM with heavy 13C6 L-arginine and 13C6 15N2 L-lysine and seeded on unlabelled decellularized scaffolds; 4.7: \"scaffolds (decellularized or repopulated with heavy labeled cells)\"; PRIDE description: heavy medium used \"to differentiate between preexisting scaffold proteins and newly synthesized proteins\". summary.txt: Multiplicity 2, Labels0 empty, Labels1 Arg6;Lys8 on every repopulated run. Data check: every run has heavy intensity (H share 2-21%), and the light channel carries the donor-specific scaffold signature (see disease claim)."
+  },
+  {
+   "location": "source name rows 1-94",
+   "value": "<scaffold donor>_scaffold_<vial>_preexisting-scaffold-proteins / _fibroblast-newly-synthesized-proteins",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Each raw file is one repopulated scaffold culture. Raw-header sample ID (FL9, FL10, FL11, Lures18, SAL23-SAL26) and vial position (A1..D12) are read from each .raw file; the channel suffix follows the label claim."
+  },
+  {
+   "location": "characteristics[individual] light rows (odd rows 1,3,...,93); characteristics[scaffold individual] rows 1-94",
+   "value": "FL9, FL10, FL11, Lures18, SAL23, SAL24, SAL25, SAL26",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Sample ID field of each raw file header. Eight distinct codes, each on exactly 6 runs (FL11 on 5: Emma_S1803_214 = vial A5 was searched but not deposited), matching paper 2.3: scaffolds from four patients per group, duplicates, days 1/3/9 (4 x 2 x 3 = 24 per group). These codes are the deposit's own donor IDs; the paper's Table 1 uses HL 1-4 / IPF 1-4 and no source links the two."
+  },
+  {
+   "location": "characteristics[individual] heavy rows (even rows 2,4,...,94)",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper 4.6: \"Human primary parenchymal lung fibroblasts were isolated from one healthy donor control lung\"; the donor is not identified."
+  },
+  {
+   "location": "characteristics[scaffold disease], factor value[scaffold disease], characteristics[disease] light rows (odd rows 1,3,...,93)",
+   "value": "idiopathic pulmonary fibrosis (SAL23-SAL26), normal (FL9, FL10, FL11, Lures18)",
+   "source_ids": [
+    "paper",
+    "raw",
+    "datacheck",
+    "ols"
+   ],
+   "evidence": "Paper 4.2: healthy donor lung explants came from Lund University hospital and IPF lung samples from Sahlgrenska University hospital (Gothenburg); the raw sample codes split 4 SAL (Sahlgrenska) / 4 FL+Lures (Lund) donors, matching n = 4 per group. Data check (datacheck.tsv): the paper reports laminin gamma2, beta3, alpha3 and collagen IV alpha3/alpha4 as significantly decreased in IPF scaffolds; in the light channel LAMB3/LAMC2/COL4A3/COL4A4 are ~0 in all 24 SAL runs and 1e8-5e9 in all 23 FL/Lures runs, with no overlap. Terms: idiopathic pulmonary fibrosis MONDO:0800504 (MONDO:0008345 is obsolete), normal PATO:0000461. Custom columns scaffold disease / scaffold individual (spec Extending Templates) carry the compared variable on both channels, because the heavy-channel material comes from healthy fibroblasts."
+  },
+  {
+   "location": "characteristics[disease] heavy rows (even rows 2,4,...,94)",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper 4.6: the fibroblasts were isolated from one healthy donor control lung. PATO:0000461."
+  },
+  {
+   "location": "characteristics[cell type] heavy rows (even rows 2,4,...,94); characteristics[material type] heavy rows (even rows 2,4,...,94)",
+   "value": "fibroblast of lung; cell",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper 4.6: \"Human primary parenchymal lung fibroblasts\". CL:0002553 fibroblast of lung (OLS). Material type cell (primary cells, not a cell line)."
+  },
+  {
+   "location": "characteristics[cell type] light rows (odd rows 1,3,...,93); characteristics[material type] light rows (odd rows 1,3,...,93)",
+   "value": "not applicable; tissue",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Light channel = decellularized lung tissue (scaffold); paper 4.1 decellularization and 2.1 \"no signs of visible cells\", so no cell type applies."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-94",
+   "value": "lung",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Scaffolds from peripheral lung parenchyma (paper 4.1); fibroblasts are lung parenchymal fibroblasts (4.6). UBERON:0002048."
+  },
+  {
+   "location": "characteristics[organism] rows 1-94",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq_rep"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; human donors; search against reviewed UniProt human (parameters.txt fasta swissprot_refproteome_human_20151117)."
+  },
+  {
+   "location": "characteristics[developmental stage] light rows (odd rows 1,3,...,93)",
+   "value": "adult",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Table 1: all eight scaffold donors are aged 41-86 years (all >= 20Y, campaign rule 9), so every scaffold donor is adult regardless of the unknown code-to-ID link. EFO:0001272 adult. Heavy rows: fibroblast donor age not stated -> not available."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[ancestry category] rows 1-94",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Table 1 gives age/sex per HL 1-4 / IPF 1-4, but no source maps those IDs to the deposited codes FL9..SAL26, so per-row values cannot be taken from an individual-level source (campaign rule 18). Fibroblast donor demographics are not stated. Ancestry not reported."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-94",
+   "value": "normal: FL9=1, FL10=2, FL11=3, Lures18=4; IPF: SAL23=1, SAL24=2, SAL25=3, SAL26=4 (both channels of a run share the number)",
+   "source_ids": [
+    "paper",
+    "supp",
+    "raw"
+   ],
+   "evidence": "Paper 2.3 and Supplement 3/4 legends: \"biological replicates per group n = 4, with technical replicates n = 2\" - the biological replicate is the scaffold donor. Numbered 1..4 within each factor value group, one number per independent donor (README.adoc:330, campaign rule 3). Each culture has its own source name (vial in the name)."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-94",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "raw",
+    "datacheck"
+   ],
+   "evidence": "Cultures were harvested after 1, 3 and 9 days (paper 2.3/4.6). The runs fall into three blocks of 16 (vials A1-B4, B5-C8, C9-D12; MaxQuant experiments 1-16, 17-32, 33-48), each with every donor twice, so each block is probably one time point, but no source says which block is which day, and the heavy share does not rise monotonically across blocks (datacheck.tsv), so it cannot be inferred from the data either. Recorded in BLOCKED.md."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-94; comment[fraction identifier] rows 1-94",
+   "value": "1; 1",
+   "source_ids": [
+    "raw",
+    "files"
+   ],
+   "evidence": "One unfractionated injection per culture (one raw per vial; 1 ug peptide injected, paper 4.7)."
+  },
+  {
+   "location": "comment[instrument] rows 1-94",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw headers: \"Q Exactive Plus - Orbitrap MS\"; paper 4.7 Q Exactive Plus. PRIDE instruments field says \"Q Exactive\" (submitter dropdown) - overruled by raw file and paper."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-94",
+   "value": "DDA PRIDE:0000627; HCD MS:1000422; orbitrap MS:1000484; 400m/z-1600m/z",
+   "source_ids": [
+    "paper",
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Paper 4.7/PRIDE: Q Exactive Plus top-15 DDA, full scan 400-1600 m/z at resolution 70,000; Q Exactive fragmentation is HCD with Orbitrap MS2; raw method DDA_60min_TOP15_600bar.meth."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-94",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_rep"
+   ],
+   "evidence": "Paper 4.7: overnight trypsin digestion. MaxQuant search rule Trypsin/P, specific, 2 missed cleavages (summary.txt) - campaign rule 2 records the digestion enzyme."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-94",
+   "value": "TCEP PRIDE:0000609; IAA PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper 4.7: reduced with 5 mM TCEP, alkylated with 10 mM iodoacetamide."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-94",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) R (Arg6, UNIMOD:188), Label:13C(6)15N(2) K (Lys8, UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_rep",
+    "ols"
+   ],
+   "evidence": "txt.repopulated parameters.txt: Fixed modifications Carbamidomethyl (C); summary.txt: Variable modifications Acetyl (Protein N-term);Oxidation (M); Labels1 Arg6;Lys8. Mass shifts Arg6 +6.020 = UNIMOD:188, Lys8 +8.014 = UNIMOD:259 (rule 11, MT=Variable batch convention). Paper/PRIDE list only Carbamidomethyl and Oxidation; the deposited search wins."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-94",
+   "value": "4.5 ppm; 20 ppm",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_rep"
+   ],
+   "evidence": "Paper 4.7 / PRIDE data processing: 4.5 ppm precursors, 20 ppm fragments; parameters.txt MS/MS tol. (FTMS) 20 ppm."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-94",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "No peptide fractionation; single 60-min gradient per sample."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-94",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1, 10, 15/18: scaffold donors are patients (IPF explants) and healthy donors, so clinical-metadata is declared; no cell line is involved, so cell-lines is not declared."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 12 decellularized-scaffold runs (Emma_S1801_217, 218, 219, 220, 222, 223, 224, 225, 227, 228, 229, 230) are not annotated: they contain no SILAC-labelled material (label-free in substance although searched as Multiplicity 2 / Lys6), and their raw sample IDs SILAC_sample_1..12 have no documented link to donors HL 1, HL 2, IPF 1, IPF 2 or replicates. BLOCKED.md section PXD012322.",
+  "characteristics[sampling time] = not available on every row: the day (1, 3 or 9) of each culture is not documented. The three vial blocks of 16 are probably the three time points, but the order is undocumented and the heavy share is not monotonic across blocks. Any time-course reuse needs the authors' sample sheet. BLOCKED.md section PXD012322.",
+  "Scaffold-donor age/sex are not available: Table 1 lists them for HL 1-4 / IPF 1-4, but nothing maps those IDs to the deposited codes FL9, FL10, FL11, Lures18, SAL23-SAL26. Lures18 is probably HL 4 (the only resection sample), but that is an inference and was not used.",
+  "Disease per scaffold donor rests on the paper's hospital-of-origin statement (IPF from Sahlgrenska, healthy from Lund) read against the SAL/FL code prefixes, cross-checked with the paper's IPF basement-membrane signature in the light channel (no overlap between groups). No source spells out the code-to-group key.",
+  "Light channel is not purely scaffold ECM: vimentin and other cellular proteins appear in the light channel (vimentin heavy share 3-73%), consistent with incomplete labelling after 5 days of pre-culture or residual cell remnants. The channel meaning follows the paper.",
+  "MaxQuant version: parameters.txt says 1.5.2.8 while the paper and PRIDE say 1.5.3.30.",
+  "Emma_S1803_214, 285, 286, 287 and Emma_S1804_005..008 were searched (txt.repopulated) but not deposited; 285-287/S1804 have no raw header to identify them.",
+  "Review not performed here (external hand-off; no self-review)."
+ ]
+}

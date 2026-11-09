@@ -6,7 +6,7 @@
   {
    "id": "pride",
    "kind": "repository",
-   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD024211 via mcp get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/pride.json)"
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD024211 via mcp get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/pride.json) and raw v3 JSON (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/pride_v3.json, used for reconcile)"
   },
   {
    "id": "files",

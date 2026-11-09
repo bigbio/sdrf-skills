@@ -1,0 +1,61 @@
+# PXD024211 validation log (2026-11-09T13:22Z); single round (no errors to fix)
+# Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/scripts/make_tables.py -> sdrf-tools build x2 (build/part_digly, build/part_total; identical headers) -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/scripts/postbuild.py
+# Post-build edit (deterministic, scripted): postbuild.py concatenates the two parts and inserts a second comment[cleavage agent details] right after the Trypsin column: NT=Lys-C;AC=MS:1001309 on the 36 diGly rows (in-solution LysC then trypsin), 'not applicable' on the 36 total-proteome rows (in-gel trypsin only). Why: the column is not 'multiple' in the contract, so build emits one column (same as PXD008327/PXD004245). The script asserts identical headers, a single Trypsin cleavage column on every row and 72 unique (data file, label) pairs.
+# Reconcile record: PRIDE v3 project JSON (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/pride_v3.json); the MCP-shaped pride.json has snake_case keys that reconcile's prose() does not read (gave an empty-prose 'unsupported' finding).
+
+# sha256 ba948086fe0174369d9dd47c47bf5aed9a21db0ae3302ae2516b76891621b037
+## parse_sdrf validate-sdrf -s annotations/PXD024211.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD024211.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD024211.sdrf.tsv
+Hallucination Report: annotations/PXD024211.sdrf.tsv
+  Terms checked:     20
+  Verified:          20
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD024211.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/pride_v3.json --accession PXD024211
+PXD024211: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'not applicable' but the record's digest names Trypsin, Lys-C
+exit=1
+
+## sdrf-tools reconcile /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/recon/digly_rows.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/pride_v3.json --accession PXD024211
+PXD024211: every annotated value agrees with the deposit record.
+exit=0
+
+## sdrf-tools reconcile /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/recon/total_rows.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/pride_v3.json --accession PXD024211
+PXD024211: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'not applicable' but the record's digest names Trypsin, Lys-C
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Lys-C digest but only Trypsin, not applicable is declared  [missing: Lys-C]
+exit=1
+
+## sdrf-tools schema-check annotations/PXD024211.evidence.json
+annotations/PXD024211.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD024211.sdrf.tsv annotations/PXD024211.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD024211.sdrf.tsv -t2 (cwd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/convert)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+
+## Refutations
+- reconcile exit=1 (cleavage_agent_contradicted / cleavage_agent_incomplete) is a FALSE POSITIVE:
+  (a) 'not applicable' is the reserved word in the second cleavage column (rows 37-72), and reconcile parses it as an enzyme name;
+  (b) reconcile checks the whole file against the project-level sentence "digested with LysC and trypsin in solution". That sentence covers the diGly arm only. The same PRIDE protocol says the total proteome was an "in-gel protein digest ... with trypsin", and thesis 6.2.10.1 says in-gel digestion used trypsin only.
+  Evidence: the 36 diGly rows alone (Trypsin + Lys-C) reconcile with exit 0. The total-proteome rows alone produce only these two cleavage findings.
+- convert-openms exit=1 is expected: comment[precursor mass tolerance] = not available. MaxQuant parameters.txt/summary.txt do not record it and no mqpar.xml is deposited. The same outcome occurred for campaign precedents PXD014368, PXD006676 and PXD024103. validate-sdrf and the template accept the reserved word.

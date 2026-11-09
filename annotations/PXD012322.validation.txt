@@ -1,0 +1,2 @@
+# PXD012322 validation (2026-11-09T13:23:12Z); SDRF sha256 dcaa5896a2c28d2a78d8e6b1b1c79f5d9ef5b488df4969333e43ab68d4908793
+$ parse_sdrf validate-sdrf -s annotations/PXD012322.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata

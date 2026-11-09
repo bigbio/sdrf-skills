@@ -236,6 +236,26 @@ All 12 RAW files of PXD044434 (`2427_*`) are present in PXD044779 with identical
 
 ---
 
+## Group 9 — PXD002270 ⊂ PXD002425 (Aretz/Gielisch et al., Mol Cell Proteomics 2016;15(5):1526-38, PMID 26852163)
+
+Same study (143B.TK- vs ρ0 osteosarcoma cells, SILAC Arg10/Lys8). The two PRIDE records list each other in `otherOmicsLinks` and cite the same paper.
+
+| | files | note |
+|---|---|---|
+| `PXD002270` | 131 (124 `.raw`) | submitted 2015-06-01 as **PARTIAL**, published 2022-02. Adds only 7 loose MaxQuant tables (`proteinGroups/peptides/msms/parameters/PhosphoSTYSites/GlyGlyKSites.txt`, `experimentalDesignTemplate.txt`). No runs of its own. |
+| `PXD002425` | 301 (124 `.raw`) | submitted 2016-01-11 (archive 2016/02). Superset: the same 124 `.raw` files, plus the metabolomics MRM files (`.wiff`/`.qsession`), `combined.zip` (the full MaxQuant 1.5.0.0 output), `extra_output.zip` and `MaxQuant_1.5.0.0.zip`, and a complete protocol. |
+
+**How it was checked:**
+- All 124 `.raw` file names are present in both accessions, with byte-exact `fileSizeBytes`; neither side has a raw file the other lacks. PXD002270 carries no checksums.
+- HTTP-range SHA-1 of three 16 KB windows (start, middle, end) of `141107_Rho_SI_143B_LSI_1D.raw`, `141211_Rho_SI_143_LSI_a_Ubi.raw` and `150224_Rho0_143B_TiO2_6_d.raw` matched across the two FTP paths in all 9 windows (batch-7 scratch `b7-PXD002270/rangecmp.txt`).
+- PXD002270's `experimentalDesignTemplate.txt` assigns all 124 runs to the same MaxQuant experiments as `combined/txt/summary.txt` in PXD002425.
+
+**Outcome:**
+- `PXD002270`: **not annotated**. Use PXD002425.
+- `PXD002425`: annotated (`annotations/PXD002425.sdrf.tsv`). PXD002270's design template and `parameters.txt` are cited there as evidence.
+
+---
+
 ## Why these were annotated anyway
 
 Each SDRF is correct *for its own accession* — that is what an SDRF describes, and a consumer

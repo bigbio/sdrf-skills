@@ -20,3 +20,39 @@ PXD008181: every annotated value agrees with the deposit record.
 exit=0
 
 ## sdrf-tools check annotations/PXD008181.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD008181.sdrf.tsv
+  Terms checked:     33
+  Verified:          25
+  Hallucinated:      8
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 3, 5]: 'MKL-1' in characteristics[cell line]
+  Row(s) [7, 9, 11]: 'MKL-2' in characteristics[cell line]
+  Row(s) [19, 21, 23]: 'WaGa' in characteristics[cell line]
+  Row(s) [25, 27]: 'MCC13' in characteristics[cell line]
+  Row(s) [1, 3, 5]: 'MKL-1' in factor value[cell line]
+  Row(s) [7, 9, 11]: 'MKL-2' in factor value[cell line]
+  Row(s) [19, 21, 23]: 'WaGa' in factor value[cell line]
+  Row(s) [25, 27]: 'MCC13' in factor value[cell line]
+exit=1
+Refuted: the 8 'hallucinated' hits are the same five Cellosaurus names (cell line + factor value columns) not present in CLO/BTO/EFO; see validate-sdrf note above. Every other term (25) verified.
+
+## sdrf-tools schema-check annotations/PXD008181.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD008181.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD008181.sdrf.tsv annotations/PXD008181.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD008181.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD008181/convert)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD008181.sdrf.tsv
+Factor columns: ['factor value[cell line]']
+Conditions (6): dict_keys(['MKL-1', 'HaCaT', 'MKL-2', 'PeTa', 'WaGa', 'MCC13'])
+Files per condition: dict_values([3, 14, 3, 3, 3, 2])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD008181.sdrf.tsv
+exit=0
