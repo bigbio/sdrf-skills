@@ -1,0 +1,289 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD030729-lfq-mouse.sdrf.tsv",
+ "dataset": "PXD030729",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD030729 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD030729/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/files_all.json; 117 entries = 72 .raw + MaxQuant txt/mqpar files of 7 searches)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Siebert A, Gattringer V, Weishaupt JH, Behrends C. ALS-linked loss of Cyclin-F function affects HSP90. Life Sci Alliance 2022;5(12):e202101359, doi:10.26508/lsa.202101359, PMID 36114006, PMC9481933 (https://pmc-oa-opendata.s3.amazonaws.com/PMC9481933.1/PMC9481933.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/paper.txt): Results (\"Ubiquitinome analysis\"), Fig 1 legend, reagent table (Cell lines), Methods \"CCNF ALS patient cells\", \"Mass spectrometry\", \"diGly proteomics\", \"APEX2-mediated biotinylation\", \"Streptavidin pulldown\", \"Immunoprecipitation\""
+  },
+  {
+   "id": "tableS_legends",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9481933.1/LSA-2021-01359_TableS1.xlsx .. TableS4.xlsx, sheet \"Legend\" (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/dl/TableS1-4.xlsx; dump /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/tables_legend.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 search API (exact) and sdrf-pride-pmc MCP searchClasses/getChildren, queried 2026-11-09 (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/ols.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/ols2.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/ols3.txt)"
+  },
+  {
+   "id": "rawhead",
+   "kind": "raw-file",
+   "location": "HTTP range read (bytes 0-3000000) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/09/PXD030729/20200426_AS204.raw, 20210218_AS434.raw, 20201208_AS350.raw, 20191216_AS_128.raw, 20191217_AS_146.raw, 20200117_AS_176.raw, 20200903_AS272.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/rawhead/*.bin): instrument method header \"Q Exactive HF - Orbitrap MS\", Full MS / dd-MS2 (TopN) with Orbitrap MS2 resolution 15,000-30,000"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract (ms-proteomics v1.2.0 + human/vertebrates v1.1.0 + cell-lines v1.1.0); upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); the spec submodule nested templates copy is older; spec README.adoc:27 (sdrf version v1.1.0)"
+  },
+  {
+   "id": "mq_N2a_HA",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/09/PXD030729/N2a_HA_summary.txt, N2a_HA_parameters.txt, N2a_HA_mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/dl/; MaxQuant 1.6.0.1; sdrf-tools search-params output in validation log)"
+  },
+  {
+   "id": "mq_N2a-APEX2",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/09/PXD030729/N2a-APEX2_summary.txt, N2a-APEX2_parameters.txt, N2a-APEX2_mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/dl/; MaxQuant 1.6.0.1; sdrf-tools search-params output in validation log)"
+  },
+  {
+   "id": "cellosaurus_CVCL_0470",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0470?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/cello_CVCL_0470.txt)"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/build/<part>/{samples,technical}.tsv + files.json; sdrf-tools build per part; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/scripts/postbuild.py (concatenation of identical-header parts; Lys-C second cleavage column for diGly files)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[instrument] rows 1-12",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "pride",
+    "paper",
+    "rawhead",
+    "ols"
+   ],
+   "evidence": "PRIDE instruments = Q Exactive HF (MS:1002523); paper Methods \"detected on an Q Exactive HF mass spectrometer\"; every sampled raw header (one per MaxQuant search) reads \"Q Exactive HF - Orbitrap MS\". MS:1002523 label verified in OLS."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-12",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "rawhead",
+    "ols"
+   ],
+   "evidence": "Paper: \"analyzed on a Q Exactive HF ... using data-dependent acquisition\"; raw method headers: \"FULL MS / DD-MS2 (TOPN)\". PRIDE:0000627 verified in OLS."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-12",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "rawhead",
+    "ols"
+   ],
+   "evidence": "Raw method headers give \"(N)CE / stepped (N)CE nce: 27/30\" in dd-MS2 on the Q Exactive HF, whose only MS2 activation is HCD (beam-type CID). MS:1000422 verified in OLS."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-12",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "rawhead",
+    "ols"
+   ],
+   "evidence": "dd-MS2 scans acquired at Orbitrap resolution 15,000 (HA-IP, N2a AS_146) / 30,000 (diGly, N2a AS204) per raw method header; MaxQuant FTMS MS/MS tolerance applies. MS:1000484 verified in OLS."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-12",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mq_N2a_HA",
+    "mq_N2a-APEX2"
+   ],
+   "evidence": "mqpar.xml of every search: <mainSearchTol>4.5</mainSearchTol>, <searchTolInPpm>true</searchTolInPpm> (first search 20 ppm). Note: the paper text says \"main search peptide mass tolerance 0.5 D\", which matches the ITMS MS/MS tolerance in mqpar, not the precursor setting; the deposited mqpar.xml is taken as authoritative."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-12",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_N2a_HA",
+    "mq_N2a-APEX2",
+    "rawhead"
+   ],
+   "evidence": "mqpar.xml msmsParams Name=\"FTMS\" MatchTolerance 20, MatchToleranceInPpm true; MS2 spectra are Orbitrap (FTMS) per raw headers."
+  },
+  {
+   "location": "comment[cleavage agent details] (first column) rows 1-12",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols",
+    "mq_N2a_HA",
+    "mq_N2a-APEX2"
+   ],
+   "evidence": "Paper/PRIDE: \"trypsinized\" (IP), \"trypsinization overnight\" (APEX2), \"Subsequent digestion of peptides with trypsin (Promega)\" (diGly). MaxQuant enzyme Trypsin/P (search rule; recorded as note, batch rule 2). MS:1001251 verified in OLS."
+  },
+  {
+   "location": "comment[modification parameters] (3 columns) rows 1-12",
+   "value": "Carbamidomethyl C Fixed (UNIMOD:4); Oxidation M (UNIMOD:35), Acetyl Protein N-term (UNIMOD:1) Variable",
+   "source_ids": [
+    "mq_N2a_HA",
+    "mq_N2a-APEX2"
+   ],
+   "evidence": "mqpar.xml/summary.txt of the HA and APEX2 searches: Fixed \"Carbamidomethyl (C)\", Variable \"Oxidation (M);Acetyl (Protein N-term)\", labelMods empty, Multiplicity 1, LFQ on (lfqMode 1)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-12",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Spec README.adoc:27 current SDRF version v1.1.0 (batch rule 1)."
+  },
+  {
+   "location": "comment[sdrf template] (3 columns) rows 1-12",
+   "value": "ms-proteomics v1.2.0; human or vertebrates v1.1.0; cell-lines v1.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Filled by sdrf-tools build from the -t templates; ms-proteomics latest 1.2.0 per upstream sdrf-templates 7da1747 templates.yaml line 150."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-12",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "build"
+   ],
+   "evidence": "Batch rule 10."
+  },
+  {
+   "location": "technology type, assay name, comment[data file], comment[technical replicate] rows 1-12",
+   "value": "proteomic profiling by mass spectrometry; assay = raw file stem; technical replicate 1",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "Every raw file listed by PRIDE for this part is claimed once per channel; one injection per file; build defaults."
+  },
+  {
+   "location": "comment[label] rows 1-12",
+   "value": "label free sample",
+   "source_ids": [
+    "mq_N2a_HA",
+    "mq_N2a-APEX2"
+   ],
+   "evidence": "N2a_HA and N2a-APEX2 mqpar.xml: multiplicity 1, labelMods empty, lfqMode 1; summary.txt Multiplicity 1. Tables S3/S4 analyse LFQ intensities (\"Log2 transform LFQ values\")."
+  },
+  {
+   "location": "source name + characteristics[bait] + factor value[bait] HA-IP rows 1-6",
+   "value": "FLAG-HA-CCNF (CCNF_1..3) vs FLAG-HA-TBC1D7 control bait (TBC1D7 1..3)",
+   "source_ids": [
+    "mq_N2a_HA",
+    "tableS_legends",
+    "paper"
+   ],
+   "evidence": "N2a_HA summary.txt experiments (2CCNF_n / 2TBC_n or 2-CCNF_n / 2-TBC1D7[_n]); Table S3 legend: \"HA Immunoprecipitation ... comparing cells overexpressing CCNF vs. TBC1D7\", \"pHAGE-FLAG-HA-CCNF = HA-CCNF / 2-CCNF\", \"pHAGE-FLAG-HA-TBC1D7 = HA-TBC1D7 / 2-TBC\". Stable lines by lentiviral transduction (Methods)."
+  },
+  {
+   "location": "source name + characteristics[bait] + characteristics[treatment] + factor value[treatment] APEX2 rows 7-12",
+   "value": "myc-APEX2-CCNF with biotin-phenol (7-CCNF_1..3) vs without biotin-phenol = untreated (7-CCNF_noBP 1..3)",
+   "source_ids": [
+    "mq_N2a-APEX2",
+    "tableS_legends",
+    "paper"
+   ],
+   "evidence": "N2a-APEX2 summary.txt experiments 7-CCNF_n and 7-CCNF_noBP n; Table S4 legend: \"close proximity proteomics_BP vs. noBP\", \"pHAGE-myc-APEX2-CCNF = 7-CCNF\", \"Biotin phenol (BP) = BP\"; Methods: \"grown in the presence of 500 uM biotin-phenol for 30 min ... pulsed with 1 mM H2O2\". noBP controls written as untreated (batch rule 4)."
+  },
+  {
+   "location": "characteristics[treatment] + factor value[treatment] HA-IP rows 1-6",
+   "value": "untreated",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "No treatment applied in the HA-IP experiments (batch rule 4: controls/untreated = untreated)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-12",
+   "value": "1-3 per (bait, treatment) group",
+   "source_ids": [
+    "mq_N2a_HA",
+    "mq_N2a-APEX2",
+    "paper"
+   ],
+   "evidence": "\"Proximity proteomics was performed in triplicates\"; three experiments per group in each summary.txt (_1.._3)."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] APEX2 rows 7-12",
+   "value": "TCEP (PRIDE:0000609) / Iodoacetamide (PRIDE:0000599)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Streptavidin pulldown: \"TCEP was added to a final concentration of 5 mM ... incubated with iodoacetamide (IAA) for 20 min\". Accessions verified in OLS."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] HA-IP rows 1-6",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "build"
+   ],
+   "evidence": "HA-IP protocol: elution by boiling in SDS buffer with 300 mM DTT or by HA peptide; no explicit reduction/alkylation step. Built as a separate part with identical headers and concatenated (scripts/postbuild.py)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-12",
+   "value": "sample enrichment",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Anti-HA agarose immunoprecipitation (HA) and streptavidin pulldown of biotinylated proteins (APEX2); EFO:0009106."
+  },
+  {
+   "location": "characteristics[material type] rows 1-12",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Stable cell lines generated by lentiviral transduction."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-12",
+   "value": "1",
+   "source_ids": [
+    "mq_N2a_HA",
+    "mq_N2a-APEX2"
+   ],
+   "evidence": "One raw file per MaxQuant experiment (single injection, unfractionated)."
+  },
+  {
+   "location": "characteristics[organism] + characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] + characteristics[organism part] + characteristics[cell type] + characteristics[disease] + characteristics[strain or breed] + characteristics[sex] rows 1-12",
+   "value": "Mus musculus; Neuro-2a; CVCL_0470; Neuro-2a; peripheral nervous system; neural crest derived neuroblast; neuroblastoma; A/J; male",
+   "source_ids": [
+    "paper",
+    "cellosaurus_CVCL_0470",
+    "ols",
+    "mq_N2a_HA"
+   ],
+   "evidence": "N2a (ATCC CCL-131) per paper/Table S3-S4; mouse FASTA UP000000589; Cellosaurus CVCL_0470 PNS, neural crest derived neuroblast, mouse neuroblastoma, A/J, male."
+  }
+ ],
+ "limitations": [
+  "Deposit is mixed: 48 SILAC (K0/K8) diGly runs and 24 label-free HA-IP / APEX2 runs; split by labelling and organism into PXD030729-digly-human, -digly-mouse, -lfq-human, -lfq-mouse (batch rule 12). All 72 deposited .raw files are annotated; none is left out.",
+  "comment[collision energy] and comment[ms1 scan range] are omitted: only one raw header per MaxQuant search was range-read and the values differ between searches (NCE 27 HA-IP vs 30 diGly; MS1 300-1650 vs 300-1750 m/z), so per-file values were not verified.",
+  "The paper states main search tolerance \"0.5 D\" and a human UniProt database for all diGly searches; the deposited mqpar.xml files give 4.5 ppm main-search precursor tolerance (0.5 Da is the ITMS MS/MS tolerance) and a mouse UP000000589 FASTA for the N2a searches. The mqpar.xml is followed.",
+  "reconcile reports labelled_annotated_as_label_free (BLOCKER) and cleavage_agent_incomplete (MAJOR) for this file; both are refuted in validation.txt: the project-level SILAC quantification and the Lys-C step belong to the diGly experiments only (HA/APEX2 searches: multiplicity 1, empty labelMods; their protocols name trypsin only).",
+  "The paper says \"interaction proteomics experiments were performed in quadruplicates\" but only triplicates were deposited/searched for HA-IP; the deposited files are annotated.",
+  "Culture medium for the HA-IP and APEX2 cells is not stated: not available. Whether H2O2 was applied to the no-biotin-phenol controls is not stated; they are written untreated.",
+  "Table S4 tabs 5-6 (SH-SY5Y APEX2-CCNF vs APEX2-TBC1D7) have no deposited raw files; only BP vs noBP runs are in the deposit."
+ ]
+}

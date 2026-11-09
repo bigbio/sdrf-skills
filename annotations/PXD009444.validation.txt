@@ -1,0 +1,176 @@
+# PXD009444 validation log (2026-11-09T13:31Z)
+# Two SDRFs (campaign rule 12: SILAC and label-free runs separated):
+#   PXD009444-silac.sdrf.tsv sha256 014ad533098386f275f867e0b52d11498b17bb739dae2bd71dff52ab44d43280
+#   PXD009444-lfq.sdrf.tsv   sha256 eb6aa1e58d8266a3a373fa3e147776176df3758885301457aaf083598aa16d9b
+#
+# Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/scripts/run_build.sh = make_tables.py -> sdrf-tools build (3 builds: SILAC LTQ XL part, SILAC Fusion part, LFQ)
+#        -> scripts/postbuild.py.
+# Post-build edit (deterministic, rules 2 and 17): postbuild.py (a) concatenates the two SILAC builds after asserting identical
+#   headers, (b) inserts a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 directly after the Trypsin column on
+#   every row. Why: the column is not 'multiple' in the ms-proteomics contract, so build emits one column only (same behaviour
+#   documented for PXD008327/PXD004245). The digest used Lys-C (2.5 h) then trypsin (overnight) — PRIDE sampleProcessingProtocol
+#   and thesis 4.8. The script asserts exactly one pre-existing cleavage column equal to Trypsin on every row. No other edit.
+#
+# Round 1 (pre-final build, one technical.tsv value changed afterwards): validate-sdrf exit 0 (warnings only); an OLS check of my
+#   own technical value showed PRIDE:0000600 is "Chloroacetamide (ClAA)", not "No fractionation", so the optional
+#   comment[fractionation method] column was dropped from technical.tsv and the tables rebuilt. Results below are for the final files.
+#
+# Refutations of tool findings (rule 13):
+# R1 reconcile (pride_v3.json) SILAC: MAJOR instrument_contradicted 'Q Exactive Plus' vs 'LTQ Orbitrap XL' — FALSE POSITIVE.
+#    The protocol says "Measurement was either done on LTQ Orbitrap XL, Orbitrap Fusion or Q Exactive Plus (Q Exactive Plus below,
+#    for other instruments see SI)"; reconcile reads only the QE Plus paragraph. Raw headers (first 1.5 MB of every file,
+#    /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/raw/*.head): all 18 A549 files = "LTQ Orbitrap XL MS"; all 12 HeLa/SH-SY5Y SILAC files = "Orbitrap Fusion"; all 9 H2O2 LFQ
+#    files = "Q Exactive Plus". Thesis: "LTQ Orbitrap XL (A549)", "Orbitrap Fusion (SH-SY5Y)". PRIDE instruments list all three.
+# R2 reconcile (pride_v3.json) LFQ: BLOCKER labelled_annotated_as_label_free — FALSE POSITIVE. The project registers both
+#    "Label free" and "SILAC". The nine H2O2 runs were searched label-free: txt_LFQ_H2O2_dependent_labeling/summary.txt
+#    Multiplicity 1, Labels0 empty for every raw file; proteinGroups.txt carries LFQ intensity columns and no ratio columns; thesis
+#    2.7 "label-free quantification"; the SILAC runs are in the other SDRF. Exit 1 of this reconcile run is this finding only.
+# R3 reconcile (MCP pride.json, a reformatted copy of the same record) both files: MINOR cleavage_agent_unsupported — FALSE POSITIVE
+#    caused by the copy's field names (sample_processing_protocol); against the raw v3 record (pride_v3.json, sampleProcessingProtocol)
+#    the finding does not appear. The protocol text says "endoproteinase Lys-C (LysC) ... Trypsin".
+# W1 validate-sdrf SILAC: DMEM/F12 not in NCIT — the SH-SY5Y medium is stated (thesis Table 4 and methods); NCIT has no DMEM/F12
+#    term (OLS searches in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/ols_log.txt). Warning accepted, value kept.
+# W2 validate-sdrf LFQ: 'untreated' not in NCIT/EFO — template-prescribed control value (sample-metadata.yaml:297-299; rule 4).
+# W3 validate-sdrf SILAC: OLS 500 errors while searching "cervical adenocarcinoma" in ncit (server-side, retried); the term is
+#    MONDO:0005153 (verified in OLS, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/ols_log.txt) and sdrf-tools check verifies all 33 terms. Exit 0.
+# W4 convert-openms: "no TA= specified" — Acetyl uses PP=Protein N-term by format rule; conversion succeeds (exit 0).
+# W5 sdrf-tools check LFQ: first run in the final pass died on an OLS 500 (search q=adult); the rerun (appended at the end) is CLEAN, exit 0.
+
+################ PXD009444-silac.sdrf.tsv  sha256 014ad533098386f275f867e0b52d11498b17bb739dae2bd71dff52ab44d43280  (60 rows x 48 cols)
+
+## parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+ERROR:sdrf_pipelines.ols.ols:OLS search term cervical adenocarcinoma error, retry number 2
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term cervical adenocarcinoma. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=cervical+adenocarcinoma&name=class&rows=10&start=20&ontology=ncit&exact=on
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/ols/ols.py", line 902, in _perform_ols_search
+    req.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=cervical+adenocarcinoma&name=class&rows=10&start=20&ontology=ncit&exact=on
+WARNING: Term: DMEM/F12 in column 'characteristics[culture medium]', is not found in the given ontology list ncit
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv
+  Terms checked:     33
+  Verified:          33
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/pride_v3.json --accession PXD009444
+PXD009444: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive Plus', the annotation says 'LTQ Orbitrap XL'  [Q Exactive Plus]
+exit=0
+
+## sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/pride.json --accession PXD009444
+PXD009444: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv -t2 (cwd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/conv_silac)
+Factor columns: ['factor value[cell line]', 'factor value[compound]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]', 'characteristics[dose]']
+Conditions (6): dict_keys(['A549|DMSO', 'A549|FM247', 'HeLa|DMSO', 'HeLa|FM247', 'SH-SY5Y|DMSO', 'SH-SY5Y|FM247'])
+Files per condition: dict_values([18, 18, 6, 6, 6, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 60 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD009444-silac.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit=0
+
+################ PXD009444-lfq.sdrf.tsv  sha256 eb6aa1e58d8266a3a373fa3e147776176df3758885301457aaf083598aa16d9b  (9 rows x 45 cols)
+
+## parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/sdrf-tools", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/tools/cli.py", line 780, in main
+    sys.exit(commands[args.command](args))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/tools/cli.py", line 33, in cmd_check
+    report = detect_hallucinations(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/tools/hallucination.py", line 307, in detect_hallucinations
+    _check_ontology_column(sdrf, col_key, inner, expected_onts,
+  File "/home/user/bigbio/sdrf-skills/tools/hallucination.py", line 575, in _check_ontology_column
+    terms = ols_client.search_term(value, exact=True, rows=10)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/tools/ols_client.py", line 101, in search_term
+    data = self._get("/search", params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/tools/ols_client.py", line 72, in _get
+    resp.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=adult&rows=10&exact=true
+exit=1
+
+## sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/pride_v3.json --accession PXD009444
+PXD009444: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+exit=1
+
+## sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/pride.json --accession PXD009444
+PXD009444: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv -t2 (cwd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/conv_lfq)
+Factor columns: ['factor value[hydrogen peroxide concentration]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[treatment]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]', 'characteristics[compound]', 'characteristics[dose]']
+Conditions (3): dict_keys(['0 mM', '1 mM', '2 mM'])
+Files per condition: dict_values([3, 3, 3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 9 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit=0
+
+## raw-file coverage across both SDRFs
+deposited raw 39 distinct used 39 missing [] extra []
+
+## sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv (rerun after OLS 500)
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0

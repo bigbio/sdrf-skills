@@ -1,0 +1,294 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-mouse.sdrf.tsv",
+ "dataset": "PXD030729",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD030729 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD030729/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/files_all.json; 117 entries = 72 .raw + MaxQuant txt/mqpar files of 7 searches)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Siebert A, Gattringer V, Weishaupt JH, Behrends C. ALS-linked loss of Cyclin-F function affects HSP90. Life Sci Alliance 2022;5(12):e202101359, doi:10.26508/lsa.202101359, PMID 36114006, PMC9481933 (https://pmc-oa-opendata.s3.amazonaws.com/PMC9481933.1/PMC9481933.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/paper.txt): Results (\"Ubiquitinome analysis\"), Fig 1 legend, reagent table (Cell lines), Methods \"CCNF ALS patient cells\", \"Mass spectrometry\", \"diGly proteomics\", \"APEX2-mediated biotinylation\", \"Streptavidin pulldown\", \"Immunoprecipitation\""
+  },
+  {
+   "id": "tableS_legends",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9481933.1/LSA-2021-01359_TableS1.xlsx .. TableS4.xlsx, sheet \"Legend\" (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/dl/TableS1-4.xlsx; dump /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/tables_legend.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 search API (exact) and sdrf-pride-pmc MCP searchClasses/getChildren, queried 2026-11-09 (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/ols.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/ols2.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/ols3.txt)"
+  },
+  {
+   "id": "rawhead",
+   "kind": "raw-file",
+   "location": "HTTP range read (bytes 0-3000000) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/09/PXD030729/20200426_AS204.raw, 20210218_AS434.raw, 20201208_AS350.raw, 20191216_AS_128.raw, 20191217_AS_146.raw, 20200117_AS_176.raw, 20200903_AS272.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/rawhead/*.bin): instrument method header \"Q Exactive HF - Orbitrap MS\", Full MS / dd-MS2 (TopN) with Orbitrap MS2 resolution 15,000-30,000"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract (ms-proteomics v1.2.0 + human/vertebrates v1.1.0 + cell-lines v1.1.0); upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); the spec submodule nested templates copy is older; spec README.adoc:27 (sdrf version v1.1.0)"
+  },
+  {
+   "id": "mq_N2a_diGly",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/09/PXD030729/N2a_diGly_summary.txt, N2a_diGly_parameters.txt, N2a_diGly_mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/dl/; MaxQuant 1.6.0.1; sdrf-tools search-params output in validation log)"
+  },
+  {
+   "id": "cellosaurus_CVCL_0470",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0470?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/cello_CVCL_0470.txt)"
+  },
+  {
+   "id": "ratio_check",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/ratio_check.txt from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/scripts/check_ratios.py over https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/09/PXD030729/{N2a,SH,LCL}_diGly_stringent_GlyGly__K_Sites.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/dl/*_sites.txt)"
+  },
+  {
+   "id": "sex_check",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/channel_check.txt from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/scripts/check_channels.py over https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/09/PXD030729/{N2a,SH,LCL}_diGly_evidence.txt (Y-unique evidence and CCNF evidence per channel; inconclusive, see limitations)"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/build/<part>/{samples,technical}.tsv + files.json; sdrf-tools build per part; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/scripts/postbuild.py (concatenation of identical-header parts; Lys-C second cleavage column for diGly files)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[instrument] rows 1-16",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "pride",
+    "paper",
+    "rawhead",
+    "ols"
+   ],
+   "evidence": "PRIDE instruments = Q Exactive HF (MS:1002523); paper Methods \"detected on an Q Exactive HF mass spectrometer\"; every sampled raw header (one per MaxQuant search) reads \"Q Exactive HF - Orbitrap MS\". MS:1002523 label verified in OLS."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-16",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "rawhead",
+    "ols"
+   ],
+   "evidence": "Paper: \"analyzed on a Q Exactive HF ... using data-dependent acquisition\"; raw method headers: \"FULL MS / DD-MS2 (TOPN)\". PRIDE:0000627 verified in OLS."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-16",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "rawhead",
+    "ols"
+   ],
+   "evidence": "Raw method headers give \"(N)CE / stepped (N)CE nce: 27/30\" in dd-MS2 on the Q Exactive HF, whose only MS2 activation is HCD (beam-type CID). MS:1000422 verified in OLS."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-16",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "rawhead",
+    "ols"
+   ],
+   "evidence": "dd-MS2 scans acquired at Orbitrap resolution 15,000 (HA-IP, N2a AS_146) / 30,000 (diGly, N2a AS204) per raw method header; MaxQuant FTMS MS/MS tolerance applies. MS:1000484 verified in OLS."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-16",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mq_N2a_diGly"
+   ],
+   "evidence": "mqpar.xml of every search: <mainSearchTol>4.5</mainSearchTol>, <searchTolInPpm>true</searchTolInPpm> (first search 20 ppm). Note: the paper text says \"main search peptide mass tolerance 0.5 D\", which matches the ITMS MS/MS tolerance in mqpar, not the precursor setting; the deposited mqpar.xml is taken as authoritative."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-16",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_N2a_diGly",
+    "rawhead"
+   ],
+   "evidence": "mqpar.xml msmsParams Name=\"FTMS\" MatchTolerance 20, MatchToleranceInPpm true; MS2 spectra are Orbitrap (FTMS) per raw headers."
+  },
+  {
+   "location": "comment[cleavage agent details] (first column) rows 1-16",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols",
+    "mq_N2a_diGly"
+   ],
+   "evidence": "Paper/PRIDE: \"trypsinized\" (IP), \"trypsinization overnight\" (APEX2), \"Subsequent digestion of peptides with trypsin (Promega)\" (diGly). MaxQuant enzyme Trypsin/P (search rule; recorded as note, batch rule 2). MS:1001251 verified in OLS."
+  },
+  {
+   "location": "comment[cleavage agent details] (second column) rows 1-16",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols",
+    "build"
+   ],
+   "evidence": "diGly protocol (paper and PRIDE): \"lysates were digested with 5 ng/ul lys-C (Wako) for 1 h at RT. Subsequent digestion of peptides with trypsin\". MS:1001309 verified in OLS. Column inserted by the deterministic post-build step scripts/postbuild.py --lysc (batch rule 2)."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-16",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "diGly: \"After reduction with 5 mM DTT and alkylation with 10 mM chloroacetamide\". PRIDE:0000608 verified in OLS."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-16",
+   "value": "NT=Chloroacetamide (ClAA);AC=PRIDE:0000600",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "diGly: \"alkylation with 10 mM chloroacetamide\". PRIDE:0000600 verified in OLS."
+  },
+  {
+   "location": "comment[modification parameters] (5 columns) rows 1-16",
+   "value": "Carbamidomethyl C Fixed (UNIMOD:4); Oxidation M (UNIMOD:35), Acetyl Protein N-term (UNIMOD:1), GG K (UNIMOD:121), Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_N2a_diGly",
+    "ols"
+   ],
+   "evidence": "mqpar.xml/summary.txt: Fixed \"Carbamidomethyl (C)\"; Variable \"Oxidation (M);Acetyl (Protein N-term);stringent GlyGly (K)\"; labelMods [\"\", \"Lys8\"], Multiplicity 2. MaxQuant \"stringent GlyGly (K)\" = Gly-Gly remnant (114.04) on K excluding peptide C-terminal K (paper: \"diGG (114.042927; excluded from the C terminus)\") -> UNIMOD:121 GG. Lys8 = +8.0142 -> UNIMOD:259, MT=Variable (batch rule 11). Accessions verified in OLS (UNIMOD:121 GG, UNIMOD:259 Label:13C(6)15N(2))."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-16",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Spec README.adoc:27 current SDRF version v1.1.0 (batch rule 1)."
+  },
+  {
+   "location": "comment[sdrf template] (3 columns) rows 1-16",
+   "value": "ms-proteomics v1.2.0; human or vertebrates v1.1.0; cell-lines v1.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Filled by sdrf-tools build from the -t templates; ms-proteomics latest 1.2.0 per upstream sdrf-templates 7da1747 templates.yaml line 150."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-16",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "build"
+   ],
+   "evidence": "Batch rule 10."
+  },
+  {
+   "location": "technology type, assay name, comment[data file], comment[technical replicate] rows 1-16",
+   "value": "proteomic profiling by mass spectrometry; assay = raw file stem; technical replicate 1",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "Every raw file listed by PRIDE for this part is claimed once per channel; one injection per file; build defaults."
+  },
+  {
+   "location": "source name rows 1-16",
+   "value": "N2a_<WT|CCNF-KO-cl10>_rep<n>",
+   "source_ids": [
+    "mq_N2a_diGly",
+    "tableS_legends",
+    "build"
+   ],
+   "evidence": "MaxQuant experiments \"WT(light)/cl10(heavy)_1.._4\" = four biological replicates, each two raw files (sequential IPs). One source per culture and channel."
+  },
+  {
+   "location": "comment[label] + characteristics[genotype] + factor value[genotype] rows 1-16",
+   "value": "SILAC light = CCNF wild type Neuro-2a; SILAC heavy = CCNF knockout clone 10",
+   "source_ids": [
+    "mq_N2a_diGly",
+    "tableS_legends",
+    "paper",
+    "ratio_check"
+   ],
+   "evidence": "Experiment names \"WT(light)/cl10(heavy)_n\"; Table S1 legend \"SILAC labelled N2a cells, WT (light) vs. KO (heavy)\", \"N2a CCNF KO = N2a cl.10\". Data check: paper says five MAP1B diGly sites log2 FC < -1.5 and Peg10 decreased in N2a KO; deposited Sites log2 H/L Map1b K1904/K1941/K1958/K1972 -1.6, K2046 -1.54, K2374 -1.53, Peg10 K879/K860 -1.55/-1.66 -> heavy = KO. No conflict."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-16",
+   "value": "1-4 per genotype",
+   "source_ids": [
+    "paper",
+    "mq_N2a_diGly"
+   ],
+   "evidence": "\"In quadruplicate experiments\"; experiments _1.._4; numbering per factor-value group."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-16",
+   "value": "1, 2 (sequential diGly IPs)",
+   "source_ids": [
+    "paper",
+    "mq_N2a_diGly"
+   ],
+   "evidence": "\"Each sample was immunoprecipitated sequentially two times and each IP was analyzed separately\"; AS204-207 and AS212-215 share experiment names; order by acquisition (limitation)."
+  },
+  {
+   "location": "characteristics[organism] + characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] + characteristics[organism part] + characteristics[cell type] + characteristics[disease] + characteristics[strain or breed] + characteristics[sex] rows 1-16",
+   "value": "Mus musculus; Neuro-2a; CVCL_0470; Neuro-2a; peripheral nervous system; neural crest derived neuroblast; neuroblastoma; A/J; male",
+   "source_ids": [
+    "paper",
+    "cellosaurus_CVCL_0470",
+    "ols",
+    "mq_N2a_diGly"
+   ],
+   "evidence": "Paper: \"murine N2a\", ATCC CCL-131; N2a search FASTA = mouse UP000000589. Cellosaurus CVCL_0470: OX 10090; Derived from site Peripheral nervous system (UBERON:0000010); Cell type Neural crest derived neuroblast (CL:0002676); DI Mouse neuroblastoma (MONDO:0005072 neuroblastoma); Breed/subspecies A/J; SX Male. Labels verified in OLS."
+  },
+  {
+   "location": "characteristics[material type] rows 1-16",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured Neuro-2a cells."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-16",
+   "value": "sample enrichment",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "anti-diGly peptide immunoaffinity enrichment; EFO:0009106 (no ubiquitin-specific child of EFO:0009090)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-16",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"Cells were cultured in lysine- and arginine-free DMEM ...\" (diGly proteomics). NCIT:C185409."
+  }
+ ],
+ "limitations": [
+  "Deposit is mixed: 48 SILAC (K0/K8) diGly runs and 24 label-free HA-IP / APEX2 runs; split by labelling and organism into PXD030729-digly-human, -digly-mouse, -lfq-human, -lfq-mouse (batch rule 12). All 72 deposited .raw files are annotated; none is left out.",
+  "The two sequential anti-diGly IPs of each SILAC mixture are encoded as comment[fraction identifier] 1 and 2 of one sample (MaxQuant gives both raw files the same Experiment name and sums them). Which raw file is the first and which the second IP is not stated anywhere; fraction 1 is assigned to the earlier acquisition (lower AS run number, the first block of four runs), an ordering inference.",
+  "comment[collision energy] and comment[ms1 scan range] are omitted: only one raw header per MaxQuant search was range-read and the values differ between searches (NCE 27 HA-IP vs 30 diGly; MS1 300-1650 vs 300-1750 m/z), so per-file values were not verified.",
+  "The paper states main search tolerance \"0.5 D\" and a human UniProt database for all diGly searches; the deposited mqpar.xml files give 4.5 ppm main-search precursor tolerance (0.5 Da is the ITMS MS/MS tolerance) and a mouse UP000000589 FASTA for the N2a searches. The mqpar.xml is followed.",
+  "No CCNF peptide was identified in the diGly-enriched N2a data, so the knockout channel could not be checked directly on CCNF; the directional check uses the paper-reported Map1b/Peg10 sites.",
+  "Developmental stage and passage number not reported: not available."
+ ]
+}
