@@ -238,6 +238,16 @@
    "evidence": "Established in vitro B-lymphoma line #2567."
   },
   {
+   "location": "characteristics[culture medium] rows 1-552",
+   "value": "lysine- and arginine-free DMEM/Ham's F12 (1:1) with 10% dialyzed FBS (SILAC)",
+   "source_ids": [
+    "dib",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Data in Brief 2.3: \"Control and miRNA cells were grown in SILAC media (lysine- and arginine-free DMEM/Ham's F12 (1:1), 10% dialyzed fetal bovine serum (FBS, Invitrogen))\" with heavy or light Lys/Arg added, for eight duplications; same wording in the PRIDE sampleProcessingProtocol and paper Methods. The wt:wt cells were SILAC-labelled the same way (heavy vs light wt populations). No NCIT term covers this formulation (NCIT has only Dulbecco's Modified Eagle Medium), so the documented medium is given as free text; the pre-labelling maintenance medium (B cell medium: DMEM + 10% FCS, DiB 2.1) is not the medium the measured cells were labelled in."
+  },
+  {
    "location": "characteristics[strain or breed] rows 1-552",
    "value": "lambda-MYC transgenic",
    "source_ids": [
@@ -409,7 +419,10 @@
   "Biological replicate structure: Data in Brief gives the clone of each mixture (encoded in characteristics[clone]) but does not say whether the \"bis\" mixtures (Dir1 bis, Dir2 bis, Rev1 bis) were labelled from new cultures or re-prepared from the same lysates. Each of the 8 functional mixtures carries its own number (1-8 per genotype group); if \"bis\" sets are re-preparations this over-counts independent cultures within clone #1.",
   "WT:WT technical replicates: the three series of each wt:wt mixture are encoded as technical replicates (paper Supp Fig 4a \"three technical replicates\"; DiB row 13 \"in duplicate\"). Whether f080904 yeast_2567 and f080917 b/c (WTWT2), or the f090303 A/B and F090401 series (WTWT1), came from one gel lane or separate lanes of the same mixture is not stated.",
   "comment[precursor mass tolerance] = not available: MaxQuant 1.2.2.5 parameters.txt/summary.txt do not record first/main search precursor tolerance; no mqpar.xml deposited. convert-openms therefore fails (expected, as campaign precedents PXD014368/PXD006676).",
-  "characteristics[organism part], developmental stage, sex, culture medium = not available: tumour site, mouse age/sex not given; the SILAC medium (lysine/arginine-free DMEM/Ham's F12 1:1 + 10% dialysed FBS, DiB 2.3) has no NCIT term. Cellosaurus accession/name not available (in-house line).",
+  "characteristics[organism part], developmental stage, sex = not available: tumour site, mouse age and sex are not given. Cellosaurus accession/name not available (in-house line).",
+  "wt:wt cell state wording: the Data in Brief calls these extracts \"wild type (wt) versus wt cells\" (specifications table; Table 1 \"wt:wt\") and the Nat Commun Methods say \"WT:WT cells\", while Nat Commun Supp Fig 4a calls them \"control cells\". In this paper \"control\" otherwise means empty-vector (pMIG) cells. \"wild type\" was kept because both the authors' data descriptor and the main Methods use it and Supp Fig 4 uses \"control\" in the sense of a control experiment; if the cells were in fact empty-vector transduced, rows 373-552 would read pMIG empty vector.",
+  "WTWT1 vs WTWT2 as separate mixtures is inferred, not stated: they are separate MaxQuant experiments (Ele, Lele) in combined_onetoone.zip, separate Data in Brief Table 1 rows (9-11 vs 12-13) and were acquired months apart (2009-03/04 vs 2008-09). The Data in Brief does not say whether they are independent labelled cultures or re-preparations of one mixture; their H/L ratios correlate (r about 0.3-0.76 depending on filter).",
+  "Fraction numbering convention (OFFGEL rows 1-372): comment[fraction identifier] = position of the well file in OFFGEL well order, not the well number, because pooled-well files (well17-18, well19_20 in Dir1, Dir2 and Rev1) have no single well number; therefore fraction 17 is well 17+18 in A/C/D but well 17 in B/E/F/G/I, and fractions are aligned across mixtures only up to 16. filemap.tsv gives the deposited well for every file. MaxQuant's own fraction numbers (wells 17+18 and 19+20 sharing a number in B/E/F/G/I) differ again.",
   "Instrument: Data in Brief specifications say \"LTQ FT ... EASY-nLC 1000\" while its section 2.6, the paper and the RAW headers say LTQ-FT Ultra with an Agilent 1100 nano-LC; LTQ FT Ultra kept (RAW header).",
   "Collision energy not reported; column omitted.",
   "MaxQuant used the Trypsin/P rule for all runs (search setting); digestion enzymes are encoded per protocol (Lys-C + trypsin for OFFGEL mixtures, trypsin only for wt:wt)."
