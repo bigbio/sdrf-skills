@@ -273,3 +273,86 @@ exit code: 0
 - parse_sdrf validate-sdrf IP: WARNING "fetal stage" not found in efo: HsapDv:0000037 "fetal stage" (OLS, not obsolete) is the Cellosaurus "AG Fetus" translation used by campaign precedent PXD004666; a warning, exit 0.
 - parse_sdrf convert-openms exit 1 (both files): "Cannot read precursor mass tolerance: not available". No MaxQuant parameters (mqpar.xml / parameters.txt / summary.txt) were deposited for the combined SILAC search and the paper states no tolerances, so the tolerances are honestly not available (same outcome as campaign precedents PXD014368, PXD006676, PXD024103).
 - OLS HTTP 500 retries in validate-sdrf were transient; both runs finished with exit 0 ("Everything seems to be fine" / "only warnings").
+
+# ===== Round 2 (after external review PXD021351.review.md): IP file only =====
+# Change: in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/scripts/make_tables.py, Exp1 medium/heavy baits swapped (Table S4 mmc5.xlsx headers + QGCCGVVWR check, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/swapcheck.txt) and characteristics[sample type] added (GFP-only = control sample). Rebuilt with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/scripts/build.sh; no post-build edits.
+# PMP file rebuilt by the same script, byte-identical: sha256 5e6f6fd497fe173087315afdd2ee1e792a4392c6c6a94492ac3f0be895aaf4cd (unchanged; not re-validated).
+
+## PXD021351-ip.sdrf.tsv  sha256 6a51192bcaad5e307e5fcb7282e6c8e64c9e33bdb1d925960469ea355e2e3063
+$ parse_sdrf validate-sdrf -s PXD021351-ip.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD021351-ip.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD021351-ip.sdrf.tsv
+Hallucination Report: PXD021351-ip.sdrf.tsv
+  Terms checked:     16
+  Verified:          16
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD021351-ip.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/pride.json --accession PXD021351
+PXD021351: 1 value(s) disagree with the deposit record:
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Lys-C/Trypsin digest but only Trypsin is declared  [missing: Lys-C]
+exit code: 0
+
+$ sdrf-tools schema-check PXD021351-ip.evidence.json
+PXD021351-ip.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD021351-ip.sdrf.tsv PXD021351-ip.evidence.json
+Manifest covers every column with a value (28 column(s)).
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD021351-ip.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD021351-ip.sdrf.tsv
+Factor columns: ['factor value[bait]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[transfection]']
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
+    OpenMS().openms_convert(sdrf, onetable, legacy, verbose, conditionsfromcolumns, extension_convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
+    self._process_tolerances(row, f2c, raw)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not available
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+
+## Round-2 notes: reconcile Lys-C MAJOR and convert-openms tolerance failure are the same as round 1 (false positive / documented not available, see notes above); validate-sdrf warning 'fetal stage' as round 1.

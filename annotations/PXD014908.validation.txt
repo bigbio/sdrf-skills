@@ -1,5 +1,5 @@
-# PXD014908 validation log (2026-11-09T15:24Z); SDRF sha256 6a7d50f7ff1d23b8e6a53309b0bd968f54b9a6a67eccd7a2663fdddf12cc5abf; 216 rows x 52 columns
-# Single round: the SDRF comes straight from sdrf-tools build (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD014908/scripts/make_tables.py); no post-build edits. OLS 500 retry tracebacks from sdrf_pipelines were filtered out of this log (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD014908/scripts/validate.sh).
+# PXD014908 validation log, round 2 (2026-11-09T16:07Z); SDRF sha256 60ba32adb20363311f3a45fc19c670e8773a6d8eec0a80140cf2e04e19eaa43b; 216 rows x 52 columns
+# Round 1 (sha256 6a7d50f7ff1d23b8e6a53309b0bd968f54b9a6a67eccd7a2663fdddf12cc5abf) passed the same checks with the same exit codes but FAILED external review (PXD014908.review.md: characteristics[infectious agent] implied an infection). The fix was made in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD014908/scripts/make_tables.py: characteristics[infectious agent] was replaced by custom characteristics[genetic modification] = 'stably integrated tetracycline-repressible HBV genome' (HepG2: not applicable); characteristics/factor value[infection status] was renamed to [HBV replication status] with values HBV-free / HBV replication repressed / HBV replicating. Then rebuilt with sdrf-tools build; there are no post-build edits. OLS 500 retry tracebacks are filtered out of this log (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD014908/scripts/validate.sh).
 
 ## parse_sdrf validate-sdrf -s annotations/PXD014908.sdrf.tsv -t ms-proteomics -t human -t cell-lines
 WARNING: Term: tetracycline withdrawal in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
@@ -36,8 +36,8 @@ exit=0
 
 ## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD014908.sdrf.tsv -t2
 PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD014908.sdrf.tsv
-Factor columns: ['factor value[cell line]', 'factor value[infection status]']
-Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[treatment]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[infectious agent]']
+Factor columns: ['factor value[hbv replication status]', 'factor value[cell line]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[treatment]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[genetic modification]']
   File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 92, in openms_from_sdrf
   File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 137, in openms_convert
   File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/openms.py", line 196, in _process_tolerances
@@ -66,6 +66,14 @@ Manifest covers every column with a value (32 column(s)).
 exit=0
 
 ## Notes on non-clean results
-- validate-sdrf WARNINGs (exit 0): "tetracycline withdrawal" (characteristics[treatment], the paper's stated procedure for the Tet- arm; no NCIT/EFO term exists) and "15-year-old stage" (HsapDv:0000109; EFO has no age-stage term; campaign precedent uses HsapDv stages). Kept deliberately.
-- reconcile MINOR cleavage_agent_unsupported (exit 0): correct that neither PRIDE nor the paper names the digest enzyme. The value is supported by the deposited search output instead: all 46272 peptides in peptides.txt end in K/R or at the protein C-terminus and 45601 follow K/R/protein N-terminus, missed cleavages 0-2 (fully tryptic). Recorded as an inference in the manifest claims and limitations; batch rule 2 (cleavage agent = digestion enzyme, Trypsin MS:1001251).
-- convert-openms exit 1 "Cannot read precursor mass tolerance: not available": expected; no mqpar.xml/parameters.txt/summary.txt deposited, so tolerances are honestly not available (same as campaign precedents PXD014368/PXD006676/PXD024103). validate-sdrf and the template accept the reserved word.
+- validate-sdrf WARNINGs (exit 0):
+  - "tetracycline withdrawal" (characteristics[treatment]) is the paper's stated procedure for the Tet- arm; no NCIT/EFO term exists.
+  - "15-year-old stage" is HsapDv:0000109; EFO has no age-stage term, and campaign precedent uses HsapDv stages.
+  - Both kept deliberately; the reviewer accepted both.
+- reconcile MINOR cleavage_agent_unsupported (exit 0):
+  - It is correct that neither PRIDE nor the paper names the digestion enzyme.
+  - The deposited search output supports the value: all 46272 peptides in peptides.txt end in K/R or at the protein C-terminus, 45601 follow K/R or the protein N-terminus, and missed cleavages are 0-2 (fully tryptic).
+  - Batch rule 2 applies (cleavage agent = digestion enzyme, Trypsin MS:1001251).
+- convert-openms exit 1 "Cannot read precursor mass tolerance: not available":
+  - Expected: no mqpar.xml/parameters.txt/summary.txt was deposited.
+  - Same outcome as campaign precedents.
