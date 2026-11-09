@@ -1,0 +1,67 @@
+# PXD026689 validation log (2026-11-09T19:01Z); SDRF sha256 1ec68301a6a80544f08d9115f253fa7f7e7b3e847cabdb4cbfed5ac8f3f5e6b1
+SDRF built by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD026689.sdrf.tsv (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/scripts/make_tables.py). No post-build edit.
+
+## Round 1: parse_sdrf validate-sdrf -s annotations/PXD026689.sdrf.tsv -t ms-proteomics -t human -t cell-lines (timeout 900 s)
+Only OLS server errors were logged (deduplicated, retries collapsed):
+      1 ERROR:sdrf_pipelines.ols.ols:OLS error searching term t cell. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=t+cell&name=class&rows=10&start=N&ontology=cl&exact=on
+      1 ERROR:sdrf_pipelines.ols.ols:OLS search term t cell error, 
+exit=124
+Timed out (exit 124): OLS4 /api/search returned HTTP 500 for the exact search of "t cell" in CL on every retry; no SDRF validation finding was emitted.
+
+## Round 2: same command (timeout 1500 s)
+      7 ERROR:sdrf_pipelines.ols.ols:OLS error searching term homo sapiens. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=homo+sapiens&name=class&rows=10&start=N&ontology=ncbitaxon&exact=on
+      5 ERROR:sdrf_pipelines.ols.ols:OLS error searching term t cell. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=t+cell&name=class&rows=10&start=N&ontology=cl&exact=on
+      2 ERROR:sdrf_pipelines.ols.ols:OLS error searching term t cell. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=t+cell&name=class&rows=10&start=N&ontology=clo&exact=on
+      7 ERROR:sdrf_pipelines.ols.ols:OLS search term homo sapiens error, 
+      7 ERROR:sdrf_pipelines.ols.ols:OLS search term t cell error, 
+exit=124
+Timed out again on the same OLS 500 errors. The terms involved were checked directly by obo_id (OLS4 /api/ontologies/<ont>/terms): NCBITaxon:9606 'Homo sapiens', CL:0000084 'T cell', both not obsolete (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/ols_log.txt).
+
+## Round 2b: parse_sdrf validate-sdrf -s annotations/PXD026689.sdrf.tsv -t ms-proteomics -t human -t cell-lines --use_ols_cache_only
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD026689.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD026689.sdrf.tsv --offline
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD026689.sdrf.tsv
+  Terms checked:     10
+  Verified:          4
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD026689.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/pride.json --accession PXD026689 (superseded: record in snake_case keys)
+PXD026689: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+False positive: the MCP get_project_details output uses snake_case keys (sample_processing_protocol), which reconcile does not read (_PROSE_KEYS are camelCase), so it saw no digest prose. The protocol states 'A total of 8 consecutive bands were excised for in-gel trypsin digestion'. Re-run with the same record re-keyed to PRIDE camelCase by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/scripts/record_camel.py:
+
+## sdrf-tools reconcile annotations/PXD026689.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/pride_record.json --accession PXD026689
+PXD026689: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD026689.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/convert)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD026689.sdrf.tsv
+Factor columns: ['factor value[phenotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['vorinostat sensitive', 'vorinostat resistant'])
+Files per condition: dict_values([16, 16])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 32 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD026689.sdrf.tsv
+exit=0
+The TA= warning concerns the Acetyl PP=Protein N-term modification (positional, no residue), as intended.
+
+## sdrf-tools schema-check annotations/PXD026689.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD026689.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD026689.sdrf.tsv annotations/PXD026689.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit=0

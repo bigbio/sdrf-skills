@@ -6,7 +6,7 @@
   {
    "id": "pride",
    "kind": "repository",
-   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD026689 via sdrf-pride-pmc get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/pride.json): title, sample_processing_protocol, data_processing_protocol, instruments, quantification_methods"
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD026689 via sdrf-pride-pmc get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/pride.json; re-keyed to PRIDE camelCase for sdrf-tools reconcile by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/scripts/record_camel.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD026689/evidence/pride_record.json): title, sample_processing_protocol, data_processing_protocol, instruments, quantification_methods"
   },
   {
    "id": "px",
