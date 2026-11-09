@@ -1914,7 +1914,15 @@ Why they are blocked:
 - GFP is not in the searched human FASTA, so no transgene peptide shows which SILAC channel got doxycycline. ERK sites move in the same direction in both experiments (MAPK1 Y175 +1.03 / +1.35), so they do not show the orientation either.
 - Rows with treatment `not available` would pool the dox and vehicle cultures (campaign rule 7).
 
-**Unblocked by:** an author statement of the forward/reverse (heavy = +dox) assignment for S13 and S14, or any experiment key. An author-confirmed key for S1–S12 would also firm up the data-derived map, whose weakest link is BRAF-WT (S7/S8) vs BRAF-V600E (S11/S12).
+**Recorded source conflict in the annotated part (review F1, round 2):** S7/S8 are annotated BRAF-WT and S9/S10 BRAF-kinase (aa 381–766).
+- **Supporting this assignment:**
+  - the construct sequence: the kinase construct starts at BRAF aa 381 and cannot yield the N-terminal BRAF S151/S363/S365 peptides that are dox-induced in S7/S8;
+  - Supp Fig S6C (pERK);
+  - Supp Fig S3C (KSEA).
+- **Against it:** the authors' BRAF-Kinase profile in Supp Fig S3B/D matches S7/S8. That profile is 8 sites (37.5% shared), no MAPK rows, and the kinase-only marker RAF1 S465, which is induced only in S7/S8.
+- **Decision:** the sequence evidence was given priority (rule 6), and the coordinator decided to keep S7–S10 with the conflict documented in `PXD013461.evidence.json` and the report.
+
+**Unblocked by:** an author statement of the forward/reverse (heavy = +dox) assignment for S13 and S14, or any experiment key. An author-confirmed key for S1–S12 would also firm up the data-derived map. Its weakest link is BRAF-WT (S7/S8) vs BRAF-kinase (S9/S10), so author confirmation of S7–S10 especially is requested. WT vs V600E is supported by the Fig S3B V600E markers CDC27 S364 and MARCKS S101.
 
 ## PXD029030 — miR-31-5p metabolic switch in psoriatic keratinocytes (Wang et al., EMBO Mol Med 2023; SILAC Arg10/Lys8, HEK293T + HaCaT), "L125" SCX experiments and the whole Velos search (partial block)
 
