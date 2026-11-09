@@ -89,3 +89,11 @@ exit=0
 ## sdrf-tools manifest-coverage annotations/PXD012871-ip.sdrf.tsv annotations/PXD012871-ip.evidence.json
 Manifest covers every column with a value (25 column(s)).
 exit=0
+
+## PXD012871-ip manifest revision after review FAIL (annotations/PXD012871-ip.review.md, manifest-only finding) 2026-11-09T15:19Z; SDRF unchanged sha256 e045ecdf72e0f974212c3682b69ede486e73b096403150680b79bf4b2d9d9758
+### sdrf-tools schema-check annotations/PXD012871-ip.evidence.json
+annotations/PXD012871-ip.evidence.json: valid evidence-manifest
+exit=0
+### sdrf-tools manifest-coverage annotations/PXD012871-ip.sdrf.tsv annotations/PXD012871-ip.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit=0

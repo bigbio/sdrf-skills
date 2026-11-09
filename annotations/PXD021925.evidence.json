@@ -116,14 +116,14 @@
   },
   {
    "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-24",
-   "value": "RAW 264.7; CVCL_0493; RAW 264.7",
+   "value": "RAW264.7; CVCL_0493; RAW 264.7",
    "source_ids": [
     "paper",
     "pride",
     "cellosaurus",
     "ols"
    ],
-   "evidence": "Paper 2.1 \"RAW 264.7 mouse macrophage cells\"; PRIDE keyword \"Raw 264.7\". Cellosaurus CVCL_0493 ID \"RAW 264.7\" (synonyms RAW264.7, Raw 264.7), OX Mus musculus; EFO:0001231 label RAW264.7. The Cellosaurus ID string is used for cell line; it is the only Mus musculus parental RAW 264.7 entry (other hits are derived/engineered RAW 264.7 lines)."
+   "evidence": "Paper 2.1 \"RAW 264.7 mouse macrophage cells\"; PRIDE keyword \"Raw 264.7\". Cellosaurus CVCL_0493 ID \"RAW 264.7\" (synonyms RAW264.7, Raw 264.7), OX Mus musculus; EFO:0001231 label RAW264.7. characteristics[cell line] uses the EFO:0001231 label RAW264.7 (round-2 validator could not resolve the spaced Cellosaurus spelling), cellosaurus name keeps the Cellosaurus ID \"RAW 264.7\"; it is the only Mus musculus parental RAW 264.7 entry (other hits are derived/engineered RAW 264.7 lines)."
   },
   {
    "location": "characteristics[organism part] rows 1-24",

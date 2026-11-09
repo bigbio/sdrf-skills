@@ -44,6 +44,11 @@
    "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0), human/cell-lines latest 1.1.0; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. Spec README.adoc:27 sdrf version v1.1.0; README.adoc:330 replicate numbering. The sdrf-skills spec submodule nested templates copy is older."
   },
   {
+   "id": "ubq",
+   "kind": "analysis",
+   "location": "{S}/ip_ubq.txt (script {S}/scripts/ip_ubq.py: ubiquitin protein group (RPS27A;UBB;UBC;UBA52) intensity per experiment from proteinGroups.txt; ubiquitin-peptide share of summed evidence intensity per raw file from evidence.txt). Cross-checked against annotations/PXD012871-ip.review.md."
+  },
+  {
    "id": "owner",
    "kind": "curation-decision",
    "location": "Campaign-owner decision relayed by the coordinator (2026-11-09), following annotations/PXD012871.review.md: unblock the 6 IP runs on the deposited file names."
@@ -57,9 +62,10 @@
     "pride",
     "mq_ip",
     "owner",
-    "paper"
+    "paper",
+    "ubq"
    ],
-   "evidence": "PRIDE protocol: \"we first subject 293T cell transfected with Flag-tag NFX1 or empty vector pCMV-Flag, then collected lysis to immunoprecipitation with anti-Flag antibodies\". Construct per run follows the deposited file names (EV / NFX1_1 / NFX1_2), which match the MaxQuant txt_IP experiments EV, NFX1_1, NFX1_2. Data agree: proteinGroups NFX1 (Q12986) intensity 0 / 1.93e9 / 1.53e8 and co-IP USP9X 0 / 8.4e7 / 3.8e7 for EV / NFX1_1 / NFX1_2; NFX1 evidence in NFX1_1 Up 46, Down 15, NFX1_2 Up 16, Down 4, none in EV. Abstract: Flag-NFX1-123 affinity MS found the NFX1-123/USP9X interaction. Names used by campaign-owner decision despite the raw-header conflict (limitations)."
+   "evidence": "PRIDE protocol: \"we first subject 293T cell transfected with Flag-tag NFX1 or empty vector pCMV-Flag, then collected lysis to immunoprecipitation with anti-Flag antibodies\". Construct per run follows the deposited file names (EV / NFX1_1 / NFX1_2), which match the MaxQuant txt_IP experiments EV, NFX1_1, NFX1_2. Bait/prey data support that deposited EV has no bait: proteinGroups NFX1 (Q12986) intensity 0 / 1.93e9 / 1.53e8 and co-IP USP9X 0 / 8.4e7 / 3.8e7 for EV / NFX1_1 / NFX1_2; NFX1 evidence in NFX1_1 Up 46, Down 15, NFX1_2 Up 16, Down 4, none in EV. Abstract: Flag-NFX1-123 affinity MS found the NFX1-123/USP9X interaction. The deposited names do not explain NFX1_2: its ubiquitin protein group is 9.03e9 vs 4.06e8 (EV) and 6.98e8 (NFX1_1), and ubiquitin peptides are 2.44% of run intensity in NFX1_2_Up and 0.37% in NFX1_2_Down vs 0.07-0.12% in the EV and NFX1_1 runs (excess in the high-MW half = polyubiquitin conjugates), so NFX1_2 may be the sample acquired as NFX1_Ub (a Flag-NFX1 ubiquitination experiment) rather than a replicate of NFX1_1. The authors' own MaxQuant search (txt_IP parameters.txt, Date of writing 02/21/2019) already used the deposited names, so the files were renamed before their search. Names used by campaign-owner decision despite the raw-header conflict (limitations)."
   },
   {
    "location": "comment[data file] + assay name + comment[fraction identifier] rows 1-6",
@@ -78,9 +84,10 @@
    "source_ids": [
     "mq_ip",
     "files",
-    "templates"
+    "templates",
+    "ubq"
    ],
-   "evidence": "Numbered per factor-value group (README.adoc:330, rule 3). NFX1_1 and NFX1_2 are separate IP samples (separate MaxQuant experiments, separate gel lanes, NFX1 intensity differs 12-fold); whether they are independent transfections or repeated IPs is not documented (limitations)."
+   "evidence": "Numbered per factor-value group (README.adoc:330, rule 3). NFX1_1 and NFX1_2 are separate IP samples (separate MaxQuant experiments, separate gel lanes, NFX1 intensity differs 12-fold); whether NFX1_2 is an independent replicate is not documented, and its ubiquitin profile suggests it may be the NFX1_Ub ubiquitination sample rather than a replicate (limitations)."
   },
   {
    "location": "characteristics[organism] rows 1-6",
@@ -210,9 +217,9 @@
   }
  ],
  "limitations": [
-  "RAW-HEADER NAME CONFLICT: each IP raw header records an original acquisition file name that differs from the deposited name: deposited 20181216__Ludayun_293T_Over_EV_Up/Down = acquired D:\\RawData\\201812\\20181216__HF_ZHW_Ludayun_293T_Over_NFX1_Ub_Up/Down.raw; deposited _NFX1_1_Up/Down = acquired ..._Over_NFX1_Up/Down; deposited _NFX1_2_Up/Down = acquired ..._Over_EV_Up/Down. Data support the deposited names: NFX1 intensity 0 / 1.93e9 / 1.53e8 and co-IP USP9X 0 / 8.4e7 / 3.8e7 for deposited EV / NFX1_1 / NFX1_2 (the run acquired as \"EV\" contains bait and prey). Sample identities follow the deposited names by campaign-owner decision (2026-11-09, after annotations/PXD012871.review.md); no author statement explains the renaming. Whether deposited \"EV\" (acquired \"NFX1_Ub\") was a genuine empty-vector IP is therefore not independently documented.",
+  "RAW-HEADER NAME CONFLICT: each IP raw header records an original acquisition file name that differs from the deposited name: deposited 20181216__Ludayun_293T_Over_EV_Up/Down = acquired D:\\RawData\\201812\\20181216__HF_ZHW_Ludayun_293T_Over_NFX1_Ub_Up/Down.raw; deposited _NFX1_1_Up/Down = acquired ..._Over_NFX1_Up/Down; deposited _NFX1_2_Up/Down = acquired ..._Over_EV_Up/Down. Bait/prey data support that deposited EV has no bait: NFX1 intensity 0 / 1.93e9 / 1.53e8 and co-IP USP9X 0 / 8.4e7 / 3.8e7 for deposited EV / NFX1_1 / NFX1_2 (the run acquired as \"EV\" contains bait and prey). The deposited names do not explain NFX1_2's ubiquitin profile: ubiquitin protein group 4.06e8 / 6.98e8 / 9.03e9 for EV / NFX1_1 / NFX1_2; ubiquitin share of run intensity 0.07-0.12% in the four EV and NFX1_1 runs vs 2.44% in NFX1_2_Up and 0.37% in NFX1_2_Down (own recomputation from evidence.txt; the review gives 2.46%). The excess in the high-MW half points to polyubiquitin conjugates. NFX1_2 may therefore be the sample acquired as NFX1_Ub (a ubiquitination experiment), not an independent replicate of NFX1_1. The authors' own MaxQuant search (txt_IP parameters.txt, Date of writing 02/21/2019) already used the deposited names (summary.txt raw files = deposited names), so the renaming happened before their search. Sample identities follow the deposited names by campaign-owner decision (2026-11-09, after annotations/PXD012871.review.md); no author statement explains the renaming. Whether deposited \"EV\" (acquired \"NFX1_Ub\") was a genuine empty-vector IP is therefore not independently documented.",
   "EV Up/Down gel-part assignment: for NFX1_1 and NFX1_2 the Up files hold higher-MW proteins (median 76.3/70.0 vs 31.7/30.6 kDa), but for EV the Up file has lower median MW (39.8) than Down (47.7). The MaxQuant fraction numbers (Up=1, Down=2) are kept; EV Up/Down may be swapped or differently cut.",
-  "Replicate status of NFX1_2 is unknown: it is a second Flag-NFX1 IP sample (biological replicate 2 within the Flag-NFX1 group), but independent transfection vs repeated IP of the same lysate is not documented. EV has a single sample.",
+  "Replicate status of NFX1_2 is unknown: it is encoded as a second Flag-NFX1 IP sample (biological replicate 2 within the Flag-NFX1 group), but it may be the NFX1_Ub ubiquitination sample (see ubiquitin evidence above) rather than an independent replicate of NFX1_1; independent transfection vs repeated IP is also not documented. EV has a single sample.",
   "Paper closed access (abstract only): culture medium, transfection details, reduction/alkylation reagents, passage number, storage temperature are not available.",
   "characteristics[developmental stage] = not available: Cellosaurus AG \"Fetus\", but EFO has no fetal-stage term (validate-sdrf round 1 warned on \"fetal stage\"); age not available for the same reason.",
   "comment[precursor mass tolerance] = not available: MaxQuant 1.6.1.0 parameters.txt does not record it and no mqpar.xml was deposited; convert-openms exits 1.",

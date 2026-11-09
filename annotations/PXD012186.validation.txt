@@ -1,0 +1,60 @@
+# PXD012186 validation log
+SDRF: /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv
+sha256: 929a761945d5fbe3483d7f20541c532f6b6c2984b14170364d5c193e008dcb69  (330 rows x 53 columns; built by sdrf-tools build from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/samples.tsv + technical.tsv + files.json; no post-build edits)
+
+## Round 1 (scratch build, characteristics[culture medium] = free-text 'FAD medium (75% Ham's F-12, 25% DMEM; SILAC)')
+$ parse_sdrf validate-sdrf -s PXD012186.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: NOK (normal oral keratinocytes, Piboonniyom et al. 2002) in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+ERROR: Term: FAD medium (75% Ham's F-12, 25% DMEM; SILAC) in column 'characteristics[culture medium]', is not a valid ontology term
+WARNING: Term: FAD medium (75% Ham's F-12, 25% DMEM; SILAC) in column 'characteristics[culture medium]', is not found in the given ontology list ncit
+There were validation errors.
+(exit status not captured in round 1; 'There were validation errors.' = failure). Fix: culture medium -> 'not available' in gen_tables.py (no NCIT term for FAD / Ham's F-12 medium), rebuilt.
+
+## Round 2 (final; scratch build byte-identical to the annotations file, sha256 929a761945d5fbe3483d7f20541c532f6b6c2984b14170364d5c193e008dcb69)
+$ parse_sdrf validate-sdrf -s PXD012186.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: NOK (normal oral keratinocytes, Piboonniyom et al. 2002) in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+(OLS4 transiently returned HTTP 500 to 8 parse_sdrf search requests — 'ERROR:sdrf_pipelines.ols' retry lines omitted above; full log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/v2.txt. All ontology terms were verified separately via OLS4 /api/terms: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/scripts/ols.py, every term found and is_obsolete=false.)
+Warning justification: the NOK line has no Cellosaurus/CLO/BTO/EFO entry (see evidence.json); the free-text cell line is intentional.
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/p3.json --accession PXD012186
+PXD012186: every annotated value agrees with the deposit record.
+exit=0
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv
+  Terms checked:     19
+  Verified:          18
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1..330]: 'NOK (normal oral keratinocytes, Piboonniyom et al. 2002)' in characteristics[cell line]
+exit=1
+Refutation: the single 'hallucinated' term is the free-text characteristics[cell line] value, which carries no accession; check flags any cell-line string absent from its offline map. The NOK line genuinely has no Cellosaurus record (Cellosaurus queries in evidence.json). Not a fabricated term.
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD012186.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD012186.evidence.json: valid evidence-manifest
+exit=0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD012186.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit=0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/openms2 && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv -t2)
+Factor columns: ['factor value[genetic modification]', 'factor value[infection]', 'factor value[sampling time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]']
+Conditions (8): dict_keys(['HPV16 E6 and E7 expression (lentiviral pWPI vector)|uninfected|24 hour', 'HPV16 E6 and E7 expression (lentiviral pWPI vector)|Chlamydia trachomatis|24 hour', 'empty lentiviral vector pWPI|uninfected|24 hour', 'empty lentiviral vector pWPI|Chlamydia trachomatis|24 hour', 'HPV16 E6 and E7 expression (lentiviral pWPI vector)|uninfected|48 hour', 'HPV16 E6 and E7 expression (lentiviral pWPI vector)|Chlamydia trachomatis|48 hour', 'empty lentiviral vector pWPI|uninfected|48 hour', 'empty lentiviral vector pWPI|Chlamydia trachomatis|48 hour'])
+Files per condition: dict_values([33, 33, 66, 33, 33, 33, 66, 33])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 330 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv
+exit=0
+Note: the 'no TA= specified' warning is the expected PP=Protein N-term Acetyl handling.
