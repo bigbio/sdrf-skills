@@ -1,0 +1,52 @@
+# PXD013461 validation log (2026-11-09T18:51Z); SDRF sha256 3b3f7fbf15a49a5a4c8090541b673d0fdacfc1fa34f67b2839a14f48afa32115
+# Built by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/build/files_inscope.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/scripts/make_tables.py). No post-build edits.
+# Produced by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/scripts/validate.sh (one round; no errors). OLS4 returned intermittent HTTP 500 during validate-sdrf; the retry tracebacks (ERROR:sdrf_pipelines.ols ...) are filtered from this copy, the full log is /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/val_run.txt.
+
+## parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv
+  Terms checked:     18
+  Verified:          18
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD013461/pride.json --accession PXD013461
+PXD013461: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv
+Factor columns: ['factor value[genetic modification]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (12): dict_keys(['pInducer20 AGAP3-BRAF fusion|untreated', 'pInducer20 AGAP3-BRAF fusion|Doxycycline', 'pInducer20 DLG1-BRAF fusion|untreated', 'pInducer20 DLG1-BRAF fusion|Doxycycline', 'pInducer20 TRIM24-BRAF fusion|untreated', 'pInducer20 TRIM24-BRAF fusion|Doxycycline', 'pInducer20 BRAF wild type|Doxycycline', 'pInducer20 BRAF wild type|untreated', 'pInducer20 BRAF kinase domain (aa 381-766)|untreated', 'pInducer20 BRAF kinase domain (aa 381-766)|Doxycycline', 'pInducer20 BRAF V600E|untreated', 'pInducer20 BRAF V600E|Doxycycline'])
+Files per condition: dict_values([6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 72 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD013461.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD013461.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD013461.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD013461.evidence.json
+Manifest covers every column with a value (34 column(s)).
+exit=0
+
+## Notes on warnings
+- validate-sdrf WARNING 'untreated' in characteristics[treatment]: campaign rule 4 prescribes 'untreated' for the vehicle (ddH2O) control; it is a template-prescribed control value, not an ontology term.
+- validate-sdrf WARNING 'fetal stage' not in EFO: the term is HsapDv:0000037 'fetal stage' (non-obsolete, OLS4 log ols_ids.txt), the human developmental-stage ontology; Cellosaurus CVCL_0045 AG = Fetus. Same encoding as campaign SDRF PXD004666 (HEK293T).
+- convert-openms WARNING 'no TA= specified': the Acetyl Protein N-term mod has PP=Protein N-term instead of TA= (format rule 4); conversion succeeds.
+- An earlier online `sdrf-tools check` attempt crashed on OLS HTTP 500 (not a file problem); `sdrf-tools check --offline` was also CLEAN (14 terms, 0 hallucinated). The run above, online, is CLEAN with 18/18 verified.
