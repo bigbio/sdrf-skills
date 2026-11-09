@@ -143,3 +143,4 @@ exit=0
 ## sdrf-tools manifest-coverage annotations/PXD012871-ip.sdrf.tsv annotations/PXD012871-ip.evidence.json
 Manifest covers every column with a value (25 column(s)).
 exit=0
+Note on this validate-sdrf run: OLS returned HTTP 500 on some search pages for 'kidney' (UBERON) and 'normal' (NCIT) while about 30 concurrent validations were running. The final result is still 'Everything seems to be fine'. The same values passed the earlier 6-row round-2 run with no OLS errors, and none of the column values changed apart from removing the NFX1_2 rows.
