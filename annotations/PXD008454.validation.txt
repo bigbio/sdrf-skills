@@ -1,0 +1,43 @@
+# PXD008454 validation log (2026-11-09T20:34Z); SDRF sha256 85b8b815cecfb8f9582bee301a78e6c7f85dba54cec41fbb6e6d403432152189; 120 rows x 52 columns
+# Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/scripts/make_tables.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454 -> samples.tsv/technical.tsv/files_silac.json; sdrf-tools build --samples samples.tsv --technical technical.tsv --files files_silac.json -t ms-proteomics -t human -t cell-lines -o build/built.sdrf.tsv (120 rows x 51 columns)
+# Post-build (deterministic, justified): python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/scripts/postbuild.py build/built.sdrf.tsv annotations/PXD008454.sdrf.tsv inserts a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 after the trypsin column (campaign rule 2; build emits one column for this non-multiple term); script asserts every other cell unchanged. No other edit.
+
+## Round 1 (current file): parse_sdrf validate-sdrf -s annotations/PXD008454.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit=0
+Note: 'untreated' is the template-prescribed control value (campaign rule 4); the ontology warning is expected and is not an error.
+
+## sdrf-tools structure annotations/PXD008454.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD008454.sdrf.tsv
+Hallucination Report: annotations/PXD008454.sdrf.tsv
+  Terms checked:     19
+  Verified:          19
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD008454.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/pride.json --accession PXD008454
+PXD008454: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s PXD008454.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD008454/convert)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.5.6.0 parameters.txt/summary.txt do not record it; no mqpar.xml deposited). Same outcome as campaign precedents PXD014368/PXD006676/PXD024103; validate-sdrf and the template accept the reserved word.
+
+## sdrf-tools schema-check annotations/PXD008454.evidence.json
+annotations/PXD008454.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD008454.sdrf.tsv annotations/PXD008454.evidence.json
+Manifest covers every column with a value (36 column(s)).
+exit=0
