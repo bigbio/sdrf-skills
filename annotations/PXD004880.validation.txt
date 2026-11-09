@@ -3,3 +3,59 @@ sha256 a6112360f2e81dee1c48c93711aa498dfbf833bc868c51040e577f6cf70f4c13  72 rows
 Built by sdrf-tools build (scripts/gen_tables.py); no post-build edits.
 
 ### $ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t dia-acquisition
+WARNING: Term: Twin-DS in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: Twin-N in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+### exit 0
+
+### $ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+### exit 0
+
+### $ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv
+  Terms checked:     20
+  Verified:          18
+  Hallucinated:      2
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]: 'Twin-DS' in characteristics[cell line]
+  Row(s) [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72]: 'Twin-N' in characteristics[cell line]
+### exit 1
+
+### $ sdrf-tools reconcile --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/pride_v3.json --accession PXD004880 /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv
+PXD004880: every annotated value agrees with the deposit record.
+### exit 0
+
+### $ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD004880.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD004880.evidence.json: valid evidence-manifest
+### exit 0
+
+### $ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD004880.evidence.json
+Manifest covers every column with a value (33 column(s)).
+### exit 0
+
+### $ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv
+Factor columns: ['factor value[disease]', 'factor value[sampling time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+ValueError: Cannot read precursor mass tolerance: not available
+
+The above exception was the direct cause of the following exception:
+
+ValueError: Error: Cannot read precursor mass tolerance: not available
+### exit 1
+
+### Notes on findings
+- validate-sdrf warnings 'Twin-DS'/'Twin-N' not in CLO/BTO/EFO and sdrf-tools check "Hallucinated: Twin-DS / Twin-N in
+  characteristics[cell line]": FALSE POSITIVE. These are the Cellosaurus names of CVCL_B4L1 (synonym T1DS) and CVCL_B4L2
+  (synonym T2N); both Cellosaurus records cross-reference PRIDE PXD004880 and PubMed 29089484. No CLO/BTO/EFO class exists
+  for these finite lines; the template's cell line column takes the Cellosaurus name (cellosaurus accession column carries the ID).
+- 'fetal stage' not in EFO: term is HsapDv:0000037 'fetal stage' (OLS), campaign precedent value; accepted warning.
+- OLS HTTP 500 messages during validate-sdrf (if any above) are server-side transient errors; tracebacks filtered from this log.
+- convert-openms result reported above for information only (precursor/fragment tolerance are 'not available').
