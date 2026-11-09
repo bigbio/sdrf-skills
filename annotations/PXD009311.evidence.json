@@ -1,0 +1,326 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD009311.sdrf.tsv",
+ "dataset": "PXD009311",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009311 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009311/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/files_all.json; 25 entries = 12 RAW .zip + 12 SEARCH combinedsearchfile.zip + Quantdatacombined.xls; every entry projectAccessions contains PXD009311)"
+  },
+  {
+   "id": "zipcd",
+   "kind": "raw-file",
+   "location": "Central directories of the 12 RAW zips at https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/02/PXD009311/<name>.zip read by HTTP range (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/cd_<name>.tsv; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/scripts/zipcd.py): 155 .wiff + 155 .wiff.scan members"
+  },
+  {
+   "id": "wiff",
+   "kind": "raw-file",
+   "location": "Every one of the 155 .wiff members fetched by HTTP range and inflated (deflate64), embedded UTF-16 \"Sample Name:\" and \"Mass Spectrometer:\" strings extracted (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/wiff_samples_all.tsv; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/scripts/getmember.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/scripts/wiffnames.py)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Dwivedi P et al. Phospho serine and threonine analysis of normal and mutated granulocyte colony stimulating factor receptors. Sci Data 2019;6(1):21, doi:10.1038/s41597-019-0015-8, PMID 30967555, PMC6480977 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC6480977.1/PMC6480977.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/paper.txt)"
+  },
+  {
+   "id": "group",
+   "kind": "search-output",
+   "location": "ProteinPilot 5.0 .group files inside the 12 https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/02/PXD009311/<mix>combinedsearchfile.zip (nibble-swapped XML). Header (first 1 MB compressed) of all 12 read for UI settings (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/grp/ui_settings_all.txt); WT90minRep2 group decoded in full (1.78 GB; extract /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/grp/WT90minRep2.params_extract.txt, label counts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/grp/labelcount_WT90minRep2.txt, mod tags /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/grp/modtags_WT90minRep2.txt; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/scripts/grouphead.py, groupfull.py, nibswap.py, labelcount.py)"
+  },
+  {
+   "id": "quant",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/02/PXD009311/Quantdatacombined.xls sheet logH_div_L_summary (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/dl/Quantdatacombined.xls); marker summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/scripts/orient.py)"
+  },
+  {
+   "id": "pride_py",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009662 (companion phospho-tyrosine deposit from the same SILAC mixtures, Leukemia 2018 doi:10.1038/s41375-018-0188-8)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0161?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/cello_CVCL_0161.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... for EFO:0022749, CL:0000826, UBERON:0002371, NCIT:C26078, NCIT:C178973, PATO:0000461, EFO:0010806, MS:1002584, MS:1000932, MS:1000133, MS:1000084, MS:1001251, PRIDE:0000564/0000325/0000326/0000608/0000599/0000627, UNIMOD:4/21/35/7/259/267"
+  },
+  {
+   "id": "ref5600plus",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/02/PXD001997/2015-03-13-ETP-GCDIIP5-1.wiff (PXD001997 protocol names a TripleTOF 5600+; its .wiff also reports \"Mass Spectrometer:TripleTOF 5600\")"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; batch rules 1, 3, 4, 10, 11"
+  },
+  {
+   "id": "postbuild",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/scripts/fix_fractions.py applied to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/build_raw.sdrf.tsv with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD009311/fraction_map.tsv (12 of 292 rows changed)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, comment[label] rows 1-12, 25-36, 49, 51-62, 75-86, 99-110, 123-124, 127-138, 151-162, 175-186, 199-210, 223-234, 247-258, 271-281",
+   "value": "SILAC light = unstimulated (serum-starved, no G-CSF) cells of the same receptor line",
+   "source_ids": [
+    "pride",
+    "paper",
+    "quant"
+   ],
+   "evidence": "PRIDE sample protocol and paper Methods: \"Cells grown in heavy SILAC medium were stimulated with G-CSF (40 ng/mL) for 12.5 mins and 90 mins ... and cells grown in light medium were left unstimulated\". Data check (orientation.txt): canonical G-CSF-induced sites are H>L: ERK1/2 TEY 4/4 positive (log2 H/L 8.2-10.5 at 12.5 min), RSK S380 motif 37/44 positive, STAT3 S727 14/17 positive."
+  },
+  {
+   "location": "source name, comment[label] rows 13-24, 37-48, 50, 63-74, 87-98, 111-122, 125-126, 139-150, 163-174, 187-198, 211-222, 235-246, 259-270, 282-292",
+   "value": "SILAC heavy = G-CSF stimulated (12.5 min or 90 min)",
+   "source_ids": [
+    "pride",
+    "paper",
+    "quant"
+   ],
+   "evidence": "Same statement and data check as the light claim; Quantdatacombined.xls values are log2(heavy/light) = stimulated vs non-stimulated (paper Data Records, perl normalisation section)."
+  },
+  {
+   "location": "source name, characteristics[genotype], factor value[genotype] rows 1-292",
+   "value": "wild-type G-CSFR (CSF3R) transduced (WT*); G-CSFR (CSF3R) T618I transduced (T618I*); G-CSFR (CSF3R) Q741x truncation transduced (Q741x*)",
+   "source_ids": [
+    "files",
+    "wiff",
+    "paper",
+    "group"
+   ],
+   "evidence": "Zip names WT/T618I/Q741x<time>Rep<n>; .wiff sample names (e.g. \"Pankaj_Q741x 12.5 min Rep 1 pSpT high pH RP frac 1\"; WT runs say \"SILAC 12.5 min replicate 1\", filed under ...\\pST data files\\WT\\ in the group); paper: BaF3 retrovirally transduced to stably express WT, proximal T618I and truncated Q741x G-CSFR. Species of the receptor cDNA not stated, so not asserted. Custom characteristics column (spec Extending Templates; precedent PXD004548)."
+  },
+  {
+   "location": "characteristics[treatment], factor value[treatment] rows 1-292",
+   "value": "granulocyte colony-stimulating factor (heavy rows) / untreated (light rows)",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "G-CSF 40 ng/mL on heavy cells; light left unstimulated. NCIT:C26078 Granulocyte Colony-Stimulating Factor; untreated per batch rule 4. Source/species of the recombinant G-CSF not stated."
+  },
+  {
+   "location": "characteristics[sampling time], factor value[sampling time] rows 1-292",
+   "value": "12.5 minute / 90 minute (heavy rows); not applicable (light rows)",
+   "source_ids": [
+    "files",
+    "wiff",
+    "paper"
+   ],
+   "evidence": "Stimulation time per mixture from zip and .wiff sample names; paper: 12.5 min (early) and 90 min (late). Light cells were never stimulated, so a stimulation time does not apply."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-292",
+   "value": "heavy: 1-2 per (genotype, time) = paper Rep1/Rep2; light: 1-4 per genotype (12.5 min Rep1=1, Rep2=2, 90 min Rep1=3, Rep2=4)",
+   "source_ids": [
+    "paper",
+    "files",
+    "templates"
+   ],
+   "evidence": "Paper Fig. 2: two independent biological replicates per time point and receptor, \"12 independent biological replicates\" overall; each mixture combined 10 mg light + 10 mg heavy protein \"for each pairwise comparison\", so each mixture has its own unstimulated light culture. Numbers restart per factor-value group and are unique per culture (README.adoc:330; batch rule 3). The four light cultures of a genotype share one factor-value group (untreated, not applicable), hence 1-4."
+  },
+  {
+   "location": "comment[data file], assay name rows 1-292",
+   "value": "146 .wiff members of the 12 RAW zips (each .wiff has a companion .wiff.scan in the same zip)",
+   "source_ids": [
+    "zipcd",
+    "wiff"
+   ],
+   "evidence": "Each zip holds one SILAC mixture; .wiff names are used as data files (precedent PXD005246 names the member inside a zip). 9 Blank runs excluded (see limitations)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-292",
+   "value": "1-12 = concatenated high-pH RP fraction number",
+   "source_ids": [
+    "wiff",
+    "paper",
+    "postbuild"
+   ],
+   "evidence": "Each .wiff sample name ends \"frac N\"/\"Frac N\"/\"fraction N\" (re-injections \"3b\", \"2b\", \"7b\"). Paper: 60 fractions concatenated into 12 pools. Post-build script replaced build's positional numbering with these numbers (WT90minRep2 has no fraction 9 deposited; re-injections keep their fraction number)."
+  },
+  {
+   "location": "comment[technical replicate] rows 49-50, 123-126 (value 2), other rows 1",
+   "value": "re-injection = technical replicate 2",
+   "source_ids": [
+    "wiff",
+    "zipcd"
+   ],
+   "evidence": "Q741x 12.5 min Rep 2 frac 3 and frac 3b (Data030416_03/_04) both full runs; T618I 12.5 min Rep 1 Frac 2 / 7 (Data081416_04/_15: 0.29 MB .wiff, 44-byte .wiff.scan, i.e. failed injections) re-run as Frac 2b / 7b (Data081416_05/_16)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-292",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism NEWT:10090; paper Sample Characteristic Mus musculus; Cellosaurus OX NCBI_TaxID=10090."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-292",
+   "value": "BA/F3; CVCL_0161; Ba/F3",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"BaF3 cell lines stably expressing normal and mutated G-CSFRs\", Sample Characteristic BA/F3 cell. Cellosaurus CVCL_0161 (synonyms BaF3) DR EFO_0022749 = EFO label \"BA/F3\". The transduced derivatives are lab-made and have no own Cellosaurus entry."
+  },
+  {
+   "location": "characteristics[organism part], characteristics[cell type] rows 1-292",
+   "value": "bone marrow; pro-B cell",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0161: \"Derived from site: In situ; Bone marrow; UBERON=UBERON_0002371\"; \"Cell type: Pro-B cell; CL=CL_0000826\". PRIDE organismParts lists \"B cell\" and \"cell suspension culture\"; pro-B cell is the more specific CL term."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-292",
+   "value": "C3H",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus: \"Breed/subspecies: C3H\"; \"Caution: Originally thought to originate from a BALB/c mouse but is in fact from a C3H mouse (PubMed=25277546)\". Free-text column; validate-sdrf warning about NCBITaxon is expected."
+  },
+  {
+   "location": "characteristics[disease] rows 1-292",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Ba/F3 is an IL-3-dependent, non-tumorigenic pro-B line; Cellosaurus lists no disease. The receptor mutations model CNL/AML but the cells are not leukaemic; PRIDE \"acute leukemia\" (DOID:12603) is the study context, not a property of the samples. PATO:0000461."
+  },
+  {
+   "location": "characteristics[material type] rows 1-292",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured BaF3 cells."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-292",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "pY1000 immunoaffinity flow-through, high-pH RP fractions each enriched with TiO2 spin tips for pS/pT peptides. EFO:0010806."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-292",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE: \"RPMI medium (Invitrogen)\" with 5% FBS, SILAC RPMI with light or heavy Lys/Arg. NCIT:C178973. \"1640\" is inferred (RPMI 1640 is the RPMI formulation used for SILAC); see limitations."
+  },
+  {
+   "location": "comment[instrument] rows 1-292",
+   "value": "NT=TripleTOF 5600+;AC=MS:1002584",
+   "source_ids": [
+    "paper",
+    "pride",
+    "wiff",
+    "ref5600plus"
+   ],
+   "evidence": "Paper and PRIDE data protocol: \"TripleTOF 5600+ MS (Sciex)\". The .wiff device string reads \"TripleTOF 5600\" and PRIDE instruments field says MS:1000932, but a reference .wiff from a TripleTOF 5600+ (PXD001997) carries the same \"TripleTOF 5600\" device string, so the raw header does not distinguish the models; the explicit Methods statement is kept. reconcile agrees."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-292",
+   "value": "Data-dependent acquisition; collision-induced dissociation; time-of-flight; 350m/z-1600m/z",
+   "source_ids": [
+    "paper",
+    "pride",
+    "wiff"
+   ],
+   "evidence": "Paper: 20 information-dependent acquisition (IDA) MS/MS scans per cycle, TOF-MS 350-1600 m/z; QqTOF instrument (product ion scan in the TOF, CID in the collision cell); acquisition method Phospho_90min.dam in every .wiff."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-292",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "group"
+   ],
+   "evidence": "TPCK-treated trypsin (Worthington) 1:50 overnight; ProteinPilot UI_DIGESTION Trypsin in all 12 searches."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-292",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "XBridge C18 high-pH RPLC, 60 fractions concatenated to 12."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-292",
+   "value": "Dithiothreitol (DTT); Iodoacetamide (IAA)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "group"
+   ],
+   "evidence": "5 mM DTT 60 C 20 min; 10 mM iodoacetamide 10 min RT dark; ProteinPilot UI_CYS_ALKYLATION Iodoacetamide."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-292",
+   "value": "Carbamidomethyl C Fixed; Phospho S,T,Y, Oxidation M, Deamidated N,Q, Label:13C(6)15N(2) K, Label:13C(6)15N(4) R Variable",
+   "source_ids": [
+    "group",
+    "paper"
+   ],
+   "evidence": "All 12 .group files: UI_SAMPLE_TYPE \"SILAC (Lys+8, Arg+10)\" whose heavy MOD_FEATURE_SET is Label:13C(6)15N(2) on K and Label:13C(6)15N(4) on R (UNIMOD:259/267, MT=Variable per batch rule 11); UI_SPECIAL_FACTOR \"Phosphorylation emphasis\" (Phospho(Ser,Thr) and Phospho Tyr); UI_CYS_ALKYLATION Iodoacetamide (Carbamidomethyl C prob 0.994, written Fixed). Paragon ID focus \"Biological modifications\" is probabilistic over many mods; Oxidation M and Deamidated N/Q are the most frequent non-label biological mods in confident WT90minRep2 matches (M[Oxi] 1585, N[Dea] 3629, Q[Dea] 2860)."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-292",
+   "value": "0.05 Da; 0.1 Da",
+   "source_ids": [
+    "group"
+   ],
+   "evidence": "ProteinPilot UI_INSTRUMENT \"TripleTOF 5600\" selects INSTRUMENT:60 with MSTOLERANCE 0.05 dalton and MSMSTOLERANCE 0.1 dalton (auto-calibration on); Paragon has no user-set tolerance."
+  },
+  {
+   "location": "technology type, comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-292",
+   "value": "proteomic profiling by mass spectrometry; v1.1.0; ms-proteomics v1.2.0, vertebrates v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; vertebrates for mouse, cell-lines for BaF3."
+  }
+ ],
+ "limitations": [
+  "SILAC label conflict resolved against the wet-lab text: PRIDE protocol and paper Methods say heavy medium contained \"arginine-13C6 ... lysine-13C6\" (Arg6/Lys6), while the paper and all 12 .group files use ProteinPilot \"SILAC (Lys+8, Arg+10)\" and the companion pY deposit PXD009662 says \"C-13, N-15 Lysine and Arginine\". The decoded WT90minRep2 search identified 16,926 confident (>=0.95) matches carrying K[+08]/R[+10] vs 18,860 unlabelled K/R matches; a +6 label would not give confident +8/+10 identifications at that rate. Annotated as Lys8/Arg10 (UNIMOD:259/267). Only one group file was decoded in full; the other 11 were checked for identical UI settings only.",
+  "9 runs excluded because their .wiff sample name is \"Blank\" (no sample): Q741x12.5minRep1 Data030216_17, Q741x90minRep1 Data030516_13, Q741x90minRep2 Data030616_13, T618I12.5minRep2 Data081916_24, T618I90minRep1 Data082016_24, WT12.5minRep1 Data111715_13, WT12.5minRep2 Data111815_13, WT90minRep1 Data111915_13, WT90minRep2 Data112015_13. The WT90minRep2 combined search did include Data112015_13 (blank).",
+  "WT 90 min Rep 2 has 11 fraction runs: fraction 9 (Data112015_09) is not in the deposit; its combined search used the 11 fractions plus the blank.",
+  "Data081416_04 and Data081416_15 (T618I 12.5 min Rep 1 Frac 2 and Frac 7) contain no spectra (.wiff.scan 44 bytes); they are annotated (technical replicate 1) because they are deposited runs of the mixture; their re-injections Frac 2b/7b are technical replicate 2. Whether the failed runs were in the combined search was not checked (group file not decoded in full).",
+  "Light-culture independence per mixture is inferred from the paper (12 independent pairwise mixtures, light and heavy mixed per pairwise comparison); the paper does not say explicitly that each mixture used a separately grown light culture.",
+  "Receptor cDNA species (human vs mouse CSF3R) is not stated; the genotype values name the variants only. G-CSF source/species not stated.",
+  "Culture medium: the source says \"RPMI medium\"; RPMI 1640 is inferred.",
+  "characteristics[sex], [developmental stage], [passage number] not available: Cellosaurus CVCL_0161 has no sex or age; passage not reported.",
+  "ProteinPilot Paragon is a probabilistic search over many biological modifications; comment[modification parameters] lists the label, alkylation and emphasis mods set in the UI plus the two most frequent biological mods, not the full Paragon mod list.",
+  "The .wiff device string \"TripleTOF 5600\" vs Methods \"TripleTOF 5600+\": resolved to 5600+ (see instrument claim).",
+  "Independent review not run here: hand-off to an external reviewer (REVIEW_PENDING_EXTERNAL)."
+ ]
+}

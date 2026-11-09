@@ -1,0 +1,290 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv",
+ "dataset": "PXD004880",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004880 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/pride_v3.json; mcp get_project_details /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004880/files?pageSize=100&page=0..5 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/files_all.json, 271 entries, every projectAccessions contains PXD004880; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/files.txt)"
+  },
+  {
+   "id": "sampleinfo",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/11/PXD004880/SampleInformation_201608upload.txt (submitter run sheet, CR line endings; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/SampleInformation.txt, normalised /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/SI.txt)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Liu Y, Borel C, Li L, et al., Aebersold R. Systematic proteome and proteostasis profiling in human Trisomy 21 fibroblast cells. Nat Commun 2017;8:1212, doi:10.1038/s41467-017-01422-6, PMID 29089484, PMC5663699 (https://pmc-oa-opendata.s3.amazonaws.com/PMC5663699.1/PMC5663699.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/paper/paper.txt; title verified in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/paper/meta.json)"
+  },
+  {
+   "id": "si",
+   "kind": "supplementary",
+   "location": "PMC5663699 Supplementary Information 41467_2017_1422_MOESM1_ESM.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/paper/SI.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/paper/SI.txt): Supplementary Fig. 1 and 7 legends"
+  },
+  {
+   "id": "cello_B4L1",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_B4L1?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/paper/cello/CVCL_B4L1.txt)"
+  },
+  {
+   "id": "cello_B4L2",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_B4L2?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/paper/cello/CVCL_B4L2.txt)"
+  },
+  {
+   "id": "wiff",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/11/PXD004880/yanliu_Y151023_002_SW.wiff (full 13 MB download, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/raw/Y151023_002_SW.wiff; read with strings)"
+  },
+  {
+   "id": "openswath",
+   "kind": "search-output",
+   "location": "deposited E1511041456_feature_alignment_ProteinTurnover.tsv (1.7 GB OpenSWATH/TRIC output): first 8 MB (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/raw/fa_head.tsv) and 144 evenly spaced 1 MB HTTP-range chunks (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/raw/chunks/) summarised by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/scripts/heavy_frac.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/heavy_frac.txt"
+  },
+  {
+   "id": "traml",
+   "kind": "search-output",
+   "location": "deposited library file name spectrast2tsv_R10K8_proteinTurnover_combinedALL_Trisomy20151102_step5_decoy_final.TraML (PRIDE file list)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via /home/user/bin/mcpcall searchClasses and /api/ontologies/<o>/terms (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/ols.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines -t dia-acquisition (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0, dia-acquisition v1.1.0; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/contract.txt); ms-proteomics latest 1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); sdrf version v1.1.0 per spec README.adoc:27. The spec submodule nested templates copy is older."
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/scripts/gen_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD004880/build/samples.tsv, technical.tsv, files.json; sdrf-tools build -t ms-proteomics -t human -t cell-lines -t dia-acquisition -> /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv (no post-build edits)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file] / assay name rows 1-72",
+   "value": "yanliu_Y151023_002_SW.wiff ... yanliu_Y151023_037_SW.wiff (36 runs x 2 channels)",
+   "source_ids": [
+    "files",
+    "sampleinfo"
+   ],
+   "evidence": "SampleInformation lists yanliu_Y151023_002_SW..037_SW as \"SWATH-MS-ProteinTurnover: <T1DS|T2N>_rep<1-3>_<0|1|4|8|14|24>hr\"; each has a deposited .wiff (+ .wiff.scan) in the PRIDE file list. The .wiff is the vendor RAW; .wiff.scan is its companion data file."
+  },
+  {
+   "location": "source name / characteristics[individual] / characteristics[biological replicate] / characteristics[sampling time] rows 1-72",
+   "value": "per run from SampleInformation (e.g. Y151023_002 = T1DS rep1 0 hour)",
+   "source_ids": [
+    "sampleinfo",
+    "paper"
+   ],
+   "evidence": "Run sheet gives twin, replicate and pulse time for every run. Paper Methods: \"The three replicates of T1DS and T2N samples were used ... six time points (0, 1, 4, 8, 14, and 24 h)\"; Results: pSILAC \"to both T1DS and T2N (three experimental replicates each)\". SI Fig 1: an experimental replicate is \"the independent whole-process replicate starting from two separated dishes\". Hence rep1-3 = separate dishes -> biological replicate 1-3 within each (disease, time) group (campaign rule 3)."
+  },
+  {
+   "location": "comment[label] rows 1-72",
+   "value": "SILAC light = pre-existing proteins; SILAC heavy = newly synthesized proteins (two rows per run, same culture)",
+   "source_ids": [
+    "paper",
+    "openswath",
+    "traml",
+    "si"
+   ],
+   "evidence": "Methods: cells grown in light SILAC medium, at t0 switched to heavy medium (13C6 15N2 Lys, 13C6 15N4 Arg); RIA = light/(light+heavy) models loss of the light (old) protein. OpenSWATH output contains light and heavy (UniMod:259 K / UniMod:267 R) precursors for each peptide in each run. Data check: H/(L+H) of summed paired intensities rises with the run sheet time: 0 h 0.111-0.126, 1 h 0.123-0.150, 4 h 0.191-0.219, 8 h 0.282-0.307, 14 h 0.380-0.408, 24 h 0.494-0.524 (SI Fig 7 reports ~50-52% heavy at 24 h). At 0 h the heavy row is a background/interference channel (no label yet), kept as in precedent PXD006015/PXD028934."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-72",
+   "value": "Carbamidomethyl C fixed; Oxidation M variable; Label:13C(6)15N(2) K (UNIMOD:259) variable; Label:13C(6)15N(4) R (UNIMOD:267) variable",
+   "source_ids": [
+    "paper",
+    "openswath",
+    "traml",
+    "ols"
+   ],
+   "evidence": "Methods (pSILAC SWATH analysis): library search \"Oxidation at methionine ... variable ... carbamidomethylation at cysteine ... fixed\"; light and heavy assays generated by spectrast2tsv (TraML name R10K8). OpenSWATH FullPeptideName shows K(UniMod:259), R(UniMod:267). Paper: heavy L-lysine (13C6 15N2), arginine (13C6 15N4). MT=Variable per campaign rule 11."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-72",
+   "value": "NT=SWATH MS;AC=PRIDE:0000447",
+   "source_ids": [
+    "paper",
+    "wiff",
+    "ols"
+   ],
+   "evidence": "Methods \"SWATH mass spectrometry ... 64 variable wide precursor ion windows\"; wiff header: SWATHMethod, acquisition method YL_SWATH64w_2ul_300nlmin_105min.dam, SWATH Exp 1-64 table. PRIDE:0000447 SWATH MS (OLS) is a DIA descendant licensed by dia-acquisition."
+  },
+  {
+   "location": "comment[scan window lower limit] / comment[scan window upper limit] rows 1-72",
+   "value": "399.5 / 1200.5",
+   "source_ids": [
+    "paper",
+    "wiff"
+   ],
+   "evidence": "Paper window list 399.5-408.2 ... 1109.6-1200.5; wiff \"SWATH Exp 1 399.50 408.20\", \"SWATH Exp 64 1109.60 1200.50\"."
+  },
+  {
+   "location": "comment[isolation window width] rows 1-72",
+   "value": "not applicable",
+   "source_ids": [
+    "paper",
+    "wiff"
+   ],
+   "evidence": "Variable-width windows (8.7 to 90.9 m/z); no single width exists."
+  },
+  {
+   "location": "comment[instrument] rows 1-72",
+   "value": "NT=TripleTOF 5600;AC=MS:1000932",
+   "source_ids": [
+    "wiff",
+    "paper",
+    "ols"
+   ],
+   "evidence": "wiff: \"Component ID: Triple TOF 5600, Manufacturer: AB Sciex Instruments\"; Methods: SCIEX 5600 TripleTOF. PRIDE instruments field also lists LTQ Orbitrap Elite and Q Exactive, which belong to other arms (Elite pSILAC comparison raws are not deposited; Q Exactive Plus = dimethyl arm)."
+  },
+  {
+   "location": "comment[dissociation method] / comment[ms2 mass analyzer] rows 1-72",
+   "value": "beam-type CID (MS:1000422) / time-of-flight (MS:1000084)",
+   "source_ids": [
+    "paper",
+    "wiff",
+    "ols"
+   ],
+   "evidence": "Q-TOF collision-cell fragmentation with per-window CE (CES 15) and TOF MS2 (wiff ExperimentTOF, TOF Resolution Mode High Sensitivity). collision energy left out: rolling CE per window, no single value."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-72",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: digested with sequencing-grade porcine trypsin (Promega) 1:25 overnight."
+  },
+  {
+   "location": "comment[reduction reagent] / comment[alkylation reagent] rows 1-72",
+   "value": "TCEP PRIDE:0000609 / Iodoacetamide PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: reduced by 10 mM TCEP, 20 mM iodoacetamide (IAA)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 1-72",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "SWATH runs were analysed by targeted OpenSWATH extraction; extraction windows are not reported. The 75 ppm / 0.1 Da tolerances apply to the iPortal DDA library search of separate (light-only) shotgun runs, not these files."
+  },
+  {
+   "location": "comment[fractionation method] / comment[fraction identifier] rows 1-72",
+   "value": "not applicable / 1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "No peptide fractionation in the pSILAC arm; 1 ug injected per run."
+  },
+  {
+   "location": "characteristics[cell line] / cellosaurus accession / cellosaurus name rows 1-36 (T1DS); rows 37-72 (T2N)",
+   "value": "Twin-DS CVCL_B4L1; Twin-N CVCL_B4L2",
+   "source_ids": [
+    "cello_B4L1",
+    "cello_B4L2",
+    "paper"
+   ],
+   "evidence": "Cellosaurus: Twin-DS (synonym T1DS) and Twin-N (synonym T2N), both cross-referencing PRIDE PXD004880 and PubMed 29089484."
+  },
+  {
+   "location": "characteristics[disease] / factor value[disease] rows 1-36 (T1DS); rows 37-72 (T2N)",
+   "value": "Down syndrome (MONDO:0008608); normal (PATO:0000461)",
+   "source_ids": [
+    "paper",
+    "cello_B4L1",
+    "cello_B4L2",
+    "ols"
+   ],
+   "evidence": "Paper: monozygotic twins discordant for T21; T1DS = trisomy 21 twin, T2N = normal twin. Cellosaurus Twin-DS DI Down syndrome; Twin-N no disease."
+  },
+  {
+   "location": "characteristics[sex] / age / developmental stage / ancestry category rows 1-72",
+   "value": "female / 16W / fetal stage / European ancestry",
+   "source_ids": [
+    "cello_B4L1",
+    "cello_B4L2",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus SX Female, AG 16FW, Population Caucasian for both lines; paper: collected post mortem \"at 16 fetal weeks\". 16W = gestational age (age column pattern has no fetal unit). fetal stage = HsapDv:0000037 (campaign precedent; not in EFO -> validator warning)."
+  },
+  {
+   "location": "characteristics[organism part] / cell type rows 1-72",
+   "value": "skin of forearm (UBERON:0003403) / skin fibroblast (CL:0002620)",
+   "source_ids": [
+    "paper",
+    "cello_B4L1",
+    "ols"
+   ],
+   "evidence": "Paper: \"forearm primary fetal skin fibroblasts\"; Cellosaurus derived from Forearm skin UBERON_0003403, cell type Fibroblast of skin CL_0002620 (OLS label \"skin fibroblast\")."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-72",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "pSILAC: SILAC DMEM High Glucose Medium (GE Healthcare) lacking Arg/Lys + 10% dialysed FBS, 1% pen/strep (NCIT:C185409)."
+  },
+  {
+   "location": "characteristics[sample storage temperature] rows 1-72",
+   "value": "-80 °C",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cell pellets stored at -80 °C."
+  },
+  {
+   "location": "characteristics[material type] rows 1-72",
+   "value": "cell line",
+   "source_ids": [
+    "cello_B4L1",
+    "cello_B4L2"
+   ],
+   "evidence": "Cellosaurus category Finite cell line (primary fibroblasts)."
+  },
+  {
+   "location": "characteristics[passage number] rows 1-72",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Not stated."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] rows 1-72",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0, dia-acquisition v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE (campaign = SILAC): only the 36 pulsed-SILAC SWATH runs (yanliu_Y151023_002_SW..037_SW.wiff) are annotated. Not annotated, because they are not SILAC-multiplexed: 56 label-free steady-state SWATH runs (12 twin runs yanliu_Y141216_0xx_SWa, 44 unrelated-individual runs yanliu_Y150223_0xx_SW incl. 012a_SW), 34 light-only DDA library runs (YANLIU_J140818_*, YANLIU_Y141216_0xx odd, YANLIU_Y150109_*, YANLIU_Y151023_038/039, YANLIU_Y151028_001-004 = pSILAC t0 light shotgun) and 14 dimethyl-labelled Q Exactive Plus raws (20150611_PB_*, 20150612_PB_YL_*). Run-sheet wiff names are matched case-insensitively (PRIDE spells them yanliu_*). These can be annotated in separate label-free/dimethyl SDRFs.",
+  "The Orbitrap Elite pSILAC comparison runs (MaxQuant SILAC search, Methods) are not in the deposit; no MaxQuant summary.txt exists. SILAC multiplicity (rule 14) was verified instead from the deposited OpenSWATH output (paired light/heavy precursors with UniMod:259/267 in every run).",
+  "Heavy share per run computed from a 144 x 1 MB sample of the 1.7 GB feature_alignment file (about 1200-1700 light/heavy pairs per run), not the full file.",
+  "Precursor/fragment tolerances not available: OpenSWATH extraction settings are not reported.",
+  "Biological replicate: the paper calls the three pSILAC replicates \"experimental replicates\" from separate dishes of split aliquots of one fibroblast stock per twin; numbered 1-3 within each (disease, time) group. Whether rep k at different times shares a dish lineage is not stated.",
+  "Age 16W is gestational age (16 fetal weeks), written in the only unit the pattern allows.",
+  "techsdrf not installable; instrument/method verified from one wiff header (Y151023_002) only; all pSILAC wiffs share size 13172736 bytes (002: 13168640) consistent with one method.",
+  "Independent review pending (external hand-off; not self-approved)."
+ ]
+}

@@ -1,0 +1,5 @@
+PXD004880 validation log (2026-11-09T06:58:45Z)
+sha256 a6112360f2e81dee1c48c93711aa498dfbf833bc868c51040e577f6cf70f4c13  72 rows x 50 cols
+Built by sdrf-tools build (scripts/gen_tables.py); no post-build edits.
+
+### $ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD004880.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t dia-acquisition
