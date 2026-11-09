@@ -321,7 +321,10 @@ def parse_mq_table(path: Path) -> SearchParams:
         header = rows[0]
         per_row = [dict(zip(header, r)) for r in rows[1:] if r and r[0] not in ("Total", "")]
     for row in per_row:
-        for key, fixed in (("Fixed modifications", True), ("Variable modifications", False)):
+        # "Multi modifications" (MaxQuant >= 1.6) are variable modifications searched in
+        # combination; they appear nowhere else in summary.txt
+        for key, fixed in (("Fixed modifications", True), ("Variable modifications", False),
+                           ("Multi modifications", False)):
             for mod in (row.get(key) or "").split(";"):
                 p.add(mq_mod(mod, fixed))
         enz = (row.get("Enzyme") or row.get("Enzymes") or "").split(";")[0].strip()

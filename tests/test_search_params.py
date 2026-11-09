@@ -206,6 +206,16 @@ def test_unmapped_mod_listed_once_across_raw_files(tmp_path):
     assert extract(f).unmapped == ["modification 'MadeUpMod (K)'"]
 
 
+def test_summary_multi_modifications_are_variable_mods(tmp_path):
+    # MaxQuant 1.5.3.33 (PXD006404): Deamidation (NQ) is listed only under "Multi modifications"
+    f = tmp_path / "summary.txt"
+    f.write_text("Raw file\tFixed modifications\tVariable modifications\tMulti modifications\n"
+                 "a\tCarbamidomethyl (C)\tOxidation (M)\tDeamidation (NQ)\n")
+    m = mods(extract(f))
+    assert "Deamidated" in m and not m["Deamidated"].fixed
+    assert m["Carbamidomethyl"].fixed and "Oxidation" in m
+
+
 def test_fragger_pre_3x_enzyme_keys(tmp_path):
     f = tmp_path / "fragger.params"
     f.write_text("precursor_mass_lower = -10\nprecursor_mass_upper = 10\nsearch_enzyme_name = Trypsin\n"
