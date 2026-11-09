@@ -86,7 +86,7 @@
    "evidence": "Explicit label statement: Supplementary Table 4 row 6 headers over the ratio columns: set 1 'Ratio M/L' = 'sh-Ctr mock/sh-Ctr infection', 'Ratio H/L' = 'sh-NLRX1#1 mock/sh-Ctr infection', 'Ratio H/M' = 'sh-NLRX1#1 mock/sh-Ctr mock'; set 2 M/L 'sh-Ctr mock/sh-NLRX1#1 infection', H/L 'sh-NLRX1#1 mock/sh-NLRX1#1 infection', H/M 'sh-NLRX1#1 mock/sh-Ctr mock'; set 3 M/L 'sh-Ctr mock/sh-NLRX1#2 infection', H/L 'sh-NLRX1#2 mock/sh-NLRX1#2 infection', H/M 'sh-NLRX1#2 mock/ sh-Ctr mock'. The three ratios of each set are mutually consistent (one condition per channel). Data checks: (1) HIV-1 proteins in the deposited HIV-only search proteinGroups_NLRX1.txt: POL_HV1H2 Intensity L/M/H = 1.77e10/5.2e8/2.5e8 (SILAC1), 9.75e9/3.1e8/1.05e9 (SILAC2), 1.41e10/4.7e8/4.7e8 (SILAC3); GAG_HV1H2 L-only in SILAC2/3 -> light = infected in every set. (2) NLRX1 (Q86UT6) in Supplementary Table 4: set1 H/M 0.226 (knockdown heavy vs control medium), M/L 0.46 (infection raises NLRX1, as the paper reports); set2 M/L 3.09 (light knocked down) and H/M 0.228; set3 H/M 0.459, H/L 0.49 -> knockdown channels as labelled. Paper Methods: 'SILAC-labeled Jurkat-sh-Ctr or Jurkat-sh-NLRX1 cells were infected with VSV-G-NL4-3-Luc (MOI=5) or left uninfected. At 24 hpi, cells were harvested'."
   },
   {
-   "location": "assay/data file -> SILAC set, all rows",
+   "location": "assay name + comment[data file] -> SILAC set, all rows",
    "value": "set1 = 20170404_Ting_1_01..16 (+ 20170404_Ting_1_12_170408070646), set2 = 20170411_Ting_2_01..09 + 20170413_Ting_2_total1/total2, set3 = 20170408_Ting_3_01..13",
    "source_ids": [
     "files",
@@ -127,7 +127,7 @@
    "evidence": "PRIDE protocol: XBridge C18 at pH 10, 60 min gradient, 60 fractions pooled to 15."
   },
   {
-   "location": "characteristics[cell line], [cellosaurus accession], [cellosaurus name], [biorepository]",
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], characteristics[biorepository], all rows",
    "value": "Jurkat / CVCL_0367 / Jurkat E6.1 / ATCC",
    "source_ids": [
     "paper",
@@ -137,7 +137,7 @@
    "evidence": "Paper Methods: 'Jurkat cells (TIB-152, ATCC)'. ATCC TIB-152 = Jurkat, Clone E6-1 = Cellosaurus CVCL_0367 (parent CVCL_0065). EFO:0002796 label 'Jurkat' (the only EFO Jurkat class; human only, no cross-species collision)."
   },
   {
-   "location": "characteristics[organism], [organism part], [cell type], [disease], [material type]",
+   "location": "characteristics[organism], characteristics[organism part], characteristics[cell type], characteristics[disease], characteristics[material type], all rows",
    "value": "Homo sapiens / blood / T cell / T-cell childhood acute lymphocytic leukemia / cell line",
    "source_ids": [
     "cellosaurus",
@@ -147,7 +147,7 @@
    "evidence": "Cellosaurus: derived from peripheral blood (UBERON:0000178), Childhood T acute lymphoblastic leukemia -> MONDO:0000871 'T-cell childhood acute lymphocytic leukemia'. Paper: 'the human Jurkat T cell line' -> CL:0000084 T cell."
   },
   {
-   "location": "characteristics[age], [sex], [ancestry category]",
+   "location": "characteristics[age], characteristics[sex], characteristics[ancestry category], all rows",
    "value": "14Y / male / European ancestry",
    "source_ids": [
     "cellosaurus",
@@ -156,7 +156,7 @@
    "evidence": "Cellosaurus AG 14Y, SX Male, Population Caucasian -> HANCESTRO:0005 European ancestry. Developmental stage omitted: 14Y is not adult (rule 9) and no EFO adolescent stage term was found."
   },
   {
-   "location": "characteristics[individual], [passage number], [culture medium], [sample storage temperature]",
+   "location": "characteristics[individual], characteristics[passage number], characteristics[culture medium], characteristics[sample storage temperature], all rows",
    "value": "not available",
    "source_ids": [
     "paper",
@@ -202,7 +202,7 @@
    "evidence": "All 41 SILAC raw headers: 'Q Exactive - Orbitrap MS', 'Method of Q Exactive'; PRIDE protocol 'Q Exactive Hybrid Quadrupole-Orbitrap'. PRIDE's second instrument (Q Exactive HF) belongs to the TMT arm (paper: Q-Exactive HF-X)."
   },
   {
-   "location": "comment[proteomics data acquisition method], [dissociation method], [collision energy], [ms2 mass analyzer], [ms1 scan range]",
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range], all rows",
    "value": "DDA PRIDE:0000627 / beam-type CID (HCD) MS:1000422 / 27 NCE / orbitrap MS:1000484 / 200m/z-2000m/z (fractions) or 300m/z-1650m/z (total runs)",
    "source_ids": [
     "raw",
@@ -212,7 +212,7 @@
    "evidence": "Raw method: TopN 20 data-dependent, NCE 27.0, MS2 resolution 17,500 (Orbitrap), Scan range per file in raw_summary.txt."
   },
   {
-   "location": "comment[cleavage agent details], [reduction reagent], [alkylation reagent]",
+   "location": "comment[cleavage agent details], comment[reduction reagent], comment[alkylation reagent], all rows",
    "value": "Trypsin MS:1001251 / DTT PRIDE:0000608 / IAA PRIDE:0000599",
    "source_ids": [
     "pride",
@@ -240,7 +240,7 @@
    "evidence": "PRIDE: 'initial mass deviation for precursor ion was up to 4.5 ppm'. Fragment: deposited parameters_NLRX1.txt 'MS/MS tol. (FTMS) 20 ppm' (HCD spectra read in the Orbitrap = FTMS); the PRIDE text's 0.5 Da is MaxQuant's ITMS value, not applicable to these Orbitrap MS2 spectra."
   },
   {
-   "location": "comment[sdrf version], [sdrf template] x3, [sdrf annotation tool], technology type",
+   "location": "comment[sdrf version], comment[sdrf template] x3, comment[sdrf annotation tool], technology type, all rows",
    "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
    "source_ids": [
     "templates"
