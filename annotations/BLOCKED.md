@@ -1815,3 +1815,28 @@ The technical values are already resolved in `annotations/PXD041509.report.md`:
 **Excluded runs (out of scope for the SILAC campaign, not missing evidence):** 47 label-free cell-surface-capture runs searched in MaxQuant 1.6.2.1 (summary Multiplicity 1; `summary_MM_Leukemia.txt`, `summary_PI_resistant.txt`, `summary_Small_Molecule.txt`; sample identities in `MM_surfaceome_sample_list.xlsx`): Q20180308-22, Q20180324-07, Q20180324-09, Q20180410-05, Q20180420-03, Q20180428-11, Q20180430-01, Q20180512-03, Q20180512-05, Q20180512-07, Q20180512-09, Q20180512-11, Q20180512-13, Q20180720-04, Q20180720-06, Q20180720-08, Q20180720-10, Q20180722-15, Q20180801-03, Q20180801-05, Q20180810-10, Q20180810-16, Q20180811-01, Q20180811-03, Q20180811-05, Q20180811-07, Q20180811-09, Q20180811-11, Q20180811-13, Q20180818-06, Q20180818-08, Q20181215-03, Q20181215-04, Q20181215-05, Q20181215-07, Q20181215-09, Q20190113-04, Q20190113-05, Q20190113-07, Q20190113-09, Q20190124-05, Q20190124-07, Q20190124-09, Q20190124-11, Q20190125-03, Q20190125-05, Q20190125-07 (.raw). They would go in a separate label-free SDRF (`PXD022482-lfq.sdrf.tsv`, batch rule 12). Note for whoever annotates them: the sample list calls Q20190124-07 "L363 CarfR rep1" while `summary_PI_resistant.txt` names it "ARH CarfR 0124-07".
 
 **Would be fully settled by:** a label-free annotation pass of the 47 runs.
+
+## PXD018566 — Rewiring of B cell receptor signaling by EBV LMP2A (Fish et al., PNAS 2020; triple-SILAC phospho/proteome, human LCLs + mouse lymphoma B cells), mouse arm only (partial block)
+
+**Annotated:** `annotations/PXD018566.sdrf.tsv` covers the 183 human LCL runs (proteome 5 x 23 gel slices, GPome 4 x 14 hpHRP fractions, two pYome sets of 3 samples x 2 injections). Their channel map is explicit in Fig. 1A (Light = LMP2A-KO, Medium = EBV-WT, Heavy = LMP2A-KO + 5' anti-BCR) and Fig. 1D (second pYome set: Heavy = EBV-WT + 5' BCR), confirmed against the deposited ratio tables.
+
+**Blocked (36 SILAC raws, mouse lambda-MYC / LMP2A-lambda-MYC tumour B-cell lines):**
+- Mouse GPome (28): `YLJI_310717_040817_FISH_GP9_TiO2_Phos_frac{5..17,54}{a,b}.raw` — matches `fc180214_gpome_mouse.csv` (M_L_r1-2, H_L_r1-2).
+- Mouse pYome (8): `J_Corso_291116_LMP2A_6_pY_1/2.raw`, `J_Corso_291116_LMP2A_7_pY_1/2.raw`, `J_Corso_161317_pY_MYC_8_1_1/2.raw`, `J_Corso_161317_pY_MYC_9_1_1/2.raw` — presumably `fc171021_pyome_mouse.csv` (M_L_r1-4, H_L_r1-4), but 8 runs vs 4 replicate columns are not mapped, and the `LMP2A`/`MYC` run names are not explained.
+
+**Why:** the paper names the three mouse conditions (MYC-expressing cells unstimulated, MYC cells 5-min anti-IgM BCR-stimulated, unstimulated MYC/LMP2A cells; Results and Methods) but no source assigns them to SILAC Light/Medium/Heavy. The mouse figure (SI Appendix Fig. S2) and Datasets S3/S4 are only in the SI, which is behind a PMC proof-of-work bot check (`pmc.ncbi.nlm.nih.gov/articles/instance/7584892/bin/*`) and a pnas.org 403; not bypassed. PRIDE protocol describes only the LCL mixes.
+
+**Data hint for whoever unblocks (not a source):** in the deposited mouse csvs, H/L carries the BCR signature (pYome Syk Y519/Y520 ~13-15x, Cd79a Y204 8.2x; GPome Syk Y623/Y624 13-20x), while M/L shows lower Cd79a Y204 (0.41) and Prkcd pY (0.19-0.35), which the paper attributes to LMP2A. That fits Light = MYC unstimulated, Medium = MYC/LMP2A, Heavy = MYC + BCR (the LCL layout), but needs Fig. S2 / Dataset S3-S4 headers or the authors to confirm, plus the pYome run-to-replicate map.
+
+**Unblock:** SI Appendix (pnas.2007946117.sapp.pdf) Fig. S2 legend/axes and Dataset S3/S4 column headers, or the authors (Oellerich lab / Yanlong Ji, submitter).
+
+## PXD023565 — HIV-1 / NLRX1 / FASTKD5 immunometabolism in Jurkat cells (Guo et al., Nat Immunol 2021; SILAC 3plex + TMT11plex), TMT arm excluded (out of scope, not a block)
+
+| field | value |
+|---|---|
+| Deposited | 69 files: 41 SILAC 3plex RAW `2017*_Ting_{1,2,3}_*.raw` (Q Exactive; sets 1–3 of sh-Ctr / sh-NLRX1#1 / sh-NLRX1#2 Jurkat, HIV-1 infected vs mock), 24 TMT11plex RAW `20200718_Haitao_TMT_F1–F24.raw` (sh-FASTKD5 vs control, infected/mock; Q Exactive HF-X per paper), MaxQuant `parameters_NLRX1.txt` / `proteinGroups_NLRX1.txt` (SILAC, HIV-only FASTA) and `parameters_FASKD5.txt` / `proteinGroups_FASTKD5.txt` (TMT, Reporter intensity 1–8). |
+| Annotated | All 41 SILAC runs × 3 channels = 123 rows: `annotations/PXD023565.sdrf.tsv`. Channel map from Supplementary Table 4 ratio headers, checked against HIV-1 Pol/Gag (light) and NLRX1 knockdown ratios. Raw→set map (`Ting_n` = SILAC set n) is a documented inference (manifest limitation). |
+| Excluded runs (out of campaign scope) | The 24 TMT11plex runs `20200718_Haitao_TMT_F1.raw` … `20200718_Haitao_TMT_F24.raw` (24 high-pH fractions of one TMT11plex mixture). Not a SILAC experiment, so not annotated in this SILAC campaign. |
+| A TMT SDRF would need | The TMT11 channel→sample map (8 used reporter channels per `proteinGroups_FASTKD5.txt`; Supplementary Table 6 / Fig. 7c give sh-FASTKD5 vs sh-Ctr, infected vs mock, 2 biological replicates, but no channel numbers were checked here). Technical values: MaxQuant 1.6.10.43, Carbamidomethyl fixed, Oxidation (M) + Acetyl (Protein N-term) variable, human UP000005640, 100-min gradient on Q Exactive HF-X (paper Methods). |
+
+**Sources checked:** PRIDE v3 project + files; paper PMC8087183 (PMC OA S3 text) and its supplementary xlsx (Supplementary Tables 4 and 6, Source Data Fig. 4); both MaxQuant parameters/proteinGroups files; HTTP-range headers of all 41 SILAC raws.
