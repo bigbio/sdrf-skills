@@ -1,12 +1,17 @@
-# PXD016505 validation log (2026-11-09T18:46Z); SDRF sha256 3ad09d62a8169964e3dc5cd9113227d9a166a2e5cc66dfd6c1099e914f9ae9c8
+# PXD016505 validation log (2026-11-09T19:30Z); SDRF sha256 fb12341f0ed1b96d07b94f266cd9d3fec784a3d117560e193dc7f1f0c99f5a94
 # SDRF = per-instrument sdrf-tools build outputs (LTQ Orbitrap Velos, Q Exactive Plus; identical headers asserted) concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/concat.sh — the only post-build step (header line once, then the data rows of each build). Tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/make_tables.py.
 
-## parse_sdrf validate-sdrf -s annotations/PXD016505.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology; one round, no errors)
-ERROR:sdrf_pipelines.ols.ols:OLS error searching term orbitrap. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=orbitrap&name=class&rows=10&start=80&ontology=ms&exact=on
-requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=orbitrap&name=class&rows=10&start=80&ontology=ms&exact=on
+## Round history
+Round 1 (superseded SDRF sha256 3ad09d62a8169964e3dc5cd9113227d9a166a2e5cc66dfd6c1099e914f9ae9c8, 1047 rows): validate-sdrf exit 0 (transient OLS 500 for 'orbitrap'), structure 0, reconcile 0, check 0, schema-check 0, manifest-coverage 0, convert-openms exit 1 (QE fragment tolerance not available). Independent review FAIL (annotations/PXD016505.review.md).
+Round 2 fixes (all in scripts/make_tables.py / scripts/manifest.py, rebuilt with sdrf-tools build, concatenated by scripts/concat.sh; no other post-build edit):
+ - LDY1098-S23-A-HDAC-F-2-No.raw re-added (3 rows) as technical replicate 2 of HDAC1_LDY1098_FOR_pool1_* (same vial BB4) with the search parameters; one HDAC1 FOR Velos run is unaccounted for (limitation).
+ - comment[fragment mass tolerance] 0.5 Da on the Q Exactive Plus rows too (Supp. Methods 12 states one search-wide value) -> convert-openms now exit 0.
+ - Manifest: shared-RAC1 empty-vector numbering note; unexplained ELK1/ELK4/PXN/RAF1 experiment excess (companion claim withdrawn).
+
+## parse_sdrf validate-sdrf -s annotations/PXD016505.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology, online; current file)
 Everything seems to be fine. Well done.
 exit=0
-Note: the logged OLS 500 for 'orbitrap' (if shown) was a transient server error during one search page; the run completed and reported no validation error.
+Note: no OLS errors in this run.
 
 ## sdrf-tools structure annotations/PXD016505.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
@@ -36,7 +41,8 @@ Manifest covers every column with a value (34 column(s)).
 exit=0
 
 ## parse_sdrf convert-openms -s annotations/PXD016505.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/convert/PXD016505)
-    raise ValueError(msg) from ex
-ValueError: Error: Cannot read fragment mass tolerance: not available
-exit=1
-Expected failure: comment[fragment mass tolerance] = not available on the Q Exactive Plus rows (HCD/FTMS MS/MS tolerance not stated; the Methods' 0.5 Da is the ion-trap tolerance and is set on the Velos rows). validate-sdrf and the template accept the reserved word; same outcome class as campaign precedents PXD014368/PXD006676 (tolerance not available).
+Files per condition: dict_values([14, 175, 14, 175, 14, 14, 12, 12, 14, 14, 14, 14, 14, 14, 12, 12, 14, 14, 14, 14, 14, 14, 12, 12, 14, 14, 13, 13, 20, 20, 14, 14, 10, 10, 10, 10, 10, 10, 12, 12, 14, 14, 17, 17, 14, 14, 16, 16, 14, 14, 14, 14, 10, 10])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 1050 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD016505.sdrf.tsv
+exit=0
+Note: the single warning is 'no TA= specified' for Acetyl (PP=Protein N-term), expected for a positional modification (format-rules: positional values go in PP=).
