@@ -1,0 +1,262 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD023565.sdrf.tsv",
+ "dataset": "PXD023565",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD023565 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/pride.json): sampleProcessingProtocol (AACT/SILAC K4R6 / K8R10, 3 sets of 3plex, RIPA, acetone, DTT/iodoacetamide, trypsin, high-pH RP 60->15 fractions, Easy nLC-1000 + Q Exactive, top-20 HCD), dataProcessingProtocol (MaxQuant 1.5.3.17, fixed Carbamidomethyl, variable Oxidation(M) + Acetyl(Protein N-term), 4.5 ppm precursor)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD023565/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/files0.json; 69 entries, page 1 empty = exhausted; every entry projectAccessions == ['PXD023565']): 41 raw 2017*_Ting_{1,2,3}_*.raw, 24 raw 20200718_Haitao_TMT_F1-F24.raw, parameters_NLRX1.txt, proteinGroups_NLRX1.txt, parameters_FASKD5.txt, proteinGroups_FASTKD5.txt"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Guo H, Wang Q, Ghneim K, ... Ting JPY, Su L. Multi-omics analyses reveal that HIV-1 alters CD4+ T cell immunometabolism to fuel virus replication. Nat Immunol 2021 Apr;22(4), doi:10.1038/s41590-021-00898-1, PMID 33767427, PMC8087183 (author manuscript text https://pmc-oa-opendata.s3.amazonaws.com/PMC8087183.1/PMC8087183.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/paper.txt). Data availability names PXD023565."
+  },
+  {
+   "id": "supp4",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8087183.1/NIHMS1671962-supplement-1.xlsx sheet 'Supplementary Table 4. SILAC mass spectrometry analysis of VSV-G-NL4-3-Luc infected cells' (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/supp/NIHMS1671962-supplement-1.xlsx): row 4 'SILAC set 1/2/3' above the MaxQuant ratio blocks; row 6 condition labels above each Ratio M/L, H/L, H/M column; human MaxQuant proteinGroups (7531 protein groups) with Intensity L/M/H SILAC_1..3"
+  },
+  {
+   "id": "fig4",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8087183.1/NIHMS1671962-supplement-1671962_SourceData_Fig4.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/supp/): Fig.4b columns sh-Ctr / sh-NLRX1#1 / sh-NLRX1#2 inf/mock"
+  },
+  {
+   "id": "mq_nlrx1",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD023565/parameters_NLRX1.txt and https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD023565/proteinGroups_NLRX1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/): MaxQuant 1.6.0.16, written 12/20/2017, Fixed modifications Carbamidomethyl (C), 'Modifications included in protein quantification Oxidation (M);Acetyl (Protein N-term)', FTMS MS/MS tol. 20 ppm, Fasta 'uniprot-HIV proteome_UP000002241.fasta'; proteinGroups has experiments SILAC1-3 with Intensity L/M/H and only 2 non-contaminant groups, POL_HV1H2 and GAG_HV1H2"
+  },
+  {
+   "id": "mq_fastkd5",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD023565/parameters_FASKD5.txt, https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD023565/proteinGroups_FASTKD5.txt (header range read): MaxQuant 1.6.10.43 written 07/23/2020, Reporter intensity corrected 1..8 columns = the TMT arm (out of scope)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read (first 400 kB, UTF-16-LE strings) of all 41 https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD023565/2017*_Ting_*.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/raw/*.head; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/raw_summary.txt): instrument 'Q Exactive - Orbitrap MS', method lx_Top20_2-30%_180min_PepMap15cm.meth (fractions) / lx_Top20_2-30%_240min_PepMap15cm.meth (total runs), MS1 70,000 resolution, MS2 17,500, TopN 20, NCE 27.0, isolation 2.0 m/z, scan range per file"
+  },
+  {
+   "id": "setcheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/set_depth.txt (protein groups / peptides / intensity per SILAC set from Supplementary Table 4) and per-set raw counts/size from files0.json; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/scripts/gen_tables.py"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0367?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/cello_CVCL_0367.txt): Jurkat E6.1, ATCC TIB-152, Caucasian, peripheral blood, Childhood T acute lymphoblastic leukemia (NCIt C7953), Male, 14Y, parent CVCL_0065"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 /api/ontologies/<ont>/terms?obo_id= lookups (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/ols_ids.txt; all is_obsolete=False) and EFO search for an adolescent developmental stage term (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD023565/ols_search.txt, none found)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; README.adoc:330 biological replicate numbering"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name, all 123 rows (41 raw x 3 channels)",
+   "value": "Jurkat_<shRNA>_<HIV|mock>_set<n> (9 sources: 3 SILAC sets x 3 channels)",
+   "source_ids": [
+    "pride",
+    "supp4",
+    "files"
+   ],
+   "evidence": "PRIDE: 'Equal amount of SILAC labeled proteins from different conditions were mixed as one set of 3plex SILAC sample, 3 sets in total.' Supplementary Table 4 names SILAC set 1, 2, 3 and the condition of each channel. Each (set, channel) is one labelled cell culture lysate, so each source name denotes one physical sample; the sh-Ctr mock medium channel recurs in every set but as a separately labelled culture per set."
+  },
+  {
+   "location": "comment[label] + characteristics/factor value[genetic modification] + characteristics/factor value[infection], all rows",
+   "value": "set1: L = sh-Ctr HIV-infected, M = sh-Ctr mock, H = sh-NLRX1#1 mock; set2: L = sh-NLRX1#1 HIV-infected, M = sh-Ctr mock, H = sh-NLRX1#1 mock; set3: L = sh-NLRX1#2 HIV-infected, M = sh-Ctr mock, H = sh-NLRX1#2 mock",
+   "source_ids": [
+    "supp4",
+    "mq_nlrx1",
+    "paper"
+   ],
+   "evidence": "Explicit label statement: Supplementary Table 4 row 6 headers over the ratio columns: set 1 'Ratio M/L' = 'sh-Ctr mock/sh-Ctr infection', 'Ratio H/L' = 'sh-NLRX1#1 mock/sh-Ctr infection', 'Ratio H/M' = 'sh-NLRX1#1 mock/sh-Ctr mock'; set 2 M/L 'sh-Ctr mock/sh-NLRX1#1 infection', H/L 'sh-NLRX1#1 mock/sh-NLRX1#1 infection', H/M 'sh-NLRX1#1 mock/sh-Ctr mock'; set 3 M/L 'sh-Ctr mock/sh-NLRX1#2 infection', H/L 'sh-NLRX1#2 mock/sh-NLRX1#2 infection', H/M 'sh-NLRX1#2 mock/ sh-Ctr mock'. The three ratios of each set are mutually consistent (one condition per channel). Data checks: (1) HIV-1 proteins in the deposited HIV-only search proteinGroups_NLRX1.txt: POL_HV1H2 Intensity L/M/H = 1.77e10/5.2e8/2.5e8 (SILAC1), 9.75e9/3.1e8/1.05e9 (SILAC2), 1.41e10/4.7e8/4.7e8 (SILAC3); GAG_HV1H2 L-only in SILAC2/3 -> light = infected in every set. (2) NLRX1 (Q86UT6) in Supplementary Table 4: set1 H/M 0.226 (knockdown heavy vs control medium), M/L 0.46 (infection raises NLRX1, as the paper reports); set2 M/L 3.09 (light knocked down) and H/M 0.228; set3 H/M 0.459, H/L 0.49 -> knockdown channels as labelled. Paper Methods: 'SILAC-labeled Jurkat-sh-Ctr or Jurkat-sh-NLRX1 cells were infected with VSV-G-NL4-3-Luc (MOI=5) or left uninfected. At 24 hpi, cells were harvested'."
+  },
+  {
+   "location": "assay/data file -> SILAC set, all rows",
+   "value": "set1 = 20170404_Ting_1_01..16 (+ 20170404_Ting_1_12_170408070646), set2 = 20170411_Ting_2_01..09 + 20170413_Ting_2_total1/total2, set3 = 20170408_Ting_3_01..13",
+   "source_ids": [
+    "files",
+    "setcheck",
+    "supp4",
+    "raw"
+   ],
+   "evidence": "INFERENCE (recorded as limitation): no deposited file (summary.txt / experimentalDesign) maps raw files to MaxQuant experiments SILAC1-3. The raw names carry the set index (Ting = lab PI; three name groups Ting_1/_2/_3 = the three sets of PRIDE/Supp Table 4). Consistency check: set depth from Supplementary Table 4 ranks SILAC_1 > SILAC_3 > SILAC_2 (7279/7219/7007 protein groups, 92705/87684/63488 peptides), the same order as the number of high-pH fraction runs deposited (Ting_1 16, Ting_3 13, Ting_2 9)."
+  },
+  {
+   "location": "characteristics[biological replicate], all rows",
+   "value": "1..n within each (genetic modification, infection) group: sh-Ctr mock 1/2/3 (sets 1/2/3), sh-NLRX1#1 mock 1/2 (sets 1/2), every other group 1",
+   "source_ids": [
+    "supp4",
+    "pride",
+    "templates"
+   ],
+   "evidence": "Spec README.adoc:330 / campaign rule 3: one number per independent culture within a factor-value group. Each SILAC set was labelled and mixed separately (PRIDE '3 sets in total'), so each set's channel is treated as its own culture."
+  },
+  {
+   "location": "comment[technical replicate] + comment[fraction identifier], all rows",
+   "value": "fractions 1..16 (set1), 1..9 (set2), 1..13 (set3) from the _NN file suffix, technical replicate 1; 20170404_Ting_1_12_170408070646 = technical replicate 2, fraction 12; 20170413_Ting_2_total1/total2 = unfractionated injections, technical replicate 2/3, fraction 1",
+   "source_ids": [
+    "files",
+    "raw",
+    "pride"
+   ],
+   "evidence": "PRIDE: high-pH RP '60 fractions were collected and combined into 15 samples'. The _12_170408070646 file is Xcalibur's duplicate-name suffix (acquired 2017-04-08 07:06:46) on the same method as _12 -> a second injection of fraction 12; its fraction identifier was set by scripts/postbuild.py (build numbers by position). The total runs use the 240-min method and a 300-1650 m/z scan range (fractions: 180 min, 200-2000 m/z)."
+  },
+  {
+   "location": "comment[fractionation method], all rows",
+   "value": "High-pH reversed-phase chromatography (hpHRP) PRIDE:0000564 on fraction runs; not applicable on the two total runs",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: XBridge C18 at pH 10, 60 min gradient, 60 fractions pooled to 15."
+  },
+  {
+   "location": "characteristics[cell line], [cellosaurus accession], [cellosaurus name], [biorepository]",
+   "value": "Jurkat / CVCL_0367 / Jurkat E6.1 / ATCC",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper Methods: 'Jurkat cells (TIB-152, ATCC)'. ATCC TIB-152 = Jurkat, Clone E6-1 = Cellosaurus CVCL_0367 (parent CVCL_0065). EFO:0002796 label 'Jurkat' (the only EFO Jurkat class; human only, no cross-species collision)."
+  },
+  {
+   "location": "characteristics[organism], [organism part], [cell type], [disease], [material type]",
+   "value": "Homo sapiens / blood / T cell / T-cell childhood acute lymphocytic leukemia / cell line",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: derived from peripheral blood (UBERON:0000178), Childhood T acute lymphoblastic leukemia -> MONDO:0000871 'T-cell childhood acute lymphocytic leukemia'. Paper: 'the human Jurkat T cell line' -> CL:0000084 T cell."
+  },
+  {
+   "location": "characteristics[age], [sex], [ancestry category]",
+   "value": "14Y / male / European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 14Y, SX Male, Population Caucasian -> HANCESTRO:0005 European ancestry. Developmental stage omitted: 14Y is not adult (rule 9) and no EFO adolescent stage term was found."
+  },
+  {
+   "location": "characteristics[individual], [passage number], [culture medium], [sample storage temperature]",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Not stated. Jurkat is maintained in RPMI 1640 per Methods, but the base of the lysine/arginine-depleted SILAC medium is not named (PRIDE: 'growth media in depletion of lysine and arginine'), so culture medium is not asserted."
+  },
+  {
+   "location": "characteristics[genetic modification] + factor value[genetic modification]",
+   "value": "non-targeting control shRNA (sh-Ctr, Horizon RHS6848) / shRNA targeting NLRX1 (sh-NLRX1#1, TRCN0000128446) / shRNA targeting NLRX1 (sh-NLRX1#2, TRCN0000130325)",
+   "source_ids": [
+    "paper",
+    "supp4"
+   ],
+   "evidence": "Methods 'Lentiviruses preparation and cell transduction': sh-NLRX1#1 TRCN0000128446, sh-NLRX1#2 TRCN0000130325 (pLKO.1, TRC-Hs1.0), 'TRC Lentiviral Non-targeting shRNA (sh-Ctr) was purchased from Horizon Discovery (Catalog# RHS6848)'. Custom characteristics column (TERMS.tsv genetic modification, licensed only by clinical-metadata; rule 15 allows custom characteristics, precedent PXD012871)."
+  },
+  {
+   "location": "characteristics[infection] + factor value[infection]",
+   "value": "Human immunodeficiency virus 1 (NCBITaxon:11676) / uninfected",
+   "source_ids": [
+    "paper",
+    "mq_nlrx1",
+    "ols"
+   ],
+   "evidence": "Methods: cells 'were infected with VSV-G-NL4-3-Luc (MOI=5) or left uninfected' (VSV-G-pseudotyped single-round HIV-1 NL4-3 luciferase reporter, pNL4-3.Luc.E-R-). NCBITaxon:11676 'Human immunodeficiency virus 1' (strain-level NL4-3 not asserted). Custom column per campaign infection-study lesson."
+  },
+  {
+   "location": "characteristics[sampling time]",
+   "value": "24 hour",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "'At 24 hpi, cells were harvested and subjected to mass spectrometry' (mock harvested alongside)."
+  },
+  {
+   "location": "comment[instrument]",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 41 SILAC raw headers: 'Q Exactive - Orbitrap MS', 'Method of Q Exactive'; PRIDE protocol 'Q Exactive Hybrid Quadrupole-Orbitrap'. PRIDE's second instrument (Q Exactive HF) belongs to the TMT arm (paper: Q-Exactive HF-X)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], [dissociation method], [collision energy], [ms2 mass analyzer], [ms1 scan range]",
+   "value": "DDA PRIDE:0000627 / beam-type CID (HCD) MS:1000422 / 27 NCE / orbitrap MS:1000484 / 200m/z-2000m/z (fractions) or 300m/z-1650m/z (total runs)",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw method: TopN 20 data-dependent, NCE 27.0, MS2 resolution 17,500 (Orbitrap), Scan range per file in raw_summary.txt."
+  },
+  {
+   "location": "comment[cleavage agent details], [reduction reagent], [alkylation reagent]",
+   "value": "Trypsin MS:1001251 / DTT PRIDE:0000608 / IAA PRIDE:0000599",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'reduced with DTT followed by cysteine alkylation with iodoacetamide ... digested with trypsin (Promaga V5113)'."
+  },
+  {
+   "location": "comment[modification parameters] (7 columns)",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:2H(4) K, Label:13C(6) R, Label:13C(6)15N(2) K, Label:13C(6)15N(4) R Variable",
+   "source_ids": [
+    "mq_nlrx1",
+    "pride",
+    "ols"
+   ],
+   "evidence": "parameters_NLRX1.txt: Fixed modifications Carbamidomethyl (C); quantification modifications Oxidation (M);Acetyl (Protein N-term); PRIDE dataProcessingProtocol states the same fixed/variable set for the human search. Labels: PRIDE 'D4-L-lysine (K4)/13C6-L-arginine (R6) or 13C615N2-L-[lysine] (K8)/13C615N4-L-arginine (R10)' (the text says 'arginine (K8)', a typo for lysine); MaxQuant L/M/H. UNIMOD from mass shift: K4 481, R6 188, K8 259, R10 267; MT=Variable by batch convention (rule 11)."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance]",
+   "value": "4.5 ppm / 20 ppm",
+   "source_ids": [
+    "pride",
+    "mq_nlrx1"
+   ],
+   "evidence": "PRIDE: 'initial mass deviation for precursor ion was up to 4.5 ppm'. Fragment: deposited parameters_NLRX1.txt 'MS/MS tol. (FTMS) 20 ppm' (HCD spectra read in the Orbitrap = FTMS); the PRIDE text's 0.5 Da is MaxQuant's ITMS value, not applicable to these Orbitrap MS2 spectra."
+  },
+  {
+   "location": "comment[sdrf version], [sdrf template] x3, [sdrf annotation tool], technology type",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates: Jurkat cell-line samples of human origin (no clinical-metadata, rule 15)."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: only the 41 SILAC raw files (2017*_Ting_*) are annotated. The 24 TMT11plex raw files 20200718_Haitao_TMT_F1..F24.raw (sh-FASTKD5 vs control, infected/mock; Q Exactive HF-X per paper; MaxQuant 1.6.10.43 parameters_FASKD5.txt / proteinGroups_FASTKD5.txt) are out of scope for the SILAC campaign and excluded; recorded in BLOCKED.md.",
+  "Raw file -> SILAC set mapping (Ting_n = SILAC set n / MaxQuant experiment SILACn) is inferred from file names plus the set-depth consistency check; no deposited summary.txt/experimentalDesign states it. If it were wrong, sets 2 and 3 differ only in hairpin (#1 vs #2); set 1 differs in the light channel (sh-Ctr vs sh-NLRX1 infected).",
+  "The deposited SILAC search (parameters_NLRX1.txt, MaxQuant 1.6.0.16) used an HIV-1-only FASTA (UniProt UP000002241) and yields only HIV Gag/Pol; the human SILAC search behind Supplementary Table 4 (MaxQuant 1.5.3.17 per PRIDE) is not deposited. Modifications are identical in both descriptions. Which raw files entered either search (e.g. the total runs and the fraction-12 re-injection) is not recorded.",
+  "Deposited fractions are incomplete relative to the protocol's 15 pooled fractions: set 2 has 01-09 only, set 3 has 01-13, set 1 has 01-16 (one more than 15). Fraction identifiers follow the file suffix.",
+  "20170404_Ting_1_12_170408070646.raw is interpreted as a second injection of set 1 fraction 12 (technical replicate 2) from the Xcalibur duplicate-name suffix; 20170413_Ting_2_total1/total2 as unfractionated injections of set 2 (technical replicates 2/3) from the name and the different LC method. Neither is described in any text.",
+  "Biological replicate numbering assumes the medium sh-Ctr mock channel (and the heavy sh-NLRX1#1 mock channel of sets 1 and 2) were separately grown cultures per set; the paper only says 'Samples were run in biological duplicates' (Fig. 4b) without per-channel detail.",
+  "characteristics[culture medium] = not available: the base medium of the SILAC (Lys/Arg-depleted) medium is not named; standard Jurkat culture is RPMI 1640.",
+  "PRIDE's 'SILAC medium/heavy' reagent sentence calls 13C6 15N2 'L-arginine (K8)'; read as lysine from the K8 code and the 3plex K4R6/K8R10 design.",
+  "VSV-G-pseudotyped single-round HIV-1 NL4-3-Luc is encoded at species level (NCBITaxon:11676); the pseudotyping, MOI 5 and reporter are recorded here only."
+ ]
+}

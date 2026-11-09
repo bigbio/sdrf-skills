@@ -1,0 +1,393 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD002388.sdrf.tsv",
+ "dataset": "PXD002388",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002388 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/pride.json): sampleProcessingProtocol, dataProcessingProtocol, instruments, references (Surmann et al. J Proteomics 2015;128:203-217, PMID 26244908, doi:10.1016/j.jprot.2015.07.034), otherOmicsLinks pride.project:PXD002384"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002388/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/files.json; 72 entries = 54 .raw + 18 Elucidator result .xls; every entry projectAccessions contains PXD002388; 72 < pageSize so the listing is complete)"
+  },
+  {
+   "id": "databrief",
+   "kind": "publication",
+   "location": "Surmann K et al. Proteome data from a host-pathogen interaction study with Staphylococcus aureus and human lung epithelial cells. Data Brief 2016;7:1031-1037, doi:10.1016/j.dib.2016.03.027, PMID 27761493, PMC5063755 (Europe PMC fullTextXML, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/paper.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/paper.txt). Names PXD002388 as the A549 proteome dataset and PXD002384 as the S. aureus dataset."
+  },
+  {
+   "id": "xls",
+   "kind": "search-output",
+   "location": "HTTP range reads (first 20-30 kB: header + first rows) of the 18 deposited Rosetta Elucidator tables https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/08/PXD002388/A549_{control,gfp_neg,gfp_pos}_sorted_SILAC_BR{1,2,3}_{peptides,proteins}.xls (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/dl/*.head). A549_control_sorted_SILAC_BR2_proteins.xls and A549_gfp_pos_sorted_SILAC_BR2_proteins.xls returned HTTP 403 (not bypassed); their peptides.xls counterparts were read."
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range reads (first 1.5 MB) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/08/PXD002388/120505_OV4_KRIS_HPI_1_1_5h_BR1.raw, 120505_OV4_KRIS_HPI_15_1_5h_BR3.raw, 120626_OV4_KRIS_HPI_A549_HG001_3_5h_gfppos_BR5.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/raw/*.head). A fourth read (111214 batch) was reset by the server."
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0023?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/cello_CVCL_0023.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/ontologies/<onto>/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/ols_search.txt); all terms used have is_obsolete=False"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; README.adoc:330 biological replicate numbering"
+  },
+  {
+   "id": "tables",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/scripts/make_tables.py -> samples_searched.tsv, samples_unsearched.tsv, technical_searched.tsv, technical_unsearched.tsv; two sdrf-tools build runs concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/scripts/concat.sh (identical headers asserted)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-108",
+   "value": "light: 'A549 [S.aureus-HG001 ]<GFPpos-infected|GFPneg-exposed|mock-infected> <t>h p.i. <infection|control> experiment <n>'; heavy: 'A549 heavy SILAC standard spiked into <light source name>'",
+   "source_ids": [
+    "files",
+    "pride",
+    "databrief"
+   ],
+   "evidence": "One raw file per sorted sample (54 runs). Raw names encode the sorted population (gfppos / gfpneg), time point (1_5h..6_5h) and experiment batch (111214 no BR tag; 120505 *_BR4; 120626 *_BR5 for the infection experiments; 120505_OV4_KRIS_HPI_<n>_<t>_BR1..BR3 for controls). Each light source is one physical sorted-cell sample; each heavy source is the heavy standard aliquot spiked into that one sample (Data Brief 2.5: \"Infected, exposed, and control host cells were spiked with equal numbers of SILAC standard A549 cells\"), so no source name is reused for two physical samples."
+  },
+  {
+   "location": "comment[label] rows 1-108 (odd rows SILAC light, even rows SILAC heavy)",
+   "value": "SILAC light = sorted study sample; SILAC heavy = heavy A549 standard",
+   "source_ids": [
+    "pride",
+    "databrief",
+    "xls"
+   ],
+   "evidence": "Channel map, explicit: PRIDE sample protocol \"sorted infected and non-infected host cells ... spiked 1:1 with untreated A549 cells grown in medium containing 30 ug/mL 13C heavy isotope labeled arginine and 70 ug/mL lysine. The heavy isotope labeled A549 cells served as internal standard\"; Data Brief 2.5 \"Infected and mock-infected A549 cells cultured in eMEM with 12C arginine and 12C lysine were subjected to cell sorting. Heavy-isotope labeled A549 cells ... were collected as spike-in standard for all groups\". Checked against the deposited tables: Elucidator xls report per-condition Intensity1/Intensity2 and Ratio columns of SILAC pairs (e.g. TLN1 1_5_h_inf_BR1 Intensity1 7111.6 vs Intensity2 31914.8) with heavy peptides annotated K[134.115] / R[162.1211] (+6.02 Da on K and R). Multiplicity 2 (light + heavy) confirmed; no third channel exists. Direction of biology is not used for the map."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-108",
+   "value": "study sample (light) / reference (heavy)",
+   "source_ids": [
+    "pride",
+    "databrief",
+    "ols",
+    "templates"
+   ],
+   "evidence": "Heavy channel is the spiked-in internal standard against which every sample ratio is computed (PRIDE: \"Ratios of the host proteins were calculated between the samples (control, GFP-positive or GFP-negative) and the heavy labeled standard\"). PRIDE:0000899 reference (OLS, not obsolete), same encoding as campaign super-SILAC precedents PXD009766 / PXD002669."
+  },
+  {
+   "location": "characteristics[organism] rows 1-108",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus CVCL_0023 OX NCBI_TaxID=9606; NCBITaxon:9606. Host-cell dataset only: PRIDE dataProcessingProtocol and Data Brief 2.7 say the host search used a SwissProt database restricted to human proteins (the S. aureus proteome is deposited separately in PXD002384)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-108",
+   "value": "lung",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0023 \"Derived from site: In situ; Lung; UBERON=UBERON_0002048\"; UBERON:0002048 lung."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-108",
+   "value": "epithelial cell",
+   "source_ids": [
+    "pride",
+    "databrief",
+    "ols"
+   ],
+   "evidence": "PRIDE sampleAttributes/organismParts CL:0000066 epithelial cell; Data Brief \"human alveolar epithelial A549 cells\". CL:0000066 (not obsolete). The more specific type II pneumocyte is not asserted (only cited as a property in the 1976 reference title)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-108",
+   "value": "lung adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0023 DI NCIt C3512 Lung adenocarcinoma; MONDO:0005061 lung adenocarcinoma (OLS). This is the disease of the cell-line donor; S. aureus infection is encoded separately in characteristics[infection status] / [infectious agent]."
+  },
+  {
+   "location": "characteristics[material type] rows 1-108",
+   "value": "cell line",
+   "source_ids": [
+    "databrief",
+    "templates"
+   ],
+   "evidence": "All samples are cultured A549 cells (Data Brief 2.2)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-108",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0023 \"Population: Caucasian\" -> HANCESTRO:0005 European ancestry (batch rule 9)."
+  },
+  {
+   "location": "characteristics[age] rows 1-108",
+   "value": "58Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0023 AG 58Y."
+  },
+  {
+   "location": "characteristics[sex] rows 1-108",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0023 SX Male."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-108",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 58Y (>= 20Y, batch rule 9); EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[individual] rows 1-108",
+   "value": "A549_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All cells derive from the single A549 donor (Cellosaurus CVCL_0023)."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-108",
+   "value": "A549",
+   "source_ids": [
+    "databrief",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE \"A549 cells\"; EFO:0001086 label A549 (Cellosaurus DR EFO_0001086); not obsolete."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-108",
+   "value": "CVCL_0023",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC CVCL_0023, OX 9606 (human), so no cross-species name collision."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-108",
+   "value": "A-549",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID A-549."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-108",
+   "value": "Minimum Essential Medium",
+   "source_ids": [
+    "databrief",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Data Brief 2.2: A549 cultured in eukaryotic minimal essential medium \"eMEM, 1x MEM without arginine and lysine\" + 4% FCS + 12C Arg/Lys (light) or 13C Arg/Lys (heavy standard, \"in equal concentrations in the respective SILAC eMEM\"). OLS NCIT search for \"minimum essential medium\" returned no term, so the stated name is written (validator ontology warning expected)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-108",
+   "value": "light rows: 1..3 within each (factor value[infection status], factor value[sampling time]) group; heavy reference rows: 1..54, one per spiked standard aliquot",
+   "source_ids": [
+    "files",
+    "databrief",
+    "pride",
+    "xls",
+    "templates"
+   ],
+   "evidence": "Data Brief 2.3: \"Three different internalization assays were performed with each three independent biological replicates\" (n = 3 per group, Specifications table). Infected/exposed: experiment 1 = 111214 runs, 2 = 120505 *_BR4 runs, 3 = 120626 *_BR5 runs (three separate infection dates); controls: 1/2/3 = raw tags BR1/BR2/BR3 (matching the deposited control_sorted_SILAC_BR1..3 tables). Every group then holds replicates 1, 2, 3, one per independent internalization assay (spec README.adoc:330, batch rule 3). Heavy aliquots are numbered uniquely within the reference group because each was harvested and spiked separately for each sorted sample (Data Brief 2.5); whether aliquots share a culture is not documented (see limitations)."
+  },
+  {
+   "location": "characteristics[infection status] rows 1-108",
+   "value": "GFP-positive infected / GFP-negative exposed / mock-infected (light); not infected (heavy standard)",
+   "source_ids": [
+    "files",
+    "pride",
+    "databrief"
+   ],
+   "evidence": "Raw names gfppos / gfpneg = GFP-positive (infected, contains internalised GFP-expressing S. aureus) and GFP-negative (exposed, no internalised bacteria) sorted host cells (PRIDE/Data Brief cell-sorting text). Control runs (120505_OV4_KRIS_HPI_<n>_<t>_BR1..3) = mock-infected A549 cells \"mock-infected with sterile infection mix containing pMEM ... subjected to cell sorting applying the same settings\" (Data Brief 2.3/2.5). Heavy standard = \"untreated A549 cells\" (PRIDE). Custom characteristics column (spec Extending Templates; campaign precedent PXD014577 characteristics[infection status])."
+  },
+  {
+   "location": "characteristics[infectious agent] rows 1-108",
+   "value": "Staphylococcus aureus (GFP-positive infected and GFP-negative exposed rows); not applicable (mock-infected, heavy standard)",
+   "source_ids": [
+    "databrief",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Infection with S. aureus HG001 pMV158GFP at MOI 25 for 1 h, then lysostaphin (Data Brief 2.3). NCBITaxon:1280 Staphylococcus aureus (OLS, not obsolete). HG001 has no own NCBITaxon node; NCBITaxon:93061 (NCTC 8325) is the parent lineage used for the bacterial search database, not the strain, so the species is written and the strain goes to characteristics[infectious agent strain]. Exposed cells shared the culture well with bacteria but carried none internally; the agent column records exposure to the pathogen, the status column records internalisation."
+  },
+  {
+   "location": "characteristics[infectious agent strain] rows 1-108",
+   "value": "HG001 pMV158GFP / not applicable",
+   "source_ids": [
+    "databrief",
+    "pride"
+   ],
+   "evidence": "Data Brief 2.1: \"S. aureus HG001 [2] carrying plasmid pMV158GFP [3] for continuous production of GFP\"; raw names RN1HG / HG001. Custom column, free text."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-108; factor value[sampling time] rows 1-108",
+   "value": "1.5 / 2.5 / 3.5 / 4.5 / 5.5 / 6.5 hour (light); not applicable (heavy)",
+   "source_ids": [
+    "files",
+    "pride",
+    "databrief"
+   ],
+   "evidence": "Time post infection from raw names (<h>_5h = <h>.5 h p.i.); PRIDE/Data Brief \"collected hourly between 1.5 h and 6.5 h after infection\". The two names *_6_6h_gfpneg* (111214 and BR4) are written 6.5 hour: the design is hourly 1.5-6.5 h, their gfppos partners in the same batch are 6_5h, and BR5 names the same sample 6_5h_gfpneg; the Elucidator tables have a 6_5_h condition and no 6.6 h condition. The heavy standard is not a time-point sample."
+  },
+  {
+   "location": "factor value[infection status] rows 1-108",
+   "value": "same as characteristics[infection status] for light rows; not applicable for heavy reference rows",
+   "source_ids": [
+    "pride",
+    "databrief"
+   ],
+   "evidence": "Compared variables: infected vs exposed vs mock-infected host cells over time (PRIDE dataProcessingProtocol, PCA per time point per treatment group). Reference rows carry no study condition (precedent PXD009766)."
+  },
+  {
+   "location": "assay name rows 1-108; comment[data file] rows 1-108",
+   "value": "raw file stem / raw file",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "All 54 deposited .raw files, one LC-MS/MS run each, two channel rows per run."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-108; comment[fraction identifier] rows 1-108",
+   "value": "1 / 1",
+   "source_ids": [
+    "databrief",
+    "files"
+   ],
+   "evidence": "Each sample was injected once without fractionation (2 ug peptides, one 78-min gradient, Data Brief 2.5/2.6); one raw file per sample."
+  },
+  {
+   "location": "comment[instrument] rows 1-108",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "pride",
+    "raw",
+    "databrief"
+   ],
+   "evidence": "PRIDE instruments MS:1001742; raw header \"LTQ Orbitrap Velos MS\"; Data Brief 2.6."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-108",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "databrief",
+    "raw"
+   ],
+   "evidence": "Data Brief \"operated in data-dependent mode\"; raw method FT_IT_TOP20 (Nth Order Double Play, \"Dep MS/MS Most intense ion\")."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-108; comment[collision energy] rows 1-108; comment[ms2 mass analyzer] rows 1-108",
+   "value": "CID MS:1000133; 35 NCE; linear ion trap MS:1000291",
+   "source_ids": [
+    "databrief",
+    "raw"
+   ],
+   "evidence": "Raw scan event \"ITMS + c norm Dep MS/MS ... Activation Type: CID\"; Data Brief \"fragmentation in the linear ion trap by collision-induced dissociation ... normalized collision energy of 35%\"."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-108",
+   "value": "300m/z-1700m/z",
+   "source_ids": [
+    "raw",
+    "databrief"
+   ],
+   "evidence": "Raw scan event \"FTMS + p norm o(300.0-1700.0)\"; Data Brief \"m/z 300 to 1700\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-108",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "databrief",
+    "pride"
+   ],
+   "evidence": "Digestion \"trypsin:protein=1:25 at 37 C, 16-18 h\" (Data Brief 2.5). The trypsin-EDTA cell detachment step is not the digestion."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-108; comment[alkylation reagent] rows 1-108",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608 / NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "databrief",
+    "pride",
+    "ols"
+   ],
+   "evidence": "\"reduction with 2.5 mmol/L dithiothreitol (DTT; 60 C, 1 h) and alkylation with 10 mmol/L iodoacetamide (IAA; 37 C, 30 min)\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-104 (four columns)",
+   "value": "Carbamidomethyl C Fixed; Oxidation M Variable; Label:13C(6) R Variable; Label:13C(6) K Variable",
+   "source_ids": [
+    "pride",
+    "databrief",
+    "xls",
+    "ols"
+   ],
+   "evidence": "PRIDE dataProcessingProtocol / Data Brief 2.7: \"Carbamidomethylation of Cys was a fixed modification only in the human search. Oxidation of Met and SILAC labeling of Arg and Lys (6.02 Da) were variable modifications\". +6.02 Da = 13C6 (Data Brief: heavy \"13C\" arginine/lysine; PRIDE identifiedPTMStrings MOD:00544 6x(13)C labeled residue); xls modified sequences K[134.115] (128.095+6.02) and R[162.1211] (156.101+6.02), C[160.0302] carbamidomethyl. UNIMOD:188 Label:13C(6) for both residues (batch rule 11, MT=Variable). Search engine: SEQUEST 3.5 in Rosetta Elucidator, human SwissProt 2012."
+  },
+  {
+   "location": "comment[modification parameters] rows 105-108; comment[precursor mass tolerance] rows 105-108; comment[fragment mass tolerance] rows 105-108",
+   "value": "not applicable",
+   "source_ids": [
+    "xls"
+   ],
+   "evidence": "Runs 120505_OV4_KRIS_HPI_1_1_5h_BR1 and 120505_OV4_KRIS_HPI_8_1_5h_BR2 (mock-infected 1.5 h, controls 1 and 2) have no condition in the deposited result tables: control_sorted_SILAC_BR1 and BR2 tables list only 2_5_h..6_5_h, whereas BR3 lists 1_5_h..6_5_h (all gfp_pos/gfp_neg tables list 1_5_h..6_5_h). There is no evidence they went through the database search, so search parameters are not asserted for them (batch rule 5 / campaign lesson). They were built separately with identical headers and concatenated."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-104; comment[fragment mass tolerance] rows 1-104",
+   "value": "not available",
+   "source_ids": [
+    "pride",
+    "databrief"
+   ],
+   "evidence": "The deposit gives 10 ppm for the Elucidator feature alignment and 20 ppm / 0.5 min for SILAC pair finding, but no SEQUEST precursor or fragment tolerance. Neither alignment value is a database-search tolerance, so none is written."
+  },
+  {
+   "location": "comment[sdrf version]; comment[sdrf template] x3; comment[sdrf annotation tool]; technology type (all rows)",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates",
+    "tables"
+   ],
+   "evidence": "Batch rules 1 and 10; templates fit the samples (human cell line, MS). clinical-metadata/oncology-metadata not declared: commercial cell line, no patient samples (batch rule 15)."
+  }
+ ],
+ "limitations": [
+  "Mock-infected control identity of the 18 runs 120505_OV4_KRIS_HPI_<n>_<t>_BR1..BR3 is inferred, not stated per file: their names carry no condition word. Basis: the deposit contains exactly the three documented groups (Data Brief: infected, exposed, mock-infected control, n = 3 each, 1.5-6.5 h); the 36 infected-culture runs are explicitly named gfppos/gfpneg in three batches; the remaining 18 runs are exactly 3 replicates (BR1-BR3) x 6 time points and match the three deposited A549_control_sorted_SILAC_BR1-3 tables; the raw headers carry no sample description. No per-file sample sheet exists in the deposit.",
+  "Mapping of the infection-experiment raw batches (111214, BR4, BR5) to the deposited gfp_pos/gfp_neg table numbers BR1-BR3 is not stated; the Elucidator tables name conditions, not raw files. The SDRF numbers infection experiments 1-3 by run date and does not claim a table BR number for them.",
+  "Control 1.5 h runs of controls 1 and 2 are absent from the deposited result tables (assuming raw BR1/BR2 = table BR1/BR2); they are kept as runs with search parameters not applicable. If the raw-to-table BR mapping differs, a different pair of control 1.5 h runs would be the unsearched ones.",
+  "Two raw names say 6_6h (111214 and BR4 gfpneg); annotated as 6.5 hour (see claim). Three raw names carry an _r suffix (presumably re-injections); only one file per sample is deposited, so technical replicate is 1 throughout.",
+  "Heavy standard aliquots: biological replicate numbered 1..54 within the reference group (one per spiked aliquot). Whether one heavy culture/harvest supplied several aliquots (for example the gfppos and gfpneg sample of one time point) is not documented.",
+  "Precursor and fragment mass tolerances of the SEQUEST search are not reported (not available); parse_sdrf convert-openms is therefore expected to fail on them.",
+  "The companion research article (Surmann et al. J Proteomics 2015, PMID 26244908) is not open access and was not read; design details come from the PRIDE protocols and the open-access Data Brief (PMC5063755), which describes the same experiment.",
+  "Two of 18 Elucidator tables (control BR2 proteins, gfp_pos BR2 proteins) returned HTTP 403 and were not retrieved (bot/permission check not bypassed); their peptides tables were read instead. The 111214 raw header read was reset by the server; instrument/method were read from three other runs and agree with PRIDE and the paper.",
+  "characteristics[culture medium] = Minimum Essential Medium has no NCIT term (OLS search empty); written as stated.",
+  "S. aureus proteins: per PRIDE/Data Brief the host search database was human-only; no pathogen proteome is declared in this SDRF. The bacterial proteome is deposited separately as PXD002384 (a different dataset, not a duplicate)."
+ ]
+}
