@@ -1,0 +1,56 @@
+# PXD005854 validation (2026-11-09T06:48:40Z); sha256 cf397e96c0e11b605afef7942dde1f3123c553a9564ab0d34730429324083645; 100 rows x 41 columns
+# Build procedure (rule 17):
+#  1. scripts/make_tables.py (scratchpad b6-PXD005854/scripts) writes build/samples.tsv, technical.tsv, files.json
+#     from the PRIDE file list and MaxQuant experimentalDesignTemplate.txt.
+#  2. sdrf-tools build -t ms-proteomics -t vertebrates -> build/built.sdrf.tsv (100 rows x 40 columns).
+#  3. Post-build step scripts/postbuild.py (deterministic): inserts a second comment[cleavage agent details]
+#     = NT=Lys-C;AC=MS:1001309 directly after the Trypsin column on all 100 rows (rule 2; PRIDE protocol
+#     "LysC-Trypsin Mix followed by ... Trypsin"). Why: comment[cleavage agent details] is not 'multiple' in the
+#     contract, so build emits one column (same as PXD008327). The script asserts exactly one existing cleavage
+#     column = Trypsin on every row, and that deleting the inserted column restores the build output exactly.
+# Round 1 (precursor tolerance 'not available'): validate-sdrf 0, structure 0, check 0, reconcile 0,
+#  convert-openms 1 ("Cannot read precursor mass tolerance: not available"). Fix in technical.tsv: 4.5 ppm from
+#  the deposited Andromeda allSpectra.HCD.FTMS.sil0/sil1.apar ("peptide mass tolerance=4.5", ppm). Round 2 below.
+
+$ parse_sdrf validate-sdrf -s annotations/PXD005854.sdrf.tsv -t ms-proteomics -t vertebrates
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD005854.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check annotations/PXD005854.sdrf.tsv
+Hallucination Report: annotations/PXD005854.sdrf.tsv
+  Terms checked:     19
+  Verified:          19
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD005854.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD005854/pride.json --accession PXD005854
+PXD005854: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ (cd scratchpad/b6-PXD005854/convert) parse_sdrf convert-openms -s PXD005854.sdrf.tsv -t2
+PROCESSING: PXD005854.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]', 'characteristics[genotype]']
+Conditions (3): dict_keys(['wild type', 'not applicable', 'Eif2b5 R132H/R132H'])
+Files per condition: dict_values([25, 50, 25])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 100 times.
+SUCCESS (WARNINGS=1): PXD005854.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD005854.evidence.json
+annotations/PXD005854.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD005854.sdrf.tsv annotations/PXD005854.evidence.json
+Manifest covers every column with a value (27 column(s)).
+exit code: 0
+
+# Note: convert-openms warning 'no TA= specified' refers to Acetyl PP=Protein N-term (positional mod, correctly PP= not TA=).

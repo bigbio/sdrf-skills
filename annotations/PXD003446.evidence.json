@@ -1,0 +1,234 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD003446.sdrf.tsv",
+ "dataset": "PXD003446",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD003446 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/evidence/pride.json): title, sampleProcessingProtocol, dataProcessingProtocol"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD003446/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/evidence/files.json; 217 entries = 213 RAW + 4 MaxQuant txt zips; every entry projectAccessions contains PXD003446)"
+  },
+  {
+   "id": "mq_q18",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD003446/Q18IPcontrols.zip members experimentalDesignTemplate.txt, parameters.txt, summary.txt, proteinGroupsQ18RR_IP.txt (zip central directory read by HTTP range, members inflated individually; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/mq/Q18IPcontrols/)"
+  },
+  {
+   "id": "datacheck",
+   "kind": "search-output",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/data_check_Q18.txt, produced by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/scripts/data_check.py from proteinGroupsQ18RR_IP.txt (per-experiment EGFP and Htt intensities / H/L ratios)"
+  },
+  {
+   "id": "rawhdr",
+   "kind": "raw-file",
+   "location": "HTTP range reads (first 1.5 MB, UTF-16LE decoded) of all 9 in-scope RAW files https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD003446/20150623_Exactive_YK_rr140{89..97}.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/rawhead/)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "repository",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0470?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/evidence/cellosaurus_CVCL_0470.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via sdrf-skills MCP search (fuzzy): Neuro-2a EFO:0022756 / BTO:0001976; neuroblastoma MONDO:0005072; peripheral nervous system UBERON:0000010; EFO:0004185 sample enrichment (child of EFO:0009090); sdrf-tools check verified 14 terms"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Kim YE et al. Mol Cell 2016;63(6):951-64, doi:10.1016/j.molcel.2016.07.022, PMID 27570076 - NOT RETRIEVED: no PMCID (Europe PMC inEPMC=N), Unpaywall/cell.com PDF HTTP 403, cell.com full text Cloudflare bot check (not bypassed), Elsevier TDM API needs a key, MPG PuRe item_2352983 holds only an external link"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0). The spec submodule nested templates copy is older."
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier], comment[technical replicate] rows 1-18",
+   "value": "9 RAW 20150623_Exactive_YK_rr14089..rr14097; fraction 1-3 per experiment",
+   "source_ids": [
+    "mq_q18",
+    "files"
+   ],
+   "evidence": "experimentalDesignTemplate.txt of Q18IPcontrols.zip: rr14089-91 = Q18e1 fractions 1,2,3; rr14092-94 = Q18e2 fractions 1,2,3; rr14095-97 = Q18e3 fractions 1,2,3. All 9 names exist in the PRIDE file list. Each fraction was injected once (one RAW per experiment x fraction), so comment[technical replicate] = 1. The other 204 RAW files are out of scope (see limitations)."
+  },
+  {
+   "location": "source name, comment[label], characteristics[treatment], factor value[treatment] rows 1-18",
+   "value": "SILAC light = uninduced N2a (untreated); SILAC heavy = N2a induced to express HttEx1Q18-eGFP",
+   "source_ids": [
+    "pride",
+    "mq_q18",
+    "datacheck"
+   ],
+   "evidence": "PRIDE dataProcessingProtocol: \"The Q18 interactome was analyzed using uninduced (without Q18 expression) cells as the background control\" (names the two conditions); sampleProcessingProtocol: eGFP-tagged HttEx1 isolated with anti-GFP MicroBeads. summary.txt: Multiplicity 2, Labels0 (light) empty, Labels1 Arg10;Lys8. No accessible source states the label orientation in words; it is fixed by the bait: EGFP intensity L/H = 4.5e8/4.9e10 (Q18e1), 5.4e8/1.8e10 (Q18e2), 1.0e8/3.0e9 (Q18e3); raw H/L 13.9/40.6/26.6 against a proteome-wide normalized H/L median of 0.70; Htt (shared exon1 peptide) H/L 17.4 in Q18e1, H intensity > L in all three. Uninduced cells lack the eGFP-HttEx1 bait, so the heavy channel is the Q18-expressing culture in all three experiments (no label swap). Source names carry the experiment name from the search (Q18e1-3)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-18",
+   "value": "1,2,3 (Q18e1, Q18e2, Q18e3) within each treatment group",
+   "source_ids": [
+    "mq_q18"
+   ],
+   "evidence": "MaxQuant experiments Q18e1/Q18e2/Q18e3 = three separate SILAC mixes, each with its own uninduced and induced culture; numbered 1..3 within each factor-value group (rule 3). Independence of the cultures is inferred from the separate experiments, not stated in words."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-18",
+   "value": "Neuro-2a / CVCL_0470 / Neuro-2a",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"N2a cells were labeled in custom medium ...\"; Cellosaurus CVCL_0470 ID Neuro-2a, synonyms include N2a; EFO:0022756 label Neuro-2a."
+  },
+  {
+   "location": "characteristics[organism] rows 1-18",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:10090; Cellosaurus OX NCBI_TaxID=10090; search FASTA MOUSE_egfp.fasta (parameters.txt)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-18",
+   "value": "peripheral nervous system",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CC \"Derived from site: In situ; Peripheral nervous system; UBERON=UBERON_0000010\". (PRIDE organismParts \"electrically active cell\" is a submitter dropdown, not used.)"
+  },
+  {
+   "location": "characteristics[disease] rows 1-18",
+   "value": "neuroblastoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C21993 Mouse neuroblastoma; MONDO:0005072 neuroblastoma. PRIDE disease \"Huntington disease\" is the modelled disease, not a property of these cells; Q18 is a non-expanded (control) polyQ length and the light channel expresses no huntingtin construct, so it is not broadcast."
+  },
+  {
+   "location": "characteristics[material type] rows 1-18",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "N2a is an established cell line (Cellosaurus CA Cancer cell line)."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-18",
+   "value": "A/J",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CC \"Breed/subspecies: A/J.\""
+  },
+  {
+   "location": "characteristics[sex] rows 1-18",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male (karyotype note: has lost chromosome Y)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-18",
+   "value": "sample enrichment",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: eGFP-tagged HttEx1 and interactors isolated with anti-GFP MicroBeads (affinity purification); EFO:0004185 sample enrichment is the child of EFO:0009090 used for AP-MS in campaign precedents (PXD044779, PXD004666)."
+  },
+  {
+   "location": "comment[instrument] rows 1-18",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "rawhdr",
+    "mq_q18"
+   ],
+   "evidence": "All 9 RAW headers contain \"Q Exactive\" (no \"Plus\"); summary.txt Instrument column = Q Exactive for every run. PRIDE also lists LTQ Orbitrap (used for other arms)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-18",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "rawhdr"
+   ],
+   "evidence": "RAW method: TopN 10, isolation window 3.0 m/z (data-dependent MS2)."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy] rows 1-18",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422; 25 NCE",
+   "source_ids": [
+    "rawhdr"
+   ],
+   "evidence": "RAW method \"NCE / stepped NCE 25\", Fragmentation_HCD 25 in all 9 headers."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-18",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "rawhdr"
+   ],
+   "evidence": "Q Exactive MS2 is acquired in the Orbitrap (RAW: MS2 resolution 17,500)."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-18",
+   "value": "300m/z-1750m/z",
+   "source_ids": [
+    "rawhdr"
+   ],
+   "evidence": "RAW method \"Scan range 300 to 1750 m/z\" (full MS) in all 9 headers."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-18",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mq_q18"
+   ],
+   "evidence": "summary.txt Enzyme = Trypsin/P (specific, 2 missed cleavages). Per campaign rule 2 the digestion enzyme is encoded as Trypsin; the search rule Trypsin/P is a search setting. The digest itself is not described in the PRIDE protocol (reconcile MINOR finding)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-18",
+   "value": "Carbamidomethyl C Fixed; Acetyl Protein N-term, Oxidation M, Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_q18"
+   ],
+   "evidence": "parameters.txt: Fixed modifications Carbamidomethyl (C); summary.txt: Variable modifications Acetyl (Protein N-term);Oxidation (M); Labels1 Arg10;Lys8 (+10.008 Da R = UNIMOD:267, +8.014 Da K = UNIMOD:259); labels encoded MT=Variable (campaign rule 11)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-18",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_q18"
+   ],
+   "evidence": "parameters.txt: MS/MS tol. (FTMS) 20 ppm (HCD Orbitrap spectra)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-18",
+   "value": "v1.1.0; ms-proteomics v1.2.0, vertebrates v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; template versions as printed by sdrf-tools contract; filled by sdrf-tools build."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: only the Q18 IP control arm (Q18IPcontrols.zip, 9 RAW) is annotated. 204 of 213 RAW files are left out and logged in annotations/BLOCKED.md: total proteome (72 RAW, L/M/H = Q18/Q64/Q150 order unknown), HttEx1SOL soluble IPs 24 h/48 h (36 RAW, L/M/H order unknown, the only Htt peptide is shared by all polyQ variants so Q64 vs Q150 cannot be anchored), insoluble inclusions (96 RAW; compared conditions and forward/reverse orientation undocumented; 34 deposited RAW names (HttQ105_formicacid, Q103agg_gel, TX_Rep2/Rep3 variants) do not match the names in the deposited search, which call them Q150).",
+  "Paper (Kim et al. Mol Cell 2016) not retrievable: no PMC copy, publisher PDF/HTML behind a 403 bot check (not bypassed), Elsevier API needs a key. All sample information comes from the PRIDE protocol, MaxQuant outputs, RAW headers and Cellosaurus.",
+  "Label orientation of the annotated arm is derived from bait enrichment (EGFP H/L 14-41 in all three experiments) plus the PRIDE statement that uninduced cells were the background control; no source states \"heavy = Q18\" in words.",
+  "Induction method/agent, induction duration and differentiation protocol for the control IPs are unstated (the PRIDE protocol mentions differentiated cells induced for 24 or 48 h only for the HttEx1SOL IPs); no sampling time or differentiation column is written.",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.4.1.10 parameters.txt/summary.txt do not record it and no mqpar.xml is deposited. parse_sdrf convert-openms therefore exits 1.",
+  "comment[fractionation method] = not available: the 3 fractions per experiment are defined in the MaxQuant design, but the fractionation technique is undescribed. Reduction/alkylation reagents, culture medium base, passage number and cell type after differentiation = not available.",
+  "Independent adversarial review not run here (caller instruction: no review-gate approve, no review file). Status REVIEW_PENDING_EXTERNAL."
+ ]
+}

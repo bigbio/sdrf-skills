@@ -1615,3 +1615,33 @@ Also noted (not blocked, no files): `combined.zip` experimentalDesignTemplate.tx
 **Annotated:** the 13 RAW-category `.ms2` runs (26 rows) are in `annotations/PXD006015.sdrf.tsv`. All 10 HGPS runs are in `annotations/PXD006016.sdrf.tsv`; no HGPS file is blocked.
 
 **Unblocked by:** an author statement or sample sheet confirming that MHAB-1_MP / MHAB-2_MP are the WT 0D extract / pellet, plus their search parameters (or a re-search). They could then be added as WT 0D technical replicate 3 rows, with the .mzXML as `comment[data file]` in a separate build with identical headers.
+
+---
+
+## PXD003446 — Huntingtin aggregate-stage interactome in N2a cells (Kim et al., Mol Cell 2016; SILAC), all arms except the Q18 IP controls (partial block)
+
+**Blocker: no reachable source states which SILAC label carried which polyQ construct / condition in the total-proteome, soluble-IP or insoluble-inclusion experiments, and the paper is not retrievable. 204 of 213 RAW are left out. The Q18 IP control arm (`Q18IPcontrols.zip`, 9 RAW, light = uninduced, heavy = HttEx1Q18-eGFP; fixed by the eGFP bait, H/L 14–41 in all three experiments) is annotated in `annotations/PXD003446.sdrf.tsv`.**
+
+| | |
+|---|---|
+| Publication | Kim YE, Hosp F, Frottin F, Ge H, Mann M, Hayer-Hartl M, Hartl FU. Mol Cell 2016 63:951, PMID:27570076, doi:10.1016/j.molcel.2016.07.022 — **not retrieved**: no PMC copy (Europe PMC inEPMC=N), Unpaywall/cell.com PDF 403, cell.com full text = Cloudflare bot check (not bypassed), Elsevier TDM API needs a key, MPG PuRe item_2352983 only links out |
+| Deposited | 213 RAW + 4 MaxQuant txt zips (`totalproteome.zip`, `IPs_soluble.zip`, `insoluble.zip`, `Q18IPcontrols.zip`; experimentalDesignTemplate, parameters, summary, proteinGroups HTTP-range read) |
+| Blocked (a) total proteome | 72 RAW `2012*_YK_180_015_*` / `2012*_FT_YK_240_015_TP_{24h,48h}_T{1,2,3}_*` (MaxQuant experiments TP_24h/48h_T1–T3; multiplicity 3, Arg6Lys4 / Arg10Lys8) |
+| Blocked (b) HttEx1SOL soluble IPs | 36 RAW `20150529_Exactive_YK_140{15..32}`, `20150605_Exactive_YK_rr{13997..14014}` (experiments 24he1–3, 48he1–3, 6 fractions each; multiplicity 3) |
+| Blocked (c) insoluble inclusions | 96 RAW `2013*_FaHo_SA_*` (experiments SDS_one, SDS_two_forward/reverse, TX_forward/reverse; multiplicity 2, Arg10Lys8) |
+| SDRF would need | (a) 72×3 + (b) 36×3 + (c) 96×2 = 516 rows with the construct (uninduced/Q18/Q64/Q150+), induction time and, for (c), the compared condition of each channel |
+
+Sources checked:
+
+| source | result |
+|---|---|
+| PRIDE sampleProcessingProtocol | "labeled ... with light (L), medium (M) or heavy (H) arginine and lysine"; Q18, Q64, Q150+ induced 24 or 48 h, mixed 1:1:1 — no construct→label assignment |
+| PRIDE dataProcessingProtocol | "Ratios (Q150+/Q18 and Q64/Q18)"; "Q18 interactome ... uninduced cells as the background control" — names ratios, not labels |
+| MaxQuant experimentalDesignTemplate / summary / proteinGroups | experiment names only (TP_24h_T1_, 24he1, SDS_two_forward, ...); columns Ratio M/L, H/L, H/M — no condition names |
+| Data anchoring, (a)/(b) | every channel expresses an eGFP-HttEx1 construct, so the bait cannot discriminate; in `IPs_soluble` the only Htt peptide (ATLEKLMK) is shared by Htt16Q/Htt60Q/Htt150Q, so Q18 vs Q64 vs Q150 cannot be told apart |
+| Data anchoring, (c) | what the second channel is (Q150 vs uninduced? vs Q18? SDS vs Triton extraction?) is undocumented; forward/reverse orientation unknown. In addition 34 deposited RAW names (`HttQ105_formicacid_gel_slice_01–06`, `Q103agg_gel1–6_01/02`, `TX_Rep2_s5/s6`, `TX_gel_Rep3_*`, `TX_Rep3_s5_01`) are not the names used in the deposited search (`..._Q150_gel_SDS_Rep1_s1–6`, `..._gel_SDS_Rep2_*`, `..._gel_TX_Rep2/Rep3_*`), and the deposited names say Q105/Q103 where the search names say Q150 — file identity is unconfirmed |
+| Europe PMC search "PXD003446" | 0 hits |
+
+**Deliberately not used:** assuming L/M/H = Q18/Q64/Q150 (the order of the ratio names), or reading the insoluble forward/reverse orientation from biological expectations.
+
+**Unblocked by:** the paper's STAR Methods / figure legends (or the authors, Hartl/Mann labs, MPI Biochemistry) stating the L/M/H construct of each total-proteome and soluble-IP experiment, the two conditions and label orientation of each insoluble experiment, and the mapping of the renamed insoluble RAW files to the searched names.

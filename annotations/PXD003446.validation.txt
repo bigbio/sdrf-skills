@@ -1,0 +1,46 @@
+# PXD003446 validation log (2026-11-09T06:49Z); SDRF sha256 fcc821ba93c13866809326d8f2d486e586f83a9ef47dfb4f76fa41e1ae0b7c1c (18 rows x 46 columns)
+# Built only by: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/scripts/make_tables.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446 && sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/files_q18.json -t ms-proteomics -t vertebrates -t cell-lines -o /home/user/bigbio/sdrf-skills/annotations/PXD003446.sdrf.tsv
+# No post-build edit. Earlier builds in this run differed only in the dissociation label (NT=HCD -> NT=beam-type collision-induced dissociation, the OLS label of MS:1000422), changed in make_tables.py and rebuilt.
+
+## parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD003446.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
+(transient OLS 500 retry tracebacks for the query 'not available' removed from this log; the run completed)
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: induction of HttEx1Q18-eGFP expression in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: A/J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit=0
+Warnings explained: 'untreated' is the template-prescribed control value (campaign rule 4); the induced-condition treatment is free text because no NCIT/EFO term describes inducing HttEx1Q18-eGFP expression; 'A/J' is the Cellosaurus breed string (strain or breed is free text in the contract).
+
+## sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD003446.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD003446.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD003446.sdrf.tsv
+  Terms checked:     14
+  Verified:          14
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+## sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD003446.sdrf.tsv --record evidence/pride.json --accession PXD003446
+PXD003446: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+Reconcile MINOR refuted/explained: the digest is not described in the PRIDE record; the MaxQuant search (summary.txt Enzyme = Trypsin/P) documents a tryptic search, and campaign rule 2 encodes the digestion enzyme as NT=Trypsin;AC=MS:1001251. Exit 0.
+
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD003446.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD003446/convert)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.4.1.10 parameters.txt/summary.txt do not record it; no mqpar.xml deposited). Same outcome as campaign precedents PXD014368/PXD006676/PXD024103; validate-sdrf and the template accept the reserved word.
+
+## sdrf-tools schema-check / manifest-coverage
+/home/user/bigbio/sdrf-skills/annotations/PXD003446.evidence.json: valid evidence-manifest
+exit=0
+Manifest covers every column with a value (26 column(s)).
+exit=0

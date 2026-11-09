@@ -1,0 +1,282 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD051673.sdrf.tsv",
+ "dataset": "PXD051673",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD051673 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD051673/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/files_all.json; 18 entries = 16 .raw + txt_18_1234.7z + txt_18_1310.7z; every entry projectAccessions contains PXD051673)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Belur NR, Bustos BI, Lubbe SJ, Mazzulli JR. Nuclear aggregates of NONO/SFPQ and A-to-I-edited RNA in Parkinson's disease and dementia with Lewy bodies. Neuron 2024;112(15):2558-2580.e13, doi:10.1016/j.neuron.2024.05.003, PMID 38761794, PMC11309915 (NIHMS author manuscript; https://pmc-oa-opendata.s3.amazonaws.com/PMC11309915.1/PMC11309915.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/paper.txt). STAR Methods sections \"SILAC proteomics\" and \"Proteomic analysis\"; Data availability names PXD051673 as \"RAW files of day 60 and day 90 proteomics data\"."
+  },
+  {
+   "id": "soldner",
+   "kind": "publication",
+   "location": "Soldner F et al. Cell 2011;146:318-331, doi:10.1016/j.cell.2011.06.019, PMID 21757228, PMC3155290 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/soldner.txt): derivation of patient iPSC WIBR-iPS-SNCA A53T and gene-corrected WIBR-iPS-SNCA A53T-Corr."
+  },
+  {
+   "id": "cuddy",
+   "kind": "publication",
+   "location": "Cuddy LK et al. Neuron 2019;104:869-884, PMID 31648898, PMC6895429 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/cuddy.txt): ref 60 of the paper; \"Parkinson's disease patient derived lines expressing A53T a-syn and matching isogenic corrected lines were generously provided by Dr. R. Jaenisch ... (Soldner et al., 2011)\"."
+  },
+  {
+   "id": "mq_1234",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/08/PXD051673/txt_18_1234.7z members parameters.txt, summary.txt, proteinGroups.txt, evidence.txt (downloaded, extracted with py7zr; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/mq/txt_18_1234/)"
+  },
+  {
+   "id": "mq_1310",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/08/PXD051673/txt_18_1310.7z members parameters.txt, summary.txt, proteinGroups.txt, evidence.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/mq/txt_18_1310/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/scripts/markers.py: log2 Ratio H/L normalized per MaxQuant experiment for paper marker proteins)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of all 16 deposited .raw files (and 3 MB of S1/1234 and T4/1310), decoded UTF-16-LE; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/raw/"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "Cellosaurus API searches for the WIBR-iPS-SNCA lines (no entry found) and entries CVCL_E3C7/CVCL_E3C8/CVCL_E3CE/CVCL_E3CF (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/cello/)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS via mcpcall searchClasses (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/ols.txt)"
+  },
+  {
+   "id": "scripts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/scripts/make_tables.py -> samples.tsv, technical.tsv, files_scope.json; sdrf-tools build -t ms-proteomics -t human -t cell-lines"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older. sdrf version v1.1.0 per spec README.adoc:27."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-32",
+   "value": "<Corr|A53T>_<batch>_well<n>_<Triton|SDS>",
+   "source_ids": [
+    "files",
+    "paper",
+    "mq_1234",
+    "mq_1310"
+   ],
+   "evidence": "Raw names 2018MMDD_vcs075_<18-1234|18-1310>_Mazzulli_Nandkishore_<S|T><1-4>; each raw is one SILAC mixture (MaxQuant experiment S1..S4/T1..T4 per batch, Multiplicity 2). Paper: neurons sequentially extracted into Triton X-100 soluble and 2% SDS soluble fractions; heavy and light samples of each fraction mixed 1:1; 4 biological replicates (individual culture wells). Each fraction of each genotype culture is a separate measured sample (batch rule 16), so it has its own source name."
+  },
+  {
+   "location": "comment[label], characteristics[cell line], characteristics[genotype], factor value[genotype] rows 1-32",
+   "value": "SILAC heavy = A53T line (WIBR-iPS-SNCA-A53T); SILAC light = isogenic corrected line (WIBR-iPS-SNCA-A53T-Corr), in all 16 mixtures",
+   "source_ids": [
+    "paper",
+    "orientation",
+    "mq_1234",
+    "mq_1310"
+   ],
+   "evidence": "Paper Methods: \"The differential protein expression between heavy and light labeled samples were analyzed and expressed as log fold change of heavy over light\"; results are reported as A53T relative to corrected (Fig 1B legend: \"protein levels obtained from SILAC labeled A53T iPSn relative to corrected lines (dashed line)\"). The same lab labelled the treated arm heavy and the vehicle light in the leupeptin/L-DOPA experiment. Data check (orientation.txt): NONO and SFPQ log2 H/L +1.57..+2.13 (batch 18-1234) and +0.50..+1.16 (18-1310) in every SDS run and negative in every Triton run, PSPC1/FUS likewise positive in SDS: matches the paper's insoluble NONO/SFPQ/FUS/PSPC1 increase in A53T (Fig 1A, 2A). CYFIP2, CADPS, PRKAR2A, MAPT log2 H/L negative in all Triton runs of both batches: matches the reported decrease of CYFIP2/CADPS (Fig 4E, SILAC-MS) and PRKAR2A (Fig 6I) in PD iPSn. No replicate shows the opposite sign -> no label swap. No explicit sentence \"heavy = A53T\" exists in the accessible text; the map rests on H/L = A53T/Corr reporting plus the data."
+  },
+  {
+   "location": "characteristics[protein solubility fraction], factor value[protein solubility fraction] rows 1-32",
+   "value": "T runs = Triton X-100 soluble fraction; S runs = Triton X-100 insoluble SDS soluble fraction",
+   "source_ids": [
+    "paper",
+    "pride",
+    "orientation"
+   ],
+   "evidence": "Paper/PRIDE protocol: sequential extraction in 1% Triton X-100 then 2% SDS, both fractions analysed. File letters T/S; corroborated by the data: aggregation-prone NONO/SFPQ ratios rise in S and fall in T, the paper's soluble->insoluble shift. Custom characteristics column (spec \"Extending Templates\"); a biochemical fraction measured as a sample is a characteristic/factor, not comment[fraction identifier] (batch rule 16)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-32",
+   "value": "1-4 = wells 1-4 of batch 18-1234, 5-8 = wells 1-4 of batch 18-1310, numbered within each (genotype, solubility fraction) group",
+   "source_ids": [
+    "paper",
+    "files",
+    "mq_1234",
+    "mq_1310"
+   ],
+   "evidence": "Paper: \"P-values of 4 biological replicates (individual culture wells)\"; n=4 culture wells in Fig 1B. Two harvests (day 60 and day 90 per Data availability) are two separately submitted core batches 18-1234 and 18-1310, i.e. different cultures, so numbers are unique per culture within each factor-value group (README.adoc:330, rule 3). S<n> and T<n> of one batch are the two sequential extracts of the same well and share the number."
+  },
+  {
+   "location": "comment[sample preparation batch] rows 1-32",
+   "value": "18-1234 / 18-1310",
+   "source_ids": [
+    "files",
+    "mq_1234",
+    "mq_1310"
+   ],
+   "evidence": "Core submission ids in the raw names (20180420 ... 18-1234, 20180611 ... 18-1310), searched separately (txt_18_1234.7z / txt_18_1310.7z)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-32",
+   "value": "A53T rows: autosomal dominant Parkinson disease 1 (MONDO:0008200); Corr rows: normal (PATO:0000461)",
+   "source_ids": [
+    "paper",
+    "soldner",
+    "ols"
+   ],
+   "evidence": "Lines derived from a PD patient heterozygous for SNCA A53T (PARK1/PARK-SNCA; Soldner 2011: patient described in Golbe 1996). The corrected line carries no pathogenic variant and is the study's control; the project-level disease is not broadcast to it (reconcile guidance). MONDO label verified in OLS."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-32",
+   "value": "midbrain dopaminergic neuron (CL:2000097)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: iPSC-midbrain dopaminergic neuron cultures (differentiated 40 days, neurobasal/SM1 to day 60-90); PRIDE organism part GO:1904948 midbrain dopaminergic neuron differentiation. CL label verified in OLS."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[individual] rows 1-32",
+   "value": "WIBR-iPS-SNCA-A53T / WIBR-iPS-SNCA-A53T-Corr; individual WIBR-iPS-SNCA-A53T_donor",
+   "source_ids": [
+    "paper",
+    "cuddy",
+    "soldner"
+   ],
+   "evidence": "Paper: \"The A53T a-syn mutation harboring iPSc and its isogenic line were kindly provided by Dr. Rudolf Jaenisch\"; Cuddy 2019 identifies them as the Soldner 2011 lines, whose names are WIBR-iPS-SNCA(A53T) and WIBR-iPS-SNCA(A53T)-Corr. Both derive from one patient, hence one individual. No study patient ID is published; the identifier is constructed from the line name."
+  },
+  {
+   "location": "characteristics[cellosaurus accession], characteristics[cellosaurus name], characteristics[age], characteristics[sex], characteristics[ancestry category], characteristics[developmental stage] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "soldner",
+    "paper"
+   ],
+   "evidence": "No Cellosaurus entry for the WIBR-iPS-SNCA A53T / -Corr lines. CVCL_E3C7 \"A53T\" (Contursi kindred, Female, 49Y, Caucasian Italian) is a line RE-derived by the Khurana lab (Hallacli 2022: \"We rederived this iPSC line\") and its identity with the Soldner donor is not stated by an individual-level source for this study, so its donor data were not adopted. Soldner 2011 accessible text gives no donor age/sex."
+  },
+  {
+   "location": "characteristics[organism] rows 1-32",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE organism NEWT:9606; human iPSC lines."
+  },
+  {
+   "location": "characteristics[organism part], characteristics[material type] rows 1-32",
+   "value": "not applicable; cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "In vitro iPSC-derived neurons, not a tissue; material = differentiated cells (precedent PXD017530)."
+  },
+  {
+   "location": "characteristics[passage number], characteristics[culture medium] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Passage not reported. Medium = neurobasal medium + SM1 (light) or custom Lys/Arg-free neurobasal with heavy Lys/Arg; no NCIT term exists for Neurobasal medium (OLS returned none), so not available."
+  },
+  {
+   "location": "comment[instrument] rows 1-32",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "All 16 raw headers: \"Q Exactive HF - Orbitrap MS\", \"Instrument: _NorthWestern_QE_HF\", method Top15_120min_NCE30; paper: Q Exactive HF. PRIDE instrument field \"LTQ Orbitrap Elite\" is wrong and was overridden."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-32",
+   "value": "DDA (PRIDE:0000627); beam-type CID (MS:1000422); 30 NCE; orbitrap (MS:1000484); 300m/z-2000m/z",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw method: Full MS 60,000 res, scan range 300 to 2000 m/z; dd-MS2 TopN 15, 30,000 res (Orbitrap), HCD NCE 30."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-32",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mq_1234",
+    "mq_1310",
+    "ols"
+   ],
+   "evidence": "MaxQuant summary.txt Enzyme Trypsin/P (search rule); digestion enzyme recorded as Trypsin (batch rule 2). Neither the paper nor PRIDE names the protease (gel bands were submitted to the Northwestern proteomics core); the search rule is the only evidence."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-32",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(5)15N(1) P (MaxQuant Pro6), Label:13C(6)15N(4) R (Arg10), Label:13C(6)15N(2) K (Lys8) variable",
+   "source_ids": [
+    "mq_1234",
+    "mq_1310",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt (both searches, identical except date): Fixed modifications Carbamidomethyl (C). summary.txt: Variable modifications Oxidation (M);Acetyl (Protein N-term);Pro6; Multiplicity 2; Labels1 Arg10;Lys8. Pro6 = MaxQuant arginine-to-proline conversion label (13C5 15N1 Pro). Paper reagents: L-Lys 13C6 15N2 (CNLM-291-H), L-Arg 13C6 15N4 (CNLM-539-H). SILAC labels MT=Variable (batch rule 11)."
+  },
+  {
+   "location": "comment[fragment mass tolerance], comment[precursor mass tolerance] rows 1-32",
+   "value": "20 ppm; not available",
+   "source_ids": [
+    "mq_1234",
+    "mq_1310"
+   ],
+   "evidence": "parameters.txt MS/MS tol. (FTMS) 20 ppm (MS2 in Orbitrap). Precursor (first/main search) tolerance is not written to MaxQuant 1.6.0.16 parameters.txt/summary.txt and no mqpar.xml was deposited."
+  },
+  {
+   "location": "comment[data file], assay name rows 1-32",
+   "value": "the 16 deposited .raw files, 2 rows (light, heavy) each",
+   "source_ids": [
+    "files",
+    "mq_1234",
+    "mq_1310"
+   ],
+   "evidence": "All 16 RAW entries of the PRIDE file list; every name matches a Raw file row of the corresponding MaxQuant summary.txt (S1-S4, T1-T4 of each batch). assay name = file stem."
+  },
+  {
+   "location": "comment[fraction identifier], comment[technical replicate] rows 1-32",
+   "value": "1; 1",
+   "source_ids": [
+    "files",
+    "mq_1234",
+    "mq_1310"
+   ],
+   "evidence": "One raw per SILAC mixture (MaxQuant experiment = raw file), no fractions or repeated injections deposited."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-32",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "scripts"
+   ],
+   "evidence": "Campaign rules 1 and 10. clinical-metadata not declared: samples are iPSC-derived cultures, not patient specimens (rule 15)."
+  }
+ ],
+ "limitations": [
+  "Supplementary tables (NIHMS1994206-supplement-2..14.xlsx, incl. Table S1 d90 solubility and Table S9 A53T vs Corr) could not be retrieved: PMC bin URLs served a reCAPTCHA page (not bypassed), Europe PMC supplementaryFiles returned a connection error, cell.com returned a Cloudflare 403. The channel map therefore rests on the Methods (H/L reported as A53T relative to Corr) plus the deposited ratios, not on an explicit \"heavy = A53T\" sentence.",
+  "Culture age per batch is not documented: the Data availability says the deposit holds day 60 and day 90 data, but which of 18-1234 / 18-1310 is day 60 vs day 90 is not stated. The data hint 18-1234 = day 90 (larger NONO/SFPQ insolubility, which the paper says increases from d60 to d90) but this was not adopted (biological-direction inference); no sampling-time column was written, the batch is recorded in comment[sample preparation batch].",
+  "MaxQuant searches also contain experiments F1-F4 per batch (raws ..._F1..F4, MS/MS identification 0.1-2%) that were NOT deposited; they are absent from the SDRF. Their nature is not described in the paper.",
+  "Donor age, sex, ancestry and Cellosaurus accession are not available: no Cellosaurus entry for the Soldner WIBR-iPS-SNCA lines; the Khurana re-derived line CVCL_E3C7 (Female 49Y, Caucasian Italian, Contursi kindred) is probably the same donor but this is not stated for these lines, so its values were not copied.",
+  "Assumption: the S<n> and T<n> raws of a batch are the sequential Triton and SDS extracts of the same culture well (paper: sequential extraction of each culture); the paper does not state the well numbering explicitly.",
+  "The paper says gel lanes were cut into 2-4 bands, but one raw file per sample was deposited; no fractionation column was written and fraction identifier is 1.",
+  "comment[precursor mass tolerance] = not available (not recorded by MaxQuant 1.6.0.16 output; no mqpar.xml), so parse_sdrf convert-openms is expected to fail on it.",
+  "Digestion protease is not named in the paper or PRIDE record; Trypsin is inferred from the MaxQuant Trypsin/P search rule (reconcile MINOR cleavage_agent_unsupported).",
+  "PRIDE metadata errors overridden: instrument LTQ Orbitrap Elite (raw headers say Q Exactive HF); identifiedPTMStrings \"No PTMs\"."
+ ]
+}
