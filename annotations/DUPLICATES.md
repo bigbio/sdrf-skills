@@ -256,6 +256,25 @@ Same study (143B.TK- vs ρ0 osteosarcoma cells, SILAC Arg10/Lys8). The two PRIDE
 
 ---
 
+## Group 10 — PXD013504 ⊂ PXD011013 (Kolba et al., Cell Death Dis 2019;10(11):817, PMID 31659149, PMC6817823)
+
+Same study (trans-SILAC: SILAC-heavy HS-5 stroma → GFP K-562 acceptor cells sorted DiD+/DiD−). Titles differ only by a trailing "DID" on PXD013504.
+
+| | files | note |
+|---|---|---|
+| `PXD011013` | 35 (32 `.raw`) | submitted 2018-09-05, published 2022-02. Superset: the 24 trans-SILAC runs, 8 single-shot `710072209-16zar_*` runs, `MaxQuantOutput.tar.gz` (mqpar.xml + parameters.txt of the combined search), `andromeda.rar`, `samplenames.xls` (run → experiment/fraction key). |
+| `PXD013504` | 31 (24 `.raw`) | submitted 2019-04-15, published 2019-11. **All 24 `.raw` files are SHA-1- and size-identical** to PXD011013's `20171204_Q1_AWH_ColID_501_PojID_936_Proteomics_sample_1..24.raw`. Adds only loose MaxQuant tables of the same combined search (`parameters.txt` byte-identical to PXD011013's; `proteinGroups/peptides/msms/modificationSpecificPeptides/PhosphoSTYSites.txt`, which also list the 8 `zar` experiments) and a different `andromeda.rar`. **This is the accession the paper cites.** |
+
+**How it was checked:** PRIDE v3 file lists of both accessions compared on file name, `fileSizeBytes` and PRIDE SHA-1 `checksum` (batch-9 scratch `b9-PXD011013/compare.txt`): 24/24 raw identical, 0 raw unique to PXD013504.
+
+**Outcome:**
+- `PXD011013`: annotated (`annotations/PXD011013.sdrf.tsv`, the 24 trans-SILAC runs; the 8 `zar` runs blocked, see BLOCKED.md). PXD013504's `proteinGroups.txt` / `modificationSpecificPeptides.txt` are cited there as evidence.
+- `PXD013504`: **not annotated**. If an SDRF is wanted under the paper-cited accession, the 48 rows of PXD011013 apply unchanged (same file names).
+
+**Recommended canonical: `PXD011013`** (superset, earlier deposit, carries the run key and mqpar.xml). Consumers following the paper's citation should be pointed from PXD013504 to it.
+
+---
+
 ## Why these were annotated anyway
 
 Each SDRF is correct *for its own accession* — that is what an SDRF describes, and a consumer

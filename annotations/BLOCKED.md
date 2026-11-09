@@ -1971,3 +1971,13 @@ Annotating them under either label would assert a biological replicate the depos
 **Not deposited:** `H1975_AZR3_AZR4_SILAC_pY_R1/R2/R3.raw` are listed in `H1975_AZR3_AZR4_pY_osi_mqpar.xml` but absent from the archive (no rows; nothing to unblock).
 
 **Open but annotated (recorded in the manifest limitations, not blocked):** the AZR set's 2018 Q Exactive HF `*_Total` proteome mixes and 2018 pY mixes carry no label tying them to the Orbitrap Elite R1-R3 mixes, so they got their own biological-replicate numbers; the paper reports three AZR biological replicates.
+
+## PXD011013 — Tunneling nanotubes / stroma-to-CML protein transfer (Kolba et al., Cell Death Dis 2019; trans-SILAC HS-5 → K-562), 8 single-shot `zar` runs (partial block / excluded runs)
+
+**Annotated:** the trans-SILAC arm — 24 raw files (`20171204_Q1_AWH_ColID_501_PojID_936_Proteomics_sample_1..24`, experiments plus_01/minus_01/plus_02/minus_02 × 6 SDS-PAGE slices), 48 rows in `annotations/PXD011013.sdrf.tsv`. Heavy (Lys8/Arg10) = HS-5 donor-derived proteins, light = acceptor K-562 proteome, per the paper's Methods; plus/minus = DiD+/DiD− sorted acceptor cells (samplenames.xls; checked against heavy content in the deposited proteinGroups).
+
+**Excluded (channel identity undocumented, batch rule 7):** `710072209zar_k562_A.raw`, `710072210zar_k562_B.raw`, `710072211zar_k562IM_A.raw`, `710072212zar_k562IM_B.raw`, `710072213zar_HS5_A.raw`, `710072214zar_HS5_B.raw`, `710072215zar_HS5IM_A.raw`, `710072216zar_HS5IM_B.raw`. These are single-shot in-solution digests of K-562 and HS-5 ± imatinib (raw headers: Q Exactive + nanoAcquity, unlike the trans-SILAC runs on a Q Exactive Plus). `samplenames.xls` marks the four `+IM` runs "not discussed in this manuscript"; the paper never describes the other four. They were searched in the same MaxQuant 1.6.0.1 session (parameter group 0, multiplicity 2, Arg10;Lys8, LFQ on), but no source says whether, or which, cells were SILAC-labelled. The data show no heavy-labelled material: light is 98.1–99.3% of summed L+H protein-group intensity in all eight, the HS-5 runs included. A heavy channel with no documented content cannot be annotated, and declaring them label-free would contradict the deposited search.
+
+**Also recorded:** PXD013504 is a byte-identical (SHA-1) subset of this deposit's 24 trans-SILAC runs; see `annotations/DUPLICATES.md` Group 10.
+
+**Would be settled by:** an author statement of what the eight `zar` samples are (mono-cultures or sorted co-culture populations, labelling state of each), or a label-free annotation pass if they are confirmed unlabelled.
