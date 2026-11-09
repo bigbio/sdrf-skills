@@ -39,3 +39,53 @@ exit=0
 ## sdrf-tools manifest-coverage annotations/PXD012871.sdrf.tsv annotations/PXD012871.evidence.json
 Manifest covers every column with a value (28 column(s)).
 exit=0
+
+
+# ===== PXD012871-ip (label-free Flag-IP arm, unblocked by campaign-owner decision) 2026-11-09T14:50Z; SDRF annotations/PXD012871-ip.sdrf.tsv sha256 e045ecdf72e0f974212c3682b69ede486e73b096403150680b79bf4b2d9d9758; 6 rows x 46 columns; built by sdrf-tools build from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/ip/samples.tsv + technical.tsv (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/scripts/make_tables_ip.py); no post-build edit. PXD012871.sdrf.tsv unchanged (sha256 3473dd2cd9ff9ccd1c5d27eb72313dbb8451d27eda56bdc8fed3df868dc08995).
+
+## Round 1 (superseded build): parse_sdrf validate-sdrf -s annotations/PXD012871-ip.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0 (an OLS 500 traceback for an unrelated search page was also printed and did not affect the result)
+Fix (in make_tables_ip.py, rebuilt): characteristics[developmental stage] 'fetal stage' -> 'not available' (EFO has no fetal-stage term; Cellosaurus AG Fetus).
+
+## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD012871-ip.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD012871-ip.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD012871-ip.sdrf.tsv
+Hallucination Report: annotations/PXD012871-ip.sdrf.tsv
+  Terms checked:     12
+  Verified:          12
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD012871-ip.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/pride.json --accession PXD012871
+PXD012871: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+exit=1
+Refutation 1, cleavage_agent_unsupported (false positive): the PRIDE protocol says only "digestion in gels" without naming the enzyme; the deposited txt_IP MaxQuant search used Enzyme Trypsin/P, mode Specific, 2 missed cleavages for all 6 files (summary.txt). Trypsin is the digestion enzyme (campaign rule 2).
+Refutation 2, labelled_annotated_as_label_free (false positive): PRIDE quantificationMethods = SILAC describes the project's SILAC arm (annotations/PXD012871.sdrf.tsv). These 6 runs were searched separately in txt_IP with Multiplicity 1 and no labels (summary.txt Labels0 empty), i.e. label-free; split per campaign rule 12.
+
+## parse_sdrf convert-openms -s annotations/PXD012871-ip.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/convert_ip)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.6.1.0 parameters.txt does not record it; no mqpar.xml).
+
+## sdrf-tools schema-check annotations/PXD012871-ip.evidence.json
+annotations/PXD012871-ip.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD012871-ip.sdrf.tsv annotations/PXD012871-ip.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit=0
