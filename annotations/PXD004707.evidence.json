@@ -1,0 +1,400 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD004707.sdrf.tsv",
+ "dataset": "PXD004707",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004707 via mcp get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004707/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/files_p0.json..files_p2.json; 62 entries = 54 RAW (22 SILAC1_*.raw.7z Waters archives, 32 SILAC2-4 *.raw Thermo) + 4 xlsx tables + SILAC_1_OpenMS.7z + SILAC_2/3/4_MaxQuant.7z; every entry projectAccessions contains PXD004707)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Rosch K et al. Quantitative Lipid Droplet Proteome Analysis Identifies Annexin A3 as a Cofactor for HCV Particle Production. Cell Rep 2016;16(12):3219-31, doi:10.1016/j.celrep.2016.08.052, PMID 27653686. Abstract only (Europe PMC); full text not retrievable (cell.com / sciencedirect Cloudflare 403, not bypassed; no PMC copy; CORE full text withheld)."
+  },
+  {
+   "id": "thesis",
+   "kind": "publication",
+   "location": "Rosch K. Proteomic and Microscopic Analysis of Lipid Droplets and Associated Proteins in Hepatitis C Virus-infected Cells. Dissertation, University of Hamburg 2016 (supervisor E. Herker; MS by M. Kwiatkowski - same authors/experiments as the deposit), https://ediss.sub.uni-hamburg.de/bitstream/ediss/6999/1/Dissertation.pdf (local text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/diss.txt; excerpt /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/diss_excerpt_results.txt: sections 3.1.1-3.1.2, Fig 3.2/3.3 legends, Methods 6.2.15, 6.3.14, 6.3.15; Table S1 parsed to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/dissS1.tsv, 316 proteins x 4 experiments)"
+  },
+  {
+   "id": "jove",
+   "kind": "publication",
+   "location": "Rosch K, Kwiatkowski M, Schluter H, Herker E. Lipid Droplet Isolation for Quantitative Mass Spectrometry Analysis. J Vis Exp 2017, doi:10.3791/55585, PMC5564943 (https://pmc.ncbi.nlm.nih.gov/articles/PMC5564943/, local text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/jove.txt)"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/09/PXD004707/SILAC_2_MaxQuant.7z, SILAC_3_MaxQuant.7z, SILAC_4_MaxQuant.7z members parameters.txt, summary.txt, proteinGroups.txt (py7zr; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/ex/SILAC_[234]_MaxQuant/)"
+  },
+  {
+   "id": "openms",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/09/PXD004707/SILAC_1_OpenMS.7z members ID/*.csv and IDMapper/*.csv (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/ex/SILAC_1_OpenMS/; peptide strings in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/s1peps.txt, acetyl-peptide protein-position check /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/acpeps.tsv)"
+  },
+  {
+   "id": "tables",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/09/PXD004707/SILAC1_Table_S1_MS_1.xlsx, SILAC2_Table_S2_MS_2.xlsx, SILAC3_Table_S3_MS_3.xlsx, SILAC4_Table_S4_MS_4.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/dl/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/scripts/corr.py): per-protein log2 ratios of each deposit compared with thesis Table S1 columns #1-#4 (log2 HCV-infected/control, median-centred)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read (first 2 MB) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/09/PXD004707/SILAC2_01_140509.raw, SILAC2_12_140509.raw, SILAC3_01_150709.raw, SILAC3_10_150709.raw, SILAC4_01_150709.raw, SILAC4_10_150709.raw, UTF-16LE strings (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_7927?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/cello_CVCL_7927.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/search exact lookups (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/scripts/ols.sh): NCBITaxon:9606, NCBITaxon:31649 Hepatitis C virus subtype 2a, UBERON:0002107 liver, MONDO:0016216 adult hepatocellular carcinoma, HANCESTRO:0019 Japanese, EFO:0001272 adult, NCIT:C185409 DMEM, GO:0005811 lipid droplet, PRIDE:0001013/0001014, MS:1000632, MS:1002416, MS:1001251, MS:1000133, MS:1000422, MS:1000084, MS:1000291, PRIDE:0000568, PRIDE:0000599, PRIDE:0000627, PRIDE:0000325/0000326, UNIMOD:1,4,27,28,35,188; none obsolete"
+  },
+  {
+   "id": "templates",
+   "kind": "spec",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. The spec submodule nested templates copy is older. sdrf version v1.1.0 per spec README.adoc:27."
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/build/samples_*.tsv, technical_*.tsv; sdrf-tools build x3 (part_qtof, part_orbi2, part_orbi34); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004707/scripts/postbuild.py (concatenation + fraction id / assay name fix)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-108",
+   "value": "Huh7.5_HCV-Jc1-infected_LD_exp<k> / Huh7.5_uninfected_LD_exp<k>, k=1..4",
+   "source_ids": [
+    "thesis",
+    "files",
+    "tables"
+   ],
+   "evidence": "Four independent experiments (#1-#4) on two MS platforms (thesis 3.1.2: \"Four independent experiments on two different MS platforms were performed\"). In each, one HCV-infected and one uninfected Huh7.5 SILAC culture were mixed in equal cell numbers and LDs isolated. Deposit file prefixes SILAC1..SILAC4 = experiments #1..#4 (see orientation claim). One source name per physical culture per experiment (8 sources); the LD isolate is the 1:1 mixture of the two, distinguished by comment[label]."
+  },
+  {
+   "location": "comment[label] + characteristics[infection status] + factor value[infection status] rows 1-88 (SILAC1-3)",
+   "value": "SILAC light = HCV-infected, SILAC heavy = uninfected control",
+   "source_ids": [
+    "thesis",
+    "jove",
+    "orientation",
+    "tables",
+    "mq"
+   ],
+   "evidence": "Thesis Fig 3.3 legend: \"in #1-#3 HCV-infected cells were cultured in light amino acids and control cells in heavy amino acids; in #4 culturing conditions were switched\"; Fig 3.2 legend and JoVE Fig 1A: cells carrying light amino acids were infected. Data check (orientation.txt): SILAC1 Table S1 \"Mean filtered\" log2 = thesis #1 + 0.391 for 100% of 316 proteins (+-0.05); SILAC2 MaxQuant -log2(H/L) = #2 + const for 99%; SILAC3 -log2(H/L) = #3 + const for 100% (Pearson -1.000) -> deposited ratios are infected/control with infected = light. Marker: ANXA3 (enriched at LDs of infected cells, abstract) median-centred log2 H/L SILAC2 -1.89, SILAC3 -1.04 (higher in light)."
+  },
+  {
+   "location": "comment[label] + characteristics[infection status] + factor value[infection status] rows 89-108 (SILAC4)",
+   "value": "SILAC heavy = HCV-infected, SILAC light = uninfected control (label swap)",
+   "source_ids": [
+    "thesis",
+    "orientation",
+    "mq"
+   ],
+   "evidence": "Thesis Fig 3.3 legend \"#4 culturing conditions were switched\"; 3.1.2: \"one experiment was performed with HCV-infected cells labeled with heavy amino acids mixed together with naive cells cultured in media containing light amino acids\". Data: SILAC4 +log2(H/L) = thesis #4 + 1.072 for 99% of 316 proteins; ANXA3 median-centred log2 H/L +1.50."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-108",
+   "value": "1-4 = experiment number within each infection-status group",
+   "source_ids": [
+    "thesis"
+   ],
+   "evidence": "Each experiment used independently cultured/infected cells (\"cells from different passages and different virus stock preparations\", JoVE; four independent experiments, thesis); numbering restarts per factor group, one number per independent culture."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-44",
+   "value": "1 for 18 bands of SILAC1; 2 for SILAC1_04..07_lang_130826 (bands 4-7 re-injected)",
+   "source_ids": [
+    "files",
+    "openms"
+   ],
+   "evidence": "SILAC1 deposit: bands 01-18, with bands 04-07 present twice (130716 runs and 130826 \"_lang\" runs); OpenMS ID files 130716_KR4..7 and 130826_KR_4_lang..7_lang are separate searches of the same band numbers. Interpretation (same gel band re-injected, \"lang\"=long) is inferred from file names."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-108",
+   "value": "SDS-PAGE band number from file name (SILACk_NN_...)",
+   "source_ids": [
+    "files",
+    "mq",
+    "pride",
+    "build"
+   ],
+   "evidence": "PRIDE: \"SDS-PAGE lanes were cut into bands covering the entire mass range\". MaxQuant summary.txt Experiment column 01-12 (SILAC2) / 1-10 (SILAC3, SILAC4) per raw file; raw headers map SILAC2_NN -> 140509_KR_JCNN, SILAC3_NN -> 150709_KR_SILAC_6_N, SILAC4_NN -> 150709_KR_SILAC_7_N. Set by postbuild.py for the 8 SILAC1 lang rows."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-108",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "thesis"
+   ],
+   "evidence": "In-gel: LD proteins separated by SDS-PAGE, bands excised and digested."
+  },
+  {
+   "location": "characteristics[cellular component] rows 1-108",
+   "value": "lipid droplet",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "ols"
+   ],
+   "evidence": "All samples are isolated lipid droplet fractions (two sequential 100,000 g flotations + three washes; thesis 6.2.15). GO:0005811. Custom column (spec Extending Templates)."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-108",
+   "value": "study sample (infected) / control sample (uninfected)",
+   "source_ids": [
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Uninfected naive Huh7.5 cells are the control population of each SILAC pair. PRIDE:0001013 / PRIDE:0001014."
+  },
+  {
+   "location": "characteristics[infection status] / characteristics[infectious agent] / characteristics[infectious agent strain] rows 1-108",
+   "value": "infected: Hepatitis C virus subtype 2a, Jc1 NS5AB reporter virus; uninfected: not infected, not applicable, not applicable",
+   "source_ids": [
+    "thesis",
+    "jove",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Thesis 6.2.15: light or heavy Huh7.5 cells infected with Jc1NS5AB-mKO2-BSD or Jc1NS5AB-eGFP reporter strains, cultured 2-3 weeks; Jc1 = J6 (genotype 2a) assembly module + JFH1 (genotype 2a) replication module (thesis 1.6) -> NCBITaxon:31649 Hepatitis C virus subtype 2a. Custom columns. Search DBs were human Swiss-Prot only (no HCV proteome), as the deposit states."
+  },
+  {
+   "location": "characteristics[organism] rows 1-108",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] / characteristics[cellosaurus accession] / characteristics[cellosaurus name] rows 1-108",
+   "value": "Huh-7.5 / CVCL_7927 / Huh-7.5",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "cellosaurus"
+   ],
+   "evidence": "\"Huh7.5 cells were labeled by SILAC\" (PRIDE); Cellosaurus CVCL_7927 Huh-7.5 (synonym Huh7.5; child of Huh-7 CVCL_0336). Note: sdrf-tools cellline lookup returned Huh-7 (CVCL_0336) for \"Huh-7.5\" - wrong, overridden by Cellosaurus API."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-108",
+   "value": "liver",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: Derived from site: In situ; Liver; UBERON:0002107."
+  },
+  {
+   "location": "characteristics[disease] rows 1-108",
+   "value": "adult hepatocellular carcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C7956 Adult hepatocellular carcinoma -> MONDO:0016216. The cell line disease; HCV infection status is encoded separately."
+  },
+  {
+   "location": "characteristics[material type] rows 1-108",
+   "value": "cell line",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Huh-7.5 is a cancer cell line (Cellosaurus CA)."
+  },
+  {
+   "location": "characteristics[age] / characteristics[sex] / characteristics[developmental stage] / characteristics[ancestry category] rows 1-108",
+   "value": "57Y / male / adult / Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_7927: AG 57Y, SX Male, Population: Japanese (HANCESTRO:0019); 57Y >= 20Y -> EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-108",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "thesis",
+    "jove",
+    "ols"
+   ],
+   "evidence": "Thesis 5.3.2: heavy/light SILAC media = DMEM, 10% dialyzed FCS, 13C6 or 12C L-Arg/L-Lys. NCIT:C185409."
+  },
+  {
+   "location": "comment[instrument] rows 1-44",
+   "value": "NT=Q-Tof Premier;AC=MS:1000632",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "openms"
+   ],
+   "evidence": "PRIDE instruments \"Q-Tof Premier\"; data processing: Q-TOF runs converted with massWolf and processed with OpenMS - SILAC1 is the OpenMS-processed experiment (SILAC_1_OpenMS.7z); thesis 6.3.14 Q-TOF Premier. Waters raw archives not opened (7z of raw directories)."
+  },
+  {
+   "location": "comment[instrument] rows 45-108",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw",
+    "thesis"
+   ],
+   "evidence": "Raw headers: \"Thermo Orbitrap Fusion\", original paths ...\\140509_KR_JC1.raw, ...\\150709_KR_SILAC_6_1.raw, ...\\150709_KR_SILAC_7_1.raw. PRIDE structured instruments omits it."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-44",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "thesis"
+   ],
+   "evidence": "Q-TOF Premier collision-cell CID (method as in [Kwi15], not detailed); generic CID term."
+  },
+  {
+   "location": "comment[dissociation method] / comment[collision energy] rows 45-108",
+   "value": "HCD (MS:1000422); 35 NCE (SILAC2), 30 NCE (SILAC3/4)",
+   "source_ids": [
+    "raw",
+    "thesis"
+   ],
+   "evidence": "Raw method headers: ActivationType = HCD; Collision Energy (%) = 35 (130min_PeptidID_HCD_SILAC.meth, SILAC2) and 30 (60min_200nL_PeptidID_HCD_Quan.meth, SILAC3/4). Thesis 6.3.14 states 28% - conflict, raw method values used."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-44",
+   "value": "NT=time-of-flight;AC=MS:1000084",
+   "source_ids": [
+    "thesis"
+   ],
+   "evidence": "Q-TOF instrument."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 45-108",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "raw",
+    "thesis"
+   ],
+   "evidence": "Raw: Detector Type = IonTrap, Ion Trap Scan Rate = Rapid; thesis: MS/MS spectra recorded in the ion trap (rapid mode)."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 69-108",
+   "value": "400m/z-1300m/z",
+   "source_ids": [
+    "raw",
+    "thesis"
+   ],
+   "evidence": "SILAC3/4 raw: Scan Range (m/z) = 400-1300 (Orbitrap, 120K) and thesis \"m/z range from 400-1300\". SILAC2 raw lists 400-1500 and 350-1400 without unambiguous assignment -> not available; SILAC1 not available."
+  },
+  {
+   "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 1-44",
+   "value": "30 ppm / 0.1 Da",
+   "source_ids": [
+    "pride",
+    "thesis"
+   ],
+   "evidence": "PRIDE data processing: OMSSA and X!Tandem \"precursor mass tolerance of 30 ppm and a fragment mass tolerance of 0.1 Da\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 45-108",
+   "value": "6 ppm / 0.6 Da",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "mq"
+   ],
+   "evidence": "PRIDE / thesis: Andromeda \"mass tolerance of 6 ppm on MS and 0.6 Da on MS/MS level\"; parameters.txt MS/MS tol. (ITMS) 0.6 Da."
+  },
+  {
+   "location": "comment[modification parameters] rows 45-108",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) K and R Variable; columns 4-5 not applicable",
+   "source_ids": [
+    "mq",
+    "thesis"
+   ],
+   "evidence": "parameters.txt Fixed modifications Carbamidomethyl (C); summary.txt Variable modifications Acetyl (Protein N-term);Oxidation (M), Labels1 Arg6;Lys6, Multiplicity 2 (all three searches). Arg6/Lys6 = +6.020 Da -> UNIMOD:188; MT=Variable per campaign convention."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-44",
+   "value": "Carbamidomethyl C, Oxidation M, Acetyl N-term, Gln->pyro-Glu, Glu->pyro-Glu, Label:13C(6) K/R, all Variable",
+   "source_ids": [
+    "openms",
+    "thesis"
+   ],
+   "evidence": "The deposited OpenMS idXML exports carry empty search-parameter fields; mods are those observed in the 7958 SILAC1 PSM strings: C(Carbamidomethyl) 1091 and unmodified C 1176 peptides (-> variable), M(Oxidation), (Acetyl) N-terminal 149 (102/111 distinct at protein N-term, 9 not -> Any N-term), (Gln->pyro-Glu), (Glu->pyro-Glu), K/R(Label:13C(6)). Thesis: searched as in [Kwi15]; SILAC pairs by SILACAnalyzer."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-108",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "mq"
+   ],
+   "evidence": "PRIDE sample processing: \"tryptic in-gel digestion\"; thesis 6.3.14 tryptic in-gel digestion [She06]. MaxQuant rule Trypsin/P, 2 missed cleavages (search rule, not the digest)."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-108",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride",
+    "mq",
+    "openms"
+   ],
+   "evidence": "PRIDE modifications list \"iodoacetamide derivatized residue\"; Carbamidomethyl (C) searched / observed. In-gel protocol [She06] (Shevchenko) alkylates with iodoacetamide. Reagent not named in text - inferred."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-108",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "thesis",
+    "raw"
+   ],
+   "evidence": "Thesis 6.3.14: \"MS/MS measurements were carried out in data dependent acquisition mode (DDA)\"; Q-TOF identification via MS/MS database search (OMSSA/X!Tandem)."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-108",
+   "value": "deposited file names; SILAC1 *.raw.7z (assay name without .raw.7z)",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "SILAC1 Waters .raw directories are deposited only as 7z archives; the archive name is the downloadable file."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] / technology type rows 1-108",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates human (Homo sapiens) + cell-lines (Huh-7.5) + ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "Paper full text (Cell Reports, CC BY-NC-ND) not retrievable: cell.com and sciencedirect return Cloudflare/403 bot checks (not bypassed), no PMC copy, CORE full text withheld. Design/label facts come from the first author's dissertation (same experiments, Table S1 reproduces the deposited ratios exactly) and the JoVE protocol (PMC5564943).",
+  "Experiment-to-deposit mapping SILAC1..4 = thesis #1..#4 established numerically (orientation.txt) rather than stated in text.",
+  "Per-experiment reporter construct (Jc1NS5AB-mKO2-BSD vs Jc1NS5AB-eGFP) and blasticidin selection (\"in one half of the experiments\") are not assigned to experiments in any source; strain written generically as \"Jc1 NS5AB reporter virus\".",
+  "SILAC1 search parameters (OpenMS 1.9 TOPPAS, OMSSA + X!Tandem) are not deposited; modification parameters for rows 1-44 are inferred from modifications present in the deposited identification exports. Tolerances are from the PRIDE protocol.",
+  "SILAC1 technical replicate 2 (bands 4-7, \"_lang\" runs of 2013-08-26) interpreted from file names as re-injections of the same gel bands.",
+  "Collision energy: raw method headers (35% SILAC2, 30% SILAC3/4) disagree with the thesis text (28%); raw values used. SILAC2 MS1 scan range ambiguous in the raw header -> not available.",
+  "Waters SILAC1 raw archives (0.5-1.5 GB 7z) were not opened; Q-Tof Premier comes from PRIDE and the thesis.",
+  "reduction reagent not named in any source -> not available; alkylation reagent inferred from carbamidomethylation and the cited Shevchenko in-gel protocol.",
+  "sdrf-tools cellline lookup mis-resolved \"Huh-7.5\" to Huh-7 (CVCL_0336); corrected from Cellosaurus API (CVCL_7927).",
+  "Review: independent adversarial review not run in this task (caller hands it to an external reviewer; status REVIEW_PENDING_EXTERNAL)."
+ ]
+}

@@ -21,12 +21,12 @@
   {
    "id": "wiff",
    "kind": "raw-file",
-   "location": "All 12 .wiff members fetched by HTTP range and inflated (deflate / deflate64), embedded UTF-16 \"Sample Name:\" and \"Mass Spectrometer:\" strings (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/dl/wiff/*.wiff; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/wiffnames.py)"
+   "location": "All 12 .wiff members fetched by HTTP range and inflated (deflate / deflate64), embedded UTF-16 \"Sample Name:\" and \"Mass Spectrometer:\" strings (inflated copies deleted after extraction to save shared disk; reproducible with script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/wiffnames.py)"
   },
   {
    "id": "group",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009662/SearchEngineOutput.zip: the 12 ProteinPilot 5.0 .group files (nibble-swapped XML). First 1 MB compressed of all 12 read for UI_* settings and input .wiff path (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/group_ui.txt; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/groupsettings.py). Data111015_04 (WT 12.5 min Rep 2) decoded in full (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/dl/WT125R2.group.xml, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/groupfull.py); confident-match modification counts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/modcount_WT125R2.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/modcount.py)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009662/SearchEngineOutput.zip: the 12 ProteinPilot 5.0 .group files (nibble-swapped XML). First 1 MB compressed of all 12 read for UI_* settings and input .wiff path (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/group_ui.txt; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/groupsettings.py). Data111015_04 (WT 12.5 min Rep 2) decoded in full (1 GB-class decode deleted after counting to save shared disk; reproducible with script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/groupfull.py); confident-match modification counts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/modcount_WT125R2.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/modcount.py)"
   },
   {
    "id": "quant",

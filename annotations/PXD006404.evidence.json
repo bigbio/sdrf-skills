@@ -1,0 +1,332 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD006404.sdrf.tsv",
+ "dataset": "PXD006404",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD006404 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/pride.json): projectDescription (channel map of Experiments 1-3, arm descriptions), sampleProcessingProtocol, dataProcessingProtocol"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD006404/files?pageSize=100&page=0..1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/files_p0.json, files_p1.json; 177 entries = 176 .raw + MaxQuant_ALK_signaling.txt.zip; every entry projectAccessions contains PXD006404; list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/files.txt)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Emdal KB et al. Integrated proximal proteomics reveals IRS2 as a determinant of cell survival in ALK-driven neuroblastoma. Sci Signal 2018;11(557):eaap9752, doi:10.1126/scisignal.aap9752, PMID 30459283, PMC7618099 (author manuscript, https://pmc-oa-opendata.s3.amazonaws.com/PMC7618099.1/PMC7618099.1.xml; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/paper.xml, tag-stripped /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/paper.txt). Methods sections \"Cell culture and SILAC labeling\", \"Sample preparation for MS-based interactome/phosphoproteome analysis\", \"LC-MS/MS\", \"MS data analysis\". Supplementary fig. S1C not retrieved."
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/11/PXD006404/MaxQuant_ALK_signaling.txt.zip member MaxQuant_ALK_signaling.txt/summary.txt (HTTP range read of the zip central directory + member, raw-deflate inflated; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/mq_summary.txt; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/scripts/zipcd.py, zipget.py)"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/11/PXD006404/MaxQuant_ALK_signaling.txt.zip member MaxQuant_ALK_signaling.txt/parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/mq_parameters.txt)"
+  },
+  {
+   "id": "mq_sites",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/11/PXD006404/MaxQuant_ALK_signaling.txt.zip member MaxQuant_ALK_signaling.txt/Phospho (STY)Sites.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/phosphosites.txt); ratio checks /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/ratiocheck.out and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/sigcheck.out (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/scripts/ratiocheck.py, sigcheck.py)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 3 MB of each of the 36 SILAC .raw files under https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/11/PXD006404/, decoded UTF-16-LE; instrument strings per file in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/instruments.txt"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_1440?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/cello_CVCL_1440.txt); name-collision search https://api.cellosaurus.org/search/cell-line?q=sy:NB1%20OR%20id:NB1"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (results logged in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/ols_ids.txt and in this session; all terms checked is_obsolete=false)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; batch rules /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/build/samples_{ip,ph1,ph2}.tsv, technical_{ip,ph1,ph2}.tsv, files_{ip,ph1,ph2}.json; sdrf-tools build x3; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/scripts/postbuild.py (concatenate + second cleavage-agent column)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-108",
+   "value": "NB1_<arm>_<experiment>_<treatment>: NB1_ALK-IP_E{1,2,3}_* (rows 1-54), NB1_phospho_E{1,2,3}_* (rows 55-108)",
+   "source_ids": [
+    "pride",
+    "mq_summary",
+    "build"
+   ],
+   "evidence": "One source per (arm, triple-SILAC experiment, SILAC channel) = one labelled cell population of one experiment. MaxQuant summary.txt groups the 36 SILAC raws into experiments ALK-IP-E1/E2/E3 (raw suffix A/B/C) and ALK-Phospho-E1/E2/E3 (raw MIX1/2/3). IP and phosphoproteome arms get separate source names because the deposit does not say whether they were prepared from the same cultures (paper Methods: ALK IP from 8 mg lysate per condition; phosphoproteome 5 mg per condition, acetone-precipitated). Each phospho source is measured in two injection series (rows 55-81, 82-108) under the same name; that is the same physical sample re-injected (technical replicate 1/2)."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] rows 1-108",
+   "value": "E1: SILAC light = Crizotinib, SILAC medium = ALK Inhibitor TAE684, SILAC heavy = Dimethyl Sulfoxide; E2: light = ALK Inhibitor TAE684, medium = Ceritinib (LDK378), heavy = Dimethyl Sulfoxide; E3: light = Ceritinib, medium = Crizotinib, heavy = Dimethyl Sulfoxide",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq_summary",
+    "mq_sites"
+   ],
+   "evidence": "PRIDE projectDescription, section \"ALK Interactome and phosphoproteome\": \"Experiment 1: Light: 500 nM crizotinib, Medium: 100 nM TAE684, Heavy: 0.1% DMSO Experiment 2: Light: 100 nM TAE684, Medium: 250 nM LDK378, Heavy: 0.1% DMSO Experiment 3: Light: 250 nM LDK378, Medium: 500 nM crizotinib, Heavy: 0.1% DMSO\", 30 min treatment. Experiment n is matched to MaxQuant experiments ALK-IP-En and ALK-Phospho-En (summary.txt) by number; the section heading applies the map to both arms. Data check (Phospho (STY)Sites.txt, normalized ratios): every quantified class-I ALK pY site (Y1078, Y1092, Y1096, Y1507, Y1584, Y1604) is lower in both light and medium than in heavy in all three phospho experiments (e.g. Y1096 log2 L/H, M/H = -2.39/-2.19, -2.18/-1.47, -1.40/-2.16; IRS2 pY632 -3.4 to -2.3), consistent with heavy = DMSO vehicle and light/medium = ALK TKIs. LDK378 = ceritinib (paper Reagents: \"LDK378 (ceritinib)\"). Concentrations and the 30-min duration are recorded here only (no template column)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-108",
+   "value": "numbered within each treatment group by experiment order: Crizotinib E1=1, E3=2; ALK Inhibitor TAE684 E1=1, E2=2; Ceritinib E2=1, E3=2; Dimethyl Sulfoxide E1=1, E2=2, E3=3",
+   "source_ids": [
+    "pride",
+    "paper",
+    "build"
+   ],
+   "evidence": "PRIDE: \"These three triple-SILAC experiments allowed the effect of each inhibitor to be measured in duplicates\"; paper: \"three triple-SILAC experiments allowing us to measure the effect of each inhibitor in duplicate\". Each experiment is an independent set of labelled cultures, so each inhibitor has 2 and DMSO 3 independent cultures per arm (README.adoc:330; campaign rule 3). The same numbering is used in both arms."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-54",
+   "value": "1-5 = ALK_IP_1..5<X>, 6 = ALK_IP_IGG_<X>",
+   "source_ids": [
+    "pride",
+    "mq_summary"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: \"gel lanes were excised and cut into 6 fractions for each experiment\". summary.txt Fraction 201-205 for ALK_IP_1..5 and 206 for ALK_IP_IGG within the same experiment, so IGG is the sixth gel slice of the same lane (presumably the IgG heavy-chain region; MS/MS identification rate 6.8-7.8 %), not a separate IgG control IP."
+  },
+  {
+   "location": "comment[fraction identifier] rows 55-108",
+   "value": "1 = TiO2_1st, 2 = TiO2_2nd, 3 = pTYR",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq_summary"
+   ],
+   "evidence": "summary.txt Fraction 301 TiO2_1st, 302 TiO2_2nd, 303 pTYR within each ALK-Phospho-En experiment: the anti-pTyr IP eluate and two sequential TiO2 enrichments of its unbound fraction are fractions of one SILAC mix (paper Methods, phosphoproteome)."
+  },
+  {
+   "location": "comment[technical replicate] rows 55-108",
+   "value": "1 = 20140311_QE3 \"50cm\" series (rows 55-81), 2 = 20140812_QE5 series (rows 82-108)",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "raw"
+   ],
+   "evidence": "Each MIX/fraction exists as two raw files (20140311_QE3_UPLC9_..._50cm_ALK_MIXn_* and 20140812_QE5_UPLC8_..._ALK_MIXn_*) that summary.txt assigns to the same experiment and the same fraction number, i.e. two LC-MS injections of the same enriched samples on different instruments. Rows 1-54: 1."
+  },
+  {
+   "location": "comment[instrument] rows 1-81",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of all 18 ALK_IP raws (20140128_QE5) and the 9 20140311_QE3 phospho raws contain \"Q Exactive - Orbitrap MS\" and no \"Plus\". PRIDE instruments field: Q Exactive. The paper says Q Exactive Plus for interactome and phosphoproteome; the raw files win and the conflict is recorded in limitations."
+  },
+  {
+   "location": "comment[instrument] rows 82-108",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of the 9 20140812_QE5 phospho raws contain \"Q Exactive Plus - Orbitrap MS\". PRIDE protocol: phosphoproteome on a Q Exactive Plus."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-108 (first column); second comment[cleavage agent details] rows 1-54",
+   "value": "NT=Trypsin;AC=MS:1001251; second column not applicable for the IP arm",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "IP arm: \"gel lanes ... in-gel digested with trypsin\" (PRIDE) - trypsin only, hence not applicable in the second column. MaxQuant enzyme rule Trypsin/P (summary.txt), recorded as a note; per campaign rule 2 the digestion enzyme is annotated."
+  },
+  {
+   "location": "second comment[cleavage agent details] rows 55-108",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "Phosphoproteome: \"proteins were in-solution digested with Lys-C and trypsin\" (PRIDE); paper: \"Lys-C digestion for 3 hours (Wako) and then ... trypsin overnight\". Inserted by scripts/postbuild.py because build emits one column for this non-multiple term (campaign rule 2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-108",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Gln->pyro-Glu, Phospho STY Variable; SILAC Label:2H(4) K (UNIMOD:481), Label:13C(6) R (UNIMOD:188), Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) MT=Variable",
+   "source_ids": [
+    "mq_params",
+    "mq_summary",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt: Fixed modifications Carbamidomethyl (C). summary.txt rows for all 36 SILAC raws: Variable modifications \"Oxidation (M);Acetyl (Protein N-term);Gln->pyro-Glu;Phospho (STY)\" (also for the IP experiments), Multiplicity 3, Labels1 \"Arg6;Lys4\", Labels2 \"Arg10;Lys8\". Accessions from mass shift (Lys4 = 2H(4) 481, Arg6 = 13C(6) 188, Lys8 = 259, Arg10 = 267; campaign rule 11). Deamidation (NQ)Sites.txt / Methyl (KR)Sites.txt in the zip are not in the variable modifications of any SILAC raw (summary.txt) and are not annotated."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-108",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_params"
+   ],
+   "evidence": "parameters.txt: \"MS/MS tol. (FTMS) 20 ppm\" (HCD spectra read in the Orbitrap)."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-108; comment[ms2 mass analyzer] rows 1-108",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422; NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "Paper MS data analysis: \"searching the HCD-MS/MS peak lists\"; Q Exactive / Q Exactive Plus record MS2 in the Orbitrap only."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-108",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "mq_summary"
+   ],
+   "evidence": "Paper: HCD-MS/MS peak lists analysed by MaxQuant/Andromeda with SILAC triplets quantified (DDA workflow; summary.txt MS/MS Submitted counts per raw)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-54",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"Proteins were fractionated by SDS-PAGE, gel lanes were excised and cut into 6 fractions\" (PRIDE). PRIDE:0000568 is a descendant of PRIDE:0000550 (OLS). Rows 55-108: not applicable (the fractions are enrichment steps, not a fractionation)."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 55-108",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608; NT=Chloroacetamide (ClAA);AC=PRIDE:0000600",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper phosphoproteome prep: \"reduced with 1 mM DTT followed by alkylation with 5.5 mM CAA\". IP arm (rows 1-54): in-gel digestion \"essentially as described in (29)\" without reagents, so not available."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 55-108",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Anti-phosphotyrosine peptide IP followed by two TiO2 phosphopeptide enrichments (paper, PRIDE). EFO:0010806 is the only phospho term among the EFO:0009090 descendants (OLS). Rows 1-54 (ALK immunoprecipitation): not available - no matching term in the licensed subtree."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-108",
+   "value": "NB-1 / CVCL_1440 / NB1",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE: \"the ALK and MYCN amplified neuroblastoma cell line, NB1\". Cellosaurus CVCL_1440 ID NB1 (SY NB-1; NB-I; NB 1), human neuroblastoma; cross-reference EFO_0022502 whose label is \"NB-1\" (used for the cell line column). Name collisions resolved by accession: CVCL_ZT00 \"NB1 [Human skin fibroblast]\" (human), CVCL_E4I7 CHO NB1-5 (hamster), CVCL_8812 SJNB-1 (synonym NB1); only CVCL_1440 is the neuroblastoma NB1 used in ALK studies."
+  },
+  {
+   "location": "characteristics[organism] rows 1-108",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[disease] rows 1-108",
+   "value": "neuroblastoma",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3270 Neuroblastoma; MONDO:0005072 neuroblastoma (OLS)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-108",
+   "value": "cervical lymph node",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_1440: \"Derived from site: Metastatic; Cervical lymph node; UBERON=UBERON_0002429\"."
+  },
+  {
+   "location": "characteristics[sex], characteristics[age], characteristics[developmental stage] rows 1-108",
+   "value": "male / 2Y3M / child stage (1-4 yo)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus SX Male, AG 2Y3M; HsapDv:0000265 child stage (1-4 yo) covers 2 years 3 months (rule 9: stage from Cellosaurus age)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-108",
+   "value": "Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Japanese\"; HANCESTRO:0019 Japanese (OLS, not obsolete)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-108",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured NB1 cell line."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-108",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: NB1 \"labeled in SILAC RPMI (PAA Laboratories) supplemented with 10% dialyzed fetal bovine serum\"; NCIT:C178973."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-108",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates chosen: MS technology, human cell line samples (no patient samples, so no clinical-metadata)."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-108",
+   "value": "36 SILAC raw files (18 ALK_IP + 18 ALK_MIX); assay name = file stem",
+   "source_ids": [
+    "files",
+    "mq_summary"
+   ],
+   "evidence": "All 36 files present in the PRIDE file list and in summary.txt with Multiplicity 3."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: only the 36 triple-SILAC raws (ALK interactome, ALK phosphoproteome) are annotated. 140 label-free raws are out of scope of this SILAC campaign and excluded: 112 PeptidePulldown raws (20150127_QE7_UPLC10_DBJ_SA_PeptidePulldown_A1-1 .. B10-4 and 20150205_QE7_..._C3-1 .. C8-4; phosphotyrosine interactome, Q Exactive HF) and 28 NB1proteome raws (20141226_QE3_UPLC9_DBJ_SA_NB1proteome_GndCl1_1..14, GndCl2_1..14; label-free proteome). summary.txt Multiplicity 1 for all of them. Recorded in annotations/BLOCKED.md (excluded runs, not a blocker).",
+  "Instrument conflict: paper says Q Exactive Plus for interactome and phosphoproteome; raw headers say Q Exactive for the 18 IP raws and the 9 20140311_QE3 phospho raws, Q Exactive Plus only for the 9 20140812_QE5 raws. Raw headers annotated.",
+  "Channel map identity of the two inhibitor channels (light vs medium) rests on the explicit PRIDE statement only. The deposited ratios confirm heavy = DMSO vehicle (ALK pY sites decrease in L and M), but they cannot distinguish the inhibitors: correlations of inhibitor/DMSO site ratios are dominated by label (L~L 0.70-0.73, M~M 0.58-0.63) and the predicted same-inhibitor pairs (0.41-0.51) do not separate from the other cross-label pairs (0.43-0.48); IGF1R/INSR Y1161 does not give a consistent inhibitor signature. Experiment n <-> MaxQuant ALK-IP-En / ALK-Phospho-En is matched by numbering; fig. S1C (the design figure) was not retrieved.",
+  "Whether the IP-arm and phospho-arm samples come from the same SILAC cultures is not stated; they are annotated as separate sources with the same per-group replicate numbering.",
+  "Precursor mass tolerance not available: mqpar.xml is not deposited and parameters.txt lists only the MS/MS tolerance; the paper says only \"default settings\".",
+  "Inhibitor concentrations (crizotinib 500 nM, TAE684 100 nM, LDK378 250 nM, DMSO 0.1%) and 30 min treatment are not encoded in a column (no template column); they are in this manifest.",
+  "The single MaxQuant search combined SILAC and label-free experiments (one parameters.txt); modification parameters are those the summary.txt lists for the SILAC raws. MaxQuant enzyme rule Trypsin/P; cleavage agent annotated as the digestion enzyme(s) per campaign rule 2.",
+  "Independent review not run here: the request instructs not to run review-gate approve or write a review file (external review pending)."
+ ]
+}
