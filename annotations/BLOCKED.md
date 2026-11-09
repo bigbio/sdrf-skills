@@ -1582,13 +1582,13 @@ The other 9 raws are annotated: `annotations/PXD023136-silac.sdrf.tsv` (Fig 1B S
 **Blocker 1: no available source defines the "ACPOE" cell line.**
 - Stroud et al., Nature 2016 (PMID 27626371): the figure and Extended Data legends never mention ACPOE. The Methods are paywalled and were not read.
 - Supplementary Data xlsx: Table S5 has a 'Mean Log2 ratio ACPOE' column and 'Log2 Ratio H/L O.171/172/173.ACPOE.LH' columns, but no definition.
-- Supplementary Information Table 1: the NDUFAB1 knockout clones are named 'ACP1-1' and 'ACP1-3' ('KO (NDUFAB1)'). Supp Table S2 calls the NDUFAB1-period AP-MS control 'HEK293TACP1'. Neither defines ACPOE.
+- Supplementary Information Table 1: the NDUFAB1 knockout clones are named 'ACP1-1' and 'ACP1-3' ('KO (NDUFAB1)'). Supp Table S2 calls the NDUFAB1-period AP-MS control 'HEK293TACP1'. Ext Data Fig. 3a/3e describe NDUFAB1 knockouts complemented with a FLAG-tagged yeast ACP1 (yACP1Flag) or NDUFAB1Flag. None of these defines ACPOE. Yeast ACP1 is absent from all 15 anti-FLAG AP-MS eluates, so the S2 header does not by itself establish an ACP1-expressing control line.
 - Data (combined.zip proteinGroups.txt): human NDUFAB1 H/L is 1.17, 1.13 and 1.12, i.e. unchanged. Yeast ACP1 (P32463) is present in one channel only: O-171 L 3.30e8 / H 0; O-172 L 5.07e8 / H 1.4e7; O-173 H 4.67e8 / L 0. This suggests HEK293T over-expressing yeast ACP1 against plain HEK293T, but that is inference, not a statement.
 
 **Blocker 2: the label orientation of O-173 contradicts its deposited tag (independent review, 2026-11-08).**
 - The raw header of `093QEP120_O-173-ACPOE-LH_T1.raw` (and T2) gives the acquisition name `P1DAS20151020-DAS_O-173-ACPOE-HL_T1.raw`.
 - In O-173 yeast ACP1 is heavy only (H 4.67e8, L 0), whereas in O-171 it is light only. The acquisition name and the data therefore both contradict the deposited 'LH' tag.
-- The HL/LH rule otherwise holds in all 121 annotated knockout experiments that quantify their target. In the two other experiments whose acquisition name disagrees with the deposit (V-227, T-215), the data side with the deposited tag.
+- The HL/LH rule otherwise holds in all 122 annotated knockout experiments that quantify their target. In the two other experiments whose acquisition name disagrees with the deposit (V-227, T-215), the data side with the deposited tag.
 
 **Related, annotated (not blocked):** the NDUFAB1 experiments O-168..170 carry yeast ACP1 in both channels. They are annotated as 'NDUFAB1 knockout; yeast ACP1 expressing' vs 'HEK293T expressing yeast ACP1'.
 

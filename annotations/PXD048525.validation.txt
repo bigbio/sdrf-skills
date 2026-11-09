@@ -250,3 +250,107 @@ exit code: 0
 $ sdrf-tools manifest-coverage PXD048525-bm-dia.sdrf.tsv PXD048525-bm-dia.evidence.json
 Manifest covers every column with a value (29 column(s)).
 exit code: 0
+
+######################################## Post-merge correction: biological replicate numbering (2026-11-09T00:12:37Z) ########################################
+# Defect (found by a later review of a similar dataset): characteristics[biological replicate] = 1 on every
+#  non-pooled row (luad: 49 distinct patients PHLC005, PHLC012, ... all 1; bm-dia: 50 distinct BM samples all 1).
+#  Spec README.adoc ~l.330 / campaign rule 3: numbering restarts per factor-value group and is unique per independent
+#  individual (patient_001 = 1, patient_002 = 2).
+# Fix (campaign rule 17, deterministic post-build edit): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD048525/fix_biorep.py <in> <out>
+#  - groups = all factor value[...] columns combined (here only factor value[disease]);
+#  - non-pooled rows numbered 1..n per group, one number per independent individual = characteristics[individual],
+#    sorted (natural) by ID; same individual shares its number. Where individual is a reserved word (bm-dia:
+#    'not available' on all rows, no token-to-patient link published) the key falls back to source name: each
+#    BM-<token> is one independent tumour sample and no two are merged without evidence of a shared patient;
+#  - pooled rows (luad heavy super-SILAC reference, 49 rows) unchanged ('pooled');
+#  - asserts header, row count and every cell except characteristics[biological replicate] byte-identical.
+#  Group -> count:
+#    luad   | factor value[disease] = lung adenocarcinoma                 | key individual  | 49 individuals / 49 rows -> 1..49 (48 cells changed)
+#    luad   | factor value[disease] = not applicable (heavy reference)    | pooled          | 49 rows unchanged
+#    bm-dia | factor value[disease] = metastatic malignant neoplasm in the brain | key source name | 50 sources / 50 rows -> 1..50 (49 cells changed; BM-838 = 1 ... BM-5987 = 50)
+#  bm-library: all 60 rows are pooled (biological replicate 'pooled'); no independent individuals -> no defect, left byte-identical.
+# Manifests: luad claim 'characteristics[biological replicate]' and bm-dia biological replicate claim (split out of the
+#  sample type/pooled sample claim) updated to the new values with the spec rule.
+# Artifacts (sha256):
+#   4a9934a3fa436cc6ef27eb2c8ab5bfc3ca91eb87eb937631abd84801fb7c8625  /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/fix-PXD048525/fix_biorep.py
+#   0dfac1c07029e57de2e6b62df867ca617ffda64e6d1db610cdfc69992560baff  PXD048525-bm-dia.sdrf.tsv
+#   aeab6cb5b965e6c7726f62aef16ee79a7e8dc32feeaf4109dabca8f33c2ff4d4  PXD048525-bm-library.sdrf.tsv
+#   1e951ac1ad217b65db7d7fb90b344bfa666598e82e9d83bac8980adaaf531ecb  PXD048525-luad.sdrf.tsv
+#   76c8d72edc3811a6db9e6d48b65770121b609f363595d557875ea7e4fe9f556c  PXD048525-luad.evidence.json
+#   b62ed28c2ece84cdc26c6fdf2517f486443a51f91f8dc49a024215d104231257  PXD048525-bm-dia.evidence.json
+#
+$ parse_sdrf validate-sdrf -s PXD048525-luad.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Invalid value 'SN=HCC827;SN=NCI-H520;SN=NCI-H460' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD048525-bm-dia.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata -t dia-acquisition
+Everything seems to be fine. Well done.
+exit code: 0
+
+$ sdrf-tools structure PXD048525-luad.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools structure PXD048525-bm-dia.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD048525-luad.sdrf.tsv
+Hallucination Report: PXD048525-luad.sdrf.tsv
+  Terms checked:     15
+  Verified:          15
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools check PXD048525-bm-dia.sdrf.tsv
+Hallucination Report: PXD048525-bm-dia.sdrf.tsv
+  Terms checked:     19
+  Verified:          19
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools schema-check PXD048525-luad.evidence.json
+PXD048525-luad.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD048525-luad.sdrf.tsv PXD048525-luad.evidence.json
+Manifest covers every column with a value (26 column(s)).
+exit code: 0
+
+$ sdrf-tools schema-check PXD048525-bm-dia.evidence.json
+PXD048525-bm-dia.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD048525-bm-dia.sdrf.tsv PXD048525-bm-dia.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit code: 0
+
+# Assessment: identical outcome to round 2: luad validate-sdrf exit 0 with the same single justified pooled-sample
+#  SN= warning; bm-dia validate-sdrf clean; structure OK, check CLEAN, schema-check valid and manifest-coverage exit 0
+#  for both.
+$ sdrf-tools reconcile PXD048525-luad.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pride.json --accession PXD048525
+PXD048525: 2 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'timsTOF Pro', the annotation says 'Orbitrap Elite'  [timsTOF Pro]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Lys-C digest but only Trypsin is declared  [missing: Lys-C]
+exit code: 0
+
+$ sdrf-tools reconcile PXD048525-bm-dia.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/PXD048525/evidence/pride.json --accession PXD048525
+PXD048525: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+exit code: 1
+
+# reconcile: same findings and exit codes as before the correction (luad: the two cross-arm false positives,
+#  timsTOF Pro / Trypsin-LysC belong to the BM arm, REFUTED in round 1/2; bm-dia: the project-level SILAC tag,
+#  REFUTED in round 1 - the BM arm is label-free). convert-openms not re-run (biological replicate is not one of
+#  the inputs that failed or succeeded before; no other cell changed).
