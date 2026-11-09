@@ -37,3 +37,36 @@ PXD012186: every annotated value agrees with the deposit record.
 exit=0
 
 $ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv
+  Terms checked:     19
+  Verified:          18
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [all 330]: 'NOK (normal oral keratinocytes, Piboonniyom et al. 2002)' in characteristics[cell line]
+exit=1
+Refutation: the single 'hallucinated' term is the free-text characteristics[cell line] value, which carries no accession; check flags any cell-line string absent from its offline map. The NOK line genuinely has no Cellosaurus record (queries in evidence.json). Not a fabricated term.
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD012186.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD012186.evidence.json: valid evidence-manifest
+exit=0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD012186.evidence.json
+Manifest covers every column with a value (31 column(s)).
+exit=0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD012186/openms3 && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv -t2)
+Conditions (8): dict_keys(['HPV16 E6 and E7 expression (lentiviral pWPI vector)|uninfected|24 hour', 'HPV16 E6 and E7 expression (lentiviral pWPI vector)|Chlamydia trachomatis|24 hour', 'empty lentiviral vector pWPI|uninfected|24 hour', 'empty lentiviral vector pWPI|Chlamydia trachomatis|24 hour', 'HPV16 E6 and E7 expression (lentiviral pWPI vector)|uninfected|48 hour', 'HPV16 E6 and E7 expression (lentiviral pWPI vector)|Chlamydia trachomatis|48 hour', 'empty lentiviral vector pWPI|uninfected|48 hour', 'empty lentiviral vector pWPI|Chlamydia trachomatis|48 hour'])
+Files per condition: dict_values([33, 33, 66, 33, 33, 33, 66, 33])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 330 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD012186.sdrf.tsv
+exit=0
+Per-file VariableModifications in openms.tsv:
+     22 Acetyl (Protein N-term),Label:13C(6) (R),Label:2H(4) (K),Oxidation (M)
+     88 Acetyl (Protein N-term),Label:13C(6)15N(2) (K),Label:13C(6)15N(4) (R),Label:13C(6) (R),Label:2H(4) (K),Oxidation (M)
+     22 Acetyl (Protein N-term),Label:13C(6)15N(2) (K),Label:13C(6)15N(4) (R),Oxidation (M)
+(22 files = 7a/8a with Arg6/Lys4 only; 22 = 7b/8b with Arg10/Lys8 only; 88 = mixes 1-6 + 7c/8c with both, matching summary.txt.) The 'no TA= specified' warning is the expected PP=Protein N-term Acetyl handling.
