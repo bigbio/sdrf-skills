@@ -1991,3 +1991,22 @@ Annotating them under either label would assert a biological replicate the depos
 **Also recorded:** PXD013504 is a byte-identical (SHA-1) subset of this deposit's 24 trans-SILAC runs; see `annotations/DUPLICATES.md` Group 10.
 
 **Would be settled by:** an author statement of what the eight `zar` samples are (mono-cultures or sorted co-culture populations, labelling state of each), or a label-free annotation pass if they are confirmed unlabelled.
+
+---
+
+## PXD002454 — EV71-infected U251 glioma cells (Zhang et al., Proteomics 2015; triple-SILAC mock / 8 hpi / 20 hpi), whole dataset (15 WIFF runs)
+
+**Not annotated. The dataset is genuine triplex SILAC, but no accessible source says which SILAC channel (light / Lys4-Arg6 medium / Lys8-Arg10 heavy) carries mock, EV71 8 hpi or EV71 20 hpi. Campaign rules 6–7 therefore block every run.**
+
+| | |
+|---|---|
+| Publication | Zhang LK, Lin T, Zhu SL, Xianyu LZ, Lu SY. *Proteomics* 2015 15(22):3784-3796, doi:10.1002/pmic.201500134, PMID:26350028. **Closed access**: no PMCID, Europe PMC `inEPMC=N`, `hasSuppl=N`; Unpaywall `oa_status=closed`; Semantic Scholar `openAccessPdf` CLOSED; Wiley full text returned a 403 bot check (not bypassed). Only the abstract was read. |
+| Deposited | 15 `.wiff` + 15 `.wiff.scan` (`20140418_{A,B,C}N{1-5}`) = 3 biological replicates (A, B, C) × 5 SCX fractions, TripleTOF 5600; 3 ProteinPilot 5.0 FDR reports `20140418_{A,B,C}N1__FDR.xlsx` (one per replicate group, 5 input files each). No experimental-design file, no channel annotation. FTP root `pride/data/archive/2015/09/PXD002454/`. |
+| SILAC verified (rule 14) | All three FDR reports: Search Summary `Sample Type = SILAC (Lys+4D, Arg+6)(Lys+8, Arg+10)`; Protein Summary has `M:L` and `H:L` ratio columns (light = denominator). Database `Uniprot_Human(reviewed)_201412.fasta`, 20188 entries, which includes one EV71 entry (`gi|530307006 polyprotein [Enterovirus A71]`). |
+
+Why blocked:
+- **No explicit channel map.** PRIDE sample protocol: "Differentially SILAC labeled U251 cells were mock treated or EV71 infected … mixed at 1:1:1 ratio … 5 fractions with SCX … Three independent biological replicates". The abstract names the conditions (8 and 20 hpi vs mock) but not their labels. The paper Methods/figures, which probably hold the map, could not be read (closed access, 403). The WIFF headers hold only `Sample Name:20140418_AN1` etc. The ProteinPilot reports name only the channels (L/M/H) and contain no condition names.
+- **The data does not settle it.** EV71 polyprotein peptides in the distinct-peptide sheets are mostly medium-labelled (Lys4/Arg6; 10 of 16 identifications over A/B/C), 4 are heavy, and 2 are an unlabelled-K (light) deamidated peptide. The polyprotein has no protein-level ratio (`no quant - weak signal`). That suggests light = mock, but it is not decisive, and it does not tell 8 hpi from 20 hpi. Rule 6 forbids a data-only map.
+
+**Unblocked by:** the paper's Methods or Fig. 1 workflow (Wiley, subscription), or an author statement, giving the label of mock, 8 hpi and 20 hpi. It should be cross-checked against the viral-peptide labels above and against TRAF2/TRAF6 up-regulation, which the paper reports. With the map, the SDRF would be: 15 runs × 3 channels = 45 rows; human + cell-lines (U251, check the Cellosaurus U-251MG vs U251 problematic-line entries); custom `characteristics[infection]` (Enterovirus A71, NCBITaxon:39054, OLS4-verified) with factor values for infection status and time post infection; fraction 1-5 per replicate; ProteinPilot 5.0 Paragon search (Advanced Metadata: MS1 initial tolerance 0.05 Da, MS2 initial tolerance 0.1 Da; trypsin, iodoacetamide).
+
