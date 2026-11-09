@@ -1,0 +1,259 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD012871.sdrf.tsv",
+ "dataset": "PXD012871",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012871 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012871/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/files_p0.json; page 1 empty; 92 entries = 84 SILAC .raw 20150422_GJ_U{1..6}_{1..14} + 6 IP .raw 20181216__Ludayun_293T_* + txt_SILAC.rar + txt_IP.rar; every entry projectAccessions contains PXD012871). In-scope list: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/files_silac.json"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Chen X, Lu D, Gao J, Zhu H, Zhou Y, Gao D, Zhou H. Identification of a USP9X Substrate NFX1-123 by SILAC-Based Quantitative Proteomics. J Proteome Res 2019;18(6):2654-2665, doi:10.1021/acs.jproteome.9b00139, PMID 31059266. Closed access: abstract only (Europe PMC REST, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/epmc.json); no PMCID, Unpaywall oa_status closed."
+  },
+  {
+   "id": "mq_silac",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/05/PXD012871/txt_SILAC.rar members txt_SILAC/parameters.txt, summary.txt, proteinGroups_SILAC.txt (RAR5 HTTP range read, members inflated individually with libarchive; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/mq_silac/; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/scripts/rar5.py, rar_extract.py)"
+  },
+  {
+   "id": "mq_ip",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/05/PXD012871/txt_IP.rar members parameters.txt, summary.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/mq_ip/)"
+  },
+  {
+   "id": "rawhdr",
+   "kind": "raw-file",
+   "location": "First 1 MiB (4 MiB for U3_12, U4_8) of all 90 deposited .raw files by HTTP range from https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/05/PXD012871/; UTF-16LE strings; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/rawsweep.tsv (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/scripts/rawsweep.py)"
+  },
+  {
+   "id": "orientation",
+   "kind": "analysis",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/corr.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/scripts/corr.py): Pearson correlation of log2 normalized H/L across 5026 proteins quantified in all six experiments, contaminants/reverse removed"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0030?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/cellosaurus_CVCL_0030.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0), human/cell-lines latest 1.1.0; local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. The spec submodule nested templates copy in sdrf-skills is older. SDRF spec README.adoc:27 gives sdrf version v1.1.0; README.adoc:330 biological replicate numbering."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-168",
+   "value": "HeLa_<shUSP9X|shGFP>_<U1..U6>",
+   "source_ids": [
+    "mq_silac",
+    "files",
+    "pride"
+   ],
+   "evidence": "MaxQuant summary.txt groups the 84 SILAC raw files into six experiments U1..U6 (14 fractions each, Multiplicity 2). Each experiment is one light+heavy mixture of a shUSP9X culture and a shGFP culture (PRIDE protocol), giving one source per (condition, mixture): 12 sources x 14 files."
+  },
+  {
+   "location": "comment[label] + characteristics[genetic modification] + factor value[genetic modification] rows 1-84 (U1-U3)",
+   "value": "U1, U2, U3 (forward): SILAC light = shRNA targeting USP9X; SILAC heavy = shRNA targeting GFP (control)",
+   "source_ids": [
+    "pride",
+    "mq_silac",
+    "orientation",
+    "paper"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: \"For the forward assays, the stable shUSP9X cell lines were cultured in light media (R0K0) and the stable shGFP cell lines were cultured in heavy media (R10K8). For the reverse assays, the label strategy was reciprocal.\" Which experiments are forward is not stated; data check on the knockdown target itself: USP9X (Q93008) normalized H/L U1 2.34, U2 4.86, U3 1.27 (>1, i.e. lower in light = knockdown in light). NFX1 (Q12986) H/L 1.68, 2.73, 1.08, consistent with the abstract (USP9X knockdown lowers NFX1-123 protein). Global log2 H/L correlation U1/U2/U3 mutually +0.43..+0.56."
+  },
+  {
+   "location": "comment[label] + characteristics[genetic modification] + factor value[genetic modification] rows 85-168 (U4-U6)",
+   "value": "U4, U5, U6 (reverse): SILAC heavy = shRNA targeting USP9X; SILAC light = shRNA targeting GFP (control)",
+   "source_ids": [
+    "pride",
+    "mq_silac",
+    "orientation"
+   ],
+   "evidence": "Reciprocal labelling per PRIDE protocol. USP9X normalized H/L U4 0.42, U5 0.17, U6 0.75 (<1 = knockdown in heavy); NFX1 0.60, 0.27, 0.86. Correlation with forward experiments negative: U4 vs U1 -0.80, U5 vs U2 -0.89, U6 vs U3 -0.85; U4/U5/U6 mutually +0.35..+0.54. Three forward + three reverse matches the data-processing text \"quantified in at least 3 replicates among forward and reverse assays\"."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-168",
+   "value": "1..6 within each genetic-modification group (U1->1 ... U6->6)",
+   "source_ids": [
+    "pride",
+    "mq_silac",
+    "templates"
+   ],
+   "evidence": "Each SILAC mixture combines one light and one heavy culture; light and heavy cultures of a condition are necessarily separate cultures in forward vs reverse mixtures, and the six mixtures are separate experiments in MaxQuant. Numbering restarts per factor-value group and is unique per mixture culture (README.adoc:330, campaign rule 3). Whether the three forward and three reverse cultures were derived from fewer independent shRNA transductions is not documented (limitation)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-168",
+   "value": "1..14 = numeric suffix of the raw file name",
+   "source_ids": [
+    "files",
+    "mq_silac"
+   ],
+   "evidence": "High-pH RP fractionation (PRIDE protocol); 14 files per experiment named _1.._14. MaxQuant summary.txt agrees for U2-U6; for U1 it assigns U1_2->1, U1_3->2, U1_1->3. The file-name order was kept: MS/MS counts show fraction-2 files are the highest in every other experiment (U2_2 55546, U3_2 54042, U4_2 55745, U5_2 54853, U6_2 55870) and U1_2 (55748) behaves the same, so the file name, not the MaxQuant design, looks right. Recorded as limitation."
+  },
+  {
+   "location": "characteristics[organism] rows 1-168",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism NCBITaxon 9606; HeLa is human (Cellosaurus OX 9606)."
+  },
+  {
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-168",
+   "value": "HeLa / CVCL_0030 / HeLa",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Abstract: \"SILAC-based quantitative proteomics to compare these substrates in USP9X-knockdown and wild-type HeLa cells\". PRIDE disease field \"cervix carcinoma\" is consistent. Note PRIDE organismPart \"keratinocyte\" is a submitter dropdown and is not used."
+  },
+  {
+   "location": "characteristics[organism part] + characteristics[disease] rows 1-168",
+   "value": "uterine cervix / cervical adenocarcinoma",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0030: Derived from site Uterus, cervix (UBERON:0000002); disease NCIt C27677 Human papillomavirus-related endocervical adenocarcinoma -> MONDO \"cervical adenocarcinoma\" (same label as campaign precedent PXD012128/PXD004245). The PRIDE value \"cervix carcinoma\" (DOID:2893) is the broader parent."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] + characteristics[ancestry category] rows 1-168",
+   "value": "30Y6M / female / adult / African American",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0030: AG 30Y6M, SX Female, CC Population: African American. Adult because age >= 20Y (campaign rule 9)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-168",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Cultured stable shRNA HeLa cell lines (PRIDE protocol \"stable shUSP9X cell lines\")."
+  },
+  {
+   "location": "characteristics[genetic modification] rows 1-168",
+   "value": "shRNA targeting USP9X | shRNA targeting GFP (control)",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE protocol: \"stable shUSP9X cell lines\" vs \"stable shGFP cell lines\"; abstract calls the comparison USP9X-knockdown vs wild-type HeLa. Custom characteristics column (spec Extending Templates; campaign precedents PXD003316, PXD031662)."
+  },
+  {
+   "location": "comment[data file] + assay name rows 1-168",
+   "value": "20150422_GJ_U<1-6>_<1-14>.raw",
+   "source_ids": [
+    "files",
+    "mq_silac",
+    "rawhdr"
+   ],
+   "evidence": "All 84 names match MaxQuant summary.txt raw-file names exactly and each raw header carries the same original acquisition path name (D:\\Raw_Data\\2015\\20150506\\<name>.raw)."
+  },
+  {
+   "location": "comment[instrument] rows 1-168",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "rawhdr"
+   ],
+   "evidence": "All 84 SILAC raw headers: \"Q Exactive - Orbitrap MS\" / \"Method of Q Exactive\". PRIDE instruments field \"LTQ Orbitrap\" (MS:1000449) is wrong (raw > PRIDE)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-168",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "rawhdr"
+   ],
+   "evidence": "Method: TopN 15 data-dependent MS2, dynamic exclusion 25 s."
+  },
+  {
+   "location": "comment[dissociation method] + comment[collision energy] rows 1-168",
+   "value": "HCD (beam-type CID, MS:1000422) / 28 NCE",
+   "source_ids": [
+    "rawhdr"
+   ],
+   "evidence": "Q Exactive method \"NCE / stepped NCE 28\" in all 84 files (the method file name says NCE30, but the setting is 28)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] + comment[fragment mass tolerance] rows 1-168",
+   "value": "NT=orbitrap;AC=MS:1000484 / 20 ppm",
+   "source_ids": [
+    "rawhdr",
+    "mq_silac"
+   ],
+   "evidence": "Q Exactive MS2 at resolution 17,500 in the Orbitrap; MaxQuant parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-168",
+   "value": "300m/z-1500m/z",
+   "source_ids": [
+    "rawhdr"
+   ],
+   "evidence": "Full MS \"Scan range 300 to 1500 m/z\" in all 84 SILAC raw files."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-168",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mq_silac",
+    "pride"
+   ],
+   "evidence": "PRIDE protocol says only \"FASP digestion\" without naming the enzyme. MaxQuant searched all 84 files with Enzyme Trypsin/P, Enzyme mode Specific, max 2 missed cleavages, and identified 1,600,782 of 4,348,193 MS/MS (30.35%) and 121,111 peptide sequences at 1% FDR, which only a tryptic digest gives. Search rule Trypsin/P recorded here; digestion enzyme = trypsin (campaign rule 2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-168",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term, Arg10 (UNIMOD:267), Lys8 (UNIMOD:259) variable",
+   "source_ids": [
+    "mq_silac"
+   ],
+   "evidence": "parameters.txt: Fixed modifications Carbamidomethyl (C). summary.txt (all 84 files): Variable modifications \"Oxidation (M);Acetyl (Protein N-term)\", Multiplicity 2, Labels0 empty (light), Labels1 \"Arg10;Lys8\". Arg10 = 13C6 15N4 (UNIMOD:267), Lys8 = 13C6 15N2 (UNIMOD:259); MT=Variable per campaign rule 11. Protocol text \"R10K8\" agrees."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-168",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE protocol: \"high-pH reversed phase HPLC for fractionation\"."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-168",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10. Templates: MS data (ms-proteomics), human cells (human), cultured cell lines (cell-lines)."
+  },
+  {
+   "location": "technology type + comment[technical replicate] rows 1-168",
+   "value": "proteomic profiling by mass spectrometry / 1",
+   "source_ids": [
+    "files",
+    "mq_silac"
+   ],
+   "evidence": "Each fraction of each mixture was injected once (one raw file per fraction, no repeated names)."
+  }
+ ],
+ "limitations": [
+  "Publication (J Proteome Res 2019, doi:10.1021/acs.jproteome.9b00139) is closed access; only the abstract was read. Methods come from the PRIDE protocol text, raw headers and the MaxQuant output. Culture medium, reduction/alkylation reagents, passage numbers and storage temperature are therefore not available.",
+  "Forward/reverse assignment of U1..U6 is not stated in any text; it is inferred from the deposited ratios of the knockdown target USP9X and the global ratio correlation, under the explicit labelling statement of the PRIDE protocol. The evidence is strong (USP9X H/L 2.3-4.9 vs 0.17-0.42 in four of six; U3 1.27 and U6 0.75 weaker, but anticorrelated -0.85 with each other and matching their group).",
+  "Biological replicate numbering assumes each mixture used separate cultures; whether forward and reverse cultures share a parental shRNA transduction is not documented.",
+  "Fraction numbering for U1_1..U1_3 follows file names; the MaxQuant design assigned U1_2/U1_3/U1_1 to fractions 1/2/3.",
+  "comment[precursor mass tolerance] = not available: parameters.txt (MaxQuant 1.6.0.1) does not record the first/main-search precursor tolerance and no mqpar.xml was deposited. parse_sdrf convert-openms therefore exits 1. PRIDE dataProcessingProtocol names MaxQuant 1.6.1.0, but the SILAC parameters.txt says Version 1.6.0.1 (1.6.1.0 is the IP search).",
+  "PARTIAL SCOPE: the six label-free Flag-IP runs (20181216__Ludayun_293T_Over_EV_Up/Down, _NFX1_1_Up/Down, _NFX1_2_Up/Down; HEK293T, Q Exactive HF) are NOT annotated: their raw headers carry original acquisition names that contradict the deposited names (deposited EV_* = acquired NFX1_Ub_*, deposited NFX1_1_* = acquired NFX1_*, deposited NFX1_2_* = acquired EV_*), so which run is the empty-vector control cannot be documented. See annotations/BLOCKED.md section PXD012871.",
+  "PRIDE structured fields not used: instruments \"LTQ Orbitrap\" (raw headers: Q Exactive / Q Exactive HF); organismPart \"keratinocyte\"/\"cell culture\".",
+  "Review not performed in this task: external sdrf-adversarial-review hand-off (REVIEW_PENDING_EXTERNAL)."
+ ]
+}

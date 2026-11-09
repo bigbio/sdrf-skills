@@ -1785,3 +1785,16 @@ The technical values are already resolved in `annotations/PXD041509.report.md`:
 **Sources checked:** PRIDE record and file list (no sample sheet); paper full text (Europe PMC XML) and Tables 1–2; supplementary `ijms-20-04013-s001.pptx` (figure legends, clustered heat-map labels HL 1:1…IPF 2:3, embedded Prism graphs of group means only); MaxQuant summary/parameters/proteinGroups (experiment names are bare numbers 1–55 / 1–3); raw headers of all 59 files (sample ID, vial). The paper has no data or code availability links beyond PXD012322.
 
 **Unblocked by:** an author sample sheet giving the day per S1803 vial (or per MaxQuant experiment 1–48) and the donor/replicate per `SILAC_sample_N`.
+
+## PXD012871 — USP9X substrate NFX1-123 (Chen et al., J Proteome Res 2019; SILAC HeLa shUSP9X vs shGFP + Flag-NFX1 IP-MS in HEK293T), 6 label-free IP runs (partial block)
+
+| field | value |
+|---|---|
+| Deposited | 84 SILAC RAW `20150422_GJ_U{1..6}_{1..14}.raw` (Q Exactive; `txt_SILAC.rar`: Multiplicity 2, Labels1 Arg10;Lys8) + 6 label-free IP RAW `20181216__Ludayun_293T_Over_{EV,NFX1_1,NFX1_2}_{Up,Down}.raw` (Q Exactive HF; `txt_IP.rar`: Multiplicity 1, experiments EV / NFX1_1 / NFX1_2, fractions Up=1, Down=2). |
+| Annotated | All 84 SILAC runs, 2 rows each: `annotations/PXD012871.sdrf.tsv` (168 rows). Forward U1–U3 (light = shUSP9X), reverse U4–U6 (heavy = shUSP9X) from the PRIDE labelling statement + USP9X H/L ratios + ratio correlation. |
+| Blocked (whole runs) | The 6 IP runs. Each raw header's original acquisition file name contradicts the deposited name: deposited `EV_Up/Down` = acquired `20181216__HF_ZHW_Ludayun_293T_Over_NFX1_Ub_Up/Down`; deposited `NFX1_1_Up/Down` = acquired `..._Over_NFX1_Up/Down`; deposited `NFX1_2_Up/Down` = acquired `..._Over_EV_Up/Down`. The data do not settle it: NFX1 (Q12986) MaxQuant intensity is 0 in deposited "EV" (acquired "NFX1_Ub"), 1.93e9 in "NFX1_1" and 1.53e8 in "NFX1_2" (acquired "EV"). Which run is the empty-vector pCMV-Flag control, and whether "NFX1_Ub" belongs to this comparison at all, is undocumented. |
+| SDRF would need | For each of the 3 IP samples: construct (Flag-NFX1-123 vs empty pCMV-Flag), whether it is a ubiquitination experiment, and replicate status. Then a separate label-free SDRF (`PXD012871-ip`, HEK293T CVCL_0063, Q Exactive HF MS:1002523, 27 NCE, 350–1700 m/z, gel slices Up/Down as fractions 1/2). |
+
+**Sources checked:** PRIDE record and file list (92 files; protocol says only "293T cell transfected with Flag-tag NFX1 or empty vector pCMV-Flag"); paper (closed access, abstract only, Unpaywall closed); MaxQuant `txt_IP.rar` summary/parameters/proteinGroups (experiment names only); raw headers of all 6 IP files.
+
+**Unblocked by:** an author statement or the paper's methods/figure mapping each deposited IP file to its construct, explaining the renaming.

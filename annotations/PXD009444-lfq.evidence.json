@@ -1,0 +1,312 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD009444-lfq.sdrf.tsv",
+ "dataset": "PXD009444",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009444 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/pride_v3.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009444/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/files_all.json; 43 entries = 39 .raw + 4 MaxQuant txt zips; every entry projectAccessions contains PXD009444)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Drechsel J, Mandl FA, Sieber SA. Chemical Probe To Monitor the Parkinsonism-Associated Protein DJ-1 in Live Cells. ACS Chem Biol 2018;13(8):2016-2019. doi:10.1021/acschembio.8b00633, PMID 30011180. Closed access: not in PMC, Unpaywall oa_status closed, ACS SI page returns 403 (not bypassed). Not read."
+  },
+  {
+   "id": "thesis",
+   "kind": "publication",
+   "location": "Jonas Drechsel, Dissertation TU Muenchen 2020, \"A chemical probe to monitor the parkinsonism-associated protein DJ-1 and target specificity of tranylcypromine in human cells\", https://mediatum.ub.tum.de/doc/1551821/file.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/thesis/drechsel2020.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/thesis/drechsel2020.txt). Chapter 1 is the published DJ-1 work (same author, same experiments): sections 2.6 SILAC, 2.7 LFQ, 4.2 Cell culture (Table 4), 4.8 Gel-free ABPP, LC-MS/MS, Data evaluation."
+  },
+  {
+   "id": "mq_A549",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009444/txt_SILAC_labeling_A549.zip members parameters.txt, summary.txt, proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/mq/txt_SILAC_labeling_A549__*.txt)"
+  },
+  {
+   "id": "mq_HeLa",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009444/txt_SILAC_labeling_HeLa.zip members parameters.txt, summary.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/mq/txt_SILAC_labeling_HeLa__*.txt)"
+  },
+  {
+   "id": "mq_SHSY5Y",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009444/txt_SILAC_labeling_SHSY5Y.zip members parameters.txt, summary.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/mq/txt_SILAC_labeling_SHSY5Y__*.txt)"
+  },
+  {
+   "id": "mq_LFQ",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009444/txt_LFQ_H2O2_dependent_labeling.zip members parameters.txt, summary.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/mq/txt_LFQ_H2O2_dependent_labeling__*.txt)"
+  },
+  {
+   "id": "ratios",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/ratios.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/scripts/ratios.py: log2 Ratio H/L normalized per MaxQuant experiment for PARK7/DJ-1, HMOX2, P4HB, HMGCS1, VDAC3, GAPDH; LFQ: log10 LFQ intensity) and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/a549_rounds.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/scripts/a549_rounds.py)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of all 39 .raw files under https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009444/ (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/raw/*.head; parsed with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/scripts/rawhdr.py): instrument model, instrument method path, autosampler vial, MS2 method"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0030?format=txt, CVCL_0023, CVCL_0019 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/cello_CVCL_0030.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/cello_CVCL_0023.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/cello_CVCL_0019.txt); sdrf-tools cellline lookup HeLa / A549 / SH-SY5Y"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api (log with exact URLs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/ols_log.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/contract.txt): ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0. ms-proteomics latest 1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); the spec submodule nested templates copy is older. comment[sdrf version] v1.1.0 per spec README.adoc:27."
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/build/samples_*.tsv, technical_*.tsv; sdrf-tools build; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/scripts/postbuild.py (concatenation + 2nd cleavage column); driver /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD009444/scripts/run_build.sh"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-9",
+   "value": "HeLa_FM247_H2O2_<0|1|2>mM_<1..3>",
+   "source_ids": [
+    "files",
+    "mq_LFQ",
+    "thesis"
+   ],
+   "evidence": "Raw files 20180315_JD_H2O2_0mM1-3, 20180329_JD_H2O2_1mM1-3, 20180315_JD_H2O2_2mM1-3; MaxQuant experiments 0mM1..2mM3; thesis 2.7/4.8 LFQ: HeLa cells treated with 0/1/2 mM H2O2 (1 h, DMEM) then 10 uM FM247 (1 h)."
+  },
+  {
+   "location": "characteristics[hydrogen peroxide concentration], factor value[hydrogen peroxide concentration], characteristics[treatment] rows 1-9",
+   "value": "0 mM (untreated) / 1 mM / 2 mM (hydrogen peroxide)",
+   "source_ids": [
+    "thesis",
+    "files",
+    "mq_LFQ",
+    "ratios"
+   ],
+   "evidence": "Thesis 4.8 LFQ: \"10 mL DMEM containing various concentrations H2O2 (final concentrations: 0/1/2 mM)\". File and experiment names carry the concentration. Data check: PARK7 log10 LFQ intensity 10.57-10.61 (0 mM) > 10.09-10.25 (1 mM) > 9.91-10.14 (2 mM), matching \"enrichment of DJ-1 strongly decreased upon these oxidative conditions\"."
+  },
+  {
+   "location": "characteristics[compound], characteristics[dose] rows 1-9",
+   "value": "FM247, 10 uM",
+   "source_ids": [
+    "thesis"
+   ],
+   "evidence": "Thesis 4.8 LFQ: \"treated with 10 mL PBS containing FM247 (final concentration 10 uM)\" for every sample."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-9",
+   "value": "1-3 within each H2O2 concentration",
+   "source_ids": [
+    "files",
+    "thesis"
+   ],
+   "evidence": "Three runs per concentration (suffix 1-3), one per dish (see limitations)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-9",
+   "value": "1",
+   "source_ids": [
+    "files",
+    "mq_LFQ"
+   ],
+   "evidence": "One raw file per sample."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-9",
+   "value": "HeLa / CVCL_0030 / HeLa",
+   "source_ids": [
+    "thesis",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Thesis 2.7: \"HeLa cells were treated with H2O2\"; Cellosaurus CVCL_0030."
+  },
+  {
+   "location": "characteristics[disease] rows 1-9",
+   "value": "cervical adenocarcinoma (MONDO:0005153)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C27677 HPV-related endocervical adenocarcinoma; MONDO:0005153 \"cervical adenocarcinoma\" (OLS), the term used by campaign precedents for HeLa."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-9",
+   "value": "uterine cervix (UBERON:0000002)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Derived from site: In situ; Uterus, cervix; UBERON=UBERON_0000002\"."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-9",
+   "value": "African American (HANCESTRO:0568)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus Population: African American; OLS HANCESTRO:0568."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage] rows 1-9",
+   "value": "30Y6M / female / adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 30Y6M, SX Female; adult (EFO:0001272)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-9",
+   "value": "Dulbecco's Modified Eagle Medium (NCIT:C185409)",
+   "source_ids": [
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Thesis Table 4: HeLa medium DMEM; thesis LFQ section: HeLa treated in DMEM."
+  },
+  {
+   "location": "comment[label] rows 1-9",
+   "value": "label free sample",
+   "source_ids": [
+    "mq_LFQ",
+    "pride"
+   ],
+   "evidence": "summary.txt Multiplicity 1 and empty Labels0 for all nine files; proteinGroups has LFQ intensity columns; PRIDE dataProcessingProtocol \"For label-free quantification the corresponding parameter was set to LFQ\"."
+  },
+  {
+   "location": "comment[instrument] rows 1-9",
+   "value": "Q Exactive Plus (MS:1002634)",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All nine raw headers: \"Q Exactive Plus - Orbitrap MS\", method 20171019_SR_152min_TOP10_80-100ms_LFQ_SFES.meth."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] rows 1-9",
+   "value": "HCD (MS:1000422), 27 NCE, orbitrap (MS:1000484)",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "QE Plus method in the raw header: TopN 10, MS2 resolution 17,500, \"(N)CE: nce 27\", Fragmentation_HCD 27; PRIDE protocol: HCD NCE 27%, detected in the orbitrap."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-9",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_LFQ"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\" (orbitrap MS2). The prose \"MS/MS tolerance 0.5 Da\" is the ITMS setting and does not apply to these FTMS spectra."
+  },
+  {
+   "location": "comment[cleavage agent details] (both columns) rows 1-9",
+   "value": "Trypsin (MS:1001251) and Lys-C (MS:1001309)",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "ols",
+    "mq_LFQ"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol / thesis 4.8: \"1 uL endoproteinase Lys-C (LysC) ... incubated for 2.5 h ... 1.5 uL Trypsin ... overnight at 37 C\". Search rule in summary.txt: Trypsin/P, 2 missed cleavages (campaign rule 2: the digestion enzymes are annotated, not the search rule)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-9",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable",
+   "source_ids": [
+    "ols",
+    "mq_LFQ"
+   ],
+   "evidence": "summary.txt \"Variable modifications\" = Oxidation (M);Acetyl (Protein N-term) for every raw file; parameters.txt \"Fixed modifications Carbamidomethyl (C)\". The PRIDE/thesis prose also lists \"NH (aspartate)\", which no deposited search contains, so it is not annotated."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-9",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "pride",
+    "thesis"
+   ],
+   "evidence": "PRIDE dataProcessingProtocol / thesis: \"main search tolerance: 4.5 ppm\" (MaxQuant main search). parameters.txt of MaxQuant 1.5.x does not record it."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-9",
+   "value": "Dithiothreitol (DTT) PRIDE:0000608; Iodoacetamide (IAA) PRIDE:0000599",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Protocol: \"Reduction was performed by adding 0.2 uL dithiothreitol (DTT)\"; \"On addition of 2 uL iodoacetamide (IAA) the proteins were alkylated\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-9",
+   "value": "Data-dependent acquisition (PRIDE:0000627)",
+   "source_ids": [
+    "raw",
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Raw methods TOP5 CID (LTQ XL), top-speed DDA (Fusion), TopN 10 (QE Plus); thesis \"operated in data dependent mode\"."
+  },
+  {
+   "location": "characteristics[organism] rows 1-9",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; all cell lines human (Cellosaurus OX NCBI_TaxID=9606)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-9",
+   "value": "cell line",
+   "source_ids": [
+    "thesis",
+    "cellosaurus"
+   ],
+   "evidence": "All samples are cultured cell lines (thesis 4.2 Table 4)."
+  },
+  {
+   "location": "assay name, comment[data file], comment[fraction identifier] rows 1-9",
+   "value": "raw file stem / raw file name / 1",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "One unfractionated LC-MS run per raw file; every raw file listed by PRIDE is used exactly once in this deposit's SDRFs; assay name = file stem (sdrf-tools build default)."
+  },
+  {
+   "location": "technology type, comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-9",
+   "value": "proteomic profiling by mass spectrometry; v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Filled by sdrf-tools build from the declared templates; versions per campaign rule 1 and rule 10."
+  }
+ ],
+ "limitations": [
+  "The publication (ACS Chem Biol 2018, doi:10.1021/acschembio.8b00633) and its Supporting Information are closed access (no PMC copy, Unpaywall closed, ACS SI page 403, not bypassed). Methods and design come from the PRIDE protocol text, the author's open-access TUM dissertation (2020; same author, same experiments), the raw headers and the deposited MaxQuant outputs.",
+  "PRIDE/thesis prose list a variable \"NH (aspartate)\" modification; no deposited MaxQuant search contains it (summary.txt: Oxidation (M);Acetyl (Protein N-term) only), so it is not annotated.",
+  "comment[cleavage agent details] appears twice (Trypsin, Lys-C). sdrf-tools build emits a single column for this non-multiple field, so the Lys-C column is inserted by the deterministic post-build script scripts/postbuild.py (campaign rules 2 and 17); justified in PXD009444.validation.txt.",
+  "Status REVIEW_PENDING_EXTERNAL: no adversarial review was run by the producer (external hand-off).",
+  "Biological replicate 1-3 per H2O2 concentration assumes the three runs per condition (0mM1-3, 1mM1-3, 2mM1-3) are separate dishes; the thesis says HeLa cells were plated on 15 cm dishes and treated per concentration but does not state the replicate type explicitly.",
+  "The 1 mM runs were acquired on 2018-03-29, the 0 and 2 mM runs on 2018-03-15 (file names); all nine were searched together (txt_LFQ_H2O2_dependent_labeling.zip).",
+  "characteristics[treatment] = \"untreated\" for 0 mM H2O2 (template-prescribed control value, campaign rule 4); validate-sdrf warns it is not an NCIT/EFO term. All LFQ samples were labelled with 10 uM FM247 after the H2O2 step.",
+  "reconcile reports a BLOCKER labelled_annotated_as_label_free because PRIDE lists SILAC among the dataset's quantification methods; for these 9 runs the MaxQuant search is label-free (summary.txt Multiplicity 1, Labels0 empty, LFQ intensities), so the finding is refuted in validation.txt."
+ ]
+}

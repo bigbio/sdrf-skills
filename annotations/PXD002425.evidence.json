@@ -1,0 +1,272 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD002425.sdrf.tsv",
+ "dataset": "PXD002425",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002425 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/pride.json): sampleProcessingProtocol (143B.TK- ATCC CRL-8303 parental line and rho0 cells; SILAC DMEM; Arg 13C6 15N4 / Lys 13C6 15N2 heavy; biological quadruplicates incl. label switch) and dataProcessingProtocol (MaxQuant 1.5.0.0, 4.5 ppm precursor, 20 ppm fragment, mods per sample type). Metabolomics part described in the same protocol."
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002425/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/files_all.json; 301 entries, every projectAccessions contains PXD002425): 124 .raw, 3 .zip, 174 metabolomics .wiff/.qsession"
+  },
+  {
+   "id": "pride2270",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002270 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/../b7-PXD002270/pride.json, files.json): earlier PARTIAL deposit of the same 124 raw files (see annotations/DUPLICATES.md Group 9)"
+  },
+  {
+   "id": "edt2270",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD002270/experimentalDesignTemplate.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/ev/experimentalDesignTemplate.txt): MaxQuant experimental design, 124 runs -> Experiment Rho0_H1_143B_L1 / Rho0_H2_143B_L2 / Rho0_L1_143B_H1 / Rho0_L2_143B_H2"
+  },
+  {
+   "id": "params2270",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/02/PXD002270/parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/ev/parameters.txt): MaxQuant 1.5.0.0 parameters; identical to combined/txt/parameters.txt except Re-quantify False vs True"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/02/PXD002425/combined.zip members combined/txt/summary.txt, combined/txt/parameters.txt, combined/txt/proteinGroups.txt, combined/experimentalDesignTemplate.txt, combined/txt/evidence.txt (HTTP range reads of the zip, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/httpzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/ev/combined/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/orient.py: mtDNA-encoded and OXPHOS marker protein log2 H/L per experiment + inter-experiment Pearson), /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/perfile_orientation.tsv (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/perfile.py: per raw file, Pearson of evidence log2 H/L vs the protein-level reference of experiment Rho0_H1_143B_L1, and MT-CO2/TFAM/NDUFS1/UQCRC1/MT-ATP6 marker medians), /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/lowfrac_orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/lowfrac.py)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.2 MB of every .raw under https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/02/PXD002425/ (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/rawhdr.py; table /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/rawheaders.tsv): instrument model string, method file, MS1 scan range, NCE, TopN"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_2270 , CVCL_ZL52 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/ev/CVCL_2270.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/ev/CVCL_ZL52.txt); both entries cross-reference PRIDE PXD002425; CVCL_2270 synonym 143B.TK-, DR ATCC CRL-8303; CVCL_ZL52 \"143B rho-0 EtBr\" cites Aretz et al. MCP 2016"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Aretz I, Hardt C, Wittig I, Meierhofer D. An impaired respiratory electron chain triggers down-regulation of the energy metabolism and de-ubiquitination of solute carrier amino acid transporters. Mol Cell Proteomics 2016;15(5):1526-38. doi:10.1074/mcp.M115.053181, PMID 26852163, PMC4858937. Only the abstract/front matter was retrievable (NCBI efetch id=4858937, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/efetch.xml): PMC4858937 is not in the OA subset (Europe PMC fullTextXML 500, supplementaryFiles \"not open access\"), mcponline.org PDF 403, PMC HTML/PDF behind a reCAPTCHA (not bypassed)."
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 lookups: EFO:0006355 143B; MONDO:0009807 osteosarcoma; HANCESTRO:0005 European ancestry; HsapDv:0000107 13-year-old stage; NCIT:C185409 Dulbecco's Modified Eagle Medium; EFO:0010806 enrichment of phosphorylated protein; MS:1002634 Q Exactive Plus; MS:1000422; MS:1000484; MS:1001251; PRIDE:0000627; UNIMOD:4,35,1,21,121,267,259"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/samples_{lysate,nonenriched,TiO2,GlyGly}.tsv + technical_{base,phospho,ubi}.tsv; sdrf-tools build x4; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/concat.py (identical headers asserted)"
+  },
+  {
+   "id": "precedent",
+   "kind": "curated",
+   "location": "Campaign precedents: annotations/PXD010683.sdrf.tsv (per-arm source names, enrichment process not applicable for proteome rows), PXD016521 (13-year-old stage), PXD009766 (unfractionated run as separate technical replicate); curated sdrf-annotated-datasets PXD000554/PXD001214/PXD002255 use \"enrichment of ubiquitinated protein\""
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-248",
+   "value": "<rho0|143B>_BR<1-4>_<lysate|nonenriched-fractions|TiO2|GlyGly>",
+   "source_ids": [
+    "mq",
+    "edt2270",
+    "pride",
+    "build"
+   ],
+   "evidence": "One source per cell line x MaxQuant experiment (= biological replicate) x workflow arm. Arms from run names and summary.txt variable-modification groups: lysate = *_1D and *_pH3..pH11 (rows 1-56, base search); nonenriched-fractions = 1502xx_Rho0_143B_<FT_1_2|3..13>_<a-d> (rows 57-152, base search); TiO2 = *_TiO2_* (rows 153-240, + Phospho (STY)); GlyGly = *_Ubi (rows 241-248, + GlyGly (K)). Cell-line part follows the channel map (comment[label] claim)."
+  },
+  {
+   "location": "comment[label] rows 1-248",
+   "value": "SILAC heavy / SILAC light per channel map: BR1, BR2 rho0 heavy + 143B light; BR3, BR4 rho0 light + 143B heavy",
+   "source_ids": [
+    "edt2270",
+    "mq",
+    "pride",
+    "orientation"
+   ],
+   "evidence": "Explicit: MaxQuant Experiment names Rho0_H1_143B_L1, Rho0_H2_143B_L2 (rho0 heavy) and Rho0_L1_143B_H1, Rho0_L2_143B_H2 (rho0 light) in experimentalDesignTemplate.txt (PXD002270 and combined.zip, identical assignments) and summary.txt; run names agree (Rho_SI_143B_LSI = rho heavy \"S\", 143B light \"LS\"; Rho_LSI_143B_SI swapped; 141211_143_SI_Rho_LSI_C_Ubi = 143B heavy in exp. L1). PRIDE: quadruplicates incl. label switch. summary.txt: Multiplicity 2, Labels1 Arg10;Lys8 on all 124 runs. Data check: protein-level log2 H/L of mtDNA-encoded MT-CO2 = -4.58/-4.28 in H1/H2 and +4.46/+6.12 in L1/L2 (rho0 lacks mtDNA); TFAM -3.14/-2.96 vs +3.18/+2.84; NDUFS1 -2.12/-2.19 vs +2.05/+2.07; Pearson H1 vs H2 +0.885, L1 vs L2 +0.873, H vs L -0.53..-0.59. Per file: 123/124 runs correlate with the rho0-heavy reference in the sign their experiment predicts (incl. every TiO2 and GlyGly run); the exception 150212_Rho0_143B_5_c (r=+0.30 on 346 pairs; only 4 strongly regulated peptides, 2/4 agree) is a low-yield fraction and uninformative, so the explicit design is kept (see limitations)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-248",
+   "value": "1-4 per cell line",
+   "source_ids": [
+    "pride",
+    "mq",
+    "edt2270"
+   ],
+   "evidence": "PRIDE: \"Proteomic experiments were done in biological quadruplicates, including a label-switch\", \"one 300 cm2 polystyrene flask per replicate\". The four MaxQuant experiments (H1, H2, L1, L2) are numbered 1-4; within each factor value (143B / 143B rho-0 EtBr) each experiment is an independent culture, so numbers 1-4 are unique per culture within the group."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus name], characteristics[cellosaurus accession], factor value[cell line] rows 1-248",
+   "value": "143B (CVCL_2270) / 143B rho-0 EtBr (CVCL_ZL52)",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"The osteosarcoma cell line 143B.TK- (ATCC-CRL-8303) ... was the parental line of recently generated rho0 cells\". Cellosaurus CVCL_2270 \"143B\" lists synonym 143B.TK- and DR ATCC CRL-8303 and DR PRIDE PXD002425; EFO:0006355 label \"143B\". Cellosaurus CVCL_ZL52 \"143B rho-0 EtBr\" (child of CVCL_2270, \"devoid of mitochondrial DNA (rho0)\", obtained with ethidium bromide) cites this paper and DR PRIDE PXD002425. The rho0 line is not in CLO/BTO/EFO, so its cell line value is the Cellosaurus name (validator warning expected). The compared variable is the cell line (parental vs rho0)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-248",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-248",
+   "value": "femur",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_ZL52 / 143B lineage: \"Derived from site: In situ; Bone, right femur; UBERON=UBERON_0000981\". PRIDE organismParts \"bone marrow\" is a submitter dropdown not supported by the cell line record; not used."
+  },
+  {
+   "location": "characteristics[disease] rows 1-248",
+   "value": "osteosarcoma",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE diseases DOID:3347 osteosarcoma; Cellosaurus DI NCIt C9145 Osteosarcoma; MONDO:0009807 osteosarcoma. Both arms are osteosarcoma-derived lines (no healthy control arm)."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[ancestry category], characteristics[individual] rows 1-248",
+   "value": "13Y; female; 13-year-old stage; European ancestry; 143B_donor",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "precedent"
+   ],
+   "evidence": "Cellosaurus CVCL_2270 / CVCL_ZL52: AG 13Y, SX Female, CC Population: Caucasian (-> HANCESTRO:0005 European ancestry). Developmental stage HsapDv:0000107 \"13-year-old stage\" from the donor age (campaign rule 9: not adult below ~20Y; precedent PXD016521). Both lines come from one donor (rho0 derived from 143B), so a shared individual identifier."
+  },
+  {
+   "location": "characteristics[material type] rows 1-248",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured cell lines (PRIDE sample protocol; Cellosaurus category Cancer cell line)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-248",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: \"cultivated in SILAC DMEM (Silantes ...) containing 4.5 g/L glucose, 1 mM pyruvate, 5% dialyzed FBS ... bromodeoxyuridine ... uridine\". NCIT:C185409."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-248",
+   "value": "not applicable (rows 1-152); enrichment of phosphorylated protein (rows 153-240); enrichment of ubiquitinated protein (rows 241-248)",
+   "source_ids": [
+    "pride",
+    "mq",
+    "files",
+    "precedent",
+    "ols"
+   ],
+   "evidence": "TiO2 runs (name \"TiO2\"; summary.txt adds Phospho (STY); evidence: Phospho (STY) dominant modification in every TiO2 run) -> EFO:0010806. Ubi runs (name \"_Ubi\"; summary.txt adds GlyGly (K), max missed cleavages 3; ~1300-1550 GlyGly (K) evidence per run); PRIDE: \"Phospho (STY) and GlyGly (K) were set as variable modification for the according enriched samples\". \"enrichment of ubiquitinated protein\" has no OLS term; used as in curated precedents. Lysate and 1502xx non-TiO2 runs searched without PTM mods -> not applicable (precedent PXD010683)."
+  },
+  {
+   "location": "characteristics[cell type], characteristics[passage number] rows 1-248",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Cellosaurus gives no cell type for 143B; no passage number in the deposit."
+  },
+  {
+   "location": "assay name, comment[data file], comment[fraction identifier], comment[technical replicate] rows 1-248",
+   "value": "raw file stems; fractions in MaxQuant Fraction order within each arm; lysate pH series = technical replicate 1 (fractions 1-6 = pH3,4,5,6,8,11), 1D run = technical replicate 2",
+   "source_ids": [
+    "files",
+    "mq",
+    "build",
+    "precedent"
+   ],
+   "evidence": "All 124 PRIDE .raw files appear in summary.txt (assert in make_tables.py); 2 rows (light, heavy) per file = 248 rows. summary.txt Fraction numbers order each experiment: 1D=1, pH3..pH11=2-7, Ubi=8, FT_1_2=9, 3..13=10-20, TiO2 FT_1_2=21, TiO2 3..13 (10_11 pooled)=22-31; the SDRF renumbers within each arm from 1. The 1D run is treated as an unfractionated injection (separate technical replicate, precedent PXD009766); nonenriched 12 fractions (FT_1_2,3..13) and TiO2 11 fractions (FT_1_2,3..9,10_11,12,13)."
+  },
+  {
+   "location": "comment[instrument] rows 1-248",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "raw",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Raw header of all 124 files: \"Q Exactive Plus - Orbitrap MS\", method \"Method of Q Exactive Plus\" (rawheaders.tsv). PRIDE lists the generic \"Q Exactive\" (MS:1001911); the raw files are more specific and win."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-248",
+   "value": "DDA; HCD (beam-type CID); 25 NCE; orbitrap; 300m/z-1750m/z",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw headers: method Top12_3h_direct_inject_30sec_35TRes_s(.meth / _Ubi.meth), TopN 12 data-dependent MS/MS, Fragmentation_HCD 25 (NCE / stepped NCE 25), MS2 resolution 35,000 (Orbitrap), full scan 300 to 1750 m/z at 70,000."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-248",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq"
+   ],
+   "evidence": "PRIDE: \"Tryptic peptides were required to have a minimum length of 7 amino acids and a maximum of two missed cleavages\"; summary.txt Enzyme Trypsin/P (MaxQuant search rule; batch rule 2: digestion enzyme recorded as Trypsin)."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-248",
+   "value": "4.5 ppm; 20 ppm",
+   "source_ids": [
+    "pride",
+    "params2270",
+    "mq"
+   ],
+   "evidence": "PRIDE: \"allowed mass deviation of the precursor ion of up to 4.5 ppm after time dependent mass calibration. The allowed fragment mass deviation was 20 ppm\"; parameters.txt MS/MS tol. (FTMS) 20 ppm."
+  },
+  {
+   "location": "comment[modification parameters] (7 columns) rows 1-248",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Arg10 (UNIMOD:267), Lys8 (UNIMOD:259) variable on all rows; Phospho STY only rows 153-240; GG K (UNIMOD:121) only rows 241-248; not applicable elsewhere",
+   "source_ids": [
+    "mq",
+    "params2270",
+    "pride",
+    "ols"
+   ],
+   "evidence": "summary.txt per raw: Variable modifications \"Acetyl (Protein N-term);Oxidation (M)\" for the 76 lysate/nonenriched runs, \"+Phospho (STY)\" for the 44 TiO2 runs, \"+GlyGly (K)\" for the 4 Ubi runs (asserted per file in make_tables.py); parameters.txt Fixed modifications Carbamidomethyl (C); Labels1 Arg10;Lys8. SILAC labels MT=Variable (batch rule 11). Built as three groups with identical headers (batch rule 5)."
+  },
+  {
+   "location": "technology type, comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-248",
+   "value": "proteomic profiling by mass spectrometry; v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "build"
+   ],
+   "evidence": "Filled by sdrf-tools build from the template contract; batch rules 1 and 10 (ms-proteomics latest 1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150; the spec submodule nested templates copy is older)."
+  }
+ ],
+ "limitations": [
+  "Paper full text (Methods, supplementary) not retrievable: not OA in PMC (Europe PMC 500 / \"not open access\"), publisher PDF 403, PMC HTML/PDF behind reCAPTCHA (not bypassed). Fractionation chemistry (pH-step fractions pH3-pH11; FT_1_2/3-13 series before/after TiO2), reduction/alkylation reagents, and the ubiquitin-remnant enrichment method are therefore undocumented; comment[fractionation method], reduction/alkylation columns are omitted.",
+  "The 1502xx_Rho0_143B_<FT_1_2|3..13> runs are encoded as a separate non-enriched fraction series (searched without Phospho). Whether they are the TiO2 flow-through or pre-enrichment aliquots of the same peptide fractions is not documented.",
+  "The 1D run of each lysate set is treated as an unfractionated injection (technical replicate 2). MaxQuant placed it at Fraction 1 next to the pH series, and no text confirms what \"1D\" means.",
+  "Biological replicate numbers follow the four MaxQuant experiments. The arms were measured months apart (lysate Nov 2014, Ubi Dec 2014, phospho Feb 2015), and nothing documents whether the arms of one replicate come from the same culture/mixture or from separate ones.",
+  "Per-file orientation: 150212_Rho0_143B_5_c (nonenriched fraction 5, experiment Rho0_L1_143B_H1) gives r=+0.30 against the rho0-heavy reference (346 ratio pairs; only 4 strongly regulated peptides, 2/4 sign agreement). That is uninformative rather than contradictory; the explicit design-template assignment (rho0 light) is kept.",
+  "PXD002270 (earlier partial deposit of the same 124 raw files) is not annotated; see annotations/DUPLICATES.md Group 9. Its experimentalDesignTemplate.txt/parameters.txt are cited as evidence; its parameters.txt says Re-quantify False whereas combined/txt/parameters.txt in PXD002425 says True.",
+  "Out of scope: 174 metabolomics MRM files (.wiff/.qsession, SCIEX MultiQuant) and the 3 zip archives (MaxQuant output / software), which are not proteomics data runs.",
+  "PRIDE organismParts \"bone marrow\" and instrument \"Q Exactive\" are superseded by Cellosaurus (femur) and the raw headers (Q Exactive Plus).",
+  "Review: REVIEW_PENDING_EXTERNAL. Validated by the producer only; no adversarial review run in this task (external hand-off per batch prompt)."
+ ]
+}
