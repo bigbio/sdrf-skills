@@ -1,0 +1,51 @@
+# PXD001834 validation log (2026-11-09T13:14:05Z); SDRF sha256 f6caeeedd16f912b8acb5c2fc696ebdc69ce995ec708ff3c87aa6f737371ee21 (170 rows x 39 columns)
+# Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/make_tables.py -> samples.tsv/technical.tsv; sdrf-tools build -t ms-proteomics -t vertebrates -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/build.sdrf.tsv (170 x 38);
+# post-build (deterministic, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/postbuild.py): inserts a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 after the Trypsin column on all rows (batch rule 2; the column is not 'multiple' in the contract so build emits one). The script asserts one existing column = Trypsin on every row and that deleting the inserted column restores the build output exactly. No other edit.
+# Round 1 is the only round (no errors).
+
+$ parse_sdrf validate-sdrf -s annotations/PXD001834.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD001834.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD001834.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/pride.json --accession PXD001834
+PXD001834: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools check annotations/PXD001834.sdrf.tsv
+Hallucination Report: annotations/PXD001834.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/convert) parse_sdrf convert-openms -s PXD001834.sdrf.tsv -t2
+PROCESSING: PXD001834.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (2): dict_keys(['wild type', 'Gclm knockout'])
+Files per condition: dict_values([85, 85])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 170 times.
+SUCCESS (WARNINGS=1): PXD001834.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD001834.evidence.json
+annotations/PXD001834.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD001834.sdrf.tsv annotations/PXD001834.evidence.json
+Manifest covers every column with a value (24 column(s)).
+exit code: 0
+
+# Disposition
+# - validate-sdrf WARNING 'C57BL/6J not found in ncbitaxon' (x170): characteristics[strain or breed] is free text in the vertebrates contract; the strain is stated in the paper (Animals). Accepted, same as campaign precedents.
+# - convert-openms 'no TA= specified' x170: from Acetyl PP=Protein N-term (correct per format rules). SUCCESS, 2 conditions (wild type, Gclm knockout), 85 files each. openms.tsv Enzyme = Trypsin (converter reads the first cleavage column only).
+# - characteristics[genotype] is a custom column (spec 'Extending Templates'); validate-sdrf accepts it.

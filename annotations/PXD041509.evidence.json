@@ -1,0 +1,383 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD041509.sdrf.tsv",
+ "dataset": "PXD041509",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD041509 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD041509/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/files.json; 66 entries: 54 .raw, 3 mqpar xml, 1 .pdStudy, 1 .pdResult, 1 PD Proteins.txt, 3 xlsx, 2 png, 1 PD .method; every entry projectAccessions contains PXD041509)"
+  },
+  {
+   "id": "mqpar_usp39ip",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/09/PXD041509/mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/dl/mqpar.xml; MaxQuant 1.6.10.43)"
+  },
+  {
+   "id": "mqpar_prpf4ip",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/09/PXD041509/mqpar-PRPF4.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/dl/mqpar-PRPF4.xml; MaxQuant 1.6.10.43)"
+  },
+  {
+   "id": "xlsx_usp39ip",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/09/PXD041509/USP39-interactome-HELA.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/dl/USP39-interactome-HELA.xlsx; Perseus export, LFQ intensity IGG1-3 / USP391-3)"
+  },
+  {
+   "id": "xlsx_prpf4ip",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/09/PXD041509/PRPF4-interactome.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/dl/PRPF4-interactome.xlsx; Perseus export, LFQ intensity p41-3 / p4si391-3, groups P4 / p4si39)"
+  },
+  {
+   "id": "bait_check",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/bait_check.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/scripts/bait_check.py: bait and marker rows of the two interactome tables)"
+  },
+  {
+   "id": "raw_ip",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 3 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/09/PXD041509/20201116_MHO_CP_HeLa_Igg_unt_01.raw, 20201116_MHO_CP_HeLa_USP10_unt_01.raw, 20210505_RR_CP_HELA_P4_si39_1.raw, 20210505_RR_CP_HELA_PC_c_1.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/raw/*.head, token extracts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/raw/*.tokens.txt; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/scripts/raw_tokens.py)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0030?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/cello_CVCL_0030.txt); sdrf-tools cellline lookup HeLa"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Prieto-Garcia C et al. Pathogenic proteotoxicity of cryptic splicing is alleviated by ubiquitination and ER-phagy. Science 2024;386(6723), doi:10.1126/science.adi5295, PMID 39541449 (identified by title search; PRIDE references[] empty). NOT READ: not in PMC, Unpaywall oa_status closed, science.org article and supplement HTTP 403 (not bypassed). Only the Europe PMC abstract was read."
+  },
+  {
+   "id": "campaign_rules",
+   "kind": "specification",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (SILAC campaign batch rules)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-12",
+   "value": "HeLa_<IP>_<condition>_<n> (IgG-IP_untreated 1-3, USP39-IP_untreated 1-3, PRPF4-IP_control 1-3, PRPF4-IP_USP39-siRNA 1-3)",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip",
+    "xlsx_usp39ip",
+    "xlsx_prpf4ip"
+   ],
+   "evidence": "One source per raw file. MaxQuant experiment names: IGG1-3 / USP391-3 (mqpar.xml) and p41-3 / p4si391-3 (mqpar-PRPF4.xml); the interactome tables use the same names. Cell line HeLa from raw file names (HeLa/HELA) and PRIDE sampleAttributes."
+  },
+  {
+   "location": "assay name rows 1-12",
+   "value": "raw file stem",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One assay per deposited raw file."
+  },
+  {
+   "location": "comment[data file] rows 1-12",
+   "value": "12 raw files: 20201116_MHO_CP_HeLa_{Igg_unt_01, Igg_unt_02_201118163254, Igg_unt_03, USP10_unt_01, USP10_unt_02, USP10_unt_03_201118141330}.raw, 20210505_RR_CP_HELA_{PC_c_1..3, P4_si39_1..3}.raw",
+   "source_ids": [
+    "files",
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip"
+   ],
+   "evidence": "All 12 names appear in files/all and in <filePaths> of the two mqpar files exactly (including the _201118163254 / _201118141330 suffixes). The other 42 raw files (18 SILAC diGly, 24 TMTpro) are out of scope (blocked; see report)."
+  },
+  {
+   "location": "characteristics[bait] rows 1-12; factor value[bait] rows 1-12",
+   "value": "IgG control (no bait) rows 1-3; USP39 rows 4-6; PRPF4 rows 7-12",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip",
+    "xlsx_usp39ip",
+    "xlsx_prpf4ip",
+    "bait_check"
+   ],
+   "evidence": "USP39 arm: mqpar.xml maps Igg_unt_01-03 to experiments IGG1-3 and USP10_unt_01-03 to USP391-3; USP39-interactome-HELA.xlsx: USP39 log2 LFQ 20.9-22.1 in IGG vs 29.7-29.8 in USP39 (difference 8.43, top hit), while USP10 is flat (difference -0.23) and its partner G3BP1 is flat (0.33): the bait is USP39, not USP10 as the file names say. PRPF4 arm: file names P4_si39 / PC_c, mqpar experiments p4si39 / p4, table name PRPF4-interactome.xlsx, PRPF4 log2 LFQ ~28.1-28.3 in all six IPs (bait level). There is no IgG control in the PRPF4 arm."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-12; factor value[treatment] rows 1-12",
+   "value": "untreated rows 1-9; USP39 siRNA rows 10-12",
+   "source_ids": [
+    "files",
+    "mqpar_prpf4ip",
+    "xlsx_prpf4ip",
+    "pride",
+    "campaign_rules"
+   ],
+   "evidence": "USP39 arm files carry \"unt\" (untreated). PRPF4 arm: si39 files (mqpar experiment p4si39, Perseus group p4si39) are USP39 siRNA knockdown; PC_c files (mqpar p4, group P4) are the control. Whether the control cells received a non-targeting siRNA is not documented anywhere reachable; `untreated` follows campaign rule 4 (controls = untreated) and means \"no USP39 siRNA\". OLS has no term for either value (validator warning)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-12",
+   "value": "1-3 within each of the 4 factor groups",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip",
+    "campaign_rules"
+   ],
+   "evidence": "Replicate suffix _01/_02/_03 (or _1/_2/_3) and mqpar experiments IGG1-3, USP391-3, p41-3, p4si391-3: three separate IPs per group, each its own experiment in MaxQuant LFQ and the Perseus t-test."
+  },
+  {
+   "location": "characteristics[organism] rows 1-12",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; HeLa OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-12; characteristics[cellosaurus accession]; characteristics[cellosaurus name]",
+   "value": "HeLa / CVCL_0030 / HeLa",
+   "source_ids": [
+    "files",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Raw names contain HeLa/HELA; PRIDE sampleAttributes BTO:0000567 HeLa cell; Cellosaurus ID HeLa AC CVCL_0030; EFO:0001185 HeLa."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-12",
+   "value": "uterine cervix",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: Derived from site Uterus, cervix; UBERON_0000002 (OLS label uterine cervix)."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-12",
+   "value": "epithelial cell",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE organismParts / sampleAttributes CL:0000066 epithelial cell (submitter-stated); OLS CL:0000066 epithelial cell."
+  },
+  {
+   "location": "characteristics[disease] rows 1-12",
+   "value": "cervical adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Cellosaurus DI NCIt C27677 HPV-related endocervical adenocarcinoma; mapped to MONDO:0005153 cervical adenocarcinoma (OLS exact). PRIDE diseases DOID:2144 \"malignant neoplasm of ovary\" is wrong for HeLa and is not used."
+  },
+  {
+   "location": "characteristics[material type] rows 1-12",
+   "value": "cell line",
+   "source_ids": [
+    "cellosaurus",
+    "templates"
+   ],
+   "evidence": "HeLa is a continuous cell line (Cellosaurus CA Cancer cell line); fixed value of the template."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-12",
+   "value": "African American",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CC Population: African American; HANCESTRO:0568 African American (OLS exact)."
+  },
+  {
+   "location": "characteristics[age] rows 1-12",
+   "value": "30Y6M",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 30Y6M (donor age at sampling)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-12",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Female."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-12",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "campaign_rules"
+   ],
+   "evidence": "Donor age 30Y6M >= 20Y; EFO:0001272 adult (campaign rule 9)."
+  },
+  {
+   "location": "comment[sample preparation batch] rows 1-12",
+   "value": "USP39 IP experiment (2020-11) rows 1-6; PRPF4 IP experiment (2021-05) rows 7-12",
+   "source_ids": [
+    "files",
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip",
+    "raw_ip"
+   ],
+   "evidence": "The two IP arms were acquired months apart (raw names 20201116_ vs 20210505_, raw folders D:\\Data HF\\2020_11 vs 2021_05) and searched in separate MaxQuant sessions."
+  },
+  {
+   "location": "comment[label] rows 1-12",
+   "value": "label free sample",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip",
+    "ols"
+   ],
+   "evidence": "Both mqpar files: multiplicity 1, empty labelMods, no isobaric labels, lfqMode 1 (MaxQuant LFQ). MS:1002038 label free sample."
+  },
+  {
+   "location": "comment[instrument] rows 1-12",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_ip",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of one file per group: \"Q Exactive HF - Orbitrap MS\", method StdIP_45min_(60min)_GT_HF.meth, data folder D:\\Data HF. PRIDE instruments list Q Exactive HF."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-12",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw_ip",
+    "ols"
+   ],
+   "evidence": "Raw method: TopN 10, Deukalion.TopN / TopN_MsMs scan events (DDA)."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-12; comment[collision energy] rows 1-12",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422; 28 NCE",
+   "source_ids": [
+    "raw_ip",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw method Fragmentation_HCD normalized 28; PRIDE data protocol (Q Exactive HF paragraph): HCD, NCE 28."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-12",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw_ip",
+    "pride"
+   ],
+   "evidence": "Q Exactive HF MS2 in the Orbitrap at resolution 30,000 (raw method; PRIDE data protocol)."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-12",
+   "value": "300m/z-1650m/z",
+   "source_ids": [
+    "raw_ip",
+    "pride"
+   ],
+   "evidence": "Raw method Isolation_low 300 / Isolation_high 1650 for the full scan; PRIDE data protocol \"Full-scan MS spectra (300-1650 m/z)\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-12",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip",
+    "pride",
+    "campaign_rules"
+   ],
+   "evidence": "Both IP searches use enzyme Trypsin/P only (search rule; rule 2 records the digestion enzyme Trypsin). The PRIDE protocol Lys-C + trypsin digest is the TMT workflow (TMTpro labelling, 24 high-pH fractions) and does not describe the IP samples, whose digestion protocol is not deposited."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-12",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip"
+   ],
+   "evidence": "mainSearchTol 4.5 (ppm) in both mqpar files (firstSearchTol 20)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-12",
+   "value": "20 ppm",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip"
+   ],
+   "evidence": "msmsParams FTMS MatchTolerance 20 ppm (HCD Orbitrap MS2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-12",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed | NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip",
+    "ols"
+   ],
+   "evidence": "Both mqpar files: fixedModifications Carbamidomethyl (C); variableModifications Oxidation (M), Acetyl (Protein N-term). UNIMOD accessions verified in OLS."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-12; comment[sdrf template]; comment[sdrf annotation tool]",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "campaign_rules"
+   ],
+   "evidence": "Campaign rules 1 and 10."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-12; comment[fraction identifier] rows 1-12",
+   "value": "1; 1",
+   "source_ids": [
+    "mqpar_usp39ip",
+    "mqpar_prpf4ip"
+   ],
+   "evidence": "Each raw file is one unfractionated IP (mqpar fractions 32767 = no fractionation); one injection per IP."
+  },
+  {
+   "location": "technology type rows 1-12",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-12",
+   "value": "not available",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "Not stated in the PRIDE protocols; the paper Methods could not be read."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: only the 12 label-free IP raws are annotated. The 18 SILAC diGly raws (20221231_SFB1_PBE_TM_siUSP39_SILAC_exp{1,2,3}_{1..6}.raw) are blocked: no reachable source states which SILAC channel (light vs Arg10/Lys8 heavy) carries siUSP39 vs control, in any of the three experiments (exp3 is label-swapped in MaxQuant). See annotations/BLOCKED.md section PXD041509.",
+  "PARTIAL SCOPE: the 24 TMTpro raws (20220830_LU_LC2_RR_CPG_USP39_PROTAC_F1..F24.raw) are blocked: the deposited .pdStudy has 6 channels (126, 127N, 127C, 128N, 128C, 129N) named only \"<file> - [channel]\" with no factors; no condition names anywhere. Also searched with Sequest HT and a different modification set (rule 5) - would need its own SDRF.",
+  "The publication (Science 2024, doi:10.1126/science.adi5295) is closed access; publisher pages and supplement return HTTP 403 (not bypassed). No preprint was found in Europe PMC. Every value here comes from PRIDE, the deposited search/result files, raw headers and Cellosaurus.",
+  "USP39 IP raw files are named \"USP10\" (20201116_MHO_CP_HeLa_USP10_unt_*). The bait is annotated as USP39 from the MaxQuant experiment names (USP391-3), the deposited table name USP39-interactome-HELA.xlsx and the data (USP39 +8.4 log2 over IgG; USP10 -0.2). A file-naming error is the most likely explanation; it is not confirmed by the authors.",
+  "Control of the PRPF4 arm (PC_c, MaxQuant p4): whether it received a non-targeting siRNA is undocumented; it is written `untreated` (rule 4). The USP39 knockdown itself cannot be checked in the deposited table (USP39 absent from the filtered PRPF4-interactome.xlsx).",
+  "IP protocol (antibodies, beads, digestion) is not deposited; cleavage agent is taken from the MaxQuant enzyme rule (Trypsin/P -> Trypsin).",
+  "PRIDE diseases/sampleAttributes give \"malignant neoplasm of ovary\" (DOID:2144); this is wrong for HeLa and was replaced by the Cellosaurus disease.",
+  "Culture medium not documented (not available).",
+  "Biological vs technical nature of the three IPs per group is not described; they are numbered as biological replicates 1-3 as MaxQuant/Perseus treats them as independent replicates."
+ ]
+}

@@ -1,0 +1,359 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD001834.sdrf.tsv",
+ "dataset": "PXD001834",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD001834 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD001834/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/files_all.json; 87 entries = 85 .raw + MaxQuant_output.zip + andromeda.7z; every entry projectAccessions contains PXD001834)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Pehar M, Ball LE, Sharma DR, Harlan BA, Comte-Walters S, Neely BA, Vargas MR. Changes in Protein Expression and Lysine Acetylation Induced by Decreased Glutathione Levels in Astrocytes. Mol Cell Proteomics 2016;15(2):493-505, doi:10.1074/mcp.M115.049288, PMID 26486419, PMC4739669. Full text from https://pmc.ncbi.nlm.nih.gov/articles/PMC4739669/ (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/pmc.html, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/paper.txt; Experimental Procedures sections Animals, Primary Astrocyte Cultures, Sample Preparation, LC-MS/MS Analysis, Database Searching). Not in the PMC OA S3 bucket; Europe PMC fullTextXML returned HTTP 500; the publisher PDF returned 403 (not bypassed)."
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD001834/MaxQuant_output.zip members parameters.txt, summary.txt, proteinGroups.txt, Acetyl (K)Sites.txt (zip central directory and members read by HTTP range, inflated individually; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/mq/; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/getmember.py)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/orientation.txt and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/orientation_sites.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/orient.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/orient_sites.py: log2 Ratio H/L normalized per MaxQuant experiment for Nrf2-target proteins in proteinGroups.txt and for acetyl sites in Acetyl (K)Sites.txt)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD001834/ 050713_SCW_II_29_4_1.raw, 050813_SCW_II_29_9_2.raw, 052413_SCW_II_29_Second_ZT_4_1.raw, 030314_SCW_II_29_1_2ndZT.raw, 072613_SCW_II_68_Enriched_1.raw, 022814_SCW_II_68_1_2ndZT.raw, 062513_SCW_II_53_1_Vargas_Enriched.raw, 022714_SCW_II_53_1_2ndZT_repeat.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/raw/*.head)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search, EFO:0009090 descendants (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/ols_search.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/efo_enrich.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign rules batch3_rules.md"
+  },
+  {
+   "id": "tables",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/samples.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/technical.tsv; sdrf-tools build -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/build.sdrf.tsv; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/postbuild.py -> annotations/PXD001834.sdrf.tsv"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-170",
+   "value": "Gclm_<WT|KO>_SCW_<II_29|II_68|II_53>",
+   "source_ids": [
+    "mq",
+    "paper",
+    "files"
+   ],
+   "evidence": "One source per genotype per independent biological replicate experiment. MaxQuant summary.txt assigns every raw file to one of three experiments SCW_II_29_FirstForw, SCW_II_68_SecForw, SCW_II_53_Reverse; the paper: \"We performed three independent biological replicate experiments. In two of them, GCLM(+/+) (wild-type) astrocytes were cultured in light SILAC media ... while GCLM(-/-) astrocytes were cultured in heavy ... in the third experiment, a label swap was used.\""
+  },
+  {
+   "location": "characteristics[organism] rows 1-170",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:10090; paper: primary cultures from C57BL/6J mice; NCBITaxon:10090 Mus musculus (OLS)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-170",
+   "value": "cerebral cortex",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE protocol: \"Primary astrocyte cultures were prepared from the cortex of 1 to 2-day-old mice\". UBERON:0000956 cerebral cortex (OLS). PRIDE organismParts lists the cell type astrocyte (CL:0000127), which goes to cell type."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-170",
+   "value": "astrocyte",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Primary astrocyte cultures, \">98% pure as determined by glial fibrillary acidic protein ... immunoreactivity\". CL:0000127 astrocyte (OLS)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-72 = 1 (SCW_II_29), rows 73-120 = 2 (SCW_II_68), rows 121-170 = 3 (SCW_II_53)",
+   "value": "1, 2, 3 within each genotype group",
+   "source_ids": [
+    "mq",
+    "paper"
+   ],
+   "evidence": "Three independent biological replicate experiments (paper), each a separate pair of WT and GCLM(-/-) primary astrocyte cultures; MaxQuant experiments SCW_II_29_FirstForw, SCW_II_68_SecForw, SCW_II_53_Reverse. Numbered 1..3 within each factor-value group (wild type, Gclm knockout), one number per independent culture (campaign rule 3). The numbering order follows the MaxQuant experiment names (FirstForw, SecForw, Reverse); it is not claimed to equal the paper Fig. 1B \"Exp. 1-3\" numbering, which refers to the separate gel-LC protein expression experiment."
+  },
+  {
+   "location": "characteristics[disease] rows 1-170",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "No disease is modelled in the cultures: the compared variable is the Gclm genotype (glutathione deficiency). ALS is the motivating context only (the ALS mouse model is from a previous study)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-170",
+   "value": "cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Primary astrocyte cultures (not a cell line)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-170",
+   "value": "sample enrichment",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "All 85 deposited runs are anti-acetyl-lysine immunoprecipitates of SCX fractions (\"Acetylated peptides were immunoprecipitated from each fraction ... antiacetylated lysine antibody conjugated to agarose beads (ImmuneChem)\"). EFO:0009090 descendants contain no acetyl-peptide-specific term (only enrichment of phosphorylated protein / cell isolation terms), so the generic EFO:0009106 sample enrichment is used."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-170",
+   "value": "neonate",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Donor age: cultures \"prepared from the cortex of 1 to 2-day-old mice\". EFO:0001372 neonate (OLS). The cells were then cultured ~21 days in vitro (paper Results)."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-170",
+   "value": "C57BL/6J",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Animals: \"Male and female C57BL/6J-GCLM(+/-) mice were crossed to generate wild-type and GCLM(-/-) littermates.\" Free text column; validator warns that NCBITaxon has no such term."
+  },
+  {
+   "location": "characteristics[genotype] rows 1-12,25-36,49-60,73-84,97-108,121-132,145-156,169 = wild type; rows 13-24,37-48,61-72,85-96,109-120,133-144,157-168,170 = Gclm knockout",
+   "value": "wild type / Gclm knockout",
+   "source_ids": [
+    "paper",
+    "mq",
+    "orientation"
+   ],
+   "evidence": "GCLM(+/+) vs GCLM(-/-) littermate-derived astrocytes. Channel assignment from the paper/PRIDE protocol (forward: WT light, KO heavy; label swap in the third experiment = MaxQuant SCW_II_53_Reverse) and checked against deposited ratios (see comment[label] claim). Custom characteristics column (vertebrates template does not list genotype; spec Extending Templates)."
+  },
+  {
+   "location": "factor value[genotype] rows 1-170",
+   "value": "wild type / Gclm knockout",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "The compared variable: GCLM(-/-)/GCLM(+/+) ratios. Same values and rows as characteristics[genotype]."
+  },
+  {
+   "location": "comment[label] rows 1-120 WT = SILAC light, KO = SILAC heavy; rows 121-170 WT = SILAC heavy, KO = SILAC light",
+   "value": "SILAC light / SILAC heavy",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq",
+    "orientation"
+   ],
+   "evidence": "Explicit: paper and PRIDE protocol, WT in light (Lys 12C6-14N2) and GCLM(-/-) in heavy (Lys 13C6-15N2) in two experiments, label swap in the third. MaxQuant names the experiments FirstForw, SecForw and Reverse; summary.txt Multiplicity 2, Labels1 Lys8 for all 85 runs. Data check (orientation): Nrf2 targets reported up in GCLM(-/-) have log2 H/L normalized FirstForw/SecForw/Reverse: G6pdx +0.42/+0.35/-0.38, Gclc +0.52/+0.40/-0.35, Cat NaN/+0.28/-0.39, Gstm1 +0.25/+0.19/-0.17; Idh1 K243 acetyl site (paper: 3.03-fold up in KO) SecForw +1.49, Reverse -1.71. Of 55 acetyl sites with |log2|>0.585 and same sign in both forward experiments, 49 have the opposite sign in Reverse. Map confirmed; no conflict."
+  },
+  {
+   "location": "assay name rows 1-170",
+   "value": "<raw file stem>",
+   "source_ids": [
+    "files",
+    "tables"
+   ],
+   "evidence": "Default from build: the raw file stem, shared by the light and heavy row of each run."
+  },
+  {
+   "location": "technology type rows 1-170",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "comment[data file] rows 1-170",
+   "value": "<85 .raw files>",
+   "source_ids": [
+    "files",
+    "mq"
+   ],
+   "evidence": "All 85 deposited .raw files, each in two rows (light, heavy); the set equals the Raw file column of MaxQuant summary.txt exactly (asserted in make_tables.py)."
+  },
+  {
+   "location": "comment[technical replicate] rows: SCW_II_29 tech 1 = 050713/050813_* (rows 1-24), tech 2 = 052413_*_Second_ZT_* (rows 25-48), tech 3 = 030314_*_2ndZT (rows 49-72); SCW_II_68 tech 1 = 072613_*_Enriched_* (73-96), tech 2 = 022814_*_2ndZT (97-120); SCW_II_53 tech 1 = 062513_*_Vargas_Enriched (121-144), tech 2 = 022714_*_2ndZT (145-168), tech 3 = 022714_SCW_II_53_1_2ndZT_repeat (169-170)",
+   "value": "1, 2, 3",
+   "source_ids": [
+    "paper",
+    "files",
+    "raw"
+   ],
+   "evidence": "Paper: \"For acetyl peptide analysis, 12 LC-MS/MS analyses were performed for each biological replicate. The first biological replicate was analyzed three times, and the remaining biological replicates were analyzed twice each (84 LC-MS/MS analyses).\" Deposit: 36 runs for SCW_II_29, 24 for SCW_II_68, 25 for SCW_II_53 (24 + one extra injection of fraction 1 named _repeat). Analysis series numbered chronologically by acquisition date in the file names; raw headers show 2013 series used method 120mingrad_FTprofile_onlyCID_MIPs_TOP20 and the 2014 2ndZT series 180mingrad_FT_onlyCID_TOP10_022714_SILAC (paper: \"gradient of 5-50% in 120 or 180 min\"). The _repeat injection is given technical replicate 3 (fraction 1 only) to keep the row coordinate unique."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-170",
+   "value": "1-12",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Peptides separated into 12 SCX fractions, each immunoprecipitated and run once per series. Fraction = trailing ordinal of the file name (050713_SCW_II_29_4_1 -> 1 ... _50_12 -> 12, where the middle number is the collected SCX tube; Second_ZT likewise; Enriched_N, N_2ndZT, N_Vargas_Enriched -> N). The _repeat file is fraction 1."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-170",
+   "value": "NT=Strong cation-exchange chromatography (SCX);AC=PRIDE:0000561",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "SCX on a Resource S column, 12 fractions."
+  },
+  {
+   "location": "comment[instrument] rows 1-170",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers: \"Orbitrap Elite MS\" / \"Orbitrap Elite ETD\" in all 8 sampled files; paper: Orbitrap Elite; PRIDE MS:1001910 (OLS label Orbitrap Elite)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-170",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "TOP20 (2013) / TOP10 (2014 method name) data-dependent acquisition; raw scan filter \"ITMS + c ... Dep MS/MS Most intense ion from (1)\"."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-170",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper: \"Fragmentation in the ion trap was performed by collision-induced dissociation\"; raw scan filter ITMS + c (CID)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-170",
+   "value": "NT=ion trap;AC=MS:1000264",
+   "source_ids": [
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "MS/MS acquired in the linear ion trap (ITMS scan filter)."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-170",
+   "value": "400m/z-1700m/z",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper: survey scan m/z 400-1700; raw scan filter FTMS + p norm o(400.0-1700.0) in all sampled files."
+  },
+  {
+   "location": "comment[cleavage agent details] (first column) rows 1-170",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Paper: digested with Lys-C followed by trypsin; MaxQuant Enzyme Trypsin;LysC, Specific."
+  },
+  {
+   "location": "comment[cleavage agent details] (second column) rows 1-170",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "mq",
+    "tables"
+   ],
+   "evidence": "Lys-C (1:100, overnight) before trypsin; added by scripts/postbuild.py as a second column (batch rule 2)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-170",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: first search at 20 ppm, then after recalibration \"the search was repeated with a more stringent mass tolerance of 4.5 ppm for precursor ions\" (MaxQuant main search). PRIDE data protocol states 20 ppm (the first-search value)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-170",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mq",
+    "paper"
+   ],
+   "evidence": "parameters.txt MS/MS tol. (ITMS) 0.5 Da; paper fragment tolerance +/-0.5 Da."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-170",
+   "value": "Carbamidomethyl C Fixed; Acetyl Protein N-term, Oxidation M, Acetyl K, Glu->pyro-Glu, Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mq",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt Fixed modifications Carbamidomethyl (C); summary.txt Variable modifications Acetyl (Protein N-term);Oxidation (M);Acetyl (K);Glu->pyro-Glu for all 85 runs; Labels1 Lys8 -> UNIMOD:259 Label:13C(6)15N(2) (MT=Variable per campaign rule 11). UNIMOD:4/1/35/27/259 labels checked in OLS."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-170",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Spec README.adoc:27 (campaign rule 1)."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-170",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=vertebrates;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by build; ms-proteomics (MS data), vertebrates (mouse primary cells). cell-lines not declared: primary cultures, not a cell line."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-170",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rule 10."
+  }
+ ],
+ "limitations": [
+  "Partial deposit (PRIDE submissionType PARTIAL): only the 85 lysine-acetylation (anti-acetyl-lysine IP) LC-MS/MS runs and their single MaxQuant search are deposited. The 36 gel-LC-MS/MS protein-expression runs described in the paper are not in PXD001834, so they are not annotated; nothing was left out of the deposit.",
+  "Technical replicate numbering is chronological by acquisition series; the paper does not say which series is \"first\" for each biological replicate, nor what the 2014 \"2ndZT\" label (likely a second ZipTip desalting/re-analysis) means exactly. The extra 022714_SCW_II_53_1_2ndZT_repeat injection is technical replicate 3 (fraction 1 only).",
+  "Sex of the neonatal donor pups is not reported (male and female breeders); characteristics[sex] = not available. Whether each culture pooled several pups is not stated, so no pooled-sample column is asserted.",
+  "Biological replicate numbers 1-3 follow the MaxQuant experiment names (FirstForw, SecForw, Reverse); the mapping to the paper figure \"Exp. 1-3\" is not asserted.",
+  "Precursor tolerance 4.5 ppm is from the paper text (MaxQuant main search after recalibration); parameters.txt of MaxQuant 1.5.0.30 does not record it and no mqpar.xml is deposited.",
+  "characteristics[enrichment process] uses the generic EFO:0009106 sample enrichment because EFO has no acetyl-lysine peptide enrichment term under EFO:0009090.",
+  "Supplementary tables of the paper (MCP) were not retrieved; the channel map relies on the paper text/PRIDE protocol plus the deposited MaxQuant ratios.",
+  "Review: REVIEW_PENDING_EXTERNAL; no self-review or approval performed."
+ ]
+}
