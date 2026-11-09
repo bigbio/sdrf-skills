@@ -1,0 +1,75 @@
+# PXD006404 validation — 2026-11-09T20:43:48Z; artifact annotations/PXD006404.sdrf.tsv sha256 1a661eecad33d4a1061ac41c028c45225a55271d3bb12aa689edc8f8beb731a8 (108 rows x 50 columns)
+# Scope: 36 triple-SILAC raws only; 140 label-free raws excluded (manifest limitations, BLOCKED.md).
+# Build procedure (deterministic):
+#  1. /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/scripts/make_tables.py writes build/samples_{ip,ph1,ph2}.tsv, technical_{ip,ph1,ph2}.tsv, files_{ip,ph1,ph2}.json
+#     (three parts because comment[instrument], reagents and second enzyme differ per arm / injection series; rule 5).
+#  2. sdrf-tools build -t ms-proteomics -t human -t cell-lines, once per part (54 + 27 + 27 rows, identical headers).
+#  3. Post-build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/scripts/postbuild.py concatenates the parts (asserts identical headers) and inserts a second
+#     comment[cleavage agent details] after the Trypsin column: NT=Lys-C;AC=MS:1001309 on the 54 phospho rows,
+#     'not applicable' on the 54 IP rows. Why: the column is not 'multiple' in the contract, so build emits one column
+#     (a '|' value in technical.tsv was tested and silently dropped). The script asserts exactly one pre-existing
+#     cleavage column = Trypsin on every row and that deleting the inserted column restores the concatenation.
+#     Output: 108 rows x 50 cols; concat sha256 610c75160ce76e121e044ad14c5f75ffa87cc474dc716a69a67eb7f65f1a1793
+# Round 1 (cell line 'NB1'): validate-sdrf exit 0 with a warning that NB1 is not in clo;bto;efo, and sdrf-tools check
+# flagged 'NB1' as hallucinated. Fix: characteristics[cell line] = 'NB-1', the label of EFO:0022502 (Cellosaurus CVCL_1440 cross-ref);
+# cellosaurus name stays NB1. Rebuilt; the commands below are round 2 on the final file.
+
+$ parse_sdrf validate-sdrf -s annotations/PXD006404.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD006404.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check annotations/PXD006404.sdrf.tsv
+Hallucination Report: annotations/PXD006404.sdrf.tsv
+  Terms checked:     25
+  Verified:          25
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD006404.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/pride.json --accession PXD006404
+PXD006404: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'not applicable' but the record's digest names Trypsin, Lys-C
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Q Exactive HF', the annotation says 'Q Exactive'  [Q Exactive HF]
+exit code: 1
+
+$ sdrf-tools schema-check annotations/PXD006404.evidence.json
+annotations/PXD006404.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD006404.sdrf.tsv annotations/PXD006404.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/openms && parse_sdrf convert-openms -s annotations/PXD006404.sdrf.tsv -t2)
+
+The above exception was the direct cause of the following exception:
+
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+# Disposition
+# - validate-sdrf: exit 0. WARNING 'child stage (1-4 yo)' not in EFO: HsapDv:0000265 (OLS, not obsolete) is the correct stage for
+#   Cellosaurus AG 2Y3M; EFO has no child-stage term (OLS search 'child stage', 'pediatric stage', 'toddler' in efo: no hits).
+#   Same accepted warning as campaign precedents ('pediatric stage', 'fetal stage', '13-year-old stage').
+# - reconcile exit 1, both findings refuted:
+#   * BLOCKER cleavage_agent_contradicted ('not applicable' vs Trypsin, Lys-C): the reserved word is only in the SECOND
+#     cleavage column of the 54 IP-arm rows. The first column is Trypsin on all 108 rows; the second is Lys-C on all 54
+#     phospho rows. PRIDE sampleProcessingProtocol: interactome 'in-gel digested with trypsin' (trypsin only);
+#     phosphoproteome 'in-solution digested with Lys-C and trypsin'. Writing Lys-C on the IP rows would be false.
+#   * MAJOR instrument_contradicted ('Q Exactive HF'): the protocol names Q Exactive HF only for the phosphotyrosine
+#     interactome (PeptidePulldown) and the label-free proteome, both excluded from this SDRF. Raw headers of the 36
+#     annotated raws read 'Q Exactive - Orbitrap MS' (27: 20140128_QE5 IP, 20140311_QE3 phospho) or 'Q Exactive Plus -
+#     Orbitrap MS' (9: 20140812_QE5 phospho) (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD006404/instruments.txt); no HF raw is annotated.
+# - convert-openms exit 1 'Cannot read precursor mass tolerance: not available': expected. mqpar.xml not deposited,
+#   parameters.txt records only 'MS/MS tol. (FTMS) 20 ppm', the paper says 'default settings'. The reserved word is
+#   permitted by the template; same outcome as campaign precedents (PXD014368, PXD006676, PXD024103).
+# - structure, check, schema-check, manifest-coverage: exit 0.
