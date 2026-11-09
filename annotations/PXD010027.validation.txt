@@ -1,4 +1,4 @@
-# PXD010027 validation log (2026-11-09T06:48Z); SDRF sha256 cf33f0707641ea9cadd5438ac94987f7238805b5094405783dd59879a8908b65; 528 rows x 47 cols
+# PXD010027 validation log (2026-11-09T07:00Z); SDRF sha256 38d94e752313426a99335fb45d692ca9855e13e1ce0bac088efa916447b816bf; 528 rows x 49 cols
 # Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD010027/scripts/rebuild.sh = make_tables.py -> sdrf-tools build -> postbuild.py
 # Round 1 (superseded): validate-sdrf exit=1 - duplicate (source name, assay name) for blank runs B1-B3 because both channels
 #   shared source 'blank_spot_B<n>'. Fix in make_tables.py (not the SDRF): sources blank_spot_B<n>_light_lysate_membrane /
@@ -8,56 +8,11 @@
 #   comment[cleavage agent details] is not 'multiple' in the contract so build keeps only the first '|' value.
 #   postbuild.py asserts exactly one existing cleavage column and Trypsin on every row; it changes nothing else.
 
-# Round 2 (current file)
+# Round 2 (sha256 cf33f070...): validate-sdrf exit 0; independent review FAIL (annotations/PXD010027.review.md): 2 important, 4 minor.
+# Repairs in make_tables.py (rebuilt; no SDRF hand edit):
+#   F1 source names now one per physical spot: <ID>_<wt|mut>_pulldown_light_lysate_membrane / _heavy_lysate_membrane (528 unique names).
+#   F2 added characteristics[sample type]: study sample (PRIDE:0001013) on 522 bait rows, blank (PRIDE:0001016) on 6 B1-B3 rows.
+#   m6 added characteristics[individual] = not available. m3/m4 replicate-as-lysate documented in the manifest. m5 precursor tolerance kept not available (MaxQuant 1.5.2.8 default not citable).
+
+# Round 3 (current file)
 ## parse_sdrf validate-sdrf -s annotations/PXD010027.sdrf.tsv -t ms-proteomics -t human -t cell-lines
-WARNING: Term: pediatric stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
-Most seems to be fine. There were only warnings.
-exit=0
-
-Note: the warning is characteristics[developmental stage] 'pediatric stage' (HsapDv:0000264), absent from EFO; EFO has no child stage term (OLS search log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD010027/ols_search.txt). Warning only.
-
-## sdrf-tools structure annotations/PXD010027.sdrf.tsv
-Structure OK: acquisition, template declaration and column order are consistent.
-exit=0
-
-## sdrf-tools check annotations/PXD010027.sdrf.tsv --offline
-Hallucination Report: annotations/PXD010027.sdrf.tsv
-  Terms checked:     13
-  Verified:          5
-  Hallucinated:      0
-  Label mismatches:  0
-  Wrong ontology:    0
-  UNIMOD swaps:      0
-  Status:            CLEAN
-exit=0
-
-## sdrf-tools reconcile annotations/PXD010027.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD010027/pride_v3.json --accession PXD010027
-PXD010027: 1 value(s) disagree with the deposit record:
-
-  MAJOR    organism_part_from_cultured_material (characteristics[organism part]): cultured, engineered or purified material has an anatomical identity but no anatomical source  [induced pluripotent]
-exit=0
-
-Refutation: organism_part_from_cultured_material is keyed on 'induced pluripotent' in the project description, which refers to the paper's follow-up imaging in patient-derived iPSCs. No iPSC sample is in this deposit: all 264 raw files are PepArray2 pull-downs from SH-SY5Y lysate (protocol). organism part = bone marrow is the Cellosaurus derived site of SH-SY5Y (CVCL_0019, UBERON:0002371), the convention used for cell lines in this campaign (e.g. PXD014368).
-
-## sdrf-tools reconcile annotations/PXD010027.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD010027/pride.json --accession PXD010027
-PXD010027: 1 value(s) disagree with the deposit record:
-
-  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Lys-C, Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
-exit=0
-
-Refutation: with the MCP-shaped record (snake_case keys) reconcile reports cleavage_agent_unsupported 'record never names Trypsin, Lys-C'. False positive: sample_processing_protocol says 'digested using 1 ug endopeptidase LysC (Wako...)' and 'digested with 1 ug trypsin (Promega)'; with the PRIDE v3 record (pride_v3.json, camelCase) this finding does not occur.
-
-## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD010027.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD010027/convert)
-    raise ValueError(msg) from ex
-ValueError: Error: Cannot read precursor mass tolerance: not available
-exit=1
-Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.5.2.8 parameters.txt does not record it; no mqpar.xml deposited). Same as campaign precedent PXD014368. validate-sdrf and the template accept the reserved word.
-
-## sdrf-tools schema-check annotations/PXD010027.evidence.json
-annotations/PXD010027.evidence.json: valid evidence-manifest
-exit=0
-
-## sdrf-tools manifest-coverage annotations/PXD010027.sdrf.tsv annotations/PXD010027.evidence.json
-Manifest covers every column with a value (30 column(s)).
-exit=0
-
