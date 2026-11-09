@@ -1678,3 +1678,20 @@ The +QA (Q) arm rises smoothly with fraction and day; the pattern above looks li
 - The day (NB1–NB4 = day 1–4) is supported by the median H/L rising 0.40 → 1.8.
 
 **Unblocked by:** an author statement or sample sheet (Ghaemmaghami lab, University of Rochester) giving (1) the true day/fraction of the 10 RML runs, or confirming they are as named; (2) what +P, -P and -S denote (PK yes/no; pellet/supernatant). The rows would then join the existing files with the same technical values (whole proteome: Q Exactive Plus, HCD 27, hpHRP fractions; NaBu: Orbitrap Fusion Lumos, CID 30, ion trap 0.5 Da, MaxQuant 1.6.5.0, Carbamidomethyl fixed, Oxidation/Acetyl N-term variable, Arg6/Lys6).
+
+## PXD034016 — G4C2 RNA pulldown (label-free AP-MS, mis-tagged SILAC), whole dataset (30 RAW)
+
+**Not in scope for this SILAC campaign: the deposit is label-free. No channel map is missing.**
+
+| | |
+|---|---|
+| Publication | Luteijn *et al.*, Nucleic Acids Res 2025 53(7):gkaf253, PMID:40207633, PMC11983130 (OA; text from PMC OA S3 `PMC11983130.1.txt`) |
+| Deposited | 30 RAW (`PXP0486_G4C_1_1…16`, `PXP0486_G4C_3_{1-6,8-12,14-16}`) + `id_placeholder.xlsx` (contains only "placeholder"); no search output |
+| SDRF would need | a label-free AP-MS SDRF: (G4C2)4 RNA bio-IP from HeLa nuclear lysate ± compound, 2 lanes × 16 gel slices (fractions) |
+
+Not SILAC despite PRIDE `quantificationMethods` = SILAC:
+- PRIDE sample protocol: "Pulldown with G4C2 combined label-free analysis of purified proteins". Data protocol: "Mascot search and Scaffold analysis of label-free data". Software: Mascot. Experiment type: AP-MS (PRIDE:0000433).
+- Paper Methods, "Mass spectrometry": affinity-purified samples, 16 gel slices per lane, Trypsin/Lys-C in-gel digestion, Q Exactive, Mascot 2.4 + Scaffold 4.6.4, "Spectral count was used as a proxy for protein abundance". The paper's "SILAC" section covers only the SRSF1/SF3B1 IPs (MaxQuant 1.5.8.3).
+- Paper Data Availability: PXD034016 = "G4C2 pulldown (30/32 files)", and PXD034097 = "2 missing files from G4C2 pulldown (2/32 files)". Together they are the label-free arm; `_3_7` and `_3_13` are the 2 runs in PXD034097. The SILAC arms are PXD034093 (SF3B1 SILAC pulldown) and PXD034092 (SRSF1 SILAC pulldowns, 2 subcellular fractions). Both are already curated in sdrf-annotated-datasets (`datasets/PXD034092/`, `datasets/PXD034093/`).
+
+**Unblocked by:** annotating it as a label-free SDRF outside this SILAC campaign, ideally together with PXD034097 (32 runs). That annotation would need the lane → condition (± PlaB pretreatment, oligo) map for `G4C_1` / `G4C_3`, from the paper's Fig. 7D / Supplementary Data S4 or from the authors.
