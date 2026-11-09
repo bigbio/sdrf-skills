@@ -1,0 +1,49 @@
+# PXD051673 validation log (2026-11-09T06:50Z); SDRF sha256 f6d34f8537c95b47d1210f423bafe0d64a4c78a76ca9ff3eaa1deb2a957cf4ae; 32 rows x 48 columns
+# Single build (sdrf-tools build from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/samples.tsv + technical.tsv via scripts/make_tables.py); no post-build edits.
+
+## parse_sdrf validate-sdrf -s annotations/PXD051673.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+WARNING: Term: WIBR-iPS-SNCA-A53T-Corr in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: WIBR-iPS-SNCA-A53T in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+Note: the two warnings are the cell-line names, which have no CLO/BTO/EFO term and no Cellosaurus entry; names taken from Soldner et al. 2011 (WIBR-iPS-SNCA A53T / -Corr). Warning only.
+
+## sdrf-tools structure annotations/PXD051673.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD051673.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/pride.json --accession PXD051673
+PXD051673: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+Refutation: the PRIDE record and the paper never name the protease; the deposited MaxQuant summary.txt of both searches says Enzyme Trypsin/P, Enzyme mode Specific. Trypsin (MS:1001251) is recorded per batch rule 2 (digestion enzyme, search rule noted in manifest). MINOR, exit 0.
+
+## sdrf-tools check annotations/PXD051673.sdrf.tsv
+Hallucination Report: annotations/PXD051673.sdrf.tsv
+  Terms checked:     16
+  Verified:          14
+  Hallucinated:      2
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]: 'WIBR-iPS-SNCA-A53T-Corr' in characteristics[cell line]
+  Row(s) [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32]: 'WIBR-iPS-SNCA-A53T' in characteristics[cell line]
+exit=1
+Refutation: the 2 'hallucinated' values are the cell-line names in characteristics[cell line], flagged because they resolve to no ontology/Cellosaurus entry. They are the published line names (Soldner F et al., Cell 2011, PMC3155290: WIBR-iPS-SNCA(A53T) and WIBR-iPS-SNCA(A53T)-Corr), identified as the lines used via Cuddy et al. 2019 (PMC6895429), ref 60 of the study paper. Cellosaurus has no entry for them (searched; see manifest), so characteristics[cellosaurus accession] = not available. All 14 ontology terms verified.
+
+## parse_sdrf convert-openms -s annotations/PXD051673.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD051673/convert)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: MaxQuant 1.6.0.16 parameters.txt/summary.txt do not record the precursor (first/main search) tolerance and no mqpar.xml was deposited; validate-sdrf and the template accept the reserved word. Same outcome as campaign precedents PXD006676/PXD024103/PXD014368.
+
+## sdrf-tools schema-check annotations/PXD051673.evidence.json
+annotations/PXD051673.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD051673.sdrf.tsv annotations/PXD051673.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit=0
