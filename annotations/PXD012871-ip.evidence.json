@@ -11,7 +11,7 @@
   {
    "id": "files",
    "kind": "repository",
-   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012871/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/files_p0.json; 92 entries, all projectAccessions PXD012871). In-scope list: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/ip/files_ip.json (the 6 20181216__Ludayun_293T_Over_* .raw)"
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012871/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/files_p0.json; 92 entries, all projectAccessions PXD012871). In-scope list: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/ip/files_ip.json (4 runs: 20181216__Ludayun_293T_Over_{EV,NFX1_1}_{Up,Down}.raw; the 2 _NFX1_2_ runs are blocked)"
   },
   {
    "id": "paper",
@@ -46,29 +46,28 @@
   {
    "id": "ubq",
    "kind": "analysis",
-   "location": "{S}/ip_ubq.txt (script {S}/scripts/ip_ubq.py: ubiquitin protein group (RPS27A;UBB;UBC;UBA52) intensity per experiment from proteinGroups.txt; ubiquitin-peptide share of summed evidence intensity per raw file from evidence.txt). Cross-checked against annotations/PXD012871-ip.review.md."
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2019/05/PXD012871/txt_IP.rar members txt_IP/proteinGroups.txt and txt_IP/evidence.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/mq_ip/); computed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/scripts/ip_ubq.py, output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD012871/ip_ubq.txt. Ubiquitin protein group = proteinGroups row with Gene names RPS27A;UBB;UBC;UBA52, columns Intensity EV / NFX1_1 / NFX1_2. Ubiquitin share per raw file = sum of evidence.txt Intensity over rows whose Gene names include UBC, UBB, RPS27A or UBA52, divided by the summed Intensity of all evidence rows of that file. Rule A additionally keeps only 15 ubiquitin-domain peptide sequences (drops RPS27A/UBA52 ribosomal-extension peptides): NFX1_2_Up 2.44%. Rule B (gene match only): NFX1_2_Up 2.46%. All other files are identical under both rules."
   },
   {
    "id": "owner",
    "kind": "curation-decision",
-   "location": "Campaign-owner decision relayed by the coordinator (2026-11-09), following annotations/PXD012871.review.md: unblock the 6 IP runs on the deposited file names."
+   "location": "Campaign-owner decisions relayed by the coordinator on 2026-11-09: (1) annotate the IP runs on the deposited file names; (2) after review round 2 (annotations/PXD012871-ip.review.md), block the two NFX1_2 runs and keep EV and NFX1_1."
   }
  ],
  "claims": [
   {
-   "location": "source name + characteristics[genetic modification] + factor value[genetic modification] rows 1-6",
-   "value": "HEK293T_EV = empty vector pCMV-Flag (rows 1-2); HEK293T_FlagNFX1_1, HEK293T_FlagNFX1_2 = Flag-NFX1-123 overexpression (rows 3-6)",
+   "location": "source name + characteristics[genetic modification] + factor value[genetic modification] rows 1-4",
+   "value": "HEK293T_EV = empty vector pCMV-Flag (rows 1-2); HEK293T_FlagNFX1_1 = Flag-NFX1-123 overexpression (rows 3-4)",
    "source_ids": [
     "pride",
     "mq_ip",
     "owner",
-    "paper",
-    "ubq"
+    "paper"
    ],
-   "evidence": "PRIDE protocol: \"we first subject 293T cell transfected with Flag-tag NFX1 or empty vector pCMV-Flag, then collected lysis to immunoprecipitation with anti-Flag antibodies\". Construct per run follows the deposited file names (EV / NFX1_1 / NFX1_2), which match the MaxQuant txt_IP experiments EV, NFX1_1, NFX1_2. Bait/prey data support that deposited EV has no bait: proteinGroups NFX1 (Q12986) intensity 0 / 1.93e9 / 1.53e8 and co-IP USP9X 0 / 8.4e7 / 3.8e7 for EV / NFX1_1 / NFX1_2; NFX1 evidence in NFX1_1 Up 46, Down 15, NFX1_2 Up 16, Down 4, none in EV. Abstract: Flag-NFX1-123 affinity MS found the NFX1-123/USP9X interaction. The deposited names do not explain NFX1_2: its ubiquitin protein group is 9.03e9 vs 4.06e8 (EV) and 6.98e8 (NFX1_1), and ubiquitin peptides are 2.44% of run intensity in NFX1_2_Up and 0.37% in NFX1_2_Down vs 0.07-0.12% in the EV and NFX1_1 runs (excess in the high-MW half = polyubiquitin conjugates), so NFX1_2 may be the sample acquired as NFX1_Ub (a Flag-NFX1 ubiquitination experiment) rather than a replicate of NFX1_1. The authors' own MaxQuant search (txt_IP parameters.txt, Date of writing 02/21/2019) already used the deposited names, so the files were renamed before their search. Names used by campaign-owner decision despite the raw-header conflict (limitations)."
+   "evidence": "PRIDE protocol: \"we first subject 293T cell transfected with Flag-tag NFX1 or empty vector pCMV-Flag, then collected lysis to immunoprecipitation with anti-Flag antibodies\". Construct per run follows the deposited file names, which equal the MaxQuant txt_IP experiments EV and NFX1_1. Bait/prey data support that deposited EV has no bait: proteinGroups NFX1 (Q12986) intensity 0 (EV) vs 1.93e9 (NFX1_1), co-IP USP9X 0 vs 8.4e7; NFX1 evidence in NFX1_1 Up 46 / Down 15, none in EV. Abstract: Flag-NFX1-123 affinity MS found the NFX1-123/USP9X interaction. The authors' own MaxQuant search (txt_IP parameters.txt, Date of writing 02/21/2019) already used the deposited names, so the files were renamed before their search. Names used by campaign-owner decision despite the raw-header conflict (limitations)."
   },
   {
-   "location": "comment[data file] + assay name + comment[fraction identifier] rows 1-6",
+   "location": "comment[data file] + assay name + comment[fraction identifier] rows 1-4",
    "value": "Up = fraction 1, Down = fraction 2 of each IP sample",
    "source_ids": [
     "files",
@@ -76,21 +75,20 @@
     "ip_analysis",
     "pride"
    ],
-   "evidence": "PRIDE protocol: immunoprecipitates run on SDS-PAGE, Coomassie-stained, digested in gel. MaxQuant summary.txt assigns each experiment two files, _Up = Fraction 1 and _Down = Fraction 2. Up/Down read as upper (high MW) and lower gel parts of one lane: median MW of identified proteins NFX1_1 Up 76.3 / Down 31.7 kDa, NFX1_2 Up 70.0 / Down 30.6 kDa; USP9X (290 kDa) only in Up files. For EV the pattern is not seen (Up 39.8 / Down 47.7 kDa; see limitations)."
+   "evidence": "PRIDE protocol: immunoprecipitates run on SDS-PAGE, Coomassie-stained, digested in gel. MaxQuant summary.txt assigns each experiment two files, _Up = Fraction 1 and _Down = Fraction 2. Up/Down read as upper (high MW) and lower gel parts of one lane: median MW of identified proteins NFX1_1 Up 76.3 / Down 31.7 kDa; USP9X (290 kDa) only in the Up file. For EV the pattern is not seen (Up 39.8 / Down 47.7 kDa; see limitations)."
   },
   {
-   "location": "characteristics[biological replicate] rows 1-6",
-   "value": "EV 1; Flag-NFX1 NFX1_1 1, NFX1_2 2",
+   "location": "characteristics[biological replicate] rows 1-4",
+   "value": "EV 1; Flag-NFX1 (NFX1_1) 1",
    "source_ids": [
     "mq_ip",
     "files",
-    "templates",
-    "ubq"
+    "templates"
    ],
-   "evidence": "Numbered per factor-value group (README.adoc:330, rule 3). NFX1_1 and NFX1_2 are separate IP samples (separate MaxQuant experiments, separate gel lanes, NFX1 intensity differs 12-fold); whether NFX1_2 is an independent replicate is not documented, and its ubiquitin profile suggests it may be the NFX1_Ub ubiquitination sample rather than a replicate (limitations)."
+   "evidence": "One IP sample per factor-value group in scope (README.adoc:330, rule 3): EV is replicate 1 of empty vector, NFX1_1 is replicate 1 of Flag-NFX1-123 overexpression. Each sample is one MaxQuant experiment covering its Up and Down gel parts."
   },
   {
-   "location": "characteristics[organism] rows 1-6",
+   "location": "characteristics[organism] rows 1-4",
    "value": "Homo sapiens",
    "source_ids": [
     "pride",
@@ -99,7 +97,7 @@
    "evidence": "PRIDE organism 9606; HEK293T is human (Cellosaurus OX 9606)."
   },
   {
-   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-6",
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-4",
    "value": "HEK-293T cell / CVCL_0063 / HEK293T",
    "source_ids": [
     "pride",
@@ -108,7 +106,7 @@
    "evidence": "PRIDE protocol \"293T cell\"; Cellosaurus CVCL_0063 HEK293T (synonym 293T). Cell-line label as in campaign precedent PXD004666-apms."
   },
   {
-   "location": "characteristics[organism part] + characteristics[sex] + characteristics[disease] rows 1-6",
+   "location": "characteristics[organism part] + characteristics[sex] + characteristics[disease] rows 1-4",
    "value": "kidney / female / normal",
    "source_ids": [
     "cellosaurus"
@@ -116,7 +114,7 @@
    "evidence": "Cellosaurus CVCL_0063: Derived from site Fetal kidney (UBERON:0002113 kidney); SX Female; no disease line (transformed, not cancer, cell line), hence normal as in precedent PXD004666-apms."
   },
   {
-   "location": "characteristics[material type] rows 1-6",
+   "location": "characteristics[material type] rows 1-4",
    "value": "cell line",
    "source_ids": [
     "pride"
@@ -124,15 +122,15 @@
    "evidence": "Transfected cultured 293T cells."
   },
   {
-   "location": "comment[instrument] rows 1-6",
+   "location": "comment[instrument] rows 1-4",
    "value": "NT=Q Exactive HF;AC=MS:1002523",
    "source_ids": [
     "rawhdr"
    ],
-   "evidence": "All 6 IP raw headers: \"Q Exactive HF - Orbitrap MS\". PRIDE \"LTQ Orbitrap\" is wrong."
+   "evidence": "All IP raw headers: \"Q Exactive HF - Orbitrap MS\". PRIDE \"LTQ Orbitrap\" is wrong."
   },
   {
-   "location": "comment[proteomics data acquisition method] rows 1-6",
+   "location": "comment[proteomics data acquisition method] rows 1-4",
    "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
    "source_ids": [
     "rawhdr"
@@ -140,15 +138,15 @@
    "evidence": "Method 20180602_ZHW_1200_total_120min_..._top10: TopN 10, dynamic exclusion 45 s."
   },
   {
-   "location": "comment[dissociation method] + comment[collision energy] rows 1-6",
+   "location": "comment[dissociation method] + comment[collision energy] rows 1-4",
    "value": "HCD (MS:1000422) / 27 NCE",
    "source_ids": [
     "rawhdr"
    ],
-   "evidence": "\"(N)CE / stepped (N)CE nce: 27\" in all 6 raw headers."
+   "evidence": "\"(N)CE / stepped (N)CE nce: 27\" in all IP raw headers."
   },
   {
-   "location": "comment[ms2 mass analyzer] + comment[fragment mass tolerance] rows 1-6",
+   "location": "comment[ms2 mass analyzer] + comment[fragment mass tolerance] rows 1-4",
    "value": "orbitrap / 20 ppm",
    "source_ids": [
     "rawhdr",
@@ -157,24 +155,24 @@
    "evidence": "MS2 at resolution 15,000 (Orbitrap); MaxQuant parameters.txt MS/MS tol. (FTMS) 20 ppm."
   },
   {
-   "location": "comment[ms1 scan range] rows 1-6",
+   "location": "comment[ms1 scan range] rows 1-4",
    "value": "350m/z-1700m/z",
    "source_ids": [
     "rawhdr"
    ],
-   "evidence": "Full MS \"Scan range 350 to 1700 m/z\", resolution 60,000, in all 6 raw headers."
+   "evidence": "Full MS \"Scan range 350 to 1700 m/z\", resolution 60,000, in all IP raw headers."
   },
   {
-   "location": "comment[cleavage agent details] rows 1-6",
+   "location": "comment[cleavage agent details] rows 1-4",
    "value": "NT=Trypsin;AC=MS:1001251",
    "source_ids": [
     "mq_ip",
     "pride"
    ],
-   "evidence": "Protocol says only \"digestion in gels\". MaxQuant txt_IP summary.txt: Enzyme Trypsin/P, mode Specific, 2 missed cleavages for all 6 files (search rule recorded; digestion enzyme trypsin per campaign rule 2)."
+   "evidence": "Protocol says only \"digestion in gels\". MaxQuant txt_IP summary.txt: Enzyme Trypsin/P, mode Specific, 2 missed cleavages for all IP files (search rule recorded; digestion enzyme trypsin per campaign rule 2)."
   },
   {
-   "location": "comment[modification parameters] rows 1-6",
+   "location": "comment[modification parameters] rows 1-4",
    "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term variable",
    "source_ids": [
     "mq_ip"
@@ -182,7 +180,7 @@
    "evidence": "txt_IP parameters.txt (MaxQuant 1.6.1.0): Fixed modifications Carbamidomethyl (C); summary.txt Variable modifications \"Oxidation (M);Acetyl (Protein N-term)\", Multiplicity 1, no labels (rule 5: this search, not the SILAC one)."
   },
   {
-   "location": "comment[label] rows 1-6",
+   "location": "comment[label] rows 1-4",
    "value": "label free sample",
    "source_ids": [
     "mq_ip"
@@ -190,7 +188,7 @@
    "evidence": "txt_IP summary.txt Multiplicity 1, Labels0 empty: the IP arm is label-free; separate SDRF from the SILAC arm (rule 12)."
   },
   {
-   "location": "comment[fractionation method] rows 1-6",
+   "location": "comment[fractionation method] rows 1-4",
    "value": "NT=SDS PAGE;AC=PRIDE:0000568",
    "source_ids": [
     "pride",
@@ -199,7 +197,7 @@
    "evidence": "PRIDE protocol: \"The immunoprecipitates were subjected to run SDS-PAGE ... Then digestion in gels\"; two gel parts per lane (Up, Down)."
   },
   {
-   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-6",
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-4",
    "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
    "source_ids": [
     "templates"
@@ -207,7 +205,7 @@
    "evidence": "Campaign rules 1 and 10."
   },
   {
-   "location": "technology type + comment[technical replicate] rows 1-6",
+   "location": "technology type + comment[technical replicate] rows 1-4",
    "value": "proteomic profiling by mass spectrometry / 1",
    "source_ids": [
     "files",
@@ -217,9 +215,10 @@
   }
  ],
  "limitations": [
-  "RAW-HEADER NAME CONFLICT: each IP raw header records an original acquisition file name that differs from the deposited name: deposited 20181216__Ludayun_293T_Over_EV_Up/Down = acquired D:\\RawData\\201812\\20181216__HF_ZHW_Ludayun_293T_Over_NFX1_Ub_Up/Down.raw; deposited _NFX1_1_Up/Down = acquired ..._Over_NFX1_Up/Down; deposited _NFX1_2_Up/Down = acquired ..._Over_EV_Up/Down. Bait/prey data support that deposited EV has no bait: NFX1 intensity 0 / 1.93e9 / 1.53e8 and co-IP USP9X 0 / 8.4e7 / 3.8e7 for deposited EV / NFX1_1 / NFX1_2 (the run acquired as \"EV\" contains bait and prey). The deposited names do not explain NFX1_2's ubiquitin profile: ubiquitin protein group 4.06e8 / 6.98e8 / 9.03e9 for EV / NFX1_1 / NFX1_2; ubiquitin share of run intensity 0.07-0.12% in the four EV and NFX1_1 runs vs 2.44% in NFX1_2_Up and 0.37% in NFX1_2_Down (own recomputation from evidence.txt; the review gives 2.46%). The excess in the high-MW half points to polyubiquitin conjugates. NFX1_2 may therefore be the sample acquired as NFX1_Ub (a ubiquitination experiment), not an independent replicate of NFX1_1. The authors' own MaxQuant search (txt_IP parameters.txt, Date of writing 02/21/2019) already used the deposited names (summary.txt raw files = deposited names), so the renaming happened before their search. Sample identities follow the deposited names by campaign-owner decision (2026-11-09, after annotations/PXD012871.review.md); no author statement explains the renaming. Whether deposited \"EV\" (acquired \"NFX1_Ub\") was a genuine empty-vector IP is therefore not independently documented.",
-  "EV Up/Down gel-part assignment: for NFX1_1 and NFX1_2 the Up files hold higher-MW proteins (median 76.3/70.0 vs 31.7/30.6 kDa), but for EV the Up file has lower median MW (39.8) than Down (47.7). The MaxQuant fraction numbers (Up=1, Down=2) are kept; EV Up/Down may be swapped or differently cut.",
-  "Replicate status of NFX1_2 is unknown: it is encoded as a second Flag-NFX1 IP sample (biological replicate 2 within the Flag-NFX1 group), but it may be the NFX1_Ub ubiquitination sample (see ubiquitin evidence above) rather than an independent replicate of NFX1_1; independent transfection vs repeated IP is also not documented. EV has a single sample.",
+  "PARTIAL SCOPE / BLOCKED: 20181216__Ludayun_293T_Over_NFX1_2_Up.raw and 20181216__Ludayun_293T_Over_NFX1_2_Down.raw are not annotated (campaign-owner decision after review round 2; annotations/BLOCKED.md section PXD012871). The raw headers name three distinct samples (EV, NFX1, NFX1_Ub). Deposited EV has no bait, so the acquired \"EV\" name cannot belong to it, and NFX1_2 (acquired as \"EV\") is most likely the NFX1_Ub ubiquitination sample: ubiquitin protein group 9.03e9 vs 4.06e8 (EV) and 6.98e8 (NFX1_1), about 13x NFX1_1; ubiquitin share 2.44% (rule A) / 2.46% (rule B) in NFX1_2_Up and 0.37% in NFX1_2_Down vs 0.07-0.12% in the four EV and NFX1_1 runs (source ubq; excess in the high-MW half = polyubiquitin conjugates); bait NFX1 1.53e8, 12x less than NFX1_1. It is therefore neither a documented empty-vector control nor a defensible replicate of NFX1_1. Unblock needs an author statement on what NFX1_2 is.",
+  "RAW-HEADER NAME CONFLICT for the annotated runs: deposited 20181216__Ludayun_293T_Over_EV_Up/Down = acquired D:\\RawData\\201812\\20181216__HF_ZHW_Ludayun_293T_Over_NFX1_Ub_Up/Down.raw; deposited _NFX1_1_Up/Down = acquired ..._Over_NFX1_Up/Down. Bait/prey data support that deposited EV has no bait (NFX1 0, co-IP USP9X 0) and that NFX1_1 is a Flag-NFX1 IP (NFX1 1.93e9, USP9X 8.4e7). EV ubiquitin is low (4.06e8; 0.07-0.09% of run intensity), so deposited EV does not look like a ubiquitin enrichment either. The authors' own MaxQuant search (parameters.txt 02/21/2019) used the deposited names, so the renaming predates it. Sample identities follow the deposited names by campaign-owner decision; no author statement explains the renaming.",
+  "EV Up/Down gel-part assignment: for NFX1_1 the Up file holds higher-MW proteins (median 76.3 vs 31.7 kDa), but for EV the Up file has lower median MW (39.8) than Down (47.7). The MaxQuant fraction numbers (Up=1, Down=2) are kept; EV Up/Down may be swapped or differently cut.",
+  "Each condition has a single IP sample in scope (no replication).",
   "Paper closed access (abstract only): culture medium, transfection details, reduction/alkylation reagents, passage number, storage temperature are not available.",
   "characteristics[developmental stage] = not available: Cellosaurus AG \"Fetus\", but EFO has no fetal-stage term (validate-sdrf round 1 warned on \"fetal stage\"); age not available for the same reason.",
   "comment[precursor mass tolerance] = not available: MaxQuant 1.6.1.0 parameters.txt does not record it and no mqpar.xml was deposited; convert-openms exits 1.",

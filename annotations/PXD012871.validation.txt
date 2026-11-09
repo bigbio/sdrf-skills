@@ -97,3 +97,7 @@ exit=0
 ### sdrf-tools manifest-coverage annotations/PXD012871-ip.sdrf.tsv annotations/PXD012871-ip.evidence.json
 Manifest covers every column with a value (25 column(s)).
 exit=0
+
+# ===== PXD012871-ip rebuild after review round 2 FAIL (annotations/PXD012871-ip.review.md) 2026-11-09T15:32Z: the 2 NFX1_2 runs were removed in make_tables_ip.py and the file rebuilt; SDRF annotations/PXD012871-ip.sdrf.tsv sha256 6cb4d5d3bb0633b8169b9683bef81738d1c9fe568350e7381bab6afd16cfe68b; 4 rows x 46 columns; supersedes the 6-row build (sha256 e045ecdf72e0f974212c3682b69ede486e73b096403150680b79bf4b2d9d9758). PXD012871.sdrf.tsv unchanged (3473dd2cd9ff9ccd1c5d27eb72313dbb8451d27eda56bdc8fed3df868dc08995).
+
+## parse_sdrf validate-sdrf -s annotations/PXD012871-ip.sdrf.tsv -t ms-proteomics -t human -t cell-lines
