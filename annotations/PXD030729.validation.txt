@@ -262,3 +262,68 @@ comment[precursor mass tolerance]	4.5 ppm
 # file map (6 files):
 exit=0
 Unmapped 'stringent GlyGly (K)' -> NT=GG;AC=UNIMOD:121;TA=K (OLS verified). Trypsin/P search rule recorded; cleavage agent = digestion enzyme Trypsin (rule 2).
+
+################ ROUND 2 (2026-11-09, after independent review annotations/PXD030729.review.md): PXD030729-digly-human.sdrf.tsv only
+Change: scripts/make_tables.py sets characteristics[cell line] and factor value[cell line] of the six LCLs to 'LCL <code>' (review IMPORTANT finding: bare 'V79' = Chinese hamster lung line V79, Cellosaurus CVCL_2234); characteristics[individual] keeps the bare donor code. Rebuilt with sdrf-tools build + scripts/postbuild.py --lysc; no other cell changed. Manifest: controls' developmental stage 'adult' marked as inference; clinical-metadata non-declaration justified.
+Round-1 sections above for digly-human describe the superseded file f010531a853d96bf5a5865aa37f0f06c11644cd2afcc46e7e7c71b59ac9f45ad. Current file: sha256 d00fc005079a453fc3873869c6b3616c036b204bf3cc0f42991b1e448e1c489f, 80 rows x 47 cols. The other three SDRFs are unchanged (hashes as above).
+## parse_sdrf validate-sdrf -s annotations/PXD030729-digly-human.sdrf.tsv -t ms-proteomics -t human -t cell-lines (round 2, after LCL cell-line rename)
+WARNING: Term: LCL V3656 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: LCL V6604 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: LCL V549 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: LCL V79 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: LCL V7163 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: LCL V6719 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+## sdrf-tools structure PXD030729-digly-human.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## sdrf-tools check PXD030729-digly-human.sdrf.tsv --offline
+Hallucination Report: PXD030729-digly-human.sdrf.tsv
+  Terms checked:     13
+  Verified:          4
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+## sdrf-tools check PXD030729-digly-human.sdrf.tsv (ONLINE)
+Hallucination Report: PXD030729-digly-human.sdrf.tsv
+  Terms checked:     36
+  Verified:          24
+  Hallucinated:      12
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [17, 18, 21, 22, 25, 26, 29, 30]: 'LCL V3656' in characteristics[cell line]
+  Row(s) [19, 20, 23, 24, 27, 28, 31, 32, 35, 36, 39, 40, 43, 44, 47, 48]: 'LCL V6604' in characteristics[cell line]
+  Row(s) [33, 34, 37, 38, 41, 42, 45, 46]: 'LCL V549' in characteristics[cell line]
+  Row(s) [49, 50, 53, 54, 57, 58, 61, 62]: 'LCL V79' in characteristics[cell line]
+  Row(s) [51, 52, 55, 56, 59, 60, 63, 64, 67, 68, 71, 72, 75, 76, 79, 80]: 'LCL V7163' in characteristics[cell line]
+  Row(s) [65, 66, 69, 70, 73, 74, 77, 78]: 'LCL V6719' in characteristics[cell line]
+  Row(s) [17, 18, 21, 22, 25, 26, 29, 30]: 'LCL V3656' in factor value[cell line]
+  Row(s) [19, 20, 23, 24, 27, 28, 31, 32, 35, 36, 39, 40, 43, 44, 47, 48]: 'LCL V6604' in factor value[cell line]
+  Row(s) [33, 34, 37, 38, 41, 42, 45, 46]: 'LCL V549' in factor value[cell line]
+  Row(s) [49, 50, 53, 54, 57, 58, 61, 62]: 'LCL V79' in factor value[cell line]
+  Row(s) [51, 52, 55, 56, 59, 60, 63, 64, 67, 68, 71, 72, 75, 76, 79, 80]: 'LCL V7163' in factor value[cell line]
+  Row(s) [65, 66, 69, 70, 73, 74, 77, 78]: 'LCL V6719' in factor value[cell line]
+exit=1
+## sdrf-tools reconcile PXD030729-digly-human.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/pride.json --accession PXD030729
+PXD030729: every annotated value agrees with the deposit record.
+exit=0
+REFUTATION of the online sdrf-tools check 'Hallucinated: 12' (batch rule 13): every hit is one of the six LCL names 'LCL V3656/V549/V79/V6719/V6604/V7163' in characteristics[cell line] / factor value[cell line]. These are study-specific patient/control lymphoblastoid lines, not claimed ontology terms: the codes are the deposited MaxQuant experiment names (LCL_diGly_summary.txt, e.g. 'V3656(light)/V6604(K8/R10)-IP1') and the paper's Table S1/S2 legend key (ctrl1=V3656, ctrl2=V549, ctrl3=V79, ctrl4=V6719, V335M=V6604, D628V=V7163). Cellosaurus has no entry for any prefixed name and none for the bare codes except V79, which is the unrelated hamster line (cello_codes_check.txt). cellosaurus accession/name are 'not available'; the cell-lines template requires a characteristics[cell line] value and permits no reserved word, so a non-ontology name is unavoidable. parse_sdrf reports the same as warnings only.
+## parse_sdrf convert-openms -s annotations/PXD030729-digly-human.sdrf.tsv -t2 (cwd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/convert/digly-human2)
+Conditions (8): dict_keys(['SH-SY5Y|CCNF wild type', 'SH-SY5Y|CCNF knockout', 'LCL V3656|CCNF wild type', 'LCL V6604|CCNF p.V335M', 'LCL V549|CCNF wild type', 'LCL V79|CCNF wild type', 'LCL V7163|CCNF p.D628V', 'LCL V6719|CCNF wild type'])
+Files per condition: dict_values([8, 8, 8, 16, 8, 8, 16, 8])
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-human.sdrf.tsv
+exit=0
+## sdrf-tools schema-check annotations/PXD030729-digly-human.evidence.json
+PXD030729-digly-human.evidence.json: valid evidence-manifest
+exit=0
+## sdrf-tools manifest-coverage annotations/PXD030729-digly-human.sdrf.tsv annotations/PXD030729-digly-human.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit=0

@@ -67,6 +67,11 @@
    "id": "build",
    "kind": "derived",
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/build/<part>/{samples,technical}.tsv + files.json; sdrf-tools build per part; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/scripts/postbuild.py (concatenation of identical-header parts; Lys-C second cleavage column for diGly files)"
+  },
+  {
+   "id": "cello_codes",
+   "kind": "database",
+   "location": "Cellosaurus API search id:\"<code>\" and id:\"LCL <code>\" for the six LCL codes, 2026-11-09 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/cello_codes_check.txt): only bare V79 hits (CVCL_2234 Chinese hamster V79 and derivatives); all prefixed names and the other bare codes return 0"
   }
  ],
  "claims": [
@@ -360,7 +365,8 @@
    "source_ids": [
     "mq_LCL_diGly",
     "tableS_legends",
-    "build"
+    "build",
+    "cello_codes"
    ],
    "evidence": "Study LCL codes from the MaxQuant experiment names and the Table S1 key, prefixed \"LCL \" so that no name collides with a catalogued line: bare \"V79\" is the Chinese hamster lung line V79 (Cellosaurus CVCL_2234); the other five codes have no Cellosaurus hit. These patient/control LCLs are not in Cellosaurus (cellosaurus accession/name = not available). characteristics[individual] keeps the bare donor code."
   },
