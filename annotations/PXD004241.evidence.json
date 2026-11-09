@@ -1,0 +1,298 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD004241.sdrf.tsv",
+ "dataset": "PXD004241",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004241 via sdrf-pride-pmc get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004241/files?pageSize=100&page=0..1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/files.json; 121 entries = 120 .raw + txt_completeSILACMQanalysis.zip; every entry's projectAccessions contains PXD004241; raw names in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/raw_files.json)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Ganief T et al. Quantitative proteomic analysis of HIV-1 Tat-induced dysregulation in SH-SY5Y neuroblastoma cells. Proteomics 2017;17(6), doi:10.1002/pmic.201600236, PMID 28101920. Closed access (no PMCID; Unpaywall oa_status closed); only the Europe PMC abstract was read."
+  },
+  {
+   "id": "thesis",
+   "kind": "publication",
+   "location": "Ganief TA. A network analysis based proteomic and transcriptomic investigation into HIV-Tat induced neuronal dysfunction and the neuroprotective effect of lithium. PhD thesis, University of Cape Town, 2016, http://hdl.handle.net/11427/22759; full-text extract https://open.uct.ac.za/server/api/core/bitstreams/cffc40a7-80c9-43f6-b12f-b44cfc9c64c0/content (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/ganief_thesis.txt). The SILAC chapter (Materials and Methods, lines ~2636-2760; Results 'Proteome dynamics', lines ~2805-2820) describes exactly this experiment (same MaxQuant 1.3.0.5 search text as the PRIDE data-processing protocol, 3077 protein groups, 407 regulated)."
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD004241/txt_completeSILACMQanalysis.zip members parameters.txt, summary.txt, proteinGroups.txt, evidence.txt (HTTP range reads of the zip central directory; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/dl/)"
+  },
+  {
+   "id": "experiment_check",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/experiment_check.txt: evidence.txt Raw file -> Experiment mapping (120 raw files; each file's Experiment = its name prefix D1/D2/D3/P1/P2/P3; zero mismatches)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/scripts/orient.py: marker-protein Ratio H/L normalized per MaxQuant experiment and pairwise Pearson r of log2 H/L)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range reads of https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD004241/<file>.raw: first 1.5 MB of P1-1.raw (instrument/method strings, UTF-16-LE) and first 1401 bytes of all 120 raw files (header FILETIME at offset 40 = acquisition start; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/raw_headers.json, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/scripts/hdr.py); injection order map /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/injection_map.json"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0019?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD004241/cellosaurus_CVCL_0019.txt); sdrf-tools cellline lookup SH-SY5Y"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4 term lookups (is_obsolete=false checked): NCIT:C17186 HIV TAT Protein, EFO:0010806 enrichment of phosphorylated protein, MONDO:0005072 neuroblastoma, UBERON:0002371 bone marrow, HANCESTRO:0005 European ancestry, NCIT:C185409 Dulbecco's Modified Eagle Medium, HsapDv:0000264 pediatric stage, MS:1001742 LTQ Orbitrap Velos, MS:1000422, MS:1000484, PRIDE:0000568, PRIDE:0000608, PRIDE:0000599, PRIDE:0000627; UNIMOD 4/35/1/7/267/259"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t/templates.yaml); spec README.adoc:27 (sdrf version v1.1.0); campaign batch rules 1 and 10. The spec submodule's nested sdrf-templates copy is older than upstream."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-240",
+   "value": "SH-SY5Y_<vehicle|Tat>_rep<1-3>_<PE|PD> (12 sources)",
+   "source_ids": [
+    "thesis",
+    "files",
+    "experiment_check",
+    "pride"
+   ],
+   "evidence": "Thesis Sample preparation: K0/R0 cells treated with vehicle and K8/R10 cells with HIV-Tat on 10 cm dishes in triplicate, counted and mixed 1:1, lysed, and passed through a QIAGEN PhosphoProtein column: flow-through retained as 'phosphodepleted (PD)', eluate 'phospho-enriched (PE)'. Deposited raw files carry prefixes P1-P3 / D1-D3 (= MaxQuant experiments P1..P3, D1..D3, evidence.txt). One source per physical sample = (culture dish: vehicle or Tat, replicate 1-3) x (PE eluate or PD flow-through). PE and PD of the same replicate derive from the same mixed lysate; P<n>/D<n> pairing of replicate number n is from the experiment names."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] rows 1-240",
+   "value": "SILAC light = untreated (vehicle) rows 1-20,41-60,81-100,121-140,161-180,201-220; SILAC heavy = HIV TAT Protein rows 21-40,61-80,101-120,141-160,181-200,221-240",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "mq",
+    "orientation"
+   ],
+   "evidence": "PRIDE sample protocol: 'Heavy and light SILAC labelled Neuroblastoma cells were treated with 1 ug/mL HIV-1 Tat protein or control, respectively, for 24 hours in triplicate.' Thesis: 'K0/R0 labelled cells were treated with vehicle, whereas K8/R10 cells with HIV-Tat' and 'SH-SY5Y untreated cells (Arg0; Lys0) and treated with HIV-Tat (Arg10; Lys8)'. MaxQuant summary.txt: Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8 for all 120 files. Data check: abstract reports ARHGEF17, SHROOM3, CRMP1 down-regulated by Tat; deposited Ratio H/L normalized D1/D2/D3/P1/P2/P3: ARHGEF17 0.17/0.05/0.19/0.19/0.32/0.06, SHROOM3 0.013/0.007/0.011/0.007/0.040/0.016, CRMP1 0.51/0.53/0.69 (D only) -> heavy = Tat. Control received vehicle (0.5 mM beta-mercaptoethanol, no Tat); encoded 'untreated' per campaign rule 4. Treatment term NCIT:C17186 'HIV TAT Protein' (recombinant HIV-1 Tat clade B, Diatheva REP0002B, 1 ug/ml, 24 h). Not an infection: no pathogen was present, so no infection column."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-240",
+   "value": "1-3 within each treatment group; PE and PD sources of the same dish share the number",
+   "source_ids": [
+    "thesis",
+    "experiment_check"
+   ],
+   "evidence": "Thesis: treatment 'in triplicate' on separate 10 cm dishes, 'three biological replicates'; experiments 1/2/3. Each number = one independent culture dish per treatment arm; the heavy and light dishes of replicate n were mixed into one lysate that gave P<n> and D<n>."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-240",
+   "value": "enrichment of phosphorylated protein (PE sources, rows 1-120); not applicable (PD flow-through sources, rows 121-240)",
+   "source_ids": [
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Thesis: lysate passed through QIAGEN PhosphoProtein Purification Columns (cat. 37101); bound phosphoprotein eluted = PE; flow-through = PD. EFO:0010806 (child of EFO:0009090). Thesis also notes 'we saw no evidence of phospho-enrichment ... treated the phospho-enrichment as a further fractionation step', and phosphorylation was not a search modification."
+  },
+  {
+   "location": "characteristics[protein fraction] rows 1-240",
+   "value": "phosphoprotein-enriched eluate (PE) rows 1-120; phosphoprotein-depleted flow-through (PD) rows 121-240",
+   "source_ids": [
+    "thesis",
+    "experiment_check"
+   ],
+   "evidence": "Custom characteristics column (spec 'Extending Templates'); P = PE, D = PD per thesis naming ('PD and PE ... 100 ug of protein from each of the three PE and PD replicates were fractionated by 1D-SDS-PAGE'). Each is a physically separate measured sample (campaign rule 16)."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-240",
+   "value": "<P|D><rep>-<slice 1-10>[_<timestamp>].raw; fraction identifier = gel slice 1-10",
+   "source_ids": [
+    "files",
+    "thesis",
+    "pride",
+    "experiment_check"
+   ],
+   "evidence": "Thesis/PRIDE: each PE and PD lane cut into 10 gel slices (in-gel digestion). File names <P|D><rep>-<slice>; all 120 files searched (summary.txt has 120 file rows). Each SILAC run file appears in one light and one heavy row."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-240",
+   "value": "1 = earlier injection, 2 = later injection of the same gel slice",
+   "source_ids": [
+    "thesis",
+    "raw",
+    "files"
+   ],
+   "evidence": "Thesis Mass spectrometry: 'samples were injected in duplicate'. Each slice has two files (bare name and name with _yymmddhhmmss suffix; different sizes/checksums). Ordered by raw-header acquisition FILETIME: bare-name file is earlier for 59 slices; for P1-1 the suffixed file P1-1_120512125011.raw (2012-05-12T12:50) precedes P1-1.raw (2012-05-16T15:45). First injections of D1-4, D2-4, D3-4 (May 12, 36-59 MB) are short/poor runs (25-119 MS/MS identified) but were searched and are kept."
+  },
+  {
+   "location": "characteristics[organism] rows 1-240",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; Cellosaurus CVCL_0019 OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-240",
+   "value": "SH-SY5Y; CVCL_0019; SH-SY5Y",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "cellosaurus"
+   ],
+   "evidence": "Title and thesis: SH-SY5Y neuroblastoma cell line (provided by Dr K. Wilkinson, UCT). Cellosaurus CVCL_0019 (human only; no cross-species name collision)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-240",
+   "value": "bone marrow",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0019 'Derived from site: Metastatic; Bone marrow; UBERON=UBERON_0002371' (SH-SY5Y is a subclone of SK-N-SH). PRIDE organismParts 'Neuron' is a submitter dropdown describing cell type, not the sampled site."
+  },
+  {
+   "location": "characteristics[disease] rows 1-240",
+   "value": "neuroblastoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Disease of the cell line (Cellosaurus DI NCIt C3270 Neuroblastoma) -> MONDO:0005072. HAND is the condition modelled, not a property of the cells."
+  },
+  {
+   "location": "characteristics[material type] rows 1-240",
+   "value": "cell line",
+   "source_ids": [
+    "thesis"
+   ],
+   "evidence": "Cultured SH-SY5Y cells."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-240",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Population: Caucasian' -> HANCESTRO:0005 (campaign rule 9)."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage] rows 1-240",
+   "value": "4Y; female; pediatric stage",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0019 AG 4Y, SX Female (donor of parental SK-N-SH). 4Y < 20Y so not adult; HsapDv:0000264 'pediatric stage' (not in EFO; validate-sdrf warns, campaign precedent)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-240",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Thesis: SILAC expansion in arginine- and lysine-deficient high-glucose DMEM (Sigma-Aldrich) with 10% dialysed FCS and K0/R0 or K8/R10; treatment in DMEM without FCS. NCIT:C185409."
+  },
+  {
+   "location": "comment[instrument] rows 1-240",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "raw",
+    "thesis",
+    "paper",
+    "pride"
+   ],
+   "evidence": "Raw header of P1-1.raw: 'LTQ Orbitrap Velos MS', creator 'LTQ VELOS'; thesis 'LTQ-Orbitrap Velos'; paper abstract 'Orbitrap Velos'. PRIDE instruments field ('LTQ Orbitrap Elite') and the PRIDE sample protocol ('orbitrap Elite') disagree with the raw file and are overruled."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-240",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "thesis",
+    "raw"
+   ],
+   "evidence": "Thesis: data-dependent top-10 (raw method 'putuma top N 10.meth', 'Scan Event 2 repeated for top 10 peaks')."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] rows 1-240",
+   "value": "HCD (NT=beam-type collision-induced dissociation;AC=MS:1000422); 35 NCE; orbitrap (MS:1000484)",
+   "source_ids": [
+    "thesis",
+    "raw"
+   ],
+   "evidence": "Raw method text 'Activation Type: HCD'; thesis: HCD at NCE 35, MS/MS detected in the Orbitrap at resolution 7500."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-240",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "thesis",
+    "mq",
+    "pride"
+   ],
+   "evidence": "Thesis: 'digested with 200 ng Trypsin (Promega)' (in-gel). summary.txt Protease Trypsin; PRIDE data protocol 'Trypsin was used as the protease'."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-240",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "thesis",
+    "pride"
+   ],
+   "evidence": "1D SDS-PAGE, 10 gel slices per lane."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-240",
+   "value": "DTT (PRIDE:0000608); iodoacetamide (PRIDE:0000599)",
+   "source_ids": [
+    "thesis"
+   ],
+   "evidence": "Thesis: 'reduced with 10 mM DTT, alkylated with 55 mM iodocetamide'."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-240",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm' (HCD spectra acquired in the Orbitrap, so the FTMS tolerance applies)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-240",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Deamidated N/Q variable; Label:13C(6)15N(4) R (UNIMOD:267) and Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mq",
+    "thesis"
+   ],
+   "evidence": "summary.txt (all 120 files): Fixed Carbamidomethyl (C); Variable Oxidation (M);Acetyl (Protein N-term);Deamidation (NQ); Labels1 Arg10;Lys8. Thesis: heavy K8 (13C6 15N2) and R10 (13C6 15N4). SILAC labels MT=Variable per campaign rule 11. The PRIDE text omits Deamidation; the search output is authoritative."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-240",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign batch rules 1 and 10."
+  }
+ ],
+ "limitations": [
+  "The Proteomics article (doi:10.1002/pmic.201600236) is closed access; only its abstract was read. Methods come from the PRIDE protocols, the first author's UCT PhD thesis (same experiment, same search text), the MaxQuant outputs and raw headers.",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.3.0.5 parameters.txt/summary.txt do not record the first/main-search precursor tolerance and no mqpar.xml was deposited. Consequence: parse_sdrf convert-openms exits 1 ('Cannot read precursor mass tolerance: not available'), as for campaign precedent PXD014368.",
+  "Controls received vehicle (0.5 mM beta-mercaptoethanol in DMEM without FCS, 24 h), encoded as treatment 'untreated' per campaign rule 4; the vehicle is recorded here only.",
+  "The PE/PD split (QIAGEN phosphoprotein column) is encoded as characteristics[enrichment process] plus a custom characteristics[protein fraction]; the thesis reports no detectable phospho-enrichment and treated PE/PD as a further fractionation step, and MaxQuant pooled both injections per experiment. PE/PD is not a factor value.",
+  "Technical replicate numbering (injection order) is derived from raw-header acquisition timestamps, not stated per file by the authors.",
+  "PRIDE lists the instrument as LTQ Orbitrap Elite; the raw files, thesis and abstract say LTQ Orbitrap Velos, which is used.",
+  "characteristics[developmental stage] 'pediatric stage' (HsapDv:0000264) is not in EFO, so validate-sdrf warns; characteristics[treatment] 'untreated' is template-prescribed but not an NCIT/EFO term, so validate-sdrf warns.",
+  "Passage number, cell type, individual and storage temperature are not stated: not available.",
+  "Review status: REVIEW_PENDING_EXTERNAL (no self-review, no gate approval in this run)."
+ ]
+}

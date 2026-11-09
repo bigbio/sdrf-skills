@@ -1,0 +1,411 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD002943.sdrf.tsv",
+ "dataset": "PXD002943",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002943 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/pride_v3.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002943/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/files_all.json; 9 entries, every projectAccessions contains PXD002943: 6 RAW zip archives *_cru_Archive.zip / *_pur_Archive.zip + 3 MaxQuant txt zips)"
+  },
+  {
+   "id": "zip_listing",
+   "kind": "raw-file",
+   "location": "Zip central directories of https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002943/{IAV_SUMO1,IAV_SUMO2,HS_SUMO2}_{cru,pur}_Archive.zip and *_txt.zip read by HTTP range (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/scripts/zipls.py; listings /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/zipls_*.json). Each RAW archive holds exactly 13 .raw members; 78 .raw total. The archives exceed 4 GiB without zip64 records, so stored 32-bit offsets wrap; the reader derives the true offsets."
+  },
+  {
+   "id": "mq_IAV_SUMO1",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002943/IAV_SUMO1_txt.zip members IAV_SUMO1_txt/parameters.txt, summary.txt, proteinGroups.txt (range read + inflate, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/scripts/zipget.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mq/IAV_SUMO1_*.txt)"
+  },
+  {
+   "id": "mq_IAV_SUMO2",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002943/IAV_SUMO2_txt.zip members parameters.txt, summary.txt, peptides.txt (this zip has no proteinGroups.txt; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mq/IAV_SUMO2_*.txt)"
+  },
+  {
+   "id": "mq_HS_SUMO2",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2015/11/PXD002943/HS_SUMO2_txt.zip members parameters.txt, summary.txt, proteinGroups.txt, evidence.txt (evidence filtered to viral-protein rows by streaming inflate, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/scripts/zipgrep.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mq/HS_SUMO2_*.txt)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/markers.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/orientation.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/viral_abundance.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/scripts/markers.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/scripts/orient.py): raw MaxQuant M/L, H/L, H/M ratios and per-channel intensities of influenza proteins, SUMO2, RANGAP1, PML in the CRU and PUR experiments"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Domingues P, Golebiowski F, Tatham MH, Lopes AM, Taggart A, Hay RT, Hale BG. Global Reprogramming of Host SUMOylation during Influenza Virus Infection. Cell Rep 2015;13(7):1467-80. doi:10.1016/j.celrep.2015.10.001, PMID 26549460, PMC4660286 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC4660286.1/PMC4660286.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/paper.txt)"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "Document S1 Supplemental Experimental Procedures and Figures, https://pmc-oa-opendata.s3.amazonaws.com/PMC4660286.1/mmc1.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mmc1.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/mmc1.txt; SILAC Cell Culture, TAP Procedure and Mass Spectrometry, MaxQuant Analyses, Fig. S3/S5 axis labels)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "Inflated first ~3.7 MB of 3 .raw members read by HTTP range from the archives (20130807_MTFG_IAVS1pur_01.raw, 20130815_MTFG_IAVS2cru_07.raw, 20140709_MT_FG_cru33.raw; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/scripts/rawhead.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/raw/*.head; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/raw/header_summary.txt)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0023?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/cello_CVCL_0023.txt); species-collision search https://api.cellosaurus.org/search/cell-line?q=id:\"A549\" OR id:\"A-549\" OR sy:\"A549\" (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/cello_A549_search.tsv)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search, /hierarchicalDescendants (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD002943/ols_search.txt); all used terms is_obsolete=False"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; README.adoc:330 biological replicate numbering"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-234",
+   "value": "<experiment>_<channel>_<cell line construct>_<condition>_<crude|purified> (18 names)",
+   "source_ids": [
+    "files",
+    "zip_listing",
+    "pride",
+    "supp"
+   ],
+   "evidence": "Three triple-SILAC experiments (IAV_SUMO1, IAV_SUMO2, HS_SUMO2 = archive prefixes). Per experiment the three labelled cultures (20 dishes each) were lysed, mixed 1:1:1; ~1% was analysed as the crude sample and ~99% TAP-purified (PRIDE protocol; Document S1 \"TAP Procedure\"). Crude and purified are physically distinct measured samples (batch rule 16), so each (culture x crude/purified) has its own source name; one name per physical sample, never reused."
+  },
+  {
+   "location": "comment[data file] + comment[fraction identifier] rows 1-234",
+   "value": "13 gel slices per sample; fraction = slice order of the .raw member names (_01.._13, pur01..pur13, cru21..cru33)",
+   "source_ids": [
+    "zip_listing",
+    "pride",
+    "supp",
+    "mq_IAV_SUMO1",
+    "mq_IAV_SUMO2",
+    "mq_HS_SUMO2"
+   ],
+   "evidence": "PRIDE protocol: \"the gel was sliced into 13 sections\". Each archive has exactly 13 .raw members. MaxQuant summary.txt lists all 26 raw files per search, assigned to experiments CRU (13 *cru*) and PUR (13 *pur*). comment[data file] names the .raw member inside its zip archive (the archive itself is the deposited file)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-234",
+   "value": "1",
+   "source_ids": [
+    "zip_listing",
+    "mq_IAV_SUMO1",
+    "mq_IAV_SUMO2",
+    "mq_HS_SUMO2"
+   ],
+   "evidence": "Each gel slice of each sample was injected once: 13 .raw members per archive, one per slice, and each raw file appears once in summary.txt; no repeated injections deposited."
+  },
+  {
+   "location": "comment[label] rows 1-234",
+   "value": "SILAC light / SILAC medium / SILAC heavy (multiplicity 3)",
+   "source_ids": [
+    "mq_IAV_SUMO1",
+    "mq_IAV_SUMO2",
+    "mq_HS_SUMO2",
+    "pride",
+    "paper"
+   ],
+   "evidence": "summary.txt of all three searches: Multiplicity 3, Labels0 empty, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 (rule 14 verified). Paper Fig. 3A/5A legends: light K0R0, medium K4R6, heavy K8R10."
+  },
+  {
+   "location": "characteristics[genetic modification] + factor value[genetic modification] rows 1-234",
+   "value": "L = stable expression of TAP tag only; M and H = stable expression of N-terminally TAP-tagged SUMO1 (IAV_SUMO1) or SUMO2 (IAV_SUMO2, HS_SUMO2)",
+   "source_ids": [
+    "pride",
+    "supp",
+    "paper",
+    "orientation"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol and Document S1 \"SILAC Cell Culture\": \"Each experiment consisted of three SILAC conditions: L (light), where A549/TAP cells were grown in DMEM containing isotopically 'normal' amino acids; M (medium), where A549/TAP-SUMO1 (or SUMO2) cells were grown in DMEM containing 4,4,5,5-D4 lysine and 13C6 arginine; and H (heavy), where A549/TAP-SUMO1 (or SUMO2) cells were grown in DMEM containing 13C6 15N2 lysine and 13C6 15N4 arginine. ... In both SUMO1 and SUMO2 IAV experiments, cells in condition L and H were infected with IAV for 10h at an MOI of 2 PFU/cell, and cells in condition M were mock-infected. In the SUMO2 heat-shock experiment, cells in condition L and M were maintained at 37°C, while cells in condition H were subjected to heat-shock (43°C) for 30 minutes.\" Paper: \"We generated A549 cell lines stably expressing either SUMO1 or SUMO2 fused to an N-terminal tandem affinity purification (TAP) tag. An additional A549 cell line stably expressing the TAP tag only (TAP only) was generated as a negative control.\" Data check (raw ratios, PUR experiment): RANGAP1 log2 M/L +3.73/+3.96/+3.05 and H/L +3.49/+4.14/+3.38, PML M/L +3.00/+3.42/+3.63 (IAV_SUMO1/IAV_SUMO2/HS_SUMO2) -> M and H carry the TAP-SUMO bait, L is the TAP-only background; SUMO2 itself PUR M/L +3.04 (IAV_SUMO2), +1.85 (HS_SUMO2)."
+  },
+  {
+   "location": "characteristics[infection] + factor value[infection] rows 1-234",
+   "value": "IAV experiments: L and H = Influenza A virus (A/WSN/1933(H1N1)) [NCBITaxon:382835], M = mock-infected; HS_SUMO2: all = uninfected",
+   "source_ids": [
+    "pride",
+    "supp",
+    "paper",
+    "orientation",
+    "ols"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol and Document S1 \"SILAC Cell Culture\": \"Each experiment consisted of three SILAC conditions: L (light), where A549/TAP cells were grown in DMEM containing isotopically 'normal' amino acids; M (medium), where A549/TAP-SUMO1 (or SUMO2) cells were grown in DMEM containing 4,4,5,5-D4 lysine and 13C6 arginine; and H (heavy), where A549/TAP-SUMO1 (or SUMO2) cells were grown in DMEM containing 13C6 15N2 lysine and 13C6 15N4 arginine. ... In both SUMO1 and SUMO2 IAV experiments, cells in condition L and H were infected with IAV for 10h at an MOI of 2 PFU/cell, and cells in condition M were mock-infected. In the SUMO2 heat-shock experiment, cells in condition L and M were maintained at 37°C, while cells in condition H were subjected to heat-shock (43°C) for 30 minutes.\" Strain: paper \"IAV (A/WSN/33)\"; search FASTA HUMAN_WSN.fasta (parameters.txt) and data processing protocol \"influenza A virus (A/WSN/1933(H1N1))\". NCBITaxon:382835 label \"Influenza A virus (A/WSN/1933(H1N1))\" (OLS4). Data check, crude raw log2 ratios IAV_SUMO1 / IAV_SUMO2: NP M/L -3.41/-3.45, H/L +0.07/+0.16, H/M +3.41/+3.60; M1 M/L -4.32/-4.03, H/M +4.09/+3.84; HA, PB2, NS1, NEP likewise -> viral proteins in L and H, not M. Paper Fig. S3/S5 axis \"Log2 TAP-S2: IAV / Mock (H/M)\". Custom column (spec \"Extending Templates\"); HS rows use \"uninfected\" because the heat-shock experiment had no infection arm."
+  },
+  {
+   "location": "characteristics[treatment] + factor value[treatment] rows 1-234",
+   "value": "heat shock (rows 209-221, 222-234); untreated (all other rows)",
+   "source_ids": [
+    "pride",
+    "supp",
+    "paper",
+    "orientation",
+    "ols"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol and Document S1 \"SILAC Cell Culture\": \"Each experiment consisted of three SILAC conditions: L (light), where A549/TAP cells were grown in DMEM containing isotopically 'normal' amino acids; M (medium), where A549/TAP-SUMO1 (or SUMO2) cells were grown in DMEM containing 4,4,5,5-D4 lysine and 13C6 arginine; and H (heavy), where A549/TAP-SUMO1 (or SUMO2) cells were grown in DMEM containing 13C6 15N2 lysine and 13C6 15N4 arginine. ... In both SUMO1 and SUMO2 IAV experiments, cells in condition L and H were infected with IAV for 10h at an MOI of 2 PFU/cell, and cells in condition M were mock-infected. In the SUMO2 heat-shock experiment, cells in condition L and M were maintained at 37°C, while cells in condition H were subjected to heat-shock (43°C) for 30 minutes.\" Document S1 Fig. axis label \"Log2 TAP-S2: 43°C / 37°C (H/M)\". Heat shock = 43°C for 30 min. Data check HS_SUMO2 PUR: median log2 H/M of all quantified proteins +0.41 and SUMO2 H/M +1.81 (heat shock raises SUMO2 conjugation; paper: heat-shock response correlates with HeLa heat-shock data r=0.89 and not with IAV r=0.43). OLS4 has no NCIT/EFO process term \"heat shock\" (search log); the value is written as the protocol term (ZECO:0000166 \"heat shock\" exists only in the zebrafish condition ontology). Controls = untreated (batch rule 4)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-234",
+   "value": "1 for every culture except IAV-SUMO2 L (TAP only, IAV) = 2",
+   "source_ids": [
+    "pride",
+    "supp",
+    "templates"
+   ],
+   "evidence": "Each SILAC channel of each experiment is one independent culture (20 dishes per SILAC condition). Numbered 1..n within each factor-value group (genetic modification, infection, treatment): the group (TAP only, IAV, untreated) holds two independent cultures (IAV_SUMO1 L, IAV_SUMO2 L) -> 1 and 2; every other group has one culture. Crude and purified of a culture share its number (same culture, two measured samples)."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-234",
+   "value": "negative control (TAP-only L channel, rows 1-13, 14-26, 79-91, 92-104, 157-169, 170-182); study sample (all others)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: the TAP-only A549 line \"was generated as a negative control\"; PRIDE:0000905 negative control and PRIDE:0001013 study sample are children of PRIDE:0000895 (OLS4)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-234",
+   "value": "sample enrichment (purified, rows 14-26, 40-52, 66-78, 92-104, 118-130, 144-156, 170-182, 196-208, 222-234); not applicable (crude, rows 1-13, 27-39, 53-65, 79-91, 105-117, 131-143, 157-169, 183-195, 209-221)",
+   "source_ids": [
+    "pride",
+    "supp",
+    "ols"
+   ],
+   "evidence": "Purified samples went through denaturing TAP (IgG sepharose, TEV cleavage, calmodulin sepharose); crude samples (~1%) were analysed without purification. EFO has no tandem-affinity term under EFO:0009090; EFO:0009106 sample enrichment is the generic child (campaign precedent PXD004666-apms)."
+  },
+  {
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-234",
+   "value": "A549 / CVCL_0023 / A-549",
+   "source_ids": [
+    "pride",
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE title \"human lung A549 cells\"; Cellosaurus CVCL_0023 ID A-549, synonym A549, Homo sapiens. Collision check: the Cellosaurus search for id/synonym A549 returns 1016 entries, all Homo sapiens (no other-species A549); the A549-derived TAP lines are not separate Cellosaurus entries."
+  },
+  {
+   "location": "characteristics[organism] rows 1-234",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-234",
+   "value": "lung",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Cellosaurus \"Derived from site: In situ; Lung; UBERON=UBERON_0002048\"; paper \"human lung epithelial cell (A549)\"."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-234",
+   "value": "epithelial cell",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: \"total human lung epithelial cell (A549) lysates\"; PRIDE organismParts \"Epithelial cell\"; CL:0000066 epithelial cell."
+  },
+  {
+   "location": "characteristics[disease] rows 1-234",
+   "value": "lung adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3512 Lung adenocarcinoma; MONDO:0005061 lung adenocarcinoma (not obsolete)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-234",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured A549-derived stable lines."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-234",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Caucasian.\" -> HANCESTRO:0005 European ancestry."
+  },
+  {
+   "location": "characteristics[age] rows 1-234",
+   "value": "58Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 58Y."
+  },
+  {
+   "location": "characteristics[sex] rows 1-234",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-234",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 58Y (>= 20Y, batch rule 9) -> EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[individual] rows 1-234",
+   "value": "A549_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All lines derive from the single A549 donor (Cellosaurus CVCL_0023); same convention as campaign A549 precedent PXD002388."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-234",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "pride",
+    "supp",
+    "ols"
+   ],
+   "evidence": "\"cells were grown in DMEM (supplemented with 10% dialyzed fetal calf serum) with L-lysine and L-arginine replaced with stable isotope forms\"; NCIT:C185409."
+  },
+  {
+   "location": "comment[instrument] rows 1-234",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "pride",
+    "raw",
+    "mq_IAV_SUMO1",
+    "ols"
+   ],
+   "evidence": "PRIDE instruments Q Exactive; raw headers \"Q Exactive - Orbitrap MS\" (3 files from 3 archives); summary.txt Instrument Q Exactive."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-234",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "\"Data were acquired in the data-dependent mode\"; raw method FULL MS / DD-MS2 (TOPN), TopN 10."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-234",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "\"The 10 most intense ions were fragmented by HCD\"; raw header HCD, NCE 25.0. MS:1000422 OLS label \"beam-type collision-induced dissociation\"."
+  },
+  {
+   "location": "comment[collision energy] rows 1-234",
+   "value": "25 NCE",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method dd-MS2 \"NCE 25.0\" (Stepped NCE off) in all three sampled headers (2013 and 2014 runs)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-234",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Q Exactive dd-MS2 at resolution 17,500 (Orbitrap) in the raw method."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-234",
+   "value": "300m/z-1800m/z",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "\"Full scan spectra (m/z 300-1800)\"; raw \"Scan range 300 to 1800 m/z\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-234",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "supp",
+    "mq_IAV_SUMO1",
+    "mq_IAV_SUMO2",
+    "mq_HS_SUMO2"
+   ],
+   "evidence": "\"in-gel digestion with trypsin (Promega)\". The MaxQuant search rule was Trypsin/P, max. 2 missed cleavages (summary.txt) - recorded here; the column carries the digestion enzyme (batch rule 2)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-234",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "pride",
+    "supp"
+   ],
+   "evidence": "\"resolved on NuPAGE Novex 10% Bis-Tris polyacrylamide gels using MOPS buffer ... the gel was sliced into 13 sections\"; samples in LDS (SDS) buffer."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-234",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_IAV_SUMO1",
+    "mq_IAV_SUMO2",
+    "mq_HS_SUMO2",
+    "supp"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\" in all three searches; Q Exactive HCD MS2 spectra are FTMS. All 78 raw files appear in a summary.txt, so every run was searched."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-234",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, GG K, Label:2H(4) K, Label:13C(6) R, Label:13C(6)15N(2) K, Label:13C(6)15N(4) R Variable",
+   "source_ids": [
+    "mq_IAV_SUMO1",
+    "mq_IAV_SUMO2",
+    "mq_HS_SUMO2",
+    "pride",
+    "ols"
+   ],
+   "evidence": "parameters.txt \"Fixed modifications Carbamidomethyl (C)\"; summary.txt \"Variable modifications Oxidation (M);Acetyl (Protein N-term);GlyGly (K)\" (identical in all three searches); Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 = protocol D4-Lys (UNIMOD:481 Label:2H(4)), 13C6-Arg (UNIMOD:188), 13C6 15N2-Lys (UNIMOD:259), 13C6 15N4-Arg (UNIMOD:267); GlyGly = UNIMOD:121 (OLS label GG). SILAC labels MT=Variable by batch convention (rule 11)."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-234",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; templates printed by sdrf-tools contract."
+  }
+ ],
+ "limitations": [
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.3.0.5 parameters.txt / summary.txt and Document S1 parameter table do not record the first/main-search precursor tolerance and no mqpar.xml was deposited. Consequence: parse_sdrf convert-openms cannot read a precursor tolerance (campaign precedents PXD014368, PXD002388).",
+  "comment[reduction reagent] / comment[alkylation reagent] = not available: in-gel digestion is cited \"essentially as described previously (Shevchenko et al., 2006)\" without reagents; the fixed Carbamidomethyl (C) search implies an alkylation but no reagent is named.",
+  "The data files are .raw members inside six deposited zip archives; comment[data file] names the member (e.g. 20130807_MTFG_IAVS1pur_01.raw inside IAV_SUMO1_pur_Archive.zip). The archives are >4 GiB without zip64 records (32-bit offsets wrap); members were listed from the central directory, not extracted.",
+  "Document S1 states two MaxQuant analyses per IAV experiment (\"global\" and \"slice-by-slice\"); only one txt output per experiment was deposited (CRU/PUR experiment design = global). Both used the parameter table shown, so the modification and tolerance columns hold for either.",
+  "PRIDE data processing protocol says UniProtKB human + IAV reference proteomes; the deposited search output shows the viral entries as GenBank accessions (gi|...|AAA43352.1 matrix protein, ACF54602.1 nucleocapsid protein, ...) from HUMAN_WSN.fasta. Recorded; no SDRF column depends on it.",
+  "Observation, HS_SUMO2: trace influenza NP (17 peptides) and NS1 (4 peptides) are quantified in the heat-shock search with the IAV-like channel pattern (crude log2 M/L -2.56, H/M +2.55 for NP), but at ~0.1 per mille of channel intensity in crude versus ~47 per mille in the IAV experiments (~400-fold lower; viral_abundance.txt). M1, HA, PB2 are absent. This is consistent with low-level contamination or LC carryover of previously run IAV SILAC peptides, not infection; the protocol states no infection in the heat-shock experiment, so HS rows are annotated \"uninfected\". The channel map (L TAP only, M TAP-SUMO2 37°C, H TAP-SUMO2 43°C) is supported by the protocol, the Fig. S5 axis label and the SUMO-bait enrichment pattern.",
+  "MOI 2 PFU/cell, 10 h infection (IAV) and 43°C for 30 min (heat shock) are recorded here and in the report, not in SDRF columns (no fitting licensed column). Passage number and sample storage temperature are not stated (not available).",
+  "Review: per the caller, the independent sdrf-adversarial-review is run externally (REVIEW_PENDING_EXTERNAL); no self-review or review-gate approval was performed."
+ ]
+}

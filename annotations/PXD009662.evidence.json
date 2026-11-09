@@ -1,0 +1,345 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD009662.sdrf.tsv",
+ "dataset": "PXD009662",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009662 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD009662/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/files_all.json; 5 entries = WTRAWDATA.zip, T618IRAWDATA.zip, Q741XRAWDATA.zip (RAW), SearchEngineOutput.zip (SEARCH), QuantpYfiles.xlsx (OTHER); every entry projectAccessions contains PXD009662)"
+  },
+  {
+   "id": "zipcd",
+   "kind": "raw-file",
+   "location": "Central directories of https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009662/WTRAWDATA.zip, T618IRAWDATA.zip, Q741XRAWDATA.zip and SearchEngineOutput.zip read by HTTP range (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/dl/*.list; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/httpzip.py): 4 .wiff + 4 .wiff.scan per RAW zip (12 runs total); 12 ProteinPilot .group files, one per run"
+  },
+  {
+   "id": "wiff",
+   "kind": "raw-file",
+   "location": "All 12 .wiff members fetched by HTTP range and inflated (deflate / deflate64), embedded UTF-16 \"Sample Name:\" and \"Mass Spectrometer:\" strings (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/dl/wiff/*.wiff; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/wiffnames.py)"
+  },
+  {
+   "id": "group",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009662/SearchEngineOutput.zip: the 12 ProteinPilot 5.0 .group files (nibble-swapped XML). First 1 MB compressed of all 12 read for UI_* settings and input .wiff path (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/group_ui.txt; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/groupsettings.py). Data111015_04 (WT 12.5 min Rep 2) decoded in full (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/dl/WT125R2.group.xml, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/groupfull.py); confident-match modification counts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/modcount_WT125R2.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/modcount.py)"
+  },
+  {
+   "id": "quant",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009662/QuantpYfiles.xlsx sheet \"Detected pY sites after process\" (log2 Heavy/Light per mixture; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/dl/QuantpYfiles.xlsx); marker summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scripts/orient.py)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Dwivedi P, Muench DE, Wagner M, Azam M, Grimes HL, Greis KD. Time resolved quantitative phospho-tyrosine analysis reveals Bruton's Tyrosine kinase mediated signaling downstream of the mutated granulocyte-colony stimulating factor receptors. Leukemia 2019;33(1):75-87 (epub 2018), doi:10.1038/s41375-018-0188-8, PMID 29977015, PMC6320735 (NIHMS973567; https://pmc-oa-opendata.s3.amazonaws.com/PMC6320735.1/PMC6320735.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/paper.txt)"
+  },
+  {
+   "id": "suppmethods",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6320735.1/NIHMS973567-supplement-2.docx \"Supplementary Methods\" (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/supp/s2.docx, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/supp/s2.docx.txt)"
+  },
+  {
+   "id": "scidata",
+   "kind": "publication",
+   "location": "Dwivedi P et al. Phospho serine and threonine analysis of normal and mutated G-CSFRs. Sci Data 2019;6:21, PMC6480977 (https://pmc-oa-opendata.s3.amazonaws.com/PMC6480977.1/PMC6480977.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/scidata.txt) - companion deposit PXD009311; states its pS/pT samples are the flow-through of this pY enrichment"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0161?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/cello_CVCL_0161.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b10-PXD009662/ols_search.txt); all terms is_obsolete=False"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign batch rules 1, 3, 4, 10, 11"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-24",
+   "value": "BaF3-<G>_G-CSF-<t>min_rep<n> (heavy) / BaF3-<G>_unstimulated_<t>min-mix-rep<n> (light), G in WT,T618I,Q741x; t in 12.5,90; n in 1,2",
+   "source_ids": [
+    "zipcd",
+    "wiff",
+    "group",
+    "suppmethods",
+    "paper"
+   ],
+   "evidence": "One source per SILAC-labelled culture: each of the 12 mixtures = one G-CSF-stimulated heavy culture + one unstimulated light culture (Suppl. Methods: \"Cells grown in heavy SILAC medium were stimulated with G-CSF (40 ng/mL) for 12.5 mins and 90 mins ... cells grown in light medium were left unstimulated\"; paper: \"two independent biological replicates\"). Genotype from the RAW zip (WTRAWDATA/T618IRAWDATA/Q741XRAWDATA) and the .group names; time and replicate from each .wiff embedded Sample Name (e.g. \"Pankaj_SILAC T618I pY 90 min Rep 1\", \"Pankaj_SILAC 12.5 min pY eluete replicate 2\"). The naming scheme matches the companion annotation of PXD009311 (same lysate mixtures per Sci Data: pS/pT = pY1000 flow-through); the replicate-number correspondence across the two deposits is by label, not otherwise verified."
+  },
+  {
+   "location": "comment[data file], assay name rows 1-24",
+   "value": "12 .wiff runs: WT Data111015_02/04/06/08, T618I Data080216_02/03/05/06, Q741x Data021716_01/02/04/05",
+   "source_ids": [
+    "zipcd",
+    "wiff",
+    "group"
+   ],
+   "evidence": "Each RAW zip holds 4 .wiff + 4 .wiff.scan. Embedded Sample Names: Data111015_02 \"SILAC 12.5 min pY eluete replicate 1\", _04 \"12.5 min ... replicate 2\", _06 \"90 min ... replicate 1\", _08 \"90 min ... replicate 2\"; Data080216_02 \"T618I pY 12.5 min Rep 1\", _03 \"12.5 min Rep 2\", _05 \"90 min Rep 1\", _06 \"90 min Rep 2\"; Data021716_01 \"Q741x_12.5 min pY Rep 1\", _02 \"12.5 min Rep 2\", _04 \"90 min Rep 1\", _05 \"90 min Rep 2\". Each .group file searched exactly that one .wiff (input path in the group header) and its file name repeats the same genotype/time/replicate. comment[data file] names the .wiff member inside its zip; its .wiff.scan companion is in the same zip."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + characteristics[sampling time] + factor values rows 1-24",
+   "value": "SILAC light = unstimulated (untreated, sampling time not applicable); SILAC heavy = G-CSF 12.5 or 90 minute",
+   "source_ids": [
+    "suppmethods",
+    "paper",
+    "pride",
+    "quant"
+   ],
+   "evidence": "Explicit: Suppl. Methods \"Cells grown in heavy SILAC medium were stimulated with G-CSF (40 ng/mL) for 12.5 mins and 90 mins at 37 C and cells grown in light medium were left unstimulated\"; paper Results \"cells grown in light SILAC medium for the non-G-CSF induced control and the heavy SILAC medium as the GCSF-induced experimental samples\". Data check (orientation.txt, log2 H/L): Stat5a pY694 positive in 12/12 mixtures (2.73 to 10), Stat3 pY705 positive in 12/12, Mapk3 pY205 positive in 12/12 (2.11 to 10), canonical G-CSF-induced sites; i.e. heavy = stimulated. Untreated per batch rule 4; sampling time not applicable for cells never stimulated."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-24",
+   "value": "heavy: 1-2 within each (genotype, G-CSF, time); light: 1-4 within each (genotype, untreated, not applicable)",
+   "source_ids": [
+    "paper",
+    "wiff",
+    "suppmethods"
+   ],
+   "evidence": "Paper: each experiment \"performed as two independent biological replicates\" -> heavy Rep 1/2 from the .wiff Sample Name. Each mixture used its own light (unstimulated) culture (Suppl. Methods: 100 million cells per experiment, mixed 10 mg light + 10 mg heavy), so the four light cultures of a genotype share one factor-value group and get distinct numbers: 12.5 min Rep1->1, Rep2->2, 90 min Rep1->3, Rep2->4 (spec README.adoc:330, batch rule 3)."
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype] rows 1-24",
+   "value": "wild-type G-CSFR (CSF3R) transduced / G-CSFR (CSF3R) T618I transduced / G-CSFR (CSF3R) Q741x truncation transduced",
+   "source_ids": [
+    "pride",
+    "paper",
+    "suppmethods",
+    "zipcd"
+   ],
+   "evidence": "PRIDE protocol and paper: \"a retroviral transduction approach was used with BaF3 cells to set-up an in vitro model system expressing WT, T618I, and Q741x G-CSFRs\"; MSCV-IRES-GFP constructs, GFP-sorted. Custom characteristics column (spec Extending Templates), same wording as companion PXD009311."
+  },
+  {
+   "location": "characteristics[treatment] rows (heavy)",
+   "value": "granulocyte colony-stimulating factor",
+   "source_ids": [
+    "suppmethods",
+    "ols"
+   ],
+   "evidence": "Neupogen (human G-CSF, Amgen), 40 ng/mL; NCIT:C26078 \"Granulocyte Colony-Stimulating Factor\" (not obsolete)."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-24",
+   "value": "BA/F3 / CVCL_0161 / Ba/F3",
+   "source_ids": [
+    "pride",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "BaF3 cells in the paper/PRIDE; Cellosaurus CVCL_0161 ID Ba/F3, synonyms BaF3; EFO:0022749 label BA/F3 (DR EFO in Cellosaurus). Mouse line, so no collision with another-species entry."
+  },
+  {
+   "location": "characteristics[organism] rows 1-24",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "group",
+    "ols"
+   ],
+   "evidence": "PRIDE organism NEWT:10090; Cellosaurus OX NCBI_TaxID=10090; ProteinPilot UI_SPECIES Mus musculus."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-24",
+   "value": "bone marrow",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Derived from site: In situ; Bone marrow; UBERON=UBERON_0002371\"."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-24",
+   "value": "pro-B cell",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Cell type: Pro-B cell; CL=CL_0000826\". PRIDE cellTypes field lists \"B cell\" (submitter dropdown); the Cellosaurus term is more specific."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-24",
+   "value": "C3H",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus caution: \"Originally thought to originate from a BALB/c mouse but is in fact from a C3H mouse (PubMed=25277546)\". Free-text column; validator ncbitaxon warning is expected."
+  },
+  {
+   "location": "characteristics[disease] rows 1-24",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Ba/F3 is an IL-3-dependent, non-leukaemic pro-B line (Cellosaurus category Factor-dependent cell line, no disease). PRIDE \"Acute leukemia\" (DOID:12603) describes the study context. PATO:0000461 normal."
+  },
+  {
+   "location": "characteristics[material type] rows 1-24",
+   "value": "cell line",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Cultured Ba/F3 cell line."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-24",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "suppmethods",
+    "group",
+    "ols"
+   ],
+   "evidence": "Phospho-tyrosine peptide immunoaffinity purification on P-Tyr-1000 beads (Cell Signaling #8803); ProteinPilot special factor \"Phos-Tyr affinity column\". EFO:0010806 has no more specific child in OLS4."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-24",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "suppmethods",
+    "ols"
+   ],
+   "evidence": "Suppl. Methods: SILAC RPMI medium (Cambridge Isotope Laboratories #RPMI-500) without Lys/Arg, 5% dialyzed FBS; NCIT:C178973."
+  },
+  {
+   "location": "comment[instrument] rows 1-24",
+   "value": "NT=TripleTOF 5600+;AC=MS:1002584",
+   "source_ids": [
+    "wiff",
+    "suppmethods",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Every .wiff device record: \"Component Name: Hybrid Quadrupole-TOF LC/MS/MS Mass Spectrometer, Component ID: TripleTOF 5600+, Manufacturer: AB Sciex Instruments\" (serials BN20421209 for WT runs, BN23901410 for T618I/Q741x). Suppl. Methods and PRIDE protocol: TripleTOF 5600+. PRIDE instruments field MS:1000932 TripleTOF 5600 is the generic dropdown."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-24",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "suppmethods"
+   ],
+   "evidence": "\"one TOF-MS scan (0.25 s accumulation, 350 to 1600 m/z) following 20 information dependent acquisition (IDA) MS/MS scans on the most intense candidate ions\"."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-24",
+   "value": "350m/z-1600m/z",
+   "source_ids": [
+    "suppmethods"
+   ],
+   "evidence": "TOF-MS scan \"in a 350 to 1600 m/z window\"."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-24",
+   "value": "NT=time-of-flight;AC=MS:1000084",
+   "source_ids": [
+    "suppmethods",
+    "wiff"
+   ],
+   "evidence": "Product ion scans on the Q-TOF (TripleTOF 5600+), high sensitivity mode."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-24",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "wiff",
+    "suppmethods"
+   ],
+   "evidence": "Collision-cell CID on a Sciex quadrupole-TOF; collision energy not stated, so comment[collision energy] is omitted."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-24",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "suppmethods",
+    "group",
+    "pride"
+   ],
+   "evidence": "TPCK-treated trypsin (Worthington), overnight; ProteinPilot UI_DIGESTION Trypsin in all 12 searches."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-24",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "suppmethods",
+    "ols"
+   ],
+   "evidence": "\"reduced using DTT at a final concentration of 5 mM at 60 C for 20 min\"."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-24",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "suppmethods",
+    "group",
+    "ols"
+   ],
+   "evidence": "\"alkylated using 10 mM iodoacetamide\"; ProteinPilot UI_CYS_ALKYLATION Iodoacetamide."
+  },
+  {
+   "location": "comment[modification parameters] (Carbamidomethyl C Fixed; Phospho S,T,Y Variable; Oxidation M; Deamidated N,Q)",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed | NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable | NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Deamidated;AC=UNIMOD:7;TA=N,Q;MT=Variable",
+   "source_ids": [
+    "group",
+    "ols"
+   ],
+   "evidence": "ProteinPilot Paragon is probabilistic, not fixed/variable. All 12 searches: UI_CYS_ALKYLATION Iodoacetamide, UI_SPECIAL_FACTOR \"Phos-Tyr affinity column\" (MOD_FEATURE_SET:43: Phospho(Ser,Thr) and Phospho on Tyr prob 0.49), UI_ID_FOCUS \"Biological modifications\", search effort Thorough. Fully decoded WT 12.5 min Rep 2 group, matches with confidence >= 0.95 (n=2876): C[CAM] 996, Y[Pho] 845, T[Pho] 26, M[Oxi] 123, N[Dea] 94, Q[Dea] 15 - the listed variable mods are the phosphorylation of the special factor plus the most frequent biological mods. Same convention as companion PXD009311."
+  },
+  {
+   "location": "comment[modification parameters] (SILAC labels)",
+   "value": "NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable | NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable",
+   "source_ids": [
+    "group",
+    "pride",
+    "suppmethods",
+    "ols"
+   ],
+   "evidence": "All 12 searches: UI_SAMPLE_TYPE and UI_QUANT_TYPE \"SILAC (Lys+8, Arg+10)\"; Suppl. Methods search settings also \"SILAC (Lys+8, Arg+10)\"; PRIDE protocol heavy medium \"C-13, N-15 Lysine and Arginine\"; CIL catalogue numbers CNLM-539 / CNLM-291 are the CNLM (13C,15N) series. Decoded WT 12.5 min Rep 2: 2027 confident matches carry K[+08]/R[+10] vs 848 unlabelled K/R peptides. CONFLICT: Suppl. Methods reagent text says \"13C6-Lysine and 13C6-Arginine\" (= +6); the search settings, label masses observed and the CNLM catalogue numbers outweigh it. MT=Variable per batch rule 11."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-24",
+   "value": "0.05 Da / 0.1 Da",
+   "source_ids": [
+    "group"
+   ],
+   "evidence": "UI_INSTRUMENT \"TripleTOF 5600\" selects the ProteinPilot preset INSTRUMENT:60: MSTOLERANCE 0.05 dalton, MSMSTOLERANCE 0.1 dalton, with auto-calibration on (read from the decoded WT 12.5 min Rep 2 group; the other 11 groups use the same UI_INSTRUMENT)."
+  },
+  {
+   "location": "comment[fraction identifier], comment[technical replicate] rows 1-24",
+   "value": "1 / 1",
+   "source_ids": [
+    "zipcd",
+    "wiff"
+   ],
+   "evidence": "One unfractionated injection per SILAC mixture (12 .wiff for 12 mixtures; no fraction or re-injection in the sample names)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-24",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0, NT=vertebrates;VV=v1.1.0, NT=cell-lines;VV=v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; templates chosen: MS data, mouse cells (vertebrates), cell-line samples (cell-lines). No clinical/oncology template: engineered non-leukaemic cell line (rule 15)."
+  }
+ ],
+ "limitations": [
+  "Label-mass conflict: Supplementary Methods reagent paragraph says 13C6-Lys/13C6-Arg; ProteinPilot settings (all 12 searches), the Supplementary Methods search paragraph, the PRIDE protocol (C-13, N-15) and the observed K+8/R+10 matches say Lys8/Arg10. Annotated as Lys8/Arg10. The CIL catalogue pages could not be machine-read (JavaScript shell), so the catalogue identities rely on the CNLM (13C,15N) naming only.",
+  "Only one .group file (WT 12.5 min Rep 2) was decoded in full for modification counts and the tolerance preset; the other 11 were checked for identical UI settings (sample type, alkylation, digestion, special factor, instrument, species, effort, ID focus) only.",
+  "Independence of the light (unstimulated) culture in each mixture is inferred from per-experiment cell numbers (100 million cells, 10 mg light + 10 mg heavy mixed per experiment) and \"two independent biological replicates\"; not stated verbatim per mixture.",
+  "Correspondence of these 12 mixtures with the 12 mixtures of companion PXD009311 (pS/pT from the pY1000 flow-through per Sci Data) is stated at study level only; same source-name scheme used, replicate pairing across deposits not independently verified.",
+  "Not stated in the sources: species of the CSF3R cDNA, collision energy (rolling CE presumed, omitted), passage number, sex/age of the Ba/F3 donor mouse (Cellosaurus has none) -> not available.",
+  "No runs excluded: all 12 deposited .wiff runs are annotated. SearchEngineOutput.zip (12 .group) and QuantpYfiles.xlsx are search/quant outputs, not runs."
+ ]
+}
