@@ -1,15 +1,25 @@
-# PXD002388 validation log (2026-11-09T15:04Z); SDRF sha256 f3f0f7abebe8e993dec913e092942a73dfb55ed70fe434b990bfc27a2585d926; 108 data rows x 49 columns
-# SDRF = two sdrf-tools build outputs (searched: 52 runs/104 rows; unsearched: 2 runs/4 rows) concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/scripts/concat.sh with identical headers asserted; no other post-build edit.
+# PXD002388 validation log, round 2 (2026-11-09T15:46Z); SDRF sha256 889669eae541c625b712519d654ef22f20d164bc80f204bb4260486ae9c15e19; 108 data rows x 49 columns
+# Round 2 follows the independent review FAIL (annotations/PXD002388.review.md; F1 heavy biological replicate, F2 two control runs wrongly treated as unsearched).
+# The SDRF is the output of ONE sdrf-tools build (samples.tsv + technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/scripts/make_tables.py); there is no post-build edit and no concatenation.
+# Round-1 log (superseded file f3f0f7ab...) is kept at /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/validation_r1.txt
+
+## sdrf-tools build --samples samples.tsv --technical technical.tsv --files files_raw.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD002388.sdrf.tsv
+wrote annotations/PXD002388.sdrf.tsv: 108 rows x 49 columns
+Note: a first round-2 attempt with ONE shared heavy source name was refused by build (shared source + biological replicate 1 + technical replicate 1 + fraction 1 across single-file runs), so each reference row keeps an aliquot-specific source name, all with biological replicate 1.
 
 ## parse_sdrf validate-sdrf -s annotations/PXD002388.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+ERROR:sdrf_pipelines.ols.ols:OLS search term homo sapiens error, retry number 0
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term homo sapiens. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=homo+sapiens&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on
 ERROR:sdrf_pipelines.ols.ols:OLS search term homo sapiens error, retry number 3
 ERROR:sdrf_pipelines.ols.ols:OLS error searching term homo sapiens. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=homo+sapiens&name=class&rows=10&start=30&ontology=ncbitaxon&exact=on
-ERROR:sdrf_pipelines.ols.ols:OLS search term lung adenocarcinoma error, retry number 1
-ERROR:sdrf_pipelines.ols.ols:OLS error searching term lung adenocarcinoma. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=lung+adenocarcinoma&name=class&rows=10&start=10&ontology=ncit&exact=on
+ERROR:sdrf_pipelines.ols.ols:OLS search term homo sapiens error, retry number 8
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term homo sapiens. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=homo+sapiens&name=class&rows=10&start=80&ontology=ncbitaxon&exact=on
+ERROR:sdrf_pipelines.ols.ols:OLS search term epithelial cell error, retry number 4
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term epithelial cell. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=epithelial+cell&name=class&rows=10&start=40&ontology=clo&exact=on
 WARNING: Term: Minimum Essential Medium in column 'characteristics[culture medium]', is not found in the given ontology list ncit
 Most seems to be fine. There were only warnings.
 exit=0
-Note: the two 'OLS error searching term' lines are transient OLS4 HTTP 500s on result pages start=30 / start=10 of the validator's own searches (retried); the run completed with only the culture-medium warning. Homo sapiens (NCBITaxon:9606) and lung adenocarcinoma (MONDO:0005061) were verified separately via OLS4 terms?obo_id (is_obsolete=False, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/ols_ids.txt). The culture-medium warning is expected: OLS NCIT has no Minimum Essential Medium term; the stated name is written.
+Note: the 'OLS error searching term' lines are transient OLS4 HTTP 500s on the validator's own paged searches. It retried them and completed with only the culture-medium warning. Homo sapiens (NCBITaxon:9606) and epithelial cell (CL:0000066) were verified separately with OLS4 terms?obo_id (is_obsolete=False, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/ols_ids.txt). The culture-medium warning is expected: OLS NCIT has no Minimum Essential Medium term.
 
 ## sdrf-tools structure annotations/PXD002388.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
@@ -19,9 +29,7 @@ exit=0
 PXD002388: every annotated value agrees with the deposit record.
 exit=0
 
-## sdrf-tools check annotations/PXD002388.sdrf.tsv
-First (online) attempt crashed on an OLS4 HTTP 500 (search?q=Homo+sapiens, ontology=ncbitaxon): exit=1, not a finding. Re-run offline:
-## sdrf-tools check annotations/PXD002388.sdrf.tsv --offline
+## sdrf-tools check annotations/PXD002388.sdrf.tsv --offline (the online mode crashed on an OLS 500 in round 1)
 Hallucination Report: annotations/PXD002388.sdrf.tsv
   Terms checked:     11
   Verified:          4
@@ -33,12 +41,10 @@ Hallucination Report: annotations/PXD002388.sdrf.tsv
 exit=0
 
 ## parse_sdrf convert-openms -s annotations/PXD002388.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD002388/convert)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
     raise ValueError(msg) from ex
 ValueError: Error: Cannot read precursor mass tolerance: not available
 exit=1
-Expected failure: comment[precursor mass tolerance] = not available (SEQUEST/Elucidator search tolerances not reported in PRIDE or the Data Brief). Rows 105-108 carry not applicable (runs absent from the deposited results). validate-sdrf and the templates accept both reserved words. Same outcome as campaign precedents PXD014368/PXD006676.
+Expected failure: comment[precursor mass tolerance] = not available on all rows. SEQUEST/Elucidator search tolerances are not reported in PRIDE or the Data Brief. validate-sdrf and the templates accept the reserved word. Same outcome as campaign precedents PXD014368/PXD006676.
 
 ## sdrf-tools schema-check annotations/PXD002388.evidence.json
 annotations/PXD002388.evidence.json: valid evidence-manifest
