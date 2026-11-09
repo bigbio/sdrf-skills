@@ -44,6 +44,16 @@
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/markers.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/viral.txt (scripts/markers.py, scripts/viral.py on proteinGroups ratios/intensities); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/labelcheck.txt (scripts/labelcheck2.py: light-to-medium/heavy m/z spacing x charge in evidence); /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/masscheck.txt (scripts/masscheck.py: Cys residual mass)"
   },
   {
+   "id": "tableS4",
+   "kind": "supplementary",
+   "location": "Table S4 of PMC7539533: https://pmc-oa-opendata.s3.amazonaws.com/PMC7539533.1/mmc5.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/dl/mmc5.xlsx; tabs \"UL56(1-207)-GFP\" and \"GFP-UL56(1-234)\")"
+  },
+  {
+   "id": "swapcheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/swapcheck.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/scripts/swapcheck.py: proteinGroups per-experiment ratios of TRAPPC10/KPNB1/PHB2 and evidence L/M/H intensities of the 1-234-only peptide QGCCGVVWR)"
+  },
+  {
    "id": "cellosaurus",
    "kind": "ontology",
    "location": "https://api.cellosaurus.org/cell-line/CVCL_0038?format=txt and CVCL_0063 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/cello_CVCL_0038.txt, cello_CVCL_0063.txt); sdrf-tools cellline lookup (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD021351/cellline.txt)"
@@ -67,15 +77,28 @@
    "evidence": "details Experiment 2 \"UL56 SILAC IP ... 3 biological replicates\", files SILAC_IP_Exp1..3. Raw headers: original names 090316_Exp1/2/3.raw (\"090316 Triple SILAC\"); MaxQuant evidence raw files 090316_Exp1/2/3 = experiments 1/2/3 (fractions 11/22/33). One source per (replicate, channel)."
   },
   {
-   "location": "comment[label] + characteristics[bait] + factor value[bait] rows 1-9",
-   "value": "SILAC light = GFP; SILAC medium = pUL56(1-207)-GFP; SILAC heavy = GFP-pUL56(1-234)",
+   "location": "comment[label] + characteristics[bait] + factor value[bait] + source name rows 1-9",
+   "value": "Exp1 (rows 1-3): SILAC light = GFP, SILAC medium = GFP-pUL56(1-234), SILAC heavy = pUL56(1-207)-GFP; Exp2 and Exp3 (rows 4-9): SILAC light = GFP, SILAC medium = pUL56(1-207)-GFP, SILAC heavy = GFP-pUL56(1-234)",
    "source_ids": [
+    "tableS4",
+    "swapcheck",
+    "mq_proteins",
+    "mq_evidence",
     "details",
     "paper",
-    "mq_proteins",
     "checks"
    ],
-   "evidence": "details Experiment 2 \"SILAC labelling: Light GFP, Medium pUL56(1-207)-GFP, Heavy GFP-pUL56 (1-234)\". Paper: \"SILAC-labeled HEK293T cells were transfected with GFP-tagged pUL56 cytoplasmic domain (residues 1-207) or GFP alone and subjected to IP using a GFP affinity resin\"; Table S4 legend \"Two different constructs of pUL56 encompassing either the full-length protein or its cytoplasmic domain\"; \"light-, medium- and heavy-labeled bound samples were mixed in a 1:1:1 ratio\". Data check (proteinGroups exp 1/2/3): pUL56 (AFE62885.1) M/L 12.9/1.9/5.5, H/L 12.3/9.6/9.6; GOPC M/L 5.5/2.8/5.4, H/L 9.1/6.9/9.2; ITCH M/L 8.6/7.8/12.4; NEDD4 M/L 6.2/6.4/7.7; viral protein intensity L 2.7-3.1e8 vs M 1.6-2.1e9, H 3.5-5.3e9 -> light = GFP-only control, medium and heavy = pUL56 baits (which pUL56 construct is M vs H is from the details sheet; both are enriched, so the data do not discriminate them)."
+   "evidence": "Explicit label statement: paper Table S4 (mmc5.xlsx) column headers - tab \"UL56(1-207)-GFP\": \"Exp 1 log2 (H/L)\", \"Exp2 log2 (M/L)\", \"Exp3 log2 (M/L)\"; tab \"GFP-UL56(1-234)\": \"Exp 1 log 2 (M/L)\", \"Exp2 log2 (H/L)\", \"Exp3 log 2 (H/L)\" -> Exp1 is a medium/heavy label swap. Table S4 values equal the deposited proteinGroups normalized ratios (TRAPPC10 Exp1 H/L 4.235 = log2 Ratio H/L normalized 1). Data check (swapcheck.txt): QGCCGVVWR (pUL56 residues 206-214, present only in the 1-234 construct) is medium-dominant in Exp1 (M 3.2e7 vs H 6.8e5) and heavy-dominant in Exp2/Exp3 (H 9.5e7 / 5.6e7 vs M 2.6e5 / 3.2e5); the full-length-specific interactors KPNB1 and PHB2 have log2 M/L +3.8/+3.2 in Exp1 but H/L +3.8/+3.6 in Exp2/3, and TRAPPC10 (1-207 interactor) H/L +3.8 in Exp1 vs M/L +3.4/+3.2 in Exp2/3. Light = GFP-only control in all three (pUL56, GOPC, ITCH, NEDD4 enriched in both M and H over L; viral intensity L << M, H). CONFLICT (rule 6): the deposited Detailsofsamplesandrawfiles.docx gives a single map for all three replicates (Light GFP, Medium pUL56(1-207)-GFP, Heavy GFP-pUL56 (1-234)); that is correct for Exp2/Exp3 only. The paper table plus the construct-specific peptide override the docx for Exp1. Paper: \"SILAC-labeled HEK293T cells were transfected with GFP-tagged pUL56 cytoplasmic domain (residues 1-207) or GFP alone\"; \"light-, medium- and heavy-labeled bound samples were mixed in a 1:1:1 ratio\"."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-9",
+   "value": "control sample (GFP-only IP, light) / study sample (pUL56-bait IPs)",
+   "source_ids": [
+    "paper",
+    "tableS4",
+    "details"
+   ],
+   "evidence": "GFP alone is the negative-control IP against which pUL56-bait enrichment is computed (Table S4 ratios are bait/GFP = x/L; paper Fig. 3A \"compared to GFP\"). PRIDE:0001014 control sample / PRIDE:0001013 study sample (children of PRIDE:0000895)."
   },
   {
    "location": "characteristics[biological replicate] rows 1-9",
@@ -221,6 +244,6 @@
   "The deposited raw files were renamed after the search; the raw -> MaxQuant-raw mapping is established from the original file names embedded in the raw headers and from MS1 resolution / gradient length in the evidence table (see source name claims).",
   "Review status REVIEW_PENDING_EXTERNAL: external sdrf-adversarial-review hand-off; not self-approved.",
   "Reduction/alkylation reagents of the ProGest in-gel digestion are not named (not available).",
-  "Medium vs heavy bait identity (pUL56(1-207)-GFP vs GFP-pUL56(1-234)) rests on the deposited details sheet only; both baits enrich pUL56/GOPC/ITCH over light, so the data cannot discriminate the two constructs."
+  "Channel-map conflict (rule 6): the deposited details docx states one map (M = pUL56(1-207)-GFP, H = GFP-pUL56(1-234)) for all three IP replicates, but paper Table S4 column headers and the 1-234-specific peptide QGCCGVVWR show Exp1 is label-swapped (M = GFP-pUL56(1-234), H = pUL56(1-207)-GFP). The Exp1 rows follow Table S4 + data."
  ]
 }
