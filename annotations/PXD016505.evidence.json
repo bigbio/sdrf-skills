@@ -46,7 +46,7 @@
   {
    "id": "pools",
    "kind": "derived",
-   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/PXD016505.pools.json, written by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/make_tables.py (run->physical pooled sample grouping, biological replicate numbering); count check output of /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/runs.py; correlation checks /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/corr.py (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/corr_BRAF.txt); bait check /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/bait_check.py (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/bait_check.txt)"
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/PXD016505.pools.json, written by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/make_tables.py (run->physical pooled sample grouping, biological replicate numbering); count check output of /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/runs.py; correlation checks /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/corr.py (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/corr_BRAF.txt); bait check /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/bait_check.py (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/bait_check.txt); per-experiment summed intensities /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/scripts/exp_intensity.py (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/exp_intensity_PRKCA.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD016505/exp_intensity_CASP9_HDAC1.txt)"
   },
   {
    "id": "cellosaurus",
@@ -66,7 +66,7 @@
  ],
  "claims": [
   {
-   "location": "source name, characteristics[biological replicate], comment[technical replicate] rows 1-1047",
+   "location": "source name, characteristics[biological replicate], comment[technical replicate] rows 1-1050",
    "value": "<bait>_<batch>_<FOR|REV>_pool<k>_<cell line>_<FLAG-bait|EV>; 207 pooled SILAC triplets, 3 sources (cultures/IPs) each",
    "source_ids": [
     "raw_headers",
@@ -77,7 +77,7 @@
    "evidence": "Supp. Methods 9-12: each bait IP'd from SILAC-labelled cells grown \"in biological triplicate for each condition (Light, Medium, Heavy; n=3 forward and n=3 reverse samples per bait per cell line)\"; \"SILAC triplets (light, medium, heavy) were pooled before MS analyses\", \"the MS analyses include 2 technical replicates for each sample (i.e. the same sample was analyzed twice by MS)\". Physical pooled sample identified from the raw headers: runs of one batch/bait/direction acquired from the same autosampler vial on the same instrument PC (e.g. LDY1603 MEK F-1/F-2 vial GB1, F-3/F-4 GB2, F-5/F-6 GB3; explicit <bio>-<tech> names such as ALI1408 GRB2-F-1-1/F-1-2 share vial RA6), or whose header original acquisition name is another deposited run (LDY1275 *-F-12 -> *-F-1), or that share an explicit <bio> index (ALI1428 RAB5A measured on two instruments) are one sample; they share a source name and are numbered comment[technical replicate] 1..n in slot order. No vial is shared by two bait/direction groups of one batch (check in pools.json). Biological replicate = running number of distinct pooled samples within each factor group (bait x cell line; empty vector x cell line), so every culture has its own number (spec README.adoc:330, campaign rule 3)."
   },
   {
-   "location": "comment[label] + characteristics[cell line] + characteristics[bait] rows 1-1047",
+   "location": "comment[label] + characteristics[cell line] + characteristics[bait] rows 1-1050",
    "value": "FOR: SILAC heavy = HCT116 FLAG-bait, SILAC medium = HKE-3 empty vector, SILAC light = HKE-3 FLAG-bait; REV: SILAC heavy = HKE-3 FLAG-bait, SILAC medium = HCT116 empty vector, SILAC light = HCT116 FLAG-bait",
    "source_ids": [
     "design_txt",
@@ -88,7 +88,7 @@
    "evidence": "Deposited PRIMESDataSILACLabelExperiemntaldesign.txt: \"FORWARD Experiment (FOR, F)  HCT116(Bait) | HKE3 (Empty Vector) | HKE3 (Bait)\" and \"REVERSE Experiement (REV, R)  HKE3 (Bait) | HCT116 (Empty Vector) | HCT116 (Bait)\" under columns Heavy | Medium | Light. Supp. Methods 9 table: \"FORWARD HCT116 Heavy, (Bait) HKE3, Medium (Empty Vector) HKE3 Light, (Bait); REVERSE HCT116 Light, (Bait) HCT116, Medium (Empty Vector) HKE3 Heavy, (Bait)\" - the two explicit sources agree. Direction from the file-name token FOR/F/For or REV/R/Rev. Data check (bait_check.txt): the FLAG bait is enriched over the medium (empty-vector) channel in heavy and light in every direction (median log2 H/M 1.6-5.1, L/M 2.0-4.7; e.g. CASP9, HDAC1, BRAF, MAP2K1, RAF1, PRKCA/E/G). Orientation check: where bait levels differ between the cell lines the difference follows the swap - PEBP1 FOR H/M 1.57 < L/M 3.14 and REV H/M 4.32 > L/M 2.79; RAC1 FOR 2.06 < 4.35, REV 4.27 > 2.41; PRKCA FOR 1.62 < 3.28, REV 3.13 > 2.05 - i.e. the HKE-3 bait channel is light in FOR and heavy in REV, as stated."
   },
   {
-   "location": "characteristics[bait], factor value[bait] rows 1-1047",
+   "location": "characteristics[bait], factor value[bait] rows 1-1050",
    "value": "FLAG-<gene symbol> (bait rows); \"none (FLAG empty vector control)\" (medium-channel rows)",
    "source_ids": [
     "baits_txt",
@@ -99,8 +99,8 @@
    "evidence": "Paper Methods: bait cDNAs \"cloned into the SF-TAP vector with the FLAG-tag at the N-terminus\", IP with anti-FLAG-M2 agarose; EV Ctrl = empty vector control transfection. Bait from the file-name token mapped to the gene symbols of PRIMESTableallthebaitsDescription.txt (e.g. MEK->MAP2K1, KCA/KCE/KCG/KCI/KCZ->PRKCA/E/G/I/Z, PRKCB1->PRKCB, BGRL->SH3BGRL, KBP1->SH3KBP1, M2K3->MAP2K3, 14-3-3/1433E->YWHAE, RASA->RASA1, TNK->TNK2, PEBP->PEBP1; table in scripts/runs.py) and checked against the MaxQuant experiment names (the raw count per bait/direction equals the experiment count, see limitations for exceptions)."
   },
   {
-   "location": "characteristics[sample type] rows 1-1047",
-   "value": "study sample (FLAG-bait IP rows 1,3-4,6-7,9-10,12-13,15-16,18-19,21-22,24-25,27-28,30-31,33-34,36-37,39-40,42-43,45-46,48-49,51-52,54-55,57-58,60-61,63-64,66-67,69-70,72-73,75-76,78-79,81-82,84-85,87-88,90-91,93-94,96-97,99-100,102-103,105-106,108-109,111-112,114-115,117-118,120-121,123-124,126-127,129-130,132-133,135-136,138-139,141-142,144-145,147-148,150-151,153-154,156-157,159-160,162-163,165-166,168-169,171-172,174-175,177-178,180-181,183-184,186-187,189-190,192-193,195-196,198-199,201-202,204-205,207-208,210-211,213-214,216-217,219-220,222-223,225-226,228-229,231-232,234-235,237-238,240-241,243-244,246-247,249-250,252-253,255-256,258-259,261-262,264-265,267-268,270-271,273-274,276-277,279-280,282-283,285-286,288-289,291-292,294-295,297-298,300-301,303-304,306-307,309-310,312-313,315-316,318-319,321-322,324-325,327-328,330-331,333-334,336-337,339-340,342-343,345-346,348-349,351-352,354-355,357-358,360-361,363-364,366-367,369-370,372-373,375-376,378-379,381-382,384-385,387-388,390-391,393-394,396-397,399-400,402-403,405-406,408-409,411-412,414-415,417-418,420-421,423-424,426-427,429-430,432-433,435-436,438-439,441-442,444-445,447-448,450-451,453-454,456-457,459-460,462-463,465-466,468-469,471-472,474-475,477-478,480-481,483-484,486-487,489-490,492-493,495-496,498-499,501-502,504-505,507-508,510-511,513-514,516-517,519-520,522-523,525-526,528-529,531-532,534-535,537-538,540-541,543-544,546-547,549-550,552-553,555-556,558-559,561-562,564-565,567-568,570-571,573-574,576-577,579-580,582-583,585-586,588-589,591-592,594-595,597-598,600-601,603-604,606-607,609-610,612-613,615-616,618-619,621-622,624-625,627-628,630-631,633-634,636-637,639-640,642-643,645-646,648-649,651-652,654-655,657-658,660-661,663-664,666-667,669-670,672-673,675-676,678-679,681-682,684-685,687-688,690-691,693-694,696-697,699-700,702-703,705-706,708-709,711-712,714-715,717-718,720-721,723-724,726-727,729-730,732-733,735-736,738-739,741-742,744-745,747-748,750-751,753-754,756-757,759-760,762-763,765-766,768-769,771-772,774-775,777-778,780-781,783-784,786-787,789-790,792-793,795-796,798-799,801-802,804-805,807-808,810-811,813-814,816-817,819-820,822-823,825-826,828-829,831-832,834-835,837-838,840-841,843-844,846-847,849-850,852-853,855-856,858-859,861-862,864-865,867-868,870-871,873-874,876-877,879-880,882-883,885-886,888-889,891-892,894-895,897-898,900-901,903-904,906-907,909-910,912-913,915-916,918-919,921-922,924-925,927-928,930-931,933-934,936-937,939-940,942-943,945-946,948-949,951-952,954-955,957-958,960-961,963-964,966-967,969-970,972-973,975-976,978-979,981-982,984-985,987-988,990-991,993-994,996-997,999-1000,1002-1003,1005-1006,1008-1009,1011-1012,1014-1015,1017-1018,1020-1021,1023-1024,1026-1027,1029-1030,1032-1033,1035-1036,1038-1039,1041-1042,1044-1045,1047); negative control (empty-vector IP rows 2,5,8,11,14,17,20,23,26,29,32,35,38,41,44,47,50,53,56,59,62,65,68,71,74,77,80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125,128,131,134,137,140,143,146,149,152,155,158,161,164,167,170,173,176,179,182,185,188,191,194,197,200,203,206,209,212,215,218,221,224,227,230,233,236,239,242,245,248,251,254,257,260,263,266,269,272,275,278,281,284,287,290,293,296,299,302,305,308,311,314,317,320,323,326,329,332,335,338,341,344,347,350,353,356,359,362,365,368,371,374,377,380,383,386,389,392,395,398,401,404,407,410,413,416,419,422,425,428,431,434,437,440,443,446,449,452,455,458,461,464,467,470,473,476,479,482,485,488,491,494,497,500,503,506,509,512,515,518,521,524,527,530,533,536,539,542,545,548,551,554,557,560,563,566,569,572,575,578,581,584,587,590,593,596,599,602,605,608,611,614,617,620,623,626,629,632,635,638,641,644,647,650,653,656,659,662,665,668,671,674,677,680,683,686,689,692,695,698,701,704,707,710,713,716,719,722,725,728,731,734,737,740,743,746,749,752,755,758,761,764,767,770,773,776,779,782,785,788,791,794,797,800,803,806,809,812,815,818,821,824,827,830,833,836,839,842,845,848,851,854,857,860,863,866,869,872,875,878,881,884,887,890,893,896,899,902,905,908,911,914,917,920,923,926,929,932,935,938,941,944,947,950,953,956,959,962,965,968,971,974,977,980,983,986,989,992,995,998,1001,1004,1007,1010,1013,1016,1019,1022,1025,1028,1031,1034,1037,1040,1043,1046)",
+   "location": "characteristics[sample type] rows 1-1050",
+   "value": "study sample (FLAG-bait IP rows 1,3-4,6-7,9-10,12-13,15-16,18-19,21-22,24-25,27-28,30-31,33-34,36-37,39-40,42-43,45-46,48-49,51-52,54-55,57-58,60-61,63-64,66-67,69-70,72-73,75-76,78-79,81-82,84-85,87-88,90-91,93-94,96-97,99-100,102-103,105-106,108-109,111-112,114-115,117-118,120-121,123-124,126-127,129-130,132-133,135-136,138-139,141-142,144-145,147-148,150-151,153-154,156-157,159-160,162-163,165-166,168-169,171-172,174-175,177-178,180-181,183-184,186-187,189-190,192-193,195-196,198-199,201-202,204-205,207-208,210-211,213-214,216-217,219-220,222-223,225-226,228-229,231-232,234-235,237-238,240-241,243-244,246-247,249-250,252-253,255-256,258-259,261-262,264-265,267-268,270-271,273-274,276-277,279-280,282-283,285-286,288-289,291-292,294-295,297-298,300-301,303-304,306-307,309-310,312-313,315-316,318-319,321-322,324-325,327-328,330-331,333-334,336-337,339-340,342-343,345-346,348-349,351-352,354-355,357-358,360-361,363-364,366-367,369-370,372-373,375-376,378-379,381-382,384-385,387-388,390-391,393-394,396-397,399-400,402-403,405-406,408-409,411-412,414-415,417-418,420-421,423-424,426-427,429-430,432-433,435-436,438-439,441-442,444-445,447-448,450-451,453-454,456-457,459-460,462-463,465-466,468-469,471-472,474-475,477-478,480-481,483-484,486-487,489-490,492-493,495-496,498-499,501-502,504-505,507-508,510-511,513-514,516-517,519-520,522-523,525-526,528-529,531-532,534-535,537-538,540-541,543-544,546-547,549-550,552-553,555-556,558-559,561-562,564-565,567-568,570-571,573-574,576-577,579-580,582-583,585-586,588-589,591-592,594-595,597-598,600-601,603-604,606-607,609-610,612-613,615-616,618-619,621-622,624-625,627-628,630-631,633-634,636-637,639-640,642-643,645-646,648-649,651-652,654-655,657-658,660-661,663-664,666-667,669-670,672-673,675-676,678-679,681-682,684-685,687-688,690-691,693-694,696-697,699-700,702-703,705-706,708-709,711-712,714-715,717-718,720-721,723-724,726-727,729-730,732-733,735-736,738-739,741-742,744-745,747-748,750-751,753-754,756-757,759-760,762-763,765-766,768-769,771-772,774-775,777-778,780-781,783-784,786-787,789-790,792-793,795-796,798-799,801-802,804-805,807-808,810-811,813-814,816-817,819-820,822-823,825-826,828-829,831-832,834-835,837-838,840-841,843-844,846-847,849-850,852-853,855-856,858-859,861-862,864-865,867-868,870-871,873-874,876-877,879-880,882-883,885-886,888-889,891-892,894-895,897-898,900-901,903-904,906-907,909-910,912-913,915-916,918-919,921-922,924-925,927-928,930-931,933-934,936-937,939-940,942-943,945-946,948-949,951-952,954-955,957-958,960-961,963-964,966-967,969-970,972-973,975-976,978-979,981-982,984-985,987-988,990-991,993-994,996-997,999-1000,1002-1003,1005-1006,1008-1009,1011-1012,1014-1015,1017-1018,1020-1021,1023-1024,1026-1027,1029-1030,1032-1033,1035-1036,1038-1039,1041-1042,1044-1045,1047-1048,1050); negative control (empty-vector IP rows 2,5,8,11,14,17,20,23,26,29,32,35,38,41,44,47,50,53,56,59,62,65,68,71,74,77,80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125,128,131,134,137,140,143,146,149,152,155,158,161,164,167,170,173,176,179,182,185,188,191,194,197,200,203,206,209,212,215,218,221,224,227,230,233,236,239,242,245,248,251,254,257,260,263,266,269,272,275,278,281,284,287,290,293,296,299,302,305,308,311,314,317,320,323,326,329,332,335,338,341,344,347,350,353,356,359,362,365,368,371,374,377,380,383,386,389,392,395,398,401,404,407,410,413,416,419,422,425,428,431,434,437,440,443,446,449,452,455,458,461,464,467,470,473,476,479,482,485,488,491,494,497,500,503,506,509,512,515,518,521,524,527,530,533,536,539,542,545,548,551,554,557,560,563,566,569,572,575,578,581,584,587,590,593,596,599,602,605,608,611,614,617,620,623,626,629,632,635,638,641,644,647,650,653,656,659,662,665,668,671,674,677,680,683,686,689,692,695,698,701,704,707,710,713,716,719,722,725,728,731,734,737,740,743,746,749,752,755,758,761,764,767,770,773,776,779,782,785,788,791,794,797,800,803,806,809,812,815,818,821,824,827,830,833,836,839,842,845,848,851,854,857,860,863,866,869,872,875,878,881,884,887,890,893,896,899,902,905,908,911,914,917,920,923,926,929,932,935,938,941,944,947,950,953,956,959,962,965,968,971,974,977,980,983,986,989,992,995,998,1001,1004,1007,1010,1013,1016,1019,1022,1025,1028,1031,1034,1037,1040,1043,1046,1049)",
    "source_ids": [
     "paper",
     "design_txt",
@@ -109,8 +109,8 @@
    "evidence": "Empty-vector control transfection used as the background reference for bait-prey calls (paper: prey abundance in the pull-down \"significantly higher (P <= 0.05) than in empty vector controls\"). PRIDE:0001013 study sample, PRIDE:0000905 negative control (children of PRIDE:0000895)."
   },
   {
-   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], factor value[cell line] rows 1-1047",
-   "value": "HCT116 / CVCL_0291 / HCT 116 (rows 1,4,8-9,11-13,16,20-21,23-25,28,32-33,35-37,41-43,46,50-51,53-55,58,62-63,65-67,70,74-75,77-79,83-85,88,92-93,95-97,100,104-105,107-109,112,116-117,119-121,124,128-129,131-133,136,140-141,143-145,148,152-153,155-157,160,164-165,167-169,172,176-177,179-181,185-187,190,194-195,197-199,202,206-207,209-211,214,218-219,221-223,226,230-231,233-235,238,241,244,248-249,251-252,254-255,257-259,263-265,268,272-273,275-277,280,284-285,287-289,292,296-297,299-301,305-307,310,314-315,317-319,322,326-327,329-331,334,338-339,341-343,347-349,352,356-357,359-361,364,368-369,371-373,376,380-381,383-385,388,391,394,398-399,401-402,404-405,407-409,412,416-417,419-421,425-427,430,434-435,437-439,442,446-447,449-451,454,458-459,461-463,467-469,472,476-477,479-481,484,488-489,491-493,497-499,503-505,508,512-513,515-517,520,523,526,529,532,536-537,539-540,542-543,545-546,548-549,551-553,556,560-561,563-565,568,571,574,578-579,581-582,584-585,587-589,593-595,598,602-603,605-607,610,614-615,617-619,623-625,628,632-633,635-637,640,644-645,647-649,653-655,658,662-663,665-667,670,674-675,677-679,682,685,688,691,694,698-699,701-702,704-705,707-708,710-711,713-715,719-721,725-727,731-733,736,740-741,743-745,748,752-753,755-757,761-763,767-768,770-772,776-778,782-784,787,791-792,794-796,800-802,806-808,811,815-816,818-820,823,827-828,830-832,835,839-840,842-844,847,850,854-855,857-858,860-862,865,869-870,872-874,877,881-882,884-886,889,893-894,896-898,902-904,907,911-912,914-916,919,923-924,926-928,931,935-936,938-940,943,947-948,950-952,956-958,961,965-966,968-970,974-976,980-982,986-988,992-994,998-1000,1004-1006,1010-1012,1015,1018,1021,1025-1026,1028-1029,1031-1032,1034-1036,1040-1042,1046-1047); HKE-3 / CVCL_9796 / HKe-3 (rows 2-3,5-7,10,14-15,17-19,22,26-27,29-31,34,38-40,44-45,47-49,52,56-57,59-61,64,68-69,71-73,76,80-82,86-87,89-91,94,98-99,101-103,106,110-111,113-115,118,122-123,125-127,130,134-135,137-139,142,146-147,149-151,154,158-159,161-163,166,170-171,173-175,178,182-184,188-189,191-193,196,200-201,203-205,208,212-213,215-217,220,224-225,227-229,232,236-237,239-240,242-243,245-247,250,253,256,260-262,266-267,269-271,274,278-279,281-283,286,290-291,293-295,298,302-304,308-309,311-313,316,320-321,323-325,328,332-333,335-337,340,344-346,350-351,353-355,358,362-363,365-367,370,374-375,377-379,382,386-387,389-390,392-393,395-397,400,403,406,410-411,413-415,418,422-424,428-429,431-433,436,440-441,443-445,448,452-453,455-457,460,464-466,470-471,473-475,478,482-483,485-487,490,494-496,500-502,506-507,509-511,514,518-519,521-522,524-525,527-528,530-531,533-535,538,541,544,547,550,554-555,557-559,562,566-567,569-570,572-573,575-577,580,583,586,590-592,596-597,599-601,604,608-609,611-613,616,620-622,626-627,629-631,634,638-639,641-643,646,650-652,656-657,659-661,664,668-669,671-673,676,680-681,683-684,686-687,689-690,692-693,695-697,700,703,706,709,712,716-718,722-724,728-730,734-735,737-739,742,746-747,749-751,754,758-760,764-766,769,773-775,779-781,785-786,788-790,793,797-799,803-805,809-810,812-814,817,821-822,824-826,829,833-834,836-838,841,845-846,848-849,851-853,856,859,863-864,866-868,871,875-876,878-880,883,887-888,890-892,895,899-901,905-906,908-910,913,917-918,920-922,925,929-930,932-934,937,941-942,944-946,949,953-955,959-960,962-964,967,971-973,977-979,983-985,989-991,995-997,1001-1003,1007-1009,1013-1014,1016-1017,1019-1020,1022-1024,1027,1030,1033,1037-1039,1043-1045)",
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], factor value[cell line] rows 1-1050",
+   "value": "HCT116 / CVCL_0291 / HCT 116 (rows 1,4,8-9,11-13,16,20-21,23-25,28,32-33,35-37,41-43,46,50-51,53-55,58,62-63,65-67,70,74-75,77-79,83-85,88,92-93,95-97,100,104-105,107-109,112,116-117,119-121,124,128-129,131-133,136,140-141,143-145,148,152-153,155-157,160,164-165,167-169,172,176-177,179-181,185-187,190,194-195,197-199,202,206-207,209-211,214,218-219,221-223,226,230-231,233-235,238,241,244,248-249,251-252,254-255,257-259,263-265,268,272-273,275-277,280,284-285,287-289,292,296-297,299-301,305-307,310,314-315,317-319,322,326-327,329-331,334,338-339,341-343,347-349,352,356-357,359-361,364,368-369,371-373,376,380-381,383-385,388,391,394,398-399,401-402,404-405,407-409,412,416-417,419-421,425-427,430,434-435,437-439,442,446-447,449-451,454,458-459,461-463,467-469,472,475,479-480,482-484,487,491-492,494-496,500-502,506-508,511,515-516,518-520,523,526,529,532,535,539-540,542-543,545-546,548-549,551-552,554-556,559,563-564,566-568,571,574,577,581-582,584-585,587-588,590-592,596-598,601,605-606,608-610,613,617-618,620-622,626-628,631,635-636,638-640,643,647-648,650-652,656-658,661,665-666,668-670,673,677-678,680-682,685,688,691,694,697,701-702,704-705,707-708,710-711,713-714,716-718,722-724,728-730,734-736,739,743-744,746-748,751,755-756,758-760,764-766,770-771,773-775,779-781,785-787,790,794-795,797-799,803-805,809-811,814,818-819,821-823,826,830-831,833-835,838,842-843,845-847,850,853,857-858,860-861,863-865,868,872-873,875-877,880,884-885,887-889,892,896-897,899-901,905-907,910,914-915,917-919,922,926-927,929-931,934,938-939,941-943,946,950-951,953-955,959-961,964,968-969,971-973,977-979,983-985,989-991,995-997,1001-1003,1007-1009,1013-1015,1018,1021,1024,1028-1029,1031-1032,1034-1035,1037-1039,1043-1045,1049-1050); HKE-3 / CVCL_9796 / HKe-3 (rows 2-3,5-7,10,14-15,17-19,22,26-27,29-31,34,38-40,44-45,47-49,52,56-57,59-61,64,68-69,71-73,76,80-82,86-87,89-91,94,98-99,101-103,106,110-111,113-115,118,122-123,125-127,130,134-135,137-139,142,146-147,149-151,154,158-159,161-163,166,170-171,173-175,178,182-184,188-189,191-193,196,200-201,203-205,208,212-213,215-217,220,224-225,227-229,232,236-237,239-240,242-243,245-247,250,253,256,260-262,266-267,269-271,274,278-279,281-283,286,290-291,293-295,298,302-304,308-309,311-313,316,320-321,323-325,328,332-333,335-337,340,344-346,350-351,353-355,358,362-363,365-367,370,374-375,377-379,382,386-387,389-390,392-393,395-397,400,403,406,410-411,413-415,418,422-424,428-429,431-433,436,440-441,443-445,448,452-453,455-457,460,464-466,470-471,473-474,476-478,481,485-486,488-490,493,497-499,503-505,509-510,512-514,517,521-522,524-525,527-528,530-531,533-534,536-538,541,544,547,550,553,557-558,560-562,565,569-570,572-573,575-576,578-580,583,586,589,593-595,599-600,602-604,607,611-612,614-616,619,623-625,629-630,632-634,637,641-642,644-646,649,653-655,659-660,662-664,667,671-672,674-676,679,683-684,686-687,689-690,692-693,695-696,698-700,703,706,709,712,715,719-721,725-727,731-733,737-738,740-742,745,749-750,752-754,757,761-763,767-769,772,776-778,782-784,788-789,791-793,796,800-802,806-808,812-813,815-817,820,824-825,827-829,832,836-837,839-841,844,848-849,851-852,854-856,859,862,866-867,869-871,874,878-879,881-883,886,890-891,893-895,898,902-904,908-909,911-913,916,920-921,923-925,928,932-933,935-937,940,944-945,947-949,952,956-958,962-963,965-967,970,974-976,980-982,986-988,992-994,998-1000,1004-1006,1010-1012,1016-1017,1019-1020,1022-1023,1025-1027,1030,1033,1036,1040-1042,1046-1048)",
    "source_ids": [
     "paper",
     "cellosaurus",
@@ -120,7 +120,7 @@
    "evidence": "Paper: \"HCT116 (mtKRASHi) and HKE3 (mtKRASLo) cells were provided by Drs Shirasawa and Sasazuki\"; HKE3 = HCT116 with the KRAS G13D allele disrupted by homologous recombination. Cellosaurus CVCL_9796 HKe-3 (synonym HKE3; HI CVCL_0291 HCT 116; CC KO of the mutant KRAS allele). EFO:0002824 HCT116, EFO:0022707 HKE-3."
   },
   {
-   "location": "characteristics[organism] rows 1-1047",
+   "location": "characteristics[organism] rows 1-1050",
    "value": "Homo sapiens",
    "source_ids": [
     "pride",
@@ -129,7 +129,7 @@
    "evidence": "PRIDE organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606 for both lines."
   },
   {
-   "location": "characteristics[organism part], characteristics[disease] rows 1-1047",
+   "location": "characteristics[organism part], characteristics[disease] rows 1-1050",
    "value": "colon; colon carcinoma",
    "source_ids": [
     "cellosaurus",
@@ -139,7 +139,7 @@
    "evidence": "Cellosaurus both lines: DI NCIt C4910 Colon carcinoma; derived from site \"In situ; Colon; UBERON_0001155\". HKE-3 is a derivative of the same carcinoma line (still annotated colon carcinoma in Cellosaurus). MONDO:0002032 colon carcinoma. PRIDE disease Colon cancer (DOID:219)."
   },
   {
-   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[ancestry category], characteristics[individual] rows 1-1047",
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[ancestry category], characteristics[individual] rows 1-1050",
    "value": "48Y; male; adult; European ancestry; HCT116_donor",
    "source_ids": [
     "cellosaurus",
@@ -148,7 +148,7 @@
    "evidence": "Cellosaurus CVCL_0291 and CVCL_9796: SX Male, AG 48Y, Population Caucasian (HANCESTRO:0005 European ancestry); 48 years -> adult (EFO:0001272). HKe-3 HI CVCL_0291, i.e. same donor -> one individual identifier for both lines."
   },
   {
-   "location": "characteristics[material type] rows 1-1047",
+   "location": "characteristics[material type] rows 1-1050",
    "value": "cell line",
    "source_ids": [
     "paper"
@@ -156,7 +156,7 @@
    "evidence": "Cultured cell lines HCT116 and HKE3."
   },
   {
-   "location": "characteristics[culture medium] rows 1-1047",
+   "location": "characteristics[culture medium] rows 1-1050",
    "value": "Dulbecco's Modified Eagle Medium",
    "source_ids": [
     "supp_methods",
@@ -165,7 +165,7 @@
    "evidence": "Supp. Methods 9: \"cells were grown in SILAC DMEM supplemented with 3mM L-Glutamine, 10% dialyzed FCS, 0.55mM lysine and 0.4mM arginine\". NCIT:C185409."
   },
   {
-   "location": "characteristics[enrichment process] rows 1-1047",
+   "location": "characteristics[enrichment process] rows 1-1050",
    "value": "sample enrichment",
    "source_ids": [
     "supp_methods",
@@ -174,8 +174,8 @@
    "evidence": "Supp. Methods 9: lysates \"incubated with 10ul of FLAG-M2 agarose beads\" (anti-FLAG affinity purification). EFO:0009106 sample enrichment (child of EFO:0009090); no more specific affinity-purification term exists under EFO:0009090."
   },
   {
-   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-1047",
-   "value": "349 deposited .raw files, one injection each, fraction 1",
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-1050",
+   "value": "350 deposited .raw files, one injection each, fraction 1",
    "source_ids": [
     "files",
     "proteingroups",
@@ -184,7 +184,7 @@
    "evidence": "Raw files from files/all; each run is an unfractionated AP-MS injection. Excluded raws listed in limitations. 17 RAC1 raws are deposited in both PXD016505 and PXD016512 and are annotated in both SDRFs with the same source names: ALI0880-S06-A-RAC-FOR.raw, ALI0881-S06-A-RAC-1-REV.raw, ALI1013-S08-A-RAC1-FOR.raw, ALI1013-S21-A-RAC1-REV.raw, ALI1530-S22-A-RAC1-F.raw, ALI1530-S26-A-RAC1-R.raw, LDY0905-S10-A-RAC-1-REV-BIS.raw, LDY0995-S02-A-RAC1-REV.raw, LDY0995-S15-A-RAC1-FOR.raw, LDY1502-S02-A-RAC-F-1.raw, LDY1502-S05-A-RAC-F-2.raw, LDY1502-S08-A-RAC-F-3.raw, LDY1502-S11-A-RAC-F-4.raw, LDY1502-S15-A-RAC-R-1.raw, LDY1502-S18-A-RAC-R-2.raw, LDY1502-S21-A-RAC-R-3.raw, LDY1502-S24-A-RAC-R-4.raw."
   },
   {
-   "location": "comment[instrument] rows 1-969",
+   "location": "comment[instrument] rows 1-972",
    "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
    "source_ids": [
     "raw_headers",
@@ -193,7 +193,7 @@
    "evidence": "Raw header instrument string \"LTQ Orbitrap Velos MS\" (PCs BJ6CWL1, THERMO-BB972462; methods 180min_TOP10_CID.meth). Supp. Methods 11: in-solution digests analysed on an LTQ Orbitrap Velos."
   },
   {
-   "location": "comment[instrument] rows 970-1047",
+   "location": "comment[instrument] rows 973-1050",
    "value": "NT=Q Exactive Plus;AC=MS:1002634",
    "source_ids": [
     "raw_headers",
@@ -202,25 +202,34 @@
    "evidence": "Raw header instrument string \"Q Exactive Plus - Orbitrap MS\" (PC HKC6ZZ1; methods 180min_Top10/180min_TOP10/180min_TOP10_HCD/120min_Top10.meth). The paper and PRIDE say \"Q-Exactive\"; the raw header (Q Exactive Plus) is used."
   },
   {
-   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[fragment mass tolerance] rows 1-969",
-   "value": "collision-induced dissociation (MS:1000133); 35 NCE; linear ion trap (MS:1000291); 0.5 Da",
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] rows 1-972",
+   "value": "collision-induced dissociation (MS:1000133); 35 NCE; linear ion trap (MS:1000291)",
    "source_ids": [
     "supp_methods",
     "raw_headers"
    ],
-   "evidence": "Supp. Methods 11 (Velos): \"The normalized collision energy for collision-induced dissociation was set to a value of 35, and the resulting fragments were detected with normal resolution in the linear ion trap\"; method name 180min_TOP10_CID. Supp. Methods 12: \"fragment ion mass tolerance set to 0.5 Da\"."
+   "evidence": "Supp. Methods 11 (Velos): \"The normalized collision energy for collision-induced dissociation was set to a value of 35, and the resulting fragments were detected with normal resolution in the linear ion trap\"; method name 180min_TOP10_CID."
   },
   {
-   "location": "comment[dissociation method], comment[ms2 mass analyzer] rows 970-1047",
+   "location": "comment[fragment mass tolerance] rows 1-1050",
+   "value": "0.5 Da",
+   "source_ids": [
+    "supp_methods",
+    "pride"
+   ],
+   "evidence": "Supp. Methods 12 / PRIDE data processing protocol (one search-wide statement for all AP-MS data, no instrument restriction): \"first search 20ppm and main search 6ppm with fragment ion mass tolerance set to 0.5 Da\". Applied to Velos and Q Exactive Plus rows alike; MaxQuant 1.3 keeps separate ITMS/FTMS MS/MS tolerances, but no parameter file is deposited to show a different FTMS value."
+  },
+  {
+   "location": "comment[dissociation method], comment[ms2 mass analyzer] rows 973-1050",
    "value": "beam-type collision-induced dissociation (MS:1000422); orbitrap (MS:1000484)",
    "source_ids": [
     "raw_headers",
     "supp_methods"
    ],
-   "evidence": "Q Exactive Plus fragments by HCD and detects MS2 in the Orbitrap (only analyser of the instrument); method names include 180min_TOP10_HCD. Collision energy and the FTMS MS/MS tolerance are not stated -> not available."
+   "evidence": "Q Exactive Plus fragments by HCD and detects MS2 in the Orbitrap (only analyser of the instrument); method names include 180min_TOP10_HCD. The HCD collision energy is stated nowhere (the first 16 KB of the raws read here hold only the Dionex LC method, not the MS instrument method) -> comment[collision energy] not available."
   },
   {
-   "location": "comment[proteomics data acquisition method] rows 1-1047",
+   "location": "comment[proteomics data acquisition method] rows 1-1050",
    "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
    "source_ids": [
     "supp_methods",
@@ -229,7 +238,7 @@
    "evidence": "\"the 10 most intense peptide ions were selected for fragment analysis\" (Velos); \"selecting the 12 most intense ions for MS/MS\" (QE); method names TOP10."
   },
   {
-   "location": "comment[cleavage agent details] rows 1-1047",
+   "location": "comment[cleavage agent details] rows 1-1050",
    "value": "NT=Trypsin;AC=MS:1001251",
    "source_ids": [
     "supp_methods"
@@ -237,7 +246,7 @@
    "evidence": "Supp. Methods 10: \"Trypsin digestion was carried out ... containing 5ug/ml modified sequencing-grade trypsin (Promega)\". Search: \"trypsin was selected as enzyme, with two missed cleavages\"."
   },
   {
-   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-1047",
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-1050",
    "value": "Dithiothreitol (DTT) PRIDE:0000608; Iodoacetamide (IAA) PRIDE:0000599",
    "source_ids": [
     "supp_methods"
@@ -245,7 +254,7 @@
    "evidence": "Supp. Methods 10: digestion buffer \"1mM DTT\"; \"Peptides were alkylated using iodoacetamide (5mg/ml)\"."
   },
   {
-   "location": "comment[precursor mass tolerance] rows 1-1047",
+   "location": "comment[precursor mass tolerance] rows 1-1050",
    "value": "6 ppm",
    "source_ids": [
     "supp_methods",
@@ -254,7 +263,7 @@
    "evidence": "Supp. Methods 12 / PRIDE data processing protocol: \"first search 20ppm and main search 6ppm\" (MaxQuant 1.3.0.5); main-search tolerance recorded."
   },
   {
-   "location": "comment[modification parameters] rows 1-1047",
+   "location": "comment[modification parameters] rows 1-1050",
    "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Deamidated N,Q Variable; Label:2H(4) K (UNIMOD:481), Label:13C(6) R (UNIMOD:188), Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) Variable",
    "source_ids": [
     "supp_methods",
@@ -264,7 +273,7 @@
    "evidence": "Supp. Methods 12: \"fixed amino acids modification was carboamidomethylation of cysteines; variable amino acids modifications were oxidation in methionine and acetylation in protein N-terminus\". All 18 deposited proteinGroups files carry \"Oxidation (M) site IDs\" and \"Deamidation (NQ) site IDs\" columns, so Deamidation (NQ) was also a variable modification of the deposited searches (deposited output beats prose). SILAC: Supp. Methods 9 \"Medium: L-[2H4]-lysine (Lys4) and L-[13C6]-arginine (Arg6); Heavy: L-[13C6,15N2]-lysine (Lys8) and L-[13C6,15N4]-arginine (Arg10)\"; multiplicity 3 confirmed by Ratio H/M, M/L and H/L columns in every proteinGroups file. Label mods MT=Variable per campaign rule 11."
   },
   {
-   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-1047",
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-1050",
    "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0, NT=human;VV=v1.1.0, NT=cell-lines;VV=v1.1.0; NT=sdrf-skills;VV=v0.1.0",
    "source_ids": [
     "templates"
@@ -272,7 +281,7 @@
    "evidence": "Spec README.adoc:27 sdrf version v1.1.0; upstream templates.yaml 7da1747 line 150 ms-proteomics latest 1.2.0 (the spec submodule's nested templates copy is older); campaign rules 1 and 10."
   },
   {
-   "location": "technology type rows 1-1047",
+   "location": "technology type rows 1-1050",
    "value": "proteomic profiling by mass spectrometry",
    "source_ids": [
     "templates"
@@ -284,11 +293,12 @@
   "No MaxQuant mqpar.xml, summary.txt or parameters.txt is deposited (only proteinGroups.txt), so the experiment->raw-file assignment of the searches is not recorded; the correlation matrices show that the MaxQuant experiment numbering is not the alphabetical raw order (corr_BRAF.txt). Coverage is therefore checked by counts: for every bait/direction with raws in this deposit, the number of raws equals the number of MaxQuant experiments of that bait, except the cases listed below.",
   "Physical pooled-sample grouping rests on the autosampler vial and the original acquisition name in the raw headers (same vial on the same instrument = re-injection). Pools of different batches are treated as independent cultures (each gets its own biological replicate number); the deposit does not state whether a pool was ever re-run in a later batch. Several bait/directions have 5-10 runs instead of the 6 (3 biological x 2 technical) the paper describes.",
   "Whether the medium-channel empty-vector IP of a pool was prepared separately for each bait pool of a batch is not stated; one EV source per pool is annotated (scheme in Supp. Methods 9 gives one EV per triplet).",
-  "comment[collision energy] and comment[fragment mass tolerance] = not available on Q Exactive Plus rows: neither the HCD collision energy nor the FTMS MS/MS tolerance is stated (the 0.5 Da in Methods is the ion-trap tolerance). Consequence: parse_sdrf convert-openms exits 1 (\"Cannot read fragment mass tolerance: not available\").",
+  "comment[collision energy] = not available on Q Exactive Plus rows: the HCD NCE is not stated; the MS instrument-method stream deeper in the raw files was not read. comment[fragment mass tolerance] = 0.5 Da on all rows follows the single search-wide statement of Supp. Methods 12; if MaxQuant used its FTMS default for the QE spectra, the QE value would differ (no mqpar.xml deposited).",
   "Instrument: PRIDE and the paper say Q-Exactive; raw headers say Q Exactive Plus, which is used.",
   "Some run-name suffixes are unexplained and kept as separate pooled samples: _U (ALI0802 BRAF), 1X/3X (LDY0971 VAV1), -BIS (LDY0905 REV), CSK-2 / SRC-2 (ALI1416).",
   "characteristics[cell type] = not available: no cell type is stated (PRIDE \"epithelial cell\" is a submitter dropdown; Cellosaurus gives none). characteristics[passage number] and [sample storage temperature] not stated.",
-  "PXD016505 and PXD016512 are companion deposits of one AP-MS study (different baits; 17 RAC1 raws deposited in both). Further AP-MS companions PXD016461-PXD016465 (and PXD016549 expression profiling, PXD016431 phosphoproteomics) are not annotated here; baits with experiments in the proteinGroups files but raws in those deposits (e.g. PDPK1, part of ELK1/ELK4/PXN FOR and RAF1) are out of scope.",
-  "Excluded raws (presumed not searched; recorded in BLOCKED.md): LDY1098-S23-A-HDAC-F-2-No.raw - superseded first acquisition of vial BB4 slot S23 (header name LDY1098-S23-A-HDAC-F-2.raw; the deposited LDY1098-S23-A-HDAC-F-2.raw is the re-acquisition, header name with _130616124905 suffix); 7 HDAC1 FOR raws vs 6 HDAC1FOR experiments in proteinGroups_CASP9_HDAC1.txt"
+  "PXD016505 and PXD016512 are companion deposits of one AP-MS study (different baits; 17 RAC1 raws deposited in both). Further AP-MS deposits PXD016461-PXD016465 (and PXD016549 expression profiling, PXD016431 phosphoproteomics) are listed in the paper but not annotated here. Some proteinGroups experiment counts exceed the raws deposited here and the excess is unexplained (not verified to be raws in those deposits): ELK1 FOR, ELK4 FOR and PXN FOR 8 experiments vs 7 raws each; RAF1 10 experiments vs 7 raws per direction (independent reviewer: no ELK1/ELK4/PXN raws in the PXD016461-PXD016465 listings, only 6+6 CRAF raws in PXD016463)",
+  "Shared RAC1 rows: the 17 RAC1 raws deposited in both PXD016505 and PXD016512 have identical rows in both SDRFs except characteristics[biological replicate] of the SILAC medium (empty-vector) sources: empty-vector pools are numbered across all baits of each file, so the same 11 EV sources are numbered 79-84 in PXD016505 and 41-46 in PXD016512. Each file is internally consistent (1..n without gaps per factor group); the numbers are not comparable across the two files.",
+  "HDAC1 FOR: 7 deposited raws vs 6 HDAC1FOR experiments in proteinGroups_CASP9_HDAC1.txt. Summed experiment intensities (exp_intensity_CASP9_HDAC1.txt) put HDAC1FOR2 at the Q Exactive Plus scale (3.25e11; ALI1452-S05-A-HDAC-FOR.raw) and HDAC1FOR1/3-6 at Velos scale (<=2.8e10), so 5 Velos experiments cover the 6 Velos raws (ALI0880-S10-A-HDAC-1-FOR, LDY1098-S20-A-HDAC-F-1, LDY1098-S23-A-HDAC-F-2-No, LDY1098-S23-A-HDAC-F-2, LDY1303-S08-A-HDAC1-F-1, LDY1303-S11-A-HDAC1-F-2): one HDAC1 FOR Velos run is unaccounted for (unsearched, or two runs merged into one experiment). Which one is not determinable; the three LDY1098 runs come from one vial (BB4) and LDY1098-S23-A-HDAC-F-2-No.raw (351 MB) is the first acquisition of slot S23, re-acquired as LDY1098-S23-A-HDAC-F-2.raw (519 MB). All 7 runs are annotated with the search parameters; -No is technical replicate 2 of HDAC1_LDY1098_FOR_pool1."
  ]
 }
