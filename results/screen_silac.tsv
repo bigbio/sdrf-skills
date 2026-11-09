@@ -65,3 +65,15 @@ PXD051673	PRIDE	include		Batch 6: Parkinson's SNCA A53T iPSC neurons SILAC	repos
 PXD063206	PRIDE	include		Batch 6: TDP-43 / BORCS6 iPSC neurons dynamic SILAC	repository structured fields; paper methods
 PXD010027	PRIDE	include		Batch 6: disease mutations in IDRs, peptide-array SILAC pulldowns	repository structured fields; paper methods
 PXD004880	PRIDE	include		Batch 6: Down syndrome twin fibroblasts pulsed SILAC SWATH	repository structured fields; paper methods
+PXD034016	PRIDE	exclude	not SILAC	Batch 7: label-free G4C2 RNA pulldown mis-tagged SILAC (BLOCKED.md)	PRIDE protocol; paper data availability
+PXD002270	PRIDE	exclude	duplicate	Batch 7: byte-identical subset of PXD002425 (DUPLICATES.md Group 9)	PRIDE file sizes; range hashes
+PXD002425	PRIDE	include		Batch 7: 143B rho0 vs parental SILAC (respiratory-chain deficiency model)	repository structured fields; design template
+PXD041509	PRIDE	include		Batch 7: USP39 cryptic splicing (label-free IP arm; SILAC blocked)	repository structured fields; mqpar
+PXD009444	PRIDE	include		Batch 7: DJ-1/PARK7 chemical probe SILAC (Parkinson's)	repository structured fields; dissertation
+PXD008181	PRIDE	include		Batch 7 (rare disease): Merkel cell carcinoma lines SILAC	repository structured fields; paper methods
+PXD016299	PRIDE	include		Batch 7 (rare disease): CHIP/STUB1 KO pulse SILAC (SCAR16)	repository structured fields; msf searches
+PXD030729	PRIDE	include		Batch 7: Cyclin F / ALS diGly SILAC + label-free	repository structured fields; paper tables
+PXD012871	PRIDE	include		Batch 7 (rare disease): USP9X knockdown SILAC	repository structured fields; MaxQuant output
+PXD001834	PRIDE	include		Batch 7: Gclm-/- astrocytes acetyl-K SILAC	repository structured fields; paper methods
+PXD024211	PRIDE	include		Batch 7: USP32 KO RPE1 diGly SILAC	repository structured fields; dissertation
+PXD012322	PRIDE	include		Batch 7: IPF lung scaffolds repopulated with SILAC fibroblasts	repository structured fields; paper methods
