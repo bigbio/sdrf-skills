@@ -1,6 +1,55 @@
-# PXD009924 validation log (2026-11-09T16:08Z); current SDRF sha256 323bb207c5be9b640d0673d634e88c3143568a287286e045b9e3d07bbcbead19
+# PXD009924 validation log (2026-11-09); current SDRF sha256 bca235b025a1974bf6551b27f6dff57f36c62a545fc123bd61b9e7db39a5af28
 
-## Round 2 (current file, 720 rows x 55 cols) — rebuild after independent review round 1 (annotations/PXD009924.review.md, FAIL on F1)
+## Round 3 (current file, 720 rows x 54 cols) - rebuild after independent review round 2 (annotations/PXD009924.review.md, FAIL on F1, sha 323bb207...)
+Changes, all in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_tables.py -> samples.tsv and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_manifest.py -> evidence.json; SDRF rebuilt with sdrf-tools build (no post-build edit):
+  F3 (minor): characteristics[sampling time] dropped (it encoded the 24 h infection duration, not a time-course point); 24 h and MOI 2 recorded in the manifest limitations. Every other column is byte-identical to round 2.
+  F2 (minor): manifest fraction claim now states that the MaxQuant fraction numbering follows gel order (high MW = fraction 1) in all three cell lines (mwcheck.txt).
+  F1 (important): NOT applied. One source name per light pool (54 sources) was tried and refused:
+    sdrf-tools build: "build refused: samples.tsv: two rows for source 'A549_exp1_light_uninfected_compartment_pool' share biological replicate '1', technical replicate 1 and fraction 1 (files '20180223_A549_C_1_1.raw' and '20180223_A549_M_1_1.raw'). ..." exit=2
+    the same SDRF made in scratch only (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/alt/onename.sdrf.tsv, not committed) fails sdrf-tools structure: "duplicate-row-coordinate [source name]: 180 row(s) repeat a coordinate that must be unique" exit=1
+    Light pool kept as one source name per mixture (72 names, 6 physical pools), per skills/sdrf-annotate/references/validation.md:22-23. Needs a maintainer decision.
+  F4 (minor, optional): unchanged.
+Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_tables.py && sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/build/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD009924.sdrf.tsv
+wrote annotations/PXD009924.sdrf.tsv: 720 rows x 54 columns
+
+## parse_sdrf validate-sdrf -s annotations/PXD009924.sdrf.tsv -t ms-proteomics -t human -t cell-lines (online)
+Everything seems to be fine. Well done.
+exit=0
+
+## parse_sdrf validate-sdrf ... --use_ols_cache_only
+WARNING: Term: study sample in column 'characteristics[sample type]', is not found in the given ontology list pride
+Most seems to be fine. There were only warnings.
+exit=0
+Cache gap only: 'study sample' = PRIDE:0001013 (OLS4, not obsolete); the online run resolves it.
+
+## sdrf-tools structure annotations/PXD009924.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD009924.sdrf.tsv (online)
+Terms checked: 31  Verified: 31  Hallucinated: 0  Label mismatches: 0  Wrong ontology: 0  UNIMOD swaps: 0  Status: CLEAN
+exit=0
+## sdrf-tools check ... --offline
+Terms checked: 15  Verified: 7  Hallucinated: 0  Status: CLEAN
+exit=0
+
+## sdrf-tools score annotations/PXD009924.sdrf.tsv
+Quality Score: 100/100 (Excellent) - completeness, specificity, consistency, standards, design 100 each
+exit=0
+
+## sdrf-tools schema-check annotations/PXD009924.evidence.json
+annotations/PXD009924.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD009924.sdrf.tsv annotations/PXD009924.evidence.json
+Manifest covers every column with a value (37 column(s)).
+exit=0
+
+Not re-run in round 3 (no technical or search-parameter column changed): reconcile (round 2: exit 1, cleavage_agent_unsupported refuted), convert-openms (round 2: exit 1, precursor tolerance not available).
+
+# ---- Round 2 log (superseded build, sha256 323bb207c5be9b640d0673d634e88c3143568a287286e045b9e3d07bbcbead19, 720 x 55) ----
+
+## Round 2 (superseded, 720 rows x 55 cols) — rebuild after independent review round 1 (annotations/PXD009924.review.md, FAIL on F1)
 Fixes, all in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/make_tables.py -> samples.tsv, rebuilt with sdrf-tools build (no post-build edit):
   F1: + characteristics[sample storage temperature] = -80 °C (all rows; paper 'cell pellets were stored at -80 °C'), + characteristics[passage number] = not available, + characteristics[individual] = not available
   F4: factor value[infection] = not applicable on the 240 SILAC light (reference) rows (characteristics[infection] stays uninfected)
