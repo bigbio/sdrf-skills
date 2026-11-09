@@ -39,6 +39,16 @@
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/orient.py: per-experiment L/M/H intensities and H/M ratios of the influenza protein groups) and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/markers.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/markers.py: normalized H/M of interferon-stimulated host proteins and median log2 H/M of viral protein groups per MaxQuant experiment)"
   },
   {
+   "id": "mwcheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/mwcheck.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/scripts/mwcheck.py: median protein Mol. weight [kDa] (proteinGroups.txt) of PSMs per cell line and file-name slice index, from the first 225 MB (80 MB compressed) of https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009924/MaxQuant_Output.zip member msms.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/dl/msms_head.txt)"
+  },
+  {
+   "id": "pxd007809",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/ PXD007809 directory listing as reported by the independent review of this SDRF (annotations/PXD009924.review.md): 385 RAW from 2008-2013; not re-fetched by the producer (PRIDE/FTP timeouts)"
+  },
+  {
    "id": "raw",
    "kind": "raw-file",
    "location": "HTTP range read of the first 2 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD009924/20180223_A549_C_1_1.raw, 20180309_ZH_CaRo_H1299_M_1_1.raw, 20180326_SA_Calu_Influenza_C_1_1.raw decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b8-PXD009924/raw/*.head)"
@@ -238,6 +248,32 @@
    "evidence": "Paper: cells \"cultured ... in high glucose DMEM\"; \"For SILAC-labeling, cells were grown in SILAC-DMEM (high glucose)\"."
   },
   {
+   "location": "characteristics[sample storage temperature] rows 1-720",
+   "value": "-80 °C",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods (cell culture): \"cell pellets were stored at -80 °C for further use\"; fractionation starts from these pellets (\"Cell pellets were taken up in homogenization medium\"). Value format per cell-lines 1.1.0 example \"-80 °C\"."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-720",
+   "value": "24 hour (SILAC heavy, infected) | not available (medium control and light standard rows)",
+   "source_ids": [
+    "paper",
+    "templates"
+   ],
+   "evidence": "Paper: cells incubated with virus for 1 h, washed, \"incubated with complete DMEM (high glucose) for 24 h\"; Fig. 2A \"IAV infected for 24 h\". The harvest time of the untreated cultures is not stated, hence not available. sample-metadata template: number_with_unit, units hour/day/..."
+  },
+  {
+   "location": "factor value[infection] rows of SILAC light",
+   "value": "not applicable",
+   "source_ids": [
+    "paper",
+    "mq_readme"
+   ],
+   "evidence": "The light channel is the internal standard (reference), not a level of the compared variable; characteristics[infection] keeps the true value uninfected."
+  },
+  {
    "location": "comment[instrument] rows 1-720",
    "value": "NT=Q Exactive Plus;AC=MS:1002634",
    "source_ids": [
@@ -272,7 +308,8 @@
    "source_ids": [
     "paper",
     "mq_summary",
-    "files"
+    "files",
+    "mwcheck"
    ],
    "evidence": "Paper: \"Proteins were separated by SDS-PAGE using 4-12% Bis-Tris gels ... Gel lanes were cut into 10 slices\". comment[fraction identifier] = the MaxQuant experimentalDesignTemplate Fraction value. For A549 and NCI-H1299 it equals the file-name slice index; for all 80 Calu-1 files MaxQuant uses 11 - index (file _1 = fraction 10). The deposited search numbering is kept; which convention reflects the gel slice order is not stated."
   },
@@ -323,11 +360,11 @@
  ],
  "limitations": [
   "comment[precursor mass tolerance] = not available: MaxQuant 1.4.1.2 parameters.txt/summary.txt do not record the first/main-search precursor tolerance and no mqpar.xml was deposited (paper states only post-recalibration precision <1 ppm). parse_sdrf convert-openms therefore fails on this column.",
-  "Fraction numbering: Calu-1 files are numbered 11 - (file-name slice index) in the deposited MaxQuant design while A549/NCI-H1299 follow the file name; the SDRF follows the search. Gel-slice order is not documented.",
   "The PRIDE organism NEWT:553341 (A/Aichi/68/2007) disagrees with the paper strain (X:31 A/AICHI/68 = reassortant on 1968 Aichi HA/NA); NCBITaxon:132504 A/X-31(H3N2) used from the paper.",
-  "Paper says three A549 compartment replicates; this deposit holds two (2018 Q Exactive Plus runs). The others (2012 LTQ Orbitrap XL, MaxQuant experiments C_1/C_2, M_1/M_2, N_1/N_2, V_1/V_2 and WCL), searched jointly with these files, are not in this deposit and presumably belong to companion PXD007809 (paper Data Availability lists PXD007809 and PXD009924), which was not annotated here (PRIDE v2/v3 metadata for it timed out). Not a duplicate: readme says \"This project is an addition to the project PXD007809\"; the joint MaxQuant search pairs the 240 2018 Q Exactive Plus files deposited here with 2012 LTQ Orbitrap XL runs (20120203_AZ_fractions_* etc.) that are not in this deposit. the file list of PXD007809 was not retrieved (PRIDE timeouts), so overlap was not checked from that side.",
-  "MOI 2, 24 h post infection, are stated but not encoded in a column (no licensed column for MOI; sampling time would be not applicable for controls).",
+  "Companion PXD007809 (not annotated here): the paper reports three A549 compartment replicates, this deposit holds two. The 132 runs of this deposit's joint MaxQuant design that are absent here (2012 AZ_fractions, 2013 WCL; MaxQuant experiments C_1/C_2, M_1/M_2, N_1/N_2, V_1/V_2, WCL) are in PXD007809 and no RAW file is shared (385 RAW 2008-2013 there; per the independent review's listing, not re-fetched by the producer). readme: \"This project is an addition to the project PXD007809\"; paper Data Availability lists both. Not a duplicate. If PXD007809 is annotated, coordinate A549 replicate numbers: here 1/2 = MaxQuant C_3/C_4 etc.",
+  "MOI 2 PFU/cell is stated but not encoded (no template column for MOI); the 24 h infection time is in characteristics[sampling time] on infected rows only.",
+  "characteristics[passage number] and characteristics[individual] = not available: no passage number or donor identifier is given in any source.",
   "PRIDE v3 API and the MCP PRIDE tools were unreachable/timed out on 2026-11-09; the record came from the v2 API and the FTP README/listing.",
-  "Review: per caller instruction no adversarial review, review file or review-gate approval in this run (REVIEW_PENDING_EXTERNAL)."
+  "Review: independent review round 1 (annotations/PXD009924.review.md, sha a9504b7e...) FAIL on F1 (missing recommended columns); F1-F5 addressed in this rebuild. No approval or review file written by the producer; new review pending (REVIEW_PENDING_EXTERNAL)."
  ]
 }
