@@ -21,7 +21,7 @@
   {
    "id": "supp",
    "kind": "supplementary",
-   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7329860.1/41598_2020_67505_MOESM1_ESM.pdf .. MOESM7_ESM.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/supp/): MOESM2 = Table S1 peptides, MOESM3 = Table S2 proteins (sheet \"Description and Legend\" defines -QA = RML-infected N2a Cl3, +QA = infected then cleared by quinacrine, \"-QA + PK digest\", \"-QA + NaBu + PK digest\"), MOESM4 = Table S3 kdeg, MOESM5 = Table S4 gradients for fractions 1-8, MOESM7 = Table S6 MaxQuant parameters"
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7329860.1/41598_2020_67505_MOESM1_ESM.pdf .. MOESM7_ESM.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/supp/): MOESM2 = Table S1 peptides, MOESM3 = Table S2 proteins (sheet \"Description and Legend\" defines -QA = RML-infected N2a Cl3, +QA = infected then cleared by quinacrine, \"-QA + PK digest\", \"-QA + NaBu + PK digest\"), MOESM4 = Table S3 kdeg, MOESM5 = Table S4 gradients for fractions 1-8, MOESM7 = Table S6 MaxQuant parameters (version 1.6.5.0 = the NaBu search version)"
   },
   {
    "id": "mq_qa",
@@ -93,7 +93,15 @@
     "paper",
     "cellosaurus"
    ],
-   "evidence": "Paper Methods: \"N2a-Cl3 cells previously infected with the Rocky Mountain Laboratories strain of prion aggregate (RML) were generously provided by the Prusiner laboratory\"; Supp Table S2 legend \"N2a Cl3\". The subclone has no Cellosaurus/CLO/BTO/EFO entry (validator warning accepted; Neuro-2a EFO:0022756 would lose the subclone identity)."
+   "evidence": "Paper Results (paper.txt line 67): \"we utilized a transgenic clone of N2a neuroblastoma cells that highly overexpress the PrP gene (N2a-Cl3)\" (refs 37/38); Methods: \"N2a-Cl3 cells previously infected with ... RML ... were generously provided by the Prusiner laboratory\"; Supp Table S2 legend \"N2a Cl3\". This transgenic PrP-overexpressing N2a clone has no Cellosaurus/CLO/BTO/EFO entry (Cellosaurus search for N2a-Cl3 / ScN2a-cl3 returned nothing), hence the validator and online sdrf-tools check flag the name; Neuro-2a (EFO:0022756) would drop the transgene and the clone identity."
+  },
+  {
+   "location": "characteristics[genotype] all rows",
+   "value": "Prnp overexpression (transgenic)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Results line 67: N2a-Cl3 is \"a transgenic clone of N2a neuroblastoma cells that highly overexpress the PrP gene\". Column: TERMS.tsv genotype (characteristics, free text, EFO:0000513); not licensed by the three declared templates, used as a custom characteristics column (spec \"Extending Templates\"; batch rule 15 - clinical-metadata not declared for cell lines)."
   },
   {
    "location": "characteristics[cellosaurus accession] / characteristics[cellosaurus name] all rows",
@@ -102,7 +110,7 @@
     "cellosaurus",
     "paper"
    ],
-   "evidence": "N2a-Cl3 is a Prusiner-lab subclone of N2a (= Neuro-2a, CVCL_0470, synonyms N2a/N2A); the subclone itself is not in Cellosaurus, so the parent line is cited. CVCL_6268 ScN2a (RML-infected Neuro-2a) was not used because it does not describe the quinacrine-cleared arm and is not stated to be the same subclone."
+   "evidence": "N2a-Cl3 is a transgenic PrP-overexpressing clone of N2a (= Neuro-2a, CVCL_0470, synonyms N2a/N2A) and is not in Cellosaurus (none of the CVCL_0470 children is N2a-Cl3); the parent line is cited. Organism part, cell type, disease, strain and sex are the parent-line facts. CVCL_6268 ScN2a (RML-infected Neuro-2a) was not used: it does not describe the quinacrine-cleared arm and is not stated to be this transgenic clone."
   },
   {
    "location": "characteristics[organism part] all rows",
@@ -332,6 +340,8 @@
   "N2a-Cl3 is not in Cellosaurus; the parent Neuro-2a (CVCL_0470) is cited. Organism part, cell type, strain and sex come from the parent-line record.",
   "Day 0 samples described in the paper were not deposited (no raws).",
   "Passage number and sample storage temperature (pellets \"frozen\") not stated -> not available.",
+  "Supp Table S2 (MOESM3) sheet \"-QA + PK digest\" labels its peptide/coverage columns \"Day 1/2/3\" but its ratio columns \"Ratio H/L Day 2/3/4\" (Table S3 uses Day 2/3/4); the raw names (Hutti_PKDay2/3/4, acquisition names Hutti_PK+Day2/3/4), MaxQuant experiments 1/2/3 and the exact ratio matches (679/642/595) support day 2/3/4, so sampling time = 2/3/4 day.",
+  "The paper collected PrPSc-isolate cells after 0, 1, 2, 3 and 4 days of labelling; only days 2, 3 and 4 were deposited (no PK day-0 or day-1 raw).",
   "The PrPSc isolates were acquired with a DDA method plus a heavy/light PrP inclusion list (Table S5); acquisition method recorded as DDA.",
   "biological replicate = 1: one culture per labelling day.",
   "Raw header read for 1 of 3 PK runs."

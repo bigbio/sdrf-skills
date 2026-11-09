@@ -21,7 +21,7 @@
   {
    "id": "supp",
    "kind": "supplementary",
-   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7329860.1/41598_2020_67505_MOESM1_ESM.pdf .. MOESM7_ESM.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/supp/): MOESM2 = Table S1 peptides, MOESM3 = Table S2 proteins (sheet \"Description and Legend\" defines -QA = RML-infected N2a Cl3, +QA = infected then cleared by quinacrine, \"-QA + PK digest\", \"-QA + NaBu + PK digest\"), MOESM4 = Table S3 kdeg, MOESM5 = Table S4 gradients for fractions 1-8, MOESM7 = Table S6 MaxQuant parameters"
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7329860.1/41598_2020_67505_MOESM1_ESM.pdf .. MOESM7_ESM.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/supp/): MOESM2 = Table S1 peptides, MOESM3 = Table S2 proteins (sheet \"Description and Legend\" defines -QA = RML-infected N2a Cl3, +QA = infected then cleared by quinacrine, \"-QA + PK digest\", \"-QA + NaBu + PK digest\"), MOESM4 = Table S3 kdeg, MOESM5 = Table S4 gradients for fractions 1-8, MOESM7 = Table S6 MaxQuant parameters (version 1.6.5.0 = the NaBu search version)"
   },
   {
    "id": "mq_qa",
@@ -93,7 +93,15 @@
     "paper",
     "cellosaurus"
    ],
-   "evidence": "Paper Methods: \"N2a-Cl3 cells previously infected with the Rocky Mountain Laboratories strain of prion aggregate (RML) were generously provided by the Prusiner laboratory\"; Supp Table S2 legend \"N2a Cl3\". The subclone has no Cellosaurus/CLO/BTO/EFO entry (validator warning accepted; Neuro-2a EFO:0022756 would lose the subclone identity)."
+   "evidence": "Paper Results (paper.txt line 67): \"we utilized a transgenic clone of N2a neuroblastoma cells that highly overexpress the PrP gene (N2a-Cl3)\" (refs 37/38); Methods: \"N2a-Cl3 cells previously infected with ... RML ... were generously provided by the Prusiner laboratory\"; Supp Table S2 legend \"N2a Cl3\". This transgenic PrP-overexpressing N2a clone has no Cellosaurus/CLO/BTO/EFO entry (Cellosaurus search for N2a-Cl3 / ScN2a-cl3 returned nothing), hence the validator and online sdrf-tools check flag the name; Neuro-2a (EFO:0022756) would drop the transgene and the clone identity."
+  },
+  {
+   "location": "characteristics[genotype] all rows",
+   "value": "Prnp overexpression (transgenic)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Results line 67: N2a-Cl3 is \"a transgenic clone of N2a neuroblastoma cells that highly overexpress the PrP gene\". Column: TERMS.tsv genotype (characteristics, free text, EFO:0000513); not licensed by the three declared templates, used as a custom characteristics column (spec \"Extending Templates\"; batch rule 15 - clinical-metadata not declared for cell lines)."
   },
   {
    "location": "characteristics[cellosaurus accession] / characteristics[cellosaurus name] all rows",
@@ -102,7 +110,7 @@
     "cellosaurus",
     "paper"
    ],
-   "evidence": "N2a-Cl3 is a Prusiner-lab subclone of N2a (= Neuro-2a, CVCL_0470, synonyms N2a/N2A); the subclone itself is not in Cellosaurus, so the parent line is cited. CVCL_6268 ScN2a (RML-infected Neuro-2a) was not used because it does not describe the quinacrine-cleared arm and is not stated to be the same subclone."
+   "evidence": "N2a-Cl3 is a transgenic PrP-overexpressing clone of N2a (= Neuro-2a, CVCL_0470, synonyms N2a/N2A) and is not in Cellosaurus (none of the CVCL_0470 children is N2a-Cl3); the parent line is cited. Organism part, cell type, disease, strain and sex are the parent-line facts. CVCL_6268 ScN2a (RML-infected Neuro-2a) was not used: it does not describe the quinacrine-cleared arm and is not stated to be this transgenic clone."
   },
   {
    "location": "characteristics[organism part] all rows",
@@ -288,7 +296,7 @@
     "paper",
     "armcheck"
    ],
-   "evidence": "MaxQuant msmsScans.txt maps Hutti_R<day>-<fraction> to experiment \"RML day <day>\" (all 32 R runs); Supp S2 legend: \"-QA = lysate of N2a Cl3 cells infected with RML strain of prion aggregate\"; Supp S2 -QA day-1 ratios match MaxQuant \"RML day 1\" exactly for 2111 proteins vs 3 for \"RML+QA day 1\". PrP H/L rises more slowly in RML than RML+QA (day 2: 6.79 vs 12.73), the paper's PrPSc-stabilisation result."
+   "evidence": "MaxQuant msmsScans.txt maps Hutti_R<day>-<fraction> to experiment \"RML day <day>\" (all 32 R runs); Supp S2 legend: \"-QA = lysate of N2a Cl3 cells infected with RML strain of prion aggregate\"; Supp Table S2 (MOESM3) -QA ratios match MaxQuant \"RML day N\" exactly (day 1: 2111 proteins vs 3 for \"RML+QA day 1\"; independent reviewer recount day 1/3/5: 1993/2685/2596, cross-arm 0-2). PrP H/L rises more slowly in RML than RML+QA (day 2: 6.79 vs 12.73), the paper's PrPSc-stabilisation result."
   },
   {
    "location": "source name + characteristics[infection status] + factor value[infection status] rows 45-108",
@@ -299,7 +307,7 @@
     "paper",
     "armcheck"
    ],
-   "evidence": "msmsScans.txt maps Hutti_Q<day>-<fraction> to \"RML+QA day <day>\" (all 32 Q runs); Supp S2 legend \"+QA = ... infected with RML ... and subsequently cleared of infection by four weeks of quinacrine treatment\"; paper: \"prion-cleared controls were propagated in the absence of quinacrine for one week\" before labelling, so no treatment value is asserted for the labelling period. Rule 4 (untreated) concerns treatment columns; this column names the infection state of each arm."
+   "evidence": "msmsScans.txt maps Hutti_Q<day>-<fraction> to \"RML+QA day <day>\" (all 32 Q runs); Supp Table S2 +QA ratios match \"RML+QA day N\" exactly (day 1: 2223 vs 5 cross-arm; reviewer recount day 1/3: 2068/2456; +QA day 5 matches the NORMALIZED RML+QA day 5 ratio, median log difference 0.02, a quirk of the supplement); Supp S2 legend \"+QA = ... infected with RML ... and subsequently cleared of infection by four weeks of quinacrine treatment\"; paper: \"prion-cleared controls were propagated in the absence of quinacrine for one week\" before labelling, so no treatment value is asserted for the labelling period. Rule 4 (untreated) concerns treatment columns; this column names the infection state of each arm."
   },
   {
    "location": "comment[fraction identifier] all rows",
@@ -345,10 +353,10 @@
    "location": "comment[fragment mass tolerance] all rows",
    "value": "20 ppm",
    "source_ids": [
-    "supp",
+    "pride",
     "mq_pk"
    ],
-   "evidence": "Paper Table S6 (the MaxQuant parameters cited for the dSILAC searches): MS/MS tol. (FTMS) 20 ppm; MS2 is Orbitrap (FTMS). The whole-proteome parameters.txt itself is lost in the truncated zip."
+   "evidence": "PRIDE dataProcessingProtocol: \"SILAC peptide and protein quantification were performed with MaxQuant using the default parameter settings\"; the MaxQuant default MS/MS tol. (FTMS) is 20 ppm (as in the deposited PK parameters.txt and NaBu parameters.txt); MS2 is Orbitrap (FTMS). The whole-proteome parameters.txt is lost in the truncated zip. Table S6 (MaxQuant 1.6.5.0, same version as the NaBu search) is not shown to belong to the whole-proteome search and is not relied on."
   }
  ],
  "limitations": [
