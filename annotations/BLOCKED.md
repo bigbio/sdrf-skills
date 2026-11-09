@@ -1852,3 +1852,15 @@ The technical values are already resolved in `annotations/PXD041509.report.md`:
 They would go in a separate TMT SDRF (batch rule 12).
 
 **Not annotatable:** the combined SILAC MaxQuant search also contains `Exp2_2018_singleshot_SILAC_LMH_Mock_WT_dUL56` (MaxQuant experiment 5, fraction 55), which was not deposited.
+
+---
+
+## PXD038541 — Protein turnover in fibroblasts from T1DM patients with/without diabetic nephropathy (Di Camillo et al., IJMS 2023; dynamic SILAC Lys6), DN-status attribute only (partial block)
+
+**What is blocked:** the per-subject diabetic nephropathy (DN) vs diabetic-control assignment, i.e. the study's main comparison. **No run is excluded:** all 312 RAW files are annotated in `annotations/PXD038541.sdrf.tsv` (624 rows; factor value[sampling time] 4 / 7.5 / 24 hour; disease `type 1 diabetes mellitus` for every subject, which the paper states for all 10).
+
+**Why:** the deposit identifies subjects only by culture code (cell36, cell42, cell80, cell160, cell268, cell304, cell325, cell504, cell511, cell515 — in raw and msf file names). The paper and Supplementary Tables S1–S5 (PMC9917874 `ijms-24-02811-s001.zip`) use only Diab1–5 / Nephro1–5. No retrieved source links the two: PRIDE protocols, paper text, all supplementary tables, Figure S4 (names Cell_268 only), and the msf metadata tables (FileInfos, WorkflowInfo, ProcessingNodeParameters) were checked. The paper defers patient characteristics to ref [20] (Millioni et al., Proteomics Clin Appl 2008, PMID 21136853), which is not open access. Assigning groups from data patterns alone would be inference without an explicit source (rule 6).
+
+**Unblocked by:** an author key mapping cellNNN to Diab/Nephro numbers (or to DN status), or ref [20] if it lists the culture codes. A data cross-check is possible: recompute per-subject k from the deposited msf H/L ratios and match against the Diab/Nephro columns of Table S2. Once the map is known, add `characteristics[disease]` = diabetic kidney disease (MONDO:0005016) for DN subjects (keeping T1DM, e.g. via a second disease term or a custom column), and `factor value[...]` for the group, in `samples.tsv` via `scripts/make_tables.py`, then rebuild.
+
+**Also noted (not blocking):** `07Mar2013_Blank_02.RAW` was searched (in `07Mar2013_Prot_turn_cell42_24h_tot_bis.msf`) but not deposited.
