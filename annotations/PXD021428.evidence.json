@@ -421,6 +421,7 @@
   "Runs deposited as .zip archives each wrapping one .raw; comment[data file] uses the .raw name (as searched).",
   "Age not available for CWR22Res/22Rv1 (Cellosaurus \"Adult\" only). Passage number, cell type, storage temperature not reported.",
   "parse_sdrf convert-openms reads only the first cleavage agent column.",
+  "Full-ontology parse_sdrf validation could not complete cleanly: OLS4 returned intermittent HTTP 500s (round 1 exit 1 with one outage-caused ERROR for PRIDE:0000899 reference; round 3 stopped by the 30-min limit). Cache-only validation exit 0. A reviewer may want to re-run the online validation when OLS is healthy.",
   "Review: REVIEW_PENDING_EXTERNAL (no self-approval; no review-gate approve run)."
  ]
 }

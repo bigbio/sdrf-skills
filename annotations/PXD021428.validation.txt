@@ -1,0 +1,70 @@
+# PXD021428 validation log (2026-11-09T19:20:23Z); SDRF sha256 fa91f525680b7a20f2eff65ecf18c67a08c7297caea22a5d886a7daa29533e05
+# Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/scripts/make_tables.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428 -> samples.tsv/technical.tsv/files.json; sdrf-tools build -t ms-proteomics -t human -t cell-lines -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/build.sdrf.tsv (756 rows x 48 cols, sha256 f780736fee85a3d3f16258ab33ec59fcb9835d3d16011144f532b219cf89b0cc)
+# Post-build (deterministic, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/scripts/postbuild.py): insert a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 directly after the Trypsin column on all 756 rows (FASP with Lys-C + trypsin per PRIDE protocol; batch rule 2; build emits only one cleavage column because it is not 'multiple'). The script asserts exactly one Trypsin column on every row and that removing the inserted column restores the build output exactly. No other edit.
+
+## Round 1: parse_sdrf validate-sdrf -s annotations/PXD021428.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+ERROR: Term: reference in column 'characteristics[sample type]', is not found in the given ontology list pride
+There were validation errors.
+WARNING: Invalid value 'SN=CWR22Res;SN=LNCaP;SN=LNCaP-AI;SN=VCaP' - must be one of the allowed values
+WARNING: Term: CWR22Res in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: LNCaP-AI in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: prostate in column 'characteristics[organism part]', is not found in the given ontology list uberon;bto
+WARNING: Term: super-SILAC standard: equal-protein mix of Arg10/Lys8-labelled CWR22Res, LNCaP, LNCaP-AI and VCaP cell lysates in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+exit=1
+(33 'ERROR:sdrf_pipelines.ols.ols: OLS error searching term ... 500 Server Error' log lines omitted; OLS4 returned HTTP 500 intermittently during the run)
+Disposition: the only ERROR ('reference' not found in pride) is an OLS outage artefact: the search for 'reference' itself failed with HTTP 500 in the same run; OLS4 term lookup PRIDE:0000899 = 'reference' (is_obsolete false), PRIDE:0001013 = 'study sample', both children of PRIDE:0000895; the cache-only run below accepts it. No value was changed.
+
+## Round 2: parse_sdrf validate-sdrf -s annotations/PXD021428.sdrf.tsv -t ms-proteomics -t human -t cell-lines --use_ols_cache_only (same file)
+WARNING: Term: study sample in column 'characteristics[sample type]', is not found in the given ontology list pride
+WARNING: Term: prostate in column 'characteristics[organism part]', is not found in the given ontology list uberon;bto
+WARNING: Invalid value 'SN=CWR22Res;SN=LNCaP;SN=LNCaP-AI;SN=VCaP' - must be one of the allowed values
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: CWR22Res in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: super-SILAC standard: equal-protein mix of Arg10/Lys8-labelled CWR22Res, LNCaP, LNCaP-AI and VCaP cell lysates in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: LNCaP-AI in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## Round 3: full-ontology re-run (same file) was stopped after 30 min by the session's background time limit while OLS4 was still returning HTTP 500 (13 OLS error lines logged); no exit code. Not restarted.
+
+Accepted warnings: pooled sample SN= pattern (precedents PXD017530, PXD009766; spec SN= form); CWR22Res, LNCaP-AI and the descriptive super-SILAC value not in CLO/BTO/EFO (CWR22Res has no ontology/Cellosaurus entry; LNCaP-AI is Cellosaurus CVCL_4791); 'prostate' (exact synonym of UBERON:0002367/BTO:0001129 'prostate gland'; 1366 cells in curated sdrf-annotated-datasets use it); 'study sample' cache miss (PRIDE:0001013 verified live); 'untreated' (campaign rule 4).
+
+## sdrf-tools structure annotations/PXD021428.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD021428.sdrf.tsv --offline
+Hallucination Report: annotations/PXD021428.sdrf.tsv
+  Terms checked:     12
+  Verified:          5
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+(online 'sdrf-tools check' crashed with requests HTTPError 500 from OLS4 search q=adult; not a finding)
+
+## sdrf-tools reconcile annotations/PXD021428.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/pride.json --accession PXD021428
+PXD021428: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD021428.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD021428/convert)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD021428.sdrf.tsv
+Factor columns: ['factor value[cell line]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[xenograft]']
+Conditions (7): dict_keys(['CWR22Res|untreated', 'super-SILAC standard: equal-protein mix of Arg10/Lys8-labelled CWR22Res, LNCaP, LNCaP-AI and VCaP cell lysates|not applicable', '22Rv1|orchiectomy', 'LNCaP clone FGC|untreated', 'LNCaP-AI|orchiectomy', 'VCaP|untreated', 'VCaP|orchiectomy'])
+Files per condition: dict_values([63, 378, 63, 63, 63, 63, 63])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 756 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD021428.sdrf.tsv
+exit=0
+Note: 'no TA= specified' x756 comes from Acetyl PP=Protein N-term (correct per format rules); the converter reads only the first cleavage column (Trypsin).
+
+## sdrf-tools schema-check annotations/PXD021428.evidence.json
+annotations/PXD021428.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD021428.sdrf.tsv annotations/PXD021428.evidence.json
+Manifest covers every column with a value (34 column(s)).
+exit=0
