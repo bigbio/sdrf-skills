@@ -1695,3 +1695,53 @@ Not SILAC despite PRIDE `quantificationMethods` = SILAC:
 - Paper Data Availability: PXD034016 = "G4C2 pulldown (30/32 files)", and PXD034097 = "2 missing files from G4C2 pulldown (2/32 files)". Together they are the label-free arm; `_3_7` and `_3_13` are the 2 runs in PXD034097. The SILAC arms are PXD034093 (SF3B1 SILAC pulldown) and PXD034092 (SRSF1 SILAC pulldowns, 2 subcellular fractions). Both are already curated in sdrf-annotated-datasets (`datasets/PXD034092/`, `datasets/PXD034093/`).
 
 **Unblocked by:** annotating it as a label-free SDRF outside this SILAC campaign, ideally together with PXD034097 (32 runs). That annotation would need the lane → condition (± PlaB pretreatment, oligo) map for `G4C_1` / `G4C_3`, from the paper's Fig. 7D / Supplementary Data S4 or from the authors.
+
+---
+
+## PXD041509 — USP39 deficiency / cryptic splicing (Prieto-Garcia et al., Science 2024; SILAC diGly + TMTpro + label-free IP), SILAC and TMT arms (partial block)
+
+**Blocker: no reachable source says which SILAC channel carries siUSP39 and which carries the control, in any of the three diGly experiments. The TMTpro arm has no channel→sample map either. The 12 label-free IP raws (USP39 vs IgG IP; PRPF4 IP ± siUSP39) are annotated in `annotations/PXD041509.sdrf.tsv`.**
+
+| | |
+|---|---|
+| Publication | Prieto-Garcia *et al.*, Science 2024, doi:10.1126/science.adi5295, PMID 39541449. Not in PMC; Unpaywall `closed`; science.org article and supplement HTTP 403 (not bypassed); no preprint found in Europe PMC. PRIDE `references` is empty. |
+| Deposited | 54 RAW: 18 SILAC diGly (Orbitrap Exploris 480), 24 TMTpro (Orbitrap Fusion Lumos), 12 label-free IP (Q Exactive HF). Other files: `mqpar_siUSP39_digly.xml`, `mqpar.xml`, `mqpar-PRPF4.xml`, PD `.pdStudy` / `.pdResult` / `_Proteins.txt` / `.method`, 3 Perseus xlsx, 2 PD png. |
+| Blocked (SILAC) | `20221231_SFB1_PBE_TM_siUSP39_SILAC_exp{1,2,3}_{1..6}.raw`: 18 files, 3 experiments × 6 fractions. |
+| Blocked (TMT) | `20220830_LU_LC2_RR_CPG_USP39_PROTAC_F1..F24.raw`: 24 high-pH fractions of one TMTpro mix. |
+| SDRF would need | SILAC: 18 × 2 = 36 rows, each light/heavy channel tagged siUSP39 or control. TMT: 24 × 6 = 144 rows for channels 126, 127N, 127C, 128N, 128C and 129N. |
+
+**What the deposit does say (SILAC):**
+- `mqpar_siUSP39_digly.xml` (MaxQuant 1.5.2.8) gives multiplicity 2, light = unlabelled and heavy = `Arg10;Lys8`. Experiments 1–3 each have fractions 1–6.
+- Experiment 3 uses its own parameter group in which labelMods are reversed (`Arg10;Lys8` listed first). That is a label swap relative to experiments 1 and 2.
+- Variable mods: GlyGly (K), Oxidation (M), Acetyl (Protein N-term). Fixed: Carbamidomethyl (C) and `NEM`.
+- File names say `siUSP39`, and the MaxQuant folder says `usp39-ko-digly`.
+- Nothing names the condition of either channel. No MaxQuant txt output (summary, GlyGly sites, proteinGroups) is deposited, so ratios cannot be checked either.
+
+**Sources checked:**
+
+| source | result |
+|---|---|
+| PRIDE project record (both protocols, description) | No SILAC or diGly protocol text at all. The sample protocol covers only the TMT workflow; the data protocol covers QE HF / Lumos acquisition and the PD/MaxQuant search. |
+| `files/all` (66 entries) | No sample sheet and no MaxQuant txt for the diGly search. |
+| `mqpar_siUSP39_digly.xml` | Experiment numbers 1/2/3 and the label definitions only. No condition names. |
+| Raw headers (`exp1_1`, `exp2_1`, `exp3_1`; HTTP range read) | Method `NSI_110min_TOP15_..._for_SILAC_DiGly_fractionated.meth`, Exploris 480. Sample name and comment fields are empty. |
+| `USP39-proteomic.xlsx` | A PD TMT export (`F2`, 18 channels, all named `Sample`). It contains no SILAC data and does not match the deposited 6-channel `.pdStudy` (`F1`). |
+| `.pdStudy` (TMT) | 6 samples named `<file> - [channel]`, PD default sample types (126 = Control), `<Factors />` empty. |
+| `PCA.png` / `TMTabund.png` | Channels labelled by number only. The PCA splits {126, 127N, 127C} from {128N, 128C, 129N}, but the groups are not named. |
+| Paper, supplement, preprint | Inaccessible (see above). |
+| Europe PMC search for PXD041509 | 0 hits. |
+
+**Deliberately not used:**
+- the MaxQuant label-swap layout of experiment 3 (it fixes the relative orientation only, not which channel is which condition);
+- the PCA grouping of the TMT channels;
+- the common convention "heavy = treatment".
+
+None of these states a label (campaign rules 6–7).
+
+**Unblocked by:** the paper's Materials and Methods / supplementary text (diGly SILAC and TMT sections), or an author statement.
+- SILAC needs, for each of exp1/exp2/exp3, whether light or heavy (Arg10/Lys8) is siUSP39. HeLa cells are likely but not confirmed for this arm.
+- TMT needs a 6-channel condition list (the file name suggests a USP39 PROTAC experiment).
+
+The technical values are already resolved in `annotations/PXD041509.report.md`:
+- SILAC arm: Orbitrap Exploris 480 MS:1003028, Arg10 UNIMOD:267, Lys8 UNIMOD:259, GG UNIMOD:121, Nethylmaleimide UNIMOD:108, MaxQuant 4.5 ppm / 20 ppm.
+- TMT arm: Orbitrap Fusion Lumos MS:1002732, SPS-MS3, Sequest HT 7 ppm / 0.5 Da.

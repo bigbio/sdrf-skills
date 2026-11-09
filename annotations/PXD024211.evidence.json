@@ -1,0 +1,322 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD024211.sdrf.tsv",
+ "dataset": "PXD024211",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD024211 via mcp get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD024211/files?pageSize=100&page=0..1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/files.json; 74 entries = 72 .raw + txt_gg_ip.zip + txt_global_prot.zip; every entry projectAccessions contains PXD024211)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Hertel A et al. USP32-regulated LAMTOR1 ubiquitination impacts mTORC1 activation and autophagy induction. Cell Rep 2022;41(10):111653, doi:10.1016/j.celrep.2022.111653, PMID 36476874. Full text NOT retrieved: no PMCID, cell.com PDF HTTP 403 (not bypassed), Elsevier API returned metadata only (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/els.xml). Abstract only (Europe PMC)."
+  },
+  {
+   "id": "thesis",
+   "kind": "publication",
+   "location": "Hertel A (nee Kalb). The deubiquitinase USP32 regulates non-proteolytic ubiquitination in the endosomal-lysosomal system. Dissertation, Goethe University Frankfurt, doi:10.21248/gups.62688, https://publikationen.ub.uni-frankfurt.de/opus4/frontdoor/deliver/index/docId/62688/file/Dissertation_AHertel.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/thesis/thesis.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/thesis/thesis.txt). Section 3.4 + Figure 3-4 (txt lines 1870-1970), Methods 6.2.10.1 (lines 5335-5436), abbreviations (line 301 NHT = non-human targeting), CRISPR (lines 1425-1471, 4864-4871), acknowledgements/publication list (lines 6185, 6288-6312: Mila Basic; Alexandra Kalb = Hertel)."
+  },
+  {
+   "id": "mq_gg",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/12/PXD024211/txt_gg_ip.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt, txt/GlyGly (K)Sites.txt (HTTP range reads; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/dl/gg/)"
+  },
+  {
+   "id": "mq_prot",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/12/PXD024211/txt_global_prot.zip members txt/parameters.txt, txt/summary.txt, txt/proteinGroups.txt (HTTP range reads; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/dl/prot/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/scripts/orient.py): log2 Ratio H/L of the thesis Figure 3-4C diGly sites per MaxQuant experiment, and USP32/USP11 total-protein ratios"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/12/PXD024211/20180319_FB_AlexK_GGIP_1_5.raw and 20180403_FB_AlexK_GGIP_Prot_1_1.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/raw/*.head): instrument string \"Q Exactive HF\""
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_4388?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/cello_CVCL_4388.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/ols_search.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/enrich_children.txt)"
+  },
+  {
+   "id": "usp11",
+   "kind": "publication",
+   "location": "Basic M et al. The deubiquitinase USP11 is a versatile and conserved regulator of autophagy. J Biol Chem 2021;297:101263, PMC8546420 (Europe PMC fullTextXML, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/usp11/jbc.xml): data availability names PXD022143; no SILAC diGly experiment described"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/contract.txt); ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (latest: 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older; spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "scripts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/build/samples_*.tsv, technical_*.tsv, files_*.json; sdrf-tools build per part; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD024211/scripts/postbuild.py (concatenate + second cleavage column)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-72",
+   "value": "RPE1_NHT_diGly-enriched, RPE1_USP32KO_diGly-enriched (rows 1-36); RPE1_NHT_total, RPE1_USP32KO_total (rows 37-72)",
+   "source_ids": [
+    "thesis",
+    "pride",
+    "mq_gg",
+    "mq_prot"
+   ],
+   "evidence": "Thesis 6.2.10.1: RPE1 NHT and USP32KO cells SILAC-labelled, lysates mixed 1:1, 50 ug of the pooled sample removed for full-proteome analysis, rest acetone-precipitated, LysC/trypsin digested and diGly-IP enriched. Two sub-experiments searched separately (txt_gg_ip.zip, txt_global_prot.zip). Source names = cell line + genotype + diGly-enriched/total (precedent PXD024103 KGG-enriched/total) so the (source, bio rep, tech rep, fraction) coordinate is unique across the two parts."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier] rows 1-72",
+   "value": "36 files 20180319/20180320_FB_AlexK_GGIP_{1-3}_{4,5,6,7,85,12}.raw (fractions 1-6) + 18 files 20180403_FB_AlexK_GGIP_Prot_{1-3}_{1-6}.raw (fractions 1-6)",
+   "source_ids": [
+    "files",
+    "mq_gg",
+    "mq_prot",
+    "thesis"
+   ],
+   "evidence": "summary.txt maps each AlexK GGIP raw file to Experiment A1/A2/A3 and Fraction 1-6 (suffix _4->1, _5->2, _6->3, _7->4, _85->5, _12->6, matching the thesis SCX elution steps pH 4.0, 5.0, 6.0, 7.0, 8.5, 11.0), and each AlexK Prot file to a1/a2/a3, Fraction 1-6 (gel lane pieces). Only the 36 AlexK files are in scope; the 36 Mila files are excluded (see limitations)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-72",
+   "value": "1, 2, 3 (MaxQuant experiments A1/A2/A3 for diGly, a1/a2/a3 for total)",
+   "source_ids": [
+    "thesis",
+    "mq_gg",
+    "mq_prot"
+   ],
+   "evidence": "Thesis Figure 3-4 legend: \"Data was obtained from one SILAC sample set with three technical replications.\" MaxQuant experiment numbers 1-3 (A1-A3; a1-a3) are mapped to technical replicate 1-3."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-72",
+   "value": "1",
+   "source_ids": [
+    "thesis"
+   ],
+   "evidence": "One SILAC sample set: a single NHT culture and a single USP32KO culture (thesis Figure 3-4 legend). Within each factor-value group there is one independent culture, hence 1 (README.adoc:330, campaign rule 3); the three repeats are technical."
+  },
+  {
+   "location": "comment[label] rows 1-72",
+   "value": "SILAC light = NHT control; SILAC heavy = USP32 knockout",
+   "source_ids": [
+    "thesis",
+    "orientation",
+    "mq_gg",
+    "mq_prot"
+   ],
+   "evidence": "Thesis 3.4 and 6.2.10.1 / Figure 3-4A: RPE1 NHT light (K0R0), RPE1 USP32KO heavy (K8R10); legend: \"Comparison was done between USP32KO (heavy) and NHT (light)\". Cross-check with deposited ratios (orientation.txt): log2 H/L of A1-A3 diGly sites Rab7A K191 1.57/1.66/1.42, Rab7A K194 1.61/1.60, Rab11A K179 0.79/0.66/0.86, Rab11B K179 0.99/0.93/0.89, TMEM192 K246 2.63/2.55 match thesis Figure 3-4C log2 KO/NHT (1.50, 1.56, 0.77, 0.98, 2.59). summary.txt Multiplicity 2, Labels1 Lys8."
+  },
+  {
+   "location": "characteristics[genetic modification], factor value[genetic modification] rows 1-72",
+   "value": "non-human targeting control sgRNA (light); USP32 knockout (heavy)",
+   "source_ids": [
+    "thesis",
+    "pride"
+   ],
+   "evidence": "Thesis line 301 NHT = non-human targeting; lines 558-559, 1425-1471, 4864-4871: polyclonal USP32 knockout and NHT control lines generated by CRISPR/Cas9 (pLentiCRISPRv2) in RPE1. PRIDE: \"SILAC labeled RPE1 NHT or USP32KO cells\". Custom characteristics column (spec Extending Templates; precedent PXD003316/PXD031662)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-72",
+   "value": "sample enrichment (rows 1-36); not applicable (rows 37-72)",
+   "source_ids": [
+    "thesis",
+    "pride",
+    "ols"
+   ],
+   "evidence": "diGly peptides enriched with PTMScan Ubiquitin Remnant Motif (K-e-GG) antibody beads (thesis 6.2.10.1; PRIDE protocol, CST 5562); total proteome not enriched. EFO:0009106 sample enrichment is a descendant of EFO:0009090 (OLS); no ubiquitin-specific child exists."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-72",
+   "value": "hTERT-RPE1; CVCL_4388; hTERT-RPE1",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "thesis",
+    "pride"
+   ],
+   "evidence": "Thesis/PRIDE \"RPE1\"; paper abstract \"primary hTERT-RPE1 cells\". Cellosaurus CVCL_4388 ID hTERT-RPE1 (SY RPE1, RPE-1), DR EFO_0022539; OLS EFO:0022539 label hTERT-RPE1."
+  },
+  {
+   "location": "characteristics[organism] rows 1-72",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Cellosaurus OX NCBI_TaxID=9606; PRIDE organism Homo sapiens; OLS NCBITaxon:9606."
+  },
+  {
+   "location": "characteristics[organism part], characteristics[cell type] rows 1-72",
+   "value": "pigmented layer of retina; retinal pigment epithelial cell",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: \"Derived from site: In situ; Eye, retina, retinal pigment epithelium; UBERON=UBERON_0001782\"; OLS UBERON:0001782 label \"pigmented layer of retina\"; CL:0002586 \"retinal pigment epithelial cell\" (the line is an RPE-derived epithelial line)."
+  },
+  {
+   "location": "characteristics[sex], characteristics[age], characteristics[developmental stage] rows 1-72",
+   "value": "female; 1Y; infant",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus SX Female, AG 1Y (donor of the parental RPE-340 cells). Developmental stage EFO:0001355 \"infant\" (OLS) for a 1-year-old donor (campaign rule 9: from Cellosaurus age)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-72",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_4388 lists no disease (telomerase-immortalised normal RPE line, CA \"Telomerase immortalized cell line\"); PATO:0000461 normal."
+  },
+  {
+   "location": "characteristics[material type] rows 1-72",
+   "value": "cell line",
+   "source_ids": [
+    "cellosaurus",
+    "templates"
+   ],
+   "evidence": "Cultured cell line; fixed vocabulary value."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-72",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Thesis: cells grown two weeks in \"DMEM suitable for SILAC\" (materials line 4496: DMEM for SILAC, Life Technologies A33822). NCIT:C185409 (OLS)."
+  },
+  {
+   "location": "comment[instrument] rows 1-72",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "pride",
+    "raw",
+    "thesis",
+    "ols"
+   ],
+   "evidence": "PRIDE instrument and protocol \"Q Exactive HF\"; raw headers contain \"Q Exactive HF\"; OLS MS:1002523."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-72",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Protocol: \"Q Exactive HF operating in DDA mode\", top10 (diGly) / top15 (gel)."
+  },
+  {
+   "location": "comment[dissociation method], comment[ms2 mass analyzer] rows 1-72",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422; NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "pride",
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Protocol: precursors \"fragmented by HCD and the resulting fragments analyzed with 30,000 resolution\" (Orbitrap)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-72",
+   "value": "column 1: NT=Trypsin;AC=MS:1001251 (all rows); column 2: NT=Lys-C;AC=MS:1001309 (rows 1-36), not applicable (rows 37-72)",
+   "source_ids": [
+    "thesis",
+    "pride",
+    "mq_gg",
+    "mq_prot",
+    "ols"
+   ],
+   "evidence": "diGly: in-solution digest with LysC (4 h) then trypsin overnight (thesis 6.2.10.1; PRIDE \"digested with LysC and trypsin in solution\"). Total proteome: in-gel digest with trypsin only. MaxQuant search rule Trypsin/P (summary.txt) - digestion enzyme recorded per campaign rule 2."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-72",
+   "value": "NT=Strong cation-exchange chromatography (SCX);AC=PRIDE:0000561 (rows 1-36); NT=SDS PAGE;AC=PRIDE:0000568 (rows 37-72)",
+   "source_ids": [
+    "thesis",
+    "pride",
+    "ols"
+   ],
+   "evidence": "diGly IP eluates fractionated on SCX STAGE tips into six pH steps; whole-cell lysate separated by 10 % SDS-PAGE, lanes cut into equal pieces."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-72",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608; NT=Chloroacetamide (ClAA);AC=PRIDE:0000600",
+   "source_ids": [
+    "thesis",
+    "ols"
+   ],
+   "evidence": "Thesis 6.2.10.1: reduced with DTT and alkylated with chloroacetamide (CAA) in both the in-solution and the in-gel protocol."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-72",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_gg",
+    "mq_prot"
+   ],
+   "evidence": "parameters.txt (both searches): \"MS/MS tol. (FTMS) 20 ppm\"; MS2 in the Orbitrap (FTMS)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-72",
+   "value": "Carbamidomethyl C Fixed; Oxidation M Variable; Acetyl Protein N-term Variable; GG K Variable (rows 1-36 only; not applicable rows 37-72); Label:13C(6)15N(2) K (UNIMOD:259) Variable",
+   "source_ids": [
+    "mq_gg",
+    "mq_prot",
+    "pride",
+    "thesis",
+    "ols"
+   ],
+   "evidence": "parameters.txt: \"Fixed modifications Carbamidomethyl (C)\". summary.txt gg search: Variable modifications \"Oxidation (M);Acetyl (Protein N-term);GlyGly (K)\", Multiplicity 2, Labels1 \"Lys8\"; prot search: \"Oxidation (M);Acetyl (Protein N-term)\", Labels1 \"Lys8\". Lys8 = UNIMOD:259 (mass shift, campaign rule 11). Heavy arginine (R10) was used in culture (thesis) but was NOT a search label, so no UNIMOD:267 column (rule 5)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-72",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10."
+  },
+  {
+   "location": "technology type rows 1-72",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 36 of 72 deposited raw files annotated. The 36 \"Mila\" files (20180320_FB_Mila_GGIP_{1-3}_{4,5,6,7,85,12}.raw and 20180403_FB_Mila_GGIP_Prot_{1-3}_{1-6}.raw; MaxQuant experiments M1-M3 / m1-m3, searched together with the USP32 runs) are excluded: their samples are not described in PRIDE, the Cell Rep paper abstract or the Hertel thesis. \"Mila\" is Mila Basic (thesis acknowledgements; USP11 project, JBC 2021 PMC8546420, whose data are PXD022143 and which describes no SILAC diGly experiment). Their total-proteome USP11 H/L ratios (0.61, 0.42) hint at USP11 depletion in the heavy channel, but no source states cell line, genotype or channel map. Recorded in annotations/BLOCKED.md.",
+  "Cell Rep full text (Methods, STAR Methods, supplementary tables) not retrieved: no PMC copy, cell.com PDF 403 (not bypassed), Elsevier API metadata only. Sample-level facts come from the first author's doctoral thesis (same experiment, same MS protocol text as PRIDE) and the PRIDE protocol.",
+  "comment[precursor mass tolerance] = not available: MaxQuant parameters.txt/summary.txt do not record precursor (first/main search) tolerance and no mqpar.xml was deposited. convert-openms therefore fails (expected).",
+  "MaxQuant version: PRIDE and thesis say 1.5.1, deposited parameters.txt says 1.6.1.0 (not an SDRF column; noted only).",
+  "Heavy medium contained K8 and R10 (thesis), but MaxQuant quantified Lys8 only (\"activated SILAC quantification (K8)\"); the SDRF lists only the searched label.",
+  "USP32 total-protein H/L ratios in a1-a3 are ~1 (0.97, 0.83, 1.02) despite the knockout (polyclonal CRISPR pool; peptides from the residual/truncated protein still quantified). The channel orientation rests on the explicit thesis statement plus the diGly-site ratios, which match Figure 3-4C.",
+  "Technical vs biological replicates: taken from the thesis legend (\"one SILAC sample set with three technical replications\"); the three total-proteome replicates a1-a3 are assumed to be paired with diGly replicates A1-A3 by number.",
+  "MaxQuant summary.txt also lists 10 \"GG_sens\" files (20180407_*_GG_sens_1_*) that were searched but not deposited; they are not in the SDRF.",
+  "characteristics[passage number], characteristics[ancestry category] (Cellosaurus gives no population), characteristics[individual] = not available.",
+  "techsdrf not installed; raw verification limited to range-read headers of 2 of 36 in-scope files.",
+  "Independent review not performed in this task: REVIEW_PENDING_EXTERNAL."
+ ]
+}

@@ -1,0 +1,73 @@
+# PXD041509 validation (2026-11-09T13:16:07Z); cwd /home/user/bigbio/sdrf-skills/annotations; sha256 7930ec84df5db1eae1b4de5c1878753fa35ccacbd4e10a54f17d6192a976989d
+
+$ parse_sdrf validate-sdrf -s PXD041509.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: USP39 siRNA in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD041509.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD041509.sdrf.tsv
+Hallucination Report: PXD041509.sdrf.tsv
+  Terms checked:     15
+  Verified:          15
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD041509.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/pride.json --accession PXD041509
+PXD041509: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000314', 'name': 'TMT'}]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Lys-C digest but only Trypsin is declared  [missing: Lys-C]
+exit code: 1
+
+$ sdrf-tools schema-check PXD041509.evidence.json
+PXD041509.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD041509.sdrf.tsv PXD041509.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD041509/openms) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD041509.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD041509.sdrf.tsv
+Factor columns: ['factor value[bait]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]']
+Conditions (4): dict_keys(['IgG control (no bait)|untreated', 'USP39|untreated', 'PRPF4|untreated', 'PRPF4|USP39 siRNA'])
+Files per condition: dict_values([3, 3, 3, 3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD041509.sdrf.tsv
+exit code: 0
+
+## Notes on the findings
+
+### reconcile exit 1: both findings are false positives for this file (rule 13)
+
+**BLOCKER `labelled_annotated_as_label_free`.**
+- PRIDE registers TMT, SILAC and peptide counting for the whole deposit, which mixes three arms.
+- This SDRF holds only the 12 label-free IP raws.
+- Both of their searches are label-free: `mqpar.xml` and `mqpar-PRPF4.xml` have `<multiplicity>1</multiplicity>`, empty `<labelMods>`, empty `<isobaricLabels>` and `<lfqMode>1</lfqMode>`.
+- The deposited tables `USP39-interactome-HELA.xlsx` and `PRPF4-interactome.xlsx` hold only "LFQ intensity" columns.
+- The TMTpro arm (24 raws) and the SILAC arm (18 raws) are not in this file. Both are blocked; see annotations/BLOCKED.md, section PXD041509.
+
+**MAJOR `cleavage_agent_incomplete` (Lys-C).**
+- The only digestion text in PRIDE ("LysC (Wako) 1:50 and Trypsin 1:100") is part of the TMT workflow paragraph. In the same paragraph the digest goes on to TMTpro labelling and 24 high-pH fractions, so it describes the TMT arm.
+- No digestion protocol for the IP samples is deposited, and the paper is closed (HTTP 403).
+- The IP searches used enzyme `Trypsin/P` only (both mqpar files).
+- Adding Lys-C would assert a digest that is not documented for these samples. Trypsin is kept, and the gap is listed under manifest limitations.
+
+### validate-sdrf warnings
+`untreated` and `USP39 siRNA` in `characteristics[treatment]` have no NCIT/EFO term. `untreated` is the value the template prescribes for controls (campaign rule 4). `USP39 siRNA` follows the campaign precedent for siRNA treatments (e.g. PXD024103 `Nedd4 siRNA`). Both are warnings only, and the exit code is 0.
+
+### convert-openms warning
+"no TA= specified": this comes from the protein N-term Acetyl modification, which is written as `PP=Protein N-term`, as the format rules require. Conversion succeeded with 4 conditions × 3 files.
+
+### Post-build edits
+None. The SDRF is the unmodified output of `sdrf-tools build` (samples/technical tables are generated by `scripts/make_tables.py` in the scratch dir).
