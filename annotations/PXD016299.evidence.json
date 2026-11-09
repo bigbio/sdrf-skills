@@ -1,0 +1,273 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv",
+ "dataset": "PXD016299",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD016299 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/pride.json): title, sampleProcessingProtocol, dataProcessingProtocol"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD016299/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/files_all.json; 53 entries, every projectAccessions contains PXD016299): 6 CHIP_{WT,KO}_{1,2,3}.raw + 6 matching .msf, 15 SWATH .wiff(+.wiff.scan) pairs, 2 IDA library .wiff(+.scan), library/search outputs"
+  },
+  {
+   "id": "msf",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/07/PXD016299/CHIP_{WT,KO}_{1,2,3}.msf (all six downloaded, read with sqlite3 by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/scripts/msf_quant.py; output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/msf_quant.txt; per-protein exports /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/prot/*.tsv by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/scripts/msf_protexport.py; msf files deleted after reading for disk space)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of bytes 0-1500000 of https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/07/PXD016299/CHIP_{WT,KO}_{1,2,3}.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/raw/*.head; Xcalibur instrument method text, UTF-16)"
+  },
+  {
+   "id": "swath_ttest",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/07/PXD016299/SWATH_T-test_SH-SY5Y_SY5Y_CHIP_KO_to_CHIP_WT_biorep1.xlsx and _biorep2.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/swath/; VGF/STUB1 rows extracted by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/scripts/swath_vgf.py to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/swath_vgf.txt)"
+  },
+  {
+   "id": "genocheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/geno_check.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/scripts/geno_check.py over /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/prot/*.tsv: PSM counts for marker proteins, inter-run correlation)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0019?format=txt (SH-SY5Y: female, 4Y, Caucasian, neuroblastoma NCIt C3270, derived from metastatic site bone marrow UBERON_0002371, EFO_0002717)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Nita E et al. CHIP-dependent regulation of the actin cytoskeleton is linked to neuronal cell membrane integrity. iScience 2021;24(8):102878, doi:10.1016/j.isci.2021.102878, PMID 34401662, PMC8350547 (Europe PMC fullTextXML, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/paper.xml/paper.txt). Cites PXD016299 only for the SH-SY5Y SWATH data; it is NOT a description of the SILAC arm. No publication describing the SILAC experiment was found (Europe PMC searches: CHIP VGF neuropeptide; STUB1 VGF; PXD016299)."
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4/api (MS:1001910 Orbitrap Elite, MS:1000291 linear ion trap, MS:1000133 collision-induced dissociation, UNIMOD:188 Label:13C(6), UNIMOD:481 Label:2H(4), MONDO:0005072 neuroblastoma, HANCESTRO:0005 European ancestry, UBERON:0002371 bone marrow, UBERON:0034919 juvenile stage (in EFO), EFO:0002717 SH-SY5Y)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. spec README.adoc:27 sdrf version v1.1.0. The spec submodule nested templates copy is older."
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file] / assay name rows 1-12",
+   "value": "CHIP_WT_1..3.raw, CHIP_KO_1..3.raw, 2 rows (light, heavy) each",
+   "source_ids": [
+    "files",
+    "pride"
+   ],
+   "evidence": "The six Orbitrap .raw files in the file list; PRIDE protocol: \"SILAC labelled samples (CHIP WT and CHIP KO each in biological triplicate) ... Orbitrap Elite\". The 15 SWATH .wiff runs (TripleTOF 5600+, label-free) and 2 IDA library runs are not SILAC and not annotated."
+  },
+  {
+   "location": "comment[label] rows 1-12",
+   "value": "SILAC light = pre-existing proteome; SILAC heavy = newly synthesised proteome (same culture)",
+   "source_ids": [
+    "pride",
+    "msf"
+   ],
+   "evidence": "Protocol: \"biological triplicates of pulse SILAC samples\"; heavy label 13C(6) R and 2H(4) K; \"relative peak area of the peptides with the heavy isotope labels with CHIP WT cells/CHIP KO cells ratios\". msf Precursor Ions Quantifier QuantificationMethod \"SILAC 2 plex (Arg6, Lys4)\" in all six files; channel 2 - channel 1 mass deltas 4 / 6 Da (Lys4/Arg6). Median H/(L+H) per run 0.41-0.42 (WT) and 0.36-0.37 (KO), i.e. a partial pulse; heavy is the minority newly made pool. The pulse direction (light pre-grown, heavy pulse) is inferred from \"pulse SILAC\" + heavy being the quantified readout, not stated verbatim."
+  },
+  {
+   "location": "source name / characteristics[genotype] / factor value[genotype] rows 1-12",
+   "value": "CHIP_WT_n -> wild type; CHIP_KO_n -> STUB1 knockout",
+   "source_ids": [
+    "files",
+    "pride",
+    "msf",
+    "raw",
+    "genocheck",
+    "swath_ttest",
+    "paper"
+   ],
+   "evidence": "Deposited file names CHIP_WT_1-3 / CHIP_KO_1-3; protocol: CHIP WT and CHIP KO each in triplicate; paper: SH-SY5Y CHIP KO made by CRISPR/Cas9 (gRNA in STUB1 exon 1). CONFLICT recorded: instrument-recorded names are 180327_SP007_CHIP_WT_A, _B, 180328_SP008_CHIP_WT_C_4ul (-> deposited WT_1-3) and 180404_SP007_CHIP_WT_D, _E, _F (-> deposited KO_1-3); all six say \"WT\", so the string is a series name, not a genotype. Data check: VGF (O15240) has 17/15/20 PSMs in KO_1/2/3 and 0 in WT_1/2/3; in the deposited SWATH t-tests the group with low STUB1 (CHIP KO) has ~10x higher VGF (biorep1 6.30e6 vs 6.43e5, STUB1 4.28e4 vs 1.48e5). So VGF-high = KO, matching the deposited names. Caveat: D-F were also acquired a week later (2018-04-04) than A-C (2018-03-27/28)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-12",
+   "value": "1-3 within each genotype; light and heavy rows of one file share the number",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "\"CHIP WT and CHIP KO each in biological triplicate\"; one raw file per culture (file suffix 1-3, original A-C / D-F). Both channels of a file come from the same pulsed culture (campaign rule 3, precedent PXD028934/PXD004880)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-12",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism NEWT:9606; SH-SY5Y is human."
+  },
+  {
+   "location": "characteristics[cell line] / characteristics[cellosaurus accession] / characteristics[cellosaurus name] rows 1-12",
+   "value": "SH-SY5Y / CVCL_0019 / SH-SY5Y",
+   "source_ids": [
+    "files",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "SWATH run names \"SH-SY5Y_SY5Y_CHIP_...\" and paper Key Resources \"comparative analysis of CHIP WT and CHIP KO SH-SY5Y cells ... PRIDE: PXD016299\"; PRIDE description \"Gene-edited neuroblastoma cells\". The SILAC raw names carry no cell-line string; the protocol says the SILAC samples were processed as the SWATH samples, CHIP WT/KO. EFO:0002717 SH-SY5Y."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-12",
+   "value": "bone marrow",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: derived from site Metastatic; Bone marrow; UBERON_0002371."
+  },
+  {
+   "location": "characteristics[disease] rows 1-12",
+   "value": "neuroblastoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3270 Neuroblastoma -> MONDO:0005072. PRIDE disease \"Spinocerebellar ataxia type 31\" is not a property of these cells (STUB1 KO is a model; SCA31 is not the STUB1 ataxia)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-12",
+   "value": "cell line",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Cultured SH-SY5Y cells."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-12",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus population Caucasian -> HANCESTRO:0005."
+  },
+  {
+   "location": "characteristics[age] / characteristics[sex] rows 1-12",
+   "value": "4Y / female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 4Y, SX Female (donor of parental SK-N-SH)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-12",
+   "value": "juvenile stage",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 4Y; UBERON:0034919 juvenile stage is a child of EFO:0000399 in EFO (reviewer recommendation in campaign PXD010027 review)."
+  },
+  {
+   "location": "comment[instrument] rows 1-12",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Header of all six .raw: \"Orbitrap Elite MS\"; protocol: \"Orbitrap Elite (Thermo Fisher Scientific)\" for the SILAC samples. OLS label of MS:1001910 is \"Orbitrap Elite\"."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-12",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "Protocol \"Top20 data dependent acquisition mode\"; method _LCMS_120min_TOP20rCID, \"Scan Event 2 repeated for top 20 peaks\"."
+  },
+  {
+   "location": "comment[dissociation method] / comment[collision energy] / comment[ms2 mass analyzer] rows 1-12",
+   "value": "CID / 35 NCE / linear ion trap",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw header scan event 2: \"ITMS + c norm Dep ... Activation Type: CID ... Normalized Coll. Energy: 35.0\" in all six files; protocol: MS2 \"in the LTQ linear ion trap\"."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-12",
+   "value": "400m/z-2000m/z",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw header scan event 1 \"FTMS + p norm o(400.0-2000.0)\" in all six files; protocol \"survey scan of 400 - 2000 m/z\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-12",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "msf"
+   ],
+   "evidence": "Protocol: FASP \"using trypsin\"; msf Mascot Enzyme Trypsin, 2 missed cleavages."
+  },
+  {
+   "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 1-12",
+   "value": "10 ppm / 0.5 Da",
+   "source_ids": [
+    "msf",
+    "pride"
+   ],
+   "evidence": "msf Mascot PeptideTolerance 10 ppm, FragmentTolerance 0.5 Da in all six files. Protocol text says 0.6 Da (Sequest HT, PD 2.2) - the deposited searches (PD 1.4.1.14, Mascot) used 0.5 Da; the deposited search wins (campaign rule 5)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-12",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) R (UNIMOD:188), Label:2H(4) K (UNIMOD:481) Variable",
+   "source_ids": [
+    "msf",
+    "pride",
+    "ols"
+   ],
+   "evidence": "msf (all six): StaticMod_1 Carbamidomethyl (C); DynMod_1 Oxidation (M); DynMod_2 Acetyl (Protein N-term); quantification method SILAC 2plex (Arg6, Lys4) with ch2-ch1 deltas 6.02/4.03 Da. Protocol: \"label 13C(6) [+6.020 Da (R)] and label 2H(4) [+4.025 Da (K)]\". MT=Variable for labels by campaign rule 11. The protocol text describes a different PD 2.2 search (labels static, Met-loss+Acetyl) not present in the deposit."
+  },
+  {
+   "location": "comment[fraction identifier] / comment[technical replicate] / comment[fractionation method] rows 1-12",
+   "value": "1 / 1 / not applicable",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "One unfractionated injection per culture (protocol: direct nanoLC of desalted peptides; one raw per sample)."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] rows 1-12",
+   "value": "v1.1.0 / ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0 / sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; build fills the template columns."
+  },
+  {
+   "location": "technology type rows 1-12",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build for ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE (campaign = SILAC): only the 6 pulse-SILAC Orbitrap Elite runs (CHIP_WT_1-3.raw, CHIP_KO_1-3.raw) are annotated. Not annotated because they are label-free: 12 SWATH runs SWATH_SH-SY5Y_SY5Y_CHIP_{WT,KO}_biorep{1,2}_techrep{1,2,3}.wiff (+ .wiff.scan) on the TripleTOF 5600+, and 2 IDA spectral-library runs IDA_SH-SY5Y_SY5Y_CHIP_spectral_library_rep{1,2}.wiff (+ .wiff.scan). They can go in a separate label-free SDRF (rule 12).",
+  "No publication describes the SILAC experiment. The iScience 2021 paper (PMC8350547) cites PXD016299 only for the SWATH data and cites \"Nita E (2016) MSc thesis, University of Edinburgh\" (not retrievable). All SILAC design facts come from the PRIDE protocol, the deposited msf searches and raw headers.",
+  "Genotype-to-file identity rests on the deposited file names, while the instrument-recorded names of all six runs read \"CHIP_WT_A..F\". Supported by the VGF marker (detected only in the deposited KO runs; VGF is ~10x higher in CHIP KO in the deposited SWATH t-tests); STUB1 itself was not detected in any SILAC run. KO runs were acquired one week after the WT runs, so genotype and acquisition batch are confounded.",
+  "Pulse direction (light pre-existing, heavy newly synthesised) and pulse duration: the direction is inferred from \"pulse SILAC\" with heavy as the quantified readout and H/(L+H) < 0.5; the pulse duration is not stated anywhere, so no sampling time is given.",
+  "Culture medium (SILAC medium base not named), passage number, reduction/alkylation reagents (FASP, not named), cell type and sample storage temperature are not available.",
+  "Search conflict: the PRIDE data processing protocol describes a PD 2.2 Sequest HT search (fragment 0.6 Da, labels static, Met-loss+Acetyl); the deposited msf files are PD 1.4.1.14 Mascot searches (fragment 0.5 Da, SILAC 2plex quant). The SDRF follows the deposited searches.",
+  "Review: REVIEW_PENDING_EXTERNAL - the independent sdrf-adversarial-review has not been run (hand-off to the caller)."
+ ]
+}

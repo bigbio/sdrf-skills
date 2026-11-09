@@ -1,0 +1,4 @@
+# PXD016299 validation (2026-11-09); SDRF sha256 2d6062f2f03dcc72d4dcc0710ebecb0e35c87e4e1c96c705d069bea7cb217470
+# SDRF built by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/build/files.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD016299/scripts/gen_tables.py); copied verbatim, no post-build edits.
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD016299.sdrf.tsv -t ms-proteomics -t human -t cell-lines

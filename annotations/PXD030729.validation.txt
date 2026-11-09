@@ -1,0 +1,264 @@
+# PXD030729 validation log (2026-11-09T13:33Z)
+
+################ PXD030729-digly-human.sdrf.tsv  sha256 f010531a853d96bf5a5865aa37f0f06c11644cd2afcc46e7e7c71b59ac9f45ad  80 rows x 47 cols
+## parse_sdrf validate-sdrf -s annotations/PXD030729-digly-human.sdrf.tsv -t ms-proteomics -t human -t cell-lines   (full ontology, single round, no fixes needed)
+WARNING: Term: V3656 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: V6604 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: V549 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: V79 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: V7163 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: V6719 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+## sdrf-tools structure PXD030729-digly-human.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## sdrf-tools check PXD030729-digly-human.sdrf.tsv --offline
+Hallucination Report: PXD030729-digly-human.sdrf.tsv
+  Terms checked:     13
+  Verified:          4
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+## sdrf-tools reconcile PXD030729-digly-human.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/pride.json --accession PXD030729
+PXD030729: every annotated value agrees with the deposit record.
+exit=0
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-human.sdrf.tsv -t2 (cwd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/convert/digly-human)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-human.sdrf.tsv
+Factor columns: ['factor value[cell line]', 'factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]']
+Conditions (8): dict_keys(['SH-SY5Y|CCNF wild type', 'SH-SY5Y|CCNF knockout', 'V3656|CCNF wild type', 'V6604|CCNF p.V335M', 'V549|CCNF wild type', 'V79|CCNF wild type', 'V7163|CCNF p.D628V', 'V6719|CCNF wild type'])
+Files per condition: dict_values([8, 8, 8, 16, 8, 8, 16, 8])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 80 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-human.sdrf.tsv
+exit=0
+experimental_design.tsv
+openms.tsv
+Note: the 'no TA= specified' warning concerns Acetyl PP=Protein N-term (positional mod, correct per format rules).
+## sdrf-tools schema-check annotations/PXD030729-digly-human.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-human.evidence.json: valid evidence-manifest
+exit=0
+## sdrf-tools manifest-coverage annotations/PXD030729-digly-human.sdrf.tsv annotations/PXD030729-digly-human.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit=0
+
+################ PXD030729-digly-mouse.sdrf.tsv  sha256 5860dd5bdc97fd202ed74396840ca2f86fdfbfae810f5079d091d1ae264bdc92  16 rows x 44 cols
+## parse_sdrf validate-sdrf -s annotations/PXD030729-digly-mouse.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines   (full ontology, single round, no fixes needed)
+WARNING: Term: A/J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit=0
+## sdrf-tools structure PXD030729-digly-mouse.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## sdrf-tools check PXD030729-digly-mouse.sdrf.tsv --offline
+Hallucination Report: PXD030729-digly-mouse.sdrf.tsv
+  Terms checked:     13
+  Verified:          4
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+## sdrf-tools reconcile PXD030729-digly-mouse.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/pride.json --accession PXD030729
+PXD030729: every annotated value agrees with the deposit record.
+exit=0
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-mouse.sdrf.tsv -t2 (cwd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/convert/digly-mouse)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-mouse.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]']
+Conditions (2): dict_keys(['CCNF wild type', 'CCNF knockout'])
+Files per condition: dict_values([8, 8])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 16 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-mouse.sdrf.tsv
+exit=0
+experimental_design.tsv
+openms.tsv
+Note: the 'no TA= specified' warning concerns Acetyl PP=Protein N-term (positional mod, correct per format rules).
+## sdrf-tools schema-check annotations/PXD030729-digly-mouse.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD030729-digly-mouse.evidence.json: valid evidence-manifest
+exit=0
+## sdrf-tools manifest-coverage annotations/PXD030729-digly-mouse.sdrf.tsv annotations/PXD030729-digly-mouse.evidence.json
+Manifest covers every column with a value (29 column(s)).
+exit=0
+
+################ PXD030729-lfq-human.sdrf.tsv  sha256 7ee59674d2c614c247d6c0318c34bac27ec9f034d6a9b3eeaf0623aeb170d840  12 rows x 45 cols
+## parse_sdrf validate-sdrf -s annotations/PXD030729-lfq-human.sdrf.tsv -t ms-proteomics -t human -t cell-lines   (full ontology, single round, no fixes needed)
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: biotin-phenol in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit=0
+## sdrf-tools structure PXD030729-lfq-human.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## sdrf-tools check PXD030729-lfq-human.sdrf.tsv --offline
+Hallucination Report: PXD030729-lfq-human.sdrf.tsv
+  Terms checked:     10
+  Verified:          3
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+## sdrf-tools reconcile PXD030729-lfq-human.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/pride.json --accession PXD030729
+PXD030729: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Lys-C digest but only Trypsin is declared  [missing: Lys-C]
+exit=1
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD030729-lfq-human.sdrf.tsv -t2 (cwd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/convert/lfq-human)
+Factor columns: ['factor value[bait]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]']
+Conditions (4): dict_keys(['FLAG-HA-CCNF|untreated', 'FLAG-HA-TBC1D7|untreated', 'myc-APEX2-CCNF|untreated', 'myc-APEX2-CCNF|biotin-phenol'])
+Files per condition: dict_values([3, 3, 3, 3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD030729-lfq-human.sdrf.tsv
+exit=0
+Note: the 'no TA= specified' warning concerns Acetyl PP=Protein N-term (positional mod, correct per format rules).
+## sdrf-tools schema-check annotations/PXD030729-lfq-human.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD030729-lfq-human.evidence.json: valid evidence-manifest
+exit=0
+## sdrf-tools manifest-coverage annotations/PXD030729-lfq-human.sdrf.tsv annotations/PXD030729-lfq-human.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit=0
+REFUTATION of reconcile findings for PXD030729-lfq-human.sdrf.tsv (false positives):
+ - labelled_annotated_as_label_free: PRIDE quantificationMethods=SILAC is project-level and describes the diGly experiments. The runs in this file come from the HA and APEX2 MaxQuant searches whose mqpar.xml has <multiplicity>1</multiplicity>, empty <labelMods>, <lfqMode>1</lfqMode>, and summary.txt Multiplicity 1; Tables S3/S4 analyse LFQ intensities. 'label free sample' is correct.
+ - cleavage_agent_incomplete (Lys-C): Lys-C appears only in the diGly protocol ('digested with 5 ng/ul lys-C ... Subsequent digestion of peptides with trypsin'). The HA-IP protocol says 'trypsinized for 4 h', the streptavidin pulldown 'trypsinization overnight'; no Lys-C. The diGly SDRFs carry the Lys-C column and reconcile exits 0 on them.
+
+################ PXD030729-lfq-mouse.sdrf.tsv  sha256 589203a4600a93caa9cef4d5563fff9de26bb6e45459daed35e8c3d866d23ea8  12 rows x 43 cols
+## parse_sdrf validate-sdrf -s annotations/PXD030729-lfq-mouse.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines   (full ontology, single round, no fixes needed)
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: biotin-phenol in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: A/J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit=0
+## sdrf-tools structure PXD030729-lfq-mouse.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## sdrf-tools check PXD030729-lfq-mouse.sdrf.tsv --offline
+Hallucination Report: PXD030729-lfq-mouse.sdrf.tsv
+  Terms checked:     10
+  Verified:          3
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+## sdrf-tools reconcile PXD030729-lfq-mouse.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/pride.json --accession PXD030729
+PXD030729: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Lys-C digest but only Trypsin is declared  [missing: Lys-C]
+exit=1
+## parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD030729-lfq-mouse.sdrf.tsv -t2 (cwd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD030729/convert/lfq-mouse)
+Factor columns: ['factor value[bait]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]']
+Conditions (4): dict_keys(['FLAG-HA-CCNF|untreated', 'FLAG-HA-TBC1D7|untreated', 'myc-APEX2-CCNF|untreated', 'myc-APEX2-CCNF|biotin-phenol'])
+Files per condition: dict_values([3, 3, 3, 3])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 12 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD030729-lfq-mouse.sdrf.tsv
+exit=0
+Note: the 'no TA= specified' warning concerns Acetyl PP=Protein N-term (positional mod, correct per format rules).
+## sdrf-tools schema-check annotations/PXD030729-lfq-mouse.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD030729-lfq-mouse.evidence.json: valid evidence-manifest
+exit=0
+## sdrf-tools manifest-coverage annotations/PXD030729-lfq-mouse.sdrf.tsv annotations/PXD030729-lfq-mouse.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit=0
+REFUTATION of reconcile findings for PXD030729-lfq-mouse.sdrf.tsv (false positives):
+ - labelled_annotated_as_label_free: PRIDE quantificationMethods=SILAC is project-level and describes the diGly experiments. The runs in this file come from the HA and APEX2 MaxQuant searches whose mqpar.xml has <multiplicity>1</multiplicity>, empty <labelMods>, <lfqMode>1</lfqMode>, and summary.txt Multiplicity 1; Tables S3/S4 analyse LFQ intensities. 'label free sample' is correct.
+ - cleavage_agent_incomplete (Lys-C): Lys-C appears only in the diGly protocol ('digested with 5 ng/ul lys-C ... Subsequent digestion of peptides with trypsin'). The HA-IP protocol says 'trypsinized for 4 h', the streptavidin pulldown 'trypsinization overnight'; no Lys-C. The diGly SDRFs carry the Lys-C column and reconcile exits 0 on them.
+
+################ Post-build steps (deterministic, scripts/postbuild.py)
+ - digly-human, digly-mouse: --lysc inserts a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 after the Trypsin column (batch rule 2); script asserts every other cell unchanged.
+ - lfq-human, lfq-mouse: concatenation of the HA-IP and APEX2 builds (identical headers asserted); needed because reduction/alkylation reagents differ (rule 5).
+
+################ sdrf-tools search-params on deposited mqpar.xml
+## sdrf-tools search-params dl/N2a_diGly_mqpar.xml
+# MaxQuant
+column	value
+comment[modification parameters]	NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable | NT=stringent GlyGly;TA=K;MT=Variable | NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable | NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed
+comment[cleavage agent details]	NT=Trypsin/P;AC=MS:1001313
+comment[precursor mass tolerance]	4.5 ppm
+# label: SILAC
+# unmapped - look these up, do not guess:
+#   modification 'stringent GlyGly (K)'
+# notes:
+#   SILAC states (light first): light | Lys8
+#   MS/MS tolerance is per analyzer (FTMS 20 ppm, ITMS 0.5 Da, TOF 40 ppm, Unknown 0.5 Da); use the one of the instrument's MS2 analyzer for comment[fragment mass tolerance]
+# file map (8 files):
+exit=0
+## sdrf-tools search-params dl/SH_diGly_mqpar.xml
+# MaxQuant
+column	value
+comment[modification parameters]	NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable | NT=stringent GlyGly;TA=K;MT=Variable | NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable | NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed
+comment[cleavage agent details]	NT=Trypsin/P;AC=MS:1001313
+comment[precursor mass tolerance]	4.5 ppm
+# label: SILAC
+# unmapped - look these up, do not guess:
+#   modification 'stringent GlyGly (K)'
+# notes:
+#   SILAC states (light first): light | Lys8
+#   MS/MS tolerance is per analyzer (FTMS 20 ppm, ITMS 0.5 Da, TOF 40 ppm, Unknown 0.5 Da); use the one of the instrument's MS2 analyzer for comment[fragment mass tolerance]
+# file map (8 files):
+exit=0
+## sdrf-tools search-params dl/LCL_diGly_mqpar.xml
+# MaxQuant
+column	value
+comment[modification parameters]	NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable | NT=stringent GlyGly;TA=K;MT=Variable | NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable | NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed
+comment[cleavage agent details]	NT=Trypsin/P;AC=MS:1001313
+comment[precursor mass tolerance]	4.5 ppm
+# label: SILAC
+# unmapped - look these up, do not guess:
+#   modification 'stringent GlyGly (K)'
+# notes:
+#   SILAC states (light first): light | Lys8
+#   MS/MS tolerance is per analyzer (FTMS 20 ppm, ITMS 0.5 Da, TOF 40 ppm, Unknown 0.5 Da); use the one of the instrument's MS2 analyzer for comment[fragment mass tolerance]
+# file map (32 files):
+exit=0
+## sdrf-tools search-params dl/N2a_HA_mqpar.xml
+# MaxQuant
+column	value
+comment[modification parameters]	NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable | NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed
+comment[cleavage agent details]	NT=Trypsin/P;AC=MS:1001313
+comment[precursor mass tolerance]	4.5 ppm
+# notes:
+#   MS/MS tolerance is per analyzer (FTMS 20 ppm, ITMS 0.5 Da, TOF 40 ppm, Unknown 0.5 Da); use the one of the instrument's MS2 analyzer for comment[fragment mass tolerance]
+# file map (6 files):
+exit=0
+## sdrf-tools search-params dl/SH_HA_mqpar.xml
+# MaxQuant
+column	value
+comment[modification parameters]	NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable | NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed
+comment[cleavage agent details]	NT=Trypsin/P;AC=MS:1001313
+comment[precursor mass tolerance]	4.5 ppm
+# notes:
+#   MS/MS tolerance is per analyzer (FTMS 20 ppm, ITMS 0.5 Da, TOF 40 ppm, Unknown 0.5 Da); use the one of the instrument's MS2 analyzer for comment[fragment mass tolerance]
+# file map (6 files):
+exit=0
+## sdrf-tools search-params dl/N2a-APEX2_mqpar.xml
+# MaxQuant
+column	value
+comment[modification parameters]	NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable | NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed
+comment[cleavage agent details]	NT=Trypsin/P;AC=MS:1001313
+comment[precursor mass tolerance]	4.5 ppm
+# notes:
+#   MS/MS tolerance is per analyzer (FTMS 20 ppm, ITMS 0.5 Da, TOF 40 ppm, Unknown 0.5 Da); use the one of the instrument's MS2 analyzer for comment[fragment mass tolerance]
+# file map (6 files):
+exit=0
+## sdrf-tools search-params dl/SH-APEX2_mqpar.xml
+# MaxQuant
+column	value
+comment[modification parameters]	NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable | NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable | NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed
+comment[cleavage agent details]	NT=Trypsin/P;AC=MS:1001313
+comment[precursor mass tolerance]	4.5 ppm
+# notes:
+#   MS/MS tolerance is per analyzer (FTMS 20 ppm, ITMS 0.5 Da, TOF 40 ppm, Unknown 0.5 Da); use the one of the instrument's MS2 analyzer for comment[fragment mass tolerance]
+# file map (6 files):
+exit=0
+Unmapped 'stringent GlyGly (K)' -> NT=GG;AC=UNIMOD:121;TA=K (OLS verified). Trypsin/P search rule recorded; cleavage agent = digestion enzyme Trypsin (rule 2).

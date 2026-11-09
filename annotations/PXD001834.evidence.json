@@ -26,7 +26,7 @@
   {
    "id": "orientation",
    "kind": "derived",
-   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/orientation.txt and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/orientation_sites.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/orient.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/orient_sites.py: log2 Ratio H/L normalized per MaxQuant experiment for Nrf2-target proteins in proteinGroups.txt and for acetyl sites in Acetyl (K)Sites.txt)"
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/orientation.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/orientation_sites.txt and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/orientation_rank.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/orient.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/orient_sites.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD001834/scripts/orient_rank.py (Pearson/Spearman, extreme sites): log2 Ratio H/L normalized per MaxQuant experiment for Nrf2-target proteins in proteinGroups.txt and for acetyl sites in Acetyl (K)Sites.txt)"
   },
   {
    "id": "raw",
@@ -41,7 +41,7 @@
   {
    "id": "templates",
    "kind": "specification",
-   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign rules batch3_rules.md"
+   "location": "vertebrates/1.1.0/vertebrates.yaml (upstream bigbio/sdrf-templates 7da1747) characteristics[disease] \"Use normal for healthy animals\"; spec SAMPLE-GUIDELINES.adoc:186; sdrf-tools contract -t ms-proteomics -t vertebrates (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign rules batch3_rules.md"
   },
   {
    "id": "tables",
@@ -97,15 +97,26 @@
     "mq",
     "paper"
    ],
-   "evidence": "Three independent biological replicate experiments (paper), each a separate pair of WT and GCLM(-/-) primary astrocyte cultures; MaxQuant experiments SCW_II_29_FirstForw, SCW_II_68_SecForw, SCW_II_53_Reverse. Numbered 1..3 within each factor-value group (wild type, Gclm knockout), one number per independent culture (campaign rule 3). The numbering order follows the MaxQuant experiment names (FirstForw, SecForw, Reverse); it is not claimed to equal the paper Fig. 1B \"Exp. 1-3\" numbering, which refers to the separate gel-LC protein expression experiment."
+   "evidence": "Three independent biological replicate experiments (paper), each a separate pair of WT and GCLM(-/-) primary astrocyte cultures; MaxQuant experiments SCW_II_29_FirstForw, SCW_II_68_SecForw, SCW_II_53_Reverse. Numbered 1..3 within each factor-value group (wild type, Gclm knockout), one number per independent culture (campaign rule 3). Numbering follows the MaxQuant experiment names (FirstForw = 1, SecForw = 2, Reverse = 3) and is not claimed to equal the paper figure numbering: the paper is internally inconsistent. Methods (and PRIDE protocol) say \"in the third experiment, a label swap was used\", while the Fig. 3A legend (acetylated sites, i.e. this dataset) and the Fig. 1B legend say \"Exp. 2 corresponds to the experiment in which the SILAC label swap was introduced\". Acquisition order (II_29 May 2013, II_53_Reverse June 2013, II_68_SecForw July 2013), notebook IDs and \"the first biological replicate was analyzed three times\" (II_29 = 36 runs) are consistent with figure Exp1 = II_29, Exp2 = II_53_Reverse, Exp3 = II_68; this mapping is recorded as a limitation, not encoded."
   },
   {
    "location": "characteristics[disease] rows 1-170",
-   "value": "not applicable",
+   "value": "normal",
    "source_ids": [
-    "paper"
+    "paper",
+    "templates",
+    "ols"
    ],
-   "evidence": "No disease is modelled in the cultures: the compared variable is the Gclm genotype (glutathione deficiency). ALS is the motivating context only (the ALS mouse model is from a previous study)."
+   "evidence": "No disease is modelled: wild-type and GCLM(-/-) littermates (viable knockout, reduced glutathione); the compared variable is genotype, carried in characteristics/factor value[genotype]. ALS is motivating context only (the ALS mouse model is from a previous study, not sampled here). vertebrates/1.1.0 template: \"Use normal for healthy animals\"; spec SAMPLE-GUIDELINES.adoc:186: normal (PATO:0000461) for healthy samples (independent review finding 1)."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-170",
+   "value": "study sample",
+   "source_ids": [
+    "templates",
+    "ols"
+   ],
+   "evidence": "All 170 rows are study samples (no reference/pool/carrier channel). PRIDE:0001013 study sample (OLS), child of PRIDE:0000895; base 1.1.0 recommended column with default study sample (independent review minor 5)."
   },
   {
    "location": "characteristics[material type] rows 1-170",
@@ -170,7 +181,7 @@
     "mq",
     "orientation"
    ],
-   "evidence": "Explicit: paper and PRIDE protocol, WT in light (Lys 12C6-14N2) and GCLM(-/-) in heavy (Lys 13C6-15N2) in two experiments, label swap in the third. MaxQuant names the experiments FirstForw, SecForw and Reverse; summary.txt Multiplicity 2, Labels1 Lys8 for all 85 runs. Data check (orientation): Nrf2 targets reported up in GCLM(-/-) have log2 H/L normalized FirstForw/SecForw/Reverse: G6pdx +0.42/+0.35/-0.38, Gclc +0.52/+0.40/-0.35, Cat NaN/+0.28/-0.39, Gstm1 +0.25/+0.19/-0.17; Idh1 K243 acetyl site (paper: 3.03-fold up in KO) SecForw +1.49, Reverse -1.71. Of 55 acetyl sites with |log2|>0.585 and same sign in both forward experiments, 49 have the opposite sign in Reverse. Map confirmed; no conflict."
+   "evidence": "Explicit: paper and PRIDE protocol, WT in light (Lys 12C6-14N2) and GCLM(-/-) in heavy (Lys 13C6-15N2) in two experiments, label swap in the third. MaxQuant names the experiments FirstForw, SecForw and Reverse; summary.txt Multiplicity 2, Labels1 Lys8 for all 85 runs. Data check (orientation): Nrf2 targets reported up in GCLM(-/-) have log2 H/L normalized FirstForw/SecForw/Reverse: G6pdx +0.42/+0.35/-0.38, Gclc +0.52/+0.40/-0.35, Cat NaN/+0.28/-0.39, Gstm1 +0.25/+0.19/-0.17; Idh1 K243 acetyl site (paper: 3.03-fold up in KO) SecForw +1.49, Reverse -1.71. Of 55 acetyl sites with |log2|>0.585 and same sign in both forward experiments, 49 have the opposite sign in Reverse. Global acetyl-site correlation (orientation_rank): Pearson FirstForw~Reverse +0.250 and SecForw~Reverse +0.285, but Spearman -0.282 and -0.268, and Pearson without the 5 most extreme sites -0.572/-0.569; the positive Pearson is driven by label-invariant saturated sites (Cdh17 K406 -7.8/-7.7/-7.8, Klhl30 K359 +7.2/+7.8/+7.6, Kcnj11 K5 -6.0/-6.6/-6.4), the \"ratios equal and opposite between the reversed and forward reactions\" artefacts the paper removes. It does not contradict the swap. Map confirmed; no conflict."
   },
   {
    "location": "assay name rows 1-170",
@@ -206,7 +217,7 @@
     "files",
     "raw"
    ],
-   "evidence": "Paper: \"For acetyl peptide analysis, 12 LC-MS/MS analyses were performed for each biological replicate. The first biological replicate was analyzed three times, and the remaining biological replicates were analyzed twice each (84 LC-MS/MS analyses).\" Deposit: 36 runs for SCW_II_29, 24 for SCW_II_68, 25 for SCW_II_53 (24 + one extra injection of fraction 1 named _repeat). Analysis series numbered chronologically by acquisition date in the file names; raw headers show 2013 series used method 120mingrad_FTprofile_onlyCID_MIPs_TOP20 and the 2014 2ndZT series 180mingrad_FT_onlyCID_TOP10_022714_SILAC (paper: \"gradient of 5-50% in 120 or 180 min\"). The _repeat injection is given technical replicate 3 (fraction 1 only) to keep the row coordinate unique."
+   "evidence": "Paper: \"For acetyl peptide analysis, 12 LC-MS/MS analyses were performed for each biological replicate. The first biological replicate was analyzed three times, and the remaining biological replicates were analyzed twice each (84 LC-MS/MS analyses).\" Deposit: 36 runs for SCW_II_29, 24 for SCW_II_68, 25 for SCW_II_53 (24 + one extra injection of fraction 1 named _repeat). Analysis series numbered chronologically by acquisition date in the file names; raw headers show 2013 series used method 120mingrad_FTprofile_onlyCID_MIPs_TOP20 and the 2014 2ndZT series 180mingrad_FT_onlyCID_TOP10_022714_SILAC (paper: \"gradient of 5-50% in 120 or 180 min\"). The _repeat injection is given technical replicate 3 (fraction 1 only) to keep the row coordinate unique: its raw header keeps the original acquisition name 022714_SCW_II_53_1_2ndZT_140227200025.raw (Xcalibur duplicate-name timestamp 2014-02-27 20:00:25) and the same 180mingrad_FT_onlyCID_TOP10_022714_SILAC method, i.e. a same-day re-injection of the 2ndZT fraction-1 sample. Conflict: the PRIDE sample protocol says \"Three biological replicate experiments were performed with 2 technical replicates (72 LC-MS/MS analyses for each...)\", which disagrees with the paper (84) and the deposit (85); the paper and the deposited files are followed."
   },
   {
    "location": "comment[fraction identifier] rows 1-170",
@@ -350,7 +361,8 @@
   "Partial deposit (PRIDE submissionType PARTIAL): only the 85 lysine-acetylation (anti-acetyl-lysine IP) LC-MS/MS runs and their single MaxQuant search are deposited. The 36 gel-LC-MS/MS protein-expression runs described in the paper are not in PXD001834, so they are not annotated; nothing was left out of the deposit.",
   "Technical replicate numbering is chronological by acquisition series; the paper does not say which series is \"first\" for each biological replicate, nor what the 2014 \"2ndZT\" label (likely a second ZipTip desalting/re-analysis) means exactly. The extra 022714_SCW_II_53_1_2ndZT_repeat injection is technical replicate 3 (fraction 1 only).",
   "Sex of the neonatal donor pups is not reported (male and female breeders); characteristics[sex] = not available. Whether each culture pooled several pups is not stated, so no pooled-sample column is asserted.",
-  "Biological replicate numbers 1-3 follow the MaxQuant experiment names (FirstForw, SecForw, Reverse); the mapping to the paper figure \"Exp. 1-3\" is not asserted.",
+  "Paper conflict on experiment numbering: Methods/PRIDE say the label swap was the third experiment; the Fig. 1B and Fig. 3A (acetyl sites) legends say Exp. 2 is the label-swap experiment. Acquisition order (II_29 May 2013, II_53_Reverse June 2013, II_68_SecForw July 2013) and II_29 being analysed three times suggest figure Exp1 = II_29, Exp2 = II_53_Reverse, Exp3 = II_68_SecForw. The SDRF keeps biological replicate numbers in MaxQuant experiment order (II_29 = 1, II_68_SecForw = 2, II_53_Reverse = 3) and does not encode an inferred mapping.",
+  "PRIDE sample protocol states \"3 biological replicates with 2 technical replicates (72 LC-MS/MS analyses)\" for the acetylation arm; the paper says 84 analyses (first replicate three times) and 85 raw files are deposited (84 + the fraction-1 re-injection). The paper and deposit are followed.",
   "Precursor tolerance 4.5 ppm is from the paper text (MaxQuant main search after recalibration); parameters.txt of MaxQuant 1.5.0.30 does not record it and no mqpar.xml is deposited.",
   "characteristics[enrichment process] uses the generic EFO:0009106 sample enrichment because EFO has no acetyl-lysine peptide enrichment term under EFO:0009090.",
   "Supplementary tables of the paper (MCP) were not retrieved; the channel map relies on the paper text/PRIDE protocol plus the deposited MaxQuant ratios.",
