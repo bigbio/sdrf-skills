@@ -100,3 +100,14 @@ PXD029030	PRIDE	include		Batch 9: miR-31 HEK293T (psoriasis study)	repository st
 PXD037057	PRIDE	include		Batch 9: Leishmania-infected THP-1 autophagosomes	repository structured fields; paper methods
 PXD035841	PRIDE	exclude	channel map	Batch 9: single-state SILAC search, no channel map (BLOCKED.md)	mqpar.xml; paper methods
 PXD013504	PRIDE	exclude	duplicate	Batch 9: raws identical to PXD011013 (DUPLICATES.md Group 10)	PRIDE checksums
+PXD002810	PRIDE	include		Batch 10: miR-17-92 lambda-MYC mouse lymphoma	repository structured fields; paper methods
+PXD002845	PRIDE	include		Batch 10: Endometriosis patient stromal cells super-SILAC	repository structured fields; paper methods
+PXD002943	PRIDE	include		Batch 10: SUMO proteome A549 influenza A / heat shock	repository structured fields; paper methods
+PXD004181	PRIDE	include		Batch 10: HSP90 inhibition Burkitt lymphoma DG75	repository structured fields; paper methods
+PXD004241	PRIDE	include		Batch 10: HIV-1 Tat SH-SY5Y	repository structured fields; paper methods
+PXD004707	PRIDE	include		Batch 10: HCV Huh-7.5 lipid droplets	repository structured fields; paper methods
+PXD006404	PRIDE	include		Batch 10: ALK inhibitors NB-1 neuroblastoma	repository structured fields; paper methods
+PXD008454	PRIDE	include		Batch 10: Afatinib resistance PC-9 NSCLC	repository structured fields; paper methods
+PXD009662	PRIDE	include		Batch 10: CSF3R mutant Ba/F3 pY	repository structured fields; paper methods
+PXD009843	PRIDE	include		Batch 10: Isogenic SW48 KRAS G12D/G13D	repository structured fields; paper methods
+PXD002454	PRIDE	exclude	channel map	Batch 10: EV71 U251, no source assigns channels (BLOCKED.md)	ProteinPilot reports; PRIDE protocol
