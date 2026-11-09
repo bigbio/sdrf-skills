@@ -1,0 +1,50 @@
+# PXD014577 validation log (2026-11-09T07:19Z)
+64c4bcb98dd6316c7c5f3eeb67e95d4575122aad9cf1c43bca82bbf1385e0190  annotations/PXD014577-proteome.sdrf.tsv
+2a4f164c29c4e86548056d7a68458bde770ed0234f6d79de1c8368fe2316eaf2  annotations/PXD014577-prpsc.sdrf.tsv
+
+## Build: bash /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/build_all.sh (gen_tables.py -> sdrf-tools build x2 -> fix_fractions.py on the proteome file)
+Post-build edit (rule 17): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/fix_fractions.py sets comment[fraction identifier] to the high-pH fraction number in each data file name, asserting it equals MaxQuant msmsScans 'Fraction'. build numbers fractions by list position; with the contradicted Hutti_R1-7 / Hutti_R2-7 left out, R1-8 and R2-8 would otherwise be numbered 7. It changed 4 cells (R1-8, R2-8 x light/heavy). Single round of building; no validation-driven fixes were needed.
+
+## parse_sdrf validate-sdrf -s annotations/PXD014577-proteome.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines
+WARNING: Term: N2a-Cl3 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: Eagle's Minimum Essential Medium in column 'characteristics[culture medium]', is not found in the given ontology list ncit
+WARNING: Term: A/J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit=0
+Warnings accepted: N2a-Cl3 (paper's subclone name; no CLO/BTO/EFO/Cellosaurus entry), Eagle's Minimum Essential Medium (no NCIT term; OLS search), A/J (Cellosaurus breed; free-text column, not an NCBITaxon term).
+
+## sdrf-tools structure annotations/PXD014577-proteome.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD014577-proteome.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/pride.json --accession PXD014577
+PXD014577: every annotated value agrees with the deposit record.
+exit=0
+Note: PRIDE instruments list 'Q Exactive' + 'Orbitrap Fusion Lumos'; raw headers say Q Exactive Plus (whole proteome) and Orbitrap Fusion Lumos (PK); the raw header value is used.
+
+## sdrf-tools check annotations/PXD014577-proteome.sdrf.tsv --offline
+Hallucination Report: annotations/PXD014577-proteome.sdrf.tsv
+  Terms checked:     13
+  Verified:          5
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD014577-proteome.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/convert_proteome)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (not recorded in MaxQuant parameters.txt/Table S6; whole-proteome parameters.txt lost in the truncated zip). Campaign precedent PXD014368/PXD006676.
+
+## sdrf-tools schema-check annotations/PXD014577-proteome.evidence.json
+annotations/PXD014577-proteome.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD014577-proteome.sdrf.tsv annotations/PXD014577-proteome.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit=0
+
+## parse_sdrf validate-sdrf -s annotations/PXD014577-prpsc.sdrf.tsv -t ms-proteomics -t vertebrates -t cell-lines

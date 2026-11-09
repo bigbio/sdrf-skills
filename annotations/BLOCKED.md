@@ -1645,3 +1645,27 @@ Sources checked:
 **Deliberately not used:** assuming L/M/H = Q18/Q64/Q150 (the order of the ratio names), or reading the insoluble forward/reverse orientation from biological expectations.
 
 **Unblocked by:** the paper's STAR Methods / figure legends (or the authors, Hartl/Mann labs, MPI Biochemistry) stating the L/M/H construct of each total-proteome and soluble-IP experiment, the two conditions and label orientation of each insoluble experiment, and the mapping of the renamed insoluble RAW files to the searched names.
+
+## PXD014577 — Protein degradation in prion-infected N2a-Cl3 cells (Hutti et al., Sci Rep 2020; dynamic SILAC), 10 whole-proteome raws + 12 NaBu raws (partial block)
+
+Annotated: `PXD014577-proteome.sdrf.tsv` (54 of 64 whole-proteome raws × light/heavy) and `PXD014577-prpsc.sdrf.tsv` (3 PK-isolate raws × light/heavy).
+
+**Blocker 1: the labelling data of 10 RML (-QA) whole-proteome runs contradict the day in their file name and MaxQuant experiment.**
+Heavy share of identified MS/MS (msms.txt Labeling State, partial msms.txt of the truncated `txtfor-QAandQA.zip`), compared with the other fractions of the same arm and day:
+
+| raw | recorded | heavy share | same arm/day, other fractions | fits |
+|---|---|---|---|---|
+| `Hutti_R1-7_18-057.raw` | RML day 1, fr 7 | 0.815 | R1 0.53–0.55 | day 2 |
+| `Hutti_R2-7_18-057.raw` | RML day 2, fr 7 | 0.599 | R2 0.77–0.85 | day 1 |
+| `Hutti_R3-5..8_18-057.raw` (4) | RML day 3, fr 5–8 | 0.969–0.972 | R3-1..4 0.867–0.884 | day 5 |
+| `Hutti_R5-5..8_18-057.raw` (4) | RML day 5, fr 5–8 | 0.909–0.929 | R5-1..4 0.954–0.960 | day 3 |
+
+The +QA (Q) arm rises smoothly with fraction and day; the pattern above looks like swapped R1-7/R2-7 and swapped R3/R5 fractions 5–8, but no source states a swap, so the runs are left out rather than re-labelled. The paper's RML kinetics used them as named (MaxQuant experiments "RML day N"). Check: `scripts/timepoint_check.py` → `timepoint_check.tsv` in the producer scratch `b6-PXD014577/`.
+
+**Blocker 2: the sample type of the 12 sodium-butyrate runs (`Hutti_NB{1..4}P`, `Hutti_NB{1..4}-P`, `Hutti_NB{1..4}-S` `_19-082.raw`; acquisition names NB*+P / NB*-P / NB*-S) is undocumented and contradicted.**
+- Paper / PRIDE: one NaBu experiment, "-QA + NaBu + PK digest", lysates "treated with PK and protease-resistant PrPSc was isolated by PTA precipitation"; days 1–4. Nothing defines +P, -P or -S.
+- `txtforPrPScduringNaBuisolated.zip` summary.txt: 12 experiments, Multiplicity 2, Arg6;Lys6, no names beyond the numbers.
+- Supp Table S2 (MOESM3) sheet "-QA + NaBu + PK digest" Day 1–4 ratios equal MaxQuant experiments 3/6/9/12 exactly (1914/1895/1853/1932 proteins) = the **-S** runs; the natural reading "+P = PK-digested PTA pellet" (fewest IDs, lowest PrP H/L) is therefore not what the authors published as the PK isolate.
+- The day (NB1–NB4 = day 1–4) is supported by the median H/L rising 0.40 → 1.8.
+
+**Unblocked by:** an author statement or sample sheet (Ghaemmaghami lab, University of Rochester) giving (1) the true day/fraction of the 10 RML runs, or confirming they are as named; (2) what +P, -P and -S denote (PK yes/no; pellet/supernatant). The rows would then join the existing files with the same technical values (whole proteome: Q Exactive Plus, HCD 27, hpHRP fractions; NaBu: Orbitrap Fusion Lumos, CID 30, ion trap 0.5 Da, MaxQuant 1.6.5.0, Carbamidomethyl fixed, Oxidation/Acetyl N-term variable, Arg6/Lys6).

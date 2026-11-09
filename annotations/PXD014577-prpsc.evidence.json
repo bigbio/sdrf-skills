@@ -1,0 +1,339 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD014577-prpsc.sdrf.tsv",
+ "dataset": "PXD014577",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD014577 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD014577/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/files_all.json; 82 entries = 79 .raw + 3 MaxQuant txt zips; every entry projectAccessions contains PXD014577)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Hutti CR, Welle KA, Hryhorenko JR, Ghaemmaghami S. Global analysis of protein degradation in prion infected cells. Sci Rep 2020;10:10800, doi:10.1038/s41598-020-67505-5, PMID 32612191, PMC7329860 (CC BY; text https://pmc-oa-opendata.s3.amazonaws.com/PMC7329860.1/PMC7329860.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/paper.txt; Methods lines 105-205; Data availability names PXD014577)"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7329860.1/41598_2020_67505_MOESM1_ESM.pdf .. MOESM7_ESM.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/supp/): MOESM2 = Table S1 peptides, MOESM3 = Table S2 proteins (sheet \"Description and Legend\" defines -QA = RML-infected N2a Cl3, +QA = infected then cleared by quinacrine, \"-QA + PK digest\", \"-QA + NaBu + PK digest\"), MOESM4 = Table S3 kdeg, MOESM5 = Table S4 gradients for fractions 1-8, MOESM7 = Table S6 MaxQuant parameters"
+  },
+  {
+   "id": "mq_qa",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD014577/txtfor-QAandQA.zip (890,049,644 B; the deposited zip is TRUNCATED inside txt/msms.txt: no central directory, no summary.txt/parameters.txt/evidence.txt). Streamed with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/streamzip.py and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/stream_msmsscans.py: proteinGroups.txt + tables.pdf saved to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/mq_qa/; msmsScans.txt (complete) gave Raw file -> Experiment/Fraction for all 64 runs; partial msms.txt gave per-raw identified MS/MS by Labeling State and the Modifications vocabulary (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/mq_qa/label_counts.json)"
+  },
+  {
+   "id": "mq_pk",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD014577/txtforPrPScisolated.zip members txt/summary.txt, parameters.txt, proteinGroups.txt (HTTP range, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/mq_pk/). MaxQuant 1.6.0.1"
+  },
+  {
+   "id": "mq_nabu",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD014577/txtforPrPScduringNaBuisolated.zip members txt/summary.txt, parameters.txt, proteinGroups.txt, peptides.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/mq_nabu/). MaxQuant 1.6.5.0"
+  },
+  {
+   "id": "timecheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/timepoint_check.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/timepoint_check.py: heavy share of identified MS/MS per raw vs same-arm per-day medians"
+  },
+  {
+   "id": "armcheck",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/arm_check.txt from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/arm_check.py: median protein H/L and PrP H/L per MaxQuant experiment; Supp Table S2 day-1 ratios matched to MaxQuant experiments"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/09/PXD014577/Hutti_Q1-1_18-057.raw, Hutti_R5-8_18-057.raw, Hutti_PKDay2_19-024.raw, Hutti_NB1P_19-082.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0470?format=txt (Neuro-2a) and CVCL_6268 (ScN2a) (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/cello_CVCL_0470.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/cello_CVCL_6268.txt); search for N2a-Cl3 / ScN2a-cl3 returned no entry"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 /api/terms?obo_id= and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/gen_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/build/*.tsv; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/build_all.sh (sdrf-tools build; post-build /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD014577/scripts/fix_fractions.py for the proteome file)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism] all rows",
+   "value": "Mus musculus",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: mouse N2a-Cl3 cells, searched against M. musculus UniProt; PRIDE organism NEWT:10090; NCBITaxon:10090 verified in OLS."
+  },
+  {
+   "location": "characteristics[cell line] all rows",
+   "value": "N2a-Cl3",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper Methods: \"N2a-Cl3 cells previously infected with the Rocky Mountain Laboratories strain of prion aggregate (RML) were generously provided by the Prusiner laboratory\"; Supp Table S2 legend \"N2a Cl3\". The subclone has no Cellosaurus/CLO/BTO/EFO entry (validator warning accepted; Neuro-2a EFO:0022756 would lose the subclone identity)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] / characteristics[cellosaurus name] all rows",
+   "value": "CVCL_0470 / Neuro-2a",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "N2a-Cl3 is a Prusiner-lab subclone of N2a (= Neuro-2a, CVCL_0470, synonyms N2a/N2A); the subclone itself is not in Cellosaurus, so the parent line is cited. CVCL_6268 ScN2a (RML-infected Neuro-2a) was not used because it does not describe the quinacrine-cleared arm and is not stated to be the same subclone."
+  },
+  {
+   "location": "characteristics[organism part] all rows",
+   "value": "peripheral nervous system",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0470: \"Derived from site: In situ; Peripheral nervous system; UBERON=UBERON_0000010\"; OLS UBERON:0000010 peripheral nervous system."
+  },
+  {
+   "location": "characteristics[cell type] all rows",
+   "value": "neural crest derived neuroblast",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0470: \"Cell type: Neural crest derived neuroblast; CL=CL_0002676\"; OLS CL:0002676."
+  },
+  {
+   "location": "characteristics[disease] all rows",
+   "value": "neuroblastoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0470 DI NCIt C21993 Mouse neuroblastoma; MONDO:0005072 neuroblastoma (OLS). The prion-infection state is in characteristics[infection status], not here."
+  },
+  {
+   "location": "characteristics[material type] all rows",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured N2a-Cl3 cells."
+  },
+  {
+   "location": "characteristics[strain or breed] all rows",
+   "value": "A/J",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0470 \"Breed/subspecies: A/J\". Validator warning (free text, not in NCBITaxon) accepted."
+  },
+  {
+   "location": "characteristics[sex] all rows",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus CVCL_0470 SX Male."
+  },
+  {
+   "location": "characteristics[biorepository] all rows",
+   "value": "Prusiner laboratory",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: cells \"were generously provided by the Prusiner laboratory\"."
+  },
+  {
+   "location": "characteristics[culture medium] all rows",
+   "value": "Eagle's Minimum Essential Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: cultures maintained in, and SILAC-labelled in, Eagle's Minimum Essential Medium (ATCC / Thermo MEM for SILAC) with 15% dialyzed FBS. NCIT has no MEM term (OLS search; only DMEM NCIT:C185409), so the stated name is written; validator warning accepted."
+  },
+  {
+   "location": "characteristics[biological replicate] all rows",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "mq_qa",
+    "mq_pk"
+   ],
+   "evidence": "Each (infection status, labelling day) group is one culture harvested at that day (paper: cells collected after 0,1,2,3,5 days of labelling; one MaxQuant experiment per arm and day). Light and heavy rows of one run are the same culture. No replicate cultures are described or deposited, so n = 1 per factor-value group."
+  },
+  {
+   "location": "characteristics[sampling time] + factor value[sampling time]",
+   "value": "N day = days in 13C6-Lys/Arg labelling medium",
+   "source_ids": [
+    "paper",
+    "mq_qa",
+    "mq_pk",
+    "timecheck",
+    "armcheck"
+   ],
+   "evidence": "Paper: cells switched to heavy medium and collected after 1, 2, 3, 5 days (whole proteome) and 1-4 days (PrPSc isolates); MaxQuant experiments \"RML day 1..5\"/\"RML+QA day 1..5\"; PK runs Hutti_PK+Day2/3/4. Heavy share rises with the day for every annotated run (timepoint_check.tsv). Day 0 (unlabelled) samples were not deposited."
+  },
+  {
+   "location": "characteristics[developmental stage] all rows",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus: \"Age unspecified\"."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "SILAC light = pre-existing (unlabelled) proteome; SILAC heavy = protein newly synthesised during the 13C6-Arg/13C6-Lys label period",
+   "source_ids": [
+    "paper",
+    "mq_qa",
+    "mq_pk"
+   ],
+   "evidence": "Dynamic SILAC: \"The rate by which unlabeled (light) proteins within the cell are replaced by newly synthesized labeled (heavy) proteins can be quantified\". Each run carries both states of ONE culture; source names end _preexisting (light) / _newlysynthesized (heavy) as in campaign precedent PXD023790 (pulse SILAC). Multiplicity 2, Labels1 Arg6;Lys6 in the PK and NaBu summary.txt; the whole-proteome summary.txt is lost in the truncated zip, but msms.txt carries Labeling State 0/1 for every run."
+  },
+  {
+   "location": "comment[modification parameters]",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; Label:13C(6) R and K (UNIMOD:188) variable",
+   "source_ids": [
+    "mq_qa",
+    "mq_pk",
+    "supp",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PK search parameters.txt: Fixed modifications Carbamidomethyl (C); summary.txt Variable Oxidation (M);Acetyl (Protein N-term), Labels1 Arg6;Lys6. Whole-proteome search: msms.txt Modifications vocabulary = Unmodified / Oxidation (M) / Acetyl (Protein N-term) only, msms.txt header columns \"Acetyl (Protein N-term)\", \"Oxidation (M)\"; Table S1 peptide masses show +57.021 Da per Cys on all 5216 Cys peptides (fixed carbamidomethyl); labels 13C6 Arg/13C6 Lys from paper and PRIDE protocol (Arg6/Lys6 = UNIMOD:188, rule 11). Paper Table S6 \"Modifications included in protein quantification: Oxidation (M);Acetyl (Protein N-term)\"."
+  },
+  {
+   "location": "comment[cleavage agent details] all rows",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_pk",
+    "pride"
+   ],
+   "evidence": "Paper/PRIDE: S-trap digestion with trypsin; MaxQuant Enzyme Trypsin, Specific. (Proteinase K in the PrPSc arm is a pre-digestion isolation step on native lysate, not the peptide-generating enzyme; recorded in the source name and enrichment process.)"
+  },
+  {
+   "location": "comment[reduction reagent] / comment[alkylation reagent] all rows",
+   "value": "TCEP / Iodoacetamide",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: \"Reduction of disulfide bonds was performed with 5 mM TCEP ... alkylation ... 10 mM iodoacetamide (IAA)\"; PRIDE:0000609 / PRIDE:0000599 verified."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "DDA",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper: Q Exactive Plus \"operated in data-dependent mode ... 20 MS/MS scans\"; Fusion Lumos \"data-dependent mode, while also employing an inclusion list\". Raw header method 90min-*_Top20.meth / 60min-Prp-SILAC-Targeted_CID-IT.meth."
+  },
+  {
+   "location": "comment[precursor mass tolerance] all rows",
+   "value": "not available",
+   "source_ids": [
+    "mq_pk",
+    "supp"
+   ],
+   "evidence": "MaxQuant parameters.txt / Table S6 do not record first/main-search precursor tolerance; the whole-proteome parameters.txt is missing from the truncated zip. Defaults are not asserted; convert-openms exits 1 (campaign precedent)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type",
+   "value": "v1.1.0; ms-proteomics v1.2.0, vertebrates v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; templates chosen for MS proteomics of mouse cultured cell lines."
+  },
+  {
+   "location": "comment[data file], assay name, comment[technical replicate] all rows",
+   "value": "one row per (raw file, SILAC state); assay name = file stem; technical replicate 1",
+   "source_ids": [
+    "files",
+    "build"
+   ],
+   "evidence": "All data files are vendor .raw names exactly as in PRIDE files/all."
+  },
+  {
+   "location": "source name + characteristics[enrichment process] + characteristics[infection status] rows 1-6",
+   "value": "RML-infected PK-PTA isolate (sample enrichment, EFO:0009106); RML prion-infected",
+   "source_ids": [
+    "paper",
+    "supp",
+    "mq_pk",
+    "ols",
+    "armcheck"
+   ],
+   "evidence": "Paper: \"Lysates from -QA cells were subjected to PK digestion to isolate protease resistant PrPSc prior to LC-MS/MS\"; Methods: 20 ug proteinase K per 1 mg lysate, sarkosyl, phosphotungstic acid precipitation, pellet resuspended and processed; Supp S2 sheet \"-QA + PK digest\". Files Hutti_PK+Day2/3/4 (acquisition names) = MaxQuant experiments 1/2/3; Supp Table S2 (MOESM3) sheet \"-QA + PK digest\" \"Ratio H/L Day 2\" for ADRM1 (2.2757, count 2) = experiment 1; arm_check.txt: the Table S2 \"-QA + PK digest\" Day 2/3/4 ratio columns equal MaxQuant PK experiments 1/2/3 exactly for 679/642/595 proteins and never another experiment. Only the infected arm was isolated, so there is no infection factor in this file."
+  },
+  {
+   "location": "comment[fraction identifier] / comment[fractionation method] rows 1-6",
+   "value": "1 / not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "High-pH fractionation was done only on whole cell extracts; each PK isolate is one 60-min run."
+  },
+  {
+   "location": "comment[instrument] rows 1-6",
+   "value": "Orbitrap Fusion Lumos (MS:1002732)",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw header Hutti_PKDay2: \"Orbitrap Fusion Lumos\", method 60min-Prp-SILAC-Targeted_CID-IT.meth; paper: PrPSc analysis on a Fusion Lumos."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-6",
+   "value": "CID (MS:1000133), 30 NCE, linear ion trap, 375-1400 m/z",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw header: \"Collision Energy (%) = 30\", \"Activation Q = 0.25\", MS2 \"Detector Type = IonTrap\", \"Scan Range (m/z) = 375-1400\"; paper: CID 30%, ion-trap rapid scan."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-6",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mq_pk"
+   ],
+   "evidence": "parameters.txt: MS/MS tol. (ITMS) 0.5 Da; MS2 in the ion trap."
+  }
+ ],
+ "limitations": [
+  "NaBu sub-experiment BLOCKED (12 raws Hutti_NB1P/NB1-P/NB1-S ... NB4P/NB4-P/NB4-S_19-082.raw; see BLOCKED.md section PXD014577): the meaning of the +P / -P / -S suffixes is not defined in the paper, supplement or PRIDE; Supp Table S2 sheet \"-QA + NaBu + PK digest\" (described as PK digest + PTA precipitation) takes its Day 1-4 ratios from MaxQuant experiments 3/6/9/12 = the -S runs, contradicting the natural reading +P = PK-treated pellet. The per-file sample type cannot be stated.",
+  "Precursor mass tolerance not available for any search; convert-openms exits 1.",
+  "N2a-Cl3 is not in Cellosaurus; the parent Neuro-2a (CVCL_0470) is cited. Organism part, cell type, strain and sex come from the parent-line record.",
+  "Day 0 samples described in the paper were not deposited (no raws).",
+  "Passage number and sample storage temperature (pellets \"frozen\") not stated -> not available.",
+  "The PrPSc isolates were acquired with a DDA method plus a heavy/light PrP inclusion list (Table S5); acquisition method recorded as DDA.",
+  "biological replicate = 1: one culture per labelling day.",
+  "Raw header read for 1 of 3 PK runs."
+ ]
+}

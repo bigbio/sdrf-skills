@@ -1,0 +1,45 @@
+# PXD007546 validation (2026-11-09T07:19Z); sha256 bd76b4aa939438ae641af4ea4932cf8ea6df34b9cb1c77dd4a901cbb81b7b784
+
+$ parse_sdrf validate-sdrf -s annotations/PXD007546.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure annotations/PXD007546.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check annotations/PXD007546.sdrf.tsv
+Hallucination Report: annotations/PXD007546.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile annotations/PXD007546.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD007546/pride.json --accession PXD007546
+PXD007546: 1 value(s) disagree with the deposit record:
+
+  MAJOR    disease_with_control_arm_in_record (characteristics[disease]): the record describes a control arm, so 'GNPTG-mucolipidosis' cannot hold for every row  [wild-type]
+exit code: 0
+
+$ sdrf-tools schema-check annotations/PXD007546.evidence.json
+annotations/PXD007546.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage annotations/PXD007546.sdrf.tsv annotations/PXD007546.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD007546/conv && parse_sdrf convert-openms -s annotations/PXD007546.sdrf.tsv -t2)
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+

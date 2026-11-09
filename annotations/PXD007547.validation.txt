@@ -1,0 +1,3 @@
+# PXD007547 validation (2026-11-09T07:21Z); sha256 cf3a4e254ce3bca212cdbe897cb08403a173d3b5c7a5c6a58b137b908be8b3de
+
+$ parse_sdrf validate-sdrf -s annotations/PXD007547.sdrf.tsv -t ms-proteomics -t vertebrates
