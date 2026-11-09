@@ -1874,3 +1874,23 @@ They would go in a separate TMT SDRF (batch rule 12).
 **Would be strengthened by:** an author-confirmed key.
 
 **Also noted (not blocking):** `07Mar2013_Blank_02.RAW` was searched (in `07Mar2013_Prot_turn_cell42_24h_tot_bis.msf`) but not deposited.
+
+---
+
+## PXD035841 — PDE inhibitors / stress resilience in ARPE-19 cells and Abca4-/-Rdh8-/- retina (Luu et al., PNAS 2023; "SILAC" ARPE-19 arm + label-free mouse retina proteome/phosphoproteome), whole dataset (50 RAW)
+
+**Not annotated. The deposited SILAC search is not multiplexed (multiplicity 1), and nothing documents the SILAC channel→condition map. The mouse arms are label-free, so they are out of scope for this SILAC campaign.**
+
+| | |
+|---|---|
+| Publication | Luu JC *et al.*, Proc Natl Acad Sci USA 2023 120(19):e2221045120, PMID:37126699, PMC10175720 (OA; JATS from Europe PMC, SI Appendix `pnas.2221045120.sapp.pdf` from PMC OA S3 `PMC10175720.1/`) |
+| Deposited | 50 RAW + 4 MaxQuant `mqpar` XMLs (`SILAC-proteomics.xml`, `proteomics.xml`, `phosphoproteomics1.xml`, `phosphoproteomics2.xml`) + `checksum.txt`; FTP root `pride/data/archive/2024/01/PXD035841/`. There is no search output (no txt/summary/proteinGroups) and no experimental design file. |
+| SILAC arm | 2 RAW: `SILAC_PROTEOMICS_A.raw`, `SILAC_PROTEOMICS_H2O2.raw` (ARPE-19, Arg10/Lys8, Orbitrap Fusion Lumos) |
+| Excluded, out of scope (label-free, mouse) | 48 RAW: `retina_Pro_{1d1-3,BC1-3,NB1-3}`, `retina_Phos_{1d1-3,BC1-3,NB1-3}`, `proteomics_{1d4-6,BAY1-3,NB4-6,Roli1-3,Vard1-3}`, `Phos_{1d4-6,Bay1,Bay2,BAY3,NB4-6,Roli1-3,Vard1-3}`. `proteomics.xml` searches the `Pro_*` runs at multiplicity 1, no labelMods, against `uniprot_sp_mouse_20180521.fasta`. |
+
+Why the SILAC arm is blocked:
+- **The deposited search is not multiplexed.** In `SILAC-proteomics.xml` (sha1 a310bd53…, which matches `checksum.txt`), both files are in parameter group 0 with `<multiplicity>1</multiplicity>` and `<labelMods><string>Arg10;Lys8</string></labelMods>`. That is a single-state search with heavy Arg/Lys as the only label. The experiments are named `A` and `H2HO`. The fasta is `uniprot-all-human-20207-2015.7.21.fasta`, MaxQuant 1.5.2.8. This conflicts with the PRIDE data protocol and the SI Methods, which say "The multiplicity was set to two for the samples labeled with 13C615N2-L-lysine and 13C615N4-L-arginine". Under campaign rule 14, the deposited mqpar does not show multiplicity > 1. It cannot be confirmed from the raw files here, because no Thermo RAW reader is available (techsdrf cannot be installed).
+- **No channel map.** The PRIDE sample protocol and the SI ("Proteomics analyses") say only that cells were grown in "heavy (13C15N) or light lysine and arginine" (Thermo kit A33972) and that "equal protein amounts of each cell lysate were mixed". Neither says which condition (atRAL 60 µM, H2O2 5 mM, or vehicle/DMSO) is heavy or light in either file. The supplement deposits no ratio table: SI Table 1 and SI Fig. S3C are rendered figures/legends, with no H/L column headers.
+- **The design does not match the deposit.** The paper and SI Table 1 legend describe five comparisons against vehicle-treated controls: atRAL, H2O2, BAY 60-7550, rolipram and BC11-38 ("unstressed, drug-treated cells relative to unstressed, vehicle-treated controls; and in stressed cells relative to unstressed controls"). Only two SILAC runs are deposited, both stress conditions, and there are no SILAC runs for the PDE-inhibitor treatments. Nothing states the replicate count for the ARPE-19 SILAC arm.
+
+**Unblocked by:** an author statement or deposited design giving (i) which channel is vehicle and which is atRAL / H2O2 in `SILAC_PROTEOMICS_A.raw` and `SILAC_PROTEOMICS_H2O2.raw`, and (ii) the actual MaxQuant multiplicity, or a multiplicity-2 search output (`summary.txt` / `evidence.txt` with H/L ratios). The paper's PDE-inhibitor SILAC runs would also need to be deposited. The mouse retina arms could be annotated as a label-free SDRF outside this campaign. That would need the code map: `1d` = 1 day after bright light? `NB` = no bright light? `BC`/`BAY`/`Roli`/`Vard` = inhibitor-treated? `Vard` (vardenafil?) is not mentioned in the paper. These codes are not defined anywhere in the deposit.
