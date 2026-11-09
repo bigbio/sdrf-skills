@@ -253,6 +253,15 @@ them from using.
 
 ---
 
+`PXD004880` (Down syndrome twin fibroblasts): 140 deposited vendor raw files → **36** annotated
+(the pulsed-SILAC SWATH runs `yanliu_Y151023_002_SW`–`037_SW`). The other 104 are outside this
+SILAC campaign, not blocked by a missing channel map: 56 label-free steady-state SWATH runs
+(12 twin `Y141216_*_SWa`, 44 unrelated individuals `Y150223_*_SW`), 34 light-only DDA library runs
+(including the pSILAC t0 library runs `Y151023_038/039`, `Y151028_001-004`) and 14 dimethyl-labelled
+Q Exactive Plus raws. A later separate SDRF for the dimethyl arm would first need its
+light/intermediate/heavy assignment documented. Note: the run sheet names the twin steady-state
+runs `_SW`, the deposited files are `_SWa`.
+
 ## Not a blocker: `cell-lines` undeclarable for a mixed cohort (PXD019515)
 
 `PXD019515` was annotated in full (12 deposited → **12** annotated, nothing excluded), but the
