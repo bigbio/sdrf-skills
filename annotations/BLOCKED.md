@@ -1771,3 +1771,17 @@ The technical values are already resolved in `annotations/PXD041509.report.md`:
 | MaxQuant summary/parameters/proteinGroups | Only the experiment names M1–M3 / m1–m3. No sample names. |
 
 **Unblocked by:** a source (author statement, or a later USP11 paper's methods) naming the cell line and the light/heavy condition of the Mila diGly and total-proteome sets.
+
+## PXD012322 — Matrisome properties of scaffolds direct fibroblasts in IPF (Elowsson Rendin et al., IJMS 2019; SILAC repopulated lung scaffolds), 12 scaffold raws + sampling time of the 47 SILAC raws (partial block)
+
+| field | value |
+|---|---|
+| Deposited | 59 RAW (Q Exactive Plus) + `SILAC2.resultfiles.zip` (MaxQuant txt.repopulated: Multiplicity 2, Labels1 Arg6;Lys8; txt.scaffold: Multiplicity 2, Labels1 Lys6). |
+| Annotated | The 47 `Emma_S1803_*.raw` repopulated-scaffold runs, 2 rows each (light = pre-existing scaffold proteins, heavy = proteins newly made by the heavy-labelled healthy lung fibroblasts): `annotations/PXD012322.sdrf.tsv`. Scaffold donor (FL9, FL10, FL11, Lures18, SAL23–SAL26) comes from each raw header's sample ID; IPF vs healthy comes from the paper's hospital-of-origin statement and is cross-checked by the IPF basement-membrane signature in the light channel. |
+| Blocked (whole runs) | `Emma_S1801_{217,218,219,220,222,223,224,225,227,228,229,230}.raw` (decellularized scaffolds, MaxQuant txt.scaffold Experiment 1). They contain no labelled material (H/L 0.15%), so they are label-free in substance. Their raw sample IDs `SILAC_sample_1..12` have no documented link to donors HL 1, HL 2, IPF 1, IPF 2 (paper Fig. S2: 2 donors per group × 3 replicates). |
+| Blocked (one attribute) | `characteristics[sampling time]` is `not available` on all 94 rows. Cultures were harvested on day 1, 3 or 9. The runs form three vial blocks of 16 (A1–B4, B5–C8, C9–D12), each holding every donor twice, but no source says which block is which day. The heavy share H/(H+L) does not rise monotonically across the blocks, so the data cannot settle it either. |
+| SDRF would need | For S1801: 12 label-free rows with donor/disease per file (a separate label-free SDRF). For S1803: the day of each vial block. Optionally the FL/SAL code → Table 1 HL/IPF ID key (it would also give per-donor age and sex). |
+
+**Sources checked:** PRIDE record and file list (no sample sheet); paper full text (Europe PMC XML) and Tables 1–2; supplementary `ijms-20-04013-s001.pptx` (figure legends, clustered heat-map labels HL 1:1…IPF 2:3, embedded Prism graphs of group means only); MaxQuant summary/parameters/proteinGroups (experiment names are bare numbers 1–55 / 1–3); raw headers of all 59 files (sample ID, vial). The paper has no data or code availability links beyond PXD012322.
+
+**Unblocked by:** an author sample sheet giving the day per S1803 vial (or per MaxQuant experiment 1–48) and the donor/replicate per `SILAC_sample_N`.
