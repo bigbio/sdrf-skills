@@ -1,0 +1,53 @@
+# PXD002425 validation log (2026-11-09T13:40Z); SDRF sha256 252c834f969cef423e0e96875447d6cce4ab868569deee0794f3c4fc857966aa; 248 rows x 46 columns
+# The SDRF is the unmodified concatenation of four sdrf-tools build outputs (scripts/concat.py asserts identical headers); there are no post-build edits.
+
+## Round 1 (current file, full ontology): parse_sdrf validate-sdrf -s annotations/PXD002425.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: enrichment of ubiquitinated protein in column 'characteristics[enrichment process]', is not found in the given ontology list pride;efo
+WARNING: Term: 143B rho-0 EtBr in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: 13-year-old stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+(A transient OLS 500 from the CLO search for '143b rho-0 etbr' was retried by the validator; its traceback is omitted above.)
+Warnings explained:
+ - '143B rho-0 EtBr' (cell line) is not in CLO/BTO/EFO. It is the Cellosaurus name of CVCL_ZL52, the rho0 derivative of 143B, and Cellosaurus cross-references PRIDE PXD002425. characteristics[cellosaurus accession] carries CVCL_ZL52.
+ - 'enrichment of ubiquitinated protein' has no OLS term (EFO:0009090 has only the phospho child). It is used for the 4 GlyGly runs as in the curated sdrf-annotated-datasets PXD000554/PXD001214/PXD002255.
+ - '13-year-old stage' is HsapDv:0000107, not EFO. It reflects the Cellosaurus donor age of 13Y (batch rule 9: not adult). Campaign precedent: PXD016521.
+
+## sdrf-tools structure annotations/PXD002425.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD002425.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/pride.json --accession PXD002425
+PXD002425: every annotated value agrees with the deposit record.
+exit=0
+Note: PRIDE lists instrument 'Q Exactive' (MS:1001911). The SDRF uses Q Exactive Plus (MS:1002634), taken from the raw headers of all 124 files (rawheaders_ms1.tsv). reconcile did not flag this.
+
+## sdrf-tools check annotations/PXD002425.sdrf.tsv --offline
+Hallucination Report: annotations/PXD002425.sdrf.tsv
+  Terms checked:     12
+  Verified:          6
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD002425.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/convert)
+Factor columns: ['factor value[cell line]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cellosaurus accession]', 'characteristics[passage number]', 'characteristics[culture medium]']
+Conditions (2): dict_keys(['143B rho-0 EtBr', '143B'])
+Files per condition: dict_values([124, 124])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 248 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD002425.sdrf.tsv
+exit=0
+The 'no TA=' warning comes from Acetyl PP=Protein N-term, which is correct per format-rules (position goes in PP=).
+
+## sdrf-tools schema-check annotations/PXD002425.evidence.json
+annotations/PXD002425.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD002425.sdrf.tsv annotations/PXD002425.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit=0

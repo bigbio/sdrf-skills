@@ -41,7 +41,7 @@
   {
    "id": "raw",
    "kind": "raw-file",
-   "location": "HTTP range read of the first 1.2 MB of every .raw under https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/02/PXD002425/ (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/rawhdr.py; table /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/rawheaders.tsv): instrument model string, method file, MS1 scan range, NCE, TopN"
+   "location": "HTTP range read of the first 1.2 MB of every .raw under https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/02/PXD002425/ (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/rawhdr.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/rawheaders.tsv: model string, method file, TopN, NCE; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/scripts/rawms1.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b7-PXD002425/rawheaders_ms1.tsv: method-XML First_mass/Last_mass of the full-MS ScanEvent, MS1/MS2 resolution, HCD NCE; all 124 files: Q Exactive Plus, 300-1750 m/z, 70000/35000, NCE 25). The plain-text method summary of the 1502xx files is garbled at the MS1 scan range, so rawheaders.tsv shows the MS2 200-2000 range for them; the XML value is used."
   },
   {
    "id": "cellosaurus",
@@ -217,7 +217,7 @@
     "raw",
     "ols"
    ],
-   "evidence": "Raw headers: method Top12_3h_direct_inject_30sec_35TRes_s(.meth / _Ubi.meth), TopN 12 data-dependent MS/MS, Fragmentation_HCD 25 (NCE / stepped NCE 25), MS2 resolution 35,000 (Orbitrap), full scan 300 to 1750 m/z at 70,000."
+   "evidence": "Raw headers: method Top12_3h_direct_inject_30sec_35TRes_s(.meth / _Ubi.meth), TopN 12 data-dependent MS/MS, Fragmentation_HCD 25 (NCE / stepped NCE 25), MS2 resolution 35,000 (Orbitrap), full-MS First_mass 300 / Last_mass 1750 m/z at 70,000 in every file (rawheaders_ms1.tsv)."
   },
   {
    "location": "comment[cleavage agent details] rows 1-248",
