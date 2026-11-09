@@ -67,13 +67,13 @@
  "claims": [
   {
    "location": "source name rows 1-528",
-   "value": "<ID>_wt_pulldown / <ID>_mut_pulldown (one source per peptide spot type; ID verbatim from the PRIDE table, e.g. P11166_P485L, SOS1_cntrl); blank_spot_B<n>_light_lysate_membrane / _heavy_lysate_membrane",
+   "value": "<ID>_<wt|mut>_pulldown_light_lysate_membrane / _heavy_lysate_membrane and blank_spot_B<n>_light_lysate_membrane / _heavy_lysate_membrane (one source per physical spot; each source name occurs in exactly one row; ID verbatim from the PRIDE table, e.g. P11166_P485L, SOS1_cntrl)",
    "source_ids": [
     "pride",
     "idmap",
     "preprint"
    ],
-   "evidence": "Each spot on the two membranes is one pull-down; PRIDE/preprint: \"Single spots were punched out ... and SILAC pairs were placed together\"; IDs are UniProt accession + mutation as listed by the submitters. Blank runs B1-B3 are labelled \"B blank\" in the PRIDE table."
+   "evidence": "Each spot on each of the two membranes (one incubated with light, one with heavy lysate) is one physical pull-down, so the wt spot of a pair on the light-lysate membrane (light channel of the Fw run) and the wt spot on the heavy-lysate membrane (heavy channel of the Rev run) are different sources (review round 1 finding 1); PRIDE/preprint: \"Single spots were punched out ... and SILAC pairs were placed together\"; IDs are UniProt accession + mutation as listed by the submitters. Blank runs B1-B3 are labelled \"B blank\" in the PRIDE table."
   },
   {
    "location": "characteristics[bait] rows 1-528; factor value[bait] rows 1-528",
@@ -103,7 +103,7 @@
     "pride",
     "preprint"
    ],
-   "evidence": "\"Two of those peptide filters ... The entire peptide libraries were incubated with 15 ml of light or heavy SILAC labeled cell lysate\"; preprint: \"two replicates of a pull-down with a specific peptide sequence\", \"incubating the two replicates of the membrane with cell lysates that have been differentially SILAC labeled\". Each bait therefore has two independent pull-downs (separate membrane, separately labelled culture). Numbering is by membrane/lysate so it is consistent across groups; for Q9UQN3_T104N only one replicate per variant is deposited (see limitations)."
+   "evidence": "The number denotes the lysate/membrane, not a per-group count: 1 = light-SILAC lysate culture and its membrane, 2 = heavy-SILAC lysate culture and its membrane; it is therefore always 1 on SILAC light rows and 2 on SILAC heavy rows. Consequences: Q9UQN3_T104N wild-type has only replicate 2 and its mutant only replicate 1 (its Fw run 039_new is not deposited); the three blank spots per membrane (B1-B3) share replicate 1 (light) or 2 (heavy) because they are spots on the same membrane incubated with the same lysate, distinguished by source name. Protocol: \"Two of those peptide filters ... The entire peptide libraries were incubated with 15 ml of light or heavy SILAC labeled cell lysate\"; preprint: \"two replicates of a pull-down with a specific peptide sequence\", \"incubating the two replicates of the membrane with cell lysates that have been differentially SILAC labeled\". Each bait therefore has two independent pull-downs (separate membrane, separately labelled culture). Numbering is by membrane/lysate so it is consistent across groups; for Q9UQN3_T104N only one replicate per variant is deposited (see limitations)."
   },
   {
    "location": "comment[label] rows 1-528",
@@ -328,6 +328,26 @@
     "templates"
    ],
    "evidence": "Filled by sdrf-tools build for ms-proteomics."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-528",
+   "value": "study sample (522 bait rows, incl. the SOS1/ARHGAP36/WIP control peptide pairs, which are baits analysed like every other pair); blank (6 rows of runs B1-B3)",
+   "source_ids": [
+    "pride",
+    "ols",
+    "templates",
+    "mq"
+   ],
+   "evidence": "PRIDE table labels runs B1-B3 \"B blank\" (no peptide spot). PRIDE:0001016 blank (OLS definition: \"A sample or analytical run lacking the intended analyte and used to characterize background or contamination associated with an experimental workflow\") - here the intended analyte (the bait peptide) is absent and the run captures background binding of lysate proteins to the cellulose membrane (L and H lysate proteins present in proteinGroups). PRIDE:0001013 study sample for all peptide pull-downs. Upstream base 1.1.0 (via ms-proteomics 1.2.0) recommends the column with default study sample, children of PRIDE:0000895."
+  },
+  {
+   "location": "characteristics[individual] rows 1-528",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "templates"
+   ],
+   "evidence": "human template recommends the column; Cellosaurus CVCL_0019 gives no donor identifier for the SH-SY5Y (SK-N-SH) donor, so the reserved word is used."
   }
  ],
  "limitations": [
@@ -335,7 +355,7 @@
   "The Cell paper (doi:10.1016/j.cell.2018.08.019) is not open access in PMC and the Unpaywall publisher PDF returned HTTP 403 (not bypassed); its Table S1 (peptide sequences) was not retrieved. Methods were taken from the PRIDE protocol text and the bioRxiv preprint (doi:10.1101/141622), whose Methods text for the screen is essentially identical to the PRIDE protocol.",
   "Peptide sequences and gene symbols of the baits are not given in any retrieved source; baits are identified by the submitters' UniProt-accession_mutation IDs verbatim. For ARHGAP36_cntrl_1/_2 the wt/mut forms are covered only by the uniform PRIDE Fw/Rev statement (no ARHGAP36 peptide entry was identified in proteinGroups); SOS1_cntrl and WIP_cntrl wt/mut entries are present in proteinGroups.",
   "Blank runs B1-B3: PRIDE says only \"B blank\". They contain both light and heavy lysate proteins (proteinGroups summed Intensity L 0.9-1.0e11 and H 0.8-2.1e11 per blank run, 806-850 protein groups quantified), consistent with blank membrane spots from the light- and heavy-lysate membranes; that each channel is a separate spot from the respective membrane is inferred from the two-membrane design, not stated.",
-  "comment[precursor mass tolerance] = not available (MaxQuant 1.5.2.8 does not record it in parameters.txt; no mqpar.xml). Consequence: parse_sdrf convert-openms exits 1 (\"Cannot read precursor mass tolerance: not available\"), as in campaign precedent PXD014368.",
+  "comment[precursor mass tolerance] = not available (MaxQuant 1.5.2.8 does not record it in parameters.txt; no mqpar.xml). The protocol says \"Default settings were kept\", but no retrieved source states the MaxQuant 1.5.2.8 default main-search tolerance, so 4.5 ppm is not asserted. Consequence: parse_sdrf convert-openms exits 1 (\"Cannot read precursor mass tolerance: not available\"), as in campaign precedent PXD014368.",
   "characteristics[developmental stage] \"pediatric stage\" (HsapDv:0000264) is not in EFO, giving a validate-sdrf warning (not an error).",
   "Follow-up experiments of the paper (GLUT1 BioID SILAC in HEK293, iPSC imaging) are not part of this deposit (PXD010027 is the \"peptide-protein interaction screen\" sub-deposit; its 264 raw files are all PepArray2 runs). reconcile's organism_part_from_cultured_material finding is triggered by the description's mention of patient-derived iPSCs, which are not samples here."
  ]
