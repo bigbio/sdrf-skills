@@ -1900,3 +1900,45 @@ Why the SILAC arm is blocked:
 **Annotated:** the 20 `HF*` cell runs (human GBM TIC cultures 605051, BT165, 700142, 906080, 606012 treated with LSD1i DDP_38003 or DMSO; light = sample, heavy = histone super-SILAC internal standard; MaxQuant `txt_cells.zip`) → `annotations/PXD025781.sdrf.tsv`.
 
 **Blocked (sample identity undocumented):** the 18 brain-tissue runs `QEPLus_210305_RN_glio_1.raw` … `QEPLus_210305_RN_glio_18.raw` (PRO-PIC derivatisation, EpiProfile 2.0 SILAC mode, `tissue.zip`; they are SILAC: LightR/HeavyR against the heavy internal standard). The run names carry only a number. Nothing in the deposit (protocol, `tissue.zip` histone_ratios*.xls / histone_logs.txt / rawInfo) or in the accessible author postprint maps a run to normal vs tumour tissue, vehicle vs LSD1i, or mouse; Fig. 1E gives only group sizes (normal and tumour tissue, vehicle n = 12, LSD1i n = 6). The Supplementary Materials at science.org returned HTTP 403 (not bypassed). **Needed to unblock:** a run → (mouse, tissue normal/tumour, treatment) table from the authors or the Supplementary Materials.
+
+---
+
+## PXD013461 — BRAF fusion partners / dox-inducible BRAF constructs in HEK293 (Stangl et al., Mol Cancer Res 2020; SILAC Arg10/Lys8 phosphoproteome), experiments S13–S14 only (partial block)
+
+**Annotated:** experiments S1–S12 (36 RAW, 72 rows) in `annotations/PXD013461.sdrf.tsv`. **Blocked:** the 6 RAW of experiments S13 and S14:
+`20181213_F1_RM_CHS_0200_TIO2_RVhPH_S13_F1.raw`, `20181213_F1_RM_CHS_0200_TIO2_RVhPH_S13_F2.raw`, `20181213_F1_RM_CHS_0200_TIO2_RVhPH_S13_F3.raw`, `20181213_F1_RM_CHS_0200_TIO2_RVhPH_S14_F1.raw`, `20181213_F1_RM_CHS_0200_TIO2_RVhPH_S14_F2.raw`, `20181213_F1_RM_CHS_0200_TIO2_RVhPH_S14_F3.raw`.
+
+Why they are blocked:
+- No source gives the experiment → construct / orientation map. For S1–S12 it was derived from the data: transgene-product peptides, BRAF N-terminal coverage against the construct start codons in the AACR figshare construct table, and the rank order of phosphosite counts against Supp Fig S3D. The details are in `PXD013461.evidence.json`.
+- By elimination, S13/S14 are the 7th line, pInducer20-GFP. No BRAF or partner peptide changes in them; the median log2 H/L of BRAF aa 380–766 is +0.04 / +0.12.
+- GFP is not in the searched human FASTA, so no transgene peptide shows which SILAC channel got doxycycline. ERK sites move in the same direction in both experiments (MAPK1 Y175 +1.03 / +1.35), so they do not show the orientation either.
+- Rows with treatment `not available` would pool the dox and vehicle cultures (campaign rule 7).
+
+**Unblocked by:** an author statement of the forward/reverse (heavy = +dox) assignment for S13 and S14, or any experiment key. An author-confirmed key for S1–S12 would also firm up the data-derived map, whose weakest link is BRAF-WT (S7/S8) vs BRAF-V600E (S11/S12).
+
+## PXD029030 — miR-31-5p metabolic switch in psoriatic keratinocytes (Wang et al., EMBO Mol Med 2023; SILAC Arg10/Lys8, HEK293T + HaCaT), "L125" SCX experiments and the whole Velos search (partial block)
+
+**Annotated (not blocked):** 22 RAW `20161111_F1_RM_RH_SCX_2_1..11` and `20161111_F1_RM_RH_SCX_4_1..11` (MaxQuant experiments b and d of `20161111_F1_RM_RH_SCX_L125_L31.zip`) = HEK293T miR-31-5p mimic vs control mimic, in `PXD029030.sdrf.tsv`. Their cell line and orientation are taken from the match of the deposited ratios to Dataset EV1 HEK 293T (r = -0.95 / +0.96) and from the deposited Perseus lists L31up/L31down.
+
+**Blocked runs (106 of 128 RAW):**
+- 22 RAW `20161111_F1_RM_RH_SCX_1_1..11` and `20161111_F1_RM_RH_SCX_3_1..11` (Orbitrap Fusion; MaxQuant experiments a and c of the same search).
+- 80 RAW of the LTQ Orbitrap Velos search `20170620_V1_MJW_0083.zip`: `20170609_V1_MJW_0083_C1..C12, D1..D8` (experiment CD), `20170609_V1_MJW_0083_G1..G12, H1..H8` (GH), `20170620_V1_MJW_0083_A1..A12, B1..B8` (AB) and `20170620_V1_MJW_0083_E1..E12, F1..F8` (EF).
+- 4 Velos RAW `20170609_V1_MJW_0083_1..4`. They are in no `summary.txt`, so they were never searched.
+
+**Blocker 1: experiments a and c (SCX_1, SCX_3) are named only "L125".**
+- The zip is called `SCX_L125_L31`, and the Perseus lists are called `L125up.txt` / `L125down.txt`.
+- Neither the paper nor the PRIDE record mentions any miRNA other than miR-31.
+- The PRIDE/paper SILAC protocol mentions miR-130a and miR-708. That text is evidently copied from another study.
+- So the treatment of these cultures (which miRNA "125" is) is undocumented. The light/heavy orientation could be read from the L125 lists (a negative, c positive), but not what it means.
+
+**Blocker 2: the Velos search (AB, CD, EF, GH) has no documented cell line or conditions.**
+- The paper's SILAC Methods name only an Orbitrap Fusion. These runs are Velos CID runs (raw header "LTQ Orbitrap Velos MS", method LC120m_60K/100K_Top15_CID35).
+- Their ratios do not reproduce Dataset EV1 HaCaT (best combined r = 0.29, n = 533). GLUL fits miR-31 light in AB/CD and heavy in EF/GH, but ANKRD52 is opposite.
+- They correlate with the "L125" experiments (a~AB 0.29, c~GH 0.28) and not with the miR-31 experiments (|r| <= 0.12).
+- They may be the HaCaT miR-31 SILAC of Fig EV1E, or the miR-130a/miR-708 mixtures named in the protocol; no source settles which, or which channel is which.
+
+**Unblocked by:**
+- an author statement or sample sheet giving, for each MaxQuant experiment (a, c, AB, CD, EF, GH), the cell line, the miRNA mimic and the label orientation;
+- for the 4 unsearched Velos RAW, additionally a statement of what they are. They would get tolerances `not applicable` if annotated, since no search output covers them.
+
+**Excluded (not runs):** `20161111_F1_RM_RH_SCX_L125_L31.zip`, `20170620_V1_MJW_0083.zip` (MaxQuant search output).

@@ -1,0 +1,365 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD025169.sdrf.tsv",
+ "dataset": "PXD025169",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD025169 via MCP get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/pride.json): title, description (\"harvested at 6.5 and 10.5 hours post infection\"), sample/data processing protocols, organism Mus musculus, instruments [Orbitrap Fusion Lumos], quantification SILAC"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD025169/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/files_p0.json; page=1 empty; 66 entries = 60 RAW Exp1-3_6hpi/10hpi_slice_1-10 + 6hpi.rar, 10hpi.rar (SEARCH), 6hpi_results.rar, 10hpi_results.rar, mouse FASTA, MNV-1.fa; every entry projectAccessions contains PXD025169)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Brocard M et al., J Virol 2021 95(20):e0113421, doi:10.1128/JVI.01134-21, PMID 34346771, PMC8475529; Europe PMC fullTextXML (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/paper.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/paper.json): Materials and Methods \"Cell lines and viruses\", \"Biorthogonal labeling for characterization of de novo proteome\", \"Analysis of SILAC-AHA proteomics data\"; Fig. 6 legend"
+  },
+  {
+   "id": "fig6",
+   "kind": "publication",
+   "location": "Fig. 6 image jvi.01134-21-f006.jpg from https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8475529/supplementaryFiles (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/supp/jvi.01134-21-f006.jpg; crops /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/supp/f6A.png, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/supp/f6B.png): 6A design diagram (Light R0K0 / Medium R6K4 / Heavy R10K8 over \"mock - MNV(UVi) - MNV infection\"); 6B scatter of MNV/mock (x) vs MNV/MNV(UVi) (y) log2FC at 10 h p.i. with labelled viral proteins"
+  },
+  {
+   "id": "figS7",
+   "kind": "supplementary",
+   "location": "Supplemental material jvi.01134-21-s0001.pdf page 7, Fig. S7 (6 h p.i. scatter, same axes, labelled viral proteins) (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/supp/jvi.01134-21-s0001.pdf; renders /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/supp/p7-7.png, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/supp/z7-7.png)"
+  },
+  {
+   "id": "mq6",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/07/PXD025169/6hpi_results.rar members \"6hpi results/summary.txt\", \"proteinGroups.txt\", \"peptides.txt\" (read with libarchive; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/x6/summary.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/x6/proteinGroups.txt): Raw file -> Experiment 4/5/6 (=Exp1/2/3), Fraction 1-10, Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8, Variable modifications Oxidation (M);Acetyl (Protein N-term);Met->Triazole-PEG4-biotin;Met->AHA, Enzyme Trypsin/P, 2 missed cleavages; no parameters.txt in this archive"
+  },
+  {
+   "id": "mq10",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/07/PXD025169/10hpi_results.rar members \"10hpi results/summary.txt\", \"proteinGroups.txt\", \"parameters.txt\" (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/x10/): Experiment 1/2/3, Fraction 1-10, Multiplicity 3, same labels and variable mods as 6 h; parameters.txt: MaxQuant 1.6.1.0, Fixed modifications Carbamidomethyl (C), MS/MS tol. (ITMS) 0.5 Da, FASTA mouse proteome + MNV-1.fa"
+  },
+  {
+   "id": "chmap",
+   "kind": "script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/scripts/all_assign.py and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/scripts/viral_ratios.py on x6/ and x10/ proteinGroups.txt: per-experiment L/M/H intensities of the MNV1 proteins and mean log2 ratios for all 8 mock/UVi assignments, compared with Fig. 6B and Fig. S7 coordinates"
+  },
+  {
+   "id": "cammass",
+   "kind": "script",
+   "location": "peptides.txt of 6hpi_results.rar: observed Mass minus unmodified monoisotopic sequence mass of Cys peptides = 57.0215 Da per Cys (e.g. AAAQCYIDLIIK +57.0215, AAALCNVCELSGK +114.0429) -> Carbamidomethyl (C) fixed in the 6 h search too"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 1.5 MB of Exp1_6hpi_slice_1.raw and Exp3_10hpi_slice_10.raw (https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/07/PXD025169/<file>.raw, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/rawhdr/), UTF-16LE: instrument model string \"Orbitrap Fusion\", method \"Orbitrap Fusion Method Summary\"; no \"Lumos\""
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0493?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/cello_CVCL_0493.txt): RAW 264.7, Mus musculus, BALB/c, Male, Adult, derived from ascites (UBERON_0007795), cell type macrophage (CL_0000235), disease NCIt C21604 Mouse leukemia, transformant AbMuLV; name search returned only mouse entries"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 https://www.ebi.ac.uk/ols4/api/search lookups 2026-11-09 (none obsolete): NCBITaxon:10090 Mus musculus, NCBITaxon:223997 Murine norovirus 1, UBERON:0007795 ascitic fluid, CL:0000235 macrophage, MONDO:0005059 leukemia, EFO:0001272 adult, NCIT:C185409 Dulbecco's Modified Eagle Medium, MS:1002416 Orbitrap Fusion, MS:1000133 collision-induced dissociation, MS:1000264 ion trap, MS:1001251 Trypsin, PRIDE:0000627 Data-dependent acquisition, PRIDE:0000568 SDS PAGE (ancestor PRIDE:0000550 Fractionation method), PRIDE:0000325/0000326/0000327 SILAC heavy/light/medium, EFO:0001231 RAW264.7"
+  },
+  {
+   "id": "unimod",
+   "kind": "ontology",
+   "location": "OLS4 unimod exact search: UNIMOD:4 Carbamidomethyl, UNIMOD:35 Oxidation, UNIMOD:1 Acetyl, UNIMOD:896 Met->Aha, UNIMOD:188 Label:13C(6), UNIMOD:481 Label:2H(4), UNIMOD:267 Label:13C(6)15N(4), UNIMOD:259 Label:13C(6)15N(2); unimod.xml shipped with sdrf_pipelines (/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/converters/openms/unimod.xml) has no entry at +452.238 Da (nearest Sulfo-NHS-LC-LC-Biotin 452.2457, different chemistry)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates templates.yaml upstream 7da1747 line 150 (ms-proteomics latest 1.2.0), vertebrates 1.1.0, cell-lines 1.1.0, resolved by `sdrf-tools contract` (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/contract.txt); spec README.adoc:27 sdrf version v1.1.0; the spec submodule nested templates copy is older than upstream"
+  },
+  {
+   "id": "build",
+   "kind": "script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD025169/build/samples.tsv, technical.tsv, files.json; SDRF written only by `sdrf-tools build -t ms-proteomics -t vertebrates -t cell-lines` and copied unchanged"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-180",
+   "value": "RAW264.7_<mock|MNV-UVi|MNV>_<6.5|10.5>hpi_rep<1-3>",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq6",
+    "mq10",
+    "chmap"
+   ],
+   "evidence": "18 physical cultures: 3 conditions (mock, MNV(UVi), MNV) x 2 harvest times x 3 independent replicates (\"Three independent replicates were made\"). Each source name is one SILAC-labelled dish, mixed 1:1:1 with the other two conditions of the same replicate and time; each mix is one MaxQuant Experiment (6 h: 4/5/6 = Exp1/2/3; 10 h: 1/2/3)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-180",
+   "value": "1-3",
+   "source_ids": [
+    "paper",
+    "mq6",
+    "mq10",
+    "files"
+   ],
+   "evidence": "Numbered 1..3 within each (infection x sampling time) group; replicate n = file prefix Expn = the n-th independent replicate. Each number denotes one independent culture."
+  },
+  {
+   "location": "comment[label] rows 1-180",
+   "value": "SILAC light / SILAC medium / SILAC heavy",
+   "source_ids": [
+    "mq6",
+    "mq10",
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt Multiplicity 3, Labels0 empty (light), Labels1 Arg6;Lys4 (medium), Labels2 Arg10;Lys8 (heavy) for all 60 raw files (rule 14 verified). Paper: light (R0K0), medium (R6K4), heavy (R10K8); cells labelled for 5 passages (full, not pulsed, SILAC)."
+  },
+  {
+   "location": "characteristics[infection], factor value[infection] rows 1-180",
+   "value": "uninfected / UV-inactivated Murine norovirus 1 / Murine norovirus 1",
+   "source_ids": [
+    "paper",
+    "pride",
+    "fig6",
+    "figS7",
+    "mq6",
+    "mq10",
+    "chmap",
+    "ols"
+   ],
+   "evidence": "Channel map (identical at 6 h and 10 h): Exp1 L=mock, M=MNV(UVi), H=MNV; Exp2 L=MNV, M=mock, H=MNV(UVi); Exp3 L=MNV(UVi), M=MNV, H=mock. (1) MNV channel = the channel holding the nascent viral proteins: VP1 intensity 6 h Exp1 L/M/H 0.25e9/0.03e9/2.80e9, Exp2 0.90e9/0.02e9/0.03e9, Exp3 0.31e9/2.41e9/0.06e9; same pattern at 10 h. (2) Methods: \"Three independent replicates were made with a different SILAC medium assigned to a given condition for each replicate\" -> Latin square; Fig. 6A draws Light/Medium/Heavy over mock/MNV(UVi)/MNV, matching Exp1. (3) Of the 8 possible mock/UVi assignments, only this one reproduces the published coordinates: 6 h mean log2 MNV/mock vs MNV/UVi VP1 5.20/7.61, NS3 3.88/4.21, NS1-2 3.88/3.34, NS5 2.93/3.37 = Fig. S7 (measured 5.2/7.6, 3.88/4.23, 3.88/3.35, 2.93/3.38); 10 h NS3 4.22/7.35, NS7 3.82/7.03, VP1 4.70/6.81, VP2 5.58/4.48, VF1 4.25/4.58, NS4 3.36/3.49 = Fig. 6B (4.25/7.32, 3.85/6.99, 4.74/6.75, 5.63/4.45, 4.29/4.55, 3.38/3.48). The swapped mock/UVi assignment gives mirrored values (e.g. 6 h VP1 7.61/5.20). Pathogen: MNV-1 strain CW1 = NCBITaxon:223997 Murine norovirus 1; mock rows \"uninfected\" (mock-infected)."
+  },
+  {
+   "location": "characteristics[multiplicity of infection] rows 1-180",
+   "value": "10 TCID50/cell / not applicable (mock)",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "\"Mock-, MNV(UVi) or MNV-infected at MOI=10 TCID50/cell\". Custom column (spec Extending Templates)."
+  },
+  {
+   "location": "characteristics[sampling time], factor value[sampling time] rows 1-180",
+   "value": "6.5 hour / 10.5 hour",
+   "source_ids": [
+    "pride",
+    "paper",
+    "files"
+   ],
+   "evidence": "PRIDE description: \"harvested at 6.5 and 10.5 hours post infection\"; paper: Met-free medium at 5.5/9.5 h p.i. for 30 min, then 1 mM AHA for 30 min prior to lysis (= 6.5/10.5 h); the paper calls the arms \"6 h p.i.\" / \"10 h p.i.\" and the files say 6hpi/10hpi."
+  },
+  {
+   "location": "characteristics[nascent protein labeling] rows 1-180",
+   "value": "L-azidohomoalanine pulse (1 mM, 30 minute) with click biotinylation and streptavidin enrichment",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Custom column. All samples: AHA labelling 30 min, click reaction with biotin-alkyne, streptavidin pull-down of AHA-labelled nascent proteins. This (not SILAC) is the pulse: SILAC labelling was complete (5 passages), so SILAC channels encode condition, not old/new protein."
+  },
+  {
+   "location": "characteristics[organism] rows 1-180",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Murine RAW264.7 cells; NCBITaxon:10090."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-180",
+   "value": "RAW264.7 / CVCL_0493 / RAW 264.7",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"murine macrophage cells RAW264.7\"; Cellosaurus CVCL_0493 (synonym RAW264.7), Mus musculus; the name search returns only mouse entries (no other-species collision). cell line value = EFO:0001231 RAW264.7 (not obsolete), as in annotations/PXD021925."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-180",
+   "value": "ascitic fluid",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Derived from site: In situ; Ascites; UBERON=UBERON_0007795\"; UBERON:0007795 ascitic fluid."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-180",
+   "value": "macrophage",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper \"murine macrophage cells RAW264.7\"; Cellosaurus cell type CL_0000235 macrophage."
+  },
+  {
+   "location": "characteristics[disease] rows 1-180",
+   "value": "leukemia",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Disease of the cell line of origin: Cellosaurus DI NCIt C21604 Mouse leukemia (AbMuLV-induced tumour) -> MONDO:0005059 leukemia; same value as the reviewed RAW 264.7 annotation annotations/PXD021925. The infection status is carried by characteristics[infection], not by disease."
+  },
+  {
+   "location": "characteristics[material type] rows 1-180",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Established cell line RAW264.7."
+  },
+  {
+   "location": "characteristics[developmental stage], characteristics[sex], characteristics[strain or breed] rows 1-180",
+   "value": "adult / male / BALB/c",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG Adult, SX Male, Breed/subspecies BALB/c; EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-180",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "SILAC culture \"in high-glucose DMEM lacking arginine and lysine ... supplemented with dialyzed 10% FBS\" plus labelled Arg/Lys; NCIT:C185409."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier], comment[technical replicate] rows 1-180",
+   "value": "60 raw files; gel slices 1-10",
+   "source_ids": [
+    "files",
+    "mq6",
+    "mq10",
+    "paper",
+    "build"
+   ],
+   "evidence": "All 60 deposited RAW files annotated (3 rows each, one per SILAC channel). Each SILAC mix ran on one SDS-PAGE lane cut into 10 slices (\"each gel lane cut into 10 equal slices\"); file suffix slice_n = MaxQuant Fraction n = comment[fraction identifier] n. One injection per slice (technical replicate 1). Not annotated as data: 6hpi.rar / 10hpi.rar (PRIDE category SEARCH, ~40 GB MaxQuant folders), 6hpi_results.rar / 10hpi_results.rar (txt output), the two FASTA files."
+  },
+  {
+   "location": "comment[instrument] rows 1-180",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw_header",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers: \"Orbitrap Fusion\" (no Lumos); paper: \"Orbitrap Fusion Tribrid mass spectrometer\". PRIDE instrument field \"Orbitrap Fusion Lumos\" is overridden (raw data > paper > PRIDE dropdown)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-180",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"operated in data-dependent acquisition mode\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-180",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq6",
+    "mq10"
+   ],
+   "evidence": "Paper/PRIDE: \"in-gel tryptic digestion\"; MaxQuant search rule Trypsin/P, specific, 2 missed cleavages (rule 2: digestion enzyme recorded, search rule noted here)."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-180",
+   "value": "CID (MS:1000133) / 35 NCE / ion trap (MS:1000264) / 350m/z-1550m/z",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"ITMS2 spectra were collected ... collision-induced dissociation (CID) energy of 35%\"; \"FTMS1 spectra ... scan range (m/z) of 350 to 1,550\"."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-180",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Gel-lane slicing into 10 slices before in-gel digestion; PRIDE:0000568 is under PRIDE:0000550 Fractionation method."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-180",
+   "value": "20 ppm / 0.5 Da",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq10"
+   ],
+   "evidence": "Methods/PRIDE: \"precursor mass tolerance was set at 20 ppm, and MS/MS tolerance was set at 0.5 Da\"; parameters.txt MS/MS tol. (ITMS) 0.5 Da."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-180",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Met->Aha M, Met->Triazole-PEG4-biotin M (MM=452.238), Label:13C(6) R, Label:2H(4) K, Label:13C(6)15N(4) R, Label:13C(6)15N(2) K Variable",
+   "source_ids": [
+    "mq6",
+    "mq10",
+    "cammass",
+    "paper",
+    "unimod"
+   ],
+   "evidence": "summary.txt (both searches) Variable modifications Oxidation (M);Acetyl (Protein N-term);Met->Triazole-PEG4-biotin;Met->AHA plus SILAC Arg6;Lys4 / Arg10;Lys8; parameters.txt (10 h) Fixed Carbamidomethyl (C); 6 h fixed CAM shown by peptide masses (+57.0215 per Cys). Paper masses: AHA -4.9863 (UNIMOD:896 Met->Aha), Triazole-PEG4-biotin +452.238 (no Unimod record; written with MM=, = Met->Aha -4.9863 + biotin-PEG4-alkyne C21H35N3O6S 457.2247), SILAC +6.020 R (UNIMOD:188), +10.008 R (UNIMOD:267), +4.025 K (UNIMOD:481), +8.014 K (UNIMOD:259); labels MT=Variable per rule 11. Same search for all 60 files."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-180",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "In-gel digestion on a DigestPro unit; reagents not named in paper or PRIDE (Carbamidomethyl fixed in the search, so alkylation occurred, reagent unstated)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-180",
+   "value": "v1.1.0; ms-proteomics v1.2.0, vertebrates v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Batch rules 1 and 10; vertebrates for mouse; cell-lines for RAW 264.7. clinical-metadata not declared (no patients)."
+  },
+  {
+   "location": "characteristics[passage number] rows 1-180",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Only \"5 passages\" in SILAC medium is stated, not the passage number of the line."
+  },
+  {
+   "location": "technology type rows 1-180",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "build"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "No per-replicate channel table is published; the mock/MNV(UVi) channel identities are derived from the Methods Latin-square statement plus Fig. 6A, and confirmed by reproducing the published Fig. 6B / Fig. S7 viral-protein coordinates from the deposited proteinGroups.txt (only 1 of 8 assignments matches). The MNV channel is directly evidenced by viral-protein intensities.",
+  "Figure coordinates were read from rendered images (Fig. S7 PDF at 400 dpi; Fig. 6 PMC JPEG 701 px wide), precision ~0.05 log2 units.",
+  "The 6 h results archive has no parameters.txt; its fixed Carbamidomethyl is inferred from peptides.txt masses, its tolerances from the paper.",
+  "Met->Triazole-PEG4-biotin (+452.238 Da) has no Unimod accession; it is written with MM= and no AC, so parse_sdrf convert-openms refuses the file (only Unimod modifications supported).",
+  "Sampling time uses the harvest time (6.5 / 10.5 h, PRIDE description); the paper labels the arms 6 h / 10 h p.i. (AHA window 6-6.5 h and 10-10.5 h).",
+  "Reduction and alkylation reagents are not stated (not available).",
+  "PRIDE instrument \"Orbitrap Fusion Lumos\" contradicts raw headers and paper (Orbitrap Fusion); the raw value is used.",
+  "No sample sheet is deposited; the Exp1-3 file prefixes (= MaxQuant Experiments) are the only replicate identifiers, and whether replicate n at 6 h and at 10 h came from the same experiment day is not stated (they are separate dishes either way)."
+ ]
+}
