@@ -1,0 +1,235 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD016521-complexome.sdrf.tsv",
+ "dataset": "PXD016521",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "MCP get_project_details(PXD016521) = PRIDE archive record (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/pride.json; native v3 record https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD016521 saved as /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/pride_v3.json, used for sdrf-tools reconcile): title \"Proteomic analysis of Δ4-CYB complex III mutant cybrids\"; sample protocol (heavy/light DMEM with 13C15N Arg/Lys; mitoplast DDM lysis, anti-HA-agarose IP, SDS-PAGE, \"gel excised in 11 0.6 cm slices\", \"digested with trypsin\"; complexome: \"Mitochondria isolated from 1:1 mixtures of differentially SILAC labeled WT and Δ4-CYB cybrids\", \"solubilized with either 4 g/g digitonin or 1.6 g/g DDM\", BN-PAGE \"cut into 64 slices, which were in-gel digested with trypsin\"); data protocol (MaxQuant/Andromeda H/L ratios for the IP duplicate SILAC experiments; Proteome Discoverer + Mascot for SILAC complexome profiling); PRIDE instruments LTQ Orbitrap + Q Exactive; publication PMID 31912925 / PMC6996572"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD016521/files?pageSize=100&page=0..3 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/files_p0..p3.json, merged files_all.json): 286 entries = 280 RAW (256 PRO4052A*-CybMCo-*, 24 PRO3980A*-HACYC1A/B-*) + proteinGroups_PRO3980.txt + 4 PD PSM tables + 1 gel TIFF; every entry projectAccessions contains PXD016521"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Protasoni et al. EMBO J 2020 39(3):e102817, PMC6996572, doi:10.15252/embj.2019102817; full text https://pmc-oa-opendata.s3.amazonaws.com/PMC6996572.1/PMC6996572.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/dl/PMC6996572.1.txt)"
+  },
+  {
+   "id": "fig4",
+   "kind": "publication",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6996572.1/EMBJ-39-e102817-g008.jpg (Figure 4; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/dl/EMBJ-39-e102817-g008.jpg): panel H axis titles \"Log2 Ratio H/L Exp A\" (x) and \"Log2 Ratio L/H Exp B\" (y), UQCRC1/UQCRC2/UQCRFS1 plotted at negative x and negative y"
+  },
+  {
+   "id": "psm",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD016521/MultiConsensus_psms.txt, Multiconsensus_psms_laneC.txt, Multiconsensus_psms_lane3.txt, Multiconsensus_psms_lane4.txt (Proteome Discoverer/Mascot PSM exports; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/dep/); analysed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/scripts/orient.py, output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/orient_output.txt"
+  },
+  {
+   "id": "pg",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD016521/proteinGroups_PRO3980.txt (MaxQuant protein groups for the CYC1-HA IP, columns \"Ratio H/L expA/expB\"; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/dep/proteinGroups_PRO3980.txt)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range reads of https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/01/PXD016521/<file>.raw (first 3 MB and last 8 MB), UTF-16LE strings; files PRO3980A1/A25 (HACYC1A-1, HACYC1B-1) and PRO4052A1/A65/A130/A193/A257 (one per BN-PAGE lane plus the re-run slice); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD016521/raw/"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_2270?format=txt (143B: Homo sapiens, female, 13Y, osteosarcoma, Population: Caucasian, derived from site Bone, right femur UBERON_0000981; synonyms include 143B TK-); sdrf-tools cellline lookup 143B"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via sdrf-tools ols / https://www.ebi.ac.uk/ols4/api: CLO:0001088 143B cell; MONDO:0009807 osteosarcoma; UBERON:0000981 femur; HANCESTRO:0005 European ancestry; HsapDv:0000086 adolescent stage (13-year-old stage HsapDv:0000107 is_a adolescent stage); NCIT:C185409 Dulbecco's Modified Eagle Medium; GO:0005739 mitochondrion; CHEBI:43769 dodecyl beta-D-maltoside; CHEBI:27729 digitonin; MS:1000556 LTQ Orbitrap XL; MS:1002634 Q Exactive Plus; MS:1000133 collision-induced dissociation; MS:1000422 beam-type collision-induced dissociation; MS:1000291 linear ion trap; MS:1000484 orbitrap; MS:1001251 Trypsin; PRIDE:0000627 Data-dependent acquisition; PRIDE:0000567 Gel electrophoresis; PRIDE:0000568 SDS PAGE (both descendants of PRIDE:0000550); PRIDE:0000325/0000326 SILAC heavy/light; UNIMOD:259, 267, 35, 24, 1, 122"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t (the spec submodule's nested templates copy is older); spec README.adoc:27 (sdrf version v1.1.0), README.adoc:330 (biological replicate numbering)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism], characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], characteristics[material type] all rows",
+   "value": "Homo sapiens / 143B cell / CVCL_2270 / 143B / cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper Results/Methods: \"Both cybrid clones, obtained from 143B TK− ρ° cells\"; \"143B‐TK− osteosarcoma‐derived cybrid cells were grown in High‐Glucose ... DMEM\". The cybrids (WT clone #4.1 and Δ4-CYB clone #17.3E) are not catalogued in Cellosaurus (search for MT-CYB cybrid: 0 hits), so the parental nuclear background 143B (CVCL_2270, synonym \"143B TK-\"; CLO:0001088 \"143B cell\") is recorded; the genotype column carries the mtDNA difference."
+  },
+  {
+   "location": "characteristics[organism part], characteristics[disease], characteristics[sex], characteristics[age], characteristics[developmental stage], characteristics[ancestry category] all rows",
+   "value": "femur / osteosarcoma / female / 13Y / adolescent stage / European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "These describe the donor of the 143B nuclear background (Cellosaurus CVCL_2270: SX Female, AG 13Y, DI Osteosarcoma, derived from site Bone, right femur UBERON_0000981, CC Population: Caucasian -> HANCESTRO:0005 European ancestry). 13Y maps to HsapDv:0000086 adolescent stage (parent of HsapDv:0000107 13-year-old stage). The mtDNA of the cybrids comes from other donors (not described in the record); no mitochondrial-disease term is broadcast because the compared variable is captured in genotype."
+  },
+  {
+   "location": "characteristics[cell type], characteristics[passage number] all rows",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Neither the paper nor Cellosaurus states a cell type for 143B or passage numbers of the cybrids."
+  },
+  {
+   "location": "characteristics[culture medium] all rows",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Methods: \"The cells used in the SILAC experiments were grown in DMEM for SILAC (Gibco) plus 10% dialyzed serum ... and 50 μg/ml uridine\"; PRIDE: \"grown in 'heavy' DMEM ... and in 'light' DMEM\". NCIT:C185409."
+  },
+  {
+   "location": "characteristics[cellular component] all rows",
+   "value": "mitochondrion",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Complexome: \"Mitochondria isolated from 1:1 mixtures of differentially SILAC labeled ... cybrids\"; IP: \"Mitoplasts isolated from cells (0.5–2 mg) were resuspended in lysis-buffer\" (PRIDE). GO:0005739 (mitoplasts are mitochondria without outer membrane; no closer GO cellular-component term)."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype] all rows",
+   "value": "wild type mtDNA | MT-CYB 4-bp deletion (homoplasmic)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"#17.3E Δ4‐CYB clone, homoplasmic for the 4‐bp deletion in MT‐CYB (heretofore referred to as Δ4‐CYB), in comparison with clone #4.1, containing 100% wild‐type (heretofore referred to as WT) mitochondrial DNA\". Free text (custom characteristics column, campaign rule 15)."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "SILAC heavy / SILAC light",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Methods: light = K0/R0, heavy = L‐lysine‐13C6,15N2 (K8) and L‐arginine‐13C6,15N4 (R10); two-channel SILAC (multiplicity 2). Which genotype carries which label per run is documented in the channel-map claim."
+  },
+  {
+   "location": "comment[technical replicate] all rows",
+   "value": "1",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Each gel slice was injected once (one raw file per slice; no repeat injections in the file list)."
+  },
+  {
+   "location": "comment[data file], assay name all rows",
+   "value": "raw file names / file stems",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Every RAW entry of the PRIDE file list is listed once per SILAC channel (2 rows per file)."
+  },
+  {
+   "location": "comment[cleavage agent details] all rows",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE sample protocol: IP slices \"digested with trypsin\"; complexome slices \"in-gel digested with trypsin\". Search enzyme rule not recorded in the deposited outputs."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "psm"
+   ],
+   "evidence": "Q Exactive Plus method in the HACYC1 raw headers: \"Full MS / dd-MS² (TopN)\", TopN 10; LTQ Orbitrap XL complexome runs: PD/Mascot PSMs of data-dependent CID MS2 scans (method T10_FTIT_CID)."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] all rows",
+   "value": "not available",
+   "source_ids": [
+    "pride",
+    "psm",
+    "pg"
+   ],
+   "evidence": "No search parameter file (mqpar.xml, PD .msf/.pdResult, Mascot .dat) is deposited and neither the paper nor PRIDE states tolerances. (Observed PSM delta masses in the complexome tables lie within -10.08..+9.96 ppm, suggestive of a 10 ppm Mascot window, but this is not a stated parameter.)"
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] all rows",
+   "value": "v1.1.0 / ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0 / NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; ms-proteomics latest 1.2.0 per upstream templates.yaml line 150."
+  },
+  {
+   "location": "source name, comment[label], characteristics[biological replicate], characteristics[detergent], factor value[detergent], comment[sample preparation batch], all 512 rows (channel map)",
+   "value": "A1-A64 (MultiConsensus_psms.txt) = DDM rep1, WT heavy / Δ4-CYB light; A65-A128 (laneC) = DDM rep2, WT light / Δ4-CYB heavy; A130-A192+A257 (lane3) = digitonin rep1, WT heavy / Δ4-CYB light; A193-A256 (lane4) = digitonin rep2, WT light / Δ4-CYB heavy",
+   "source_ids": [
+    "paper",
+    "pride",
+    "psm"
+   ],
+   "evidence": "Explicit: two reciprocal-labelling experiments per detergent (\"This experiment was performed in duplicate using reciprocal labeling\"; \"Differentially labeled mitochondria solubilized with either 4 mg digitonin ... or 1.6 mg DDM/mg protein were resolved by BNGE ... Each lane was excised in 64, 1‐mm‐thick slices\"); Fig EV1 legend: a \"DDM‐solubilized\" experiment \"where Δ4‐CYB cells were labeled with the heavy (H) amino acids\" and a \"digitonin‐solubilized\" experiment \"where WT cells were labeled with the heavy (H) amino acids\". Lane -> file block from the \"Spectrum File\" column of the four PSM tables (each covers exactly 64 raws). Orientation per lane from the data (orient.py): MT-CYB peptides, not translated in Δ4-CYB (Fig 2B), occur only in one channel (A1-64: 4 heavy/0 light; laneC 6 light/0 heavy; lane3 17 heavy/0 light; lane4 20 light/0 heavy), corroborated by UQCRC1 (103 H/1 L; 399 L/0 H; 429 H/0 L; 452 L/0 H) and UQCRFS1. Detergent per lane from the data: in the WT channel the cIII2 subunit UQCRC1 co-migrates with cI NDUFS1 (supercomplexes, retained by digitonin, dissociated by DDM) in lane3 and lane4 (profile overlap 0.66/0.67) but not in A1-64 and laneC (0.06/0.07); this assignment is also the only one consistent with Fig EV1 (DDM with Δ4-CYB heavy = laneC; digitonin with WT heavy = lane3) and pairs the lanes by MS run dates (180213/180219 vs 180307/180313). Biological replicate numbers restart per (genotype, detergent) group: rep1 = the WT-heavy mixture, rep2 = the reciprocal mixture."
+  },
+  {
+   "location": "comment[fraction identifier] all rows",
+   "value": "1-64 per lane",
+   "source_ids": [
+    "files",
+    "psm",
+    "pride"
+   ],
+   "evidence": "BN-PAGE lanes cut into 64 slices; fraction = rank of the slice number in the raw name (-CybMCo-<slice>-) within the lane. Lane digitonin rep1 holds slices 142-205; slice 205 was acquired as PRO4052A257 (run date 180309) and is the 64th file the lane3 PSM table lists; there is no PRO4052A129 in the deposit."
+  },
+  {
+   "location": "comment[fractionation method] all rows",
+   "value": "NT=Gel electrophoresis;AC=PRIDE:0000567",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Blue-native PAGE lanes cut into 64 slices. CHMO:0002276 blue native PAGE is not a descendant of PRIDE:0000550, so the nearest PRIDE fractionation term \"Gel electrophoresis\" is used."
+  },
+  {
+   "location": "comment[instrument], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] all rows",
+   "value": "NT=LTQ Orbitrap XL;AC=MS:1000556 / NT=collision-induced dissociation;AC=MS:1000133 / 35 NCE / NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "raw",
+    "psm",
+    "paper"
+   ],
+   "evidence": "Raw headers of PRO4052A1, A65, A130, A193, A257: \"LTQ Orbitrap XL MS\"; method T10_FTIT_CID_5K40-56-90B_Lockmass (\"Activation Type: CID\", \"Normalized Coll. Energy: 35.0\"); FT survey / IT MS2 per the method name; PSM tables \"Activation Type\" CID, \"MS Order\" MS2 for all 407,560 PSMs read. PRIDE data protocol: \"LTQ XL‐Orbitrap system\"."
+  },
+  {
+   "location": "comment[modification parameters] all rows (6 columns)",
+   "value": "Label:13C(6)15N(2) K, Label:13C(6)15N(4) R, Oxidation M, Propionamide C, Acetyl Protein N-term, Formyl Protein N-term, all Variable",
+   "source_ids": [
+    "psm",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Modifications observed in the Mascot PSM tables (orient.py): K(Label:13C(6)15N(2)), R(Label:13C(6)15N(4)), M(Oxidation), C(Propionamide), N-Term(Acetyl), N-Term(Formyl). Propionamide is variable (1,529 of 2,695 Cys-containing PSMs in MultiConsensus_psms.txt carry fewer Propionamide sites than Cys residues); labels are variable per campaign rule 11 and PRIDE (\"Mascot was configured to consider the possibility of the presence of the appropriate heavy-labeled amino acid residues\"). Acetyl/Formyl PP=Protein N-term inferred: every acetylated (16) and formylated (1) peptide that could be located in its UniProt sequence starts at residue 1/2; the Mascot setting itself is not deposited."
+  }
+ ],
+ "limitations": [
+  "Europe PMC fullTextXML returned HTTP 500; the paper was read from the PMC Open Access S3 copy (PMC6996572.1 txt/xml/figures).",
+  "Search tolerances are not deposited for either search (PD/Mascot complexome, MaxQuant IP); comment[precursor/fragment mass tolerance] = not available, so parse_sdrf convert-openms cannot convert the file (campaign precedent PXD014368/PXD006676).",
+  "The Δ4-CYB clone number conflicts in the paper (Results: #17.3E used for all figures; Methods complexome paragraph: \"#17.1 Δ4‐CYB\"); no clone number is written to the SDRF.",
+  "Cybrids are not in Cellosaurus; 143B (CVCL_2270) is the parental nuclear background. Donor attributes (sex, age, ancestry, organism part, disease) are those of the 143B donor; the 143B TK− ρ° subclone used to make the cybrids is not named.",
+  "Lane-to-detergent and lane-to-orientation assignments are data-derived (MT-CYB/UQCRC1 channel presence; cIII2–cI co-migration) and cross-checked against the Fig EV1 legend; no deposited table names the lanes. Whether the DDM and digitonin lanes of the same orientation come from the same mitochondrial preparation is not stated; replicate numbers therefore restart per detergent group and make no cross-detergent identity claim.",
+  "Acetyl/Formyl position (Protein N-term) is inferred from the PSM data, not read from a Mascot parameter file. The MaxQuant re-quantification of the DDM complexome (Fig 2A, \"logarithmic ratios were calculated using MaxQuant\") is not deposited; this SDRF follows the deposited PD/Mascot search.",
+  "The gel image 180206gelcomplexomic004.tif (non-MS file) is not represented."
+ ]
+}

@@ -1,0 +1,375 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD063206-dsilac.sdrf.tsv",
+ "dataset": "PXD063206",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "PRIDE PXD063206 via MCP get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/pride.json): title, sample/data processing protocols; structured fields instruments=[Orbitrap Eclipse], experiment_types=[Data-independent acquisition, Bottom-up proteomics], quantification=SILAC, modifications='No PTMs are included in the dataset'"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD063206/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/files_p0.json..files_p2.json, merged /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/files_all.json): 49 entries = 48 RAW + 1 SEARCH xlsx; every entry projectAccessions contains PXD063206"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Ryan VH et al., Maintenance of neuronal TDP-43 expression requires axonal lysosome transport, eLife 2025;13:RP104057, PMID 40970386, PMC12448747, doi:10.7554/eLife.104057; text https://pmc-oa-opendata.s3.amazonaws.com/PMC12448747.1/PMC12448747.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/paper.txt). Sections used: Key resources table (lines 203-204), iPSC culture (line 219), iNeuron differentiation (line 227), Results 'BORC KD alters...' (line 180), Figure 8 legend (184), Proteomic sample preparation (281-283), LC-MS analysis (287), Proteomic data analysis (291), Data availability (339)"
+  },
+  {
+   "id": "pd_export",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/08/PXD063206/Bldg49_SL_48SILAC_SprotHuman_NoNorm_Nested_8groups.xlsx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/dl/search.xlsx); docProps: 'Exported from file 032124_Bldg49_SL_48SALIC_SprotHuman_NoNorm_Nested_8groups.pdResult using Thermo Proteome Discoverer 2.4.1.15'; one 'Proteins' sheet, 48 samples F1-F48 named '<Light|Heavy>, <Control|Sample>, <D7|D15>_<NT|KD>_<H|L>, <rep>'. Per-run median Heavy/Light computed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/scripts/ratio_check.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/ratio_check.txt"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range 0-1500000 of all 48 RAW files (https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/08/PXD063206/<file>), UTF-16 method summary parsed -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/raw_header_all48.tsv; verbatim excerpts of 2 files in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/raw_header_excerpt.txt"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_Y803 (GM25256/WTC-11: Male, 30Y, population Japanese) and https://api.cellosaurus.org/cell-line/CVCL_C7XJ (Pre-i3Neuron NGN2 iPSC clone 1, RX PubMed=28966121 = Wang et al. 2017, the i11w-mN line); Cellosaurus searches 'i11w', 'CRISPRi NGN2', 'dCas9-KRAB WTC11', 'i3N CRISPRi' return no entry for the dCas9-KRAB derivative i11w-mNC"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS via MCP searchClasses (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/ols.txt): UNIMOD:108 Nethylmaleimide, UNIMOD:35 Oxidation, UNIMOD:1 Acetyl, UNIMOD:259 Label:13C(6)15N(2), UNIMOD:267 Label:13C(6)15N(4), HANCESTRO:0019 Japanese, EFO:0001272 adult, PATO:0000461 normal, CL:0000540 neuron, MS:1002732 Orbitrap Fusion Lumos, MS:1001251 Trypsin, MS:1001309 Lys-C, MS:1000422 beam-type collision-induced dissociation, MS:1000083 radial ejection linear ion trap, PRIDE:0000599 Iodoacetamide (IAA), PRIDE:0000608 Dithiothreitol (DTT), NCIT:C185409 Dulbecco's Modified Eagle Medium, PRIDE:0000326 SILAC light, PRIDE:0000325 SILAC heavy, MS:1002038 label free sample, PRIDE:0000627 Data-dependent acquisition, NCBITaxon:9606 Homo sapiens"
+  },
+  {
+   "id": "build",
+   "kind": "local-script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/scripts/gen_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/build/<part>/samples.tsv, technical.tsv, files.json; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/scripts/rebuild.sh runs sdrf-tools build per part then /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b6-PXD063206/scripts/postbuild.py (inserts Lys-C column)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; sdrf-tools contract -t ms-proteomics -t human -t cell-lines prints ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; spec README.adoc:27 (sdrf version v1.1.0). The spec submodule's nested templates copy is older than upstream."
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier], comment[technical replicate] rows 1-48",
+   "value": "one RAW per run; fraction 1; technical replicate 1",
+   "source_ids": [
+    "files",
+    "pd_export",
+    "build"
+   ],
+   "evidence": "files list holds 48 RAW named <date>_Bldg49_SL_<D7|D15>_<NT|KD>_<H|L>_<1-6>.raw; this part holds the 24 _H_ runs. The PD export treats each RAW as one sample (F1-F48), no fractionation; paper describes single 2 uL injections."
+  },
+  {
+   "location": "characteristics[organism] rows 1-48",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Key resources table: 'Cell line (Homo sapiens) i11w-mNC'; NCBITaxon:9606."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-48",
+   "value": "study sample",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Every run is an experimental iNeuron culture (BORCS6 KD or NT guide); no reference or QC runs deposited."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-48",
+   "value": "not pooled",
+   "source_ids": [
+    "paper",
+    "pd_export"
+   ],
+   "evidence": "Each run is one culture well set of one condition and replicate (PD sample names '<group>, <rep>'); no pooling described."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-48",
+   "value": "i11w-mNC",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Proteomic sample preparation: 'BORC knockdown and NT control i11w-mNC cells were cultured and differentiated'. i11w-mNC = WTC11 with dox-inducible mNGN2 (i11w-mN, Wang et al. 2017) plus dCas9-KRAB (Tian et al. 2019). NOT the Halo-TDP-43 knock-in line (i11w-hT), which was used for the screen and imaging only. Kept verbatim: no Cellosaurus entry for the dCas9 derivative (validator warning: not in clo/bto/efo)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-48",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "i11w-mNC has no Cellosaurus record; its parent i11w-mN is CVCL_C7XJ (Pre-i3Neuron NGN2 iPSC clone 1) and the root line is CVCL_Y803 (GM25256/WTC-11). The parent accession is not written because it would describe a different line."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex] rows 1-48",
+   "value": "30Y; male",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: 'WTC11 cells were derived from an apparently healthy 30-year-old male.' Cellosaurus CVCL_Y803/CVCL_C7XJ: SX Male, AG 30Y."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-48",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 30Y (>= 20Y, campaign rule 9); EFO:0001272."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-48",
+   "value": "Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_Y803 and CVCL_C7XJ: 'Population: Japanese'; HANCESTRO:0019."
+  },
+  {
+   "location": "characteristics[individual] rows 1-48",
+   "value": "WTC11_donor",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "All cultures derive from the single WTC11 donor (one iPSC line). Underscore form because the human-template identifier validator rejects spaces."
+  },
+  {
+   "location": "characteristics[disease] rows 1-48",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "'apparently healthy 30-year-old male' donor; no disease model introduced (BORCS6 CRISPRi knockdown is recorded under genotype). PATO:0000461."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-48",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "In-vitro iPSC-derived neurons; no tissue was sampled (iPSC donor tissue was skin fibroblast per Cellosaurus, not the sample)."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-48",
+   "value": "neuron",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Samples are iNeurons: iPSCs differentiated by dox-induced NGN2 and harvested on day 7 and day 15 ('Protein was extracted from day 7 and day 15 neurons'). CL:0000540."
+  },
+  {
+   "location": "characteristics[material type] rows 1-48",
+   "value": "cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Differentiated neurons lysed in the well (SP3 lysis buffer added directly to the wells)."
+  },
+  {
+   "location": "characteristics[passage number] rows 1-48",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Not stated."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-48",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "From day 5 until harvest both arms were in SILAC DMEM: 'heavy-SILAC media ... DMEM for SILAC (Thermo Fisher Scientific, 88364) supplemented with B27 Plus...'; 'Remaining cultures were maintained in light SILAC media'. NCIT:C185409. (Days 0-3 induction medium KO DMEM/F12; day 3-5 BrainPhys maturation medium.)"
+  },
+  {
+   "location": "characteristics[genotype], factor value[genotype] rows 1-48",
+   "value": "BORCS6 knockdown (CRISPRi sgRNA) / non-targeting control sgRNA (CRISPRi)",
+   "source_ids": [
+    "paper",
+    "files",
+    "pd_export"
+   ],
+   "evidence": "Paper: 'dynamic SILAC ... as well as whole neuron proteomics to measure protein abundances in BORCS6 KD and NT iNeurons'; file token KD/NT; PD groups D*_KD_* / D*_NT_*. Custom characteristics column (genotype is licensed by clinical-metadata, which is not declared; rule 15). Data check: BORCS6 (Q96GS4) light abundance is reported only in NT_L runs (F44, F20, F24), never in KD runs (ratio_check.txt)."
+  },
+  {
+   "location": "characteristics[sampling time], factor value[sampling time] rows 1-48",
+   "value": "7 day / 15 day",
+   "source_ids": [
+    "paper",
+    "files",
+    "pd_export"
+   ],
+   "evidence": "'Cells were harvested on day 7 and day 15 post dox induction.' File token D7/D15; Fig 8 (d7) and Fig 8-figure supplement 1 (d15)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-48",
+   "value": "1-6 within each genotype x day group",
+   "source_ids": [
+    "files",
+    "pd_export",
+    "paper"
+   ],
+   "evidence": "File suffix _1.._6 and PD sample names '<group>, <rep>, <rep>' give 6 runs per group; Fig 8 legend 'n=6'. Each replicate is a separate culture, so numbers 1-6 are unique within each factor group (rule 3); light and heavy rows of one run come from the same culture and share its number."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template] rows 1-48",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0, NT=human;VV=v1.1.0, NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Rule 1. human: human cells; cell-lines: cultured iPSC-derived line. No clinical template (not patient samples)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-48",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rule 10."
+  },
+  {
+   "location": "comment[instrument] rows 1-48",
+   "value": "NT=Orbitrap Fusion Lumos;AC=MS:1002732",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "All 48 RAW headers: 'Orbitrap Fusion Lumos Method Summary'; paper LC-MS analysis: 'Thermo Scientific Orbitrap Lumos Tribrid'. PRIDE's 'Orbitrap Eclipse' is contradicted by raw and paper."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-48",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "RAW: 'Scan ddMSnScan', 'Data Dependent Mode= Cycle Time' (3 s); paper and PRIDE protocol: 'acquired in data-dependent mode'. PRIDE experiment_types 'Data-independent acquisition' contradicts its own protocol text."
+  },
+  {
+   "location": "comment[cleavage agent details] (both columns) rows 1-48",
+   "value": "NT=Trypsin;AC=MS:1001251 and NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "ols",
+    "build"
+   ],
+   "evidence": "'eluted in 50 mM ammonium bicarbonate with 20 ug/mL lyophilized trypsin/LysC (Promega, V5073)'. Two enzymes -> second column (rule 2), inserted by postbuild.py because build drops the second value."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy] rows 1-48",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422; 30% NCE",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "RAW: 'ActivationType = HCD', 'Collision Energy Type = Normalized', 'Collision Energy (%) = 30' in all 48; paper 'HCD ... collision energy was set at 30%'."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-48",
+   "value": "NT=radial ejection linear ion trap;AC=MS:1000083",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "RAW ddMSnScan 'Detector Type = IonTrap', 'Ion Trap Scan Rate = Rapid'; paper 'MS2 scans were conducted in the ion trap'. The Fusion Lumos ion trap is a radial-ejection linear trap."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-48",
+   "value": "375m/z-1500m/z",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "RAW MasterScan 'Scan Range (m/z) = 375-1500' (all 48); paper 'mass range of 375-1500 m/z'."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-48",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Single-shot injections, no fractionation described."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-48",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608; NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Lysis buffer contains '5 mM Dithiothreitol [DTT]'; 'Proteins were alkylated with 10 mM iodoacetamide ... then reduced by adding 2 uL of 500 mM DTT'."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-48",
+   "value": "25 ppm; 25 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "MaxQuant 1.6.14 search: 'Precursor and fragment tolerances were set to 25 ppm.'"
+  },
+  {
+   "location": "comment[modification parameters] rows 1-48",
+   "value": "Nethylmaleimide C, Oxidation M, Acetyl Protein N-term (all Variable); Label:13C(6)15N(2) K (UNIMOD:259) and Label:13C(6)15N(4) R (UNIMOD:267), Variable",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE data processing (MaxQuant 1.6.14): 'A maximum of three variable modifications was allowed for cysteine N-ethylmaleimide, methionine oxidation, and protein N-terminus acetylation.' 'A standard multiplicity with two labels was enabled for SILAC data, and Lys8/Arg10 was selected as the heavy channel.' Lys8 = 13C6 15N2 (+8.014, UNIMOD:259), Arg10 = 13C6 15N4 (+10.008, UNIMOD:267), matching the heavy media isotopes CNLM-291-H / CNLM-539-H. MT=Variable per rule 11. No fixed Carbamidomethyl is stated, so none is asserted although alkylation used iodoacetamide (conflict noted in limitations)."
+  },
+  {
+   "location": "comment[label] rows 1-48",
+   "value": "SILAC light (odd rows) / SILAC heavy (even rows)",
+   "source_ids": [
+    "paper",
+    "pd_export",
+    "ols"
+   ],
+   "evidence": "dSILAC: cultures switched to heavy Lys8/Arg10 medium on day 5; light = protein made before the switch, heavy = protein synthesized after it; half-life t1/2 = ts*ln2/ln(1+R) with R = H/L (Proteomic data analysis). PD export: 'Light, Control' / 'Heavy, Sample' per run. Data check (ratio_check.txt): median H/L per _H_ run D7_NT 0.62-0.65, D7_KD 0.45-0.49, D15_NT 1.85-2.70, D15_KD 1.15-1.50, consistent with 2 vs 10 days of labelling and the paper's longer half-lives under BORCS6 KD; TDP-43 (Q13148) H/L lower in KD (D7 0.27-0.31 vs NT 0.37-0.48), matching Fig 8C."
+  },
+  {
+   "location": "source name rows 1-48",
+   "value": "i11w-mNC_iNeuron_<BORCS6-KD|NT-sgRNA>_<D7|D15>_dSILAC_rep<k>_<pre-existing-proteome|newly-synthesized-proteome>",
+   "source_ids": [
+    "paper",
+    "files",
+    "build"
+   ],
+   "evidence": "One source per (run, channel): light channel = pre-existing proteome, heavy = newly synthesized proteome of the same culture (as in passed PXD028934)."
+  },
+  {
+   "location": "characteristics[exposure duration] rows 1-48",
+   "value": "2 day (D7) / 10 day (D15)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Heavy medium from day 5 ('On day 5, half of the cultures were changed to heavy-SILAC media'), harvest on day 7 or 15 -> labelling time ts = 2 or 10 days. Custom column (clinical-metadata term, not declared; rule 15)."
+  }
+ ],
+ "limitations": [
+  "Search: the deposited search result is a Proteome Discoverer 2.4.1.15 protein export (pdResult not deposited, so PD parameters are unknown) that searched all 48 runs as a SILAC 2-plex. The paper and PRIDE text describe MaxQuant 1.6.14; modification parameters and tolerances follow that published description. MaxQuant search outputs (peptide.txt, protein.txt) are not deposited.",
+  "Modifications: the paper lists cysteine N-ethylmaleimide as a variable mod although alkylation used iodoacetamide; no fixed Carbamidomethyl is stated. Encoded as stated; Carbamidomethyl not asserted.",
+  "Phosphosites in light-only runs were identified with a separate FragPipe LFQ-phospho workflow (MSFragger/PTMProphet/Philosopher) whose parameters are not reported; that search is not encoded (the -lfq file describes the MaxQuant non-SILAC search).",
+  "MaxQuant digestion rule not stated; cleavage agents encode the Trypsin/Lys-C digestion mix (rule 2).",
+  "Cell line i11w-mNC (WTC11 + mNGN2 + dCas9-KRAB) has no Cellosaurus entry; cellosaurus accession/name not available; parent i11w-mN = CVCL_C7XJ, root WTC-11 = CVCL_Y803. The validator warns that 'i11w-mNC' is not in CLO/BTO/EFO.",
+  "PRIDE structured fields are wrong: instrument 'Orbitrap Eclipse' (raw: Orbitrap Fusion Lumos) and experiment type 'Data-independent acquisition' (raw and protocol: DDA).",
+  "Whether replicate k of different groups (and of the H vs L arms) came from the same differentiation batch is not stated; replicate numbers are only unique within each factor group.",
+  "BORCS6 sgRNA sequence is in Supplementary file 5 (not consulted); not needed for any SDRF value."
+ ]
+}
