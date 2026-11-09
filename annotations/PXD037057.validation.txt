@@ -1,0 +1,53 @@
+# PXD037057 validation log (2026-11-09T18:41:09Z)
+SDRF sha256: 6113e18b24a019adb969ca74dab965dd320ae9ecd57d48b9251aa6207f762620
+Build: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/files.json -t ms-proteomics -t human -t cell-lines -o /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv  (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/scripts/make_tables.py). No post-build edits.
+
+## 1. parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv -t ms-proteomics -t human -t cell-lines   (full ontology run, network OLS)
+Output with the repeated OLS HTTP-500 retry tracebacks removed (full log: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/v_parse.txt):
+WARNING: Term: rapamycin in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: Leishmania donovani infection in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: amino acid starvation with bafilomycin A1 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit 0
+Note: the three warnings are the free-text treatment values (no NCIT/EFO term exists for these composite stimuli; see manifest limitations). Exit 0.
+
+## $ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+
+## $ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv --offline
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv
+  Terms checked:     13
+  Verified:          7
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit 0
+
+## $ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/pride_v3.json --accession PXD037057
+PXD037057: every annotated value agrees with the deposit record.
+exit 0
+
+## $ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD037057.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD037057.evidence.json: valid evidence-manifest
+exit 0
+
+## $ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD037057.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit 0
+
+## $ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv -t2)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]', 'characteristics[cellular component]', 'characteristics[infection]', 'characteristics[infectious agent strain]']
+Conditions (3): dict_keys(['rapamycin', 'Leishmania donovani infection', 'amino acid starvation with bafilomycin A1'])
+Files per condition: dict_values([13, 13, 13])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 39 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv
+exit 0
+Note: the TA= warning comes from NT=Acetyl;PP=Protein N-term (positional mod, no residue), which convert-openms maps to Acetyl (Protein N-term) as intended.
+
+## Earlier reconcile against a ProteomeXchange-XML-derived record (PRIDE API down at the time) — superseded
+sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/px_record.json -> exit 1, BLOCKER cleavage_agent_unsupported: refuted — that record had no protocol text; the PRIDE sampleProcessingProtocol ('digested in gel with MS-grade trypsin (Promega)') and the paper both name trypsin. The rerun against the real PRIDE v3 record above exits 0.

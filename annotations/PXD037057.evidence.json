@@ -1,0 +1,302 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD037057.sdrf.tsv",
+ "dataset": "PXD037057",
+ "sources": [
+  {
+   "id": "px",
+   "kind": "repository",
+   "location": "https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD037057&outputMode=XML (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/px.xml): ProteomeXchange record of the PRIDE deposit (title, description, species Homo sapiens 9606, instrument 'Bruker Daltonics instrument model', ModificationList 'No PTMs', 18 dataset files, publication PMID 37027358). The PRIDE REST API (v2/v3 projects/PXD037057) returned HTTP 500 / timed out throughout this session and the MCP get_project_details returned 'Not found ... or APIs unreachable'."
+  },
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD037057 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/pride_v3.json; obtained on a later retry after earlier HTTP 500s): sampleProcessingProtocol, dataProcessingProtocol, quantificationMethods SILAC (PRIDE:0000315)."
+  },
+  {
+   "id": "pride_files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD037057/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/pride_files.json): 17 entries (13 .d.1.dar, Eleanor_txt.zip, MaxQuant_1.6.17.0.zip, 2 FASTA), every projectAccessions contains PXD037057; page short (17<100) so complete."
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/05/PXD037057/ directory listing (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/ftp.html, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/ftp_files.txt) and https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/05/PXD037057/checksum.txt: 13 Bruker .d.1.dar raw archives, Eleanor_txt.zip (MaxQuant txt), MaxQuant_1.6.17.0.zip (software), checksum.txt, 2 FASTA files. files.json for build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/files.json (the 13 .dar names)."
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Nandan D, Chen E, Chang F, Moon KM, Foster LJ, Reiner N. Comprehensive proteomic analysis of autophagosomes derived from Leishmania-infected macrophages. PLoS One 2023;18(4):e0284026. doi:10.1371/journal.pone.0284026, PMID 37027358, PMC10081754 (Europe PMC fullTextXML, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/paper.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/paper.txt)."
+  },
+  {
+   "id": "fig1",
+   "kind": "publication",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10081754.1/pone.0284026.g001.jpg (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/dl/pone.0284026.g001.jpg): Fig 1A workflow diagram."
+  },
+  {
+   "id": "suppl_titles",
+   "kind": "supplementary",
+   "location": "PMC10081754 supplementary-material captions (paper.xml): S2 Table 'Leishmania-induced autophagosome-associated proteins (M)'; S3 Table '... Leishmania-infected (M) compared to rapamycin-treated (L) dTHP-1'; S4 Table '... Leishmania-infected (M) compared to starved (H) dTHP-1'."
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/05/PXD037057/Eleanor_txt.zip members mqpar.xml, parameters.txt, summary.txt, proteinGroups.txt read by HTTP range from the zip central directory (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/mq/)."
+  },
+  {
+   "id": "ratio_check",
+   "kind": "derived",
+   "location": "log2 of 'Ratio M/L normalized RepN', 'Ratio H/M normalized RepN' in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/mq/proteinGroups.txt for paper Table 2/3 proteins (computed in-session; values reproduced in claims)."
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0006?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/cvcl_0006.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api term lookups, all is_obsolete=false (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/ols_checks.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. The spec submodule's nested templates copy is older. sdrf version v1.1.0 per spec README.adoc:27. `sdrf-tools contract -t ms-proteomics -t human -t cell-lines` output: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b9-PXD037057/contract.txt"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-39",
+   "value": "dTHP-1_<condition>_autophagosome-fraction_rep<N> (9 sources: 3 conditions x 3 replicates)",
+   "source_ids": [
+    "paper",
+    "fig1",
+    "mq"
+   ],
+   "evidence": "Paper: THP-1 grown in light/medium/heavy SILAC media, PMA-differentiated (dTHP-1), each label given one autophagy stimulus; cells from the three treatments pooled, autophagosomes purified, 16% iodixanol fraction 'from three biological replicates' analysed (n = 3). MaxQuant experiments Rep1/Rep2/Rep3. Each source = one labelled culture (one condition) of one biological replicate; no name is reused for two cultures."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] rows 1-39",
+   "value": "SILAC light = rapamycin; SILAC medium = Leishmania donovani infection; SILAC heavy = amino acid starvation with bafilomycin A1",
+   "source_ids": [
+    "pride",
+    "fig1",
+    "suppl_titles",
+    "paper",
+    "ratio_check",
+    "mq"
+   ],
+   "evidence": "Explicit: PRIDE sampleProcessingProtocol: 'The “light” cell population was treated with rapamycin, the “medium” cell population was infected with Leishmania donovani, and the “heavy” cell population was amino acid-starved and treated with bafilomycin A1'. Fig 1A shows 'Light (K0R0) Rapamycin', 'Medium (K4R6) L. donovani', 'Heavy (K8R10) Amino Acid Starvation'; S3/S4 Table titles name Leishmania-infected (M), rapamycin-treated (L), starved (H). Data check vs paper Tables 2/3 (log2 Leishmania/rapamycin and Leishmania/starvation means): ALCAM M/L Rep1-3 = -1.66/-1.51/-2.76 (mean -1.98; Table 2 -1.978); SQSTM1 H/M = +2.15/+2.10/+3.06 => M/H mean -2.44 (Table 3 -2.435); PPT1 H/M = -1.48/-2.63/-2.11 => M/H mean +2.07 (Table 3 2.072). Map confirmed, no conflict. Treatments (paper): 12.5 ug/mL rapamycin 2 h; L. donovani promastigotes MOI 20:1 for 24 h; HBSS starvation 4 h with 100 nM bafilomycin A1 for the last 3 h. Treatment values are free text (no single NCIT/EFO term covers the composite stimuli)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-39",
+   "value": "1, 2, 3 (restarting in each treatment group; one number per independent culture)",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Paper: 'The 16% iodixanol fraction from three biological replicates were used for LC-MS/MS (n = 3)'. summary.txt experiments Rep1, Rep2, Rep3; file name prefixes 1-, 2-, 3-."
+  },
+  {
+   "location": "comment[data file] + assay name rows 1-39",
+   "value": "13 deposited .d.1.dar files",
+   "source_ids": [
+    "pride_files",
+    "files",
+    "mq"
+   ],
+   "evidence": "Deposited raw archives (Bruker .d archived as .d.1.dar; campaign precedent PXD052362/PXD058003 use the .dar name). Each file holds all three SILAC channels, so each gives 3 rows."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-39",
+   "value": "1-5 (rep1, rep2), 1-3 (rep3), from the gel-slice index in the file name (Eleanor_<rep>-<slice>)",
+   "source_ids": [
+    "paper",
+    "files",
+    "mq"
+   ],
+   "evidence": "Paper: 'run on 10% SDS-PAGE. The entire lane was split into 5 fractions'. summary.txt Fraction column agrees for Rep1 and Rep3; for Rep2 MaxQuant assigned 2-2->1, 2-3->2, 2-1->3, 2-4->4, 2-5->5 (the SDRF follows the file-name slice index; MaxQuant fraction numbers only steer match-between-runs)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-39",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "In-gel fractionation: 10% SDS-PAGE lane cut into 5 fractions, in-gel trypsin digest."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-39",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "One injection per gel slice; no technical replicates described."
+  },
+  {
+   "location": "characteristics[organism] rows 1-39",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "px",
+    "cellosaurus"
+   ],
+   "evidence": "PX species 9606; THP-1 is human (Cellosaurus OX 9606). L. donovani proteins present in the infected channel are recorded via characteristics[infection]; the sample organism is the human host cell line."
+  },
+  {
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-39",
+   "value": "THP-1 / CVCL_0006 / THP-1",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: 'THP-1 cells, obtained from ATCC (TIB-202)'. Cellosaurus CVCL_0006 DR ATCC TIB-202, human (no other-species collision for this name with ATCC TIB-202)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-39",
+   "value": "blood",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: 'Derived from site: In situ; Peripheral blood; UBERON=UBERON_0000178'. UBERON:0000178 blood."
+  },
+  {
+   "location": "characteristics[disease] rows 1-39",
+   "value": "childhood acute monocytic leukemia",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9163 Childhood acute monocytic leukemia; EFO:1001944 'childhood acute monocytic leukemia' (not obsolete). Note: the local sdrf-tools cellline DB returns 'Childhood acute megakaryoblastic leukemia', which contradicts Cellosaurus and was not used."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[ancestry category] rows 1-39",
+   "value": "1Y / male / Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 1Y, SX Male, 'Population: Japanese'; HANCESTRO:0019 Japanese. Developmental stage omitted (not adult; rule 9)."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-39",
+   "value": "macrophage",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Measured cells are PMA-differentiated THP-1 (dTHP-1, 10 ng/mL PMA 16-18 h); the paper calls them macrophages throughout (title 'Leishmania-infected macrophages', 'host macrophages'). CL:0000235."
+  },
+  {
+   "location": "characteristics[material type] + characteristics[sample type] rows 1-39",
+   "value": "cell line / study sample",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "All samples are cultured THP-1 cells; no blanks or reference channels."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-39",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "SILAC: L-glutamine/arginine/lysine-deficient RPMI-1640 (Caisson Labs) + 7% dialysed FBS with Lys0/Arg0, Lys4/Arg6 or Lys8/Arg10. NCIT:C178973."
+  },
+  {
+   "location": "characteristics[cellular component] rows 1-39",
+   "value": "autophagosome",
+   "source_ids": [
+    "paper",
+    "fig1",
+    "ols"
+   ],
+   "evidence": "Custom characteristics column (spec 'Extending Templates'; rule 16): every measured sample is the autophagosome-enriched iodixanol gradient fraction 4 (16% iodixanol). GO:0005776."
+  },
+  {
+   "location": "characteristics[infection] + characteristics[infectious agent strain] rows 1-39",
+   "value": "medium rows: Leishmania donovani / S2 (Sudan strain); light and heavy rows: uninfected / not applicable",
+   "source_ids": [
+    "paper",
+    "fig1",
+    "ols"
+   ],
+   "evidence": "Paper: 'L. donovani culture and infection: Sudan strain S2 promastigotes ... dTHP-1 cells were incubated with stationary phase Leishmania promastigotes at an MOI of 20:1 for 24 hours'. Rapamycin and starvation arms were not infected. NCBITaxon:5661 Leishmania donovani. Search included the deposited L. donovani BPK282A1 FASTA as stated by the deposit."
+  },
+  {
+   "location": "comment[instrument] rows 1-39",
+   "value": "NT=impact II;AC=MS:1002666",
+   "source_ids": [
+    "paper",
+    "px",
+    "ols"
+   ],
+   "evidence": "Paper: 'Impact II Qtof (Bruker Daltonics) coupled to easy nLC 1200'. PX: Bruker Daltonics instrument model."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] + comment[dissociation method] rows 1-39",
+   "value": "NT=time-of-flight;AC=MS:1000084 / NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "paper",
+    "mq",
+    "ols"
+   ],
+   "evidence": "impact II is a Q-TOF (paper 'Impact II Qtof'): MS/MS fragments in the collision cell (CID) and is read in the TOF; mqpar msInstrument=1 (Bruker Q-TOF)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-39",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Shotgun LC-MS/MS searched by MaxQuant as standard DDA (summary.txt 'LC-MS run type' Standard; MS/MS Submitted per run)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-39",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Paper: in-gel digestion 'with MS-grade trypsin (Promega)'. MaxQuant search rule Trypsin/P (rule 2: the column records the digestion enzyme)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-39",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; Label:13C(6) R (UNIMOD:188), Label:2H(4) K (UNIMOD:481), Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) MT=Variable",
+   "source_ids": [
+    "mq",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt/mqpar.xml: Fixed Carbamidomethyl (C); Variable Oxidation (M);Acetyl (Protein N-term); Multiplicity 3; Labels1 Arg6;Lys4; Labels2 Arg10;Lys8 (identical for all 15 searched files). Paper: 'medium arginine (13C6), medium lysine (2H4), heavy arginine (13C6,15N4), heavy lysine (13C6,15N2)'. PX record's 'No PTMs' is a submitter dropdown and is overridden by the search output."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-39",
+   "value": "10 ppm / 40 ppm",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "mqpar.xml mainSearchTol 10 (ppm; firstSearchTol 20); parameters.txt 'MS/MS tol. (TOF) 40 ppm' (msInstrument=1, Bruker Q-TOF, uses the TOF settings)."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-39",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10. human template: human cell line; cell-lines template: THP-1. No clinical/oncology template (commercial cell line, rule 15)."
+  }
+ ],
+ "limitations": [
+  "Partial deposit: MaxQuant searched 15 raw files (summary.txt), but Eleanor_3-4-300ng_8-1-2021_E6_2734 and Eleanor_3-5-300ng_8-1-2021_E7_2735 (Rep3, gel slices 4 and 5) were never deposited (absent from the FTP listing, checksum.txt and the PX file list). Replicate 3 is therefore annotated with only 3 fractions; the SDRF covers all 13 deposited raw files.",
+  "PRIDE REST API returned HTTP 500 / timeouts for most of the session (MCP get_project_details failed); the v3 project record and file list were obtained on a later retry and are cited. The PRIDE structured fields (instrument 'Bruker Daltonics instrument model', organism part 'Cell culture', 'No PTMs') are submitter dropdowns and are superseded by the paper and the search output.",
+  "MaxQuant 'Fraction' numbering for Rep2 (2-2->1, 2-3->2, 2-1->3) differs from the gel-slice index in the file names; the SDRF fraction identifier follows the file names (slice order), as Rep1 and Rep3 do in MaxQuant.",
+  "Dissociation method (CID) and MS2 analyzer (TOF) are inferred from the instrument type (impact II Q-TOF); the cited acquisition reference [32] was not read and the .dar raw archives were not opened.",
+  "Treatment values are free text: no NCIT/EFO term covers 'Leishmania donovani infection' or 'amino acid starvation with bafilomycin A1'; treatment doses/durations are only in this manifest (no licensed column).",
+  "cell type 'macrophage' describes PMA-differentiated THP-1 (macrophage-like), as the paper calls them; THP-1 itself is a monocytic line."
+ ]
+}
