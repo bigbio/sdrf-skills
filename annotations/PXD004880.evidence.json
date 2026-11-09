@@ -275,6 +275,81 @@
     "templates"
    ],
    "evidence": "Campaign rules 1 and 10."
+  },
+  {
+   "location": "characteristics[organism] rows 1-72",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cello_B4L1",
+    "cello_B4L2"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-72",
+   "value": "skin fibroblast",
+   "source_ids": [
+    "paper",
+    "cello_B4L1",
+    "ols"
+   ],
+   "evidence": "Cellosaurus cell type Fibroblast of skin CL_0002620; OLS label of CL:0002620 is \"skin fibroblast\"."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-72",
+   "value": "European ancestry",
+   "source_ids": [
+    "cello_B4L1",
+    "cello_B4L2",
+    "ols"
+   ],
+   "evidence": "Cellosaurus Population: Caucasian -> HANCESTRO:0005 European ancestry."
+  },
+  {
+   "location": "characteristics[age] rows 1-72",
+   "value": "16W",
+   "source_ids": [
+    "cello_B4L1",
+    "cello_B4L2",
+    "paper"
+   ],
+   "evidence": "Cellosaurus AG 16FW; paper \"at 16 fetal weeks\" (gestational age)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-72",
+   "value": "fetal stage",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Fetal (16 fetal weeks, post mortem fetal skin); HsapDv:0000037 fetal stage."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-36 (T1DS); rows 37-72 (T2N)",
+   "value": "CVCL_B4L1; CVCL_B4L2",
+   "source_ids": [
+    "cello_B4L1",
+    "cello_B4L2"
+   ],
+   "evidence": "Cellosaurus AC lines; synonyms T1DS / T2N match the paper and run sheet."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-36 (T1DS); rows 37-72 (T2N)",
+   "value": "Twin-DS; Twin-N",
+   "source_ids": [
+    "cello_B4L1",
+    "cello_B4L2"
+   ],
+   "evidence": "Cellosaurus ID lines."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-72",
+   "value": "1",
+   "source_ids": [
+    "sampleinfo"
+   ],
+   "evidence": "Each run sheet sample (twin, rep, time) was injected once."
   }
  ],
  "limitations": [
