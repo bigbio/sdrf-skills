@@ -29,3 +29,28 @@ PXD039207	PRIDE	include		Triple SILAC renal cell carcinoma cell lines (PRIDE lin
 PXD038030	PRIDE	include		Super-SILAC histone PTMs, endocrine-treated breast cancer cell dormancy	repository structured fields; paper methods
 PXD064152	PRIDE	include		Super-SILAC histone PTMs, HPV-related head and neck cancer (cell lines, keratinocytes, FFPE)	repository structured fields; paper methods
 PXD010683	PRIDE	include		SILAC A375 vemurafenib resistance and nestin knockout	repository structured fields; paper methods
+PXD012113	PRIDE	include		Batch 4: SILAC Trypanosoma cruzi	repository structured fields; paper methods
+PXD018305	PRIDE	include		Batch 4: amino acid variants / BRAFi resistance A375 (label-free + SILAC IP)	repository structured fields; paper methods
+PXD027175	PRIDE	include		Batch 4: mitochondrial one-carbon flux / methotrexate MDA-MB-468 SILAC	repository structured fields; paper methods
+PXD012000	PRIDE	include		Batch 4: super-SILAC FFPE breast cancer neoadjuvant treatment	repository structured fields; paper methods
+PXD014368	PRIDE	include		Batch 4: SILAC disease-relevant cell study	repository structured fields; paper methods
+PXD009766	PRIDE	include		Batch 4: SILAC disease-relevant study	repository structured fields; paper methods
+PXD003316	PRIDE	include		Batch 4: tumour matrix stiffness / CCN1 HUVEC SILAC	repository structured fields; paper methods
+PXD031662	PRIDE	include		Batch 4: RAS / SLC3A2 signalling multiple myeloma (BioID2-SILAC, phospho)	repository structured fields; paper methods
+PXD020618	PRIDE	include		Batch 4: super-SILAC melanoma patient cohort (Beck et al. 2021)	repository structured fields; paper methods
+PXD029216	PRIDE	include		Batch 4: AML SWOG proteogenomics (super-SILAC + TMT)	repository structured fields; paper methods
+PXD044779	PRIDE	include		Batch 5 (rare disease): trichothiodystrophy MPLKIP SILAC interactome	repository structured fields; paper methods
+PXD044434	PRIDE	exclude	duplicate / not SILAC	Batch 5: raws are a byte-identical label-free DIA subset of PXD044779 (DUPLICATES.md Group 8)	PRIDE file checksums; raw headers
+PXD006012	PRIDE	include		Batch 5 (rare disease): HGPS progeria nuclear SILAC	repository structured fields; paper methods
+PXD006013	PRIDE	include		Batch 5 (rare disease): HGPS progeria nuclear SILAC (PRF lines)	repository structured fields; paper methods
+PXD006014	PRIDE	include		Batch 5 (rare disease): HGPS progeria cytosol SILAC	repository structured fields; paper methods
+PXD006015	PRIDE	include		Batch 5 (rare disease): HGPS progeria pulse SILAC, WT	repository structured fields; paper methods
+PXD006016	PRIDE	include		Batch 5 (rare disease): HGPS progeria pulse SILAC, HGPS	repository structured fields; paper methods
+PXD022985	PRIDE	include		Batch 5 (rare disease): RDEB fibroblasts PDGF triple SILAC	repository structured fields; paper methods
+PXD017530	PRIDE	include		Batch 5 (rare disease): LZTR1 Noonan syndrome 2 iPSC-CM super-SILAC	repository structured fields; paper methods
+PXD029618	PRIDE	include		Batch 5 (rare disease): Fabry nephropathy GLA-KO podocytes triple SILAC	repository structured fields; paper methods
+PXD004548	PRIDE	include		Batch 5 (rare disease): CLN3 Batten disease lysosome SILAC	repository structured fields; paper methods
+PXD023790	PRIDE	include		Batch 5 (rare disease): HAX1 Kostmann pulse SILAC PLB-985	repository structured fields; paper methods
+PXD027000	PRIDE	include		Batch 5 (rare disease): FXTAS CGG-repeat RNA pulldown triple SILAC	repository structured fields; paper methods
+PXD023136	PRIDE	include		Batch 5 (rare disease): TMEM126A optic atrophy SILAC + AE-MS	repository structured fields; paper methods
+PXD004666	PRIDE	include		Batch 5 (rare disease): complex I deficiency HEK293T knockouts SILAC + AP-MS	repository structured fields; paper methods
