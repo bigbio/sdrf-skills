@@ -36,7 +36,7 @@
   {
    "id": "ols",
    "kind": "ontology",
-   "location": "OLS4 via sdrf-skills MCP search (fuzzy): Neuro-2a EFO:0022756 / BTO:0001976; neuroblastoma MONDO:0005072; peripheral nervous system UBERON:0000010; EFO:0004185 sample enrichment (child of EFO:0009090); sdrf-tools check verified 14 terms"
+   "location": "OLS4 via sdrf-skills MCP search (fuzzy): Neuro-2a EFO:0022756 / BTO:0001976; neuroblastoma MONDO:0005072; peripheral nervous system UBERON:0000010; EFO:0009106 sample enrichment (child of EFO:0009090); sdrf-tools check verified 14 terms"
   },
   {
    "id": "paper",
@@ -146,7 +146,7 @@
     "pride",
     "ols"
    ],
-   "evidence": "PRIDE sampleProcessingProtocol: eGFP-tagged HttEx1 and interactors isolated with anti-GFP MicroBeads (affinity purification); EFO:0004185 sample enrichment is the child of EFO:0009090 used for AP-MS in campaign precedents (PXD044779, PXD004666)."
+   "evidence": "PRIDE sampleProcessingProtocol: eGFP-tagged HttEx1 and interactors isolated with anti-GFP MicroBeads (affinity purification); EFO:0009106 sample enrichment is the child of EFO:0009090 used for AP-MS in campaign precedents (PXD044779, PXD004666)."
   },
   {
    "location": "comment[instrument] rows 1-18",
