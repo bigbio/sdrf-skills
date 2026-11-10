@@ -1,26 +1,45 @@
-# PXD029527 validation (FBL-knockdown arm; SDRF sha256 7d4592a60dd20676a39a1816e5d60828557ffa7f7885379377643e387c90df0b, 36 rows x 48 columns)
+# PXD029527 validation (FBL-knockdown arm; current SDRF sha256 4a752c70032f9fafc5587f92abf1375ef5fee3fe795d4d47a3907080c8fba05f, 36 rows x 48 columns)
 
 ## Round 1 (superseded build): parse_sdrf validate-sdrf -s annotations/PXD029527.sdrf.tsv -t ms-proteomics -t human -t cell-lines
 ERROR: Value 'Kasumi-1 donor' does not match required pattern
 There were validation errors.
 WARNING: Term: 7-year-old stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
 exit=1
-Fix: characteristics[individual] 'Kasumi-1 donor' -> 'Kasumi-1_donor' in scripts/make_tables.py; rebuilt with sdrf-tools build.
-(OLS HTTP 500/timeout retries in the log are server-side transient errors; omitted.)
+Fix: characteristics[individual] 'Kasumi-1 donor' -> 'Kasumi-1_donor' in scripts/make_tables.py; rebuilt. (OLS HTTP 500/timeout retry tracebacks omitted throughout.)
 
-## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD029527.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+## Round 2 (superseded build sha256 7d4592a60dd20676a39a1816e5d60828557ffa7f7885379377643e387c90df0b): parse_sdrf validate-sdrf ... (same templates)
 Most seems to be fine. There were only warnings.
 WARNING: Term: 7-year-old stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
 exit=0
-WARNING justified: HsapDv:0000101 '7-year-old stage' is the exact term for Cellosaurus AG 7Y; the validator checks this column against EFO only and EFO has no age-specific child stage.
+Independent review (annotations/PXD029527.review.md) FAILED this build: comment[ms2 scan range] 200m/z-2000m/z contradicted by 'Fixed first mass 110.0 m/z'; manifest called the SILAC light channel empty. Fixes: technical.tsv ms2 scan range -> 110m/z-2000m/z (method text: dd-MS2 'Scan range 200 to 2000 m/z' + 'Fixed first mass 110.0 m/z'); manifest channel-map claim, limitations and BLOCKED.md now state that light carries unpulsed pre-existing protein from both pooled cultures and is therefore not encoded. Rebuilt with sdrf-tools build (no post-build edits).
+
+## Round 3 (current file): parse_sdrf validate-sdrf -s annotations/PXD029527.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Most seems to be fine. There were only warnings.
+WARNING: Term: 7-year-old stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+exit=0
+WARNING justified: HsapDv:0000101 '7-year-old stage' is the exact term for Cellosaurus AG 7Y; the column is checked against EFO only and EFO has no age-specific child stage (precedent PXD002425 '13-year-old stage').
 
 ## sdrf-tools structure annotations/PXD029527.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
 exit=0
 
+## sdrf-tools check annotations/PXD029527.sdrf.tsv (online)
+Hallucination Report: annotations/PXD029527.sdrf.tsv
+  Terms checked:     20
+  Verified:          19
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    1
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]: 'Met->Aha' in comment[modification parameters]__4
+exit=1
+REFUTED (rule 13): 'Met->Aha' (UNIMOD:896) is a real, current term. Direct OLS4 term lookup https://www.ebi.ac.uk/ols4/api/ontologies/unimod/terms?obo_id=UNIMOD:896 -> label 'Met->Aha', is_obsolete False; the check's exact-search call hit OLS HTTP errors/timeouts during the run (the same outage made the earlier online run abort). The deposited msms carries 'Met->AHA' as a searched variable modification with delta -4.99 Da (UNIMOD:896 delta_mono -4.986). The 1 'wrong ontology' is the HsapDv developmental-stage term in an EFO-checked column (same as the validator warning above).
+
 ## sdrf-tools check annotations/PXD029527.sdrf.tsv --offline
-(the online run aborted with an OLS ReadTimeout from www.ebi.ac.uk, so the offline mode was used)
-Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD029527.sdrf.tsv
+Hallucination Report: annotations/PXD029527.sdrf.tsv
   Terms checked:     14
   Verified:          7
   Hallucinated:      0
@@ -37,7 +56,7 @@ exit=0
 ## parse_sdrf convert-openms -s annotations/PXD029527.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/fbl/convert)
 ValueError: Error: Cannot read precursor mass tolerance: not available
 exit=1
-Expected: precursor/fragment tolerance are 'not available' (no parameters.txt, summary.txt or mqpar.xml deposited); same as precedents PXD014368/PXD006676.
+Expected: precursor/fragment tolerance 'not available' (no parameters.txt, summary.txt or mqpar.xml deposited); as precedents PXD014368/PXD006676.
 
 ## sdrf-tools schema-check annotations/PXD029527.evidence.json
 annotations/PXD029527.evidence.json: valid evidence-manifest
