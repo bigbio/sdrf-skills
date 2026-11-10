@@ -2259,3 +2259,20 @@ Sources checked:
 **Deliberately not used** (campaign rules 6–8): reading `BSA`/`LINO`/`B`/`P` as BSA vehicle / linoleate / palmitate, `spleen`/`PDAC` as organism part or as CD8+ T cells sorted from those tissues, or `early`/`late` as a tumour stage or time point. All are plausible readings of abbreviations and none is stated anywhere reachable.
 
 **Unblocked by:** the paper's Methods/figure legends for the histone MS experiments (Sci Immunol 2026 or the bioRxiv preprint), or a corrected sample sheet from the submitters (T. Manzo / R. Noberini / T. Bonaldi), giving for each deposited raw the sample type (sorted CD8+ T cells vs. tissue), treatment (BSA / PA / linoleate, dose, duration), tissue of origin, the meaning of `early`/`late`, and the mouse/culture replicate identity; and the EpiProfile output for the QEP240804_RN_CD8_* runs (or a statement that they were not analysed). Technical values are settled in `annotations/PXD046502.report.md`.
+
+## PXD060444 — Ipomoeassin F time course / dose response in MDA-MB-231 (Sicairos et al., ACS Omega 2025; triplex SILAC Arg0Lys0/Arg6Lys4/Arg10Lys8, 4 mixtures × 12 SDS-PAGE slices), whole dataset (48 .raw)
+
+**Blocker: which 12 raw files belong to which SILAC mixture is undocumented.** The channel map within each mixture is explicit: the Table S1/S2 headers, e.g. `Ratio M/L normalized 0-4-8h (4h/0h)`, give light = 0 h / 0 nM control, medium = lower time or dose, heavy = higher. File names separate time course (`Du_012318_T01..T24`) from dose (`Du_121917_D01..D12`, `Du_012318_D13..D24`). No source assigns T01–T12 vs T13–T24 to `0-4-8 h` vs `0-12-16 h`, or D01–D12 vs D13–D24 to `0-3-6 nM` vs `0-18-54 nM`, and none gives the gel-slice order.
+
+Sources checked:
+- PRIDE record and files: only two proteinGroups files; no summary, mqpar or experimentalDesign.
+- Paper (PMC12409539) and SI PDF/xlsx.
+- Raw headers of all 48 files: D01–D12 were originally `Du_121917_SILAC_01..12`; vials are consecutive; there is no sample-name field.
+- Europe PMC.
+- bioRxiv preprint 10.1101/2024.07.28.605505: JATS returned HTTP 429 and Europe PMC fullText returned 500; neither was bypassed.
+
+An MS1 SILAC-ratio cross-check of D06/D18/T06/T18 against the per-experiment ratios was inconclusive: D06 and T06 weakly favour the first-listed mixtures, and D18 and T18 are contradictory. Details are in `annotations/PXD060444.report.md`.
+
+Blocked runs: Du_121917_D01–D12, Du_012318_D13–D24, Du_012318_T01–T24 (.raw). No runs are excluded as out of scope.
+
+**Unblocked by:** the MaxQuant summary.txt / experimentalDesignTemplate / mqpar.xml, or a raw-file → experiment (+ slice) table from the submitter (Y. Du), or the preprint Methods/SI if they list it. A ready generator with the provisional map is at `/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD060444/scripts/make_tables.py`.
