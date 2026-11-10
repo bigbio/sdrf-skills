@@ -1,0 +1,9 @@
+PXD046502 — validation log
+
+No SDRF was built: the whole dataset is BLOCKED (sample identity of every run undocumented; see BLOCKED.md and PXD046502.report.md).
+Commands not run: parse_sdrf validate-sdrf, sdrf-tools check/structure/reconcile/schema-check/manifest-coverage, parse_sdrf convert-openms (no input file).
+
+Evidence checks performed:
+- PRIDE v3 files (pageSize=100, page 0): 29 entries, all projectAccessions == ['PXD046502'].
+- EpiProfile ZIP central directories read by HTTP range (02-20.zip 37 entries, 19-06.zip 37, Manzo.zip 200, Manzo2.zip 144); histone_ratios_SILAC.xls headers: LightR/HeavyR rows present (multiplicity 2 confirmed).
+- Raw headers (bytes 0-1500000) of HF190619_RN_BSA18, HF200217_RN_TM_P1, QEP240804_RN_CD8_2, QEP250924_RN_spleen_6, QEP260924_RN_PDAC10: instrument models only, no sample fields.

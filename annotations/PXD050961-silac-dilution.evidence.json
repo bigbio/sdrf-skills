@@ -1,0 +1,285 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD050961-silac-dilution.sdrf.tsv",
+ "dataset": "PXD050961",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD050961 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/pride_v3.json; MCP copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/pride.json): sample/data processing protocols (LysC then trypsin, DTT/IAA, IMAC, 200 fm heavy synthetic peptides per 100 ug, SILAC HCT116 dilution series, timsTOF Pro2 dia-PASEF), instruments [timsTOF Pro 2]"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD050961/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/files_p0.json; 29 entries, all projectAccessions contain PXD050961; raw data only as 9 RAW zip bundles)"
+  },
+  {
+   "id": "zipdirs",
+   "kind": "raw-file",
+   "location": "Central directories of the RAW zips under https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD050961/ read by HTTP range with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/scripts/ziplist.py; listings /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/zips/*_Rawfiles.tsv and Bruker .d folder lists /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/zips/*_Rawfiles.dirs"
+  },
+  {
+   "id": "overview",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD050961/Pride_DataOverview.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/overview.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/ov.txt): maps zip bundles to Datasets 1-7 (libraries, Benchmark1 full phospho dilution, Benchmark2, targeted dilution series, cell-line panel GFmix, HCT116 individual GFs) and lists the DIA-NN SILAC channel options"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "van Bentum M et al., Nat Commun 2025 16:4884, PMID 40419504, PMC12106795, doi:10.1038/s41467-025-59404-y; text https://pmc-oa-opendata.s3.amazonaws.com/PMC12106795.1/PMC12106795.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/paper.txt; Results, Fig. 1-3 legends, Methods: cell culture, treatment, SILAC dilution benchmark, sample prep, LC-MS, SPIED-DIA analysis)"
+  },
+  {
+   "id": "suppinfo",
+   "kind": "supplementary",
+   "location": "Supplementary Information MOESM1 docx https://pmc-oa-opendata.s3.amazonaws.com/PMC12106795.1/41467_2025_59404_MOESM1_ESM.docx (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/supp/si1.docx; text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/supp/si1.txt; Suppl. Fig. 15 image /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/supp/media/word/media/image12.png: HCT116 MEKi + BSA/EGF/FGF2/HGF/VEGF-C, 15 columns)"
+  },
+  {
+   "id": "suppdata",
+   "kind": "supplementary",
+   "location": "Supplementary Data MOESM8/9/10 (targeted, columns H1-H12 / D1-D6,D8-D12 / C1-C5,C7-C12) and MOESM11 (global) https://pmc-oa-opendata.s3.amazonaws.com/PMC12106795.1/41467_2025_59404_MOESM<n>_ESM.csv (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/supp/m8.csv m9.csv m10.csv m11.csv)"
+  },
+  {
+   "id": "code",
+   "kind": "code-repository",
+   "location": "Zenodo 10.5281/zenodo.15045498 (GitHub Mirjamva/SPIED-DIA v1.0) https://zenodo.org/api/records/15045498 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/zen): CellLinePanel_Global_Norm.R lines 90-104 (sample 1-3 BSA_DMSO, 4-6 BSA_MEKi, 7-9 GF, 10-12 GF_MEKi), DiffExpression.R lines ~195-212 and CellLinePanel_TargetedAnalysis.R lines 363-371 (limma factors: 1-3 BSA.DMSO, 4-6 BSA.MEKi, 7-9 LigandMix.DMSO, 10-12 LigandMix.MEKi); README DIA-NN settings"
+  },
+  {
+   "id": "diann_logs",
+   "kind": "search-output",
+   "location": "DIA-NN 1.8.2 beta 11 report.log.txt members extracted by HTTP range (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/scripts/zipget.py) from https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/03/PXD050961/Benchmark1_outputDIANN.zip, Benchmark2_outputDIANN_collected.zip (JPTlib_SILAC, HpHlib_LFQ), PanelFGmix_outputDIANN_SPIED.zip, HCT116GFs_outputDIANN_SPIED.zip (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/ext/b1.log, b2silac.log, panel_spied.log, gfs_spied.log): input .d list, --var-mod UniMod:35/M, UniMod:1/*n (absent in b1), UniMod:21/STY, --unimod4 or MaxQuant library with fixed Carbamidomethyl, --channels SILAC,L,KR,0:0; SILAC,H,KR,8.014199:10.008269, \"Optimised mass accuracy\" lines"
+  },
+  {
+   "id": "diann_matrices",
+   "kind": "search-output",
+   "location": "report.pr_matrix_channels.tsv from Benchmark1_outputDIANN.zip (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/ext/b1_prch.tsv) and HCT116GFs_outputDIANN_SPIED.zip (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/dl/HCT116GFs_outputDIANN_SPIED): per-run L/H intensities used for label checks"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0291, CVCL_0248, CVCL_0025, CVCL_0045 (txt): population Caucasian, sex, age 48Y/67Y/72Y, disease NCIt colon carcinoma / colon adenocarcinoma; HEK293 fetal kidney, female, no disease"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "EBI OLS4 https://www.ebi.ac.uk/ols4/api/search (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/scripts/ols.sh): EFO:0002824 HCT116, EFO:0006389 DLD1, EFO:0001099 Caco-2, EFO:0001182 HEK293, MONDO:0002032 colon carcinoma, MONDO:0002271 colon adenocarcinoma, UBERON:0001155 colon, UBERON:0002113 kidney, HANCESTRO:0005 European ancestry, EFO:0001272 adult, NCIT:C66939 Selumetinib, NCIT:C185409 Dulbecco's Modified Eagle Medium, EFO:0010806 enrichment of phosphorylated protein, MS:1003230 timsTOF Pro 2, MS:1001251 Trypsin, MS:1001309 Lys-C, MS:1000133 CID, MS:1000084 time-of-flight, PRIDE:0000450 DIA, PRIDE:0000608 DTT, PRIDE:0000599 IAA, PRIDE:0000325/0000326 SILAC heavy/light, UNIMOD:259/267/21/35 (none obsolete)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 sdrf version v1.1.0; the spec submodule's nested sdrf-templates copy is older than upstream"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[instrument] all rows",
+   "value": "NT=timsTOF Pro 2;AC=MS:1003230",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Methods: \"Mass spectrometry raw data were acquired on a Bruker timsTOF Pro2\"; PRIDE instruments = timsTOF Pro 2; all runs are Bruker .d folders. analysis.tdf (91 MB per run) was not range-read."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-independent acquisition;AC=PRIDE:0000450",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"The raw files were acquired in dia-PASEF mode\"; run names contain dia/DIA; SampleInfo.xml of BM2 run 5761 MS method \"dia-PASEF - long gradient.m\"."
+  },
+  {
+   "location": "comment[cleavage agent details] (both columns) all rows",
+   "value": "NT=Trypsin;AC=MS:1001251 and NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"Sequencing grade LysC (Wako) was added ... After 2 h ... trypsin (Promega) was added at 1:50 ratio. Digestion was completed overnight.\" DIA-NN in silico digest --cut K*,R* (search rule, recorded only)."
+  },
+  {
+   "location": "comment[dissociation method] all rows",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "timsTOF Pro2 dia-PASEF with collision energy ramp 59 eV to 20 eV over ion mobility (Methods); timsTOF fragments by CID in the collision cell."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] all rows",
+   "value": "NT=time-of-flight;AC=MS:1000084",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"Bruker timsTOF Pro2 hybrid TIMS-QTOF mass spectrometer\"."
+  },
+  {
+   "location": "comment[ms min im], comment[ms max im] all rows",
+   "value": "0.6 / 1.6",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"IM range from 1.6 to 0.6 V s/cm2\"."
+  },
+  {
+   "location": "comment[scan window lower limit], comment[scan window upper limit] all rows",
+   "value": "400 / 1201",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"All spectra within a mass range of 400 to 1201 Da\" (dia-PASEF, standard long-gradient method)."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] all rows",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608 / NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"treated with 5 mM dithiothreitol for 1 h ... alkylated with 10 mM iodoacetamide for 45 min in the dark\". The synthetic heavy peptides were added after digestion (before IMAC); reagents are run-level."
+  },
+  {
+   "location": "comment[modification parameters] (6 columns) all rows",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Phospho STY, Label:13C(6)15N(2) K (UNIMOD:259), Label:13C(6)15N(4) R (UNIMOD:267) Variable",
+   "source_ids": [
+    "diann_logs",
+    "paper",
+    "ols"
+   ],
+   "evidence": "DIA-NN logs: --var-mod UniMod:35,M; --var-mod UniMod:1,*n (Benchmark2/panel/GFs; Benchmark1 log has only --mod Acetyl (N-term) declaration and its HpH MaxQuant library carries N-terminal acetylation, paper lists it for all searches); --var-mod UniMod:21,STY; \"Cysteine carbamidomethylation enabled as a fixed modification\" (--unimod4) or MaxQuant libraries searched with fixed carbamidomethylation; --channels SILAC,H,KR,8.014199:10.008269 = K+8.0142 (13C6 15N2, UNIMOD:259) and R+10.0083 (13C6 15N4, UNIMOD:267). Labels set MT=Variable per campaign rule 11."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "SILAC light / SILAC heavy",
+   "source_ids": [
+    "diann_logs",
+    "paper"
+   ],
+   "evidence": "Every annotated run was searched with DIA-NN channels L (K0,R0) and H (K8,R10)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] all rows",
+   "value": "not available",
+   "source_ids": [
+    "diann_logs"
+   ],
+   "evidence": "No --mass-acc-ms1 given; DIA-NN auto-optimised from the first run and logs only per-run \"Recommended MS1 mass accuracy\" values (~9-15 ppm); no applied MS1 tolerance is recorded."
+  },
+  {
+   "location": "comment[fraction identifier], comment[technical replicate], assay name, comment[data file] all rows",
+   "value": "single-shot runs; file stems",
+   "source_ids": [
+    "zipdirs",
+    "diann_logs"
+   ],
+   "evidence": "Each Bruker .d folder in the RAW zips is one unfractionated dia-PASEF injection; data file = .d folder name inside the named zip bundle."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type all rows",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0, dia-acquisition v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates.yaml latest ms-proteomics 1.2.0."
+  },
+  {
+   "location": "comment[fractionation method] all rows",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "DIA runs are single-shot; only the excluded HpH library runs were fractionated."
+  },
+  {
+   "location": "characteristics[enrichment process] all rows",
+   "value": "enrichment of phosphorylated protein (EFO:0010806)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"automated immobilized metal affinity chromatography (IMAC) phosphopeptide enrichment ... Fe(III)-NTA cartridges\" for all samples."
+  },
+  {
+   "location": "characteristics[organism] all rows",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Human cell lines; synthetic spike-in peptides are human phosphosite sequences selected from PhosphoSitePlus mapped to the human proteome (spec: organism MAY be given for synthetic libraries designed from one species)."
+  },
+  {
+   "location": "comment[isolation window width] all rows",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Vendor standard \"long gradient\" dia-PASEF method; window width not stated and analysis.tdf not read."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], characteristics[disease], characteristics[organism part], characteristics[age], characteristics[sex], characteristics[ancestry category], characteristics[developmental stage], characteristics[material type], characteristics[culture medium], factor value[cell line] rows 1-66",
+   "value": "HCT116 / CVCL_0291 / HCT 116 / colon carcinoma / colon / 48Y / European ancestry",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "HCT116 named in Methods (\"HCT116, Caco2 and DLD-1 were obtained from ATCC ... cultured in DMEM ... 10% FBS\"; HEK293 for the Benchmark2 spike-in test). Cellosaurus CVCL_0291: disease colon carcinoma, site colon, age 48Y, population Caucasian; developmental stage adult only where age >= 20Y; HEK293 is fetal (age not available, stage not available), no disease = normal; HEK293 culture medium not stated (not available). cell type not stated (not available)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] all rows",
+   "value": "15.4157 ppm",
+   "source_ids": [
+    "diann_logs"
+   ],
+   "evidence": "Benchmark1 report.log.txt \"[2:58] Optimised mass accuracy: 15.4157 ppm\" (auto-optimised on the first run and applied to the experiment)."
+  },
+  {
+   "location": "source name, comment[label], characteristics[sample type] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65 (light) and 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66 (heavy)",
+   "value": "light = HCT116 light SILAC reference lysate (sample type reference); heavy = HCT116 heavy SILAC lysate diluted into light (study sample)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "diann_matrices"
+   ],
+   "evidence": "Methods \"the heavy labeled cell lysate was sequentially diluted into the light cell lysate\"; Results \"we are using all the SILAC lights as references for all the corresponding SILAC heavies\". Data check: median log2(H/L) per run falls from -0.04 (1:1) to -1.33 (1:3), -2.37 (1:7), -3.08 (1:15) and plateaus near -3.5 (ratio compression described in the paper), so heavy is the diluted channel."
+  },
+  {
+   "location": "characteristics[mixing ratio], factor value[mixing ratio] all rows",
+   "value": "1:N heavy:light, N in 1,3,7,15,31,63,127,255,511,1023,2047",
+   "source_ids": [
+    "zipdirs",
+    "paper",
+    "overview"
+   ],
+   "evidence": "Run names Popeye_20221125_MVB_HStdia_SIL_1_<N>_100ng_<inj>_...; Fig. 1C and Suppl. Fig. 1 dilution factors 1:1-1:2047; custom characteristics column (spec Extending Templates)."
+  },
+  {
+   "location": "comment[technical replicate], characteristics[biological replicate], characteristics[pooled sample] all rows",
+   "value": "technical replicate = injection 1-3; biological replicate 1; not pooled",
+   "source_ids": [
+    "paper",
+    "zipdirs"
+   ],
+   "evidence": "\"100 ng phospho-enriched peptides per sample were injected per dilution in triplicates\" - one mixture per dilution, three injections (run-name suffix _1/_2/_3). One heavy and one light HCT116 culture; light source names are per mixture (each mixture holds a separate aliquot of the one light lysate)."
+  },
+  {
+   "location": "characteristics[treatment] all rows",
+   "value": "untreated",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "SILAC-labelled HCT116 grown in SILAC DMEM, no drug treatment described for the dilution benchmark."
+  }
+ ],
+ "limitations": [
+  "Precursor mass tolerance not recorded (DIA-NN auto); parse_sdrf convert-openms is expected to stop on \"not available\".",
+  "Instrument model from Methods/PRIDE; Bruker analysis.tdf GlobalMetadata not read (91 MB per run).",
+  "Benchmark1 DIA-NN log lacks --var-mod UniMod:1; N-terminal acetylation annotated from the MaxQuant HpH library and paper text.",
+  "Culture medium for SILAC: arginine/lysine-free DMEM with dialysed FBS plus labelled or unlabelled Arg/Lys (Methods) - encoded as DMEM.",
+  "Excluded runs (deposited but out of SILAC scope or undocumented): HpHLib_Rawfiles.zip 50 .d (DDA-PASEF high-pH library fractions, MaxQuant label-free); TargetLibBM2_Rawfiles.zip 6, Lib_Benchmark3_Rawfiles.zip 6, Lib_BioData_Rawfiles.zip 3 (DDA-PASEF of synthetic heavy peptide pool for libraries); Benchmark2_Rawfiles.zip 3 DDA runs Popeye_20240314_MVB_HStd_BM2_250ng_DDA_A4_1_5705/5706/5707.d (DDA benchmark, MaxQuant); Rev_Benchmark3_Rawfiles.zip 18 runs (targeted dilution series: 100 ng E. coli background + 50 fmol heavy peptides + 0-400 ng HEK293; mixed-organism light channel, 0 ng runs have no human sample - not encodable as one SILAC row per channel); HCT116GFs_Rawfiles.zip 7 DMSO-arm runs Popeye_20230704_MVB_HStd_SS1_DB1_A1_1_4167, DB1_F3_1_4169, DB2_G3_1_4182, DB3_H3_1_4198, DE1_D4_1_4172, DE2_E4_1_4190, DE3_F4_1_4203 (searched but the DMSO arm is not described anywhere in paper/SI/code; condition only from file-name letters); HCT116GFs_Rawfiles.zip 9 runs dated 20230605 (DB1,DB2,DE1,MB1,MB2,ME1,MF1,MH1,MV1; not in any deposited search log). See annotations/BLOCKED.md section PXD050961."
+ ]
+}
