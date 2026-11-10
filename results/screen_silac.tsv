@@ -142,3 +142,10 @@ PXD060444	PRIDE	exclude	channel map	Batch 12: Ipomoeassin F MDA-MB-231, run-to-m
 PXD031771	PRIDE	exclude	not SILAC	label-free (Skyline MS1) secretome of MCF7 miRNA lines on Agilent Q-TOF; PRIDE SILAC tag wrong; Mascot QUANTITATION empty	PRIDE protocols; Feser et al. Heliyon 2023 (PMC10148110); F003349.dat header
 PXD033337	PRIDE	exclude	channel map	Batch 13: KDM5B histone super-SILAC MCF7/MDA-MB-231, run-to-sample map undocumented (BLOCKED.md)	deposit files; paper supplement
 PXD046000	PRIDE	exclude	channel map	Batch 13: Ptp1b MEF pTyr SILAC, light/heavy genotype orientation not established (review FAIL; BLOCKED.md)	deposit files; paper; review
+PXD040125	PRIDE	include		Batch 13: NF-kB interactome MCF-7 breast cancer SEC-PCP-SILAC (SILAC arm; label-free/DIA runs out of scope)	repository structured fields; paper methods
+PXD030581	PRIDE	include		Batch 13: LSD1 IP OG86 vs DMSO THP-1 AML	repository structured fields; paper methods
+PXD062045	PRIDE	include		Batch 13: puromycin nascent proteome T3M4 pancreatic cancer	repository structured fields; paper methods
+PXD035748	PRIDE	include		Batch 13: DNMT/HDAC inhibition NCI-H1299 nascent proteome (QE-HF arm; 57 runs blocked)	repository structured fields; paper methods
+PXD007256	PRIDE	include		Batch 13: curcumin CAL 27 HNSCC phosphoproteome (6 of 13 runs; 7 blocked)	repository structured fields; paper methods
+PXD046807	PRIDE	include		Batch 13: super-SILAC lung adenocarcinoma tissue by stage and EGFR status	repository structured fields; paper methods
+PXD008410	PRIDE	include		Batch 13: PI3K inhibition Capan-1 PDAC phosphoproteome (vehicle/LY294002 arm; ISO arms blocked)	repository structured fields; paper methods
