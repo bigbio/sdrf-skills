@@ -2056,3 +2056,41 @@ Why blocked:
 **Unblocked by:** the Blood data supplement (supplemental Materials and methods and supplemental Figure 1C) or an author statement giving the L/M/H condition for experiments DD, DGI_w, DGI_X, DGI_Y (and, for the annotated DGII rows, which of AT13387/STA-9090 each of DGII_1 and DGII_2 received).
 
 **Related deposit:** PXD003492 (Corso et al., PNAS 2016; same lab, 398 RAW `DG75_BCRstim_GP_*`) shares no raw file with PXD004181 (0 name, 0 checksum overlap). Not a duplicate; not annotated here.
+
+## PXD000958 — CELF1 silencing in oral squamous cell carcinoma cells (Palanisamy lab, MUSC; triple-SILAC Arg6/Lys4 + Arg10/Lys8, MaxQuant 1.4.1.2), whole dataset (30 RAW)
+
+**Not annotated. The dataset is genuine triplex SILAC, but no accessible source names the three conditions, let alone which SILAC channel (light / Arg6;Lys4 medium / Arg10;Lys8 heavy) carries which. Campaign rules 6–7 therefore block every run.**
+
+| | |
+|---|---|
+| Publication | PRIDE `references` is empty and Europe PMC finds no paper citing PXD000958. The matching study is House RP, Talwar S, Hazard ES, Hill EG, Palanisamy V. *Oncotarget* 2015;6(41):43620-34, "RNA-binding protein CELF1 promotes tumor growth and alters gene expression in oral squamous cell carcinoma", PMID 26498364, PMC4791255 (same lab, same submitter, near-identical title). Full text and all 8 supplements (s001.pdf, s002–s008.xlsx, PMC OA S3) were read: **they contain no SILAC, mass spectrometry or proteomics content at all** (only RNA-seq GSE57254, qRT-PCR, splicing, RNP-IP, xenografts). The lab's earlier paper (Talwar et al., *RNA Biol* 2013, PMC3594286) has no proteomics either. Searches for a separate proteomics paper or a dataset descriptor (`CELF1 AND SILAC`, `CUGBP1 AND SILAC`, `"1322 proteins"`, author `Palanisamy V` AND proteomic/SILAC, `House RP` AND CELF1) found nothing. |
+| Deposited | 30 Thermo `.raw` (Orbitrap Elite): `090613_Visu_Set_1-{1..10}` (Set_1-8 as `090613_Visu_Set_1-8_130910152909.raw`), `091913_Visu_Set2_{1..10}`, `091913_Visu_Set3_{1..10}` = 3 biological replicates × 10 gel-band fractions; `MaxQuantOutput.zip` (summary.txt, peptides.txt, evidence.txt, allPeptides.txt, proteinGroups.xml [actually a tab-separated proteinGroups table], tables.pdf). No experimental-design file. FTP root `pride/data/archive/2022/02/PXD000958/`. |
+| SILAC verified (rule 14) | summary.txt: all 30 raws `Multiplicity 3`, `Labels1 Arg6;Lys4`, `Labels2 Arg10;Lys8`, enzyme Trypsin/P, variable Oxidation (M), no multi modifications; experiments `SILAC1`, `SILAC2`, `SILAC3`. |
+
+Why blocked:
+- **No condition names and no channel map anywhere.** PRIDE sample protocol: "Cells labeld with Light, medium, and Heavy Lys/ARg isotopes were lysed and combined 1:1:1. Three biological replicates were processed." The title says "Silencing ... CELF1", which implies a CELF1-knockdown arm, but a triplex needs three conditions and the third (e.g. control siRNA vs mock vs another time point) is never stated. The cell line is not stated in the deposit either (the related paper uses UMSCC-74B for siRNA work, but also UMSCC-11B and SCC-15).
+- **Raw headers** (byte-range reads of `090613_Visu_Set_1-1.raw` and `091913_Visu_Set2_5.raw`) give only the file path, the method `120mingrad_FT_onlyCID_TOP20.meth` and instrument `Orbitrap Elite ETD`; Sample name / Comment fields are empty.
+- **The data does not settle it.** CELF1 (UniProt Q92879) is not identified in proteinGroups or peptides, so the knockdown channel cannot even be cross-checked. ELAVL1/HuR is strongly lower in heavy (H/L normalized 0.06–0.14 across SILAC1–3). Heavy is globally ~3–6-fold below light in all three experiments even after MaxQuant normalization (median log2 H/L normalized −1.58, −2.64, −1.67; `scratchpad/b11-PXD000958/ratio_medians.txt`), which is inconsistent with a 1:1:1 mix of whole proteomes and suggests the deposited table is a filtered subset or the mixing/labeling was unequal. Rule 6 forbids a data-only map in any case.
+
+**Unblocked by:** an author statement (or a proteomics paper/thesis) naming the three conditions, their SILAC labels, and the cell line. With it the SDRF would be 30 runs × 3 channels = 90 rows; human + cell-lines (+ oncology-metadata if wanted); fractions 1–10 per Set; characteristics[biological replicate] 1–3 = Set1/Set2/Set3 within each condition; MaxQuant 1.4.1.2 search (Trypsin/P rule, Carbamidomethyl C fixed per PRIDE protocol, Oxidation M variable, Arg6/Lys4/Arg10/Lys8 labels; Human IPI v3.72).
+
+
+---
+
+## PXD008100 — LAD1 / EGF phosphoproteome in MCF10A (Roth et al., Sci Signal 2018; triple-SILAC control / serum / EGF time course), whole dataset (103 RAW)
+
+**Not annotated. The dataset is genuine triplex SILAC, but no accessible source says which SILAC channel (light / Arg6-Lys6 medium / Arg10-Lys8 heavy) carries control, serum or EGF. Campaign rules 6–7 therefore block every run.**
+
+| | |
+|---|---|
+| Publication | Roth L *et al.*, *Sci Signal* 2018 11(515):eaan0949, doi:10.1126/scisignal.aan0949, PMID:29382783. **Closed access**: no PMCID (`inEPMC=N`); Unpaywall `closed`; Semantic Scholar `openAccessPdf` CLOSED; science.org article and supplement HTTP 403 (not bypassed); no preprint or data descriptor found in Europe PMC. Only the abstract was read. |
+| Deposited | 103 `.RAW` (LTQ Orbitrap XL per raw headers; PRIDE says "LTQ Orbitrap") + `Yarden_txt.zip` (MaxQuant 1.2.0.18 txt). FTP root `pride/data/archive/2019/11/PXD008100/`. No experimental-design file deposited (parameters.txt references one). |
+| SILAC verified (rule 14) | `summary.txt`: Multiplicity 3, Labels1 `Arg6;Lys6`, Labels2 `Arg10;Lys8`, all 102 searched raws. |
+| MaxQuant experiments (evidence.txt) | 5 min Seq27454–71 (18); 10 min Seq28886–99 (14); 20min Seq26792–805 (14, deposited with `_B` suffix); 40 min Seq27531–48 (18); 60 min Seq28238–49,28252,28253 (14) + `Seq28635_SCX_*` salt steps (10); 120 min Seq28097–108,28111,28112 (14). `Seq28635_SCX_load_E2O2.RAW` was not searched (would be an excluded run). |
+
+Why blocked:
+- **No explicit channel map.** PRIDE sample protocol: "Cells from control, serum or EGF treatments from the same time point were mixed to a single sample" — conditions named, labels not. MaxQuant output names only L/M/H; raw headers carry no sample description.
+- **The data does not settle it.** EGFR T693 and SHC1 Y428 are highest in H, higher in M than L at all time points, suggesting L = control, H = EGF; but serum also activates these pathways (MAPK1 Y187 at 5 min M/L > H/L). Rule 6 forbids a data-only map.
+- **Second open point:** the 60-min experiment pools two separately run mixtures (Seq282xx and Seq28635 SCX series); replicate vs re-fractionation is undocumented.
+
+**Unblocked by:** the paper's Methods/Fig. 1/supplement (Science Signaling, subscription) or an author statement giving the control/serum/EGF labels and the relation of the two 60-min mixtures; cross-check against the EGFR/SHC1 ratios (`scratchpad/b11-PXD008100/orientation.txt`). Planned SDRF: 102 runs × 3 channels = 306 rows; human + cell-lines (MCF 10A, CVCL_0598); factors treatment (`untreated` / serum / EGF) and time; Carbamidomethyl fixed, Oxidation / Acetyl (Protein N-term) / Phospho variable, ITMS 0.5 Da.
