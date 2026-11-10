@@ -1,6 +1,91 @@
 # PXD012954 validation log (sdrf-pipelines parse_sdrf; sdrf-tools). Run from /home/user/bigbio/sdrf-skills/annotations, 2026-11-10.
-# SDRF sha256 afe77bd6a601220c229fd9727be9497d6252f5a507ca8955195648b558b85b0a; 166 rows x 52 columns
+# FINAL SDRF sha256 649d82d1a476f89003f7f733bb1f43f34a00f17087826130db7f366e44fa8f09; 166 rows x 52 columns (round 2)
 # Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/make_tables.py -> two sdrf-tools build runs (IP part, input part; identical headers) -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/concat.py. No post-build edits of the SDRF.
+
+## Round 2 (final artifact) — after independent review FAIL (annotations/PXD012954.review.md, on sha256 afe77bd6a601220c229fd9727be9497d6252f5a507ca8955195648b558b85b0a)
+
+Fixes (all in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/make_tables.py, then rebuilt with sdrf-tools build and concat.py; no hand edits):
+- MC_2580-arm control channels (forward light IP rows 49-56, reverse heavy IP rows 73-80, forward light input rows 123-133, reverse heavy input rows 156-166): characteristics[treatment] / factor value[treatment] 'untreated' -> 'Dimethyl Sulfoxide' (NCIT:C437; Fig. 4E schematic labels the light dish 'DMSO'). Source names now say 'DMSO-treated'.
+- Biological replicate numbers renumbered per new factor group: IP/untreated 1-3, IP/Dimethyl Sulfoxide 1-2, input/untreated 1-6, input/Dimethyl Sulfoxide 1-2 (others unchanged).
+- Manifest: vehicle claim corrected; SM Table S1 (input<->IP pairing) and Fig. 4E / SM Table S2 (cell treatment) cited; the two resolved limitations removed; MC_2580 dose/duration recorded in limitations (no licensed dose/duration column in ms-proteomics/human/cell-lines).
+- sdrf-tools build: wrote build_ip.sdrf.tsv 80 rows x 52 columns (exit 0); build_input.sdrf.tsv 86 rows x 52 columns (exit 0).
+
+$ parse_sdrf validate-sdrf -s PXD012954.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+ERROR:sdrf_pipelines.ols.ols:OLS search term q exactive hf error, retry number 7
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term q exactive hf. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=q+exactive+hf&name=class&rows=10&start=70&ontology=pride&exact=off
+Traceback (most recent call last): ... [traceback condensed]
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=q+exactive+hf&name=class&rows=10&start=70&ontology=pride&exact=off
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: MC_2580 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD012954.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD012954.sdrf.tsv
+Traceback (most recent call last): ... [traceback condensed]
+TimeoutError: The read operation timed out
+
+
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Read timed out. (read timeout=30)
+
+
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Read timed out. (read timeout=30)
+exit code: 1
+
+$ sdrf-tools reconcile PXD012954.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/pride.json --accession PXD012954
+PXD012954: 1 value(s) disagree with the deposit record:
+
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 0
+
+$ sdrf-tools schema-check PXD012954.evidence.json
+PXD012954.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD012954.sdrf.tsv PXD012954.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit code: 0
+
+$ cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012954.sdrf.tsv -t2
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+
+
+Online `sdrf-tools check` could not complete in round 2: EBI OLS4 timed out (read timeout 30 s) on three attempts. The last attempt:
+$ sdrf-tools check PXD012954.sdrf.tsv
+Traceback (most recent call last): ... [traceback condensed]
+TimeoutError: The read operation timed out
+
+
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Read timed out. (read timeout=30)
+
+
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Read timed out. (read timeout=30)
+exit code: 1
+
+Offline fallback:
+$ sdrf-tools check PXD012954.sdrf.tsv --offline
+Hallucination Report: PXD012954.sdrf.tsv
+  Terms checked:     12
+  Verified:          5
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+The only changed ontology value since the online round-1 check (CLEAN, 18/18) is 'Dimethyl Sulfoxide'. It was verified directly via OLS4 (/api/search q='dimethyl sulfoxide', ontology=ncit, exact -> NCIT:C437 'Dimethyl Sulfoxide'; log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/ols_search.txt), and validate-sdrf above raised no warning for it.
+
+Reconcile finding refuted (same as round 1): 'cleavage_agent_incomplete ... missing: Arg-C'. Arg-C appears in the PRIDE record only in the histone-PTM protocol ('Enzyme specificity was set to ArgC ...'), which covers the 27 label-free histone runs excluded from this SDRF. The SILAC IP/input samples were digested in-gel with trypsin (paper) and searched with Trypsin/P (summary.txt).
+validate-sdrf round 2 hit an OLS 500 error while looking up 'q exactive hf' and still exited 0. That value is unchanged since round 1, where it validated without error, and MS:1002523 'Q Exactive HF' was confirmed by an OLS obo_id lookup.
+Validator warnings: 'untreated' (template-prescribed control value, rule 4) and 'MC_2580' (no NCIT/EFO entry; OLS search 0 hits) are not NCIT/EFO terms.
+convert-openms exit 1: precursor mass tolerance not available in the deposit (manifest limitation).
+
+## Round 1 (superseded; sha256 afe77bd6a601220c229fd9727be9497d6252f5a507ca8955195648b558b85b0a)
 
 ## Round 1 (final artifact; no fixes needed)
 
