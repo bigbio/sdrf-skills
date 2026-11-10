@@ -1,0 +1,51 @@
+# PXD036363 validation log (2026-11-10T05:54Z); SDRF sha256 fd64414146abee76e020e9c820db14dfacb163cc2a3c6a0c2ea744bb4fbbe187; 417 rows x 51 columns
+# Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/scripts/make_tables.py -> samples/technical_[ABCD].tsv; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/scripts/build_all.py runs sdrf-tools build per group (A 505/1580/1637 QE HF + Biotin(K); B 539 QE HF; C 2310/2311 QE; D pY Fusion + Phospho(STY)), asserts identical headers, concatenates.
+# Post-build edit (scripted, rule 17): comment[fraction identifier] := gel slice number from file name _L<n>_<slice>.raw; changed 45 cells, all in experiment 505 (slices 7-21 x 3 channels; slice 6 not deposited). Identical to positional numbering everywhere else.
+
+## parse_sdrf validate-sdrf -s annotations/PXD036363.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: NGI-1 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit=0
+Warnings accepted: 'untreated' is the template-prescribed control value (campaign rule 4); NGI-1 has no NCIT/EFO term (OLS search, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/ols_search.txt).
+
+## sdrf-tools structure annotations/PXD036363.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD036363.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/pride_v3.json --accession PXD036363
+PXD036363: 1 value(s) disagree with the deposit record:
+
+  MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Orbitrap Fusion Lumos', the annotation says 'Q Exactive HF'  [Fusion Lumos]
+exit=0
+Refuted (false positive): the protocol's Orbitrap Fusion Lumos is the TMTpro glycoproteomics instrument ('MS analysis was done on a Orbitrap Fusion Lumos'), and the TMT runs are excluded. The raw headers of the annotated runs say Q Exactive HF (505, 1580, 1637, 539), Q Exactive (2310, 2311) and Orbitrap Fusion (pY) (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/raw/*.head). PRIDE lists Q Exactive, Orbitrap Fusion and Orbitrap Fusion Lumos.
+
+## sdrf-tools check annotations/PXD036363.sdrf.tsv
+Hallucination Report: annotations/PXD036363.sdrf.tsv
+  Terms checked:     29
+  Verified:          28
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1..198]: 'Biotin' in comment[modification parameters]__4
+exit=1
+Refuted (false positive): 'Biotin' NT=Biotin;AC=UNIMOD:3 is correct. OLS4 /api/terms?obo_id=UNIMOD:3 -> unimod 'Biotin', is_obsolete False. The tool's OLSClient.resolve_accession returns None for every UNIMOD accession here (it also returns None for UNIMOD:21 and UNIMOD:481), so any UNIMOD accession outside the offline UNIMOD_KNOWN table is reported as hallucinated. MaxQuant summary.txt lists 'Biotin (K)' (UNIMOD Biotin, K, +226.08 Da).
+
+## parse_sdrf convert-openms -s annotations/PXD036363.sdrf.tsv -t2 (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/convert)
+Conditions (22): dict_keys(['BioID2 empty vector|TMD8|not available', 'CD79A-BioID2 fusion|TMD8|untreated', 'CD79A-BioID2 fusion|TMD8|NGI-1', 'SPPLAT isotype control antibody, 30 s labelling|TMD8|not available', 'SPPLAT anti-IgM, 30 s labelling|TMD8|untreated', 'SPPLAT anti-IgM, 30 s labelling|TMD8|NGI-1', 'SPPLAT isotype control antibody, 30 s labelling|HBL-1 cell|not available', 'SPPLAT anti-IgM
+Files per condition: dict_values([20, 20, 20, 23, 23, 23, 23, 23, 23, 69, 23, 23, 23, 23, 23, 23, 2, 2, 2, 2, 2, 2])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 417 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD036363.sdrf.tsv
+exit=0 (SUCCESS, 22 conditions; TA= warning concerns the Protein N-term acetyl PP= value)
+
+## sdrf-tools schema-check annotations/PXD036363.evidence.json
+annotations/PXD036363.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD036363.sdrf.tsv annotations/PXD036363.evidence.json
+Manifest covers every column with a value (36 column(s)).
+exit=0
