@@ -1,0 +1,117 @@
+# PXD050961 validation log (two SDRFs: PXD050961-silac-dilution.sdrf.tsv, PXD050961-spied.sdrf.tsv)
+# Environment: /home/user/bigbio/sdrf-skills/.venv (sdrf-tools, parse_sdrf). Date 2026-11-10.
+
+## Build (sdrf-tools build; deterministic tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/scripts/gen_tables.py and gen_tech.py)
+dil.sdrf.tsv 66x55; spied_bm2 12x59, spied_panel 70x59, spied_gfs 30x59 (identical headers), templates ms-proteomics, human, cell-lines, dia-acquisition
+
+## Post-build edit (scripted, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/scripts/post.py)
+1. Concatenate the three SPIED sub-builds (one per DIA-NN search, differing only in comment[fragment mass tolerance]; headers asserted identical) - campaign rule 5/17.
+2. Insert a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 right after the Trypsin column in both files (sequential Lys-C 2 h + trypsin overnight digest; campaign rule 2; build emits one value for a non-multiple column).
+
+## parse_sdrf validate-sdrf (silac-dilution)
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t dia-acquisition
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit=0
+(OLS 500 retries for 'timstof pro 2' in the PRIDE ontology were transient OLS server errors, trimmed; MS:1003230 'timsTOF Pro 2' verified separately via OLS4 search, not obsolete.)
+
+## parse_sdrf validate-sdrf (spied)
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t dia-acquisition
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: synthetic phosphopeptide spike-in (not cell-derived) in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+(OLS 500 retries for 'timstof pro 2' in the PRIDE ontology were transient OLS server errors, trimmed; MS:1003230 'timsTOF Pro 2' verified separately via OLS4 search, not obsolete.)
+
+## sdrf-tools checks and convert-openms (silac-dilution)
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.sdrf.tsv
+  Terms checked:     20
+  Verified:          20
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/pride_v3.json --accession PXD050961
+PXD050961: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; the annotation may have matched the enzyme in another role
+exit=1
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.evidence.json: valid evidence-manifest
+exit=0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.evidence.json
+Manifest covers every column with a value (36 column(s)).
+exit=0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-silac-dilution.sdrf.tsv -t2 (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/conv/silac-dilution)
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+
+## sdrf-tools checks and convert-openms (spied)
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv
+  Terms checked:     31
+  Verified:          29
+  Hallucinated:      2
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [2, 4, 6, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112]: 'synthetic phosphopeptide spike-in (not cell-derived)' in characteristics[cell line]
+  Row(s) [2, 4, 6, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112]: 'synthetic phosphopeptide spike-in (not cell-derived)' in factor value[cell line]
+exit=1
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/pride_v3.json --accession PXD050961
+PXD050961: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; the annotation may have matched the enzyme in another role
+exit=1
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.evidence.json: valid evidence-manifest
+exit=0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.evidence.json
+Manifest covers every column with a value (40 column(s)).
+exit=0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv -t2 (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/conv/spied)
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+
+## Refutations / explanations
+- reconcile BLOCKER cleavage_agent_unsupported (both files, exit 1): FALSE POSITIVE. The PRIDE sampleProcessingProtocol says "... digested with sequencing-grade LysC (Wako) at a 1:50 enzyme-to-protein ratio for 2 hours, then further diluted 1:4 with 50 mM Tris-HCl pH 8 and digested with sequencing-grade trypsin (Promega) at a 1:50 ratio overnight." tools/record_reconcile.sentences() fails to split after "at 4 °C." and merges this sentence with the previous one, which contains "protease inhibitors"; _PROTEASE_ROLE_EXCLUDE ("inhibitor") then discards the digest sentence (debug: sentences(prose(record)) returns one string starting "Cell pellets were lysed ... protease inhibitors ... at 4 °C. The lysate was reduced ..."). Paper Methods state the same Lys-C then trypsin digest. Values kept.
+- check "Hallucinated" (spied, exit 1): the two hits are the deliberate free-text value 'synthetic phosphopeptide spike-in (not cell-derived)' in characteristics[cell line] / factor value[cell line] of the 56 SILAC heavy spike-in reference rows. cell-lines v1.1.0 forbids both reserved words there; free text follows the curated-batch precedent PXD021428 (super-SILAC reference row). Not an ontology claim. parse_sdrf reports it only as a warning.
+- parse_sdrf WARNING 'untreated' not in NCIT/EFO for characteristics[treatment]: template-prescribed control value (campaign rule 4); vehicle DMSO / 0.1% BSA controls.
+- convert-openms exit 1 (both files): "Cannot read precursor mass tolerance: not available". DIA-NN 1.8.2 auto-optimised mass accuracy (no --mass-acc-ms1 in any log); only per-run "Recommended MS1 mass accuracy" values are logged, so the applied MS1 tolerance is unrecorded. Sentinel kept per references/validation.md; the files cannot be converted as is.
+- structure: OK on both files after the shared-reference source names were made one per physical aliquot (light reference per dilution mixture in Benchmark1; spike pool per Benchmark2 sample well; per run in panel/GFs), so technical replicates are contiguous and constant within each data file.
