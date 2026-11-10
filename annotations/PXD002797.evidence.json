@@ -1,0 +1,288 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD002797.sdrf.tsv",
+ "dataset": "PXD002797",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002797 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/pride_v3.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD002797/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/files_all.json; 219 entries = 216 .RAW + MaxQuant_results_6h.zip + MaxQuant_results_36h.zip + Viewing_annotated_spectra_with_MS-Viewer.zip; every entry projectAccessions contains PXD002797; build input /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/files.json)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Drabovich AP, Pavlou MP, Schiza C, Diamandis EP. Dynamics of Protein Expression Reveals Primary Targets and Secondary Messengers of Estrogen Receptor Alpha Signaling in MCF-7 Breast Cancer Cells. Mol Cell Proteomics 2016;15(6):2093-2107, doi:10.1074/mcp.M115.057257, PMID 27067054, PMC5083091. Full text from https://pmc.ncbi.nlm.nih.gov/articles/PMC5083091/ (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/pmc.html, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/paper_text.txt, keyword contexts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/ctx.txt); sections Cell Culture, Cell Labeling by SILAC, Cell Lysis and Proteomic Sample Preparation, LC-MS/MS and SILAC Data Analysis"
+  },
+  {
+   "id": "mq_6h",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/04/PXD002797/MaxQuant_results_6h.zip members combined/txt/summary.txt, combined/txt/parameters.txt, combined/experimentalDesignTemplate.txt, combined/txt/proteinGroups.txt (zip central directory + members read by HTTP range, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/mq_6h/; listing /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/list_6h.txt)"
+  },
+  {
+   "id": "mq_36h",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/04/PXD002797/MaxQuant_results_36h.zip members combined/txt/summary.txt, parameters.txt, experimentalDesignTemplate.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/mq_36h/; listing /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/list_36h.txt)"
+  },
+  {
+   "id": "markers",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/markers.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/scripts/markers.py: log2 Ratio H/L Normalized A/B/C of known estradiol-responsive proteins from both proteinGroups.txt)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/04/PXD002797/SILAC_E2_6hrs_rep1_Frc22-1.RAW, SILAC_E2_6hrs_rep1_Frc22-2.RAW, SILAC_E2_36hrs_rep3_Frc43-47-2.RAW, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/raw/*.head; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/raw_summary.txt)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0031?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/cello_CVCL_0031.txt); id search id:MCF-7 returns a single Homo sapiens entry CVCL_0031"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/scripts/ols.py, log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/ols_log.txt); all used terms is_obsolete=False"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/contract.txt): ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (latest: 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older. spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "tables",
+   "kind": "derived",
+   "location": "Deterministic generator /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/samples.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/technical.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/files.json; SDRF built by sdrf-tools build"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-432",
+   "value": "MCF-7_<vehicle|E2>_<6h|36h>_rep<1-3> (12 sources)",
+   "source_ids": [
+    "files",
+    "mq_6h",
+    "mq_36h",
+    "paper",
+    "tables"
+   ],
+   "evidence": "Run names SILAC_E2_<6|36>hrs_rep<1-3>_Frc<NN>-<1|2>.RAW; MaxQuant experimentalDesignTemplate maps rep1/2/3 to experiments A/B/C for both time points. Paper: light (ethanol control) and heavy (estradiol) cells, three biological replicates per time point, equimolar heavy+light lysates mixed per replicate. One source = one labelled culture (one treatment, one time point, one replicate); the light and heavy culture of a mixture are different physical samples."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] + characteristics[dose] rows 1-432",
+   "value": "SILAC light = untreated (vehicle 0.1% ethanol), dose not applicable; SILAC heavy = estradiol, 10 nM",
+   "source_ids": [
+    "paper",
+    "pride",
+    "markers",
+    "mq_6h",
+    "mq_36h"
+   ],
+   "evidence": "Paper Cell Labeling by SILAC: \"the media of heavy cells was replaced with RPMI 1640 with 10% dextran-coated charcoal-treated FBS and 10 nM 17beta-estradiol ... whereas the media of control light cells contained RPMI 1640, 10% dextran-coated charcoal-treated FBS and 0.1% ethanol\"; PRIDE protocol: \"Heavy isotope-labeled cells were treated with 10 nM estradiol (Sigma), while control cells were treated with 0.1% ethanol\". Data check (log2 H/L normalized, reps A/B/C): 36 h TFF1 +2.25/+2.07/+2.21, GREB1 +2.19/+2.11/+2.15, PGR +1.64/+1.63/+1.80, CTSD +0.56/+0.49/+0.55, ESR1 -1.28/-1.22/-1.20 (ligand-induced ERalpha down-regulation); 6 h TFF1 +0.71/+0.76/+0.68, ESR1 -0.95/-0.91/-0.52 -> heavy = estradiol-treated, consistent with the paper (TFF1 immediate early). No conflict. Treatment NCIT:C2295 Estradiol (OLS); control = untreated (campaign rule 4, template-prescribed; validate-sdrf warns it is not an NCIT/EFO term)."
+  },
+  {
+   "location": "characteristics[sampling time] + factor value[sampling time] rows 1-432",
+   "value": "6 hour (rows from SILAC_E2_6hrs_* files) / 36 hour (SILAC_E2_36hrs_*)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "files",
+    "mq_6h",
+    "mq_36h"
+   ],
+   "evidence": "Paper/PRIDE: \"Cells were grown for 6 or 36 h\"; separate MaxQuant searches MaxQuant_results_6h / _36h and run names 6hrs / 36hrs. Both channels of a mixture share the time point."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-432",
+   "value": "1-3 within each (treatment, time) group = rep1/rep2/rep3",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_6h",
+    "mq_36h"
+   ],
+   "evidence": "Paper: cells seeded \"in triplicates\"; \"Three biological replicates of ~3x10^6 cells (500 ug of total protein)\"; MaxQuant experiments A/B/C = rep1/2/3. Each number is one independent culture per labelled condition; light rep1 and heavy rep1 are different cultures paired in one mixture (numbers restart per factor-value group, campaign rule 3)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-432",
+   "value": "1 for *-1.RAW, 2 for *-2.RAW",
+   "source_ids": [
+    "files",
+    "mq_6h",
+    "mq_36h",
+    "raw"
+   ],
+   "evidence": "Every SCX fraction was deposited as two runs suffixed -1 and -2; MaxQuant experimentalDesignTemplate gives both the same Slice (fraction) and the same Experiment, and the raw headers of Frc22-1 and Frc22-2 show the identical 60-min method (60min_ms1_60K-6LTQms2-Xcal-0_4eq.meth). Interpreted as two LC-MS/MS injections of the same fraction (inference; see limitations)."
+  },
+  {
+   "location": "comment[fraction identifier] + comment[fractionation method] rows 1-432",
+   "value": "1-18 = MaxQuant Slice (Frc22..Frc37 = 1..16, Frc38-42 = 17, Frc43-47 = 18); SCX PRIDE:0000561",
+   "source_ids": [
+    "mq_6h",
+    "mq_36h",
+    "paper",
+    "ols"
+   ],
+   "evidence": "experimentalDesignTemplate Slice column; paper: \"mixtures of light and heavy cell lysates were fractionated by strong-cation exchange chromatography, eighteen fractions were collected\". Fraction names 38-42 and 43-47 are pooled SCX fractions measured as single runs."
+  },
+  {
+   "location": "assay name + comment[data file] rows 1-432",
+   "value": "deposited .RAW file name / stem",
+   "source_ids": [
+    "files",
+    "tables"
+   ],
+   "evidence": "All 216 .RAW files of the PRIDE file list are annotated, 2 rows (light, heavy) each; all 216 names appear in the two experimentalDesignTemplate files (108 each)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-432",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; Cellosaurus CVCL_0031 OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-432",
+   "value": "MCF-7 / CVCL_0031 / MCF-7",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"MCF-7 breast cancer cell line was purchased from the American Type Culture Collection\"; Cellosaurus CVCL_0031 ID MCF-7 (ATCC HTB-22); an id:MCF-7 search returns only this human entry (no cross-species collision)."
+  },
+  {
+   "location": "characteristics[organism part] + characteristics[sampling site] rows 1-432",
+   "value": "breast / pleural effusion",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0031: breast carcinoma line, \"Derived from site: Metastatic; Pleural effusion; UBERON=UBERON_0000175\". UBERON:0000310 breast, UBERON:0000175 pleural effusion."
+  },
+  {
+   "location": "characteristics[disease] rows 1-432",
+   "value": "invasive ductal breast carcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C4194 Invasive breast carcinoma of no special type; MONDO:0004953 invasive ductal breast carcinoma is MONDO equivalentTo NCIT:C4194 (OLS xref)."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] + characteristics[ancestry category] rows 1-432",
+   "value": "69Y / female / adult / European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 69Y, SX Female, CC Population: Caucasian -> HANCESTRO:0005 European ancestry; adult EFO:0001272 (69Y >= 20Y, campaign rule 9)."
+  },
+  {
+   "location": "characteristics[material type] + characteristics[pooled sample] rows 1-432",
+   "value": "cell line / not pooled",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Each source is one culture of the MCF-7 cell line; no pooling of cultures."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-432",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "SILAC media \"customized RPMI 1640 media devoid of L-arginine and L-lysine\", treatment in RPMI 1640 + 10% dextran-coated charcoal-treated FBS; NCIT:C178973."
+  },
+  {
+   "location": "characteristics[sample storage temperature] rows 1-432",
+   "value": "-80 °C",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper/PRIDE: \"Cell pellets were kept at -80 C\"."
+  },
+  {
+   "location": "comment[instrument] + comment[ms2 mass analyzer] + comment[dissociation method] + comment[collision energy] + comment[ms1 scan range] rows 1-432",
+   "value": "LTQ Orbitrap XL MS:1000556; radial ejection linear ion trap MS:1000083; CID MS:1000133; 35 NCE; 450m/z-1450m/z",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers (3 files): instrument \"LTQ Orbitrap XL\", scan event 1 \"FTMS + p norm res=60000 o(450.0-1450.0)\", events 2-7 \"ITMS + c ... Dep MS/MS\", \"Activation Type: CID\", \"Normalized Coll. Energy: 35.0\"; paper/PRIDE: LTQ-Orbitrap XL."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-432",
+   "value": "Data-dependent acquisition PRIDE:0000627",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method: top-6 data-dependent MS/MS (\"Dep MS/MS Most intense ion from (1)\" ... 6th)."
+  },
+  {
+   "location": "comment[cleavage agent details] + comment[reduction reagent] + comment[alkylation reagent] rows 1-432",
+   "value": "Trypsin MS:1001251; DTT PRIDE:0000608; Iodoacetamide PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_6h",
+    "mq_36h",
+    "ols"
+   ],
+   "evidence": "PRIDE/paper: \"reduced with 10 mM dithiothreitol, alkylated with 20 mM iodoacetamide and digested overnight at 37 C with sequencing grade modified trypsin\". MaxQuant search rule Trypsin/P, max 2 missed cleavages (summary.txt); cleavage agent = digestion enzyme (campaign rule 2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-432",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) R (UNIMOD:188), Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mq_6h",
+    "mq_36h",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt (both searches, MaxQuant 1.1.1.25): Fixed modifications Carbamidomethyl (C); Variable modifications Oxidation (M);Acetyl (Protein N-term); Multiplicity 2; summary.txt Labels0 empty, Labels1 Arg6;Lys8 for all 216 runs (no Multi modifications column exists in this MaxQuant version). Paper: heavy L-13C6-arginine and L-13C6,15N2-lysine. Labels MT=Variable (campaign rule 11)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-432",
+   "value": "20 ppm / 0.5 Da",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_6h",
+    "mq_36h"
+   ],
+   "evidence": "Paper/PRIDE: \"peptide mass tolerance of 20 ppm for precursor ion and MS/MS tolerance of 0.5 Da\"; parameters.txt MS/MS tol. (CID) 0.5 Da (MS2 in the ion trap, CID). parameters.txt records only First search ppm tol 7; main-search tolerance not in the deposited parameters, so the paper value is used."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] + technology type rows 1-432",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates fit: MS proteomics, human samples, a cell line."
+  }
+ ],
+ "limitations": [
+  "Not pulsed SILAC: despite the campaign hint, this is a standard 2-plex SILAC design (heavy = 10 nM estradiol, light = 0.1% ethanol vehicle) at two time points (6 h, 36 h), 3 biological replicates each, 18 SCX fractions, 2 injections per fraction. SRM experiments described in the paper are not part of this deposit.",
+  "comment[technical replicate]: the -1/-2 suffix meaning is not stated in the paper or PRIDE; interpreted as duplicate injections of the same SCX fraction because MaxQuant assigns both to the same Slice/Experiment and the raw files use the identical method.",
+  "Control rows use characteristics[treatment] = untreated per campaign rule 4; the controls actually received vehicle (0.1% ethanol). No separate vehicle column is asserted.",
+  "comment[precursor mass tolerance] 20 ppm comes from the paper/PRIDE text; MaxQuant 1.1.1.25 parameters.txt lists only the first-search tolerance (7 ppm) and no mqpar.xml was deposited.",
+  "Paper says \"1 missed cleavage\" and \"minimum peptide length of 7\"; deposited summary.txt/parameters.txt say max 2 missed cleavages and min length 6. Not encoded in the SDRF (no column); recorded here. PRIDE data protocol text says \"SILAC double measurements of Lys6 and Arg8\" whereas the paper says Lys8 and Arg6 and MaxQuant summary.txt says Arg6;Lys8 with heavy L-13C6-arginine/L-13C6,15N2-lysine; the search output and paper win.",
+  "characteristics[cell type], characteristics[passage number] = not available: not stated.",
+  "Paper full text was read from the PMC HTML page (pmc.ncbi.nlm.nih.gov); Europe PMC fullTextXML returned 500 and the Unpaywall/Europe PMC PDF returned 403 (not bypassed). Supplementary tables were not consulted; the channel map rests on explicit Methods text plus deposited ratios.",
+  "Non-run files: MaxQuant_results_6h.zip / MaxQuant_results_36h.zip (search output) and Viewing_annotated_spectra_with_MS-Viewer.zip (APL peak lists + msms.txt for MS-Viewer) are not data runs. techsdrf not installed; raw verification limited to header range reads of 3 files.",
+  "Review: external sdrf-adversarial-review hand-off (REVIEW_PENDING_EXTERNAL); not self-approved."
+ ]
+}
