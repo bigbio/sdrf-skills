@@ -1,0 +1,63 @@
+# PXD002797 validation (producer run; SDRF from sdrf-tools build, no post-build edits)
+# sha256 800023c14ad01df40312150b78556fa8290f8c01e25321da01b52eee674df08e  rows x cols: 432 x 52
+
+$ sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/files.json -t ms-proteomics -t human -t cell-lines -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/rebuild.sdrf.tsv
+wrote /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/rebuild.sdrf.tsv: 432 rows x 52 columns
+exit code: 0
+
+$ cmp rebuild vs annotations SDRF
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD002797.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD002797.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD002797.sdrf.tsv
+Hallucination Report: PXD002797.sdrf.tsv
+  Terms checked:     19
+  Verified:          19
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD002797.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/pride_v3.json --accession PXD002797
+PXD002797: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools reconcile PXD002797.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/pride.json --accession PXD002797
+PXD002797: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ sdrf-tools schema-check PXD002797.evidence.json
+PXD002797.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD002797.sdrf.tsv PXD002797.evidence.json
+Manifest covers every column with a value (38 column(s)).
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/conv2) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD002797.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD002797.sdrf.tsv
+Factor columns: ['factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics
+Conditions (4): dict_keys(['6 hour|untreated', '6 hour|estradiol', '36 hour|untreated', '36 hour|estradiol'])
+Files per condition: dict_values([108, 108, 108, 108])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 432 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD002797.sdrf.tsv
+exit code: 0
+
+## Notes on findings
+- validate-sdrf WARNING "untreated ... not found in ncit;efo": accepted; `untreated` is the template-prescribed control value (campaign rule 4). The control cells received 0.1% ethanol vehicle (manifest limitation).
+- reconcile with the MCP-normalised pride.json reports MINOR cleavage_agent_unsupported: false positive. That file stores the protocol under `sample_processing_protocol`, which reconcile does not read; the raw PRIDE v3 record (pride_v3.json, sampleProcessingProtocol "digested overnight at 37 C with sequencing grade modified trypsin") reconciles with exit 0 and no findings.
+- convert-openms warning "no TA= specified" refers to Acetyl PP=Protein N-term (correct position encoding); 4 conditions x 108 files.
+- characteristics[dose] is a custom column (spec 'Extending Templates'), as in campaign precedents PXD008454 / PXD004245.
