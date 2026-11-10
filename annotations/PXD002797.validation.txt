@@ -1,8 +1,8 @@
-# PXD002797 validation (producer run; SDRF from sdrf-tools build, no post-build edits)
-# sha256 800023c14ad01df40312150b78556fa8290f8c01e25321da01b52eee674df08e  rows x cols: 432 x 52
+# PXD002797 validation — round 2 (after external review FAIL: precursor tolerance 20 ppm -> 6 ppm from .apar; added characteristics[biorepository], characteristics[individual]). SDRF from sdrf-tools build, no post-build edits
+# sha256 0d00be267b01fa01e7ddb41c876c761fa6e7e8bb814e90d848614555abc1416c  rows x cols: 432 x 54
 
 $ sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/files.json -t ms-proteomics -t human -t cell-lines -o /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/rebuild.sdrf.tsv
-wrote /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/rebuild.sdrf.tsv: 432 rows x 52 columns
+wrote /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/rebuild.sdrf.tsv: 432 rows x 54 columns
 exit code: 0
 
 $ cmp rebuild vs annotations SDRF
@@ -43,7 +43,7 @@ PXD002797.evidence.json: valid evidence-manifest
 exit code: 0
 
 $ sdrf-tools manifest-coverage PXD002797.sdrf.tsv PXD002797.evidence.json
-Manifest covers every column with a value (38 column(s)).
+Manifest covers every column with a value (40 column(s)).
 exit code: 0
 
 $ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/conv2) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD002797.sdrf.tsv -t2
@@ -61,3 +61,4 @@ exit code: 0
 - reconcile with the MCP-normalised pride.json reports MINOR cleavage_agent_unsupported: false positive. That file stores the protocol under `sample_processing_protocol`, which reconcile does not read; the raw PRIDE v3 record (pride_v3.json, sampleProcessingProtocol "digested overnight at 37 C with sequencing grade modified trypsin") reconciles with exit 0 and no findings.
 - convert-openms warning "no TA= specified" refers to Acetyl PP=Protein N-term (correct position encoding); 4 conditions x 108 files.
 - characteristics[dose] is a custom column (spec 'Extending Templates'), as in campaign precedents PXD008454 / PXD004245.
+- Round-2 change: comment[precursor mass tolerance] = 6 ppm, from combined/allSpectra.CID.{iso,sil0,sil1}.apar in both MaxQuant zips ("peptide mass tolerance=6", unit ppm); paper's 20 ppm recorded as a conflict in the manifest limitations.
