@@ -139,3 +139,4 @@ PXD072695	PRIDE	include		Batch 12: Leishmania tRF THP-1 macrophages	repository s
 PXD034333	PRIDE	exclude	channel map	Batch 12: Englerin A A-498, label assignment undocumented (BLOCKED.md)	deposit files; paper
 PXD046502	PRIDE	exclude	channel map	Batch 12: palmitate CD8 T cells, sample identities undocumented (BLOCKED.md)	deposit files; paper
 PXD060444	PRIDE	exclude	channel map	Batch 12: Ipomoeassin F MDA-MB-231, run-to-mixture map undocumented (BLOCKED.md)	deposit files; paper
+PXD031771	PRIDE	exclude	not SILAC	label-free (Skyline MS1) secretome of MCF7 miRNA lines on Agilent Q-TOF; PRIDE SILAC tag wrong; Mascot QUANTITATION empty	PRIDE protocols; Feser et al. Heliyon 2023 (PMC10148110); F003349.dat header
