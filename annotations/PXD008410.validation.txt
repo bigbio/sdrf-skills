@@ -1,19 +1,30 @@
-# PXD008410 validation log (2026-11-10T18:45Z); SDRF sha256 d70f5fa2d57346a03a83cd0f75e0eefd694a62bb9fc4a0875fbe25c5bf8bcc88
-# SDRF written by sdrf-tools build only (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/scripts/make_tables.py, files list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/files_raw_kept.json); no post-build edit.
+# PXD008410 validation log (2026-11-10T19:06Z); SDRF sha256 72aeea7d17e34114bada54c11b6d3e095adb4ca6382248550281a5186454322c
+# The SDRF is written by sdrf-tools build only (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/scripts/make_tables.py, files list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/files_raw_kept.json). No post-build edits.
 
-## Round 1 (superseded, sha256 6dc6dca9fe7be00a8da8b96ab64266e845df4253bc6ed3e5e14995b361afac04, 80 rows x 57 cols, all 40 runs)
-validate-sdrf exit 0 (5 warnings: A66, TGX-221, AS-252424, untreated in characteristics[treatment]; Capan-1 in characteristics[cell line]); structure, reconcile, check, convert-openms, schema-check, manifest-coverage all exit 0.
-Independent review FAILED. Fixes, all made in make_tables.py and followed by a rebuild:
-  (1) the ISO1/ISO2/ISO3 runs (24 files, map inferred only) are dropped and recorded in BLOCKED.md and in the manifest limitations;
-  (2) heavy reference rows are numbered by the run's RB (1-4), because there is one heavy lysate per replicate week, and the RB is added to the heavy source name;
-  (3) Supplementary Table 3, the Supplementary Figures and the unreachable thesis are added to the manifest sources.
+## Round 1 (superseded: sha256 6dc6dca9fe7be00a8da8b96ab64266e845df4253bc6ed3e5e14995b361afac04, 80 x 57, all 40 runs)
+All checks exited 0. validate-sdrf gave 5 warnings.
+Independent review FAILED. Fixes:
+  - the 24 ISO runs were dropped (BLOCKED.md);
+  - heavy biological replicates are numbered by RB;
+  - manifest sources were added.
 
-## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD008410.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+## Round 2 (superseded: sha256 d70f5fa2d57346a03a83cd0f75e0eefd694a62bb9fc4a0875fbe25c5bf8bcc88, 32 x 57, 16 runs)
+All checks exited 0. validate-sdrf gave 2 warnings. convert-openms: 5 conditions.
+Re-review FAILED. Fixes, all made in make_tables.py and followed by a rebuild:
+  - heavy = 8 unstimulated cultures (RB x time): heavy characteristics/factor value[sampling time] = the run's time point;
+  - characteristics[serum stimulation] = unstimulated on heavy rows, and a new factor value[serum stimulation] separates the heavy references from the light vehicle+FBS controls;
+  - RB and time are now in the heavy source names;
+  - characteristics[individual] = Capan-1_donor was added;
+  - the manifest now cites the TiO2 statement and addresses the 'flowthrough' mention.
+
+## Round 3 (current file): parse_sdrf validate-sdrf -s annotations/PXD008410.sdrf.tsv -t ms-proteomics -t human -t cell-lines
 WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
 WARNING: Term: Capan-1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
 Most seems to be fine. There were only warnings.
 exit=0
-Warnings explained: 'untreated' is the template-prescribed control value (batch rule 4). Capan-1: the CLO/BTO/EFO labels are 'Capan-1 cell' (CLO:0002197), 'CAPAN-1 cell' (BTO:0002744) and 'Capan1' (EFO:0002153). The Cellosaurus name is kept, and characteristics[cellosaurus accession] CVCL_0237 identifies the line.
+Warnings explained:
+  - 'untreated' is the control value the template prescribes (batch rule 4).
+  - Capan-1: the CLO/BTO/EFO labels are 'Capan-1 cell' (CLO:0002197), 'CAPAN-1 cell' (BTO:0002744) and 'Capan1' (EFO:0002153). The Cellosaurus name is kept, and characteristics[cellosaurus accession] CVCL_0237 identifies the line.
 
 ## sdrf-tools structure annotations/PXD008410.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
@@ -36,17 +47,20 @@ Hallucination Report: annotations/PXD008410.sdrf.tsv
 exit=0
 
 ## parse_sdrf convert-openms -s annotations/PXD008410.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/convert2)
-Conditions (5): dict_keys(['10 minute|untreated', 'not available|untreated', '24 hour|untreated', '10 minute|LY294002', '24 hour|LY294002'])
-Files per condition: dict_values([4, 16, 4, 4, 4])
+Conditions (6): dict_keys(['10 minute|2% dialysed fetal bovine serum|untreated', '10 minute|unstimulated|untreated', '24 hour|2% dialysed fetal bovine serum|untreated', '24 hour|unstimulated|untreated', '10 minute|2% dialysed fetal bovine serum|LY294002', '24 hour|2% dialysed fetal bovine serum|LY294002'])
+Files per condition: dict_values([4, 8, 4, 8, 4, 4])
 WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 32 times.
 SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD008410.sdrf.tsv
 exit=0
-The TA= warning is about the Acetyl modification with PP=Protein N-term: it is positional and has no residue, as the format rules intend.
+6 conditions:
+  - light vehicle+FBS and light LY294002+FBS, at 10 min and 24 h (4 files each);
+  - heavy unstimulated references at 10 min and 24 h (8 files each, because each heavy culture appears in the FBS run and the LY run).
+The TA= warning is about the Acetyl modification with PP=Protein N-term, which is positional and has no residue.
 
 ## sdrf-tools schema-check annotations/PXD008410.evidence.json
 annotations/PXD008410.evidence.json: valid evidence-manifest
 exit=0
 
 ## sdrf-tools manifest-coverage annotations/PXD008410.sdrf.tsv annotations/PXD008410.evidence.json
-Manifest covers every column with a value (40 column(s)).
+Manifest covers every column with a value (42 column(s)).
 exit=0

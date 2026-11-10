@@ -96,13 +96,14 @@
   },
   {
    "location": "source name even rows 2-32 (SILAC heavy)",
-   "value": "Capan-1 heavy vehicle reference RB<n>, aliquot in <run>",
+   "value": "Capan-1 heavy vehicle reference RB<n> <10 minute|24 hour> unstimulated, aliquot in <run>",
    "source_ids": [
-    "paper",
     "suppM",
-    "pride"
+    "paper",
+    "pride",
+    "suppT1"
    ],
-   "evidence": "Figure 1 legend: \"light condition varies in the biological replicate while heavy vehicle condition is a technical replicate that is added in each run\". Paper Methods / Supplementary Methods: \"For each biological replicate, light lysates were mixed with the same heavy lysates\"; the four replicates were done in four different weeks, and the PRIDE text normalises the heavy medians \"between each biological replicates at the two time of treatment\". So the heavy reference is one heavy lysate per replicate week (RB1-RB4), used in every run of that week. Whether the 10 min and 24 h runs of one week share one heavy lysate or had separate ones is ambiguous (\"After 10min and 24h of FBS stimulation, heavy cells and light cells were lysed\"). One source name per run (validation.md:22-23); the heavy names of one RB are aliquots of that week's heavy lysate."
+   "evidence": "Supplementary Methods: \"After 48h, cells were serum-starved during 16h ... Light and heavy cells were pre-treated respectively with inhibitors or their accordingly diluted vehicule (DMSO) during 1h, then stimulated or not for 10min or 24h with 2% dialyzed FBS. After 10min and 24h of FBS stimulation, heavy cells and light cells were ... lysed. Four biological replicates were sampled for each time point. These biological replicates were performed on four weeks.\" Paper Fig. 1C scheme (HAL PDF p.31) shows the heavy/vehicle dish marked \"+FBS 2%: -\" inside both the 10 min and the 24 h frames. PRIDE dataProcessingProtocol: heavy = \"starved untreated cells\", normalisation \"between each biological replicates at the two time of treatment\". Methods: \"For each biological replicate, light lysates were mixed with the same heavy lysates\". So there are 8 heavy cultures (RB1-RB4 x 10 min/24 h), serum-starved, DMSO, not FBS-stimulated, lysed at the light time point. Each heavy culture is shared by the FBS run and the LY run of the same replicate and time, so it gets one source name per run (validation.md:22-23); the two names of one culture are aliquots of one heavy lysate."
   },
   {
    "location": "comment[label] rows 1-32 + characteristics[sample type]",
@@ -149,22 +150,23 @@
   },
   {
    "location": "characteristics[sampling time] / factor value[sampling time] even rows 2-32 (SILAC heavy)",
-   "value": "not available",
+   "value": "10 minute | 24 hour (= time point of the run)",
    "source_ids": [
+    "suppM",
     "paper",
-    "suppM"
+    "suppT1"
    ],
-   "evidence": "The heavy reference is one material added to every run; the sources do not say at which time point(s) it was lysed."
+   "evidence": "Heavy cells were lysed at the same time points as the light cells (\"After 10min and 24h of FBS stimulation, heavy cells and light cells were ... lysed\"); Fig. 1C shows a heavy vehicle dish in both the 10 min and the 24 h frame. The time point of the run comes from its Supplementary Table 1 name."
   },
   {
-   "location": "characteristics[serum stimulation] (custom column) odd rows 1-31 (SILAC light) / even rows 2-32 (SILAC heavy)",
-   "value": "2% dialysed fetal bovine serum / not available",
+   "location": "characteristics[serum stimulation] / factor value[serum stimulation] (custom column) odd rows 1-31 (SILAC light) / even rows 2-32 (SILAC heavy)",
+   "value": "2% dialysed fetal bovine serum / unstimulated",
    "source_ids": [
     "suppM",
     "paper",
     "pride"
    ],
-   "evidence": "Light cells were serum-starved 16 h, pre-treated 1 h, then stimulated with 2% dialysed FBS (Supplementary Methods). For the heavy cells the sources say only \"stimulated or not\" and \"starved untreated cells\", so stimulation is not asserted. Custom column per spec \"Extending Templates\" (batch rule 15)."
+   "evidence": "Light cells were serum-starved 16 h, pre-treated 1 h, then stimulated with 2% dialysed FBS for 10 min or 24 h (Supplementary Methods, Fig. 1 legend). Heavy cells were the unstimulated arm of \"stimulated or not\": Fig. 1C marks the heavy/vehicle dish \"+FBS 2%: -\" in both time frames, and PRIDE calls the heavy samples \"starved untreated cells\". As a factor it keeps the heavy references apart from the light vehicle+FBS controls. Custom column per spec \"Extending Templates\" (batch rule 15)."
   },
   {
    "location": "characteristics[biological replicate] odd rows 1-31 (SILAC light)",
@@ -178,14 +180,14 @@
   },
   {
    "location": "characteristics[biological replicate] even rows 2-32 (SILAC heavy)",
-   "value": "1-4 = RB of the run",
+   "value": "1-4 = RB of the run, within each (untreated, time, unstimulated) group",
    "source_ids": [
-    "paper",
     "suppM",
+    "paper",
     "pride",
     "suppT1"
    ],
-   "evidence": "Light lysates were mixed with \"the same heavy lysates\" for each biological replicate, and the replicates were done in four weeks, so heavy rows are numbered by the run's RB."
+   "evidence": "One heavy culture per replicate week (RB1-RB4) and time point. Within each heavy factor group (10 minute or 24 hour) the four cultures are numbered 1-4. The two rows of one culture (its aliquots in the FBS and the LY run) carry the same number."
   },
   {
    "location": "characteristics[pooled sample] rows 1-32",
@@ -206,6 +208,14 @@
     "cellosaurus"
    ],
    "evidence": "PRIDE protocol \"Human pancreatic cancer cells Capan-1\"; Supplementary Methods \"SILAC Labelling of Capan-1 Cell Line\". Cellosaurus CVCL_0237 ID Capan-1, OX Homo sapiens. A name search finds only human lines (Capan-1, Capan-2, Capan-26, Capan1M9, Capan-1 SimpleCell), so there is no cross-species clash."
+  },
+  {
+   "location": "characteristics[individual] rows 1-32",
+   "value": "Capan-1_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All samples come from the single donor of the Capan-1 cell line (Cellosaurus CVCL_0237: 40Y male). The value follows the <cell line>_donor convention of other Cellosaurus-based SDRFs in this campaign (for example A549_donor, MCF-7_donor)."
   },
   {
    "location": "characteristics[organism] rows 1-32",
@@ -267,12 +277,14 @@
    "location": "characteristics[enrichment process] rows 1-32",
    "value": "enrichment of phosphorylated protein",
    "source_ids": [
-    "pride",
     "paper",
+    "pride",
     "suppM",
+    "suppT1",
+    "orient",
     "ols"
    ],
-   "evidence": "All 40 runs are TiO2-enriched phosphopeptides (\"SILAC samples (TiO2 enriched peptides) ... analyzed\"; 3600 phosphopeptides). EFO:0010806, a descendant of EFO:0009090 (OLS hierarchicalAncestors)."
+   "evidence": "Main text Methods: \"SILAC samples (TiO2 enriched peptides) were resuspended ... and analyzed by nano-LC-MS/MS ... All 40 mass spectrometry proteomic files have been deposited to ProteomeXchange\". The Supplementary Methods LC-MS paragraph says \"SILAC samples (TiO2 enriched peptides and flowthrough peptides)\". But the 40 deposited files are exactly the 40 condition x time x replicate names of Supplementary Table 1, one per sample, none named as flow-through. Each searched run yields about 2000-3000 quantified phosphopeptides (msf_quant.py on 10 runs), as expected for TiO2 eluates. So no flow-through run is deposited. EFO:0010806 is a descendant of EFO:0009090 (OLS hierarchicalAncestors)."
   },
   {
    "location": "assay name / comment[data file] / comment[technical replicate] / comment[fraction identifier] rows 1-32",
@@ -375,7 +387,7 @@
  ],
  "limitations": [
   "PARTIAL SCOPE: 24 of 40 raw files are NOT annotated, because the identity of the ISO1/ISO2/ISO3 inhibitors is not stated in any source: OETCD140614_02.raw (RB1-NT/ISO1 10min); OETCD140614_04.raw (RB2-NT/ISO1 10min); OETCD140614_06.raw (RB3-NT/ISO1 10min); OETCD140614_08.raw (RB4-NT/ISO1 10min); OETCD140614_11.raw (RB1-NT/ISO1 24H); OETCD140614_13.raw (RB2-NT/ISO1 24H); OETCD140614_15.raw (RB3-NT/ISO1 24H); OETCD140614_17.raw (RB4-NT/ISO1 24H); OETCD140614_20.raw (RB1-NT/ISO2 10min); OETCD140614_22.raw (RB2-NT/ISO2 10min); OETCD140614_24.raw (RB3-NT/ISO2 10min); OETCD140614_26.raw (RB4-NT/ISO2 10min); OETCD140614_29.raw (RB1-NT/ISO2 24H); OETCD140614_31.raw (RB2-NT/ISO2 24H); OETCD140614_33.raw (RB3-NT/ISO2 24H); OETCD140614_35.raw (RB4-NT/ISO2 24H); OETCD140618_01.raw (RB1-NT/ISO3 10min); OETCD140618_03.raw (RB2-NT/ISO3 10min); OETCD140618_05.raw (RB3-NT/ISO3 10min); OETCD140618_07.raw (RB4-NT/ISO3 10min); OETCD140618_10.raw (RB1-NT/ISO3 24H); OETCD140618_12.raw (RB2-NT/ISO3 24H); OETCD140618_14.raw (RB3-NT/ISO3 24H); OETCD140618_16.raw (RB4-NT/ISO3 24H). The supplementary Table 2 group structure strongly suggests ISO1 = A66, ISO2 = TGX-221, ISO3 = AS-252424 (the alpha-, beta- and gamma-selective peptide groups are changed in ISO1, ISO2 and ISO3 in >=96% of cases at both times; iso_check.txt). That is still an inference, and the PhD thesis, which might state the map, was unreachable. Recorded in annotations/BLOCKED.md (PXD008410). Unblock with an explicit statement from the authors, the thesis or PRIDE.",
-  "Heavy reference: one heavy lysate per replicate week (RB1-RB4), per the Methods (\"For each biological replicate, light lysates were mixed with the same heavy lysates\"; replicates done in four weeks; normalisation per replicate and time point). Whether the 10 min and 24 h runs of one week share a heavy lysate is ambiguous, so heavy sampling time and serum stimulation are not available.",
+  "Heavy reference: 8 heavy cultures (RB1-RB4 x 10 min / 24 h), unstimulated. This rests on the Supplementary Methods lysis sentence, the Fig. 1C scheme and the PRIDE normalisation text. The Fig. 1 legend phrase \"heavy vehicle condition is a technical replicate that is added in each run\" is read as \"one heavy culture added to every run of its replicate and time point\".",
   "characteristics[dose] for the DMSO vehicle is not available (\"accordingly diluted vehicle\"; no concentration given).",
   "parse_sdrf validate-sdrf warnings (exit 0): \"untreated\" in characteristics[treatment] is not an NCIT/EFO term, but it is the control value the template prescribes. Capan-1 is not matched in CLO/BTO/EFO, whose labels are \"Capan-1 cell\", \"CAPAN-1 cell\" and \"Capan1\"; the Cellosaurus name is kept and the line is identified by CVCL_0237.",
   "Paper full text: the published AACR version and the bioRxiv JATS are behind Cloudflare/429 and were not fetched (no bypass). The HAL accepted manuscript and the AACR figshare supplementary files were used instead.",
