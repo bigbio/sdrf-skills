@@ -1,0 +1,230 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv",
+ "dataset": "PXD040125",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD040125 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD040125/files?pageSize=100&page=0..5 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/files_all.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/files_list.txt; 242 entries, every entry's projectAccessions contains PXD040125)"
+  },
+  {
+   "id": "design",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/02/PXD040125/Experimental_design.xlsx sheet 'SEC_PCP_SILAC_80_SILAC_fr' (Tab. 1A: fraction # -> LC-MS run name) and the other four sheets for the excluded arms (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/dl/Experimental_design.xlsx, parsed /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/xlsx.txt)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Lapcik P et al. Global Interactome Mapping Reveals Pro-tumorigenic Interactions of NF-kB in Breast Cancer. Mol Cell Proteomics 2024;23(4):100744, doi:10.1016/j.mcpro.2024.100744, PMID 38417630, PMC10988130 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC10988130.1/PMC10988130.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/paper.txt; Methods lines 112-144, Results line 188)"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/02/PXD040125/SEC_SILAC_MaxQuant_Search_Results.zip members txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt (ZIP read by HTTP range, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/mq/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/scripts/orient.py on mq proteinGroups.txt)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/02/PXD040125/3502_Bouchal_Lumik2_1.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/raw/Lumik2_1.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0031?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/cello_CVCL_0031.txt) and sdrf-tools cellline lookup MCF-7"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/ontologies/<ont>/terms?obo_id=... and /api/search (MONDO:0004953, HANCESTRO:0005, EFO:0001272, UBERON:0000310, UBERON:0000175, NCIT:C17209, PRIDE:0000899, PRIDE:0001013, PRIDE:0000609, PRIDE:0000599, PRIDE:0000325/0000326/0000327, MS:1002732, MS:1001251, MS:1000422, MS:1000484, PRIDE:0000627; all is_obsolete=false)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign batch rules"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/build/samples.tsv, technical.tsv, files.json; sdrf-tools build -t ms-proteomics -t human -t cell-lines"
+  }
+ ],
+ "claims": [
+  {
+   "location": "scope: comment[data file] rows 1-240",
+   "value": "80 SILAC runs 3502_Bouchal_Lumik2_1..80 (incl. _23_2, _32_2), 3 rows each",
+   "source_ids": [
+    "files",
+    "design",
+    "mq"
+   ],
+   "evidence": "Experimental_design.xlsx Tab. 1A lists exactly these 80 .raw as SEC-PCP-SILAC fractions 01-80; MaxQuant summary.txt of SEC_SILAC search lists the same 80 raw names (0 missing, 0 extra) with Fraction 1-80 equal to the xlsx fraction #. Multiplicity 3, Labels0 empty, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 (rule 14 verified). Other 162 deposited files are out of scope (see limitations)."
+  },
+  {
+   "location": "comment[label] + characteristics[genetic modification] + characteristics[treatment] + factor value[genetic modification] rows 1-240",
+   "value": "SILAC light = untransfected MCF-7 internal-standard pool (untransfected / untreated); SILAC medium = empty pCMV4 vector transfection (Transfection); SILAC heavy = pCMV4-FLAG-deltaN-IkappaBalpha (NFKBIA deltaN36 super-repressor) transfection (Transfection)",
+   "source_ids": [
+    "paper",
+    "mq",
+    "pride"
+   ],
+   "evidence": "Paper Methods (line 116): light L-Lys/L-Arg; medium D4-L-lysine + 13C6-L-arginine; heavy 13C6-15N2-L-lysine + 13C6-15N4-L-arginine. Line 122: 'pCMV4-FLAG-dN IkBa plasmid to the H population ..., empty pCMV4 plasmid to the M population ..., and empty medium to the L population'. Results (line 188): 'cells labeled with heavy amino acids were transfected with plasmid encoding IkBa (NFKBIA) ... Control MCF-7 cells transfected with empty plasmid were labeled with medium isotopes'; 'heavy/light and medium/light SILAC ratios for cell samples with inhibited and uninhibited NF-kB, respectively'. MaxQuant label states agree with the isotopes: M = Arg6;Lys4, H = Arg10;Lys8. Data check limited: NFKBIA (P25963) is not in proteinGroups.txt, so the bait cannot confirm the H/M direction (see limitations); global log2 median normalized H/M -0.17, H/L +0.61, M/L +0.74 (orientation.txt) are uninformative for direction. Three statements in the paper agree, no conflicting source."
+  },
+  {
+   "location": "source name rows 1-240",
+   "value": "MCF7_dNIkBa_heavy_SECnn, MCF7_emptyvector_medium_SECnn, MCF7_untransfected_light_ISpool_aliquot_SECnn (nn = 01-80)",
+   "source_ids": [
+    "paper",
+    "design",
+    "build"
+   ],
+   "evidence": "Paper line 126/130: equal volumes of H and M lysates were mixed and SEC-separated into 80 fractions; each run is one SEC fraction of that mixture, so the H and M material of each run is a distinct physical sample (SEC fraction nn of the respective lysate) -> one source per (channel, SEC fraction). The light channel is an aliquot of ONE physical pool: the L lysate was separated into 20 SEC fractions which were pooled and the pool evenly distributed to all 80 H/M fractions as internal standard. Its 80 source names (one per run, validation.md:22-23, required by build) are aliquots of that single pool, not 80 independent samples."
+  },
+  {
+   "location": "characteristics[size-exclusion chromatography fraction] + factor value[size-exclusion chromatography fraction] rows 1-240; comment[fraction identifier]",
+   "value": "H/M rows: SEC fraction 1-80; L rows: not applicable; comment[fraction identifier] = 1 on every row",
+   "source_ids": [
+    "design",
+    "mq",
+    "paper",
+    "templates"
+   ],
+   "evidence": "Batch rule 16 / precedents PXD004650, PXD014436: the SEC fraction is the measured sample in PCP (the readout is the per-fraction H/L and M/L elution profile, paper line 188), so it is a sample property and factor, not comment[fraction identifier] (quantms would otherwise merge the 80 fractions into one sample). Fraction numbers from Experimental_design.xlsx Tab. 1A, identical to MaxQuant summary.txt Fraction. The L internal standard is a pool of all L SEC fractions, so it has no single SEC fraction. Custom characteristics column per spec 'Extending Templates'. comment[fractionation method] omitted for the same reason as PXD014436 (fractionation is encoded as a sample property)."
+  },
+  {
+   "location": "characteristics[sample type] + characteristics[pooled sample] rows 1-240",
+   "value": "H/M = study sample, not pooled; L = reference, pooled",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "L is the spiked internal standard (paper line 130, 188): reference PRIDE:0000899 (descendant of PRIDE:0000895 via multiplex sample, precedent PXD003316/PXD038030); pooled because it is the pool of 20 SEC fractions of the L lysate. H and M are the study samples (PRIDE:0001013)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-240",
+   "value": "1 for every row",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper line 112: 'one biological replicate labeled with SILAC'; each channel population is one culture (4 x 15 cm plates pooled per SILAC population, line 116/126). Within each factor-value group (genetic modification x SEC fraction) there is exactly one culture, and the L reference group is one culture, so 1 is the correct per-group number (rule 3), not a default."
+  },
+  {
+   "location": "characteristics[cell line], [cellosaurus accession], [cellosaurus name], [organism], [organism part], [sampling site], [disease], [age], [sex], [ancestry category], [developmental stage], [individual], [material type] rows 1-240",
+   "value": "MCF-7; CVCL_0031; MCF-7; Homo sapiens; breast; pleural effusion; invasive ductal breast carcinoma; 69Y; female; European ancestry; adult; MCF-7_donor; cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper line 116: 'MCF-7 breast cancer cells were obtained from Sigma-Aldrich'. Cellosaurus CVCL_0031: DI NCIt C4194 Invasive breast carcinoma of no special type (MONDO:0004953 'invasive ductal breast carcinoma' is MONDO:equivalentTo NCIT:C4194); AG 69Y; SX Female; Population Caucasian (genome ancestry European 95%) -> HANCESTRO:0005; Derived from site Metastatic; Pleural effusion UBERON:0000175; tissue breast UBERON:0000310. 69Y -> adult (EFO:0001272). No other species' Cellosaurus entry is named MCF-7 (lookup exact, confidence 1.00)."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-240",
+   "value": "Sigma-Aldrich",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper line 116: obtained from Sigma-Aldrich."
+  },
+  {
+   "location": "characteristics[cell type], [passage number], [culture medium], [sample storage temperature] rows 1-240",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cell type not stated (rule 9). Passage number: only '10 cell passages' of SILAC labelling, absolute passage unknown. Culture medium: SILAC Advanced DMEM/F12 Flex Media (paper line 116) has no NCIT term (OLS search: only NCIT:C185409 'Dulbecco's Modified Eagle Medium', which is DMEM, not DMEM/F12), so not available rather than a wrong term. Storage temperature not stated."
+  },
+  {
+   "location": "comment[instrument] rows 1-240",
+   "value": "NT=Orbitrap Fusion Lumos;AC=MS:1002732",
+   "source_ids": [
+    "pride",
+    "paper",
+    "raw"
+   ],
+   "evidence": "PRIDE instruments; paper line 136; raw header 'Orbitrap Fusion Lumos Method Summary', path 190731_3502_Bouchal_Lumik2."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] rows 1-240",
+   "value": "DDA PRIDE:0000627; beam-type CID MS:1000422; 30 NCE; orbitrap MS:1000484",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: 'data-dependent acquisition (DDA) ... HCD MS/MS (30% relative fragmentation energy) ... resolution of 30 000'; raw header ActivationType = HCD, Detector Type = Orbitrap, Orbitrap Resolution = 30K."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-240",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Paper line 130: digested by trypsin (Promega). Search rule Trypsin/P (summary.txt Enzyme), recorded here per batch rule 2."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-240",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; Label:13C(6) R UNIMOD:188, Label:2H(4) K UNIMOD:481, Label:13C(6)15N(4) R UNIMOD:267, Label:13C(6)15N(2) K UNIMOD:259 variable",
+   "source_ids": [
+    "mq",
+    "paper"
+   ],
+   "evidence": "summary.txt (all 80 runs identical): Fixed Carbamidomethyl (C); Variable Oxidation (M);Acetyl (Protein N-term); Multi modifications column EMPTY (no extra searched mods); Labels1 Arg6;Lys4, Labels2 Arg10;Lys8. sdrf-tools search-params output matches. Labels MT=Variable per rule 11."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-240",
+   "value": "4.5 ppm; 20 ppm",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Paper line 144: 'Main search precursor mass tolerance was set to 4.5 ppm for SILAC ... MS/MS mass tolerance was set to 20 ppm (FTMS)'; parameters.txt MS/MS tol. (FTMS) 20 ppm (Orbitrap MS2)."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-240",
+   "value": "TCEP PRIDE:0000609; iodoacetamide PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper line 130: reduced by tris(2-carboxyethyl)phosphine, alkylated using iodoacetamide."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-240",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10. Templates: MS data; human cells; cell line samples. clinical/oncology templates not declared (commercial cell line, rule 15)."
+  },
+  {
+   "location": "comment[technical replicate], assay name, technology type rows 1-240",
+   "value": "1; file stem; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "build",
+    "design"
+   ],
+   "evidence": "Each SEC fraction injected once (one raw per fraction in Tab. 1A; _23_2 and _32_2 are the only deposited and searched file of fractions 23 and 32)."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: only the SEC-PCP-SILAC arm (80 Orbitrap Fusion Lumos runs 3502_Bouchal_Lumik2_*.raw) is annotated. Excluded as non-SILAC (also listed in BLOCKED.md 'excluded runs'): 80 SEC-label-free Impact II QTOF runs (4641_QTOF1-batch1/-batch3/-batch4_*.d.zip, 40 inhibited + 40 uninhibited, Experimental_design.xlsx sheet SEC_PCP_SILAC_80_label_free_fr), 34 SEC label-free runs of untransfected cells (2494_QTOF1_*.d.zip, sheet SEC_label_free_34_fr), 24 RELA/IgG immunoprecipitation DIA runs (4626_Lumos1_*_{DN,EM}_{CTRL,RELA}*.raw) and 8 total-proteome DIA runs (4642_Lumos1_134_PB_DIA_win_{DN,EM}*.raw); these are label-free/DIA and would need their own SDRFs (rule 12).",
+  "Not data runs: Experimental_design.xlsx, MaxQuant_1.6.2.10.zip and MaxQuant_2.0.3.0.zip (software), MassTolerances_*.txt, *.sne Spectronaut files, *_Andromeda_Peak_Lists.zip, *_MaxQuant_Search_Results.zip, *_FullMaxQuantFolder.zip.",
+  "Channel-map data check is weaker than wanted: the bait NFKBIA (P25963, FLAG-dN-IkBa) is not identified in the SILAC proteinGroups.txt, so the H = dN-IkBa / M = empty vector assignment rests on three concordant explicit statements in the paper Methods/Results plus the MaxQuant label-state/isotope correspondence, not on a ratio check. Supplemental File 2 (SILAC ratios) is not in the PMC OA package and was not consulted.",
+  "The 80 light-channel source names are aliquots of one physical pool (L internal standard), not independent samples.",
+  "iRT peptides (Biognosys) were spiked into all samples (paper line 136); not encoded as characteristics[spiked compound] because no quantity is stated.",
+  "Culture medium SILAC Advanced DMEM/F12 Flex has no NCIT term -> not available.",
+  "No external review run here (REVIEW_PENDING_EXTERNAL); not self-approved."
+ ]
+}
