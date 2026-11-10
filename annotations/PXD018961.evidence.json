@@ -26,7 +26,7 @@
   {
    "id": "mq_gP",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD018961/MaxQuant_output_gProteome.zip members summary.txt, parameters.txt, proteinGroups.txt (HTTP range read, Deflate64 members inflated with zipfile-deflate64; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/mq_g/)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD018961/MaxQuant_output_gProteome.zip members summary.txt, parameters.txt, proteinGroups.txt (HTTP range read, Deflate64 members inflated with zipfile-deflate64; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/mq_g/ holds summary.txt and parameters.txt; the 34 MB proteinGroups.txt was deleted for disk space after deriving orientation.txt and can be re-extracted with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/scripts/rzip.py)"
   },
   {
    "id": "mq_pY",

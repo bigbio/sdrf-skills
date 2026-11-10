@@ -1,0 +1,56 @@
+# PXD012954 validation log (sdrf-pipelines parse_sdrf; sdrf-tools). Run from /home/user/bigbio/sdrf-skills/annotations, 2026-11-10.
+# SDRF sha256 afe77bd6a601220c229fd9727be9497d6252f5a507ca8955195648b558b85b0a; 166 rows x 52 columns
+# Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/make_tables.py -> two sdrf-tools build runs (IP part, input part; identical headers) -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/concat.py. No post-build edits of the SDRF.
+
+## Round 1 (final artifact; no fixes needed)
+
+$ sdrf-tools build --samples samples_ip.tsv --technical technical_ip.tsv --files files_ip.json -t ms-proteomics -t human -t cell-lines -o build_ip.sdrf.tsv
+wrote build_ip.sdrf.tsv: 80 rows x 52 columns
+exit code: 0
+$ sdrf-tools build --samples samples_input.tsv --technical technical_input.tsv --files files_input.json -t ms-proteomics -t human -t cell-lines -o build_input.sdrf.tsv
+wrote build_input.sdrf.tsv: 86 rows x 52 columns
+exit code: 0
+
+$ parse_sdrf validate-sdrf -s PXD012954.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: MC_2580 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD012954.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD012954.sdrf.tsv
+Hallucination Report: PXD012954.sdrf.tsv
+  Terms checked:     18
+  Verified:          18
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD012954.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/pride.json --accession PXD012954
+PXD012954: 1 value(s) disagree with the deposit record:
+
+  MAJOR    cleavage_agent_incomplete (comment[cleavage agent details]): the record names a Trypsin/Arg-C digest but only Trypsin is declared  [missing: Arg-C]
+exit code: 0
+
+Reconcile finding refuted: 'cleavage_agent_incomplete ... missing: Arg-C'. The only Arg-C mention in the PRIDE record is in the histone-PTM protocol ('Enzyme specificity was set to ArgC, since the propionylation of lysine residues allows the trypsin cutting only at the C-terminal of arginine residues'), which applies to the 27 label-free histone runs excluded from this SDRF. The SILAC IP/input samples were digested in-gel with trypsin (paper Methods) and searched with Trypsin/P only (summary.txt Enzyme column of txt_IP_LSD1_basale.zip and txt_IP_LSD1_dinamico.zip); Arg-C does not apply to any row.
+Validator warnings: 'untreated' and 'MC_2580' are not NCIT/EFO terms - 'untreated' is template-prescribed for controls (rule 4); MC_2580 is an investigational LSD1 inhibitor with no NCIT/EFO entry (OLS search returned none).
+
+$ cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD012954.sdrf.tsv -t2
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+(expected: precursor mass tolerance is not available in the deposit - see manifest limitations; campaign precedents PXD014368/PXD044779 likewise)
+
+$ sdrf-tools schema-check PXD012954.evidence.json
+PXD012954.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD012954.sdrf.tsv PXD012954.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit code: 0

@@ -1,0 +1,64 @@
+# PXD018961 validation log (2026-11-10T11:38Z); SDRF sha256 18cab75bbc7d75167fba98c0940b7d2a0d5cf66b9a073527c9f54707421ad12e (288 data rows x 56 columns)
+# SDRF = concatenation of two sdrf-tools build outputs with identical headers (gProteome 276 rows, pYome 12 rows) by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/scripts/concat.sh; no other post-build edit.
+
+## Round 1 (superseded build): parse_sdrf validate-sdrf -s annotations/PXD018961.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: BL-60 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+## Round 1: sdrf-tools check annotations/PXD018961.sdrf.tsv
+Hallucination Report: annotations/PXD018961.sdrf.tsv
+  Terms checked:     24
+  Verified:          23
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+exit=1
+  (rows 1-288: 'BL-60' in characteristics[cell line])
+Fix (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/scripts/make_tables.py -> samples_*.tsv, rebuilt with sdrf-tools build; no post-build edit): characteristics[cell line] 'BL-60' -> 'BL-60 cell' (label of EFO:0022349 / BTO:0001934). Round-1 structure and reconcile exit 0.
+
+## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD018961.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+Disposition: warning only. HsapDv:0000265 'child stage (1-4 yo)' (OLS, not obsolete) is the stage for Cellosaurus AG 4Y; EFO has no child-stage term (same as campaign precedents PXD006404/PXD072695).
+
+## sdrf-tools structure annotations/PXD018961.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD018961.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/pride.json --accession PXD018961
+PXD018961: every annotated value agrees with the deposit record.
+exit=0
+
+## sdrf-tools check annotations/PXD018961.sdrf.tsv
+Hallucination Report: annotations/PXD018961.sdrf.tsv
+  Terms checked:     24
+  Verified:          24
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD018961.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/convert; last 5 lines)
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[treatment]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (6): dict_keys(['dox-inducible non-targeting control shRNA (shGL2)|5 day', 'dox-inducible shRNA targeting SHMT2 (shSHMT2.1266)|5 day', 'dox-inducible non-targeting control shRNA (shGL2)|3 day', 'dox-inducible shRNA targeting SHMT2 (shSHMT2.1266)|3 day', 'dox-inducible shRNA targeting CD79A (shCD79A)|1 day', 'dox-inducible shRNA targeting CD79A (shCD79A)|2 day'])
+Files per condition: dict_values([71, 71, 71, 71, 2, 2])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 288 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD018961.sdrf.tsv
+exit=0
+Note: the TA= warning concerns the Acetyl protein N-term entry (PP=Protein N-term, no TA by design).
+
+## sdrf-tools schema-check annotations/PXD018961.evidence.json
+annotations/PXD018961.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD018961.sdrf.tsv annotations/PXD018961.evidence.json
+Manifest covers every column with a value (38 column(s)).
+exit=0

@@ -1,0 +1,323 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD012954.sdrf.tsv",
+ "dataset": "PXD012954",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012954 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD012954/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/files_all.json; 114 entries = 110 .raw + 4 MaxQuant txt zips; every entry projectAccessions contains PXD012954)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Ravasio R et al. Targeting the scaffolding role of LSD1 (KDM1A) poises acute myeloid leukemia cells for retinoic acid-induced differentiation. Sci Adv 2020;6(15):eaax2746, doi:10.1126/sciadv.aax2746, PMID 32284990, PMC7141832 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC7141832.1/PMC7141832.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/paper.txt; title verified)"
+  },
+  {
+   "id": "mq_basal",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/05/PXD012954/txt_IP_LSD1_basale.zip members parameters.txt, summary.txt, proteinGroups.txt (zip read by HTTP range with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/mq_basale/)"
+  },
+  {
+   "id": "mq_dynamic",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/05/PXD012954/txt_IP_LSD1_dinamico.zip members parameters.txt, summary.txt, proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/mq_dinamico/)"
+  },
+  {
+   "id": "mq_histone",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/05/PXD012954/txt_HistonesPTM_DDP38003.zip and https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/05/PXD012954/txt_HistonesPTM_WT_KO.zip members summary.txt, parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/mq_txt_HistonesPTM_DDP38003/, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/mq_txt_HistonesPTM_WT_KO/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/orientation.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/orient.py and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/inputcorr.py: log2 'Ratio H/L normalized' per MaxQuant experiment for bait/CoREST/GFI1 proteins, and between-experiment Pearson correlations)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 2 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/05/PXD012954/HF170807_LN_LSD1IP_BASALE_120X_FORWARD_01.raw, HF171020_LN_Input_DINAMICO_MC2580_Forward_01.raw, HF170710_LN_SILAC_LSD1_BASALE_120X_8.raw, HF171003_LN_BASALE_Input_Forward2_01.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0005?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/cello_CVCL_0005.txt); sdrf-tools cellline lookup NB4"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 /api/terms?obo_id=..., /api/search and hierarchicalChildren of PRIDE:0000895 / EFO:0009090 (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/ols_search.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/ols_children_sampletype.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/ols_children_enrich.txt); all used terms is_obsolete=false"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 'latest: 1.2.0', local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign batch rules 1 and 10"
+  },
+  {
+   "id": "tables",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/samples_ip.tsv, samples_input.tsv, technical_ip.tsv, technical_input.tsv; two sdrf-tools build runs concatenated with identical headers by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/concat.py"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-166",
+   "value": "NB4 <arm> interactome <replicate> <light|heavy> <untreated|MC_2580-treated> <anti-LSD1 IP | anti-LSD1 IP + blocking peptide | input> (20 sources)",
+   "source_ids": [
+    "mq_basal",
+    "mq_dynamic",
+    "paper",
+    "files"
+   ],
+   "evidence": "Ten SILAC mixtures in two MaxQuant searches (summary.txt experiments): basal arm IP_Forward_01, IP_Forward_02, IP_Reverse (paper: Rep1, Rep2 forward, Rep3 reverse) and their inputs Input_Forward_01, Input_Forward_02, Input_Reverse; MC_2580 (dynamic) arm IP_LSD1_FORWARD_MC2580, IP_LSD1_REVERSE_MC2580 and inputs Input_FORWARD_MC2580, Input_REVERSE_MC2580. One source per (mixture, SILAC channel): each channel of each mixture is a separate physical sample (separate light/heavy cultures and IPs, mixed only at the last wash: 'In the last washing step, light and heavy samples of each SILAC replicate were mixed'). IP and input of the same culture are different physical samples and get different names. Input<->IP replicate pairing (Input_Forward_01<->Rep1 etc.) is from the experiment names only."
+  },
+  {
+   "location": "comment[label] + characteristics[immunoprecipitation] + factor value[immunoprecipitation] rows 1-48 (basal IPs)",
+   "value": "Rep1 (rows 1-16) and Rep2 (17-32): SILAC light = anti-LSD1 IP + blocking peptide (mock), SILAC heavy = anti-LSD1 IP; Rep3 (33-48): light = anti-LSD1 IP, heavy = + blocking peptide",
+   "source_ids": [
+    "paper",
+    "pride",
+    "orientation",
+    "mq_basal"
+   ],
+   "evidence": "Paper Methods (LSD1 co-IP for MS): 'For the acquisition of the basal LSD1 interactome, 120-fold molar excess of LSD1 blocking peptide was incubated together with the antibody as negative control ... The peptide was added to the light channel in the forward experiment (Rep1 and Rep2) and to the heavy channel in the reverse experiment (Rep3).' Same in PRIDE sampleProcessingProtocol. Data check (log2 H/L normalized, IP_Forward_01 / IP_Forward_02 / IP_Reverse): RCOR1 +2.08/+2.64/-1.85, HDAC1 +2.35/+3.75/-2.00, HDAC2 +1.46/+3.66/-2.05, RCOR3 +2.34/+2.48/-1.52, GFI1 +1.23/+1.24/-1.77 -> CoREST interactors enriched in heavy (forward) and light (reverse), i.e. in the channel without blocking peptide. Forward_01 vs Forward_02 Pearson +0.773; Forward vs Reverse -0.357/-0.161."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] rows 49-80 (MC_2580 arm IPs)",
+   "value": "forward (rows 49-64): light = untreated, heavy = MC_2580; reverse (rows 65-80): light = MC_2580, heavy = untreated",
+   "source_ids": [
+    "paper",
+    "orientation",
+    "mq_dynamic"
+   ],
+   "evidence": "Paper Methods: 'for the dynamic LSD1 interactome, the inhibitor MC_2580 was added to the heavy channel in the forward experiment and in the light one in the reverse replicate.' Fig. 4E legend: 'upon LSD1 pharmacological inhibition with 2 uM MC_2580 for 24 hours'. Data check: GFI1, reported as evicted from LSD1 by the inhibitor (Fig. 4F), log2 H/L IP_LSD1_FORWARD_MC2580 -1.68, IP_LSD1_REVERSE_MC2580 +1.90 -> lower in the MC_2580 channel in both orientations; GSE1 -1.20/+1.59. Control channel = 'untreated' (campaign rule 4; the paper names no vehicle for the IP)."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] + characteristics[immunoprecipitation] rows 81-166 (inputs)",
+   "value": "basal inputs (rows 81-122): both channels untreated input; MC_2580 inputs: forward (123-144) light untreated / heavy MC_2580, reverse (145-166) light MC_2580 / heavy untreated",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_basal",
+    "mq_dynamic"
+   ],
+   "evidence": "Paper: 'A minor fraction (1/20) of input was collected before adding 10 ug of anti-LSD1 antibody to each sample'; the blocking peptide was 'incubated together with the antibody', so basal inputs carry no blocking peptide and both channels are untreated NB4 nuclear lysate. MC_2580 inputs are the inputs of the dynamic IPs (MaxQuant experiments Input_FORWARD_MC2580 / Input_REVERSE_MC2580; PRIDE: 'The uploaded data includes the input of the dynamic IP, which was excluded from following steps in the analysis'); their channel treatment follows the IP channel map, assuming cell treatment (Fig. 4E '2 uM MC_2580 for 24 hours'; see limitations)."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-166",
+   "value": "study sample (anti-LSD1 IP rows) / control sample (blocking-peptide mock IPs and inputs)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper calls the blocking-peptide IP the 'negative control'/'mock control'; the input is the pre-IP reference. PRIDE:0001013 study sample, PRIDE:0001014 control sample (children of PRIDE:0000895)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-166",
+   "value": "sample enrichment (IP rows 1-80) / not applicable (input rows 81-166)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "IP rows are anti-LSD1 co-immunoprecipitates (Abcam ab17721, Dynabeads Protein G); EFO:0009106 'sample enrichment' is the only applicable child of EFO:0009090 (others: methylated DNA, phosphorylated protein). Inputs are not enriched."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-166",
+   "value": "numbered 1..n per (immunoprecipitation, treatment) factor group: IP/untreated 1-5, IP+blocking peptide 1-3, IP/MC_2580 1-2, input/untreated 1-8, input/MC_2580 1-2",
+   "source_ids": [
+    "paper",
+    "mq_basal",
+    "mq_dynamic"
+   ],
+   "evidence": "Paper: 'By using three different biological replicates, we defined 147 LSD1 putative interactors' (Rep1-3) and a forward and a reverse replicate for the MC_2580 interactome. Each SILAC channel is a separately grown light or heavy NB4 culture, so every channel of every mixture is one independent culture within its group (spec README.adoc:330; campaign rule 3). Whether the untreated channels of the dynamic arm come from cultures separate from the basal arm is not stated; treated as independent."
+  },
+  {
+   "location": "characteristics[organism] rows 1-166",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus CVCL_0005 OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-166",
+   "value": "NB4; CVCL_0005; NB4",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: 'SILAC-based proteomics in combination with LSD1 IP to study the LSD1 interactome in NB4 cells'; 'NB4 cells were grown in light and heavy SILAC RPMI 1640'. Cellosaurus ID NB4, AC CVCL_0005 (human; DR EFO_0002798); EFO:0002798 label 'NB4'. No other-species Cellosaurus entry is named NB4 (sub-lines NB4-A1 etc. are distinct)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-166",
+   "value": "bone marrow",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0005: 'Derived from site: In situ; Bone marrow; UBERON=UBERON_0002371'."
+  },
+  {
+   "location": "characteristics[disease] rows 1-166",
+   "value": "acute promyelocytic leukemia",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C3182 'Acute promyelocytic leukemia with PML-RARA', ORDO Orphanet_520; paper: 'NB4 APL cells'. MONDO:0012883 'acute promyelocytic leukemia' (not obsolete). More specific than PRIDE's 'Acute leukemia' (DOID:12603)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-166",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured NB4 cell line."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[ancestry category] rows 1-166",
+   "value": "23Y; female; adult; European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0005: AG 23Y, SX Female, 'Population: Caucasian' -> HANCESTRO:0005 European ancestry (campaign rule 9; genome ancestry European North 49%/South 42%). 23Y >= 20Y -> EFO:0001272 adult."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-166",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 'NB4 cells were grown in light and heavy SILAC RPMI 1640 (Thermo Fisher Scientific, 89984)' with 10% dialyzed FBS. NCIT:C178973."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-166",
+   "value": "not pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Each channel is one culture's nuclear lysate / IP; light and heavy samples are mixed only as the SILAC pair, which the label column encodes."
+  },
+  {
+   "location": "characteristics[treatment] + factor value[treatment] rows 1-48, 81-122",
+   "value": "untreated",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Basal interactome and its inputs: no inhibitor (MC_2580 is only described for the dynamic interactome)."
+  },
+  {
+   "location": "characteristics[immunoprecipitation] + factor value[immunoprecipitation] rows 1-166 (custom column, spec 'Extending Templates')",
+   "value": "anti-LSD1 co-immunoprecipitation / anti-LSD1 co-immunoprecipitation with LSD1 blocking peptide (mock) / input (nuclear lysate before immunoprecipitation)",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper: 'Antibody used for the preparative LSD1 coimmunoprecipitation was LSD1 (Abcam, no. 17721). The blocking peptide used as mock control was Human KDM1/LSD1 peptide (ab17763).' Input collected from the nuclear fraction lysate before antibody addition."
+  },
+  {
+   "location": "assay name, comment[data file], comment[fraction identifier], comment[technical replicate] rows 1-166",
+   "value": "file stem; fraction = MaxQuant 'Fraction' (IP 1-8, basal inputs 1-7, MC_2580 inputs 1-11); technical replicate 1",
+   "source_ids": [
+    "mq_basal",
+    "mq_dynamic",
+    "files"
+   ],
+   "evidence": "All 83 SILAC .raw files are listed in the summary.txt of their search with experiment and fraction (0 missing, 0 extra). summary.txt spells five files '..._7,5ug' where the deposited names are '..._75ug' (comma dropped on upload; mapped 1:1, all in IP_Forward_02). IP_Forward_01 fractions 7 and 8 are HF170710_LN_SILAC_LSD1_BASALE_120X_Forward_7.raw and HF170710_LN_SILAC_LSD1_BASALE_120X_8.raw. Each fraction injected once."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-80 / rows 81-166",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568 (IP) / not available (inputs)",
+   "source_ids": [
+    "paper",
+    "mq_basal"
+   ],
+   "evidence": "Paper: IP eluates 'were loaded on an SDS-PAGE gradient gel for subsequent protein separation and mass spectrometry analysis'; 'In-gel digestion of gel-separated proteins'; 8 gel fractions per IP mixture. How the inputs (7 or 11 fractions) were fractionated is not stated."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-80 / rows 81-166",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608 (IP) / not available (inputs)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: IP proteins 'eluted by incubation at 95C for 5 min with the LDS Sample Buffer ... supplemented with 100 mM DTT'. Input processing is not described."
+  },
+  {
+   "location": "comment[instrument] rows 1-166",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw headers of four sampled files (IP and input, both arms, both dates) contain 'Q Exactive HF'; paper: 'quadrupole/Orbitrap mass spectrometer (Q Exactive HF)'. PRIDE lists 'Q Exactive' (MS:1001911) - submitter dropdown, overridden."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-166",
+   "value": "Data-dependent acquisition; beam-type CID (HCD); 28 NCE; orbitrap; 375m/z-1650m/z",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper LC-MS/MS: 'data-dependent mode ... top 15'; 'full MS [AGC 3x10^6; resolution 60,000; m/z range 375 to 1650]'; 'Normalized collision energy was set to 28%'. Q Exactive HF fragments by HCD with Orbitrap MS2 detection."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-166",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_basal",
+    "mq_dynamic"
+   ],
+   "evidence": "Paper: 'In-gel digestion ... was carried out with trypsin'. MaxQuant search rule Trypsin/P (summary.txt Enzyme), recorded here only as a note (campaign rule 2)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-166",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; Label:13C(6)15N(4) R (UNIMOD:267) and Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mq_basal",
+    "mq_dynamic",
+    "paper"
+   ],
+   "evidence": "parameters.txt (MaxQuant 1.6.1.0, identical in both searches except date): 'Fixed modifications Carbamidomethyl (C)'; summary.txt 'Variable modifications Oxidation (M);Acetyl (Protein N-term)', 'Multi modifications' empty for all files, 'Multiplicity 2', 'Labels1 Arg10;Lys8'. Paper: Arg10 = L-arginine-13C6,15N4, Lys8 = L-lysine-13C6,15N2 -> UNIMOD:267 / UNIMOD:259; MT=Variable per campaign rule 11."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-166",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_basal",
+    "mq_dynamic"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm'; MS2 spectra are Orbitrap (FTMS)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-166",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; technology type and sdrf template filled by sdrf-tools build."
+  }
+ ],
+ "limitations": [
+  "Partial scope: the 27 label-free histone-PTM runs (MaxQuant searches txt_HistonesPTM_DDP38003.zip and txt_HistonesPTM_WT_KO.zip: Multiplicity 1, no labels, enzyme ArgC, Pro-PIC derivatisation) are out of scope for this SILAC SDRF and were not annotated: 38003_1_IIIreplica_histones_LN.raw, 38003_1_IIreplica_histones_LN.raw, 38003_1_Ireplica_histones_LN.raw, 38003_2_IIIreplica_histones_LN.raw, 38003_2_IIreplica_histones_LN.raw, 38003_2_Ireplica_histones_LN.raw, 38003_3_IIIreplica_histones_LN.raw, 38003_3_IIreplica_histones_LN.raw, 38003_3_Ireplica_histones_LN.raw, DMSO1_Ireplica_histones_LN.raw, DMSO_1_IIIreplica_histones_LN.raw, DMSO_1_IIreplica_histones_LN.raw, DMSO_2_IIIreplica_histones_LN.raw, DMSO_2_IIreplica_histones_LN.raw, DMSO_2_Ireplica_histones_LN.raw, DMSO_3_IIIreplica_histones_LN.raw, DMSO_3_IIreplica_histones_LN.raw, DMSO_3_Ireplica_histones_LN.raw, KO1_IIIreplica_LNRR.raw, KO1_IIreplica_LNRR.raw, KO1_Ireplica_LNRR.raw, KO2_IIIreplica_LNRR.raw, KO2_IIreplica_LNRR.raw, KO2_Ireplica_LNRR.raw, WT_IIIreplica_LNRR.raw, WT_IIreplica_LNRR.raw, WT_Ireplica_LNRR.raw. Recorded in annotations/BLOCKED.md (excluded runs). They would need their own label-free SDRF (rule 12).",
+  "MC_2580 input channels (rows 123-166): the paper places 'the inhibitor MC_2580 was added to the heavy channel' in the IP Methods paragraph, while Fig. 4E says 'inhibition with 2 uM MC_2580 for 24 hours' (cell treatment). The input channels were annotated as MC_2580-treated / untreated following the IP channel map, assuming cell treatment; the input H/L ratios (forward vs reverse Pearson +0.233, same as untreated basal inputs +0.243) neither confirm nor refute a treatment effect. Dose (2 uM) and duration (24 h) are not encoded as columns.",
+  "Pairing of inputs with IP replicates (Input_Forward_01<->Rep1, Input_Forward_02<->Rep2, Input_Reverse<->Rep3) is inferred from MaxQuant experiment names; basal inputs Forward_01 vs Forward_02 correlate (+0.653) more than forward vs reverse (+0.243), which could also mean the two forward inputs share lysate. Biological replicate numbers of input rows treat each channel as an independent culture.",
+  "Whether the untreated channels of the MC_2580 arm come from cultures independent of the basal arm is not stated; numbered as independent within the (anti-LSD1 IP, untreated) and (input, untreated) groups.",
+  "comment[precursor mass tolerance] = not available: MaxQuant parameters.txt/summary.txt do not record the main-search precursor tolerance and no mqpar.xml was deposited; consequently parse_sdrf convert-openms may refuse the file (as for campaign precedents).",
+  "comment[alkylation reagent] = not available: the in-gel digestion is 'as previously described (38)' and no alkylating agent is named (fixed Carbamidomethyl (C) only shows carbamidomethylation). Reduction reagent and fractionation method of the input samples are not described.",
+  "characteristics[cell type] and characteristics[passage number] = not available: not stated in the paper or PRIDE (campaign rule 9).",
+  "The MaxQuant search FASTA is HUMAN_2018.fasta (UniProt 2018_02 per PRIDE); not encoded (no SDRF column).",
+  "Review status REVIEW_PENDING_EXTERNAL: no review file written and review-gate not run, per the batch instructions."
+ ]
+}
