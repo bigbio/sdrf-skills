@@ -1,0 +1,4 @@
+# PXD046807 validation log (sdrf-pipelines parse_sdrf; sdrf-tools). Run from /home/user/bigbio/sdrf-skills/annotations, 2026-11-10. Round 1 (identical artifact, before the manifest existed) is kept at /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/val_r1.txt.
+
+## Final round (artifact as delivered)
+$ parse_sdrf validate-sdrf -s PXD046807.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata

@@ -1,0 +1,399 @@
+{
+ "schema_version": 1,
+ "artifact": "annotations/PXD046807.sdrf.tsv",
+ "dataset": "PXD046807",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD046807 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/pride_v3.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/pride.json): title, description, sample/data processing protocols (8 sample groups WT-E-N, WT-E-T, WT-L-N, WT-L-T, MT-E-N, MT-E-T, MT-L-N, MT-L-T; super-SILAC with three LUAD cell lines; women, never smokers; 44 SCX salt steps; LTQ-Orbitrap Elite; CID NCE 35%; trypsin; DTT/iodoacetamide), instruments [LTQ Orbitrap Elite], quantification SILAC"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD046807/files?pageSize=100&page=0..4 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/files_all.json; 360 entries = 352 RAW (8 groups x 44, suffix -1..-44) + 8 PD .msf; every entry projectAccessions contains PXD046807; page 4 empty after short page 3)"
+  },
+  {
+   "id": "msf",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD046807/<group>.msf for all 8 groups (WT_E_normal, WT_E_Tumor, WT-L-Normal, WT-L-Tumor, MT-E-Normal, MT-E-Tumor, MT-L-Normal, MT-L-Tumor), SQLite read by HTTP range with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/scripts/msf_http.py (apsw VFS); Workflows.WorkflowXML dumped to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/msf/<group>/Workflows.tsv, compared by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/scripts/compare_wf.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/msf_workflows.json: Proteome Discoverer 2.2.0.388, template \"20180621 SILACprocessing woContaminate\", Minora QuantificationMethod \"SILAC 2plex(Arg6, Lys6)\", Sequest HT + Mascot on SwissProt human, Trypsin (Full), 2 missed cleavages, precursor 10 ppm, fragment 0.5 Da, static Carbamidomethyl (C), dynamic Label:13C(6) (K, R), Oxidation (M), Gln->pyro-Glu (N-term Q), Acetyl (Protein N-term); search-relevant parameters identical in all 8 files; SpectrumFileNames = 44 files <date>_<group>_20ug-s01..s44.raw per group"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "First 8 KB of each of the 352 .raw files at https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD046807/ (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/scripts/raw_names.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/raw_names.json) plus first 1.5 MB of WT_E_Tumor-1.raw and MT-L-Normal-22.raw (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/raw/*.head): original acquisition name <date>_<group>_20ug-sNN.raw matches deposited <group>-N.raw for all 352 (0 mismatches); instrument \"Orbitrap Elite\"; method 20150627-1FT12CID: FTMS res 60000 o(350.0-2000.0) + 12 ITMS CID MS/MS, Normalized Coll. Energy 35.0, isolation 2.0"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Hsiao TF et al., J Proteome Res 2025 24(9):4674-4688, PMID 40752010, PMC12419241, doi:10.1021/acs.jproteome.5c00385 (Europe PMC search \"PXD046807\" -> this paper). Only the abstract/metadata were readable (Europe PMC fullTextXML HTTP 500 \"not in OA subset\"; PMC/Europe PMC PDF behind a bot check, not bypassed; PMC OA S3 has no key; NCBI efetch returns front matter only)."
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name (all 704 rows)",
+   "value": "<group> lung tissue (light) / super-SILAC reference in <group> (heavy)",
+   "source_ids": [
+    "pride",
+    "files",
+    "msf"
+   ],
+   "evidence": "The 8 group codes are the PRIDE sample protocol groups; each group = 44 raw files (one SCX 2D-LC run of one sample) and one .msf. The heavy reference gets one source name per group run (aliquots of the shared super-SILAC reference; spec rule one source name per run)."
+  },
+  {
+   "location": "characteristics[sample type] (all 704 rows)",
+   "value": "study sample (light) / reference (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Tissue lysate = study sample; SILAC-labelled cell-line lysate spiked in equal proportion = reference."
+  },
+  {
+   "location": "characteristics[organism] (all 704 rows)",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "organism Homo sapiens; LUAD patient tissues and LUAD cell lines."
+  },
+  {
+   "location": "characteristics[organism part] (all 704 rows)",
+   "value": "lung",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "LUAD tissue (tumour and adjacent normal parts); cell lines are lung adenocarcinoma lines; PRIDE organism part lung (BTO:0000763) -> UBERON:0002048 lung."
+  },
+  {
+   "location": "characteristics[cell type] (all 704 rows)",
+   "value": "not available",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "No cell type stated for the tissue; cell-line cell type not stated."
+  },
+  {
+   "location": "characteristics[biological replicate] (all 704 rows)",
+   "value": "1 (light) / pooled (heavy)",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "Each factor-value combination (EGFR x stage x tumour/normal) has exactly one measured sample (one 44-fraction run per group), so numbering within each group is 1; heavy rows are the pooled reference."
+  },
+  {
+   "location": "characteristics[pooled sample] (all 704 rows)",
+   "value": "not available (light) / pooled (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Protocol calls them \"sample groups\" but does not say whether a group is one patient or a pool, nor how many patients; reference is a mix of three cell-line lysates (names not given)."
+  },
+  {
+   "location": "characteristics[disease] (all 704 rows)",
+   "value": "lung adenocarcinoma (T groups, heavy) / normal (N groups)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "T = tumour parts (DOID:3910 lung adenocarcinoma in PRIDE -> MONDO:0005061); N = adjacent normal parts -> PATO:0000461 normal; reference cell lines are LUAD lines."
+  },
+  {
+   "location": "characteristics[material type] (all 704 rows)",
+   "value": "tissue (light) / cell line (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Tissue extraction protocol; \"three locally established LUAD cell lines\"."
+  },
+  {
+   "location": "characteristics[ancestry category] (all 704 rows)",
+   "value": "not available",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Not stated per patient (country Taiwan only)."
+  },
+  {
+   "location": "characteristics[age] (all 704 rows)",
+   "value": "not available (light) / pooled (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "No age in the accessible record."
+  },
+  {
+   "location": "characteristics[sex] (all 704 rows)",
+   "value": "female (light) / not available (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE description: proteins from the cell lines \"were pooled with LUAD tissues from women, never smokers\" - a selection criterion covering every proteomic tissue sample, not a cohort summary. Cell-line donor sex not given."
+  },
+  {
+   "location": "characteristics[individual] (all 704 rows)",
+   "value": "not available (light) / pooled (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "No patient IDs deposited; pool composition unknown."
+  },
+  {
+   "location": "characteristics[smoking status] (all 704 rows)",
+   "value": "Never Smoker (light) / not applicable (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Same PRIDE sentence (\"women, never smokers\"); NCIT:C65108 Never Smoker, child of NCIT:C19796 Smoking Status (OLS4 hierarchicalAncestors), not obsolete."
+  },
+  {
+   "location": "characteristics[genotype] (all 704 rows)",
+   "value": "EGFR wild type / EGFR mutant (light) / not available (heavy)",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "Group prefix WT/MT = EGFR wild-type / mutant (PRIDE sample protocol and description); applies to the patient group (tumour EGFR status), also for the adjacent normal part. Cell-line EGFR status not given."
+  },
+  {
+   "location": "characteristics[cancer stage group] (all 704 rows)",
+   "value": "early stage / late stage (light) / not applicable (heavy)",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "Custom column (spec Extending Templates): group code E/L = \"early stage\"/\"late stage\" (\"different histological stages (early and late)\"). Exact TNM stages per group not in the accessible record, so no NCIT stage term is asserted (NCIT Limited Stage / Advanced Stage definitions do not match resected tumours)."
+  },
+  {
+   "location": "characteristics[clinical data] (all 704 rows)",
+   "value": "per-group free text",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "Restates group code, tumour/normal, EGFR, stage group and cohort criteria, plus the unknown pooling; heavy rows describe the super-SILAC reference."
+  },
+  {
+   "location": "assay name (all 704 rows)",
+   "value": "raw file stem",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "build default: file stem, shared by both SILAC channels of a run."
+  },
+  {
+   "location": "technology type (all 704 rows)",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "MS proteomics."
+  },
+  {
+   "location": "comment[technical replicate] (all 704 rows)",
+   "value": "1",
+   "source_ids": [
+    "files",
+    "msf"
+   ],
+   "evidence": "Each group measured once (one 2D-LC series of 44 fractions)."
+  },
+  {
+   "location": "comment[data file] (all 704 rows)",
+   "value": "<group>-<n>.raw",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "352 deposited raw files."
+  },
+  {
+   "location": "comment[fraction identifier] (all 704 rows)",
+   "value": "1..44",
+   "source_ids": [
+    "files",
+    "raw_header",
+    "msf"
+   ],
+   "evidence": "File suffix -N = original sNN = SCX salt step N (44 discrete intervals, PRIDE protocol); verified for all 352 raw headers."
+  },
+  {
+   "location": "comment[sdrf version] (all 704 rows)",
+   "value": "v1.1.0",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Campaign rule 1 (spec README.adoc:27)."
+  },
+  {
+   "location": "comment[sdrf template] (all 704 rows)",
+   "value": "ms-proteomics v1.2.0, human v1.1.0, clinical-metadata v1.0.0, oncology-metadata v1.0.0",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Human patient tissue cancer study (rule 15/18); cell-lines template not declared (patient tissue rows; reference described via pooled sample/material type). ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (latest 1.2.0); the spec submodule nested templates copy is older."
+  },
+  {
+   "location": "comment[sdrf annotation tool] (all 704 rows)",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Campaign rule 10."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] (all 704 rows)",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw_header"
+   ],
+   "evidence": "PRIDE experiment type DDA; raw method top-12 data-dependent MS/MS."
+  },
+  {
+   "location": "comment[instrument] (all 704 rows)",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "pride",
+    "raw_header"
+   ],
+   "evidence": "PRIDE \"LTQ Orbitrap Elite\"; raw header \"Orbitrap Elite\" in all 352 files. MS:1001910 label Orbitrap Elite (\"sometimes referred to as the LTQ Orbitrap Elite\")."
+  },
+  {
+   "location": "comment[cleavage agent details] (all 704 rows)",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "msf"
+   ],
+   "evidence": "Digestion with trypsin 100:1 (protocol); PD Enzyme Trypsin (Full), 2 missed cleavages."
+  },
+  {
+   "location": "comment[label] (all 704 rows)",
+   "value": "SILAC light / SILAC heavy",
+   "source_ids": [
+    "pride",
+    "msf"
+   ],
+   "evidence": "Super-SILAC: SILAC-labelled LUAD cell-line lysate combined in equal proportion with each tissue lysate (protocol). PD quantification SILAC 2plex(Arg6, Lys6). Patient tissue cannot be metabolically labelled, so heavy = cell-line reference, light = tissue."
+  },
+  {
+   "location": "comment[dissociation method] (all 704 rows)",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "pride",
+    "raw_header"
+   ],
+   "evidence": "CID in the LTQ; raw: Activation Type CID, ITMS."
+  },
+  {
+   "location": "comment[fractionation method] (all 704 rows)",
+   "value": "NT=Strong cation-exchange chromatography (SCX);AC=PRIDE:0000561",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Online 2D-LC with SCX first dimension, 44 salt steps."
+  },
+  {
+   "location": "comment[collision energy] (all 704 rows)",
+   "value": "35 NCE",
+   "source_ids": [
+    "pride",
+    "raw_header"
+   ],
+   "evidence": "Normalized collision energy 35% (protocol, raw method)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] (all 704 rows)",
+   "value": "10 ppm",
+   "source_ids": [
+    "msf"
+   ],
+   "evidence": "Sequest HT and Mascot PeptideTolerance 10 ppm in all 8 workflows (the 20 ppm value belongs to the Spectrum Files RC recalibration node, not the search)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] (all 704 rows)",
+   "value": "0.5 Da",
+   "source_ids": [
+    "msf"
+   ],
+   "evidence": "Sequest HT and Mascot FragmentTolerance 0.5 Da."
+  },
+  {
+   "location": "comment[reduction reagent] (all 704 rows)",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "5 mM DTT."
+  },
+  {
+   "location": "comment[alkylation reagent] (all 704 rows)",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "15 mM iodoacetamide."
+  },
+  {
+   "location": "comment[modification parameters] (all 704 rows)",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Gln->pyro-Glu N-term Q, Acetyl protein N-term, Label:13C(6) K, Label:13C(6) R variable",
+   "source_ids": [
+    "msf",
+    "pride"
+   ],
+   "evidence": "PD workflow static/dynamic modifications (identical in all 8 .msf); Label:13C(6) = UNIMOD:188 (+6.020 Da, Arg6/Lys6), MT=Variable per campaign rule 11. UNIMOD accessions checked in OLS4 (not obsolete)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] (all 704 rows)",
+   "value": "NT=radial ejection linear ion trap;AC=MS:1000083",
+   "source_ids": [
+    "raw_header",
+    "pride"
+   ],
+   "evidence": "MS/MS scan events ITMS (LTQ linear ion trap)."
+  },
+  {
+   "location": "comment[ms1 scan range] (all 704 rows)",
+   "value": "350m/z-2000m/z",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "FTMS scan event o(350.0-2000.0); the PRIDE protocol says m/z 400-2000 (that is the ITMS/global MS mass range in the method); raw scan event used."
+  },
+  {
+   "location": "factor value[genotype] (all 704 rows)",
+   "value": "EGFR wild type / EGFR mutant / not applicable (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Study compares EGFR WT vs MT (title, description)."
+  },
+  {
+   "location": "factor value[cancer stage group] (all 704 rows)",
+   "value": "early stage / late stage / not applicable (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Study compares early vs late stage."
+  },
+  {
+   "location": "factor value[disease] (all 704 rows)",
+   "value": "lung adenocarcinoma / normal / not applicable (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Tumour vs adjacent normal parts."
+  }
+ ],
+ "limitations": [
+  "Publication (PMID 40752010, PMC12419241) full text and supplementary information were not accessible (not in PMC OA subset; PDF routes behind bot checks, not bypassed). Everything below rests on the PRIDE record, the PD .msf workflows and raw headers.",
+  "Whether each of the 8 sample groups is a single patient or a pool of several patients, and how many patients it contains, is not stated in the accessible record -> characteristics[pooled sample] and characteristics[individual] = not available; biological replicate 1 per group (one measured sample per factor combination).",
+  "Whether the N and T groups of the same EGFR/stage combination come from the same patients (paired) is not stated.",
+  "Exact pathological stages behind \"early\" and \"late\" are not given -> custom free-text characteristics[cancer stage group] instead of an NCIT stage term.",
+  "Sex = female and smoking status = Never Smoker come from the project-level PRIDE description (\"LUAD tissues from women, never smokers\"), applied as a selection criterion to every tissue sample; no individual-level sheet exists. Age, ancestry and EGFR mutation types are not available.",
+  "The three locally established LUAD cell lines of the super-SILAC reference are not named in the accessible record; their sex, EGFR status and whether one identical mix was used for all 8 groups are not stated. The 8 heavy source names are aliquots of the super-SILAC reference, one per group run.",
+  "PRIDE data processing protocol says Proteome Discoverer 1.4 / Mascot; the deposited .msf files were produced by Proteome Discoverer 2.2.0.388 with Sequest HT and Mascot in parallel - the .msf values are used.",
+  "PRIDE protocol states full-scan m/z 400-2000; raw FTMS scan event is 350-2000 m/z (raw used).",
+  "sdrf-tools check reports Gln->pyro-Glu as hallucinated: false positive (OLS4 UNIMOD:28 label Gln->pyro-Glu, not obsolete; same false positive documented for PXD007931).",
+  "The 8 .msf search-result files are not annotated as data files (not raw); nothing else is excluded."
+ ]
+}
