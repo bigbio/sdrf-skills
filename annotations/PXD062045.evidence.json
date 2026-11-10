@@ -1,0 +1,324 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv",
+ "dataset": "PXD062045",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD062045 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD062045/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/files.json; 3 entries: FL0025604.raw, FL0025606.raw (RAW), Puromycin-treatment_Search.zip (SEARCH); every entry projectAccessions contains PXD062045; raw-only list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/files_raw.json passed to build)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Liu S, ..., Gozani O, Mazur PK. Methylated eEF1A selectively decodes mRNA to shape cancer proteomes. Nat Cell Biol 2026 (published 2026-10-29), doi:10.1038/s41556-026-02085-6, PMID 42957783 (not OA in Europe PMC; full text from the publisher page https://www.nature.com/articles/s41556-026-02085-6, plain HTTP GET status 200, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/ncb.html, tag-stripped /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/ncb.txt). Sections used: Data availability (\"PXD062045 (puromycin treatment) and PXD062091 (METTL13 knockdown)\"), Methods \"Stable isotope labelling by amino acids in cell culture labelling and metabolic incorporation of AHA\", \"Enrichment of newly synthesized proteins\", \"Mass spectrometry\", \"Mass spectrometry data analysis\", Extended Data Fig. 4 legend."
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062045/Puromycin-treatment_Search.zip members Puromycin-treatment_Search/summary.txt, parameters.txt, proteinGroups.txt (ZIP central directory + local entries read by HTTP range, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/scripts/zipls.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/mq/; sha256 in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/local_sha256.txt). MaxQuant 1.5.5.1, written 08/23/2019."
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/scripts/orient.py: log2 of non-normalized and normalized Ratio H/L per experiment from proteinGroups.txt, reverse/contaminants removed)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062045/FL0025604.raw and https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062045/FL0025606.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_4056?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/cello/CVCL_4056.txt); name search sy:T3M4 OR id:T3M4 OR id:T3M-4 returns only CVCL_4056 (Homo sapiens), so no cross-species name collision"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search, plus EFO:0009090 hierarchicalDescendants (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/ols_log.txt, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/scripts/ols.py); all used terms is_obsolete=false"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0; campaign rules batch3_rules.md"
+  },
+  {
+   "id": "tables",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/samples.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/technical.tsv; SDRF written by sdrf-tools build only"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-4",
+   "value": "T3M4_untreated_forward_light, T3M4_puromycin_forward_heavy (FL0025604); T3M4_puromycin_reverse_light, T3M4_untreated_reverse_heavy (FL0025606)",
+   "source_ids": [
+    "paper",
+    "mq",
+    "orientation"
+   ],
+   "evidence": "Each name is one physical SILAC-labelled T3M4 cell population (one dish) in one of the two label-swapped mixtures. No pool or reference channel exists in this deposit, so no name is shared between runs."
+  },
+  {
+   "location": "comment[label] rows 1-4 / characteristics[treatment] rows 1-4 / factor value[treatment] rows 1-4",
+   "value": "FL0025604: light=untreated, heavy=Puromycin; FL0025606: light=Puromycin, heavy=untreated",
+   "source_ids": [
+    "paper",
+    "mq",
+    "orientation"
+   ],
+   "evidence": "Explicit map (paper Methods, Enrichment of newly synthesized proteins): \"The forward condition combined whole-cell lysates extracted from light control cells and heavy puromycin/sgMETTL13-treated cells at a mass ratio of 1:1; the reverse condition combined lysates of heavy control cells and light cells with puromycin\". Ext. Data Fig. 4b: \"two SILAC experiments with label-swapped conditions\". File assignment: MaxQuant summary.txt experiment names FL0025604=WT-L (wild-type/control in light = forward), FL0025606=WT-H (control in heavy = reverse). Data check (orientation.txt): non-normalized log2 H/L median -2.35 with 99.4% of 1400 protein groups <0 in WT-L (heavy = puromycin, translation inhibited) and +2.64 with 99.8% of 1250 >0 in WT-H (light = puromycin); paper: \">99% of these proteins had decreased abundance in puromycin-treated cells\". Sources agree; no conflict."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-4 / factor value[treatment] rows 1-4",
+   "value": "Puromycin (rows 2,3) / untreated (rows 1,4)",
+   "source_ids": [
+    "paper",
+    "ols",
+    "templates"
+   ],
+   "evidence": "Paper Methods: 3 h in SILAC-labelled deficient medium with 10% dialysed FBS, 100 nM AHA and 5 ug/ml puromycin for the treatment; controls without puromycin. NCIT:C787 Puromycin (not obsolete). Controls = untreated (batch rule 4). Dose/duration (5 ug/ml, 3 h) recorded here, not in a column."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-4",
+   "value": "1 (forward mixture rows 1-2), 2 (reverse mixture rows 3-4)",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Two label-swapped SILAC experiments (Ext. Data Fig. 4b); each experiment used separately SILAC-labelled and treated dishes, so within each factor group (untreated, Puromycin) there are two independent cultures, numbered 1 and 2 (README.adoc:330, batch rule 3)."
+  },
+  {
+   "location": "comment[data file] rows 1-4 / assay name rows 1-4",
+   "value": "FL0025604.raw / FL0025606.raw",
+   "source_ids": [
+    "files",
+    "mq"
+   ],
+   "evidence": "The two RAW files deposited; summary.txt lists exactly these two raw files (FL0025604, FL0025606), no missing or extra runs. Puromycin-treatment_Search.zip is the MaxQuant txt output, not a run."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-4 / comment[technical replicate] rows 1-4",
+   "value": "1 / 1",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "One unfractionated injection per mixture (paper: peptides desalted on C18 stage tips and analysed directly; summary.txt one raw per experiment)."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-4 / characteristics[cellosaurus accession] rows 1-4 / characteristics[cellosaurus name] rows 1-4",
+   "value": "T3M-4 / CVCL_4056 / T3M-4",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"KRAS Q61H-harbouring T3M4 pancreatic cancer cells\"; Cellosaurus CVCL_4056 ID T3M-4, SY T3M4, KRAS p.Gln61His. Only one Cellosaurus entry matches T3M4 (human)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-4",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "mq"
+   ],
+   "evidence": "Cellosaurus OX NCBI_TaxID=9606; PRIDE organism Homo sapiens; MaxQuant FASTA Uniprot human 2016-08-24."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-4",
+   "value": "lymph node",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_4056: \"Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029\" (OLS label lymph node). Primary tumour organ pancreas is implied by the disease."
+  },
+  {
+   "location": "characteristics[disease] rows 1-4",
+   "value": "pancreatic ductal adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9120 Pancreatic ductal adenocarcinoma -> MONDO:0005184 pancreatic ductal adenocarcinoma (not obsolete). All rows are the same cancer cell line; no healthy control arm."
+  },
+  {
+   "location": "characteristics[material type] rows 1-4",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured T3M4 cells (Cellosaurus CA Cancer cell line)."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-4",
+   "value": "sample enrichment",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Newly synthesized (AHA-labelled) proteins were captured on alkyne agarose resin by click chemistry (Click-&-Go kit 1033) and digested on-resin (paper Methods; PRIDE sample protocol). No EFO child of EFO:0009090 describes nascent-protein/AHA enrichment (descendant list checked in OLS), so the generic EFO:0009106 sample enrichment is used."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-4",
+   "value": "Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_4056 \"Population: Japanese\" (genome ancestry ~99% East Asian, PubMed=30894373); HANCESTRO:0019 Japanese (not obsolete)."
+  },
+  {
+   "location": "characteristics[age] rows 1-4 / characteristics[developmental stage] rows 1-4",
+   "value": "64Y / adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 64Y; >= 20Y -> EFO:0001272 adult (batch rule 9)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-4",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-4",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: \"T3M4 cells were cultured in DMEM medium for SILAC (Thermo, 88364) supplemented with 10% dialysed FBS\"; NCIT:C185409 Dulbecco's Modified Eagle Medium. During the 4-h pulse cells were in Lys/Arg/Leu/Met-deficient DMEM (Molecular Dimensions MD12-420) + SILAC Lys/Arg, Leu and AHA."
+  },
+  {
+   "location": "comment[instrument] rows 1-4",
+   "value": "NT=Orbitrap Fusion Lumos;AC=MS:1002732",
+   "source_ids": [
+    "paper",
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of both files: \"Orbitrap Fusion Lumos Method Summary\", creator Lumos-PC; paper: Fusion Lumos. PRIDE dropdown says Orbitrap Fusion (MS:1002416) - overridden by the raw files and the paper/PRIDE protocol text (\"Fusion Lumos\")."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-4",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper: data-dependent mode, top speed, 3 s cycle; PRIDE experiment type DDA."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-4 / comment[collision energy] rows 1-4",
+   "value": "NT=HCD;AC=MS:1000422 / 30 NCE",
+   "source_ids": [
+    "paper",
+    "raw"
+   ],
+   "evidence": "Paper: \"higher-energy collisional dissociation ... normalized collision energy of 30%\"; raw method name OTOT_HCD30_..."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-4",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method name OTOT_HCD30 (Orbitrap MS1 / Orbitrap MS2) and two Orbitrap resolutions in the method summary (120K MS1, 15K MS2). Paper \"MS2 data were acquired in centroid mode\"."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-4",
+   "value": "340m/z-1500m/z",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"Full MS scans were performed in the Orbitrap in the mass range of 340-1,500 m/z\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-4",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Digestion: on-resin overnight with 20 ng/ul trypsin (paper). MaxQuant search enzyme rule Trypsin/P, specific, max 2 missed cleavages (summary.txt) - recorded here as search rule (batch rule 2)."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-4 / comment[alkylation reagent] rows 1-4",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608 / NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper/PRIDE protocol: \"reduced with DTT at 65 C for 20 min and alkylated with iodoacetamide\"."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-4",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mq",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt \"Fixed modifications Carbamidomethyl (C)\"; summary.txt \"Variable modifications Oxidation (M);Acetyl (Protein N-term)\", Multiplicity 2, Labels0 empty (light), Labels1 Arg10;Lys8, \"Multi modifications\" empty for both raw files (checked manually). Arg10 = +10.008 Da = UNIMOD:267, Lys8 = +8.014 Da = UNIMOD:259; paper heavy amino acids [13C6,15N2]-L-lysine and [13C6,15N4]-L-arginine (Silantes). SILAC labels MT=Variable (batch rule 11)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-4",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq",
+    "paper"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\" (Orbitrap MS2); paper \"fragment mass tolerances ... 20 ppm\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-4",
+   "value": "7 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper and PRIDE data processing protocol: \"The precursor and fragment mass tolerances were set to 7 and 20 ppm, respectively.\" MaxQuant 1.5.5.1 parameters.txt/summary.txt do not record peptide (first/main search) tolerance and no mqpar.xml was deposited; see limitations."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-4 / comment[sdrf template] rows 1-4 / comment[sdrf annotation tool] rows 1-4",
+   "value": "v1.1.0 / ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0 / NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; templates: MS proteomics, human cells, cell-line samples (no patient material, so no clinical/oncology template; rule 15)."
+  },
+  {
+   "location": "technology type rows 1-4",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "comment[precursor mass tolerance] = 7 ppm is the authors' statement (paper and PRIDE protocol); the deposited MaxQuant 1.5.5.1 parameters.txt does not record the peptide tolerance and no mqpar.xml was deposited. The text also says \"default settings\", whose MaxQuant main-search default is 4.5 ppm (first search 20 ppm), and 7 ppm equals the deposited FTMS MS/MS deisotoping tolerance, so the stated value could not be confirmed from search output.",
+  "characteristics[enrichment process] uses the generic EFO:0009106 sample enrichment because no ontology term for AHA/click-chemistry capture of newly synthesized proteins exists under EFO:0009090; the specific procedure (100 nM AHA pulse 3 h, Click-&-Go alkyne agarose resin, on-resin digestion) is only in this manifest.",
+  "The AHA pulse (Met-free medium, 100 nM L-azidohomoalanine, 3 h, after 18 h serum starvation) applies to all four samples and is not encoded as a column; puromycin dose 5 ug/ml for 3 h is not encoded as a column either.",
+  "characteristics[cell type], characteristics[passage number], characteristics[biorepository], characteristics[sample storage temperature], characteristics[individual] = not available: not stated in the paper or PRIDE record (cell source not named).",
+  "The sibling deposit PXD062091 (METTL13 knockdown, same paper) is a separate dataset, not a duplicate; it is not annotated here.",
+  "Paper is not open access in Europe PMC; full text was read from the publisher article page (HTTP 200, no bot check). Supplementary Table 2c (per-protein puromycin fold changes) was not downloaded; the channel orientation was checked against the deposited proteinGroups.txt instead.",
+  "techsdrf not installed; raw-file verification limited to range-read headers of both raw files.",
+  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL (external sdrf-adversarial-review hand-off)."
+ ]
+}

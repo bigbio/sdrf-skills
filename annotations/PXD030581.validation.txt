@@ -1,0 +1,20 @@
+# PXD030581 validation log (2026-11-10T17:59Z); SDRF sha256 621319b6f32c3ffbe040b6271477c7e23504a336358147301327a7ff1b40fcb9
+
+## Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/scripts/make_tables.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581; sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD030581.sdrf.tsv
+wrote annotations/PXD030581.sdrf.tsv: 40 rows x 50 columns
+## Post-build edit (deterministic, rule 17): python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/scripts/fix_fraction.py annotations/PXD030581.sdrf.tsv
+fraction identifier rewritten from file name; 30 cells changed
+Justification: build numbers comment[fraction identifier] by position in the files list. The deposit lacks 2014_1204_Alba_LSD1_4.raw and 2014_1204_Alba_IgG_3.raw (both searched per summary.txt), so positional numbering would mislabel the later gel slices (e.g. IgG_4 as fraction 3). The script sets the fraction identifier to the slice number in the raw file name (_N.raw). No other cell is touched.
+
+## parse_sdrf validate-sdrf -s annotations/PXD030581.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full OLS, round 1 = current file)
+WARNING: Term: OG86 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+Warnings justified: 'OG86' (Oryzon Genomics compound #86) has no NCIT/EFO term; free text. 'child stage (1-4 yo)' is HsapDv:0000265 (OLS4, not obsolete); HsapDv is the human developmental-stage ontology, not in the EFO import the validator searches (same as precedent PXD072695, THP-1 1Y).
+
+## sdrf-tools structure annotations/PXD030581.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD030581.sdrf.tsv (online)
