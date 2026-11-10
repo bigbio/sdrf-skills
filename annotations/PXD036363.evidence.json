@@ -91,7 +91,7 @@
  ],
  "claims": [
   {
-   "location": "source name rows 1-417",
+   "location": "source name rows 1-426",
    "value": "<sample ID>_<cell line>_<bait>_<treatment>_<L|M|H>",
    "source_ids": [
     "assign",
@@ -100,7 +100,7 @@
    "evidence": "One source per SILAC channel of each File_assignment Sample ID (505, 1580, 1637, 539, 2310, 2311, 2353, 2356); every channel is a separately labelled culture (paper BioID2 section: \"equal cell numbers of Light, Medium and Heavy labeled cells were pooled\"). \"noTreatmentStated\" marks control channels for which File_assignment names no drug."
   },
   {
-   "location": "comment[label] + characteristics[cell line] + characteristics[bait] + characteristics[treatment] + characteristics[compound] + factor value[bait]/[cell line]/[treatment] rows 1-417",
+   "location": "comment[label] + characteristics[cell line] + characteristics[bait] + characteristics[treatment] + characteristics[compound] + factor value[bait]/[cell line]/[treatment] rows 1-426",
    "value": "505 TMD8: L EV BioID / M CD79A BioID DMSO / H CD79A BioID 24h NGI-1; 1580 TMD8 and 1637 HBL1 (SPPLAT): L IgM 30 s isotype control / M IgM 30 s DMSO / H IgM 30 s 24h NGI-1; 2310 HBL1: L EV / M STT3B 8X DMSO / H STT3B 8X 24h NGI-1; 2311 HBL1: L EV / M STT3A 10X DMSO / H STT3A 10X NGI-1; 539 HBL1: L EV / M CD22 DMSO / H CD22 NGI-1; 2353 TMD8 and 2356 HBL1 (pY): L DMSO / M acalabrutinib ON / H NGI-1 ON",
    "source_ids": [
     "assign",
@@ -116,7 +116,7 @@
    "evidence": "Explicit channel map in deposited File_assignment.txt (columns Sample ID, Type, Label \"SILAC light / SILAC medium-heavy / SILAC heavy\", Cell line, Experiment). Data checks (log2 normalized ratios): 505 CD79A M/L +3.54 H/L +7.82 H/M +0.85, CD79B H/M +1.73, IGKC H/M +1.81 (paper: NGI-1 increased CD79A, CD79B, IGK biotinylation); 2310 STT3B M/L +4.27 H/L +3.62; 2311 STT3A M/L +4.70 H/L +4.56; 539 CD22 M/L +5.21 H/L +5.18, CD79A H/M +1.19 (paper: NGI-1 increased CD22-BioID2 biotinylation of CD79A); 1580 IGHM M/L +3.65 H/L +4.08; 1637 IGHM M/L +5.09 H/L +6.06 (anti-IgM vs isotype); pY: BTK Y223 M/L -1.18/-2.38 (TMD8 R1/R2), -2.85/-3.36 (HBL1) with H/L ~0 (acalabrutinib = medium), SYK Y525 H/L -1.54/-1.40 (TMD8), CD79B Y207 H/L -0.84/-0.47, LYN Y397 H/L -0.75/-0.85 (HBL1) with M/L ~0 (NGI-1 = heavy; paper: NGI-1 but not acalabrutinib decreased CD79A/B ITAM, LYN, SYK pY; acalabrutinib did not ... BTK unaffected by NGI-1). No conflict."
   },
   {
-   "location": "comment[label] rows 1-417",
+   "location": "comment[label] rows 1-426",
    "value": "SILAC light / SILAC medium / SILAC heavy",
    "source_ids": [
     "assign",
@@ -131,7 +131,7 @@
    "evidence": "summary.txt of every search: Multiplicity 3, Labels0 empty, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 (rule 14 verified). File_assignment \"SILAC medium-heavy\" = MaxQuant medium state. Paper: Medium 13C6 14N4-Arg / Lys-D4, Heavy 13C6 15N4-Arg / 13C6 15N2-Lys."
   },
   {
-   "location": "characteristics[bait] + factor value[bait] rows 1-405",
+   "location": "characteristics[bait] + factor value[bait] rows 1-405 and 418-426",
    "value": "BioID2 empty vector; CD79A-BioID2 fusion; BioID2-STT3B fusion (N-terminal BioID2, 8x GSGGG linker); STT3A-BioID2 fusion (C-terminal BioID2, 10x GSGGG linker); CD22-BioID2 fusion; SPPLAT anti-IgM / isotype control antibody, 30 s labelling",
    "source_ids": [
     "assign",
@@ -148,8 +148,8 @@
    "evidence": "pY profiling samples have no bait (File_assignment Type \"pY profiling\")."
   },
   {
-   "location": "characteristics[sample type] rows 1-417",
-   "value": "negative control (BioID2 empty vector and SPPLAT isotype-control channels, rows 1-20, 61-83, 130-152, 199-221, 268-290, 337-359); study sample (all others)",
+   "location": "characteristics[sample type] rows 1-426",
+   "value": "negative control (BioID2 empty vector and SPPLAT isotype-control channels, rows 1-20, 61-83, 130-152, 199-221, 268-290, 337-359, 418-420); study sample (all others)",
    "source_ids": [
     "assign",
     "ratios"
@@ -157,7 +157,7 @@
    "evidence": "EV / isotype channels are the background controls of each pull-down (bait proteins enriched against them, see ratio claim). PRIDE:0000905 negative control, PRIDE:0001013 study sample (OLS, not obsolete)."
   },
   {
-   "location": "characteristics[treatment] + factor value[treatment] + characteristics[compound] rows 1-417",
+   "location": "characteristics[treatment] + factor value[treatment] + characteristics[compound] rows 1-426",
    "value": "untreated (compound Dimethyl Sulfoxide, vehicle); NGI-1; Acalabrutinib; not available (EV / isotype channels)",
    "source_ids": [
     "assign",
@@ -167,8 +167,8 @@
    "evidence": "File_assignment: DMSO / 24h NGI-1 (BioID2, SPPLAT), DMSO / ACAL ON / NGI-1 ON (pY). Paper Fig 3A legend: \"treated for 24h with DMSO ... or NGI-1\"; Fig 2H: tyrosine phosphorylation after NGI-1 or acalabrutinib. DMSO vehicle controls written as treatment \"untreated\" (campaign rule 4) with compound Dimethyl Sulfoxide (NCIT:C437) as in precedent PXD004181. Acalabrutinib NCIT:C113442. NGI-1 has no NCIT/EFO/ChEBI term found in OLS search (free text; validate-sdrf warns). File_assignment names no drug for the EV BioID / isotype-control channels -> not available. Durations (24 h; overnight for pY) are stated in File_assignment but not encoded in a column."
   },
   {
-   "location": "characteristics[enrichment process] rows 1-417",
-   "value": "sample enrichment (rows 1-405: streptavidin pull-down of biotinylated proteins); enrichment of phosphorylated protein (rows 406-417: anti-pY IP)",
+   "location": "characteristics[enrichment process] rows 1-426",
+   "value": "sample enrichment (rows 1-405 and 418-426: streptavidin pull-down of biotinylated proteins); enrichment of phosphorylated protein (rows 406-417: anti-pY IP)",
    "source_ids": [
     "paper",
     "ols"
@@ -176,7 +176,7 @@
    "evidence": "Paper BioID2: lysates incubated with high-capacity streptavidin beads; Phosphoproteomics: phospho-tyrosine peptides immunoprecipitated (Phospho-Tyrosine Rabbit mAb kit). EFO:0009106 and EFO:0010806 are children of EFO:0009090 (OLS)."
   },
   {
-   "location": "characteristics[organism] rows 1-417",
+   "location": "characteristics[organism] rows 1-426",
    "value": "Homo sapiens",
    "source_ids": [
     "pride",
@@ -185,7 +185,7 @@
    "evidence": "PRIDE organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606 for both lines."
   },
   {
-   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] + factor value[cell line] rows 1-417",
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] + factor value[cell line] rows 1-426",
    "value": "TMD8 / CVCL_A442 / TMD8; HBL-1 cell / CVCL_4213 / HBL-1 [Human diffuse large B-cell lymphoma]",
    "source_ids": [
     "assign",
@@ -196,7 +196,7 @@
    "evidence": "File_assignment Cell line TMD8 / HBL1; paper: ABC DLBCL models TMD8, HBL1. Cellosaurus has two human HBL-1 entries (CVCL_4213 DLBCL, CVCL_M572 AIDS-related NHL); the DLBCL one is meant (paper: ABC DLBCL). Cell line values: EFO:0006496 \"TMD8\"; EFO:0022408 / BTO:0002522 \"HBL-1 cell\" (Cellosaurus DR cross-references)."
   },
   {
-   "location": "characteristics[organism part] rows 1-417",
+   "location": "characteristics[organism part] rows 1-426",
    "value": "bone marrow (TMD8); pleural effusion (HBL-1)",
    "source_ids": [
     "cellosaurus",
@@ -205,7 +205,7 @@
    "evidence": "Cellosaurus \"Derived from site\": TMD8 In situ; Bone marrow; UBERON:0002371; HBL-1 In situ; Pleural effusion; UBERON:0000175 (OLS uberon, not obsolete)."
   },
   {
-   "location": "characteristics[cell type] rows 1-417",
+   "location": "characteristics[cell type] rows 1-426",
    "value": "B cell",
    "source_ids": [
     "pride",
@@ -215,7 +215,7 @@
    "evidence": "PRIDE organism part field lists \"B cell\"; paper: B-cell lymphoma lines with B cell receptor signalling. CL:0000236."
   },
   {
-   "location": "characteristics[disease] rows 1-417",
+   "location": "characteristics[disease] rows 1-426",
    "value": "diffuse large B-cell lymphoma activated B-cell type",
    "source_ids": [
     "cellosaurus",
@@ -225,7 +225,7 @@
    "evidence": "Cellosaurus DI NCIt C36081 Diffuse large B-cell lymphoma activated B-cell type for both lines; paper: TMD8 and HBL1 are ABC DLBCL models. MONDO:0850418 (OLS, not obsolete)."
   },
   {
-   "location": "characteristics[material type] rows 1-417",
+   "location": "characteristics[material type] rows 1-426",
    "value": "cell line",
    "source_ids": [
     "paper",
@@ -234,7 +234,7 @@
    "evidence": "Cultured cancer cell lines (Cellosaurus CA Cancer cell line)."
   },
   {
-   "location": "characteristics[ancestry category] rows 1-417",
+   "location": "characteristics[ancestry category] rows 1-426",
    "value": "Japanese",
    "source_ids": [
     "cellosaurus",
@@ -243,7 +243,7 @@
    "evidence": "Cellosaurus CC Population: Japanese (both lines). HANCESTRO:0019."
   },
   {
-   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] rows 1-417",
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] rows 1-426",
    "value": "TMD8 62Y male adult; HBL-1 65Y male adult",
    "source_ids": [
     "cellosaurus"
@@ -251,7 +251,7 @@
    "evidence": "Cellosaurus AG 62Y / SX Male (CVCL_A442); AG 65Y / SX Male (CVCL_4213). Adult (>= 20Y, rule 9), EFO:0001272."
   },
   {
-   "location": "characteristics[culture medium] rows 1-417",
+   "location": "characteristics[culture medium] rows 1-426",
    "value": "Roswell Park Memorial Institute 1640 Medium",
    "source_ids": [
     "paper",
@@ -261,7 +261,7 @@
    "evidence": "Paper/PRIDE: SILAC cells \"grown for two weeks in RPMI medium (Silantes) lacking lysine and arginine with 10% dialyzed FCS\". NCIT:C178973."
   },
   {
-   "location": "characteristics[biological replicate] rows 1-417",
+   "location": "characteristics[biological replicate] rows 1-426",
    "value": "1 per culture within each (cell line, bait, treatment) group; HBL-1 BioID2 empty vector: 2310 = 1, 2311 = 2, 539 = 3",
    "source_ids": [
     "assign",
@@ -280,35 +280,37 @@
    "evidence": "File_assignment lists one Sample ID per pY experiment (2353, 2356); two raw files each (Fu_poshpho_R1_<id> acquired 30.09.21, R2_<id> 01.10.21), searched as MaxQuant experiments R1_<id> and R2_<id>. Treated as repeat injections of one enrichment (see limitations)."
   },
   {
-   "location": "comment[technical replicate] rows 1-405",
-   "value": "1",
+   "location": "comment[technical replicate] rows 1-405 and 418-426",
+   "value": "1, except 2 for the 220321 re-acquisition of 505 slice 21 (rows 420, 423, 426)",
    "source_ids": [
     "files",
+    "raw",
     "mqcheck"
    ],
-   "evidence": "One injection series per gel-fractionated sample."
+   "evidence": "One injection series per gel-fractionated sample. TO_S_Scheich_180221_220321_HFFR_505_WDH_L5_21.raw was injected from the same autosampler vial position (BC5) as the searched 190321 L5_21 file (raw headers), so it is a repeat injection of slice 21; the 220321 L5_22/L5_23 files (vials BC6/BC7) are the only deposited acquisitions of slices 22 and 23 and stay in technical replicate 1."
   },
   {
-   "location": "comment[data file] + assay name rows 1-417",
-   "value": "139 deposited .raw files (file stem as assay name)",
+   "location": "comment[data file] + assay name rows 1-426",
+   "value": "142 deposited .raw files (file stem as assay name)",
    "source_ids": [
     "files",
-    "mqcheck"
+    "mqcheck",
+    "assign"
    ],
-   "evidence": "Every SILAC raw file that appears in the deposited MaxQuant summary.txt of its experiment: 505 (20), 1580 (23), 1637 (23), 539 (23), 2310 (23), 2311 (23), 2353 (2), 2356 (2). Excluded: 3 unsearched 505 files (see limitations) and 74 TMT files."
+   "evidence": "Every SILAC raw file that appears in the deposited MaxQuant summary.txt of its experiment: 505 (20), 1580 (23), 1637 (23), 539 (23), 2310 (23), 2311 (23), 2353 (2), 2356 (2). Plus the 3 deposited but never-searched 505 files (220321 L5_21/22/23, rows 418-426; same 505 channel map from File_assignment). Excluded: 74 TMT files."
   },
   {
-   "location": "comment[fraction identifier] rows 1-405",
+   "location": "comment[fraction identifier] rows 1-405 and 418-426",
    "value": "gel slice number from file name (_L<n>_<slice>); rows 406-417 = 1",
    "source_ids": [
     "paper",
     "files",
     "build"
    ],
-   "evidence": "Paper: lysates \"separated by SDS-PAGE ... cut into 23 slices\"; file suffixes _1.._23. Positional numbering from sdrf-tools build was replaced by the slice number in a scripted post-build edit (build_all.py) so that 505 (slice 6 not deposited) keeps 1-5, 7-21; identical to positional values for all other experiments."
+   "evidence": "Paper: lysates \"separated by SDS-PAGE ... cut into 23 slices\"; file suffixes _1.._23. Positional numbering from sdrf-tools build was replaced by the slice number in a scripted post-build edit (build_all.py) so that 505 keeps 1-5, 7-21 (slice 6 not deposited) and 21/22/23 for the 220321 files; identical to positional values for all other experiments."
   },
   {
-   "location": "comment[fractionation method] rows 1-405",
+   "location": "comment[fractionation method] rows 1-405 and 418-426",
    "value": "NT=SDS PAGE;AC=PRIDE:0000568",
    "source_ids": [
     "paper",
@@ -325,7 +327,7 @@
    "evidence": "pY peptides were not fractionated (one file per injection)."
   },
   {
-   "location": "comment[instrument] rows 1-198 and 199-267",
+   "location": "comment[instrument] rows 1-267 and 418-426",
    "value": "NT=Q Exactive HF;AC=MS:1002523",
    "source_ids": [
     "raw"
@@ -350,16 +352,16 @@
    "evidence": "Raw method summary \"Creator: ...\\Orbitrap Fusion\", Orbitrap Fusion Method Summary (no Lumos). PRIDE instrument list includes Orbitrap Fusion."
   },
   {
-   "location": "comment[dissociation method] + comment[collision energy] rows 1-417",
-   "value": "HCD (beam-type CID, MS:1000422); 28 NCE (rows 1-267), 30 NCE (rows 268-405), 35 NCE (rows 406-417)",
+   "location": "comment[dissociation method] + comment[collision energy] rows 1-426",
+   "value": "HCD (beam-type CID, MS:1000422); 28 NCE (rows 1-267, 418-426), 30 NCE (rows 268-405), 35 NCE (rows 406-417)",
    "source_ids": [
     "raw"
    ],
-   "evidence": "Q Exactive HF method \"NCE / stepped NCE ... 28\" (method file NCE28_58min); Q Exactive \"nce: 30\"; Fusion ddMSnScan \"ActivationType = HCD, Collision Energy (%) = 35\"."
+   "evidence": "Q Exactive HF method \"NCE / stepped NCE ... 28\" (method TOP30_60K15_NCE28_58min.meth, also in all three 220321 505 files); Q Exactive \"nce: 30\"; Fusion ddMSnScan \"ActivationType = HCD, Collision Energy (%) = 35\"."
   },
   {
-   "location": "comment[ms2 mass analyzer] + comment[fragment mass tolerance] rows 1-417",
-   "value": "orbitrap + 20 ppm (rows 1-405); linear ion trap + 0.5 Da (rows 406-417)",
+   "location": "comment[ms2 mass analyzer] + comment[fragment mass tolerance] rows 1-426",
+   "value": "orbitrap + 20 ppm (rows 1-405), orbitrap + not applicable (rows 418-426, never searched); linear ion trap + 0.5 Da (rows 406-417)",
    "source_ids": [
     "raw",
     "mq505",
@@ -372,8 +374,8 @@
    "evidence": "Q Exactive instruments acquire MS2 in the Orbitrap (FTMS, MaxQuant MS/MS tol. (FTMS) 20 ppm); Fusion method \"Detector Type = IonTrap\" for ddMS2 (MaxQuant MS/MS tol. (ITMS) 0.5 Da)."
   },
   {
-   "location": "comment[precursor mass tolerance] rows 1-417",
-   "value": "4.5 ppm",
+   "location": "comment[precursor mass tolerance] rows 1-426",
+   "value": "4.5 ppm (rows 418-426: not applicable, files never searched)",
    "source_ids": [
     "mq505",
     "mq1580",
@@ -385,7 +387,7 @@
    "evidence": "mqpar.xml mainSearchTol 4.5 (firstSearchTol 20) in all six searches."
   },
   {
-   "location": "comment[cleavage agent details] rows 1-417",
+   "location": "comment[cleavage agent details] rows 1-426",
    "value": "NT=Trypsin;AC=MS:1001251",
    "source_ids": [
     "paper",
@@ -395,8 +397,8 @@
    "evidence": "Paper: tryptic digestion of gel slices; trypsin digestion for pY. MaxQuant enzyme rule Trypsin/P (search rule, noted per rule 2)."
   },
   {
-   "location": "comment[modification parameters] rows 1-417",
-   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable; slot 4: Biotin K variable (rows 1-198, searches 505/1580/1637), not applicable (rows 199-405, searches 539 and 2310_2311), Phospho STY variable (rows 406-417); Label:13C(6) R (Arg6, UNIMOD:188), Label:2H(4) K (Lys4, UNIMOD:481), Label:13C(6)15N(4) R (Arg10, UNIMOD:267), Label:13C(6)15N(2) K (Lys8, UNIMOD:259), MT=Variable",
+   "location": "comment[modification parameters] rows 1-426",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term variable (slots 2-3; not applicable in rows 418-426); slot 4: Biotin K variable (rows 1-198, searches 505/1580/1637), not applicable (rows 199-405, searches 539 and 2310_2311), Phospho STY variable (rows 406-417), not applicable (rows 418-426); Label:13C(6) R (Arg6, UNIMOD:188), Label:2H(4) K (Lys4, UNIMOD:481), Label:13C(6)15N(4) R (Arg10, UNIMOD:267), Label:13C(6)15N(2) K (Lys8, UNIMOD:259), MT=Variable",
    "source_ids": [
     "mq505",
     "mq1580",
@@ -406,10 +408,10 @@
     "mqpy",
     "ols"
    ],
-   "evidence": "summary.txt Fixed modifications Carbamidomethyl (C); Variable modifications: \"Oxidation (M);Acetyl (Protein N-term);Biotin (K)\" (505, 1580, 1637), \"Oxidation (M);Acetyl (Protein N-term)\" (539, 2310_2311), \"Oxidation (M);Acetyl (Protein N-term);Phospho (STY)\" (2353_2356); Multi modifications empty in all. Labels Arg6;Lys4 / Arg10;Lys8. UNIMOD:3 = Biotin (OLS). Label MT=Variable by campaign rule 11."
+   "evidence": "summary.txt Fixed modifications Carbamidomethyl (C); Variable modifications: \"Oxidation (M);Acetyl (Protein N-term);Biotin (K)\" (505, 1580, 1637), \"Oxidation (M);Acetyl (Protein N-term)\" (539, 2310_2311), \"Oxidation (M);Acetyl (Protein N-term);Phospho (STY)\" (2353_2356); Multi modifications empty in all. Labels Arg6;Lys4 / Arg10;Lys8. UNIMOD:3 = Biotin (OLS). Label MT=Variable by campaign rule 11. Rows 418-426 (never searched): only sample chemistry is kept (Carbamidomethyl from alkylation, SILAC labels from the media); the search-only variable mods Oxidation, Acetyl (Protein N-term) and Biotin (K) are not applicable."
   },
   {
-   "location": "comment[proteomics data acquisition method] rows 1-417",
+   "location": "comment[proteomics data acquisition method] rows 1-426",
    "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
    "source_ids": [
     "raw"
@@ -417,25 +419,34 @@
    "evidence": "Q Exactive methods TopN; Fusion \"Data Dependent Mode = Number of Scans, Number of Dependent Scans = 20\"."
   },
   {
-   "location": "technology type + comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-417",
+   "location": "technology type + comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-426",
    "value": "proteomic profiling by mass spectrometry; v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
    "source_ids": [
     "templates"
    ],
    "evidence": "Campaign rules 1 and 10; templates chosen because the samples are human cell lines analysed by LC-MS/MS. oncology-/clinical-metadata not declared: cell lines, not patient specimens (rule 15)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-426",
+   "value": "TMD8_donor (TMD8 rows); HBL-1_donor (HBL-1 rows)",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Placeholder donor identifiers, one per cell line: each line comes from one patient (Cellosaurus CVCL_A442 male 62Y; CVCL_4213 male 65Y). They are not study patient IDs; no individual-level identifier is published."
   }
  ],
  "limitations": [
-  "PARTIAL SCOPE: 77 of 216 deposited raw files are not annotated. (a) 74 TMTpro files (YLJI_*_glyco_R1-R4_frac1-8, 32 files; YLJI_*_proteome_R1-R3_frac1-14, 42 files) are TMT, not SILAC, and out of scope for this SILAC campaign (their 16-channel map is in File_assignment.txt). (b) 3 SILAC files of experiment 505 were never searched: TO_S_Scheich_180221_220321_HFFR_505_WDH_L5_21.raw, _L5_22.raw, _L5_23.raw (not in MaxQuant_505 summary.txt; the search used undeposited files 180221_110321_HFFR_505_L5_6_WDH, 180221_100321_HFFR_505_L5_22, _L5_23 instead). Excluded rather than annotated with search parameters (lesson: unsearched runs excluded). Both recorded in annotations/BLOCKED.md.",
-  "Experiment 505 is annotated with 20 of 23 gel slices (slices 1-5, 7-21; slice 6 was searched from an undeposited file and slices 22-23 only exist as unsearched re-acquisitions).",
+  "PARTIAL SCOPE: 74 of 216 deposited raw files are not annotated: the TMTpro files (YLJI_*_glyco_R1-R4_frac1-8, 32 files; YLJI_*_proteome_R1-R3_frac1-14, 42 files) are TMT, not SILAC, and out of scope for this SILAC campaign (their 16-channel map is in File_assignment.txt). Recorded in annotations/BLOCKED.md.",
+  "Experiment 505: 3 deposited raws were never searched (TO_S_Scheich_180221_220321_HFFR_505_WDH_L5_21/22/23.raw, absent from MaxQuant_505 summary.txt, which used undeposited 110321_L5_6_WDH and 100321_L5_22/23). They are annotated (rows 418-426) with precursor/fragment tolerance not applicable and the search-only variable modifications not applicable; L5_21 (220321) is technical replicate 2 of slice 21. Slice 6 of 505 has no deposited raw.",
   "The deposited MaxQuant searches also contain experiments that are not deposited in PXD036363 (501-512 except 505; 1577-1581 except 1580; 1633-1638 except 1637; 2312; 537-546 except 539; pY R1/R2_2344, 2347, 2350, 2359). Only the deposited raw files are annotated.",
-  "pY profiling R1/R2: treated as two injections (technical replicates) of one enrichment per Sample ID because File_assignment gives a single Sample ID per experiment; it is not stated whether R1/R2 are separate enrichments.",
+  "pY profiling R1/R2: treated as two injections (technical replicates) of one enrichment per Sample ID because File_assignment gives a single Sample ID per experiment; it is not stated whether R1/R2 are separate enrichments (acquired on different days; ratios similar but not identical).",
+  "BioID2 empty-vector controls are encoded as one bait level (\"BioID2 empty vector\") across 505, 2310, 2311 and 539. The paper describes two backbones (pBMN-BioID2-8Xlinker-MCS for N-terminal and pBMN-MCS-10Xlinker-BioID2 for C-terminal fusions), but File_assignment says only \"EV\" and does not state which backbone each control carried, so they are not split.",
   "Treatment of the BioID2 empty-vector and SPPLAT isotype-control channels is not stated in File_assignment.txt -> characteristics/factor value[treatment] and characteristics[compound] = not available.",
   "SPPLAT (antibody-directed proximity labelling) is named only in File_assignment.txt; the paper text does not describe it, so the bait values restate File_assignment (\"IgM 30 s\", \"Isotype control\").",
   "Treatment durations (24 h NGI-1/DMSO for BioID2 and SPPLAT; overnight for pY) are not encoded in a column.",
   "MaxQuant version: deposited parameters.txt say 1.6.17.0 (1.6.5.0 for experiment 1580); paper/PRIDE say 1.6.5.0. Search FASTA Uniprot_human_210219_rev.fasta.",
-  "Instrument names in file names (Plus, HFFR, QEx, Fu) are not authoritative; the raw headers were used (1580/1637 \"Plus\" files report Q Exactive HF). Only the first file of each experiment/acquisition date was header-checked; collision energy assumed constant within an experiment (same method name).",
-  "characteristics[individual], passage number, sample storage temperature not stated -> columns omitted.",
-  "Independent review not run here: status REVIEW_PENDING_EXTERNAL (caller runs sdrf-adversarial-review)."
+  "Instrument names in file names (Plus, HFFR, QEx, Fu) are not authoritative; the raw headers were used (1580/1637 \"Plus\" files report Q Exactive HF). Header-checked: the first file of each experiment/acquisition date plus all three 220321 505 files; collision energy assumed constant within an experiment (same method name).",
+  "characteristics[individual] is a placeholder per cell-line donor (TMD8_donor, HBL-1_donor), not a published identifier. Passage number and sample storage temperature are not stated -> columns omitted.",
+  "Independent review round 1 FAILED (omitted 505 re-acquisitions); fixed in this version. Status REVIEW_PENDING_EXTERNAL for the re-review."
  ]
 }

@@ -2139,12 +2139,13 @@ Excluded runs (out of scope, not SILAC): the 44 secretome RAWs `20151211-hypoxia
 
 ---
 
-## PXD036363 — Targeting N-linked glycosylation in DLBCL (Scheich et al., Cancer Discov 2023; triple-SILAC BioID2 / SPPLAT / pY + TMTpro glyco/proteome, TMD8 and HBL-1), TMT runs and 3 unsearched SILAC raws excluded (excluded runs, not a blocker)
+## PXD036363 — Targeting N-linked glycosylation in DLBCL (Scheich et al., Cancer Discov 2023; triple-SILAC BioID2 / SPPLAT / pY + TMTpro glyco/proteome, TMD8 and HBL-1), TMT runs excluded (excluded runs, not a blocker)
 
-**Annotated: `annotations/PXD036363.sdrf.tsv`, 139 SILAC raws × 3 channels = 417 rows.** The channel map is explicit in the deposited `File_assignment.txt` and agrees with the deposited ratios (bait enrichment vs EV/isotype; BTK Y223 down only in the acalabrutinib channel, SYK/LYN/CD79B pY down only in the NGI-1 channel).
+**Annotated: `annotations/PXD036363.sdrf.tsv`, 142 SILAC raws × 3 channels = 426 rows.** The channel map is explicit in the deposited `File_assignment.txt` and agrees with the deposited ratios (bait enrichment vs EV/isotype; BTK Y223 down only in the acalabrutinib channel, SYK/LYN/CD79B pY down only in the NGI-1 channel).
 
 Excluded runs:
 - **Out of scope (TMT, not SILAC), 74 RAW:** `YLJI_101220_141220_Sebas_Sch_TMTpro_MS3_glyco_R1..R4_frac1..8.raw` (32) and `YLJI_101220_211220_Sebas_Sch_TMTpro_MS3_proteome_R1..R3_frac1..14.raw` (42), TMTpro 16-plex SPS-MS3 on Orbitrap Fusion Lumos, searched with pGlyco/GlycoBinder (`pGlyco_output.zip`) and `MaxQuant_proteome.zip`. Their 16-channel map (HBL1/TMD8/OCI-Ly10/RIVA/OCI-Ly8 DMSO vs NGI-1; HBL1/TMD8 Ctrl KO vs STT3A/B DKO) is in `File_assignment.txt`, so a TMT pass can annotate them.
-- **Never searched, 3 SILAC RAW of experiment 505:** `TO_S_Scheich_180221_220321_HFFR_505_WDH_L5_21.raw`, `_L5_22.raw`, `_L5_23.raw`. They are not in `MaxQuant_505.zip` summary.txt, which instead used undeposited `TO_S_Scheich_180221_110321_HFFR_505_L5_6_WDH`, `TO_S_Scheich_180221_100321_HFFR_505_L5_22` and `_L5_23`. Experiment 505 is therefore annotated with gel slices 1–5 and 7–21 only.
 
-**Unblocked by:** nothing needed for the SILAC SDRF; the TMT arm belongs to a TMT annotation pass. The 3 unsearched 505 raws could be added only with `not applicable` search parameters, or after a re-search.
+Note (not excluded): 3 SILAC raws of experiment 505 were never searched: `TO_S_Scheich_180221_220321_HFFR_505_WDH_L5_21.raw`, `_L5_22.raw` and `_L5_23.raw`. They are absent from `MaxQuant_505.zip` summary.txt, which used the undeposited `…110321…_L5_6_WDH` and `…100321…_L5_22/23`. After review round 1 they were added (rows 418–426) with tolerances and search-only modifications `not applicable`. L5_21 (220321) is technical replicate 2 of slice 21; it was injected from the same vial as the searched 190321 file.
+
+**Unblocked by:** nothing needed for the SILAC SDRF. The TMT arm belongs to a TMT annotation pass.
