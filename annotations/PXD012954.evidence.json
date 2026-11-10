@@ -19,6 +19,16 @@
    "location": "Ravasio R et al. Targeting the scaffolding role of LSD1 (KDM1A) poises acute myeloid leukemia cells for retinoic acid-induced differentiation. Sci Adv 2020;6(15):eaax2746, doi:10.1126/sciadv.aax2746, PMID 32284990, PMC7141832 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC7141832.1/PMC7141832.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/paper.txt; title verified)"
   },
   {
+   "id": "fig4",
+   "kind": "publication",
+   "location": "Fig. 4 image https://pmc-oa-opendata.s3.amazonaws.com/PMC7141832.1/aax2746-F4.jpg (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/supp/F4.jpg; viewed: panel E schematic labels the Heavy (K8,R10) dish 'LSD1 inhibitor' and the Light (K0,R0) dish 'DMSO', each -> LSD1-IP -> Mix 1:1; panel G lanes DMSO / MC_2580 / DDP_38003)"
+  },
+  {
+   "id": "sm",
+   "kind": "supplementary",
+   "location": "Supplementary Materials https://pmc-oa-opendata.s3.amazonaws.com/PMC7141832.1/aax2746_SM.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/supp/SM.pdf, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/supp/SM.txt): Table S1 and Table S2 spreadsheet legends"
+  },
+  {
    "id": "mq_basal",
    "kind": "search-output",
    "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2020/05/PXD012954/txt_IP_LSD1_basale.zip members parameters.txt, summary.txt, proteinGroups.txt (zip read by HTTP range with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD012954/mq_basale/)"
@@ -72,9 +82,11 @@
     "mq_basal",
     "mq_dynamic",
     "paper",
-    "files"
+    "files",
+    "sm",
+    "fig4"
    ],
-   "evidence": "Ten SILAC mixtures in two MaxQuant searches (summary.txt experiments): basal arm IP_Forward_01, IP_Forward_02, IP_Reverse (paper: Rep1, Rep2 forward, Rep3 reverse) and their inputs Input_Forward_01, Input_Forward_02, Input_Reverse; MC_2580 (dynamic) arm IP_LSD1_FORWARD_MC2580, IP_LSD1_REVERSE_MC2580 and inputs Input_FORWARD_MC2580, Input_REVERSE_MC2580. One source per (mixture, SILAC channel): each channel of each mixture is a separate physical sample (separate light/heavy cultures and IPs, mixed only at the last wash: 'In the last washing step, light and heavy samples of each SILAC replicate were mixed'). IP and input of the same culture are different physical samples and get different names. Input<->IP replicate pairing (Input_Forward_01<->Rep1 etc.) is from the experiment names only."
+   "evidence": "Ten SILAC mixtures in two MaxQuant searches (summary.txt experiments): basal arm IP_Forward_01, IP_Forward_02, IP_Reverse (paper: Rep1, Rep2 forward, Rep3 reverse) and their inputs Input_Forward_01, Input_Forward_02, Input_Reverse; MC_2580 (dynamic) arm IP_LSD1_FORWARD_MC2580, IP_LSD1_REVERSE_MC2580 and inputs Input_FORWARD_MC2580, Input_REVERSE_MC2580. One source per (mixture, SILAC channel): each channel of each mixture is a separate physical sample (separate light/heavy cultures and IPs, mixed only at the last wash: 'In the last washing step, light and heavy samples of each SILAC replicate were mixed'). IP and input of the same culture are different physical samples and get different names. Input<->IP replicate pairing is explicit in SM Table S1 legends: Spreadsheet 1/3/5 'Protein ratio distribution of the nuclear extract used as Input for the IP-LSD1 Forward 01 experiment (Rep1)' / 'Forward 02 experiment (Rep2)' / 'Reverse experiment (Rep3)'. Control channels of the MC_2580 arm are named 'DMSO-treated' (Fig. 4E)."
   },
   {
    "location": "comment[label] + characteristics[immunoprecipitation] + factor value[immunoprecipitation] rows 1-48 (basal IPs)",
@@ -89,24 +101,29 @@
   },
   {
    "location": "comment[label] + characteristics[treatment] + factor value[treatment] rows 49-80 (MC_2580 arm IPs)",
-   "value": "forward (rows 49-64): light = untreated, heavy = MC_2580; reverse (rows 65-80): light = MC_2580, heavy = untreated",
+   "value": "forward (rows 49-64): light = Dimethyl Sulfoxide (vehicle), heavy = MC_2580; reverse (rows 65-80): light = MC_2580, heavy = Dimethyl Sulfoxide",
    "source_ids": [
     "paper",
+    "fig4",
+    "sm",
     "orientation",
-    "mq_dynamic"
+    "mq_dynamic",
+    "ols"
    ],
-   "evidence": "Paper Methods: 'for the dynamic LSD1 interactome, the inhibitor MC_2580 was added to the heavy channel in the forward experiment and in the light one in the reverse replicate.' Fig. 4E legend: 'upon LSD1 pharmacological inhibition with 2 uM MC_2580 for 24 hours'. Data check: GFI1, reported as evicted from LSD1 by the inhibitor (Fig. 4F), log2 H/L IP_LSD1_FORWARD_MC2580 -1.68, IP_LSD1_REVERSE_MC2580 +1.90 -> lower in the MC_2580 channel in both orientations; GSE1 -1.20/+1.59. Control channel = 'untreated' (campaign rule 4; the paper names no vehicle for the IP)."
+   "evidence": "Paper Methods: 'for the dynamic LSD1 interactome, the inhibitor MC_2580 was added to the heavy channel in the forward experiment and in the light one in the reverse replicate.' Fig. 4E legend: 'upon LSD1 pharmacological inhibition with 2 uM MC_2580 for 24 hours'. Data check: GFI1, reported as evicted from LSD1 by the inhibitor (Fig. 4F), log2 H/L IP_LSD1_FORWARD_MC2580 -1.68, IP_LSD1_REVERSE_MC2580 +1.90 -> lower in the MC_2580 channel in both orientations; GSE1 -1.20/+1.59. Control channel = DMSO vehicle: the Fig. 4E schematic labels the Light (K0,R0) dish 'DMSO' and the Heavy (K8,R10) dish 'LSD1 inhibitor'; the Fig. 4G validation IPs likewise use 'DMSO'. SM Table S2: 'The dynamic LSD1 interactome upon treatment of NB4 cells with MC_2580' / 'Forward experiment, where the drug was added to the Heavy channel' / 'Reverse experiment, where the drug was added to the Light channel'. Value 'Dimethyl Sulfoxide' = NCIT:C437 label (as in campaign datasets PXD020108, PXD006404). MC_2580 has no NCIT/EFO term (OLS search 0 hits) and is written as named in the paper. Dose 2 uM and duration 24 h (Fig. 4E legend) are not encoded: the declared templates (ms-proteomics, human, cell-lines) license no dose or treatment-duration column."
   },
   {
    "location": "comment[label] + characteristics[treatment] + factor value[treatment] + characteristics[immunoprecipitation] rows 81-166 (inputs)",
-   "value": "basal inputs (rows 81-122): both channels untreated input; MC_2580 inputs: forward (123-144) light untreated / heavy MC_2580, reverse (145-166) light MC_2580 / heavy untreated",
+   "value": "basal inputs (rows 81-122): both channels untreated input; MC_2580 inputs: forward (123-144) light Dimethyl Sulfoxide / heavy MC_2580, reverse (145-166) light MC_2580 / heavy Dimethyl Sulfoxide",
    "source_ids": [
     "paper",
     "pride",
     "mq_basal",
-    "mq_dynamic"
+    "mq_dynamic",
+    "fig4",
+    "sm"
    ],
-   "evidence": "Paper: 'A minor fraction (1/20) of input was collected before adding 10 ug of anti-LSD1 antibody to each sample'; the blocking peptide was 'incubated together with the antibody', so basal inputs carry no blocking peptide and both channels are untreated NB4 nuclear lysate. MC_2580 inputs are the inputs of the dynamic IPs (MaxQuant experiments Input_FORWARD_MC2580 / Input_REVERSE_MC2580; PRIDE: 'The uploaded data includes the input of the dynamic IP, which was excluded from following steps in the analysis'); their channel treatment follows the IP channel map, assuming cell treatment (Fig. 4E '2 uM MC_2580 for 24 hours'; see limitations)."
+   "evidence": "Paper: 'A minor fraction (1/20) of input was collected before adding 10 ug of anti-LSD1 antibody to each sample'; the blocking peptide was 'incubated together with the antibody', so basal inputs carry no blocking peptide and both channels are untreated NB4 nuclear lysate. MC_2580 inputs are the inputs of the dynamic IPs (MaxQuant experiments Input_FORWARD_MC2580 / Input_REVERSE_MC2580; PRIDE: 'The uploaded data includes the input of the dynamic IP, which was excluded from following steps in the analysis'); their channel treatment follows the IP channel map because the inhibitor/vehicle was applied to the cultures: Fig. 4E draws 'LSD1 inhibitor' and 'DMSO' on the cell dishes before LSD1-IP, legend 'inhibition with 2 uM MC_2580 for 24 hours'; SM Table S2 title 'upon treatment of NB4 cells with MC_2580'. Basal-arm input/IP pairing: SM Table S1 spreadsheets 1/3/5."
   },
   {
    "location": "characteristics[sample type] rows 1-166",
@@ -128,13 +145,13 @@
   },
   {
    "location": "characteristics[biological replicate] rows 1-166",
-   "value": "numbered 1..n per (immunoprecipitation, treatment) factor group: IP/untreated 1-5, IP+blocking peptide 1-3, IP/MC_2580 1-2, input/untreated 1-8, input/MC_2580 1-2",
+   "value": "numbered 1..n per (immunoprecipitation, treatment) factor group: IP/untreated 1-3, IP+blocking peptide 1-3, IP/Dimethyl Sulfoxide 1-2, IP/MC_2580 1-2, input/untreated 1-6, input/Dimethyl Sulfoxide 1-2, input/MC_2580 1-2",
    "source_ids": [
     "paper",
     "mq_basal",
     "mq_dynamic"
    ],
-   "evidence": "Paper: 'By using three different biological replicates, we defined 147 LSD1 putative interactors' (Rep1-3) and a forward and a reverse replicate for the MC_2580 interactome. Each SILAC channel is a separately grown light or heavy NB4 culture, so every channel of every mixture is one independent culture within its group (spec README.adoc:330; campaign rule 3). Whether the untreated channels of the dynamic arm come from cultures separate from the basal arm is not stated; treated as independent."
+   "evidence": "Paper: 'By using three different biological replicates, we defined 147 LSD1 putative interactors' (Rep1-3) and a forward and a reverse replicate for the MC_2580 interactome. Each SILAC channel is a separately grown light or heavy NB4 culture, so every channel of every mixture is one independent culture within its group (spec README.adoc:330; campaign rule 3). Basal (untreated) and MC_2580-arm (DMSO / MC_2580) cultures fall in different treatment groups, so no culture is counted twice."
   },
   {
    "location": "characteristics[organism] rows 1-166",
@@ -213,9 +230,10 @@
    "location": "characteristics[treatment] + factor value[treatment] rows 1-48, 81-122",
    "value": "untreated",
    "source_ids": [
-    "paper"
+    "paper",
+    "fig4"
    ],
-   "evidence": "Basal interactome and its inputs: no inhibitor (MC_2580 is only described for the dynamic interactome)."
+   "evidence": "Basal interactome and its inputs: Fig. 4A schematic shows Heavy and Light dishes without any drug or vehicle (only 'Excess of soluble peptide' on the control IP); MC_2580 and DMSO are only described for the dynamic interactome (Fig. 4E)."
   },
   {
    "location": "characteristics[immunoprecipitation] + factor value[immunoprecipitation] rows 1-166 (custom column, spec 'Extending Templates')",
@@ -311,9 +329,7 @@
  ],
  "limitations": [
   "Partial scope: the 27 label-free histone-PTM runs (MaxQuant searches txt_HistonesPTM_DDP38003.zip and txt_HistonesPTM_WT_KO.zip: Multiplicity 1, no labels, enzyme ArgC, Pro-PIC derivatisation) are out of scope for this SILAC SDRF and were not annotated: 38003_1_IIIreplica_histones_LN.raw, 38003_1_IIreplica_histones_LN.raw, 38003_1_Ireplica_histones_LN.raw, 38003_2_IIIreplica_histones_LN.raw, 38003_2_IIreplica_histones_LN.raw, 38003_2_Ireplica_histones_LN.raw, 38003_3_IIIreplica_histones_LN.raw, 38003_3_IIreplica_histones_LN.raw, 38003_3_Ireplica_histones_LN.raw, DMSO1_Ireplica_histones_LN.raw, DMSO_1_IIIreplica_histones_LN.raw, DMSO_1_IIreplica_histones_LN.raw, DMSO_2_IIIreplica_histones_LN.raw, DMSO_2_IIreplica_histones_LN.raw, DMSO_2_Ireplica_histones_LN.raw, DMSO_3_IIIreplica_histones_LN.raw, DMSO_3_IIreplica_histones_LN.raw, DMSO_3_Ireplica_histones_LN.raw, KO1_IIIreplica_LNRR.raw, KO1_IIreplica_LNRR.raw, KO1_Ireplica_LNRR.raw, KO2_IIIreplica_LNRR.raw, KO2_IIreplica_LNRR.raw, KO2_Ireplica_LNRR.raw, WT_IIIreplica_LNRR.raw, WT_IIreplica_LNRR.raw, WT_Ireplica_LNRR.raw. Recorded in annotations/BLOCKED.md (excluded runs). They would need their own label-free SDRF (rule 12).",
-  "MC_2580 input channels (rows 123-166): the paper places 'the inhibitor MC_2580 was added to the heavy channel' in the IP Methods paragraph, while Fig. 4E says 'inhibition with 2 uM MC_2580 for 24 hours' (cell treatment). The input channels were annotated as MC_2580-treated / untreated following the IP channel map, assuming cell treatment; the input H/L ratios (forward vs reverse Pearson +0.233, same as untreated basal inputs +0.243) neither confirm nor refute a treatment effect. Dose (2 uM) and duration (24 h) are not encoded as columns.",
-  "Pairing of inputs with IP replicates (Input_Forward_01<->Rep1, Input_Forward_02<->Rep2, Input_Reverse<->Rep3) is inferred from MaxQuant experiment names; basal inputs Forward_01 vs Forward_02 correlate (+0.653) more than forward vs reverse (+0.243), which could also mean the two forward inputs share lysate. Biological replicate numbers of input rows treat each channel as an independent culture.",
-  "Whether the untreated channels of the MC_2580 arm come from cultures independent of the basal arm is not stated; numbered as independent within the (anti-LSD1 IP, untreated) and (input, untreated) groups.",
+  "MC_2580 dose (2 uM) and treatment duration (24 h, Fig. 4E legend) are documented but not encoded: the declared templates license no dose or duration column (characteristics[sampling time] is a sampling time, not an exposure time).",
   "comment[precursor mass tolerance] = not available: MaxQuant parameters.txt/summary.txt do not record the main-search precursor tolerance and no mqpar.xml was deposited; consequently parse_sdrf convert-openms may refuse the file (as for campaign precedents).",
   "comment[alkylation reagent] = not available: the in-gel digestion is 'as previously described (38)' and no alkylating agent is named (fixed Carbamidomethyl (C) only shows carbamidomethylation). Reduction reagent and fractionation method of the input samples are not described.",
   "characteristics[cell type] and characteristics[passage number] = not available: not stated in the paper or PRIDE (campaign rule 9).",
