@@ -4,3 +4,40 @@
 Post-build edit (deterministic, scripts/postbuild.py): comment[fraction identifier] set to the basic-pH RP fraction number encoded in the file name (01_R->1, 04->4, 05->5, 06->6, 11->11, 12->12). Justification: build numbers fractions by list position (1..6), but only 6 of the 12 fractions have an in-scope deposited raw; no other cell is changed.
 
 ## parse_sdrf validate-sdrf -s annotations/PXD007256.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit=0
+Note: the only warning is 'untreated' in characteristics[treatment] not being an NCIT/EFO term; 'untreated' is the template-prescribed control value (campaign rule 4).
+
+## sdrf-tools structure annotations/PXD007256.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD007256.sdrf.tsv
+Hallucination Report: annotations/PXD007256.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD007256.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/pride.json --accession PXD007256
+PXD007256: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD007256.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/convert)
+Conditions (2): dict_keys(['Curcumin', 'untreated'])
+Files per condition: dict_values([6, 6])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD007256.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check annotations/PXD007256.evidence.json
+annotations/PXD007256.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD007256.sdrf.tsv annotations/PXD007256.evidence.json
+Manifest covers every column with a value (36 column(s)).
+exit=0
