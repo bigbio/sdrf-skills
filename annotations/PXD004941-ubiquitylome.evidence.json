@@ -1,0 +1,223 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD004941-ubiquitylome.sdrf.tsv",
+ "dataset": "PXD004941",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004941 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/pride_v3.json; MCP get_project_details copy /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/pride.json): title, sampleProcessingProtocol, dataProcessingProtocol, instruments, organismParts"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004941/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/files.json): 4 entries, every projectAccessions = [PXD004941]: 5148SQ_rawdata.zip (6.56 GB, RAW), 5148SP_rawdata.zip (2.68 GB, RAW), 5148SQ_MaxQuantOutput.zip, 5148SP_MaxQuantOutput.zip (SEARCH)"
+  },
+  {
+   "id": "zipdir",
+   "kind": "raw-file",
+   "location": "ZIP central directories of https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD004941/5148SQ_rawdata.zip (members 1.raw..18.raw) and https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD004941/5148SP_rawdata.zip (members 1.raw..12.raw + mqpar.xml), read by HTTP range with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/scripts/rzip.py (listings /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/list_5148SQ_rawdata.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/list_5148SP_rawdata.txt)"
+  },
+  {
+   "id": "mq_sp",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD004941/5148SP_rawdata.zip member mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/mq/SP/mqpar.xml) and https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD004941/5148SP_MaxQuantOutput.zip members peptides.txt, proteinGroups.txt, 'GlyGly (K)Sites.txt' (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/mq/SP/)"
+  },
+  {
+   "id": "mq_sq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD004941/5148SQ_MaxQuantOutput.zip members parameters.txt, proteinGroups.txt, peptides.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/mq/SQ/). No mqpar.xml or summary.txt was deposited for this search."
+  },
+  {
+   "id": "rawhdr",
+   "kind": "raw-file",
+   "location": "Inflated first ~1.5 MB (compressed) of 5148SQ 1.raw, 12.raw and 5148SP 1.raw, 12.raw, decoded UTF-16LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/rawhead/*.bin; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/scripts/rawhead.py)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Li W et al. Proteomics 2018;18(15):e1700388, doi:10.1002/pmic.201700388, PMID 29901268, PMC6099292; Europe PMC fullTextXML (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/paper.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/paper.txt): sections 2.1-2.9, 3.1, Figure 1 legend"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "PMC OA S3 https://pmc-oa-opendata.s3.amazonaws.com/PMC6099292.1/PMIC-18-na-s006.docx (supplementary legends), PMIC-18-na-s007.xlsx (Table S1), PMIC-18-na-s008.xlsx (Table S2) (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/supp_s3/)"
+  },
+  {
+   "id": "datacheck",
+   "kind": "search-output",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/datacheck_SQ.txt and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/datacheck_SP.txt: deposited H/L ratios of the proteins / sites the paper names (script inline in the session; inputs mq/SQ/proteinGroups.txt, mq/SP/GlyGly (K)Sites.txt)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "repository",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_B260?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/cellosaurus_CVCL_B260.txt); https://api.cellosaurus.org/cell-line/CVCL_E7RA?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/cellosaurus_CVCL_E7RA.txt); Cellosaurus search 'PC-9 gefitinib' (24 PC-9 children)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 (sdrf-tools ols, OLS4 REST terms?obo_id=; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD004941/ols1.txt): MONDO:0005061 lung adenocarcinoma, UBERON:0002048 lung, UBERON:0000029 lymph node, HANCESTRO:0009 East Asian ancestry, EFO:0001272 adult, NCIT:C1855 Gefitinib, NCIT:C185409 Dulbecco's Modified Eagle Medium, MS:1002634 Q Exactive Plus, MS:1000422, MS:1000484, PRIDE:0000564, PRIDE:0000608, PRIDE:0000599, UNIMOD:4/1/35/188/121 - all is_obsolete=false"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0). The spec submodule's nested templates copy is older."
+  },
+  {
+   "id": "precedent",
+   "kind": "repository",
+   "location": "/home/user/bigbio/sdrf-annotated-datasets/datasets/PXD008454/PXD008454.sdrf.tsv (curated PC-9 rows: organism part lung, CVCL_B260, 45Y, male); annotations/PXD002425 (passed review; 'enrichment of ubiquitinated protein' used without an OLS term, as in 557 curated rows)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier], comment[technical replicate] rows 1-24",
+   "value": "1.raw..12.raw, members of 5148SP_rawdata.zip; fraction = file number; technical replicate 1",
+   "source_ids": [
+    "files",
+    "zipdir",
+    "mq_sp"
+   ],
+   "evidence": "5148SP_rawdata.zip holds exactly 12 Thermo RAW members 1.raw..12.raw. mqpar.xml (inside 5148SP_rawdata.zip) lists D:\\Project\\PTM_Quant\\SILAC\\5148SP_Kubi\\1.raw..12.raw with <fractions> 1..12 and empty experiment names: one SILAC mixture, 12 fractions, each injected once. The same member names (1.raw...) occur in both raw zips, so the two searches are written as two SDRF files (PXD004941-proteome, PXD004941-ubiquitylome); assay name is the build default (file stem). No comment[file uri] is given because the runs have no individual URL (they are archive members)."
+  },
+  {
+   "location": "comment[label], source name, characteristics[cell line], characteristics[treatment], factor value[cell line], factor value[treatment] rows 1-24",
+   "value": "SILAC light (rows 1-12) = PC9/GR, cultured with 3 uM gefitinib -> source PC9-GR_light_Kub; SILAC heavy (rows 13-24) = PC9 parental, no gefitinib (untreated) -> source PC9_heavy_Kub",
+   "source_ids": [
+    "pride",
+    "paper",
+    "supp",
+    "datacheck",
+    "mq_sp"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol and paper 2.1: 'PC9/GR cells were labeled with \"light isotopic lysine\" (12C-lysine), and PC9 cells were labeled with \"heavy isotopic lysine\" (13C-lysine) ... (the \"light\" labeled PC9/GR cells were treated with 3 uM gefitinib)'; paper 3.1: 'PC9 cells cultured in the medium without gefitinib, and PC9/GR cells cultured in the medium with gefitinib'; supplementary legend s006 Table S1: 'PC9/GR ... \"L\" in the table, PC9 ... \"H\"'. Data check against the paper's named proteins: proteome normalized H/L ALDH1A1 0.11 (paper/WB: up in PC9/GR), HMGA2 7.6 and CHEK2 7.3 (down in PC9/GR), ALOX5 0.22 and NUCB2 0.48 (up), EPHA2 3.4 and CNNM3 3.5 (down); 401 proteins with H/L<=0.5 and 148 with H/L>=2 vs paper 404 up / 148 down in PC9/GR. Ubiquitylome sites: ALOX5 and NUCB2 sites H/L 1.3-2.8 (paper: ubiquitylation down in PC9/GR), EPHA2 and CNNM3 sites H/L 0.28-0.54 (up in PC9/GR), ABCA12 four sites ~0.13 and one 2.2 (paper: two up, one down). Table S2 'Ratio (L:H)' = Intensity L/Intensity H (RBM47 2.07e9/8.26e8 = 1.89) with HMGA2 L:H 0.13 and CHEK2 0.14. Light = PC9/GR in both searches. Treatment value Gefitinib = NCIT:C1855 (dose 3 uM is stated here, not encodable in the bare value); PC9 rows 'untreated' (campaign rule 4)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-24",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "mq_sp"
+   ],
+   "evidence": "One culture per condition: each line was expanded to ~5x10^8 cells in fifteen 150 cm2 flasks and harvested as one batch (paper 2.1); one heavy/light mixture was made (2.2); the deposits hold one SILAC experiment per search (mqpar.xml: one experiment, fractions 1-12). Each factor-value group (PC9/GR+gefitinib; PC9 untreated) therefore has one independent culture, numbered 1."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-24",
+   "value": "rows 1-12: PC9/GR / not available / not available; rows 13-24: PC-9 / CVCL_B260 / PC-9",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "PC-9 = Cellosaurus CVCL_B260 (ID PC-9, synonym PC9; human, lung adenocarcinoma; no other-species entry with that name in the search). PC9/GR was derived by this lab (paper 2.1: PC9 xenografts in nude mice treated with gefitinib 100 mg/kg for 2 months, survivors expanded in 3 uM gefitinib; STR shows common ancestry with PC9). Cellosaurus has no entry for this derivation: CVCL_E7RA 'PC-9/GR' (created 2025, ref PubMed 39080187, Wu et al., Clin Transl Oncol) is an independently derived line from another group, so neither its accession nor its name is used; the authors' name PC9/GR is kept in characteristics[cell line] (no CLO/BTO/EFO term - validator warning)."
+  },
+  {
+   "location": "characteristics[organism], characteristics[disease], characteristics[organism part], characteristics[sampling site], characteristics[material type] rows 1-24",
+   "value": "Homo sapiens; lung adenocarcinoma; lung; lymph node; cell line",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "precedent",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_B260: OX NCBI_TaxID=9606; DI NCIt C3512 Lung adenocarcinoma (-> MONDO:0005061); 'Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029' (-> sampling site lymph node). Organism part = lung (organ of the primary disease), as in the curated PC-9 SDRF PXD008454. PRIDE organismParts 'Smooth muscle cell of small intestine' is a submitter dropdown error contradicted by every other source and is not used. PC9/GR inherits the donor (STR, paper 2.1)."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[ancestry category], characteristics[individual] rows 1-24",
+   "value": "45Y; male; adult; East Asian ancestry; PC-9_donor",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_B260: AG 45Y, SX Male, 'Population: Chinese; Han and Japanese' (both East Asian -> HANCESTRO:0009 East Asian ancestry, which covers Chinese sub-populations). 45Y >= 20Y -> EFO:0001272 adult. Both lines come from the one PC-9 donor (PC9/GR derived from PC9, STR-confirmed in paper 2.1), hence one individual id."
+  },
+  {
+   "location": "characteristics[culture medium], characteristics[sample storage temperature] rows 1-24",
+   "value": "Dulbecco's Modified Eagle Medium; -80 °C",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper 2.1: cells grown in high-glucose DMEM with 10% FBS (SILAC: DMEM with heavy or light lysine), NCIT:C185409; 'After snap freezing in liquid nitrogen, cell pellets were stored in -80 °C freezer'."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-24",
+   "value": "enrichment of ubiquitinated protein",
+   "source_ids": [
+    "paper",
+    "pride",
+    "precedent",
+    "mq_sp",
+    "rawhdr"
+   ],
+   "evidence": "Paper 2.5: Kub (diGly-lysine) peptides enriched with anti-diGly antibody beads (PTM Biolabs); acquisition folder D:\\20150721_5148SP_Kubi, method PTM_SILAC_Quant; 2941 GlyGly (K) sites in 'GlyGly (K)Sites.txt'. No OLS term exists for ubiquitin-remnant enrichment; the value follows the passed PXD002425 / curated precedent."
+  },
+  {
+   "location": "characteristics[cell type], characteristics[passage number] rows 1-24",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Cellosaurus gives no cell type for PC-9; the paper states 'more than six generations' in SILAC medium but no passage number."
+  },
+  {
+   "location": "comment[instrument], comment[ms2 mass analyzer], comment[dissociation method], comment[collision energy], comment[ms1 scan range], comment[proteomics data acquisition method] rows 1-24",
+   "value": "Q Exactive Plus MS:1002634; orbitrap MS:1000484; beam-type CID (HCD) MS:1000422; 30 NCE; 350m/z-1800m/z; DDA PRIDE:0000627",
+   "source_ids": [
+    "rawhdr",
+    "paper",
+    "ols"
+   ],
+   "evidence": "RAW headers (5148SP 1.raw and 12.raw): 'Method of Q Exactive Plus', 'Q Exactive Plus - Orbitrap MS'; full MS 'Scan range 350 to 1800 m/z', 70000 resolution; MS2 resolution 17500 (Orbitrap); 'NCE / stepped NCE 30'; dynamic exclusion 10.0 s. Paper 2.7: Q Exactive Plus, top-20 data-dependent, fragments detected in the Orbitrap, NCE 30, scan range 350-1800. The raw header value is used for NCE. PRIDE 'instruments: LTQ Orbitrap' is contradicted by every raw file and is not used."
+  },
+  {
+   "location": "comment[cleavage agent details], comment[reduction reagent], comment[alkylation reagent], comment[fractionation method] rows 1-24",
+   "value": "Trypsin MS:1001251; DTT PRIDE:0000608; Iodoacetamide PRIDE:0000599; High-pH reversed-phase chromatography PRIDE:0000564",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_sp",
+    "ols"
+   ],
+   "evidence": "Paper 2.3: trypsin (Promega) 1:50 then 1:100; DTT 5 mM, IAA 15 mM. MaxQuant enzyme rule 'Trypsin/P' (mqpar.xml) is a search setting; the digestion enzyme is trypsin (campaign rule 2). Paper 2.4: high-pH reversed-phase HPLC (Agilent 300 Extend C18), 80 fractions combined; applied to 'the sample' before the Kub enrichment (2.5)."
+  },
+  {
+   "location": "comment[fragment mass tolerance], comment[precursor mass tolerance] rows 1-24",
+   "value": "0.02 Da; 5 ppm",
+   "source_ids": [
+    "mq_sp",
+    "paper"
+   ],
+   "evidence": "mqpar.xml: mainSearchTol 5 (ppm; firstSearchTol 20), msmsParams FTMS Tolerance 0.02 Dalton. The paper's '10 ppm' disagrees with the deposited parameter file, which is used."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-24",
+   "value": "Carbamidomethyl C fixed; Acetyl Protein N-term, Oxidation M, Label:13C(6) K variable; GG K (UNIMOD:121) variable",
+   "source_ids": [
+    "mq_sp",
+    "paper"
+   ],
+   "evidence": "mqpar.xml: fixedModifications Carbamidomethyl (C); variableModifications Acetyl (Protein N-term), GlyGly (K), Oxidation (M); labelMods ['', 'Lys6'] with multiplicity 2 (Lys6 = 13C6 lysine = UNIMOD:188); multiModificationSearch false (no multi modifications). sdrf-tools search-params on mqpar.xml prints the same five modifications."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-24",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; template versions are those sdrf-tools contract prints and match upstream templates.yaml (ms-proteomics latest 1.2.0, line 150)."
+  }
+ ],
+ "limitations": [
+  "Partial-scope: none. All 30 deposited RAW runs (18 in 5148SQ_rawdata.zip, 12 in 5148SP_rawdata.zip) are annotated; no run is excluded and BLOCKED.md has no PXD004941 section.",
+  "RAW files are deposited only as members of two ZIP archives whose member names collide (1.raw.. in both). The deposit is therefore split into PXD004941-proteome.sdrf.tsv (5148SQ) and PXD004941-ubiquitylome.sdrf.tsv (5148SP): in one file parse_sdrf convert-openms fails with 'A SILAC channel occurs more than once in 1.raw'. comment[file uri] is omitted because the runs have no individual URL.",
+  "Fraction count discrepancy: paper 2.4 says the 80 high-pH RP fractions were 'combined into eight fractions', but 18 (proteome) and 12 (ubiquitylome, mqpar fractions 1-12) RAW files were deposited; paper 2.5 also says the Kub eluates were 'combined'. The deposited files and mqpar.xml are followed.",
+  "Single SILAC experiment per study arm: one culture per condition, no biological replicates and no label swap; the cell-line contrast is confounded with gefitinib exposure (PC9/GR kept in 3 uM gefitinib, PC9 without), as the paper itself states. Both are encoded as factor values.",
+  "PC9/GR has no Cellosaurus entry of its own (CVCL_E7RA 'PC-9/GR' is a different group's 2025 derivation), so cellosaurus accession/name are not available; donor-level values (age, sex, ancestry, disease, sites) are those of the parental PC-9 (CVCL_B260), supported by the paper's STR statement.",
+  "PRIDE structured fields are wrong for this deposit and were overridden: instruments 'LTQ Orbitrap' (RAW headers: Q Exactive Plus) and organismParts 'Smooth muscle cell of small intestine' (PC-9 is a lung adenocarcinoma line from a lymph-node metastasis).",
+  "characteristics[cell type] and characteristics[passage number] are not available in any source.",
+  "Review: REVIEW_PENDING_EXTERNAL - no independent review has been run on these files."
+ ]
+}
