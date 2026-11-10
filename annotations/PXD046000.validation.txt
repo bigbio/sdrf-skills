@@ -1,0 +1,57 @@
+# PXD046000 validation log (2026-11-10T17:58Z); SDRF sha256 3ac6fdd98494fd6493457b18805aabed0a373a9f51b67a36f18d7f6b4fcf81ff; 16 rows x 41 columns
+# Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/scripts/make_tables.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000  ->  sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/files_inscope.json -t ms-proteomics -t vertebrates -o annotations/PXD046000.sdrf.tsv (16 rows x 40 columns)
+# Post-build (deterministic, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/scripts/postbuild.py; batch rule 17):
+#  1. inserts a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 directly after the Trypsin column on all 16 rows
+#     (protocol: Lys-C 1:100 4 h, then trypsin overnight; rule 2). Why: the column is not 'multiple' in the contract, so build emits one
+#     column (same as PXD008327/PXD005854). The script asserts exactly one existing cleavage column = Trypsin on every row.
+#  2. sets comment[fraction identifier] to the MaxQuant 'Fraction' of each raw file from deposited evidence.txt (2,3,4,6,8,10,12,13).
+#     Why: build numbers by list position (1..8); 5 of the 13 searched runs are not deposited, so positional numbers would
+#     contradict evidence.txt. The script asserts one Fraction value per raw file. 16 cells changed.
+# No other edits. Single validation round (no errors).
+
+## parse_sdrf validate-sdrf -s annotations/PXD046000.sdrf.tsv -t ms-proteomics -t vertebrates (full ontology)
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD046000.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD046000.sdrf.tsv
+Hallucination Report: annotations/PXD046000.sdrf.tsv
+  Terms checked:     18
+  Verified:          18
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD046000.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/pride.json --accession PXD046000
+PXD046000: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  organism_contradicted (characteristics[organism]): the record names only Homo sapiens and never Mus musculus  [declared 'Mus musculus']
+exit=1
+REFUTED (false positive, evidence in PXD046000.evidence.json sources paper/haj2003): the SILAC samples are mouse embryonic fibroblasts.
+  Paper Methods: 'Ptp1b -/- and Ptp1b +/+ MEFs were a gift from Dr Benjamin Neel (New York University) [26]'; 'differential labeling of
+  wild-type and KO fibroblasts [26] with SILAC media'. Ref. 26 (Haj et al. JBC 2003, PMID 12424235): 'primary and immortalized fibroblasts
+  from PTP1B(-/-) mice'. The PRIDE protocol itself writes the mouse gene symbol 'Ptp1b-/-'. PRIDE's organism (Homo sapiens) reflects the
+  paper's human glioblastoma cell experiments (not deposited) and the human IPI database used for the MaxQuant search.
+  Not flagged by reconcile but also contradicting the record: instrument (raw headers LTQ Orbitrap XL vs PRIDE LTQ Orbitrap Velos) and
+  disease (PRIDE glioblastoma vs 'normal' MEFs) - both explained in the manifest.
+
+## parse_sdrf convert-openms -s annotations/PXD046000.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/convert)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.2.0.18 parameters.txt records no MS1 tolerance; no mqpar.xml
+deposited). validate-sdrf and the template accept the reserved word. Same outcome as campaign precedents PXD014368/PXD006676.
+
+## sdrf-tools schema-check annotations/PXD046000.evidence.json
+annotations/PXD046000.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD046000.sdrf.tsv annotations/PXD046000.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit=0

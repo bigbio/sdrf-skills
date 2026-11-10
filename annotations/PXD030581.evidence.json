@@ -1,0 +1,300 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD030581.sdrf.tsv",
+ "dataset": "PXD030581",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD030581 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD030581/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/files_p0.json..files_p2.json, merged /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/files_all.json; 22 entries = 20 .raw + txt.zip + txt2.zip; every entry projectAccessions contains PXD030581)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Maiques-Diaz A et al. HMG20B stabilizes association of LSD1 with GFI1 on chromatin to confer transcription repression and leukemia cell differentiation block. Oncogene 2022;41(44):4841-4854, doi:10.1038/s41388-022-02471-y, PMID 36171271, PMC7613766 (text https://pmc-oa-opendata.s3.amazonaws.com/PMC7613766.2/PMC7613766.2.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/paper.txt; JATS /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/paper.xml)"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "Supplementary Information https://pmc-oa-opendata.s3.amazonaws.com/PMC7613766.2/41388_2022_2471_MOESM1_ESM.pdf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/supp/MOESM1.pdf, pdftotext /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/supp/MOESM1.txt; title page names the same authors; Methods 'SILAC and nuclear immunoprecipitation-mass spectrometry and analysis' lines 640-660, cell culture lines 356-358, Table S1 lines 184-240)"
+  },
+  {
+   "id": "mq_igg",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD030581/txt.zip members txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt, txt/evidence.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/dl/txt/)"
+  },
+  {
+   "id": "mq_lsd1",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD030581/txt2.zip members txt2/summary.txt, txt2/parameters.txt, txt2/proteinGroups.txt, txt2/evidence.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/dl/txt2/)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 2 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD030581/2014_1204_Alba_LSD1_1.raw and https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD030581/2014_1204_Alba_IgG_1.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/raw/*.head): instrument 'LTQ Orbitrap Velos MS', method 120mins_Top20_CID_wilf.meth, scan event 1 'FTMS + p norm res=60000 o(300.0-1700.0)', events 2+ 'ITMS + c norm Dep ... Activation Type: CID ... Normalized Coll. Energy: 35.0'"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0006?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/cello_CVCL_0006.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/ols_search.txt); all terms used are is_obsolete=false"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0); upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 'latest: 1.2.0' (local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); the spec submodule's nested templates copy is older. comment[sdrf version] v1.1.0 per spec README.adoc:27"
+  },
+  {
+   "id": "ratios",
+   "kind": "derived",
+   "location": "Deposited proteinGroups.txt H/L ratios and L/H intensities compared with paper Table S1 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/dl/txt2/proteinGroups.txt; supp Table S1)"
+  },
+  {
+   "id": "scripts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/scripts/make_tables.py (samples.tsv/technical.tsv/files.json), sdrf-tools build, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/scripts/fix_fraction.py (post-build fraction identifier edit)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-40; comment[label] rows 1-40",
+   "value": "4 sources: THP-1 DMSO SILAC light anti-LSD1 IP (rows 1-10), THP-1 OG86 SILAC heavy anti-LSD1 IP (rows 11-20), THP-1 DMSO SILAC light IgG control IP (rows 21-30), THP-1 OG86 SILAC heavy IgG control IP (rows 31-40)",
+   "source_ids": [
+    "supp",
+    "paper",
+    "mq_lsd1",
+    "mq_igg",
+    "ratios"
+   ],
+   "evidence": "Channel map: supp Methods 'Heavy-labeled cells were exposed to 250nM of OG86 and the light-labeled to DMSO control for 48 hours ... The lysates from heavy-OG86 or light-DMSO were combined and incubated with the anti-LSD1 or anti-IgG rabbit antibodies'; paper Results 'cells were grown in heavy or light media ... treated with OG86 250 nM or DMSO vehicle respectively'. Data check: txt2 proteinGroups KDM1A Intensity L 351800000 / H 192530000 and HMG20B 13691000 / 3929200, GSE1 84065000 / 26076000, RREB1 15370000 / 4426000 are exactly the 'Intensity DMSO' / 'Intensity OG86' columns of Table S1, so L = DMSO and H = OG86; raw KDM1A H/L 0.56 matches the supp statement 'ratio ... heavy-OG86 vs light-DMSO ... for KDM1A itself was 0.55'; HMG20B normalized H/L 0.47 (reduced, as reported). The anti-LSD1 and IgG pull-downs are two physical pull-downs of the same combined lysate, so each (pull-down, channel) gets its own source name; the DMSO light channel of the LSD1 IP and of the IgG IP come from the same light culture (likewise heavy). txt.zip contains only IgG_* raw files and txt2.zip only LSD1_* raw files; both summary.txt Multiplicity 2, Labels1 Arg6;Lys8."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-40",
+   "value": "1",
+   "source_ids": [
+    "supp",
+    "mq_lsd1",
+    "mq_igg"
+   ],
+   "evidence": "One SILAC experiment: one heavy (OG86) and one light (DMSO) culture, 40 million cells per condition, lysates combined and split into anti-LSD1 and IgG pull-downs. Each factor-value group (immunoprecipitation x treatment) contains exactly one culture, so 1 in every group (README.adoc:330; campaign rule 3). No replicate experiment is deposited or described."
+  },
+  {
+   "location": "comment[data file] rows 1-40; assay name rows 1-40; comment[fraction identifier] rows 1-40",
+   "value": "20 raw files, 10 gel slices per pull-down; fraction identifier = slice number in file name",
+   "source_ids": [
+    "files",
+    "mq_lsd1",
+    "mq_igg",
+    "supp",
+    "scripts"
+   ],
+   "evidence": "PRIDE lists 2014_1204_Alba_LSD1_{1,2,3,5..11}.raw and 2014_1204_Alba_IgG_{1,2,4..11}.raw. MaxQuant summary.txt lists 11 files per search (LSD1_1..11, IgG_1..11): LSD1_4 and IgG_3 were searched but are not deposited. Supp: 'resolved using SDS-PAGE and each gel lane chopped into 10 pieces'. Fraction identifier is set by fix_fraction.py to the trailing number of the file name (build would number by list position and shift slices after the missing file), so the same slice number marks the same gel position in both lanes."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-40",
+   "value": "1",
+   "source_ids": [
+    "files",
+    "supp"
+   ],
+   "evidence": "Each gel slice was injected once (one raw file per slice)."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-40",
+   "value": "study sample (anti-LSD1 IP rows 1-20); control sample (IgG control IP rows 21-40)",
+   "source_ids": [
+    "supp",
+    "ols"
+   ],
+   "evidence": "Supp Methods: IgG control pull-down used to exclude proteins 'with more than 2 peptides in the IgG control'. PRIDE:0001013 study sample, PRIDE:0001014 control sample (OLS4)."
+  },
+  {
+   "location": "characteristics[immunoprecipitation] rows 1-40; factor value[immunoprecipitation] rows 1-40",
+   "value": "anti-LSD1 immunoprecipitation (rows 1-20); rabbit IgG control immunoprecipitation (rows 21-40)",
+   "source_ids": [
+    "supp",
+    "files"
+   ],
+   "evidence": "Supp Methods: 'incubated with the anti-LSD1 or anti-IgG rabbit antibodies pre-bound to Protein G-Sepharose'; antibodies anti-LSD1 ab17721 (Abcam), normal IgG Rabbit 12-307 (Millipore). File names carry LSD1 / IgG. Custom characteristics column (spec 'Extending Templates')."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-40; factor value[treatment] rows 1-40",
+   "value": "Dimethyl Sulfoxide (light rows 1-10, 21-30); OG86 (heavy rows 11-20, 31-40)",
+   "source_ids": [
+    "supp",
+    "paper",
+    "ols",
+    "ratios"
+   ],
+   "evidence": "OG86 250 nM for 48 h (Oryzon Genomics compound #86, tranylcypromine-derivative LSD1 inhibitor) on heavy cells; DMSO vehicle on light cells. NCIT:C437 'Dimethyl Sulfoxide' (OLS4). The control is a vehicle, so 'untreated' would be false (deviation from campaign rule 4, as in PXD012954/PXD008454). OG86 has no NCIT/EFO term; free text."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-40",
+   "value": "sample enrichment",
+   "source_ids": [
+    "supp",
+    "ols"
+   ],
+   "evidence": "Both pull-downs are antibody immunoprecipitations (affinity enrichment) before SDS-PAGE. EFO:0009106 'sample enrichment' (OLS4)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-40",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism NEWT:9606; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-40; characteristics[cellosaurus accession] rows 1-40; characteristics[cellosaurus name] rows 1-40",
+   "value": "THP-1 / CVCL_0006 / THP-1",
+   "source_ids": [
+    "paper",
+    "supp",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: 'THP1 AML cells ... exhibit a t(9;11) MLL gene rearrangement'; 'THP1 cells were purchased from DMSZ ... verified by STR'. Cellosaurus CVCL_0006 ID THP-1, synonym THP1, KMT2A-MLLT3 fusion, DSMZ ACC-16; human only, no other-species name collision."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-40",
+   "value": "blood",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: 'Derived from site: In situ; Peripheral blood; UBERON=UBERON_0000178'; UBERON:0000178 label 'blood'."
+  },
+  {
+   "location": "characteristics[disease] rows 1-40",
+   "value": "childhood acute monocytic leukemia",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9163 'Childhood acute monocytic leukemia'; EFO:1001944 'childhood acute monocytic leukemia' (OLS4, not obsolete). Note: the local sdrf-tools cellline DB wrongly gives 'Childhood acute megakaryoblastic leukemia'; the live Cellosaurus record was used."
+  },
+  {
+   "location": "characteristics[material type] rows 1-40",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured THP-1 cells."
+  },
+  {
+   "location": "characteristics[age] rows 1-40; characteristics[sex] rows 1-40; characteristics[ancestry category] rows 1-40; characteristics[developmental stage] rows 1-40",
+   "value": "1Y; male; Japanese; child stage (1-4 yo)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 1Y, SX Male, 'Population: Japanese'. HANCESTRO:0019 Japanese; HsapDv:0000265 'child stage (1-4 yo)' covers 1Y (OLS4)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-40",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "supp",
+    "ols"
+   ],
+   "evidence": "Supp 'Human cells and cell cultures': 'THP1 cells were cultured in RPMI 1640 with 10% fetal bovine serum, 2mM glutamine'. NCIT:C178973. The SILAC medium base is not named separately (see limitations)."
+  },
+  {
+   "location": "comment[instrument] rows 1-40",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE instruments MS:1001742; raw headers of LSD1_1 and IgG_1 read 'LTQ Orbitrap Velos MS'. (The Orbitrap Fusion in the supp refers to the label-free nuclear IP-MS, whose files are not in this deposit.)"
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-40",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Method 120mins_Top20_CID; scan events 'Dep MS/MS Most intense ion from (1)'."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-40; comment[collision energy] rows 1-40; comment[ms2 mass analyzer] rows 1-40; comment[ms1 scan range] rows 1-40",
+   "value": "CID MS:1000133; 35 NCE; ion trap MS:1000264; 300m/z-1700m/z",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw scan events: 'FTMS + p norm res=60000 o(300.0-1700.0)' then 'ITMS + c norm Dep ... Activation Type: CID ... Normalized Coll. Energy: 35.0' (both files read)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-40",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "supp",
+    "mq_lsd1",
+    "mq_igg"
+   ],
+   "evidence": "Supp: 'proteins were trypsinized and extracted from the gel'. MaxQuant Enzyme 'Trypsin/P' (search rule; campaign rule 2 annotates the digestion enzyme)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-40",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "supp",
+    "ols"
+   ],
+   "evidence": "Supp: 'resolved using SDS-PAGE and each gel lane chopped into 10 pieces'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-40",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) R (UNIMOD:188), Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mq_lsd1",
+    "mq_igg",
+    "ols"
+   ],
+   "evidence": "parameters.txt (both searches): 'Fixed modifications Carbamidomethyl (C)'. summary.txt every raw: Variable modifications 'Acetyl (Protein N-term);Oxidation (M)', Multiplicity 2, Labels0 empty, Labels1 'Arg6;Lys8'; there is no 'Multi modifications' column. Arg6 = +6.020 Da = UNIMOD:188, Lys8 = +8.014 Da = UNIMOD:259; MT=Variable per campaign rule 11. evidence.txt: 1006 K-only peptides light-only, 857 K-only paired (Lys8 pairs present)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-40",
+   "value": "0.8 Da",
+   "source_ids": [
+    "mq_lsd1",
+    "mq_igg",
+    "raw"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (ITMS) 0.8 Da'; MS2 spectra are ITMS (raw header)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-40; comment[sdrf template] rows 1-40; comment[sdrf annotation tool] rows 1-40; technology type rows 1-40",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates: MS proteomics on human cell line samples. technology type filled by sdrf-tools build."
+  }
+ ],
+ "limitations": [
+  "Supp Methods says cells were grown in 'heavy methionine and arginine' medium; the deposited MaxQuant searches use Arg6;Lys8 (and Lys8-labelled pairs are present in evidence.txt). The search configuration is annotated; the 'methionine' wording is treated as a typo.",
+  "Two searched raw files are not deposited: 2014_1204_Alba_LSD1_4.raw and 2014_1204_Alba_IgG_3.raw appear in summary.txt but not in the PRIDE file list. The SDRF covers the 20 deposited raws; fraction identifiers keep the slice number from the file name, so fraction 4 (LSD1) and 3 (IgG) are absent.",
+  "Supp says each gel lane was cut into 10 pieces, but 11 files per lane were searched (numbered 1-11). Slice numbers are taken from file names.",
+  "The PRIDE data processing protocol (Mascot 2.6.0, 10 ppm / 0.60 Da) and sample protocol ('Nuclear extraction') describe the label-free nuclear IP-MS (Orbitrap Fusion, Tables S2/S3), whose files are not in this deposit. The deposited SILAC data were searched with MaxQuant 1.5.1.2, so the SDRF uses the MaxQuant settings.",
+  "Precursor mass tolerance is 'not available': no mqpar.xml is deposited, and parameters.txt/summary.txt record only MS/MS tolerances. Because of this, convert-openms exits 1.",
+  "Reduction and alkylation reagents are 'not available': the lysis buffer contains 1 mM DTT, but no in-gel reduction/alkylation step is described. Carbamidomethyl (C) is a fixed search modification only.",
+  "The culture medium is RPMI 1640 from the general THP1 culture statement. The SILAC medium base is not named separately. Passage number is 'not available'; the 15 days / 7 passages of labelling are not an absolute passage number. Cell type is 'not available' because none is stated.",
+  "OG86 has no ontology term (free text). Its concentration and duration (250 nM, 48 h) are recorded here only.",
+  "Single SILAC experiment without biological replication; biological replicate is 1 in each group.",
+  "The review is handed off to an external sdrf-adversarial-review (REVIEW_PENDING_EXTERNAL); not self-approved."
+ ]
+}

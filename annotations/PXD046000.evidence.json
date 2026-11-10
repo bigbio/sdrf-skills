@@ -1,0 +1,395 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD046000.sdrf.tsv",
+ "dataset": "PXD046000",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD046000 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/pride.json): sampleProcessingProtocol and dataProcessingProtocol prose"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD046000/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/files_p0.json; 22 entries, page 1 empty; every entry projectAccessions = PXD046000): 10 .RAW, MaxQuant txt tables, search.zip, tables.pdf"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD046000/summary.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/dl/summary.txt): 13 raw files o110826_JC569_01..13, Multiplicity 2, Labels1 'Arg6;Lys6', Protease Trypsin/P, Variable modifications 'Oxidation (M);Acetyl (Protein N-term);Phospho (STY)', no 'Multi modifications' column in this MaxQuant version"
+  },
+  {
+   "id": "mq_parameters",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD046000/parameters.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/dl/parameters.txt): MaxQuant 1.2.0.18, Fixed modifications Carbamidomethyl (C), MS/MS tol. (ITMS) 0.5 Da, FASTA ipi.HUMAN.v3.68; no precursor (MS1) tolerance recorded"
+  },
+  {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD046000/evidence.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/dl/evidence.txt): Experiment 'S' for all 13437 evidences; Fraction = 1..13 matching the run suffix; Labeling State 1 (heavy) identifications with K and R at sub-ppm mass error"
+  },
+  {
+   "id": "mq_sites",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD046000/Phospho_STY_Sites.txt and proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/dl/): Ratio H/L per site"
+  },
+  {
+   "id": "searchzip",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD046000/search.zip central directory read by HTTP range (48 entries, MaxQuant internal peptide index folders only, no data runs)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Villamar-Cruz O, ..., Chernoff J, Arias-Romero LE. A PTP1B-Cdk3 Signaling Axis Promotes Cell Cycle Progression of Human Glioblastoma Cells through an Rb-E2F Dependent Pathway. Mol Cell Biol 2023, doi:10.1080/10985549.2023.2273193, PMID 38014992, PMC10761042 (Europe PMC fullTextXML, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/paper.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/paper.txt)"
+  },
+  {
+   "id": "fig1",
+   "kind": "publication",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10761042.1/TMCB_A_2273193_F0001_C.jpg (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/supp/F1.jpg): Fig. 1B schematic"
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10761042.1/TMCB_A_2273193_SM5263.zip (md5 b79f90bf82004266232e6322b90332b1 = JATS suppdata-md5; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/supp/x/): Supplemental Dataset 1 (MaxQuant Phospho (STY)Sites with experiments NS and S) and Dataset 2 (cell-cycle subset, column 'Ratio H/L')"
+  },
+  {
+   "id": "haj2003",
+   "kind": "publication",
+   "location": "Haj FG et al. J Biol Chem 2003;278:739-744, PMID 12424235 (paper ref. 26, source of the cells; Europe PMC abstract, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/haj2003.json)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD046000/o110826_JC569_02.RAW, o110826_JC569_13.RAW, o110826_PMn_200_01.RAW, o110826_PMn_200_02.RAW (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/raw/*.head), UTF-16LE strings"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/orientation.txt (Ratio H/L Normalized per pY site from deposited Phospho_STY_Sites.txt and evidence.txt) plus the Supplemental Dataset 1/2 comparison recorded in the report"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 /api/terms?obo_id= and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/ols_search.txt); all terms is_obsolete=false"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=ptpn1 / q='Ptpn1 MEF' / dr:PubMed=12424235: no entry for the Neel-lab Ptp1b-/- and +/+ MEFs"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates (ms-proteomics v1.2.0, vertebrates v1.1.0); upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest 1.2.0 (local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t); the spec submodule's nested templates copy is older; spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "scripts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/scripts/make_tables.py (samples.tsv, technical.tsv, files_inscope.json) -> sdrf-tools build -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/scripts/postbuild.py (Lys-C column, MaxQuant fraction numbers)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-8 (Ptpn1_WT_MEF_EGF); comment[label] rows 1-8 (Ptpn1_WT_MEF_EGF)",
+   "value": "Ptpn1_WT_MEF_EGF / SILAC light",
+   "source_ids": [
+    "fig1",
+    "supp",
+    "paper",
+    "mq_sites"
+   ],
+   "evidence": "Fig. 1B: 'PTP1B +/+ cells grown in 12C6 14N4-Arg, 12C6 14N2-Lys complemented medium'. Table 1 column 'KO/wt Ratio' reproduces Supplemental Dataset 2 column 'Ratio H/L' (EGFR 1.09023, CTNND1 2.02001, p38 1.6018, EphA 1.51846, Cdk3 1.9824), i.e. the authors read H/L as KO/WT. Deposited Phospho_STY_Sites.txt: CDK Tyr15 (KIGEGTYGVVYKG, the paper's headline site) Ratio H/L Normalized 2.0408, matching Table 1 KO/wt 1.98. One SILAC pair, one culture per genotype."
+  },
+  {
+   "location": "source name rows 9-16 (Ptpn1_KO_MEF_EGF); comment[label] rows 9-16 (Ptpn1_KO_MEF_EGF)",
+   "value": "Ptpn1_KO_MEF_EGF / SILAC heavy",
+   "source_ids": [
+    "fig1",
+    "supp",
+    "paper",
+    "mq_sites"
+   ],
+   "evidence": "Fig. 1B: 'PTP1B -/- cells grown in 13C6 15N4-Arg, 13C6 15N2-Lys complemented medium' (heavy). Conflicts recorded in limitations: PRIDE protocol lists 'Ptp1b-/- and Ptp1b+/+' before 'light ... or heavy' without 'respectively'; EGFR pY1172 is 11x lower in heavy."
+  },
+  {
+   "location": "characteristics[organism] rows 1-16",
+   "value": "Mus musculus",
+   "source_ids": [
+    "paper",
+    "haj2003"
+   ],
+   "evidence": "Methods: 'Ptp1b -/- and Ptp1b +/+ MEFs were a gift from Dr Benjamin Neel'; ref. 26 (Haj 2003): 'primary and immortalized fibroblasts from PTP1B(-/-) mice'. The PRIDE organism field (Homo sapiens) describes the paper's glioblastoma cell work and the human IPI search database, not the SILAC samples; reconcile organism_contradicted refuted in validation.txt."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-16",
+   "value": "embryo",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "MEFs = mouse embryonic fibroblasts; UBERON:0000922 embryo."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-16",
+   "value": "embryonic fibroblast",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "'Ptp1b -/- and Ptp1b +/+ MEFs'; 'wild-type and KO fibroblasts'; CL:2000042."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-16",
+   "value": "mouse embryo stage",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Embryonic fibroblasts are derived from mouse embryos; EFO:0005857 (exact embryonic day not stated)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-16",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "haj2003",
+    "ols"
+   ],
+   "evidence": "Non-transformed fibroblasts from knockout and wild-type mice; no disease model (PATO:0000461). The PRIDE disease 'glioblastoma' applies to the paper's GB cell-line experiments, which are not in this deposit."
+  },
+  {
+   "location": "characteristics[material type] rows 1-16",
+   "value": "cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured fibroblasts; not a Cellosaurus cell line (no entry found), so 'cell' rather than 'cell line' (precedent PXD005854)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-16",
+   "value": "1",
+   "source_ids": [
+    "mq_evidence",
+    "paper"
+   ],
+   "evidence": "One SILAC mixture: all deposited runs belong to MaxQuant experiment 'S'; one culture per genotype; numbering restarts per genotype group (rule 3)."
+  },
+  {
+   "location": "characteristics[genotype] rows 1-8 (Ptpn1_WT_MEF_EGF); factor value[genotype] rows 1-8 (Ptpn1_WT_MEF_EGF)",
+   "value": "wild type",
+   "source_ids": [
+    "paper",
+    "fig1"
+   ],
+   "evidence": "Ptp1b +/+ MEFs."
+  },
+  {
+   "location": "characteristics[genotype] rows 9-16 (Ptpn1_KO_MEF_EGF); factor value[genotype] rows 9-16 (Ptpn1_KO_MEF_EGF)",
+   "value": "Ptpn1 knockout",
+   "source_ids": [
+    "paper",
+    "fig1",
+    "haj2003"
+   ],
+   "evidence": "Ptp1b -/- MEFs (mouse gene symbol Ptpn1 encodes PTP1B); Fig. 1A western blot shows no PTP1B in -/-."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-16",
+   "value": "Epidermal Growth Factor",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "'cells were starved for 3 h prior to ligand stimulation with EGF (50 ng/mL, 10 min)' (Fig. 1B legend says 15 min); applied to both genotypes, so not a factor. NCIT:C20425. MaxQuant experiment name 'S' is consistent with stimulated."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-16",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "anti-phosphotyrosine 4G10 immunoprecipitation of mixed lysates, then TiO2 phosphopeptide enrichment; EFO:0010806."
+  },
+  {
+   "location": "assay name rows 1-16; comment[data file] rows 1-16",
+   "value": "o110826_JC569_02/03/04/06/08/10/12/13(.RAW)",
+   "source_ids": [
+    "files",
+    "mq_summary"
+   ],
+   "evidence": "The 8 deposited RAW files that appear in the deposited MaxQuant summary.txt; 5 searched runs (01,05,07,09,11) are not deposited."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-16",
+   "value": "2,3,4,6,8,10,12,13",
+   "source_ids": [
+    "mq_evidence",
+    "scripts"
+   ],
+   "evidence": "evidence.txt Fraction column per raw file (one value per file); set by postbuild.py."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-16",
+   "value": "1",
+   "source_ids": [
+    "mq_evidence"
+   ],
+   "evidence": "Each run is a distinct MaxQuant fraction of one experiment; no repeated injections."
+  },
+  {
+   "location": "comment[instrument] rows 1-16",
+   "value": "NT=LTQ Orbitrap XL;AC=MS:1000556",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "All 4 raw headers read: 'LTQ Orbitrap XL', Eksigent NanoLC; PRIDE/paper say LTQ-Orbitrap Velos with Dionex U3000, contradicted by the raw files (raw header outranks)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-16",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "'Data were acquired in data-dependent mode ... ten most intense ions' ; method name ...top10.meth in raw header."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-16",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "'fragmented by collision-induced dissociation (CID)'."
+  },
+  {
+   "location": "comment[collision energy] rows 1-16",
+   "value": "35 NCE",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "'normalized collision energy of 35%'."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-16",
+   "value": "NT=linear ion trap;AC=MS:1000291",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'recorded in the linear ion trap'."
+  },
+  {
+   "location": "comment[cleavage agent details] (1st) rows 1-16",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_summary"
+   ],
+   "evidence": "'modified trypsin (sequencing grade, Promega)'; MaxQuant rule Trypsin/P (rule 2: digestion enzyme recorded)."
+  },
+  {
+   "location": "comment[cleavage agent details] (2nd) rows 1-16",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "pride",
+    "scripts"
+   ],
+   "evidence": "'Endoproteinase Lys-C was added in an enzyme/substrate ratio of 1:100 ... 4 h', followed by trypsin ('double digestion'); inserted by postbuild.py."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-16",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'reduced by adding 2 mM DTT'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-16",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'carboxymethylated with 5.5 mM iodoacetamide'."
+  },
+  {
+   "location": "comment[modification parameters] (Carbamidomethyl, Oxidation, Acetyl, Phospho) rows 1-16",
+   "value": "UNIMOD:4 Fixed C; UNIMOD:35 M; UNIMOD:1 Protein N-term; UNIMOD:21 S,T,Y",
+   "source_ids": [
+    "mq_summary",
+    "mq_parameters",
+    "ols"
+   ],
+   "evidence": "summary.txt Variable modifications 'Oxidation (M);Acetyl (Protein N-term);Phospho (STY)'; parameters.txt Fixed modifications 'Carbamidomethyl (C)'. No Multi modifications column."
+  },
+  {
+   "location": "comment[modification parameters] (SILAC labels) rows 1-16",
+   "value": "NT=Label:13C(6);AC=UNIMOD:188;TA=R and TA=K;MT=Variable",
+   "source_ids": [
+    "mq_summary",
+    "mq_evidence",
+    "ols"
+   ],
+   "evidence": "summary.txt Labels1 'Arg6;Lys6' (both 13C6, +6.020 Da, UNIMOD:188). evidence.txt: 702 heavy-state identifications (213 with PEP<0.01: 93 K-only, 90 R-only, 30 K+R) at median |mass error| 0.32 ppm, so +6 Da K and R partners are really present. Conflicts with protocol/Fig. 1B isotopes (13C6 15N4-Arg, 13C6 15N2-Lys) - recorded in limitations."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-16",
+   "value": "0.5 Da",
+   "source_ids": [
+    "mq_parameters"
+   ],
+   "evidence": "MS/MS tol. (ITMS) 0.5 Da; MS2 in the ion trap."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-16",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "spec README.adoc:27 (batch rule 1)."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-16",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=vertebrates;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "MS data; mouse samples -> vertebrates. cell-lines not declared (no Cellosaurus line); human/clinical not applicable."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-16",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rule 10."
+  },
+  {
+   "location": "technology type rows 1-16",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "Channel map sources conflict. Annotated per two explicit author statements (Fig. 1B: +/+ light, -/- heavy; Table 1 'KO/wt Ratio' = Supplemental Dataset 2 'Ratio H/L'). Against it: the PRIDE protocol sentence lists 'Ptp1b-/- and Ptp1b+/+' then 'light ... or heavy' (no 'respectively'); and in the deposited experiment S, EGFR pY1172 Ratio H/L Normalized 0.089 (count 15), CTNND1 pY904 0.19, p38 pY182 0.32, EphA2 pY772 0.87, while Table 1 states KO/wt 1.09/2.02/1.6/1.52 for these sites; Haj 2003 reports increased EGFR phosphorylation in these PTP1B-/- cells. Supplemental Dataset 1 shows the authors' 'Ratio H/L' column differs from both its NS and S ratios for these rows (16/48 rows equal S), so Table 1 values cannot be re-derived from the deposit. Only the Cdk3/CDK Tyr15 site (H/L Normalized 2.04, also >1 in NS 1.36) agrees numerically. A reviewer should weigh this; if rejected, all 16 rows must be BLOCKED (no orientation-free alternative).",
+  "SILAC label isotopes: PRIDE protocol, Methods and Fig. 1B state 13C6,15N4-Arg / 13C6,15N2-Lys (Arg10/Lys8), but the deposited MaxQuant search used Arg6;Lys6 and its heavy identifications are at sub-ppm mass error for both K and R. The SDRF follows the deposited search (UNIMOD:188 on R and K).",
+  "Instrument: PRIDE/paper say LTQ Orbitrap Velos + Dionex U3000; all raw headers read (4 files) say LTQ Orbitrap XL + Eksigent NanoLC. SDRF uses the raw header.",
+  "Partial scope: 8 of 13 runs of the deposited MaxQuant search are deposited (o110826_JC569_01, _05, _07, _09, _11 missing). The paper's Supplemental Dataset 1 also includes an 'NS' experiment (o110826_JC569nselu_15..23) not deposited. Table 1 says sites were quantified in >=3 'experimental repeats', which the deposit does not contain.",
+  "Excluded runs: o110826_PMn_200_01.RAW and o110826_PMn_200_02.RAW are not in any deposited search and no source says what 'PMn_200' is (raw header: same method and folder o110826_JC569SILAC, no sample field). Recorded in BLOCKED.md.",
+  "What separates the 13 runs is not described (no fractionation step in the protocol); they are encoded as fractions because MaxQuant evidence.txt assigns Fraction 1..13 within one experiment. comment[fractionation method] is omitted.",
+  "Search database: MaxQuant searched IPI human v3.68 although the samples are mouse cells; there is no SDRF column for the database; noted here.",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.2.0.18 parameters.txt records no MS1 tolerance and no mqpar.xml is deposited; convert-openms therefore exits 1 (expected).",
+  "EGF stimulation duration differs between protocol (10 min) and Fig. 1B legend (15 min); only the agent is annotated.",
+  "Strain, sex and embryonic day of the MEFs are not stated (not available).",
+  "Review: REVIEW_PENDING_EXTERNAL; no self-review, review-gate not run."
+ ]
+}
