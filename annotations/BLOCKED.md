@@ -2315,3 +2315,17 @@ Rule 7 forbids keeping rows with `not available` conditions.
 **Open point for the reviewer (annotated, not blocked):** the channel map follows Fig. 1B (+/+ light, -/- heavy) and Table 1 'KO/wt' = Supplemental Dataset 2 'Ratio H/L'. The PRIDE protocol word order and the deposited EGFR/CTNND1/p38 pY ratios point the other way. If a reviewer rejects that map, all 16 rows must move here. The evidence is in `annotations/PXD046000.report.md`.
 
 **Unblocked by:** a submitter statement of what the `PMn_200` runs are, together with their search output.
+
+## PXD040125 — NF-κB interactome by SEC-PCP-SILAC in MCF-7 (Lapcik et al., Mol Cell Proteomics 2024; triple-SILAC H = ΔN-IκBα / M = empty vector / L = internal-standard pool + label-free SEC and DIA arms), non-SILAC runs excluded (excluded runs, not a blocker)
+
+**Annotated:** the 80 SEC-PCP-SILAC runs `3502_Bouchal_Lumik2_1..80.raw` (Orbitrap Fusion Lumos, MaxQuant 2.0.3.0 Multiplicity 3) in `annotations/PXD040125.sdrf.tsv`.
+
+**Excluded runs (out of scope for the SILAC campaign, not missing evidence; sample identities are in the deposited `Experimental_design.xlsx`):**
+- 80 SEC-label-free Impact II QTOF runs `4641_QTOF1-batch1_*`, `4641_QTOF1-batch3_*`, `4641_QTOF1-batch4_*` (`.d.zip`; sheet `SEC_PCP_SILAC_80_label_free_fr`, 40 NF-κB-inhibited + 40 uninhibited SEC fractions; MaxQuant LFQ search `SEC_LFQ_MaxQuant_Search_Results.zip`).
+- 34 SEC label-free QTOF runs of untransfected MCF-7 `2494_QTOF1_*` (`.d.zip`; sheet `SEC_label_free_34_fr`; search `SEC_34fr_MaxQuant_Search_Results.zip`).
+- 24 RELA / IgG immunoprecipitation DIA runs `4626_Lumos1_134min-IS_HCD-OT_{DN,EM}_{CTRL,RELA}1-6_01.raw` (sheet `Immunoprecipitation_RELA`; Spectronaut `RELAIP_4626_2201.sne`).
+- 8 total-proteome DIA runs `4642_Lumos1_134_PB_DIA_win_{DN,EM}1-4_1.raw` (sheet `Total_proteome`; Spectronaut `PCP_LFQ2021_Expr_4642_2201.sne`).
+
+They would go in separate label-free / DIA SDRFs (batch rule 12).
+
+**Open point for the reviewer:** the H/M direction rests on three concordant paper statements (Methods lines 116 and 122, Results line 188) and the MaxQuant label states. The bait NFKBIA is not identified in the SILAC search, so there was no ratio check.

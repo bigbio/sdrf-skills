@@ -1,0 +1,47 @@
+# PXD040125 validation log (round 1; no fixes were needed, single build)
+
+### sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/build/files.json -t ms-proteomics -t human -t cell-lines -o /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv
+wrote /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv: 240 rows x 55 columns
+exit: 0
+No post-build edits: the SDRF is the unmodified build output (rule 17).
+
+### parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit: 0
+Note: 'untreated' on the 80 SILAC-light (untransfected internal-standard) rows is the template-prescribed control value (batch rule 4), not an NCIT/EFO term; the warning is expected and not an error.
+
+### sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit: 0
+### sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv
+  Terms checked:     20
+  Verified:          20
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit: 0
+### sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/pride.json --accession PXD040125
+PXD040125: every annotated value agrees with the deposit record.
+exit: 0
+
+### (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/conv) parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv
+Factor columns: ['factor value[genetic modification]', 'factor value[size-exclusion chromatography fraction]']
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 240 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv
+exit: 0
+(Conditions: 161 = 80 SEC fractions x 2 transfection states + 1 light reference; Conditions/Files-per-condition lines omitted for length, full output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD040125/v_conv.txt). The TA= warning concerns Acetyl PP=Protein N-term (positional, no TA by design).
+
+### sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD040125.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD040125.evidence.json: valid evidence-manifest
+exit: 0
+
+### sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD040125.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD040125.evidence.json
+Manifest covers every column with a value (37 column(s)).
+exit: 0
+
+### reconcile: exit 0, no findings to refute.
