@@ -1,0 +1,49 @@
+# PXD005747 validation log (2026-11-10T05:19Z); SDRF sha256 119cc513f908277991e21d2782e7f663ab09736b097fc0699c31da096894fcc0; 716 rows x 48 columns
+# single validation round (round 1 passed)
+
+## parse_sdrf validate-sdrf -s annotations/PXD005747.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure annotations/PXD005747.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD005747.sdrf.tsv
+Hallucination Report: annotations/PXD005747.sdrf.tsv
+  Terms checked:     18
+  Verified:          18
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD005747.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD005747/pride.json --accession PXD005747
+PXD005747: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD005747.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD005747/convert)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD005747.sdrf.tsv
+Factor columns: ['factor value[infection status]', 'factor value[sampling time]']
+Conditions (9): dict_keys(['FSC200 wild type infected|10 minute', 'mock-infected|10 minute', 'FSC200 dsbA deletion mutant infected|10 minute', 'FSC200 wild type infected|30 minute', 'mock-infected|30 minute', 'FSC200 dsbA deletion mutant infected|30 minute', 'FSC200 wild type infected|60 minute', 'mock-infected|60 minute', 'FSC200 dsbA deletion mutant infected|60 minute'])
+Files per condition: dict_values([60, 118, 58, 60, 120, 60, 60, 120, 60])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 716 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD005747.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check annotations/PXD005747.evidence.json
+annotations/PXD005747.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD005747.sdrf.tsv annotations/PXD005747.evidence.json
+Manifest covers every column with a value (36 column(s)).
+exit=0
+
+
+## Notes
+- Post-build edit (batch rule 17): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-scripts/fix_fractions.py set comment[fraction identifier] to the deposited MaxQuant experimentalDesignTemplate.txt 'Fraction' of each data file (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD005747/fraction_map.json). Changed 4 rows: DsbA_10m_Rep3_LS has no Fr18 file, so build's positional numbering had labelled Fr19/Fr20 as 18/19. No other cell was edited; validation above ran on the edited file.
+- validate-sdrf warning 'C57BL/6 ... not found in ncbitaxon': characteristics[strain or breed] is free text in the vertebrates template; C57BL/6 is the paper's strain (EFO:0022397). Not an error.
+- convert-openms warning 'no TA= specified' refers to Acetyl PP=Protein N-term (positional modification, format-rules.md:106); expected.

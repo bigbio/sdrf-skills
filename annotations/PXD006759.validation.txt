@@ -1,0 +1,49 @@
+# PXD006759 validation log (2026-11-10T05:19Z); SDRF sha256 9274a68be5ef94bfeeec7c1ce517bc7514c0f817474285a513b815dca33f59e4; 96 rows x 46 columns
+# single validation round (round 1 passed)
+
+## parse_sdrf validate-sdrf -s annotations/PXD006759.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit=0
+
+## sdrf-tools structure annotations/PXD006759.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD006759.sdrf.tsv
+Hallucination Report: annotations/PXD006759.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD006759.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/pride.json --accession PXD006759
+PXD006759: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD006759.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/convert)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD006759.sdrf.tsv
+Factor columns: ['factor value[infection status]', 'factor value[sampling time]']
+Conditions (3): dict_keys(['FSC200 wild type infected|60 minute', 'mock-infected|60 minute', 'FSC200 dsbA deletion mutant infected|60 minute'])
+Files per condition: dict_values([24, 48, 24])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 96 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD006759.sdrf.tsv
+exit=0
+
+## sdrf-tools schema-check annotations/PXD006759.evidence.json
+annotations/PXD006759.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD006759.sdrf.tsv annotations/PXD006759.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit=0
+
+
+## Notes
+- Post-build edit (batch rule 17): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-scripts/fix_fractions.py set comment[fraction identifier] to the deposited MaxQuant experimentalDesignTemplate.txt 'Fraction' of each data file (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/fraction_map.json). Changed 84 rows: the 8 injections per digest are template fractions 1 (Fr1a9 = pooled 1+9), 3-8 and 10 (Fr2a10 = pooled 2+10); build had numbered them 1-8. No other cell was edited; validation above ran on the edited file.
+- validate-sdrf warning 'C57BL/6 ... not found in ncbitaxon': characteristics[strain or breed] is free text in the vertebrates template; C57BL/6 is the paper's strain (EFO:0022397). Not an error.
+- convert-openms warning 'no TA= specified' refers to Acetyl PP=Protein N-term (positional modification, format-rules.md:106); expected.
