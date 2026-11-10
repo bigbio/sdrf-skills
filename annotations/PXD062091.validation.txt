@@ -1,6 +1,18 @@
-# PXD062091 validation (single build round; SDRF written only by sdrf-tools build, no post-build edits)
-# build: sdrf-tools build --samples samples.tsv --technical technical.tsv --files raw_files.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/scripts/make_tables.py)
-# sha256: a5662051ba52b348a10f08d0dfee8a818ebc893e33d5b98d21f93dffa2228a6c
+# PXD062091 validation — round 2 (after independent review round 1 FAIL)
+# SDRF written only by sdrf-tools build (no post-build edits): sdrf-tools build --samples samples.tsv --technical technical.tsv --files raw_files.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/scripts/make_tables.py)
+# round 1 sha256 a5662051ba52b348a10f08d0dfee8a818ebc893e33d5b98d21f93dffa2228a6c: all commands exit 0; review found precursor tolerance 7 ppm contradicted by evidence.txt
+# round 2 sha256: 99f187b17cd4fd6b94d335b76cb862a36ba5468142060ddee4503eae62fcaca9
+
+## Changes in round 2
+- comment[precursor mass tolerance] 7 ppm -> 4.5 ppm. Evidence (re-verified by HTTP-range read of METTL13-knockdown_Search.zip member evidence.txt, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/scripts/masserr.py):
+    FL0026306_A12848_WT-L rows 14627 max|Mass Error [ppm]| 4.3579 n>4.5 0 max|uncalibrated| 4.357
+    FL0026308_A12849_WT-H rows 14516 max|Mass Error [ppm]| 4.4252 n>4.5 0 max|uncalibrated| 4.349
+    FL0026316_A13452_WT-H rows 21341 max|Mass Error [ppm]| 4.4774 n>4.5 0 max|uncalibrated| 6.713
+    FL0026358_A13641_WT-H rows 26808 max|Mass Error [ppm]| 4.4722 n>4.5 0 max|uncalibrated| 7.449
+    FL0026360_A13642_WT-L rows 26548 max|Mass Error [ppm]| 4.4794 n>4.5 0 max|uncalibrated| 7.633
+    total rows 103840
+  CONFLICT recorded: the paper Methods state 'precursor and fragment mass tolerances were set to 7 and 20 ppm'. No calibrated precursor error exceeds 4.5 ppm (MaxQuant 1.5.5.1 default main-search tolerance), while uncalibrated errors reach 7.6 ppm. The paper's 7 ppm matches parameters.txt 'MS/MS deisotoping tolerance (FTMS) 7' (ppm). The deposited search output is followed.
+- added characteristics[sample type] = study sample; organism part lymph node -> pancreas, added characteristics[sampling site] = lymph node (PXD027268 pattern); genetic modification reworded to 'knockdown'/'CRISPR-Cas9-mediated depletion' with the stated sgControl sequence.
 
 $ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv -t ms-proteomics -t human -t cell-lines
 WARNING: Term: T3M-4 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
@@ -31,20 +43,20 @@ $ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD062091.ev
 exit code: 0
 
 $ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD062091.evidence.json
-Manifest covers every column with a value (35 column(s)).
+Manifest covers every column with a value (37 column(s)).
 exit code: 0
 
 $ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv -t2
 PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv
 Factor columns: ['factor value[genetic modification]']
-Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[cell line authentication]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[nascent protein labeling]']
-Conditions (2): dict_keys(['control sgRNA (sgControl) in lentiCRISPRv2 hygro (CRISPR-Cas9)', 'METTL13-targeting sgRNA (sgMETTL13) in lentiCRISPRv2 hygro (CRISPR-Cas9 knockout)'])
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[sampling site]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[cell line authentication]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[nascent protein labeling]']
+Conditions (2): dict_keys(['control sgRNA (sgControl, CTTCGAAATGTCCGTTCGGT) in lentiCRISPRv2 hygro (CRISPR-Cas9)', 'METTL13 knockdown by METTL13-targeting sgRNA (sgMETTL13) in lentiCRISPRv2 hygro (CRISPR-Cas9-mediated depletion)'])
 Files per condition: dict_values([5, 5])
 WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 10 times.
 SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv
 exit code: 0
 
 ## Notes on warnings
-- parse_sdrf WARNING "Term: T3M-4 in column 'characteristics[cell line]' is not found in clo;bto;efo": T3M-4 is the Cellosaurus ID of CVCL_4056 (synonyms T3M4, Panc89). OLS4 has BTO:0002864 "T3M4 cell" and EFO:0002714 "Panc89" (synonym T3M-4); a test file with "T3M4" gave the same warning. Kept as the Cellosaurus name (skills/sdrf-annotate/references/cellline.md line 177). Not an error.
+- parse_sdrf WARNING "Term: T3M-4 in column 'characteristics[cell line]' is not found in clo;bto;efo": T3M-4 is the Cellosaurus ID of CVCL_4056 (synonyms T3M4, Panc89). OLS4 has BTO:0002864 "T3M4 cell" and EFO:0002714 "Panc89" (synonym T3M-4). Kept as the Cellosaurus name (skills/sdrf-annotate/references/cellline.md line 177). Not an error.
 - convert-openms "Warning no TA= specified" is the Acetyl PP=Protein N-term modification (positional, correctly PP= not TA=).
 - reconcile exit 0: no findings to refute.

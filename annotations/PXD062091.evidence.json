@@ -26,7 +26,7 @@
   {
    "id": "mq",
    "kind": "search-output",
-   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062091/METTL13-knockdown_Search.zip members METTL13-knockdown_Search/summary.txt, parameters.txt, proteinGroups.txt (HTTP-range zip read, members inflated individually; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/../b12-PXD062091-zip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/dl/)"
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062091/METTL13-knockdown_Search.zip members METTL13-knockdown_Search/summary.txt, parameters.txt, proteinGroups.txt, evidence.txt (evidence.txt mass-error summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/masserr.txt from script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/scripts/masserr.py; the 49 MB evidence.txt was deleted after use; HTTP-range zip read, members inflated individually; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/../b12-PXD062091-zip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/dl/)"
   },
   {
    "id": "orientation",
@@ -83,7 +83,7 @@
    "source_ids": [
     "paper"
    ],
-   "evidence": "Methods: 'For METTL13 depletion, SILAC-labelled control and METTL13-knockdown cells were generated using a lentiCRISPRv2 hygro construct harbouring sgControl and sgMETTL13'; 'LentiCRISPRv2 ... were used for CRISPR-Cas9 KOs'. Which of sgMETTL13-1/-2 was used for QuaNCAT is not stated, so no guide is named."
+   "evidence": "Methods: 'For METTL13 depletion, SILAC-labelled control and METTL13-knockdown cells were generated using a lentiCRISPRv2 hygro construct harbouring sgControl and sgMETTL13'; guide list 'sgControl, CTTCGAAATGTCCGTTCGGT'. Wording follows the deposit/paper (zip name METTL13-knockdown_Search; 'knockdown'/'depletion'). Which of sgMETTL13-1/-2 was used for QuaNCAT is not stated, so no sgMETTL13 sequence is named."
   },
   {
    "location": "characteristics[biological replicate] rows 1-10",
@@ -142,12 +142,31 @@
   },
   {
    "location": "characteristics[organism part] rows 1-10",
+   "value": "pancreas",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Tissue of origin: Cellosaurus disease Pancreatic ductal adenocarcinoma, sdrf-tools cellline lookup 'Tissue: Pancreas'; paper 'T3M4 pancreatic cancer cells'; UBERON:0001264 not obsolete. Pattern of annotations/PXD027268 (organism part = primary organ, sampling site = metastatic site)."
+  },
+  {
+   "location": "characteristics[sampling site] rows 1-10",
    "value": "lymph node",
    "source_ids": [
     "cellosaurus",
     "ols"
    ],
-   "evidence": "Cellosaurus 'Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029' (primary tumour pancreas); UBERON:0000029 not obsolete."
+   "evidence": "Cellosaurus 'Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029'; UBERON:0000029 not obsolete."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-10",
+   "value": "study sample",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "All 10 channels are experimental cultures (sgControl or sgMETTL13); no blanks, QC or reference channels. PRIDE:0001013 'study sample'."
   },
   {
    "location": "characteristics[disease] rows 1-10",
@@ -312,11 +331,12 @@
   },
   {
    "location": "comment[precursor mass tolerance] rows 1-10",
-   "value": "7 ppm",
+   "value": "4.5 ppm",
    "source_ids": [
+    "mq",
     "paper"
    ],
-   "evidence": "Paper: 'The precursor and fragment mass tolerances were set to 7 and 20 ppm, respectively.' Not recorded in MaxQuant 1.5.5.1 parameters.txt (no mqpar.xml deposited)."
+   "evidence": "MaxQuant evidence.txt (same search): calibrated |Mass Error [ppm]| never exceeds 4.5 ppm in any of the 5 runs (max 4.3579/4.4252/4.4774/4.4722/4.4794 ppm for FL0026306/08/16/58/60; 0 of 103,840 rows > 4.5 ppm; uncalibrated errors reach 7.6 ppm), i.e. the MaxQuant 1.5.5.1 default main-search tolerance 4.5 ppm. CONFLICT: paper states 7 ppm precursor; 7 ppm matches parameters.txt 'MS/MS deisotoping tolerance (FTMS) 7' (ppm), not a precursor window. Deposited search output beats Methods prose (rule 5)."
   },
   {
    "location": "comment[fragment mass tolerance] rows 1-10",
@@ -396,10 +416,10 @@
   "Scope: the complete deposit (5 of 5 raw files) is annotated; the companion puromycin QuaNCAT experiment is a separate deposit (PXD062045) and is not part of this SDRF.",
   "Deposited experiment names are WT-H_1/2/3, WT-L_1, WT-L_3 while Supplementary Table 2A names the reverse mixes sgControl-L_1 and sgControl-L_2; the per-protein ratio match in orientation.txt identifies sgControl-L_2 with WT-L_3. No WT-L_2 raw file is deposited and the paper reports n = 5, so none appears to be missing.",
   "Which sgMETTL13 guide (sgMETTL13-1 or -2) was used for the QuaNCAT cultures is not stated; the genetic modification is written without a guide sequence.",
-  "comment[precursor mass tolerance] 7 ppm comes from the paper text only; MaxQuant 1.5.5.1 parameters.txt does not record it and no mqpar.xml was deposited.",
+  "comment[precursor mass tolerance] = 4.5 ppm is inferred from the evidence.txt calibrated mass-error cap (MaxQuant 1.5.5.1 main-search default); parameters.txt does not record it and no mqpar.xml was deposited. It conflicts with the paper's stated 7 ppm, which most likely copies the 7 ppm MS/MS deisotoping tolerance in parameters.txt.",
   "Biological replicate numbering assumes each of the 5 mixes used independently cultured cell populations, as the paper's 'n = 5 independent experiments' states; within a mix the sgControl and sgMETTL13 cultures carry the same experiment number in their respective groups.",
   "characteristics[cell type], passage number and sample storage temperature are not stated in any source (not available).",
-  "parse_sdrf warns that 'T3M-4' is not a CLO/BTO/EFO label (BTO:0002864 'T3M4 cell', EFO:0002714 'Panc89'); the Cellosaurus name is kept per references/cellline.md.",
-  "Independent adversarial review not run in this task (caller instructed: no review-gate approve, no review file)."
+  "Independent review round 1 (annotations/PXD062091.review.md) FAILED on the precursor tolerance; fixed by rebuild. Minor findings applied: sample type added, organism part pancreas + sampling site lymph node, genetic-modification wording aligned with deposit.",
+  "parse_sdrf warns that 'T3M-4' is not a CLO/BTO/EFO label (BTO:0002864 'T3M4 cell', EFO:0002714 'Panc89'); the Cellosaurus name is kept per references/cellline.md."
  ]
 }
