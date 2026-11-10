@@ -2306,15 +2306,30 @@ Rule 7 forbids keeping rows with `not available` conditions.
 
 **Unblocked by:** a run → (cell line, NT/E/NTT, replicate R#) table from the submitters (G. Robusti / R. Noberini / T. Bonaldi, IEO), or a deposited SDRF / experimentalDesign. Technical values already settled are in `annotations/PXD033337.report.md`.
 
-## PXD046000 — PTP1B substrates by pTyr-IP SILAC phosphoproteomics in Ptp1b-/- vs +/+ MEFs (Villamar-Cruz et al., Mol Cell Biol 2023; duplex SILAC, MaxQuant 1.2.0.18), 2 `PMn_200` runs excluded (excluded runs, not a blocker)
 
-**Excluded runs:** `o110826_PMn_200_01.RAW`, `o110826_PMn_200_02.RAW`. They are in no deposited search (summary.txt lists only `o110826_JC569_01..13`) and in neither Supplemental Dataset. Their raw headers give the same method and folder (`o110826_JC569SILAC`) and no sample field. No source says what `PMn_200` is or whether it is SILAC-labelled. The 8 deposited `JC569` runs are annotated in `annotations/PXD046000.sdrf.tsv`.
+## PXD046000 — PTP1B substrates by pTyr-IP SILAC phosphoproteomics in Ptp1b-/- vs +/+ MEFs (Villamar-Cruz et al., Mol Cell Biol 2023; duplex SILAC Arg6/Lys6, MaxQuant 1.2.0.18), whole dataset (10 RAW)
 
-**Missing from the deposit (not blockable, recorded):** searched runs `o110826_JC569_01/05/07/09/11`, and the `NS` experiment runs `o110826_JC569nselu_15..23` that appear in the paper's Supplemental Dataset 1.
+**Blocker: which SILAC channel holds which genotype is undocumented for the deposited runs.** The independent review failed the provisional map (+/+ light, −/− heavy) for three reasons:
+- **Fig. 1B does not describe these runs.** It states ¹³C₆¹⁵N₄-Arg / ¹³C₆¹⁵N₂-Lys (Arg10/Lys8), the PRIDE protocol and Methods say the same, but the deposited search used `Arg6;Lys6`. Its heavy IDs (K and R) sit at ~0.3 ppm, so the heavy labels really were Arg6/Lys6.
+- **The Table 1 check is circular.** Table 1 "KO/wt" equals Supplemental Dataset 2 `Ratio H/L`, but in Supplemental Dataset 1 the combined `Ratio H/L` for exactly the Table 1 sites falls outside that row's own NS and S ratios. Those values cannot be reproduced from any search.
+- **The deposited ratios point both ways.** CDK Tyr15 has H/L Normalized 2.04, while EGFR pY1172 is 0.089 (count 15), CTNND1 pY904 0.19 and p38 pY182 0.32. Read in order, the PRIDE protocol sentence ("Ptp1b−/− and Ptp1b+/+ … light … or heavy") gives the opposite map.
 
-**Open point for the reviewer (annotated, not blocked):** the channel map follows Fig. 1B (+/+ light, -/- heavy) and Table 1 'KO/wt' = Supplemental Dataset 2 'Ratio H/L'. The PRIDE protocol word order and the deposited EGFR/CTNND1/p38 pY ratios point the other way. If a reviewer rejects that map, all 16 rows must move here. The evidence is in `annotations/PXD046000.report.md`.
+Blocked runs: o110826_JC569_02, _03, _04, _06, _08, _10, _12, _13 (.RAW).
 
-**Unblocked by:** a submitter statement of what the `PMn_200` runs are, together with their search output.
+Also excluded: o110826_PMn_200_01 and _02 (.RAW). They are in no deposited search, and no source says what they are.
+
+Not deposited: searched runs JC569_01/05/07/09/11, and the NS experiment runs JC569nselu_15..23 that appear in Supplemental Dataset 1.
+
+Sources checked:
+- PRIDE record and file list (22 files)
+- MaxQuant summary, parameters, evidence, Phospho_STY_Sites and proteinGroups tables
+- `search.zip` central directory (MaxQuant index only)
+- Raw headers of 4 files: LTQ Orbitrap XL, no sample field
+- Paper PMC10761042, its Fig. 1 and the supplementary zip (Datasets 1–2, figure legends)
+- Haj 2003 (ref. 26)
+- Cellosaurus: no entry for these MEFs
+
+**Unblocked by:** a submitter statement (J. Chernoff / L.E. Arias-Romero) of which SILAC channel (light Arg0/Lys0 or heavy Arg6/Lys6) held Ptp1b+/+ and which held Ptp1b−/− MEFs in the o110826_JC569 runs. A statement of what `PMn_200` is would also settle those two runs. Settled technical values and the withdrawn draft tables are listed in `annotations/PXD046000.report.md`.
 
 ## PXD040125 — NF-κB interactome by SEC-PCP-SILAC in MCF-7 (Lapcik et al., Mol Cell Proteomics 2024; triple-SILAC H = ΔN-IκBα / M = empty vector / L = internal-standard pool + label-free SEC and DIA arms), non-SILAC runs excluded (excluded runs, not a blocker)
 
