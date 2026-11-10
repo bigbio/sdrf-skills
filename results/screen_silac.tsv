@@ -141,3 +141,4 @@ PXD046502	PRIDE	exclude	channel map	Batch 12: palmitate CD8 T cells, sample iden
 PXD060444	PRIDE	exclude	channel map	Batch 12: Ipomoeassin F MDA-MB-231, run-to-mixture map undocumented (BLOCKED.md)	deposit files; paper
 PXD031771	PRIDE	exclude	not SILAC	label-free (Skyline MS1) secretome of MCF7 miRNA lines on Agilent Q-TOF; PRIDE SILAC tag wrong; Mascot QUANTITATION empty	PRIDE protocols; Feser et al. Heliyon 2023 (PMC10148110); F003349.dat header
 PXD033337	PRIDE	exclude	channel map	Batch 13: KDM5B histone super-SILAC MCF7/MDA-MB-231, run-to-sample map undocumented (BLOCKED.md)	deposit files; paper supplement
+PXD046000	PRIDE	exclude	channel map	Batch 13: Ptp1b MEF pTyr SILAC, light/heavy genotype orientation not established (review FAIL; BLOCKED.md)	deposit files; paper; review
