@@ -2167,3 +2167,22 @@ Why blocked:
 - **The data suggests heavy = EA in Fwd and light = EA in Rev, but that is a data-only inference from the abstract's direction ("Hsp27 hyperphosphorylated upon EA"), which rule 6 does not accept.** `Phospho (STY)Sites.txt` gives these Ratio H/L normalized values for HSPB1 (FWD / REV): S15 8.86 / 0.098, S65 9.10 / 0.066, S82 3.33 / 0.386, S50 2.76 / 0.128. At protein level (proteome `proteinGroups.txt`) HSPB1 is 0.94 / 1.05 and GAPDH is 1.00 / 0.97 (`scratchpad/b12-PXD034333/orientation.txt`).
 
 **Unblocked by:** the paper's Methods, figure legend or Supporting Information (ACS, subscription), or an author statement that gives the SILAC label of EA-treated and untreated A498 cells in the Fwd and Rev mixtures. The map should then be cross-checked against the HSPB1 site ratios above. Planned SDRF: 104 rows (52 runs × 2 channels). Templates: human + cell-lines. Cell line A-498 (CVCL_1056; check that the Cellosaurus name does not collide with another entry). factor value[treatment] = Englerin A 100 nM 24 h vs `untreated`. Biological replicate 1–2 per condition (Fwd and Rev mixtures, assuming independent cultures). Proteome fractions 1–24 per mixture; phospho technical replicate 1–2. Two `comment[cleavage agent details]` (Lys-C, Trypsin). Two search builds, MaxQuant 1.5.0.30 proteome and 1.3.0.5 phospho with Phospho (STY), with identical headers.
+
+---
+
+## PXD072695 — Leishmania exosomal tRF mimics in THP-1 macrophages (Brar et al., PLoS One 2026; 3-plex SILAC MaxQuant search, Ld-tRF-Asp / Ld-tRF-Leu), SILAC light channel of all 9 runs (partial block)
+
+**Annotated: `annotations/PXD072695.sdrf.tsv`, 9 runs × 2 documented channels = 18 rows (medium = scrambled-oligo control, heavy = Ld-tRF mimic). Blocked: the SILAC light channel of every run. No source says what the light sample is.**
+
+| | |
+|---|---|
+| Publication | Brar HK et al., *PLoS One* 2026;21(8):e0356144, doi:10.1371/journal.pone.0356144, PMID 42616765. The full text was read from the PLOS JATS XML, along with S1 Table (xlsx) and the S1 Fig legend. Europe PMC returned 503. |
+| Deposited | 9 Bruker impact II `.d.1.dar` files plus `Devki_human_Sept12_16txt.zip` (MaxQuant 1.5.3.30 parameters/summary/proteinGroups), `MaxQuant_1.5.3.30.rar` and `HUMAN.fasta` |
+| Blocked channel | SILAC light (Lys0/Arg0) in `Devki_THP1silac3plex_1Asp_B11_01_6100`, `_2Asp_B12_01_6101`, `_3Asp_C1_01_6102`, `_1Leu_B8_01_6095`, `_1Leu-redo_C2_01_6104`, `_2Leu_B9_01_6096`, `_2Leu-redo_C3_01_6105`, `_3Leu_B10_01_6097` and `_3Leu-redo_C4_01_6106` (`.d.1.dar`) |
+| SDRF would need | 9 more rows (one light row per run), each with a sample identity |
+
+Why blocked:
+- summary.txt has Multiplicity 3: Labels0 is light, Labels1 is Arg6;Lys4 and Labels2 is Arg10;Lys8. The light channel carries real signal. Summed protein-group intensity per experiment is L 2.6–4.4e9, M 1.6–2.5e9 and H 1.5–2.6e9. The M/L ratio profiles correlate across all six experiments (r = 0.28–0.57), so the light lysate is a systematically different sample, not empty.
+- The paper describes only two populations. S1 Fig says "cultured in medium and heavy SILAC media". The Fig 1 legend says "Mass spectrometry was performed on a mixture of two lysates". The Methods say only "each of 3-plex SILAC labelled set ... were pooled". S1 Table holds only H/M ratios. The PRIDE protocol adds nothing. No Data in Brief or other descriptor was found.
+
+**Unblocked by:** an author statement of what the light-labelled sample in each 3-plex mixture was (for example untransfected or mock-transfected dTHP-1), with its culture/replicate relation to the M/H cultures. Once that is known, add one light row per run to the existing tables (`scratchpad/b12-PXD072695/scripts/make_tables.py`, where the light rows are currently empty source names) and rebuild.

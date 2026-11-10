@@ -1,0 +1,449 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD072695.sdrf.tsv",
+ "dataset": "PXD072695",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD072695 via mcpcall get_project_details (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/proj.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD072695/files?pageSize=100&page=0 (page 1 empty) (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/files.json; 12 entries = 9 RAW .d.1.dar + MaxQuant_1.5.3.30.rar + Devki_human_Sept12_16txt.zip + HUMAN.fasta; every entry projectAccessions contains PXD072695)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Brar HK et al. Leishmania exosomal tRNA-derived small non-coding RNA fragments modulate host THP-1 derived macrophage proteins: A quantitative proteomic analysis. PLoS One 2026;21(8):e0356144, doi:10.1371/journal.pone.0356144, PMID 42616765. JATS from https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0356144&type=manuscript (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/paper.xml, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/paper.txt). Europe PMC returned HTTP 503 during this run; no PMCID listed by PRIDE."
+  },
+  {
+   "id": "s1table",
+   "kind": "supplementary",
+   "location": "S1 Table (pone.0356144.s002, xlsx) from https://journals.plos.org/plosone/article/file?type=supplementary&id=10.1371/journal.pone.0356144.s002 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/supp/s002; sheet headers dumped with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/scripts/xlsx_head.py)"
+  },
+  {
+   "id": "s1fig",
+   "kind": "supplementary",
+   "location": "S1 Fig legend in paper JATS (image pone.0356144.s001 local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/supp/s001)"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/09/PXD072695/Devki_human_Sept12_16txt.zip members parameters.txt, summary.txt, proteinGroups.txt (MaxQuant 1.5.3.30; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/txt/)"
+  },
+  {
+   "id": "searchparams",
+   "kind": "derived",
+   "location": "sdrf-tools search-params /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/txt/summary.txt (output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/searchparams.txt)"
+  },
+  {
+   "id": "ratios",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/scripts/light_check.py on proteinGroups.txt (output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/light_check.txt) plus per-protein H/M normalized ratios compared with the paper tables (see claims)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0006?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/cello_CVCL_0006.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/ols_search.txt); all terms used are is_obsolete=false"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0; the spec submodule nested templates copy is older). comment[sdrf version] v1.1.0 per spec README.adoc:27."
+  },
+  {
+   "id": "precedent",
+   "kind": "precedent",
+   "location": "annotations/PXD037057.sdrf.tsv (same Foster-lab Impact II, .d.1.dar, THP-1 cell values)"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/scripts/make_tables.py -> samples.tsv/technical.tsv; sdrf-tools build -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/build/PXD072695.build.sdrf.tsv; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD072695/scripts/postbuild.py inserts Lys-C cleavage column"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-18",
+   "value": "dTHP-1_<Ld-tRF-X-mimic | scrambled-Ld-tRF-X>_exp<n> (12 sources)",
+   "source_ids": [
+    "mq",
+    "paper",
+    "files"
+   ],
+   "evidence": "MaxQuant summary.txt groups the 9 runs into 6 experiments 1Asp,2Asp,3Asp,1Leu,2Leu,3Leu (one pooled 3-plex SILAC mixture each). Paper Methods: \"Cell pellets from control and transfected cells from three independent experiments\"; each mixture holds one mimic-transfected (heavy) and one scrambled-transfected (medium) culture. One source name per physical culture/lysate; the Leu original and -redo runs of the same MaxQuant experiment share source names because they are two acquisitions of the same pooled mixture."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] rows 1-18",
+   "value": "SILAC heavy (Arg10/Lys8) = Ld-tRF mimic; SILAC medium (Arg6/Lys4) = scrambled control oligonucleotide; SILAC light not annotated",
+   "source_ids": [
+    "paper",
+    "mq",
+    "s1table",
+    "ratios",
+    "s1fig"
+   ],
+   "evidence": "Paper Fig 1 legend: \"The “Heavy” cell population was transfected with either Ld-tRF-Asp or Ld-tRF-Leu mimic, while the “Medium” cell population was transfected with either scrambled Ld-tRF-Asp or scrambled Ld-tRF-Leu (control)\"; Fig 2A legend same for Asp. Methods: medium = \"L-arginine-13C6, L-lysine 2H4 (Arg6, Lys4)\", heavy = \"(Lys8, Arg10)\"; summary.txt Labels1 = Arg6;Lys4, Labels2 = Arg10;Lys8. Data check: S1 Table uses only Ratio.H/M.normalized columns; the paper fold changes equal the deposited H/M normalized ratios, e.g. Leu-up CD109 1.33 (deposited 1Leu/2Leu/3Leu 1.325/1.332/1.343, mean 1.333), Leu-down CPT1A 0.69 (0.680/0.706), ACSL4 0.77 (0.781/0.762); Asp-up 26S protease regulatory subunit 6B selective average 1.78 (2Asp 1.531, 3Asp 2.030). So the reported treated/control direction is H/M, consistent with heavy = mimic. No independent biological marker exists to orient the map further (a tRF mimic has no bait protein)."
+  },
+  {
+   "location": "characteristics[treatment] + factor value[treatment] rows 1-6",
+   "value": "transfection with synthetic Ld-tRF-Asp mimic (heavy) / transfection with scrambled Ld-tRF-Asp control oligonucleotide (medium)",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Methods: \"synthetic RNA Ld-tRF-Asp, Ld-tRF-Leu oligos, and scrambled controls (Integrated DNA Technologies) were transfected into dTHP-1 cells (1 x 10^6 cells/60 mm plate/2 ml media) at 50 nM using HiPerfect reagent (Invitrogen) for 24 h for a SILAC-related proteomic study\". Asp runs = MaxQuant experiments 1Asp-3Asp. Free text: no NCIT/EFO term for tRF-mimic transfection; control is a scrambled-oligo transfection, so \"untreated\" (rule 4) would be false."
+  },
+  {
+   "location": "characteristics[treatment] + factor value[treatment] rows 7-18",
+   "value": "transfection with synthetic Ld-tRF-Leu mimic (heavy) / transfection with scrambled Ld-tRF-Leu control oligonucleotide (medium)",
+   "source_ids": [
+    "paper",
+    "mq",
+    "s1fig"
+   ],
+   "evidence": "Fig 1 legend: medium = \"scrambled Ld-tRF-Leu (control)\" for the Leu arm; Methods list a separate \"tRF-Leu-scrambled\" oligo sequence (AGGTTGCGATGGACGGTTGTG); S1 Fig: \"mimics or corresponding scrambled oligos\". Fig 2B legend instead says the Leu-arm medium population received \"scrambled Ld-tRF-Asp (control)\"; treated as a typo (2 sources vs 1), recorded in limitations."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-18",
+   "value": "1-3 within each treatment group = experiment number",
+   "source_ids": [
+    "mq",
+    "paper"
+   ],
+   "evidence": "MaxQuant experiments 1/2/3 per arm; paper: \"three independent experiments\"; each mixture = one independently transfected culture per channel, so replicate n in the mimic group and n in the scrambled group are different cultures sharing an index (README.adoc:330, campaign rule 3)."
+  },
+  {
+   "location": "comment[technical replicate] rows 7-18",
+   "value": "1 = original Leu acquisition (B8/B9/B10), 2 = \"-redo\" acquisition (C2/C3/C4)",
+   "source_ids": [
+    "mq",
+    "files"
+   ],
+   "evidence": "summary.txt assigns each Leu original and its -redo run to the same MaxQuant experiment (1Leu: B8_6095 + C2_6104; 2Leu: B9_6096 + C3_6105; 3Leu: B10_6097 + C4_6106) and quantifies them together. MaxQuant \"Fraction\" values (1/2, and 2/1 for 2Leu) are not a fractionation scheme: the protocol describes single-shot 180-min runs, so these are re-acquisitions, encoded as technical replicates with comment[fraction identifier] 1. Original runs identified 1839-3306 MS/MS vs 15364-16373 for the redo runs (summary.txt), consistent with a failed first acquisition being repeated."
+  },
+  {
+   "location": "comment[data file] + assay name rows 1-18",
+   "value": "9 .d.1.dar files",
+   "source_ids": [
+    "files",
+    "mq"
+   ],
+   "evidence": "PRIDE RAW category file names; each matches a summary.txt Raw file (+ .d.1.dar). Same deposit format as precedent PXD037057."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-18",
+   "value": "study sample",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "All annotated channels are experimental cultures (mimic or scrambled-control transfected); no blank, standard or reference channel among the annotated rows."
+  },
+  {
+   "location": "characteristics[organism] rows 1-18",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organism Homo sapiens; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-18",
+   "value": "blood",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "precedent"
+   ],
+   "evidence": "Cellosaurus \"Derived from site: In situ; Peripheral blood; UBERON=UBERON_0000178\"; UBERON:0000178 label \"blood\"."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-18",
+   "value": "macrophage",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: \"THP-1-derived host macrophages\"; Methods: \"labeled THP-1 cells were differentiated with 10 ng/mL of PMA for 16-18 h\" (dTHP-1). CL:0000235 macrophage."
+  },
+  {
+   "location": "characteristics[disease] rows 1-18",
+   "value": "childhood acute monocytic leukemia",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9163 \"Childhood acute monocytic leukemia\"; EFO:1001944 \"childhood acute monocytic leukemia\" (not obsolete); disease of the cell-line donor."
+  },
+  {
+   "location": "characteristics[material type] rows 1-18",
+   "value": "cell line",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "THP-1 is a cell line (Cellosaurus CA Cancer cell line)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-18",
+   "value": "Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Japanese\"; HANCESTRO:0019 Japanese."
+  },
+  {
+   "location": "characteristics[age] rows 1-18",
+   "value": "1Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 1Y."
+  },
+  {
+   "location": "characteristics[sex] rows 1-18",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-18",
+   "value": "child stage (1-4 yo)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 1Y (Cellosaurus) -> HsapDv:0000265 \"child stage (1-4 yo)\" (not obsolete; campaign rule 9 derives stage from Cellosaurus age)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-18",
+   "value": "THP-1_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All samples derive from the single THP-1 donor (one Cellosaurus entry)."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-18",
+   "value": "THP-1",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"THP-1 cells were cultured...\"; EFO:0001253 THP-1. Human-only collision check: Cellosaurus id:THP-1 search returns CVCL_0006 (human); related lines B-THP-1, A-THP-1 are distinct derivatives, none of another species."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-18",
+   "value": "CVCL_0006",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC CVCL_0006."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-18",
+   "value": "THP-1",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID THP-1."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-18",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: SILAC THP-1 grown in \"L-glutamine and L-arginine and L-lysine-deficient RPMI-1640 (Caisson Labs)\" with 7% dialyzed FBS and labelled Arg/Lys; NCIT:C178973."
+  },
+  {
+   "location": "characteristics[infection] rows 1-18",
+   "value": "uninfected",
+   "source_ids": [
+    "paper",
+    "s1fig",
+    "ols"
+   ],
+   "evidence": "Custom column (spec Extending Templates). The SILAC arm delivered synthetic Ld-tRF oligos by transfection (Methods section \"Delivery of Ld-tRFs mimics into dTHP-1 cells\": oligos \"were transfected into dTHP-1 cells ... for 24 h for a SILAC-related proteomic study\"; S1 Fig legend) with no Leishmania infection step; L. donovani (NCBITaxon:5661, S2 strain) infection is described only for the Ago pull-down / small-RNA experiments. EFO:0001460 uninfected. The tRF sequences are of L. donovani origin (named in the treatment value)."
+  },
+  {
+   "location": "characteristics[passage number] + characteristics[sample storage temperature] rows 1-18",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Not stated in paper or PRIDE protocol."
+  },
+  {
+   "location": "technology type rows 1-18",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-18",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rule 1."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-18",
+   "value": "NT=ms-proteomics;VV=v1.2.0 | NT=human;VV=v1.1.0 | NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Human cell-line MS study; filled by build."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-18",
+   "value": "NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rule 10."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-18",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "\"the instrument was set in a data-dependent auto-MS/MS mode ... fragmenting the 20 most abundant ions\"."
+  },
+  {
+   "location": "comment[instrument] rows 1-18",
+   "value": "NT=impact II;AC=MS:1002666",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE protocol: \"quadrupole-time of flight mass spectrometer (Impact II; Bruker Daltonics)\". PRIDE instrument field is only the generic \"Bruker Daltonics instrument model\". The .dar archives were not opened."
+  },
+  {
+   "location": "comment[cleavage agent details] (1st) rows 1-18",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Digested \"with MS-grade LysC and Trypsin\"; MaxQuant enzyme rule Trypsin/P, max 2 missed cleavages (campaign rule 2: digestion enzyme recorded, search rule noted here)."
+  },
+  {
+   "location": "comment[cleavage agent details] (2nd) rows 1-18",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "build"
+   ],
+   "evidence": "\"digested in a multi-step overnight process with MS-grade LysC and Trypsin\"; inserted by postbuild.py because build keeps one value of this non-multiple column (campaign rule 2)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-18",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Single-shot 180-min LC-MS per injection; no fractionation."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-18",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Q-TOF with collision energy \"ranged from 23 to 65eV\" (collisional activation in the impact II collision cell)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-18",
+   "value": "NT=time-of-flight;AC=MS:1000084",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Quadrupole-time-of-flight instrument."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-18",
+   "value": "200m/z-2000m/z",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"full-range scan from m/z 200Th to m/z 2000Th\"."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-18",
+   "value": "10 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Data processing protocol: \"peptide mass accuracy 10 ppm\". parameters.txt does not record precursor tolerance (no mqpar.xml in the zip)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-18",
+   "value": "40 ppm",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (TOF) 40 ppm\" (the analyzer used); the paper states \"fragment mass accuracy 0.05Da\" - the deposited search value is used."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-18",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "No reduction/alkylation reagent named in paper or PRIDE protocol, although Carbamidomethyl (C) is a fixed search modification."
+  },
+  {
+   "location": "comment[modification parameters] (1st-4th) rows 1-18",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Deamidated N,Q variable",
+   "source_ids": [
+    "mq",
+    "searchparams",
+    "ols"
+   ],
+   "evidence": "parameters.txt \"Fixed modifications Carbamidomethyl (C)\"; summary.txt \"Variable modifications Oxidation (M);Acetyl (Protein N-term);Deamidation (NQ)\" on all 9 runs; Multi modifications column empty. Paper omits Deamidation; the deposited search is used."
+  },
+  {
+   "location": "comment[modification parameters] (5th-8th) rows 1-18",
+   "value": "Label:13C(6) R (UNIMOD:188), Label:2H(4) K (UNIMOD:481), Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259), MT=Variable",
+   "source_ids": [
+    "mq",
+    "searchparams",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8; Methods 13C6-Arg/2H4-Lys and 13C6-15N4-Arg/13C6-15N2-Lys. UNIMOD from the stated mass shifts (rule 11)."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: the SILAC light channel of all 9 runs is NOT annotated. MaxQuant was run as 3-plex (light, Arg6/Lys4, Arg10/Lys8) and the light channel carries substantial signal (summed protein-group intensity L 2.6-4.4e9 vs M 1.6-2.5e9, H 1.5-2.6e9 per experiment; M/L log2 ratio profiles correlate r=0.28-0.57 across all six experiments, light/medium medians -0.41 to -0.77), but neither the paper, its S1 Fig (\"cultured in medium and heavy SILAC media\"; Fig 1 \"a mixture of two lysates\"), S1 Table (H/M ratios only), nor the PRIDE protocol says what the light-labelled sample is. Per campaign rule 7 no light rows with not-available conditions were written; BLOCKED.md section \"PXD072695\" lists the 9 runs.",
+  "Fig 2B legend says the Leu-arm medium cells received scrambled Ld-tRF-Asp; Fig 1 legend, the Methods oligo list (tRF-Leu-scrambled) and S1 Fig (\"corresponding scrambled oligos\") say scrambled Ld-tRF-Leu. The majority statement is annotated.",
+  "Leu original vs -redo runs: re-acquisition of the same pooled mixture is inferred from MaxQuant grouping them into one experiment and from the original runs having ~10x fewer identifications; the paper does not mention re-runs.",
+  "characteristics[infection] = uninfected rests on the absence of any infection step in the described SILAC workflow (transfection of synthetic oligos only), not on an explicit sentence.",
+  "Paper states MaxQuant 1.5.1.0 and fragment accuracy 0.05 Da; the deposited search outputs are MaxQuant 1.5.3.30 with TOF MS/MS tolerance 40 ppm and also include Deamidation (NQ). Deposited search values are annotated. Precursor tolerance 10 ppm is from the protocol text only (no mqpar.xml; MaxQuant_1.5.3.30.rar, 128 MB, not opened).",
+  "Instrument impact II from the paper/PRIDE protocol text only; the .d.1.dar raw archives (3-6 GB each) were not opened. Dissociation CID and TOF analyzer follow from the Q-TOF design.",
+  "Europe PMC REST returned HTTP 503 throughout; the full text was taken from the PLOS JATS XML. S2/S3 supplementary files (oligo/RNAhybrid tables) not needed for the proteomics design.",
+  "Review: independent sdrf-adversarial-review not run in this task (caller handles review; status REVIEW_PENDING_EXTERNAL)."
+ ]
+}
