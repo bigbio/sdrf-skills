@@ -1,0 +1,63 @@
+# PXD035748 validation — round 1 (2026-11-10T18:11:39Z); sha256 ae92fe63121cce653404eca08304481f2a6eafc4dbc590176a06d7af9ebfe642; 162 rows x 58 columns
+# Build procedure (all deterministic, scripts under /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD035748/scripts/):
+#  1. make_tables.py writes build/samples.tsv (21 sources: 7 mixes x {light pre-existing pool, medium DMSO, heavy DAC+SB939}), build/technical.tsv, build/files.json (111 RAW names).
+#     It asserts that the human search (PULSE_SB_DAC_Rn) and the TINPAT search (SBDAC_Rn) group the 54 files identically, and that the only extra TINPAT files are the 9 SBDAC_NF_* runs.
+#  2. sdrf-tools build -t ms-proteomics -t human -t cell-lines -> build/raw_build.sdrf.tsv (162 x 57).
+#  3. postbuild.py (post-build edits, justified, rule 17):
+#     a) comment[fraction identifier] := MaxQuant summary.txt Fraction (equal in both searches, asserted). build numbers fractions by position in
+#        'files'; R3 has no F7 and R5 has no F1 file, so 8 files would carry a wrong fraction (C1T1_F8 -> 7; CT_08_4h_F2..F8 -> 1..7). Only those 8 cells change.
+#     b) inserts a second comment[cleavage agent details] = NT=Lys-C;AC=MS:1001309 after the Trypsin column (paper: 'Trypsin/LysC ... 50:1'; rule 2;
+#        the column is not 'multiple' in the contract so build emits one). Asserted: removing the inserted column restores step 3a exactly.
+$ sdrf-tools structure annotations/PXD035748.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ sdrf-tools check annotations/PXD035748.sdrf.tsv
+Hallucination Report: annotations/PXD035748.sdrf.tsv
+  Terms checked:     23
+  Verified:          23
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+$ sdrf-tools reconcile annotations/PXD035748.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD035748/pride.json --accession PXD035748
+PXD035748: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; the annotation may have matched the enzyme in another role
+exit code: 1
+# reconcile BLOCKER cleavage_agent_unsupported is a FALSE POSITIVE: the PRIDE record (the only input reconcile reads) defers digestion to
+#   'the materials and methods section of the manuscript'. Paper Methods (PMC10593957, 'Enrichment of newly synthesized proteins and on-beads digestion'):
+#   'Trypsin/LysC was added to the samples in a 50:1 ratio and samples were digested for 18 h.' Both enzymes are digestion reagents, not another role.
+$ parse_sdrf validate-sdrf -s annotations/PXD035748.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Invalid value 'SN=NCI-H1299_pulse_R1_DMSO;SN=NCI-H1299_pulse_R1_DAC-SB939' - must be one of the allowed values
+WARNING: Invalid value 'SN=NCI-H1299_pulse_R2_DMSO;SN=NCI-H1299_pulse_R2_DAC-SB939' - must be one of the allowed values
+WARNING: Invalid value 'SN=NCI-H1299_pulse_R3_DMSO;SN=NCI-H1299_pulse_R3_DAC-SB939' - must be one of the allowed values
+WARNING: Invalid value 'SN=NCI-H1299_pulse_R4_DMSO;SN=NCI-H1299_pulse_R4_DAC-SB939' - must be one of the allowed values
+WARNING: Invalid value 'SN=NCI-H1299_pulse_R5_DMSO;SN=NCI-H1299_pulse_R5_DAC-SB939' - must be one of the allowed values
+WARNING: Invalid value 'SN=NCI-H1299_pulse_R6_DMSO;SN=NCI-H1299_pulse_R6_DAC-SB939' - must be one of the allowed values
+WARNING: Invalid value 'SN=NCI-H1299_pulse_R7_DMSO;SN=NCI-H1299_pulse_R7_DAC-SB939' - must be one of the allowed values
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: decitabine and pracinostat in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+# Warnings explained: 'untreated' is the template-prescribed control value (rule 4); 'decitabine and pracinostat' is a free-text combination of
+#   NCIT:C981 Decitabine + NCIT:C71708 Pracinostat (no single NCIT term). SN=...;SN=... in characteristics[pooled sample] is the spec's pooled-sample
+#   pattern (contract: 'fixed: not pooled, pooled; or pattern: SN=sample1;SN=sample2'); the validator's enum check does not know the pattern (same as PXD016211).
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD035748/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD035748.sdrf.tsv -t2)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD035748.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[sampling site]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[cell line authentication]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[nascent protein labeling]', 'characteristics[treatment protocol]']
+Conditions (3): dict_keys(['not applicable', 'untreated', 'decitabine and pracinostat'])
+Files per condition: dict_values([54, 54, 54])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 162 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD035748.sdrf.tsv
+exit code: 0
+# convert-openms 'no TA= specified' x162 comes from Acetyl PP=Protein N-term (correct per format rules). 3 conditions (light pool / untreated / treated) x 54 files.
+$ sdrf-tools schema-check annotations/PXD035748.evidence.json
+annotations/PXD035748.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage annotations/PXD035748.sdrf.tsv annotations/PXD035748.evidence.json
+Manifest covers every column with a value (39 column(s)).
+exit code: 0
+# final sha256 ae92fe63121cce653404eca08304481f2a6eafc4dbc590176a06d7af9ebfe642
