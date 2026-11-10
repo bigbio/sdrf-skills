@@ -1,0 +1,305 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv",
+ "dataset": "PXD039264",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD039264 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD039264/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/f0.json; 52 entries = 48 .raw + 2 FASTA + setup.txt + txt.zip; every entry projectAccessions == [PXD039264]; reduced to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/evidence/files.json)"
+  },
+  {
+   "id": "setup",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD039264/setup.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/setup.txt.local): deposited table \"MS-sample number -> Experiment\", 48 rows, e.g. \"1 711d 1 Day 4\", \"25 711d 1 Day 4\""
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Alhalabi OT et al. Integration of transcriptomics, proteomics and loss-of-function screening reveals WEE1 as a target for combination with dasatinib against proneural glioblastoma. Cancer Lett 2024;605:217265, doi:10.1016/j.canlet.2024.217265, PMID 39332586, PMC12768573 (author manuscript NIHMS2119961; text https://pmc-oa-opendata.s3.amazonaws.com/PMC12768573.1/PMC12768573.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/paper.txt). Supplementary tables not retrieved (Europe PMC returned HTTP 500/503 during this run)."
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD039264/txt.zip member txt/summary.txt (ZIP64 HTTP range read, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/summary.txt)"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD039264/txt.zip members txt/parameters.txt and txt/mqpar.xml (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/parameters.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/mqpar.xml)"
+  },
+  {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD039264/txt.zip member txt/evidence.txt, streamed and summarised per raw file by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/../b12-PXD039264-ev.py (output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/evstats.txt)"
+  },
+  {
+   "id": "mq_phospho",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/01/PXD039264/txt.zip member \"txt/Phospho (STY)Sites.txt\" (extracted to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/Phospho (STY)Sites.txt, 79 MB, deleted after use to save shared disk; data check /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/scripts/datacheck.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/datacheck.txt)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "repository",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:NCH421k / id:NCH644 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/cl_NCH421k.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/cl_NCH644.json); searches q=NCH711, NCH705, id:NCH711d, id:NCH705 returned no entry (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/cl_search_NCH711.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/cl_search_NCH705.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/cl_NCH711d.json, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/cl_NCH705.json)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 lookups (none obsolete): MONDO:0018177 glioblastoma; UBERON:0000955 brain; BTO:0006148 mesenchymal glioma stem cell; BTO:0006156 proneural glioma stem cell; EFO:0010806 enrichment of phosphorylated protein; HANCESTRO:0005 European ancestry; EFO:0001272 adult; NCIT:C38713 Dasatinib; MS:1002877 Q Exactive HF-X; MS:1001251 Trypsin; MS:1000422; MS:1000484; PRIDE:0000627; PRIDE:0000608; PRIDE:0000599; UNIMOD:4,35,1,21,267,259. No NCIT term for DMEM/F12 was found."
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0), README.adoc:330 (biological replicate numbering). The spec submodule nested templates copy is older than upstream."
+  },
+  {
+   "id": "build",
+   "kind": "script",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/samples.tsv + /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/technical.tsv; sdrf-tools build -t ms-proteomics -t human -t cell-lines (no post-build edits)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-96",
+   "value": "<cell line>_day<4|12>_BR<1-3>_<DMSO|dasatinib>_<proteome|phosphoenriched> (96 names)",
+   "source_ids": [
+    "setup",
+    "mq_summary",
+    "pride",
+    "paper"
+   ],
+   "evidence": "One source per (cell line x time point x biological replicate x SILAC channel x workflow arm). setup.txt gives each MS sample its line, replicate and day; summary.txt assigns runs 01-24 to experiments Sample01-24 (Fraction 1) and runs 25-3, 26-48 to the SAME experiments Sample01-24 (Fraction 11), i.e. each SILAC mixture was measured once as total proteome and once after phospho enrichment. The proteome and phospho-enriched rows of one mixture are aliquots of the same lysate; they get separate source names because characteristics[enrichment process] differs (precedent annotations/PXD002425, PXD010683). DMSO in the light source names is the vehicle stated by the deposit."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + characteristics[dose] + factor value[treatment] rows 1-96",
+   "value": "SILAC light = untreated (DMSO vehicle), dose not applicable; SILAC heavy = dasatinib, 1 uM",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq_phospho",
+    "mq_summary"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol and paper Methods: \"GSCs containing 'heavy' amino acids were treated with 1uM Dasatinib and 'light' GSCs with DMSO vehicle control\"; dataProcessingProtocol: \"The output provided is a heavy/light ratio i. e. Dasatinib treated/control\". summary.txt Multiplicity 2, Labels0 empty, Labels1 Arg10;Lys8. Data check (datacheck.txt, median log2 normalized H/L): RB1 S807 -3.2/-2.8/-2.8 (NCH711d/NCH705/NCH421k), RB1 S811 -2.3/-2.5, RB1 S780 -0.4..-0.8 in all lines (loss of pRB in the heavy = dasatinib channel, consistent with antiproliferative drug); RB1 T373 -0.77 in NCH711d (MES) vs ~0 in PN lines and CDK1 T161 lower in MES than PN, matching the paper statement that CDK1-T161 and RB1-T373 are downregulated by dasatinib in MES but not PN GSCs. Controls written untreated per campaign rule 4."
+  },
+  {
+   "location": "characteristics[cell line] + factor value[cell line] rows 1-96",
+   "value": "NCH711d, NCH705, NCH421k, NCH644",
+   "source_ids": [
+    "setup",
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "setup.txt Experiment tokens 711d, 705, 421K, 644; paper Methods \"NCH711d and NCH705 (MES) and NCH421k and NCH644 (PN)\". Cellosaurus spelling NCH421k (CVCL_X910, synonym NCH421K) and NCH644 (CVCL_X914). sdrf-tools check flags all four names as not found: none is in CLO/BTO/EFO (OLS4 search returns nothing) - expected for these patient-derived GSC lines."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-96",
+   "value": "1-3 within each (cell line x time point x treatment) group",
+   "source_ids": [
+    "setup"
+   ],
+   "evidence": "setup.txt replicate token (e.g. \"711d 1 Day 4\", \"711d 2 Day 4\", \"711d 3 Day 4\") = three independent SILAC cultures per line; numbers restart per factor group (README.adoc:330). The day-4 and day-12 samples with the same number are the same culture sampled at two time points (paper: 1 million cells isolated at day 4, the rest cultured on to day 12); they are in different factor groups."
+  },
+  {
+   "location": "characteristics[sampling time] + factor value[sampling time] rows 1-96",
+   "value": "4 day | 12 day",
+   "source_ids": [
+    "setup",
+    "paper",
+    "pride"
+   ],
+   "evidence": "setup.txt \"Day 4\"/\"Day 12\"; paper: treatment 72 h then \"1 million cells were isolated for the day-4 time point ... totaling 12 days of inhibition\". Values are the authors' time-point labels (time since treatment start)."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-96",
+   "value": "mesenchymal glioma stem cell (NCH711d, NCH705); proneural glioma stem cell (NCH421k, NCH644)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: GSCs (glioblastoma stem cells), \"NCH711d and NCH705 (MES) and NCH421k and NCH644 (PN)\". BTO:0006148 / BTO:0006156."
+  },
+  {
+   "location": "characteristics[disease] rows 1-96",
+   "value": "glioblastoma",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: GSC lines from glioblastoma (MES and PN subtypes); Cellosaurus NCH421k/NCH644 disease NCIt C3058 Glioblastoma. MONDO:0018177."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-96",
+   "value": "brain",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus derived-from-site Brain (UBERON:0000955) for NCH421k and NCH644; NCH711d/NCH705 are glioblastoma stem-cell lines (paper), glioblastoma being a brain tumour."
+  },
+  {
+   "location": "characteristics[organism] rows 1-96",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus species Homo sapiens; search FASTA UP000005640_9606 (human)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-96",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured glioblastoma stem-cell lines."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 49-96",
+   "value": "enrichment of phosphorylated protein (rows 1-48 not applicable)",
+   "source_ids": [
+    "mq_evidence",
+    "mq_summary",
+    "pride",
+    "ols"
+   ],
+   "evidence": "evidence.txt per raw file: runs 01-24 have 74-169 phospho evidences of 20,590-34,234 (0.4-0.5%); runs 25-3 and 26-48 have 10,775-16,103 phospho evidences of 18,303-29,969 (40-80%) -> phosphopeptide-enriched. summary.txt places them as Fraction 11 of the same experiments (separated from the proteome runs, Fraction 1, for match-between-runs). PRIDE title/paper: proteomics and phosphoproteomics. The enrichment chemistry is not described in the deposit or paper. EFO:0010806."
+  },
+  {
+   "location": "characteristics[ancestry category] + characteristics[age] + characteristics[sex] + characteristics[developmental stage] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows with NCH421k / NCH644",
+   "value": "NCH421k: CVCL_X910, NCH421k, male, 66Y, European ancestry, adult; NCH644: CVCL_X914, NCH644, female, 66Y, European ancestry, adult; NCH711d/NCH705: not available",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_X910 (NCH421k): age 66Y, sex Male, Population Caucasian; CVCL_X914 (NCH644): age 66Y, sex Female, Population Caucasian. Caucasian -> HANCESTRO:0005 European ancestry; 66Y -> adult (EFO:0001272). NCH711d and NCH705 have no Cellosaurus entry, so donor fields are not available."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-96",
+   "value": "DMEM/F12",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods: \"cultured with SILAC heavy and light medium (DMEM:F12 ...)\". No NCIT class for DMEM/F12 found in OLS4; written as bare text (precedent annotations with DMEM/F12)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-96",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term, Phospho STY, Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mq_summary",
+    "mq_params",
+    "pride"
+   ],
+   "evidence": "summary.txt (all 48 runs): Variable modifications \"Oxidation (M);Acetyl (Protein N-term);Phospho (STY)\", Multi modifications empty, Labels1 \"Arg10;Lys8\"; parameters.txt Fixed modifications \"Carbamidomethyl (C)\". One search for all runs, so all rows share the parameters. Arg10 = +10.008 (UNIMOD:267), Lys8 = +8.014 (UNIMOD:259); label mods written MT=Variable per campaign rule 11."
+  },
+  {
+   "location": "comment[label] rows 1-96 (Lys8 vs Lys6)",
+   "value": "SILAC heavy = Arg10/Lys8",
+   "source_ids": [
+    "mq_summary",
+    "pride",
+    "mq_evidence",
+    "paper"
+   ],
+   "evidence": "CONFLICT: paper Methods say \"DMEM:F12 with Arg-10 and Lys-6\"; PRIDE dataProcessingProtocol and the MaxQuant search say Arg10;Lys8. Data: with Lys8 searched, 83-97% of K-only (no R) peptide evidences per run carry an H/L ratio (evstats.txt, e.g. run 01 10,364/10,873), which would not happen if lysine carried +6 Da. Deposit + data win; the paper statement is recorded as an error."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-96",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq_summary"
+   ],
+   "evidence": "PRIDE: \"overnight digestion with Trypsin\". MaxQuant search rule Trypsin/P, specific, max 2 missed cleavages (campaign rule 2: digestion enzyme recorded)."
+  },
+  {
+   "location": "comment[instrument] + comment[dissociation method] + comment[ms2 mass analyzer] rows 1-96",
+   "value": "Q Exactive HF-X; beam-type CID (HCD); orbitrap",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE instruments MS:1002877 Q Exactive HF-X and protocol \"Q-Exactive-HF-X\". The Q Exactive HF-X fragments only by HCD and reads MS2 in the Orbitrap (no ion trap)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-96",
+   "value": "Data-dependent acquisition",
+   "source_ids": [
+    "mq_summary",
+    "pride"
+   ],
+   "evidence": "MaxQuant (DDA search engine) summary.txt LC-MS run type \"Standard\" with MS/MS identification per run; no DIA mentioned."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-96",
+   "value": "4.5 ppm; 20 ppm",
+   "source_ids": [
+    "mq_params"
+   ],
+   "evidence": "mqpar.xml mainSearchTol 4.5 (searchTolInPpm true; first search 20 ppm); parameters.txt \"MS/MS tol. (FTMS) 20 ppm\"."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-96",
+   "value": "DTT; iodoacetamide",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE: \"cysteines reduced by adding DTT and carbamidomethylated using iodoacetamide\"."
+  },
+  {
+   "location": "comment[fraction identifier] + comment[technical replicate] rows 1-96",
+   "value": "1; 1",
+   "source_ids": [
+    "mq_summary",
+    "files"
+   ],
+   "evidence": "One raw file per SILAC mixture and arm; MaxQuant Fraction values 1/11 only separate the proteome and phospho arms, they are not LC/gel fractions of one injection."
+  },
+  {
+   "location": "comment[data file] + assay name rows 1-96",
+   "value": "48 deposited .raw files, 2 rows (light/heavy) each",
+   "source_ids": [
+    "files",
+    "mq_summary",
+    "setup"
+   ],
+   "evidence": "Run qecf1-OA0015-NN = setup.txt MS-sample number NN; number 25 is deposited and searched as qecf1-OA0015-25-3 (summary.txt: Sample01, Fraction 11)."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-96",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Campaign rules 1 and 10. Templates: human (organism) + cell-lines (all samples are cell lines); clinical-metadata/oncology-metadata not declared (no patient samples)."
+  },
+  {
+   "location": "characteristics[individual] + characteristics[passage number] rows 1-96",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "No donor identifiers or passage numbers given; the paper states six doublings in SILAC medium only."
+  }
+ ],
+ "limitations": [
+  "Phospho-enrichment method (rows 49-96) is not described in PRIDE or the paper; enrichment inferred from per-run phospho evidence fractions (40-80%) and summary.txt experiment/fraction mapping.",
+  "Paper says Lys-6 while PRIDE and the MaxQuant search say Lys8; annotated Lys8 (UNIMOD:259) on deposit + data evidence.",
+  "Deposited mqpar.xml is from an earlier search configuration (49 files incl. undeposited qecf1-OA0015-25.raw and -25-2.raw, experiments Sample01-48, no fractions); summary.txt/parameters.txt describe the final search and were used for the file->experiment map; the precursor tolerance (4.5 ppm) comes from that mqpar.xml (parameters.txt does not print it).",
+  "NCH711d and NCH705 have no Cellosaurus/CLO/BTO/EFO entry: cellosaurus accession/name, age, sex, ancestry and developmental stage are not available; sdrf-tools check reports all four cell line names as not found in ontologies.",
+  "characteristics[culture medium] DMEM/F12 has no NCIT term; written as bare text.",
+  "characteristics[dose] is a custom column (not in the declared templates).",
+  "Supplementary Table 1 / Supplementary Figure 1 of the paper were not retrieved (Europe PMC unavailable during the run); the channel map rests on the PRIDE protocol, paper Methods and the deposited ratios.",
+  "Independent review not run here (caller instruction: no review file, no review-gate approve)."
+ ]
+}

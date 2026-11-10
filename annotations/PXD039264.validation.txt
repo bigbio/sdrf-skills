@@ -1,0 +1,65 @@
+# PXD039264 validation (2026-11-10T11:32:26Z); SDRF sha256 b032dac304daf21e89d0cf847c231f0705a654c4a86cc26cb9f18f652f007690
+# SDRF produced solely by: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/scripts/make_tables.py && sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/evidence/files.json -t ms-proteomics -t human -t cell-lines -o /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv  (no post-build edits)
+
+### $ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: NCH711d in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: NCH705 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: NCH421k in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: NCH644 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: DMEM/F12 in column 'characteristics[culture medium]', is not found in the given ontology list ncit
+Most seems to be fine. There were only warnings.
+### exit 0
+
+### $ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv
+  Terms checked:     28
+  Verified:          20
+  Hallucinated:      8
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 2, 9, 10, 17, 18, 25, 26, 33, 34, 41, 42, 49, 50, 57, 58, 65, 66, 73, 74, 81, 82, 89, 90]: 'NCH711d' in characteristics[cell line]
+  Row(s) [3, 4, 11, 12, 19, 20, 27, 28, 35, 36, 43, 44, 51, 52, 59, 60, 67, 68, 75, 76, 83, 84, 91, 92]: 'NCH705' in characteristics[cell line]
+  Row(s) [5, 6, 13, 14, 21, 22, 29, 30, 37, 38, 45, 46, 53, 54, 61, 62, 69, 70, 77, 78, 85, 86, 93, 94]: 'NCH421k' in characteristics[cell line]
+  Row(s) [7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 47, 48, 55, 56, 63, 64, 71, 72, 79, 80, 87, 88, 95, 96]: 'NCH644' in characteristics[cell line]
+  Row(s) [1, 2, 9, 10, 17, 18, 25, 26, 33, 34, 41, 42, 49, 50, 57, 58, 65, 66, 73, 74, 81, 82, 89, 90]: 'NCH711d' in factor value[cell line]
+  Row(s) [3, 4, 11, 12, 19, 20, 27, 28, 35, 36, 43, 44, 51, 52, 59, 60, 67, 68, 75, 76, 83, 84, 91, 92]: 'NCH705' in factor value[cell line]
+  Row(s) [5, 6, 13, 14, 21, 22, 29, 30, 37, 38, 45, 46, 53, 54, 61, 62, 69, 70, 77, 78, 85, 86, 93, 94]: 'NCH421k' in factor value[cell line]
+  Row(s) [7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 47, 48, 55, 56, 63, 64, 71, 72, 79, 80, 87, 88, 95, 96]: 'NCH644' in factor value[cell line]
+### exit 1
+
+### $ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+### exit 0
+
+### $ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/evidence/pride.json --accession PXD039264
+PXD039264: every annotated value agrees with the deposit record.
+### exit 0
+
+### $ sdrf-tools schema-check PXD039264.evidence.json
+PXD039264.evidence.json: valid evidence-manifest
+### exit 0
+
+### $ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv PXD039264.evidence.json
+Manifest covers every column with a value (35 column(s)).
+### exit 0
+
+### $ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD039264/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv -t2)
+Factor columns: ['factor value[cell line]', 'factor value[sampling time]', 'factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[dose]']
+Conditions (16): dict_keys(['NCH711d|4 day|untreated', 'NCH711d|4 day|dasatinib', 'NCH705|4 day|untreated', 'NCH705|4 day|dasatinib', 'NCH421k|4 day|untreated', 'NCH421k|4 day|dasatinib', 'NCH644|4 day|untreated', 'NCH644|4 day|dasatinib', 'NCH711d|12 day|untreated', 'NCH711d|12 day|dasatinib', 'NCH705|12 day|untreated', 'NCH705|12 day|dasatinib', 'NCH421k|12 day|untreated', 'NCH421k|12 day|dasatinib', 'NCH644|12 day|untreated', 'NCH644|12 day|dasatinib'])
+Files per condition: dict_values([6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 96 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD039264.sdrf.tsv
+### exit 0
+
+### Refutations / notes
+- validate-sdrf warnings and sdrf-tools check "Hallucinated" (exit 1) on characteristics[cell line] / factor value[cell line] NCH711d, NCH705, NCH421k, NCH644: these patient-derived glioblastoma stem-cell lines are not in CLO, BTO or EFO (OLS4 search for each name returns no hit). NCH421k (CVCL_X910) and NCH644 (CVCL_X914) are Cellosaurus entries and their accessions are given in characteristics[cellosaurus accession]; NCH711d and NCH705 have no Cellosaurus entry (API searches returned empty lists). Names are spelled as in the paper and Cellosaurus. Not hallucinations; same situation accepted for PXD004880 (Twin-DS/Twin-N).
+- validate-sdrf warning 'untreated' in characteristics[treatment]: template-prescribed control value (campaign rule 4); the light channel received DMSO vehicle.
+- validate-sdrf warning 'DMEM/F12' in characteristics[culture medium]: no NCIT class exists for DMEM/F12 (OLS4 searches 'DMEM/F12', 'DMEM F12', 'DMEM/F-12' in ncit return nothing relevant); the paper states DMEM:F12 SILAC medium.
+- convert-openms warning "no TA= specified" x96: from the Acetyl protein N-term modification (PP=Protein N-term, no residue target) - expected.
+- reconcile exit 0: no false positives to refute.
