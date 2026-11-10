@@ -127,3 +127,15 @@ PXD006395	PRIDE	exclude	channel map	Batch 11: HepG2 palmitate, paper unreachable
 PXD009009	PRIDE	exclude	channel map	Batch 11: HCT116 hypoxia, label assignment undocumented (BLOCKED.md / DUPLICATES.md)	deposit files; paper
 PXD004015	PRIDE	exclude	duplicate	Batch 11: = PXD004984 (v2) (BLOCKED.md / DUPLICATES.md)	deposit files; paper
 PXD004019	PRIDE	exclude	duplicate	Batch 11: = PXD004983 (v2) (BLOCKED.md / DUPLICATES.md)	deposit files; paper
+PXD012954	PRIDE	include		Batch 12: LSD1 interactome NB4 AML	repository structured fields; paper methods
+PXD018961	PRIDE	include		Batch 12: SHMT2 Burkitt lymphoma BL-60	repository structured fields; paper methods
+PXD026925	PRIDE	include		Batch 12: LCK inhibitor HuCCT-1 cholangiocarcinoma	repository structured fields; paper methods
+PXD029527	PRIDE	include		Batch 12: FBL knockdown Kasumi-1 AML (FBL arm)	repository structured fields; paper methods
+PXD039264	PRIDE	include		Batch 12: Dasatinib glioblastoma stem cells	repository structured fields; paper methods
+PXD050961	PRIDE	include		Batch 12: MEK inhibition colon cancer spike-in SILAC	repository structured fields; paper methods
+PXD055896	PRIDE	include		Batch 12: Zotatifin SU-DHL-10 TMT-pSILAC	repository structured fields; paper methods
+PXD062091	PRIDE	include		Batch 12: METTL13 T3M4 pancreatic cancer QuaNCAT	repository structured fields; paper methods
+PXD072695	PRIDE	include		Batch 12: Leishmania tRF THP-1 macrophages	repository structured fields; paper methods
+PXD034333	PRIDE	exclude	channel map	Batch 12: Englerin A A-498, label assignment undocumented (BLOCKED.md)	deposit files; paper
+PXD046502	PRIDE	exclude	channel map	Batch 12: palmitate CD8 T cells, sample identities undocumented (BLOCKED.md)	deposit files; paper
+PXD060444	PRIDE	exclude	channel map	Batch 12: Ipomoeassin F MDA-MB-231, run-to-mixture map undocumented (BLOCKED.md)	deposit files; paper
