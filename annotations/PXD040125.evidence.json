@@ -119,7 +119,7 @@
    "evidence": "Paper line 112: 'one biological replicate labeled with SILAC'; each channel population is one culture (4 x 15 cm plates pooled per SILAC population, line 116/126). Within each factor-value group (genetic modification x SEC fraction) there is exactly one culture, and the L reference group is one culture, so 1 is the correct per-group number (rule 3), not a default."
   },
   {
-   "location": "characteristics[cell line], [cellosaurus accession], [cellosaurus name], [organism], [organism part], [sampling site], [disease], [age], [sex], [ancestry category], [developmental stage], [individual], [material type] rows 1-240",
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], characteristics[organism], characteristics[organism part], characteristics[sampling site], characteristics[disease], characteristics[age], characteristics[sex], characteristics[ancestry category], characteristics[developmental stage], characteristics[individual], characteristics[material type] rows 1-240",
    "value": "MCF-7; CVCL_0031; MCF-7; Homo sapiens; breast; pleural effusion; invasive ductal breast carcinoma; 69Y; female; European ancestry; adult; MCF-7_donor; cell line",
    "source_ids": [
     "paper",
@@ -137,7 +137,7 @@
    "evidence": "Paper line 116: obtained from Sigma-Aldrich."
   },
   {
-   "location": "characteristics[cell type], [passage number], [culture medium], [sample storage temperature] rows 1-240",
+   "location": "characteristics[cell type], characteristics[passage number], characteristics[culture medium], characteristics[sample storage temperature] rows 1-240",
    "value": "not available",
    "source_ids": [
     "paper",
