@@ -2344,3 +2344,20 @@ Sources checked:
 They would go in separate label-free / DIA SDRFs (batch rule 12).
 
 **Open point for the reviewer:** the H/M direction rests on three concordant paper statements (Methods lines 116 and 122, Results line 188) and the MaxQuant label states. The bait NFKBIA is not identified in the SILAC search, so there was no ratio check.
+
+## PXD035748 — DNMT/HDAC inhibition, AHA-pulse SILAC whole-cell proteomics of NCI-H1299 (Goyal et al., Nat Commun 2023; QE-HF pulse arm annotated, Orbitrap Fusion "STABLE" arm and unfractionated runs blocked), partial
+
+**Annotated:** 54 QE-HF runs (MaxQuant experiments PULSE_SB_DAC_R1–R7 / SBDAC_R1–R7, 7 biological replicates × 8 HpH fractions, F7 of R3 and F1 of R5 not deposited) in `annotations/PXD035748.sdrf.tsv`. Channel map from the PRIDE protocol ("control ... medium SILAC conditions whereas for the inhibitors in heavy") and the paper, checked against Supplementary Data 5 (H/M vs DAC+SB939/DMSO logFC r = 0.85–0.93).
+
+**Blocked — channel map undocumented (48 runs, Orbitrap Fusion, MaxQuant 1.6.8.0 Multiplicity 2, light vs Arg10;Lys8):**
+- `20171120_FS1_DP_SB939_1A_test`, `20171120_FS1_DP_SB939_A2`–`A8`, `20171120_FS1_DP_SB939_B1`–`B8` (experiment STABLE_SB939)
+- `20171121_FS1_DP_DAC_A1`–`A8`, `20171121_FS1_DP_DAC_B1`–`B8` (STABLE_DAC)
+- `20171121_FS1_DP_SB_DAC_A1`–`A8` (STABLE_SB_DAC_R1), `20171121_FS1_DP_SB_DAC_B1`–`B8` (STABLE_SB_DAC_R2)
+
+The paper, its 14 Supplementary Data files and the PRIDE protocol describe only the AHA-pulse experiment; nothing states which SILAC state carried which treatment in these "STABLE" runs, nor what the A and B series of STABLE_SB939 / STABLE_DAC are (both numbered fractions 1–8 inside one MaxQuant experiment). The deposited H/L ratios anti-correlate with Supplementary Data 5 (r = −0.34 to −0.54; PAGE2 and DAZL strongly light-high), which suggests light = inhibitor-treated and heavy = control, but that is inference only (campaign rule 6).
+
+**Blocked — sample identity undocumented (9 unfractionated QE-HF runs, TINPAT search experiments SBDAC_NF_R1–R9, not in the human search):** `20180322_QE1_DS_SBDAC_Translatome_1`, `_Translatome_2`, `20180329_QE1_DS_SBDAC_R2_Unfractionated`, `20180413_QE1_DS_SBDAC_4h_R1`, `_4h_R2`, `20180504_QE1_DS_SBDAC_C3T3_2mio_4h_Unfrac`, `20180504_QE1_DS_SBDAC_CT_08_4h_Unfrac`, `20180509_QE1_DS_SBDAC_CT_08_4h_Unfrac_2`, `_Unfrac_3`. Same medium/heavy design, but the paper does not mention them and nothing says whether they are aliquots of the fractionated mixes R1–R7 or separate cultures.
+
+Sources checked: PRIDE record and file list (113 files); both MaxQuant txt zips (summary, parameters, proteinGroups, evidence; HTTP range reads); paper PMC10593957 full text, Supplementary Information docx, Description of Additional Supplementary Files, Supplementary Data 5; Europe PMC search for PXD035748 (only this paper; no data descriptor).
+
+**Unblocked by:** a submitter statement (D. Papageorgiou / J. Krijgsveld) of the light/heavy treatment assignment and the A/B series identity of the FS1 STABLE runs, and of which culture/mix each unfractionated SBDAC_NF run came from.

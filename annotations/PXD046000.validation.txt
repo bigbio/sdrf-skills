@@ -1,3 +1,9 @@
+# STATUS: BLOCKED (whole dataset). The independent review FAILED the channel map; on the coordinator's decision
+# annotations/PXD046000.sdrf.tsv (sha256 3ac6fdd98494fd6493457b18805aabed0a373a9f51b67a36f18d7f6b4fcf81ff) and
+# annotations/PXD046000.evidence.json were deleted (copies kept in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/withdrawn/).
+# The log below is HISTORICAL: it records the validation of the withdrawn draft and remains useful to whoever unblocks the dataset
+# (the technical values passed validate-sdrf). See PXD046000.report.md and BLOCKED.md.
+
 # PXD046000 validation log (2026-11-10T17:58Z); SDRF sha256 3ac6fdd98494fd6493457b18805aabed0a373a9f51b67a36f18d7f6b4fcf81ff; 16 rows x 41 columns
 # Build: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/scripts/make_tables.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000  ->  sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/files_inscope.json -t ms-proteomics -t vertebrates -o annotations/PXD046000.sdrf.tsv (16 rows x 40 columns)
 # Post-build (deterministic, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046000/scripts/postbuild.py; batch rule 17):
