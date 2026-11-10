@@ -1,0 +1,53 @@
+# PXD007931 validation log (2026-11-10T05:53Z); SDRF sha256 ee2aedd03643216d9bb048e32c40a43f6e8ace7a3b72a3cf058932712ad8a0c2 (96 rows x 45 columns)
+
+## Round 1 (superseded build: fraction identifiers = file numbers in all zips, assay prefix exp<k>_)
+parse_sdrf validate-sdrf -s annotations/PXD007931.sdrf.tsv -t ms-proteomics -t human -t cell-lines -> 'Everything seems to be fine. Well done.' exit=0; structure exit=0; reconcile exit=1 (cleavage_agent_unsupported, see below).
+Superseded because the embedded .wiff acquisition names showed (a) the 2nd/3rd RAW zips correspond to the swapped MaxQuant searches and (b) 8 files of 2ndexperiment-MS.zip are permuted relative to their fraction content. Fixed in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/make_tables.py (files order) and /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/postbuild.py (zip-stem assay prefix); rebuilt with sdrf-tools build.
+
+## Build (current file)
+sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/build/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD007931.sdrf.tsv
+wrote annotations/PXD007931.sdrf.tsv: 96 rows x 45 columns
+exit=0
+assay names prefixed on 96 rows
+Post-build edit (rule 17): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/postbuild.py rewrites ONLY the 'assay name' column, prefixing the RAW zip stem (1stexperiment-MS_/2ndexperiment-MS_/3rdexperiment-MS_) chosen from the source-name suffix exp1/exp2/exp3. Justification: the three zips contain identically named members H-HCT116-I8-1..16.wiff, so build's default assay name (file stem) would give three different runs one assay name. Deterministic; re-running build + postbuild reproduces the sha256 above.
+
+## Round 2 (current file)
+## parse_sdrf validate-sdrf -s annotations/PXD007931.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Everything seems to be fine. Well done.
+exit=0
+
+## sdrf-tools structure annotations/PXD007931.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD007931.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/pride.json --accession PXD007931
+PXD007931: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+exit=1
+
+## sdrf-tools check annotations/PXD007931.sdrf.tsv --offline
+Hallucination Report: annotations/PXD007931.sdrf.tsv
+  Terms checked:     11
+  Verified:          5
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+Refutation of the reconcile BLOCKER (rule 13): the accessible record does not name the digestion enzyme (PRIDE: 'Protein digestion and MS analysis were performed as described previously'; paper closed access). The value comes from the deposited MaxQuant searches: summary.txt Enzyme 'Trypsin', Enzyme mode 'Specific', max 2 missed cleavages in all three searches, with 72,527-76,559 MS/MS-identified evidences and 12-18 % of MS/MS identified per run, which a non-tryptic digest could not reach under a specific-trypsin search. Kept as NT=Trypsin;AC=MS:1001251 (rule 2); the contract allows no 'not available' for this column. reconcile did not test the instrument; the PRIDE instrument field (LTQ Orbitrap) is contradicted by the SCIEX .wiff format and the raw header 'Component ID: TripleTOF 5600+' and was rejected.
+
+## parse_sdrf convert-openms -s annotations/PXD007931.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/convert)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.5.2.8 does not record it; no mqpar.xml). Same outcome as campaign precedents PXD014368/PXD006676. validate-sdrf and the template accept the reserved word.
+
+## sdrf-tools schema-check annotations/PXD007931.evidence.json
+annotations/PXD007931.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD007931.sdrf.tsv annotations/PXD007931.evidence.json
+Manifest covers every column with a value (27 column(s)).
+exit=0
