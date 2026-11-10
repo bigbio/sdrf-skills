@@ -1,0 +1,52 @@
+# PXD003762 validation log; SDRF sha256 5ddf32e6742636c871711fed5507165b3e7c03319eb234eab7e0392408d16e0c
+# 106 rows x 56 columns. Templates: ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0.
+# The SDRF is written only by `sdrf-tools build` from samples.tsv + technical.tsv, which are
+# written by the deterministic generator scripts/make_tables.py. No post-build edit was made.
+
+## Round 1 (superseded build): parse_sdrf validate-sdrf -s annotations/PXD003762.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: CEM-SS in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: MT-2 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+WARNING: Term: newborn stage (0-28 days) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+ERROR: Value 'CCRF-CEM donor' does not match required pattern
+ERROR: Value 'MT-2 donor' does not match required pattern
+There were validation errors.
+Note: Fixes, all made in the generator script scripts/make_tables.py -> samples.tsv and rebuilt with sdrf-tools build (no post-build edit of the SDRF): characteristics[individual] 'CCRF-CEM donor' -> 'CCRF-CEM_donor' and 'MT-2 donor' -> 'MT-2_donor' (the column's identifier pattern rejects spaces); characteristics[cell line]/factor value[cell line] 'MT-2' -> 'MT2 cell' (EFO:0022393 label, synonyms MT-2J/MT-2Org; the Cellosaurus name MT-2 stays in characteristics[cellosaurus name]); characteristics[developmental stage] for the MT-2 rows 'newborn stage (0-28 days)' (HsapDv) -> 'neonate' (EFO:0001372, synonym 'NEWBORN (0-27 DAYS)'), which is inside the template's EFO list.
+
+## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD003762.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: CEM-SS in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit 0
+Note: Both remaining warnings are expected and refuted as errors: (1) CEM-SS has no class in CLO, BTO or EFO (OLS4 search over those three ontologies returns nothing; Cellosaurus CVCL_J318 is the only identifier), so the column keeps the Cellosaurus name - same situation as curated precedents (e.g. annotations/PXD003940 MDA-MB-231, PXD004181 DG-75). (2) 'child stage (1-4 yo)' is HsapDv:0000265: the CEM-SS donor was 3Y11M and EFO has no child-stage class, so the HsapDv term is used, as in curated annotations/PXD006404.sdrf.tsv.
+
+## sdrf-tools structure annotations/PXD003762.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+
+## sdrf-tools check annotations/PXD003762.sdrf.tsv --offline
+Hallucination Report: PXD003762.sdrf.tsv
+  Terms checked:     14
+  Verified:          6
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+
+## sdrf-tools reconcile annotations/PXD003762.sdrf.tsv --record <scratch>/pride_v3.json --accession PXD003762
+PXD003762: every annotated value agrees with the deposit record.
+Note: Run against the full PRIDE v3 project record. An earlier run against the MCP tool's condensed project summary (<scratch>/pride.json) reported one MINOR finding, cleavage_agent_unsupported, because that summary drops the sample-processing protocol; the protocol in the v3 record says 'In-gel digestion with trypsin was performed', and every deposited .msf declares SEQUEST 'Enzyme Name = Trypsin (Full)', so the finding is refuted.
+
+## parse_sdrf convert-openms -s annotations/PXD003762.sdrf.tsv -t2 (run in <scratch>/convert)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD003762.sdrf.tsv
+Factor columns: ['factor value[bait]', 'factor value[cell line]', 'factor value[isotope exchange time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[infection status]', 'characteristics[infectious agent strain]', 'characteristics[infectious agent]']
+Conditions (10): dict_keys(['HIV-1 Env-3xFLAG|CEM-SS|not applicable', 'no bait (anti-FLAG affinity enrichment from cells infected with untagged HIV-1 R7/3)|CEM-SS|not applicable', 'HIV-1 Vif-3xFLAG|MT2 cell|not applicable', 'no bait (anti-FLAG affinity enrichment from cells infected with untagged HIV-1 R7/3)|MT2 cell|not applicable', 'HIV-1 Vif-3xFLAG|MT2 cell|5 minute', 'no bait (anti-FLAG affinity enrichment from cells infected with untagged HIV-1 R7/3)|MT2 cell|5 minute', 'HIV-1 Vif-3xFLAG|MT2 cell|15 minute', 'no bait (anti-FLAG affinity enrichment from cells infected with untagged HIV-1 R7/3)|MT2 cell|15 minute', 'HIV-1 Vif-3xFLAG|MT2 cell|60 minute', 'no bait (anti-FLAG affinity enrichment from cells infected with untagged HIV-1 R7/3)|MT2 cell|60 minute'])
+Files per condition: dict_values([20, 20, 18, 18, 5, 5, 5, 5, 5, 5])
+SUCCESS (WARNINGS=0): /home/user/bigbio/sdrf-skills/annotations/PXD003762.sdrf.tsv
+
+## sdrf-tools schema-check annotations/PXD003762.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD003762.evidence.json: valid evidence-manifest
+
+## sdrf-tools manifest-coverage annotations/PXD003762.sdrf.tsv annotations/PXD003762.evidence.json
+Manifest covers every column with a value (42 column(s)).

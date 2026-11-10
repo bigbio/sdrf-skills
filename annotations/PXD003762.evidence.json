@@ -1,0 +1,369 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD003762.sdrf.tsv",
+ "dataset": "PXD003762",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD003762 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/pride_v3.json; MCP summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD003762/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/files_v3.json; 61 entries = 53 .raw + 7 Proteome Discoverer .msf + 1 FASTA; every entry's projectAccessions contains PXD003762); raw-name list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/files.json"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Luo Y, Jacobs EY, Greco TM, Mohammed KD, Tong T, Keegan S, Binley JM, Cristea IM, Fenyo D, Rout MP, Chait BT, Muesing MA. HIV-host interactome revealed directly from infected cells. Nat Microbiol 2016;1(7):16068, doi:10.1038/nmicrobiol.2016.68, PMID 27375898, PMC4928716 (NIHMS795262 author manuscript; JATS https://pmc-oa-opendata.s3.amazonaws.com/PMC4928716.1/PMC4928716.1.xml, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/paper.xml, flattened text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/paper.txt). Methods headings used: 'Cell culture, viral production and infection'; 'Cell culture for I-DIRT and reverse I-DIRT analyses'; 'Competitive isotopic exchange assay for detection of Vif-host dynamic interaction'; 'Mass spectrometry (MS)-based proteomic analysis'; 'Quantification of viral-host interactomes via differential isotopic labeling'; Fig. 4c legend."
+  },
+  {
+   "id": "msf",
+   "kind": "search-output",
+   "location": "Proteome Discoverer 1.3 result files (.msf, SQLite) under https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/07/PXD003762/ : 2012_04_23_EnvHIV_For, 2012_04_23_EnvHIV_Rev, 2012_02_10_VIF_IDIRT_For, 2012_02_10_VIF_IDIRT_Rev, 2012_06_28_VIF_Ex5min, 2012_06_28_VIF_Ex15min, 2012_06_28_VIF_Ex60min. Tables ProcessingNodes, ProcessingNodeParameters, FileInfos read over HTTP range with an apsw VFS (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/scripts/msf_http.py); dumps /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/msf_<stem>.txt"
+  },
+  {
+   "id": "quant",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/ratio_<stem>.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/scripts/msf_ratio_local.py, driver /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/scripts/chain.sh): median light/(light+heavy) of the deposited PrecursorIonQuanResults areas over high-confidence rank-1 PSMs, overall and per HIV-1 / known-interactor protein. Each .msf was downloaded, read and deleted."
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of 2012_04_23_ENV_F1.raw, 2012_02_10_VIF_R1.raw and 2012_06_28_VIF_5min_01.raw, decoded UTF-16LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/raw/*.head)"
+  },
+  {
+   "id": "fasta",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/07/PXD003762/2010_11_uniprotS_human_hiv.fasta (20,337 entries: human SwissProt + 25 HIV-1 proteins incl. Vif, Vif-3xFLAG, ENV_gp160_3xFLAG + contaminants); local copy deleted after inspection, header list in this manifest's claim"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/search/cell-line?q=id:%22CEM-SS%22 (CVCL_J318) and https://api.cellosaurus.org/cell-line/CVCL_2631?format=txt (MT-2)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 (https://www.ebi.ac.uk/ols4/api) term + is_obsolete checks, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003762/scripts/ols_check.py; PRIDE:0000895 and PRIDE:0001014 children listings"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "sdrf-proteomics spec README.adoc:27 (comment[sdrf version] v1.1.0), README.adoc:330 (biological replicate numbering), 'Extending Templates' (custom characteristics columns); upstream bigbio/sdrf-templates 7da1747 templates.yaml:150 (ms-proteomics latest 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t. The spec submodule's nested templates copy is older than upstream 7da1747."
+  },
+  {
+   "id": "campaign",
+   "kind": "convention",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/batch3_rules.md (SILAC campaign batch rules 1-18)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-106",
+   "value": "<cell line>_HIV-1_R7-3_<Env-3xFLAG|Vif-3xFLAG|untagged>_<experiment>_<light|heavy>; 14 source names",
+   "source_ids": [
+    "paper",
+    "pride",
+    "files",
+    "msf"
+   ],
+   "evidence": "Seven SILAC mixtures, each its own Proteome Discoverer search whose FileInfos lists exactly those raw files: Env I-DIRT forward (2012_04_23_ENV_F1-F10), Env reverse (ENV_R1-R10), Vif I-DIRT forward (2012_02_10_VIF_F1-F9), Vif reverse (VIF_R1-R9), Vif isotope exchange 5/15/60 min (2012_06_28_VIF_<t>min_01-05). PRIDE sample protocol: 'dividing and pooling each lane into 5, 9, or 10 gel fractions for the Vif exchange, Vif-3XFLAG I-DIRT, and Env-3XFLAG I-DIRT experiments'. Each mixture contributes two sources, one per SILAC channel, because the two channels are physically separate cultures/lysates mixed 1:1 before lysis (I-DIRT) or combined on the beads (exchange). The three exchange time points are separate aliquots that were washed, eluted and run separately, so each gets its own source name; the manifest records that the three heavy sources are aliquots of one bead-bound Vif-3xFLAG affinity isolation and the three light sources aliquots of one untagged-infection lysate."
+  },
+  {
+   "location": "comment[label], characteristics[infectious agent strain], characteristics[bait], characteristics[sample type], factor value[bait] rows 1-40 (Env I-DIRT)",
+   "value": "forward (ENV_F): SILAC light = CEM-SS infected with Env-3xFLAG virus, SILAC heavy = CEM-SS infected with untagged R7/3; reverse (ENV_R): the labels are swapped",
+   "source_ids": [
+    "paper",
+    "pride",
+    "quant",
+    "msf"
+   ],
+   "evidence": "Paper, 'Cell culture for I-DIRT and reverse I-DIRT analyses': 'Sample preparation for I-DIRT analyses used cells infected with the untagged, parental control virus, R7/3, grown in Lys/Arg deficient RPMI-1640 ... supplemented with heavy isotope 13C6 labelled Lys and Arg ... Cells infected with the 3xFLAG-tagged viruses were cultured in media supplemented with Lys and Arg with natural isotopic abundances ... For reverse I-DIRT, the isotopic characteristics of the RPMI media were switched - cells infected with the control virus were grown in the natural carbon isotope while cells infected with a 3xFLAG-tagged virus were cultured in media supplemented with 13C6 labelled Arg and Lys.' Same orientation in 'Quantification of viral-host interactomes via differential isotopic labeling': 'Light CEM (or MT-2) cells were then infected with the Env- or Vif-3xFLAG-tagged virus ... the companion heavy CEM (or MT-2) culture was infected with the untagged WT virus'. PRIDE data protocol: 'Isotope ratios were calculated as light/total for forward I-DIRT experiments or heavy/total for reverse I-DIRT, Vif isotope exchange and Env SILAC experiments'. File letter F/R matches the .msf names EnvHIV_For / EnvHIV_Rev. Data cross-check on the deposited Proteome Discoverer quantification (median light/(light+heavy) of high-confidence rank-1 PSM precursor areas): 2012_04_23_EnvHIV_For: all-PSM median L/(L+H) 0.668 (n=21963); gp160 1.000 (n=457), gp120 1.000 (n=458), gp41_Env 1.000 (n=399), Vif3XFLAG 1.000 (n=17), Q9H497 1.000 (n=13), Q13951 0.632 (n=3), Pr55 1.000 (n=1) | 2012_04_23_EnvHIV_Rev: all-PSM median L/(L+H) 0.400 (n=22413); gp160 0.000 (n=449), gp120 0.000 (n=449), gp41_Env 0.000 (n=354), Vif3XFLAG 0.000 (n=8), Q9H497 0.000 (n=11), Pr55 0.000 (n=18). The 3xFLAG-tagged bait and its specific interactors must sit at ~1 in the channel of the tagged infection and the bulk proteome near 0.5-0.7, which is what these numbers show, so the orientation taken from the Methods is confirmed."
+  },
+  {
+   "location": "comment[label], characteristics[infectious agent strain], characteristics[bait], characteristics[sample type], factor value[bait] rows 41-76 (Vif I-DIRT)",
+   "value": "forward (VIF_F): SILAC light = MT-2 infected with Vif-3xFLAG virus, SILAC heavy = MT-2 infected with untagged R7/3; reverse (VIF_R): the labels are swapped",
+   "source_ids": [
+    "paper",
+    "pride",
+    "quant",
+    "msf"
+   ],
+   "evidence": "Same I-DIRT protocol as Env: the paper states the labelling was 'performed identically for tagged Vif virus in the context of the restrictive MT-2 cell line'; .msf names VIF_IDIRT_For / VIF_IDIRT_Rev match the file letters F/R. Data cross-check (same measure): 2012_02_10_VIF_IDIRT_For: all-PSM median L/(L+H) 0.580 (n=23371); Vif 1.000 (n=105), Vif3XFLAG 1.000 (n=155), Q13951 1.000 (n=105), Pr55 0.767 (n=136) | 2012_02_10_VIF_IDIRT_Rev: all-PSM median L/(L+H) 0.535 (n=18871); Vif 0.000 (n=121), Vif3XFLAG 0.006 (n=237), Q13951 0.000 (n=120), Pr55 0.296 (n=74). Vif-3xFLAG and its reported specific interactors (CBFbeta/PEBB) are at the tagged-virus end of the ratio, confirming the orientation."
+  },
+  {
+   "location": "comment[label], characteristics[infectious agent strain], characteristics[bait], characteristics[sample type], factor value[bait] rows 77-106 (Vif isotope exchange)",
+   "value": "SILAC heavy = Vif-3xFLAG complexes affinity-purified from heavy-labelled MT-2 infected with the Vif-3xFLAG virus; SILAC light = lysate of light-labelled MT-2 infected with the untagged virus, added to the beads as competitor",
+   "source_ids": [
+    "paper",
+    "pride",
+    "quant",
+    "msf"
+   ],
+   "evidence": "Paper, 'Competitive isotopic exchange assay for detection of Vif-host dynamic interaction': 'The methodologies for the differential metabolic labelling of MT-2 cells infected with either Vif-3xF (heavy) or the untagged comparator (light) virus were the same as that used in the reverse I-DIRT experiments ... Anti-FLAG M2 mAb conjugated magnetic Dynabeads were then used to affinity purify Vif complexes from the heavy labelled Vif-3xF infected cells. After removing the heavy lysate from the beads, an equal volume of the light labelled lysate prepared from the untagged control infection was added to the beads'. Fig. 4c legend: 'immunoaffinity-isolated, heavy isotope-labelled tagged Vif and heavy isotope-labelled associated proteins were exposed to protein extract of normal (light) peptide'. PRIDE: heavy/total for the 'Vif isotope exchange' experiments. The three exchange .msf files declare QuantificationMethod 'IDIRT (Arg6, Lys6)'. Data cross-check (same measure): 2012_06_28_VIF_Ex5min: all-PSM median L/(L+H) 0.253 (n=16960); Vif 0.000 (n=49), Vif3XFLAG 0.009 (n=100), Pr55 0.258 (n=112). Vif-3xFLAG stays at the heavy end (low L/(L+H)) because only the bead-bound heavy purification carries the bait, confirming heavy = Vif-3xFLAG purification and light = untagged competitor lysate."
+  },
+  {
+   "location": "characteristics[isotope exchange time], factor value[isotope exchange time] rows 1-106",
+   "value": "5 minute / 15 minute / 60 minute on rows 77-106; not applicable on rows 1-76",
+   "source_ids": [
+    "paper",
+    "files",
+    "msf",
+    "spec"
+   ],
+   "evidence": "Paper: after the light competitor lysate was added, 'The mixture was then divided into three equivalent aliquots, which were then incubated at 4 C for 5, 15 or 60 min'. The three time points are the file groups 2012_06_28_VIF_5min/15min/60min and the .msf files VIF_Ex5min/Ex15min/Ex60min. Custom characteristics column (spec 'Extending Templates'); the I-DIRT mixtures had no exchange incubation, hence not applicable."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-106",
+   "value": "study sample on the 3xFLAG-tagged-virus channel, negative control on the untagged-virus channel",
+   "source_ids": [
+    "paper",
+    "ols",
+    "campaign"
+   ],
+   "evidence": "In I-DIRT the differentially labelled untagged-R7/3 infection is the control that defines the nonspecific ratio: the paper states 'I_T/(I_T + I_UT) ... is 1 for specific interactors and 0.5 for nonspecific interactors' (I_UT = peptides from the untagged strain) and that the untagged R7/3 is the 'parental control virus'. In the exchange assay the untagged-infection lysate is the competitor control. Terms: study sample PRIDE:0001013 and negative control PRIDE:0000905, both children of PRIDE:0000895 / PRIDE:0001014 and non-obsolete in OLS4."
+  },
+  {
+   "location": "characteristics[bait], factor value[bait] rows 1-106",
+   "value": "HIV-1 Env-3xFLAG (rows 1-40) / HIV-1 Vif-3xFLAG (rows 41-106) / 'no bait (anti-FLAG affinity enrichment from cells infected with untagged HIV-1 R7/3)' on every untagged-virus row",
+   "source_ids": [
+    "paper",
+    "pride",
+    "fasta",
+    "campaign"
+   ],
+   "evidence": "PRIDE sample protocol: 'Proteins that were co-isolated following immunoaffinity purification of Vif-3XFLAG and Env-3XFLAG'. Paper: replication-competent HIV-1 R7/3 derivatives carrying a 3xFLAG insertion in env or vif, affinity-captured with M2 anti-FLAG Dynabeads; the companion culture is infected with the untagged parental virus and contributes no FLAG bait. The search database contains 'Vif3XFLAG Vif with 3xFLAG insertion OS=HIV' and 'ENV_gp160_3XFLAG'. Custom characteristics column, following curated AP-MS precedent (annotations/PXD004666-apms.sdrf.tsv uses characteristics[bait] with a 'no bait ...' value for the control channel)."
+  },
+  {
+   "location": "characteristics[infection status], characteristics[infectious agent], characteristics[infectious agent strain] rows 1-106",
+   "value": "infection status 'infected'; infectious agent 'Human immunodeficiency virus 1'; strain 'R7/3 Env-3xFLAG', 'R7/3 Vif-3xFLAG' or 'R7/3 (untagged parental)'",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols",
+    "campaign"
+   ],
+   "evidence": "Every channel of every mixture is an HIV-1 infection: 'Light CEM (or MT-2) cells were then infected with the Env- or Vif-3xFLAG-tagged virus ... the companion heavy ... culture was infected with the untagged WT virus'; no uninfected culture was analysed by MS in this deposit. The parental strain is named R7/3 ('the untagged, parental control virus, R7/3'); tagged derivatives carry a 3xFLAG insertion in env or vif. NCBITaxon:11676 'Human immunodeficiency virus 1' verified non-obsolete in OLS4. Custom characteristics columns, following annotations/PXD002388 and PXD004707."
+  },
+  {
+   "location": "characteristics[organism] rows 1-106",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "fasta",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms: 'Homo sapiens (human)'. Both cell lines are human (Cellosaurus OX NCBI_TaxID=9606). The search database is the human SwissProt subset plus HIV-1 sequences. NCBITaxon:9606 verified. The viral proteins are the bait/analyte, not the sample organism."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name], factor value[cell line] rows 1-106",
+   "value": "rows 1-40: CEM-SS / CVCL_J318 / CEM-SS. rows 41-106: 'MT2 cell' / CVCL_2631 / MT-2",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper, 'Cell culture, viral production and infection': 'Suspension T cell lines, CEM (CEM-SS; P. Nara), MT-2 and MT-4 (D. Richman) were cultured in RPMI supplemented with 10% FBS and Pen/Strep', and 'Clones were selected for sustained viral replication in a suitable immortalized human T cell line (CEM cells for env recombinants and MT-2 cells for vif recombinants, respectively)'; the I-DIRT methods name CEM for Env and MT-2 for Vif. Cellosaurus: CEM-SS = CVCL_J318 (a CCRF-CEM derivative), MT-2 = CVCL_2631. characteristics[cell line] takes the ontology label where one exists: EFO:0022393 'MT2 cell' (synonyms MT-2J, MT-2Org) for MT-2; CEM-SS has no CLO/BTO/EFO class, so the Cellosaurus name is kept and parse_sdrf emits a warning (see the validation log)."
+  },
+  {
+   "location": "characteristics[organism part], characteristics[cell type] rows 1-106",
+   "value": "rows 1-40: blood / T cell. rows 41-106: umbilical cord blood / regulatory T cell",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Cellosaurus CVCL_J318: 'Derived from site: In situ; Peripheral blood; UBERON=UBERON_0000178', 'Cell type: T-cell; CL=CL_0000084'. CVCL_2631: 'Derived from site: In situ; Umbilical cord blood; UBERON=UBERON_0012168', 'Cell type: Regulatory T-cell; CL=CL_0000815'. Labels taken from the OLS4 term records (UBERON:0000178 blood, UBERON:0012168 umbilical cord blood, CL:0000084 T cell, CL:0000815 regulatory T cell), all non-obsolete. PRIDE's organismParts dropdown says 'T cell', consistent."
+  },
+  {
+   "location": "characteristics[disease] rows 1-106",
+   "value": "rows 1-40: T-cell childhood acute lymphocytic leukemia. rows 41-106: normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "campaign"
+   ],
+   "evidence": "Cellosaurus CVCL_J318 disease: 'NCIt; C7953; Childhood T acute lymphoblastic leukemia | ORDO; Orphanet_99861; Precursor T-cell acute lymphoblastic leukemia' -> MONDO:0000871 'T-cell childhood acute lymphocytic leukemia' (exact synonym 'T acute lymphoblastic leukemia'), non-obsolete. Cellosaurus CVCL_2631 has no disease field: MT-2 is an HTLV-1-transformed line established from the cord leukocytes of a healthy male infant co-cultivated with patient cells, categorised 'Transformed cell line', not 'Cancer cell line'; per the campaign rule that models without a disease are 'normal' (PATO:0000461), the MT-2 rows carry 'normal' rather than a reserved word. The HTLV-1 transformation is noted under limitations. The project-level PRIDE disease 'Human immunodeficiency virus infectious disease' (DOID:526) is a dropdown describing the experiment's subject, not the donors' disease, and is captured instead by characteristics[infection status]/[infectious agent]."
+  },
+  {
+   "location": "characteristics[ancestry category], characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[individual] rows 1-106",
+   "value": "rows 1-40: European ancestry / 3Y11M / female / 'child stage (1-4 yo)' / CCRF-CEM_donor. rows 41-106: Japanese / not available / male / neonate / MT-2_donor",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_J318: Population 'Caucasian.', AG '3Y11M', SX 'Female' (donor of the parent line CCRF-CEM, CVCL_0207, from which CEM-SS derives: 'HI CVCL_0207 ! CCRF-CEM'). CVCL_2631: Population 'Japanese.', SX 'Male', AG '<1D' - a day-resolution age below the SDRF {Number}{Unit} pattern's useful range is written as 'not available' and encoded instead as developmental stage 'neonate' (EFO:0001372, synonym 'NEWBORN (0-27 DAYS)'). The CEM-SS donor's 3Y11M maps to HsapDv:0000265 'child stage (1-4 yo)', which is outside the template's EFO list and therefore warned about by parse_sdrf (precedent: curated annotations/PXD006404.sdrf.tsv). HANCESTRO:0005 'European ancestry' (synonym Caucasian) and HANCESTRO:0019 'Japanese' verified non-obsolete. characteristics[individual] names the donor of each line, not a study patient; underscores keep the identifier pattern."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-106",
+   "value": "1..n within each factor-value group (cell line, bait, exchange time)",
+   "source_ids": [
+    "paper",
+    "files",
+    "spec",
+    "campaign"
+   ],
+   "evidence": "Independent cultures, per spec README.adoc:330 and campaign rule 3. Env: the forward and reverse mixtures are separate infections of separately labelled CEM-SS cultures, so the Env-3xFLAG channel of the forward mixture is replicate 1 and of the reverse mixture replicate 2 (likewise the untagged channel); the paper calls the label swap 'additional biological and technical replicates'. Vif I-DIRT: the same, replicates 1 and 2 per group. Vif exchange: the three time points are aliquots of ONE heavy Vif-3xFLAG purification and ONE light competitor lysate, so each exchange-time group holds exactly one culture and the number is 1 in each; the time point is the factor, not the replicate."
+  },
+  {
+   "location": "characteristics[material type] rows 1-106",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Both samples are immortalised suspension T-cell lines (CEM-SS, MT-2), not primary material."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-106",
+   "value": "sample enrichment",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Every run is an anti-FLAG immunoaffinity isolation ('immunoaffinity purification of Vif-3XFLAG and Env-3XFLAG', M2 anti-FLAG Dynabeads), i.e. an enriched sub-proteome rather than a whole-cell lysate. EFO:0009106 'sample enrichment' is the generic child of EFO:0009090 and is verified non-obsolete; the ontology has no affinity-purification-specific child in that subtree."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-106",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 'Suspension T cell lines, CEM (CEM-SS ...), MT-2 and MT-4 ... were cultured in RPMI supplemented with 10% FBS and Pen/Strep'; the SILAC cultures used 'Lys/Arg deficient RPMI-1640, 10% dialysed FBS ... and Pen/Strep'. NCIT:C178973 'Roswell Park Memorial Institute 1640 Medium' (synonym RPMI-1640), non-obsolete."
+  },
+  {
+   "location": "characteristics[passage number] rows 1-106",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "No passage number is given in the paper or the PRIDE record; the only related statement is that cells were grown in labelled medium 'for more than six cell doublings before infection'."
+  },
+  {
+   "location": "comment[instrument] rows 1-106",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "pride",
+    "paper",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE instruments: LTQ Orbitrap Velos (MS:1001742); PRIDE protocol: 'a Dionex Ultimate 3000 nanoLC coupled online to an LTQ Orbitrap Velos mass spectrometer'. The raw-file headers of one file per experiment group carry the instrument string 'LTQ Orbitrap Velos MS'. Term verified non-obsolete."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-106",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: 'The mass spectrometer was operated in data-dependent acquisition mode with dynamic exclusion enabled ... followed by collision-induced dissociation (CID) fragmentation in the linear ion trap of the top 15 most intense precursor ions'. PRIDE:0000627 is a descendant of PRIDE:0000659 and is non-obsolete."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range] rows 1-106",
+   "value": "CID (MS:1000133) / '30 NCE' / linear ion trap (MS:1000291) / '350m/z-1700m/z'",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: 'One acquisition cycle comprised a single full-scan mass spectrum (m/z = 350-1700) in the orbitrap (resolution = 60,000 at m/z = 400), followed by collision-induced dissociation (CID) fragmentation in the linear ion trap of the top 15 most intense precursor ions. CID fragmentation was performed with isolation width of 2.0 Da, normalized collision energy of 30, and activation time of 10 ms.' MS:1000133 and MS:1000291 verified non-obsolete."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-106",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "msf",
+    "campaign"
+   ],
+   "evidence": "PRIDE protocol: 'In-gel digestion with trypsin was performed ... incubated overnight at 37 C with 12.5 ng/ml trypsin in 50 mM ABC.' Every .msf SEQUEST node declares 'Enzyme Name = Trypsin (Full)' with 'Maximum Missed Cleavage Sites = 2'. Campaign rule 2: the digestion enzyme is annotated; MS:1001251 verified non-obsolete. (sdrf-tools reconcile against the MCP project summary flagged this as unsupported because that summary omits the sample protocol; against the full v3 record it exits 0.)"
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-106",
+   "value": "DTT (PRIDE:0000608) / iodoacetamide (PRIDE:0000599)",
+   "source_ids": [
+    "pride",
+    "msf",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: 'heated under reducing conditions (100 mM DTT) at 70 C for 10 min with agitation, then alkylated with 100 mM iodoacetamide at room temperature in the dark for 30 min'; consistent with the searches' fixed Carbamidomethyl (C). Both PRIDE terms verified non-obsolete."
+  },
+  {
+   "location": "comment[fractionation method], comment[fraction identifier], comment[data file], assay name rows 1-106",
+   "value": "SDS PAGE (PRIDE:0000568); fraction identifier = position of the file in its gel-lane series; one row per (source, file); assay name = the raw-file stem",
+   "source_ids": [
+    "pride",
+    "paper",
+    "files",
+    "msf"
+   ],
+   "evidence": "PRIDE: 'Reduced and alkylated proteins were resolved by 1D gel electrophoresis on a 4-12% NuPAGE Novex Bis-Tris gel ... In-gel digestion with trypsin was performed by dividing and pooling each lane into 5, 9, or 10 gel fractions for the Vif exchange, Vif-3XFLAG I-DIRT, and Env-3XFLAG I-DIRT experiments'; 'MS/MS spectra were extracted from Thermo RAW files that were derived from a single gel lane'. The file numbering (F1..F10, R1..R9, <t>min_01..05) is the gel-fraction order within each lane and matches the FileInfos list of the corresponding .msf. Only the 53 .raw files are annotated; the 7 .msf result files and the FASTA are not runs."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-106",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "msf",
+    "files"
+   ],
+   "evidence": "No run was injected twice: each gel fraction of each mixture was analysed once ('Desalted peptides (4 ul) were analyzed by direct injection'), and each raw file appears in exactly one .msf search."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-106",
+   "value": "10 ppm / 0.5 Da",
+   "source_ids": [
+    "msf",
+    "pride"
+   ],
+   "evidence": "All seven .msf SEQUEST nodes: 'Precursor Mass Tolerance = 10 ppm', 'Fragment Mass Tolerance = 0.5 Da'; PRIDE protocol repeats 'precursor and fragment tolerances of 10 ppm and 0.5 Da'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-106",
+   "value": "Fixed Carbamidomethyl (C) UNIMOD:4; variable Oxidation (M) UNIMOD:35, Deamidated (N) UNIMOD:7, Phospho (S,T,Y) UNIMOD:21, Label:13C(6) (K) UNIMOD:188, Label:13C(6) (R) UNIMOD:188",
+   "source_ids": [
+    "msf",
+    "pride",
+    "ols",
+    "campaign"
+   ],
+   "evidence": "Read out of the deposited searches, identical in all seven .msf files: 'StatMod_1 = Carbamidomethyl / +57.021 Da (C)'; 'DynMod_1 = Oxidation / +15.995 Da (M)'; 'DynMod_2 = Deamidated / +0.984 Da (N)'; 'DynMod_3 = Label:13C(6) / +6.020 Da (K, R)'; 'DynMod_4 = Phospho / +79.966 Da (S, T, Y)'. PRIDE repeats the same list. The SILAC label is the +6.0201 Da 13C6 shift on both K and R, i.e. UNIMOD:188 for each residue (campaign rule 11: Arg6 and Lys6 = UNIMOD:188), written MT=Variable as in the search. UNIMOD:4, 35, 7, 21 and 188 verified against OLS4 by accession (labels Carbamidomethyl, Oxidation, Deamidated, Phospho, Label:13C(6)); no UNIMOD:1/21 swap. The 'MappingL / +113.084 Da (X)' entry in the .msf is Proteome Discoverer's internal I/L mapping placeholder, not a search modification."
+  },
+  {
+   "location": "comment[label] rows 1-106",
+   "value": "SILAC light / SILAC heavy (multiplicity 2)",
+   "source_ids": [
+    "msf",
+    "pride",
+    "paper",
+    "campaign"
+   ],
+   "evidence": "Campaign rule 14 check: every .msf Precursor Ions Quantifier node declares a 2-plex SILAC method - 'Quantification Method = SILAC 2plex (Arg6, Lys6) (Custom)' for the four I-DIRT searches and 'IDIRT (Arg6, Lys6)' for the three exchange searches - and the deposited PrecursorIonQuanResults carry two quan channels. PRIDE quantificationMethods: SILAC. The labels are 13C6-Lys and 13C6-Arg (paper: 'heavy isotope 13C6 labelled Lys and Arg (Cambridge Isotopes)', incorporation >99%)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-106",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0 + NT=human;VV=v1.1.0 + NT=cell-lines;VV=v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "spec",
+    "campaign"
+   ],
+   "evidence": "Campaign rules 1 and 10: sdrf version from spec README.adoc:27; ms-proteomics v1.2.0 from upstream templates.yaml:150 ('latest: 1.2.0') at bigbio/sdrf-templates 7da1747; the template columns are written by sdrf-tools build from the -t flags. Templates chosen: ms-proteomics (LC-MS/MS), human (NCBITaxon 9606), cell-lines (both samples are immortalised lines). clinical-metadata and oncology-metadata are not declared: there are no patient specimens (campaign rule 15)."
+  }
+ ],
+ "limitations": [
+  "The I-DIRT channel orientation is documented by the paper's Methods and the PRIDE ratio definition, and cross-checked against the deposited Proteome Discoverer quantification; no per-file sample sheet was deposited, so the forward/reverse assignment rests on the file-name letters F/R matching the .msf names (EnvHIV_For/EnvHIV_Rev, VIF_IDIRT_For/VIF_IDIRT_Rev) plus that data check.",
+  "Supplementary Tables 1-2 and Supplementary Figs 7, 12, 13, 15 of PMC4928716 (per-protein I-DIRT ratios) were not retrieved: the Europe PMC full-text XML endpoint returns HTTP 500 for this PMCID and the supplement is a single NIHMS PDF (NIHMS795262-supplement-Supplemental_1.pdf) behind a bot check that was not bypassed. The PMC OA text/XML of the author manuscript was used instead and carries the full Methods.",
+  "characteristics[passage number] is 'not available' (never stated); the paper only says cells were labelled for more than six doublings before infection.",
+  "MT-2 (CVCL_2631) carries integrated HTLV-1 proviruses and is an HTLV-1-transformed line; Cellosaurus assigns it no disease, so characteristics[disease] is 'normal' for those rows. The HTLV-1 transformation is not encoded in a column: characteristics[infectious agent] records the experimental HIV-1 infection, and the template has no multi-valued equivalent.",
+  "No MS run in this deposit comes from an uninfected culture, so there is no uninfected control arm to annotate; the control channel is the untagged-virus infection.",
+  "CEM-SS has no CLO/BTO/EFO class, so characteristics[cell line] keeps the Cellosaurus name and parse_sdrf warns; the CEM-SS donor age 3Y11M is encoded as developmental stage 'child stage (1-4 yo)' (HsapDv:0000265), which is outside the template's EFO list and also warns.",
+  "The MT-2 donor age is Cellosaurus '<1D', which the SDRF age pattern cannot express; the row carries 'not available' for age and 'neonate' for developmental stage.",
+  "comment[technical replicate] is 1 everywhere on the evidence that each gel fraction was injected once; no instrument-level repeat-injection record was deposited."
+ ]
+}
