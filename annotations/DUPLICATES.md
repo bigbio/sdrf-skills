@@ -275,6 +275,19 @@ Same study (trans-SILAC: SILAC-heavy HS-5 stroma → GFP K-562 acceptor cells so
 
 ---
 
+## Group 11 — PXD004015 = PXD004984 (v2) and PXD004019 = PXD004983 (v2) (Emmott et al., Mol Cell Proteomics 2017;16(4 Suppl 1):S215-29, PMID 28087593, PMC5393397)
+
+Murine norovirus infection of BV-2 cells (triple SILAC: light = 0 h/mock, medium = 4 h, heavy = 9 h, 4 h/9 h swapped in the second repeat). The authors re-deposited the same raw files as "(v2)" projects reprocessed with MaxQuant 1.5.5.1; the paper's Data Availability cites only the v2 accessions.
+
+| | files | note |
+|---|---|---|
+| `PXD004015` | 30 `.raw` (whole-cell lysate) | submitted 2016-06-20; Proteome Discoverer 1.2/SEQUEST search; no publication listed. **All 30 `.raw` are SHA-1- and size-identical to PXD004984's** (B_1..B_10 renamed B_11..B_101 in v2). |
+| `PXD004019` | 3 `.raw` (m7GTP AP-MS) | submitted 2016-04-20. **All 3 `.raw` (BV2_1/2/3) are SHA-1- and size-identical to PXD004983's.** |
+
+**How it was checked:** PRIDE v3 file lists compared on `fileSizeBytes` and SHA-1 `checksum` (batch-11 scratch `b11-PXD004015/duplicate_check.txt`).
+
+**Outcome:** not annotated. PXD004984 and PXD004983 already have community SDRFs in `sdrf-annotated-datasets/datasets/`.
+
 ## Why these were annotated anyway
 
 Each SDRF is correct *for its own accession* — that is what an SDRF describes, and a consumer
