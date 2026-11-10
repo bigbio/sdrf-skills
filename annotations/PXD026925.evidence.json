@@ -1,0 +1,315 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD026925.sdrf.tsv",
+ "dataset": "PXD026925",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD026925 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/proj.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD026925/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/files.json; 55 entries = 51 .raw + 4 MaxQuant txt zips; all projectAccessions contain PXD026925)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Conboy CB et al. LCK inhibition downregulates YAP activity and is therapeutic in patient-derived models of cholangiocarcinoma. J Hepatol 2023;78(1):142-152, doi:10.1016/j.jhep.2022.09.014, PMID 36162702, PMC11410293 (NIHMS2018255 author manuscript; https://pmc-oa-opendata.s3.amazonaws.com/PMC11410293.1/PMC11410293.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/paper.txt; JATS local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/paper.xml). Supplementary Methods/Tables (NIHMS2018255-supplement-*.docx/xlsx) NOT retrieved: PMC served a reCAPTCHA bot check, Europe PMC supplementaryFiles says not open access."
+  },
+  {
+   "id": "mq_global",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD026925/SILAC_Global_txt.zip members txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/dl/glob/txt/)"
+  },
+  {
+   "id": "mq_pty",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD026925/SILAC_pTyr_txt.zip members txt/summary.txt, txt/parameters.txt, txt/Phospho (STY)Sites.txt, txt/proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/dl/pty/txt/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/scripts/orient.py: log2 normalized SILAC ratios of LCK-target pY sites named in the paper)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 3 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/05/PXD026925/HuCCT1_Global_FN01_PepMap_50cm_050620.raw, HuCCT1_Global_FN24_PepMap_50cm_050620.raw, HuCCT1_pY_PepMap_50cm_042820.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/raw/*.head)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0324?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/cello_CVCL_0324.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 /api/terms?obo_id= and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/scripts/make_tables.py -> samples_global.tsv/technical_global.tsv/files_global.json and samples_pty.tsv/technical_pty.tsv/files_pty.json; two sdrf-tools build runs (build_global.sdrf.tsv 72 rows, build_pty.sdrf.tsv 3 rows, identical 55-column headers) concatenated by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/scripts/concat.sh"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-75",
+   "value": "HuCCT1_<control|NTRC|sgLCK>_<proteome|pTyr>",
+   "source_ids": [
+    "paper",
+    "pride",
+    "files",
+    "build"
+   ],
+   "evidence": "Paper Methods: three parallel SILAC-labelled HuCCT-1 cultures (control / NTRC / sgLCK) were 'lysed and pooled for proteomic analysis'; for the tyrosine phosphoproteome 'tyrosine phosphorylated peptides were enriched' (PRIDE: digest 'subjected to phosphopeptide enrichment'). One source per (culture, measured preparation): the unenriched total-proteome digest (24 HuCCT1_Global_FN* runs) and the pY-IAP eluate (HuCCT1_pY run) are different physical preparations of the same three cultures, so they get different source names but the same biological replicate."
+  },
+  {
+   "location": "comment[label] + factor value[treatment] + characteristics[treatment] rows 1-24, 73 / rows 25-48, 74 / rows 49-72, 75",
+   "value": "SILAC light = control (untreated); SILAC medium = NTRC 0652-0; SILAC heavy = doxycycline-induced LCK knockout",
+   "source_ids": [
+    "paper",
+    "mq_global",
+    "mq_pty",
+    "orientation"
+   ],
+   "evidence": "Paper Methods (paper.txt line 158): 'parallel cultures of HuCCT-1 cells were grown in SILAC media containing light (control), medium (2H4-Lys and 13C6-Arg) (NTRC-treated) or heavy (13C615N2- Lys and 13C615N4-Arg) (sgLCK) amino acids ... treated with vehicle (control), NTRC 0652-0 1 uM for 24 hours (NTRC), or doxycycline-induction of sgLCK expression for 72 hours (sgLCK)'. MaxQuant summary.txt (both searches): Multiplicity 3, Labels0 empty, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 -> medium=Lys4/Arg6, heavy=Lys8/Arg10, matching the paper. Data check (Phospho (STY)Sites, log2 normalized): sites the paper reports hypophosphorylated in both NTRC and sgLCK vs control are down in both M/L and H/L: LCK Y192 -4.14/-1.42, LCK Y394 -3.06/-1.37, PRKCD Y313 -1.31/-1.31, EGFR Y1172 -1.42/-1.88, EPHA2 Y772 -1.59/-1.55 -> light = control. Pan-SFK autophosphorylation site LCK Y394 is lower with the SFK-inhibiting drug (M) than with LCK-only knockout (H), consistent with medium = NTRC. M/L vs H/L pY Pearson 0.742 (n=104), consistent with the paper's NTRC/sgLCK correlation (Fig 1D). Control encoded 'untreated' per template/batch rule 4 although the paper says vehicle-treated (vehicle not named)."
+  },
+  {
+   "location": "characteristics[compound] rows 1-75",
+   "value": "not available (control) / NTRC 0652-0 (medium) / doxycycline (heavy)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods: vehicle (not named -> not available), 'NTRC 0652-0 1 uM for 24 hours', 'doxycycline-induction of sgLCK expression for 72 hours'. NTRC 0652-0 has no OLS term (ols_search.txt) - free text."
+  },
+  {
+   "location": "characteristics[dose] rows 1-75",
+   "value": "not applicable (control) / 1 uM (NTRC) / not available (doxycycline dose not stated)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods: 'NTRC 0652-0 1 uM'; doxycycline concentration is in the unretrieved Supplemental Methods."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-75",
+   "value": "not available (control) / 24 hour (NTRC) / 72 hour (sgLCK)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods: NTRC 1 uM for 24 hours; doxycycline induction 72 hours; vehicle exposure time not stated."
+  },
+  {
+   "location": "characteristics[genetic modification] rows 1-75",
+   "value": "not available (control, NTRC) / doxycycline-inducible CRISPR/Cas9 sgLCK (HuCCT-1-sgLCK) (sgLCK)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Results: 'knockout of LCK using a previously reported doxycycline-inducible CRISPR/Cas9 system (HuCCT-1-sgLCK)'; 'genetic deletion (HuCCT-1-sgLCK cells, induced 72 hours) compared to control HuCCT-1 cells'. Whether the control and NTRC cultures were parental HuCCT-1 or uninduced HuCCT-1-sgLCK is not stated -> not available (custom column, spec 'Extending Templates')."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-75",
+   "value": "not applicable (rows 1-72, total proteome) / enrichment of phosphorylated protein (rows 73-75)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq_pty",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE: tyrosine-phosphorylated peptides enriched on anti-phosphotyrosine antibody beads (pY1000); MaxQuant pTyr search adds Phospho (STY). EFO:0010806 'enrichment of phosphorylated protein' (child of EFO:0009090, not obsolete). Global runs: no enrichment searched (no Phospho in Global summary)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-75",
+   "value": "1",
+   "source_ids": [
+    "paper",
+    "mq_global",
+    "mq_pty"
+   ],
+   "evidence": "One culture per condition: a single three-state SILAC mixture (MaxQuant: one experiment, no Experiment column in proteinGroups; one pY run, one 24-fraction global set). Each factor group (untreated / NTRC 0652-0 / LCK knockout) has one culture -> 1 (batch rule 3); the proteome and pTyr sources of a condition derive from that same culture/pooled lysate."
+  },
+  {
+   "location": "comment[data file], assay name, comment[fraction identifier], comment[technical replicate] rows 1-75",
+   "value": "HuCCT1_Global_FN01..FN24 (fractions 1-24), HuCCT1_pY (fraction 1); technical replicate 1",
+   "source_ids": [
+    "files",
+    "mq_global",
+    "mq_pty",
+    "build"
+   ],
+   "evidence": "All 25 HuCCT1 raw files are listed in the summary.txt of their search (24 in SILAC_Global, 1 in SILAC_pTyr; 0 missing/extra). FNxx in the file name = fraction number; each fraction injected once."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-75",
+   "value": "not available (global) / not applicable (pY single run)",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "24 fractions of the total-proteome digest exist (file names FN01-FN24), but the fractionation method for the cell experiment is only in the unretrieved Supplemental Methods (PRIDE protocol mentions offline fractionation only for the PDX TMT arm)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-75",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "mq_global"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus CVCL_0324 OX NCBI_TaxID=9606; human-only FASTA (Uniprot_Human_072419.fasta) in both SILAC searches. Mouse is mentioned in the record only for the excluded PDX/TMT arm."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-75",
+   "value": "HuCCT-1 cell / CVCL_0324 / HuCC-T1",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: HuCCT-1 cells. Cellosaurus CVCL_0324 HuCC-T1 (synonyms HuCCT-1, HuCCT1); no other-species collision for the name. 'HuCCT-1 cell' matches BTO:0003911 'HuCCT-1 cell' (OLS)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-75",
+   "value": "ascitic fluid",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0324: 'Derived from site: Metastatic; Ascites; UBERON=UBERON_0007795' (OLS label ascitic fluid, not obsolete)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-75",
+   "value": "intrahepatic cholangiocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C35417 Intrahepatic cholangiocarcinoma; MONDO:0003210 'intrahepatic cholangiocarcinoma' (not obsolete). PRIDE disease DOID:4947 cholangiocarcinoma (parent). No healthy control samples."
+  },
+  {
+   "location": "characteristics[material type] rows 1-75",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured HuCCT-1 cancer cell line."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-75",
+   "value": "Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Population: Japanese'; HANCESTRO:0019 Japanese (not obsolete)."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage] rows 1-75",
+   "value": "56Y / male / adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 56Y, SX Male; 56Y >= 20Y -> EFO:0001272 adult (batch rule 9)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-75",
+   "value": "HuCC-T1_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All rows derive from the single donor of HuCC-T1 (identifier pattern; no extra identifying information)."
+  },
+  {
+   "location": "comment[instrument] rows 1-75",
+   "value": "NT=Orbitrap Fusion Lumos;AC=MS:1002732",
+   "source_ids": [
+    "raw",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of HuCCT1_Global_FN01/FN24 and HuCCT1_pY: 'Orbitrap Fusion Lumos', method DGM_Lumos_Pepmap75_150min_DDA_120K_30K.meth. PRIDE also lists Exploris 480 (used for the excluded PDX runs, not checked)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-75",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw method name '..._DDA_120K_30K'; MaxQuant standard DDA search."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] rows 1-75",
+   "value": "beam-type CID (HCD) MS:1000422 / 28 NCE / orbitrap MS:1000484",
+   "source_ids": [
+    "raw",
+    "ols"
+   ],
+   "evidence": "Raw method: 'ActivationType = HCD', 'Collision Energy (%) = 28', 'Collision Energy Mode = Fixed', MS2 'Detector Type = Orbitrap', 'Orbitrap Resolution = 30K' (all three raw files)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-75",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_global",
+    "mq_pty"
+   ],
+   "evidence": "PRIDE: 'TPCK-treated trypsin (Worthington, LS003744) ... 1:50'. MaxQuant search rule Trypsin/P (MS:1001313), max 2 missed cleavages - recorded here, digestion enzyme annotated (batch rule 2)."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-75",
+   "value": "DTT PRIDE:0000608 / IAA PRIDE:0000599",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE: 'reduced using dithiothreitol (Sigma, D9163), and alkylated with iodoacetamide (Sigma, I1149)'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-75",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term variable; Deamidated N,Q (global only, rows 1-72; 'not applicable' slot in rows 73-75); Phospho S,T,Y (pTyr only, rows 73-75; 'not applicable' slot in rows 1-72); SILAC Label:13C(6) R UNIMOD:188, Label:2H(4) K UNIMOD:481, Label:13C(6)15N(4) R UNIMOD:267, Label:13C(6)15N(2) K UNIMOD:259 variable",
+   "source_ids": [
+    "mq_global",
+    "mq_pty",
+    "pride"
+   ],
+   "evidence": "summary.txt Global: Variable 'Oxidation (M);Acetyl (Protein N-term);Deamidation (NQ)', Fixed 'Carbamidomethyl (C)', Multi modifications empty; pTyr: Variable 'Oxidation (M);Acetyl (Protein N-term);Phospho (STY)', Fixed Carbamidomethyl (C), Multi modifications empty. Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 (UNIMOD accessions from mass shifts, batch rule 11). PRIDE prose says deamidation for all searches, but the deposited pTyr search did not use it - deposit wins; Acetyl (Protein N-term) is not in the prose but is in both searches."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-75",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_global",
+    "mq_pty"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm' (Orbitrap MS2)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-75",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates",
+    "build"
+   ],
+   "evidence": "Batch rules 1 and 10; templates: human cell-line samples."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: only the SILAC HuCCT-1 arm (25 raw files) is annotated. The PDX TMTpro arm (24 CCAPDX_FGFR_TMT12_Total_FN*.raw + CCAPDX_FGFR_pTyr.raw; searches PDX_Global_txt.zip / PDX_pTyr_txt.zip) is out of scope of the SILAC campaign (not missing evidence) and is recorded in BLOCKED.md as excluded runs.",
+  "Supplementary Methods and Tables (NIHMS2018255 supplement) were not retrievable (PMC reCAPTCHA bot check, not bypassed; Europe PMC: not open access). Consequently not available: fractionation method of the 24 global fractions, culture medium, passage number, vehicle identity and duration, doxycycline dose.",
+  "comment[precursor mass tolerance] = not available: MaxQuant 1.6.12.0 parameters.txt does not record the main-search precursor tolerance and no mqpar.xml was deposited (default would be 4.5 ppm, not asserted); convert-openms therefore fails (expected).",
+  "Whether the light (control) and medium (NTRC) cultures were parental HuCCT-1 or uninduced HuCCT-1-sgLCK cells is not stated; genetic modification = not available for them.",
+  "Single SILAC mixture: one culture per condition, no biological replication; total proteome and pTyr come from the same pooled lysate per the paper ('lysed and pooled'); that the global digest is the pre-enrichment aliquot of the same digest is implied, not stated explicitly.",
+  "Control is vehicle-treated (vehicle not named); encoded 'untreated' per batch rule 4."
+ ]
+}

@@ -215,13 +215,13 @@
   },
   {
    "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-288",
-   "value": "BL-60 / CVCL_7034 / BL-60",
+   "value": "BL-60 cell / CVCL_7034 / BL-60",
    "source_ids": [
     "pride",
     "cellosaurus",
     "ols"
    ],
-   "evidence": "PRIDE description: 'the human Burkitt's Lymphoma cell line BL60'. Cellosaurus CVCL_7034 ID BL-60, synonyms BL60, IARC/BL60 (EFO_0022349 'BL-60 cell', BTO_0001934). Note: 'sdrf-tools cellline lookup BL60' fuzzy-matched the unrelated NCI-BL1339 (synonym BL6, CVCL_2637); rejected."
+   "evidence": "PRIDE description: 'the human Burkitt's Lymphoma cell line BL60'. Cellosaurus CVCL_7034 ID BL-60, synonyms BL60, IARC/BL60 (cell line value = ontology label of EFO:0022349 / BTO:0001934 'BL-60 cell'; round-1 validate-sdrf and sdrf-tools check flagged the bare Cellosaurus name). Note: 'sdrf-tools cellline lookup BL60' fuzzy-matched the unrelated NCI-BL1339 (synonym BL6, CVCL_2637); rejected."
   },
   {
    "location": "characteristics[disease] rows 1-288",
