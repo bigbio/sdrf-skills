@@ -1,0 +1,50 @@
+# PXD029527 validation (FBL-knockdown arm; SDRF sha256 7d4592a60dd20676a39a1816e5d60828557ffa7f7885379377643e387c90df0b, 36 rows x 48 columns)
+
+## Round 1 (superseded build): parse_sdrf validate-sdrf -s annotations/PXD029527.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+ERROR: Value 'Kasumi-1 donor' does not match required pattern
+There were validation errors.
+WARNING: Term: 7-year-old stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+exit=1
+Fix: characteristics[individual] 'Kasumi-1 donor' -> 'Kasumi-1_donor' in scripts/make_tables.py; rebuilt with sdrf-tools build.
+(OLS HTTP 500/timeout retries in the log are server-side transient errors; omitted.)
+
+## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD029527.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+Most seems to be fine. There were only warnings.
+WARNING: Term: 7-year-old stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+exit=0
+WARNING justified: HsapDv:0000101 '7-year-old stage' is the exact term for Cellosaurus AG 7Y; the validator checks this column against EFO only and EFO has no age-specific child stage.
+
+## sdrf-tools structure annotations/PXD029527.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools check annotations/PXD029527.sdrf.tsv --offline
+(the online run aborted with an OLS ReadTimeout from www.ebi.ac.uk, so the offline mode was used)
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD029527.sdrf.tsv
+  Terms checked:     14
+  Verified:          7
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD029527.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/fbl/../ev/pride.json --accession PXD029527
+PXD029527: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD029527.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/fbl/convert)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected: precursor/fragment tolerance are 'not available' (no parameters.txt, summary.txt or mqpar.xml deposited); same as precedents PXD014368/PXD006676.
+
+## sdrf-tools schema-check annotations/PXD029527.evidence.json
+annotations/PXD029527.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD029527.sdrf.tsv annotations/PXD029527.evidence.json
+Manifest covers every column with a value (30 column(s)).
+exit=0
+
+## Post-build edits: none. The SDRF is the unmodified output of sdrf-tools build from samples.tsv/technical.tsv/files.json written by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/fbl/../scripts/make_tables.py.

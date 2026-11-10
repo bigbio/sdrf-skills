@@ -1,0 +1,294 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD029527.sdrf.tsv",
+ "dataset": "PXD029527",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029527 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/ev/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD029527/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/ev/files0.json; 55 entries = 51 RAW + 4 MaxQuant txt; page 1 empty; every entry projectAccessions = [PXD029527])"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC9900322 (Cancer Discov 2023;13(2):332-347, doi:10.1158/2159-8290.CD-22-0210), https://pmc-oa-opendata.s3.amazonaws.com/PMC9900322.1/PMC9900322.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/ev/paper.txt)"
+  },
+  {
+   "id": "suppS6",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9900322.1/cd-22-0210_supplementary_figures_s1-s9_suppsf1.docx (Fig. S6 image word/media/image6.png; extracted /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/ev/sf/)"
+  },
+  {
+   "id": "suppS4",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9900322.1/cd-22-0210_supplementary_tables_s1-s4_suppst1.xlsx sheet \"Table S4\" (extracted /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/ev/st/)"
+  },
+  {
+   "id": "pg_fbl",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD029527/proteinGroups_shFBL_0712019.txt (MaxQuant; experiments shFBL_int_rep1, shFBL_int_rep1_10p, shFBL_int_rep2, shFBL_int_rep2_10p; Intensity/Ratio L, M, H columns)"
+  },
+  {
+   "id": "msms_fbl",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD029527/msmss_shFBL_0712019.txt (streamed; aggregates /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/fbl/msms_stats.json by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/scripts/msms_stats.py, label pattern per raw /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/fbl/marker_states.txt by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/scripts/marker_states.py)"
+  },
+  {
+   "id": "orientation",
+   "kind": "analysis",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/ev/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/scripts/orient.py on proteinGroups_shFBL_0712019.txt)"
+  },
+  {
+   "id": "rawhdr",
+   "kind": "raw-file",
+   "location": "HTTP byte-range reads (first 60 kB of all 51 RAW, first 4 MB of 20181218_QE1_DF_shFBL_int_rep1_fr1.raw) from https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD029527/; acquisition paths/method names in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD029527/raw/raw_internal_names.txt"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0589?format=txt"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 via sdrf-tools ols: MONDO:0020320, HANCESTRO:0019, HsapDv:0000101, NCIT:C178973, UBERON:0000178, UNIMOD:896/481/188/259/267/4/35/1, MS:1002523, MS:1000484, PRIDE:0000564/0000590/0000627 (MONDO:0020320 and UNIMOD:896 checked is_obsolete=false)"
+  },
+  {
+   "id": "owner",
+   "kind": "curator-decision",
+   "location": "Campaign-owner decision of 2026-11-10, relayed by the batch coordinator, specific to PXD029527: the FBL-knockdown arm may be annotated with the knock-down target itself as channel-map evidence"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); spec README.adoc:27 (sdrf version v1.1.0)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[label] + characteristics[genetic modification] + factor value[genetic modification] rows 1-36",
+   "value": "mix1 (shFBL_int_rep1 fr1-8 + Feng_int_rep1_10p): SILAC heavy = shCtrl (rows 1-9), SILAC medium = shFBL (rows 10-18); mix2 (shFBL_int_rep2 fr1-8 + Feng_int_rep2_10p): SILAC heavy = shFBL (rows 19-27), SILAC medium = shCtrl (rows 28-36)",
+   "source_ids": [
+    "owner",
+    "orientation",
+    "pg_fbl",
+    "msms_fbl",
+    "suppS4",
+    "suppS6",
+    "pride",
+    "paper"
+   ],
+   "evidence": "NO WRITTEN SOURCE NAMES THE LABELS. PRIDE protocol / paper Methods state only that intermediate (2H4-Lys, 13C6-Arg) and heavy (15N2 13C6-Lys, 15N4 13C6-Arg) labelled lysates were merged and that \"SILAC ratios were inverted to account for SILAC label swap between replicate experiments\". The map is derived from the knock-down target's own ratios under the campaign-owner decision of 2026-11-10 for this dataset (rule 6 exception). FBL (P22087) Ratio H/M normalized: rep1 9.25, rep1_10p 7.95, rep2 0.151, rep2_10p 0.243 -> FBL is higher in heavy in mix1 (heavy = shCtrl) and lower in heavy in mix2 (heavy = shFBL). Table S4 top hits (log2FC nascent shFBL vs shCtrl) agree: LGR4 -3.98 (H/M rep1 23.9, rep2 0.080), MNDA -3.83 (35.7 / 0.173), CTSG -3.55 (18.0 / 0.136). log2 H/M rep1 vs rep2 Pearson r = -0.72 (n=5,819), matching Fig. S6A r = 0.73 after the label-swap inversion. Medium = intermediate label per the protocol (MaxQuant multiplicity 3, light channel empty; msms mass deltas confirm M = Lys4/Arg6 and H = Lys8/Arg10)."
+  },
+  {
+   "location": "source name rows 1-36",
+   "value": "Kasumi-1_<shCtrl|shFBL>_mix<1|2>",
+   "source_ids": [
+    "pg_fbl",
+    "files",
+    "paper",
+    "msms_fbl"
+   ],
+   "evidence": "One source per labelled culture per SILAC mixture: MaxQuant experiments shFBL_int_rep1 / shFBL_int_rep2 are the two replicate mixtures (paper: \"replicate experiments\" with label swap; Fig. S6A \"rep1\"/\"rep2\"). Each source is one physical culture lysate; its fractions and its 10p injection are the same lysate."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-36",
+   "value": "1 = mix1 (rows 1-18), 2 = mix2 (rows 19-36), numbered within each factor-value group",
+   "source_ids": [
+    "paper",
+    "pg_fbl"
+   ],
+   "evidence": "Two replicate nascent-proteomics experiments (Fig. S6A \"Log2FC(shFBL/shCtrl).rep1\" vs \".rep2\"; Methods \"label swap between replicate experiments\"). Each shCtrl and each shFBL culture of a mixture is independent, so 1..2 within each group (rule 3)."
+  },
+  {
+   "location": "comment[data file] + comment[fraction identifier] + comment[technical replicate] + assay name rows 1-36",
+   "value": "shFBL_int_rep{1,2}_fr1..fr8 = fractions 1-8, technical replicate 1; Feng_int_rep{1,2}_10p = fraction 1, technical replicate 2",
+   "source_ids": [
+    "files",
+    "pg_fbl",
+    "msms_fbl",
+    "rawhdr",
+    "paper"
+   ],
+   "evidence": "proteinGroups has Fraction 1..8 columns and four experiments (rep1, rep1_10p, rep2, rep2_10p); msms lists 18 raw files. The 10p injections are separate MaxQuant experiments of the SAME mixtures: their label pattern matches the parent mixture (marker_states.txt: Feng_int_rep1_10p 389 heavy vs 6 medium PSMs on rep1-heavy-high markers = rep1-like; Feng_int_rep2_10p 372 medium vs 11 heavy = rep2-like; FBL PSMs in rep1_10p all heavy (14), rep2_10p all medium (13)); log2 H/M rep1 vs rep1_10p r=0.59, rep2 vs rep2_10p r=0.82. They were acquired on 2018-12-17, before the fractions (2018-12-18), with the same method HCD_2H5M_T20_HI.meth; \"10p\" is read as a ~10% unfractionated aliquot injection (the deposit does not define it), so they are a second technical replicate of each mixture, not a fraction."
+  },
+  {
+   "location": "comment[data file] rows 19-20 and 28-29 (shFBL_int_rep2_fr1.raw, _fr2.raw); rows 2 and 11 (shFBL_int_rep1_fr2.raw)",
+   "value": "deposited names kept (rep2 fr1/fr2; rep1 fr2)",
+   "source_ids": [
+    "rawhdr",
+    "msms_fbl"
+   ],
+   "evidence": "Raw headers: deposited shFBL_int_rep2_fr1/fr2.raw were acquired as D:\\Data\\2018_December\\20181218_QE1_DF_Feng_int_rep1_fr1.raw / _fr2.raw; shFBL_int_rep1_fr2.raw as ..._rep1_fr2_20181220080509.raw (a re-acquisition timestamp suffix). The label pattern settles the renamed files: shFBL_int_rep2_fr1 has 177 medium vs 7 heavy PSMs and fr2 257 vs 9 on rep1-heavy-high markers (rep2-like, same as rep2 fr3-fr8 and Feng_int_rep2_10p), while every rep1 fraction is heavy-dominant. So the deposited names (rep2) are correct and the acquisition names (\"Feng_int_rep1\") were the operator error; mapping them to rep1 would contradict the data. MaxQuant searched them under the deposited names."
+  },
+  {
+   "location": "characteristics[organism] rows 1-36",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Kasumi-1 CVCL_0589 OX NCBI_TaxID=9606; PRIDE organism NEWT:9606."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-36",
+   "value": "Kasumi-1 / CVCL_0589 / Kasumi-1",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"Differentially translated proteins after FBL knockdown in Kasumi-1 AML cells\" (Fig. 3A legend; Fig. S6A \"Experiments were performed in Kasumi-1 cells\"). Cellosaurus search id/sy Kasumi-1 returns only human entries (CVCL_0589 and the derived Kasumi-1 PR48/R48), so no cross-species collision."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-36",
+   "value": "blood",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Derived from site: In situ; Peripheral blood; UBERON=UBERON_0000178\"; UBERON:0000178 blood."
+  },
+  {
+   "location": "characteristics[disease] rows 1-36",
+   "value": "acute myeloblastic leukemia with maturation",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9381 Childhood acute myeloid leukemia with maturation; ORDO Orphanet_98834 Acute myeloblastic leukemia with maturation -> MONDO:0020320 (not obsolete)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-36",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured Kasumi-1 cell line."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-36",
+   "value": "Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus \"Population: Japanese.\" -> HANCESTRO:0019 Japanese."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage] rows 1-36",
+   "value": "7Y / male / 7-year-old stage",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 7Y, SX Male; HsapDv:0000101 7-year-old stage (rule 9: developmental stage from Cellosaurus age)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-36",
+   "value": "Kasumi-1_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All rows derive from the single donor of Kasumi-1 (CVCL_0589); campaign convention <line>_donor."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-36",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Methods: \"Human leukemia cell lines were cultured in RPMI 1640 medium (cat. R8758, Sigma) with 20% FBS (Kasumi-1 cells)\"; pulse labelling in \"RPMI formulation without methionine, arginine and lysine ... 20% dialyzed FBS\" (PRIDE protocol). NCIT:C178973."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-36",
+   "value": "not available",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus gives no cell type; the paper does not state one."
+  },
+  {
+   "location": "comment[instrument] rows 1-36",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "rawhdr",
+    "paper",
+    "pride"
+   ],
+   "evidence": "All 19 QE1 raw headers: \"Q Exactive HF - Orbitrap MS\"; paper: \"Q-Exactive HF or Orbitrap Fusion\" (the Fusion = snoRNA arm, not in this file). PRIDE lists only Orbitrap Fusion (incomplete)."
+  },
+  {
+   "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range], comment[ms2 scan range] rows 1-36",
+   "value": "DDA / HCD / 26 NCE / orbitrap / 350m/z-1500m/z / 200m/z-2000m/z",
+   "source_ids": [
+    "rawhdr",
+    "msms_fbl",
+    "paper"
+   ],
+   "evidence": "Method HCD_2H5M_T20_HI.meth in all 18 files (raw_internal_names.txt); method text of rep1_fr1: Full MS 60,000 res, scan range 350 to 1500 m/z; dd-MS2 15,000 res, TopN 20, isolation 2.0 m/z, scan range 200 to 2000 m/z, \"(N)CE / stepped (N)CE nce: 26\". msms: all PSMs Fragmentation HCD, Mass analyzer FTMS. Paper: \"data-dependent mode ... TOP20 ... HCD fragmentation\"."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-36",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "\"On-beads digestion was performed by overnight digestion with 5 ug of trypsin at 37C\". MaxQuant search enzyme not recorded (no parameters.txt)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-8,10-17,19-26,28-35 / rows 9,18,27,36",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564 / not applicable",
+   "source_ids": [
+    "pride",
+    "paper",
+    "pg_fbl"
+   ],
+   "evidence": "\"High pH Reversed Phase fractionation was done on Infinity 1260 LC system (Agilent) with Gemini 3 um C18 column\"; proteinGroups Fraction 1-8. The 10p injections are unfractionated (single file per MaxQuant experiment, no fraction suffix), so not applicable."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-36",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Acetyl Protein N-term, Met->Aha (UNIMOD:896) M, Label:2H(4) K (UNIMOD:481), Label:13C(6) R (188), Label:13C(6)15N(2) K (259), Label:13C(6)15N(4) R (267) Variable",
+   "source_ids": [
+    "msms_fbl",
+    "pg_fbl",
+    "pride",
+    "ols"
+   ],
+   "evidence": "msms_shFBL header has variable-mod columns Acetyl (Protein N-term), Met->AHA, Oxidation (M); Modifications column values: Unmodified, Oxidation (M), Acetyl (Protein N-term), Met->AHA (42 PSMs) and combinations; proteinGroups has Met->AHA and Oxidation (M) site columns. Carbamidomethyl (C) fixed: \"Unmodified\" PSMs show Mass - unmodified theoretical = +57.02 per Cys (msms_stats.json delta table). Labels from mass deltas of labelled unmodified PSMs: state 1 = +4.03 per K and +6.02 per R (Lys4 2H4 = UNIMOD:481, Arg6 = 188); state 2 = +8.01 per K and +10.01 per R (Lys8 = 259, Arg10 = 267); matches PRIDE protocol labels. Labels as MT=Variable (rule 11). No summary.txt was deposited, so MaxQuant \"Multi modifications\" cannot be read; the deposited msms/proteinGroups show no other modification."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-36",
+   "value": "not available",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "No parameters.txt, summary.txt or mqpar.xml deposited; tolerances unrecorded."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-36",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; the spec submodule nested templates copy is older than upstream 7da1747."
+  }
+ ],
+ "limitations": [
+  "CHANNEL MAP WITHOUT A WRITTEN SOURCE: the label-to-condition map rests on the knock-down target FBL's own deposited H/M ratios (plus Table S4 top-hit agreement and the rep1/rep2 anticorrelation), accepted by the campaign owner on 2026-11-10 for this dataset only; no publication, PRIDE text or supplementary header states which label carried shCtrl or shFBL.",
+  "Partial scope: only the FBL-knockdown arm (18 Q Exactive HF RAW) is annotated. Not annotated: the SNORD127 arm, 32 Orbitrap Fusion RAW 20190301_FS1_DF_snoRNA_{1..4}_{1..8}.raw (search output proteinGroups.txt/msms.txt, experiments SNOR5D127_KO_C1_rep1/rep2, C34_rep1/rep2) - its channel map and raw-to-experiment map are undocumented (BLOCKED.md).",
+  "Excluded run: 20181218_QE1_DF_shFBL_int_rep2_fr1_10p.raw (1,074,606 bytes; acquired as 20181218_QE1_DF_Feng_int_rep1_fr1_10p.raw) - an aborted/stub acquisition, absent from msmss_shFBL_0712019.txt (18 raw files there) and not part of any MaxQuant experiment.",
+  "\"10p\" is not defined in the deposit; it is read as an unfractionated ~10% aliquot injection of each mixture (technical replicate 2). The data confirm which mixture each belongs to.",
+  "Europe PMC returned HTTP 503 throughout, so a Europe PMC search for a dataset-descriptor paper could not be run; PRIDE references list only the Cancer Discovery paper.",
+  "No summary.txt / parameters.txt / mqpar.xml: MaxQuant version, enzyme rule, tolerances and Multi modifications are unrecorded; precursor/fragment tolerance are not available, so parse_sdrf convert-openms exits 1 (as for campaign precedents PXD014368, PXD006676).",
+  "Which shRNA construct (constitutive pLKO.1 vs doxycycline-inducible Tet-pLKO) and the exact pulse length (Methods 3 h labelling; Results \"6-hour time window\") are not stated for the proteomics; not encoded.",
+  "characteristics[developmental stage] = 7-year-old stage (HsapDv:0000101) draws a validator WARNING because the column is checked against EFO only; no EFO term for a 7-year-old child exists."
+ ]
+}
