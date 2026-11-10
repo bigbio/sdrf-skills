@@ -1,0 +1,368 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD006759.sdrf.tsv",
+ "dataset": "PXD006759",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD006759 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD006759/files?pageSize=100&page=0..N (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/files_all.json; 51 entries = 48 .raw + FASTA + experimentalDesignTemplate.txt + MQ_output.ZIP; every entry projectAccessions = [PXD006759])"
+  },
+  {
+   "id": "design",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/10/PXD006759/experimentalDesignTemplate.txt (MaxQuant experimental design: raw name -> Fraction -> Experiment; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/experimentalDesignTemplate.txt)"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/10/PXD006759/MQ_output.ZIP members parameters.txt, summary.txt, proteinGroups.txt (zip central directory and members read by HTTP range with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/mq/)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Fabrik I et al. The Early Dendritic Cell Signaling Induced by Virulent Francisella tularensis Strain Occurs in Phases and Involves the Activation of ERKs and p38 In the Later Stage. Mol Cell Proteomics 2018;17(1):81-94, doi:10.1074/mcp.RA117.000160, PMID 29046388, PMC5750852. Full text from https://pmc.ncbi.nlm.nih.gov/articles/PMC5750852/ (plain HTTP 200 article page, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD005747/pmc_page.html, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD005747/pmc_page.txt); NCBI efetch id=5750852 gave front matter only (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD005747/efetch.xml)."
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 2 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/10/PXD006759/10042016_13_ML_IF_dsba-60_rep2_LS_Fr2a10.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/raw/a.head)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/orientation.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-scripts/orient.py, cross.py)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... , PRIDE:0000550 descendants, PRIDE:0000895 children, /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD005747/ols_ids.txt, ols_fractionation.txt, ols_sampletype.txt, ols_search.txt)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t vertebrates (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older); vertebrates v1.1.0; spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "scripts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-scripts/make_tables.py (samples.tsv/technical.tsv/files.json/fraction_map.json in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD006759/), sdrf-tools build, then /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-scripts/fix_fractions.py (post-build fraction identifier from design template)"
+  },
+  {
+   "id": "companion",
+   "kind": "repository",
+   "location": "PXD005747 (phosphoproteome companion; PRIDE otherOmicsLinks pride.project:PXD005747; annotations/PXD005747.sdrf.tsv)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-96",
+   "value": "BMDC_<strain>_<time>m_Rep<k>[_LS]_{infected|mock} — one infected and one mock source per MaxQuant experiment (= one SILAC digest)",
+   "source_ids": [
+    "design",
+    "mq",
+    "paper",
+    "pride"
+   ],
+   "evidence": "6 MaxQuant experiments in experimentalDesignTemplate.txt / summary.txt (WT and DsbA x 60 min x 3 replicates). Paper: 'SILAC experiments were performed in biological triplicate for each time point and bacterial strain used and the respective mock-treated BMDCs served as a control ... In total, 18 digests (three time points/two bacterial strains/triplicate) were fractionated by HILIC. Aliquots of 6 digests (60 min p.i./two bacterial strains/triplicate) were also subjected to proteome analysis.' Each digest = one light + one heavy lysate mixed 1:1, so each digest contributes two physical samples. The replicate tags in the names are the authors' MaxQuant experiment names (10 min replicates are named Rep2, Rep3_LS, Rep4 by the authors). Row ranges: BMDC_WT_60m_Rep1_infected: rows 1-8; BMDC_WT_60m_Rep1_mock: rows 9-16; BMDC_WT_60m_Rep2_LS_infected: rows 17-24; BMDC_WT_60m_Rep2_LS_mock: rows 25-32; BMDC_WT_60m_Rep3_infected: rows 33-40; BMDC_WT_60m_Rep3_mock: rows 41-48; BMDC_DsbA_60m_Rep1_infected: rows 49-56; BMDC_DsbA_60m_Rep1_mock: rows 57-64; BMDC_DsbA_60m_Rep2_LS_infected: rows 65-72; BMDC_DsbA_60m_Rep2_LS_mock: rows 73-80; BMDC_DsbA_60m_Rep3_infected: rows 81-88; BMDC_DsbA_60m_Rep3_mock: rows 89-96. The PXD006759 source names are identical to the 60 min sources of PXD005747 because the paper states the proteome samples are aliquots of the same 6 digests."
+  },
+  {
+   "location": "comment[label] rows 1-96",
+   "value": "non-LS experiments: infected = SILAC light, mock = SILAC heavy; *_LS experiments: infected = SILAC heavy, mock = SILAC light",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq",
+    "orientation"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: \"'light' cells were infected ... 'Heavy' cells were left as control/untreated groups. The whole experiment was done in biological triplicate with one label swap experiment (raw files containing 'LS' in name).\" Paper: 'In two replicates, light BMDCs were infected and heavy cells were mock-treated. In one replicate, SILAC groups were swapped.' MaxQuant summary.txt: every non-LS experiment Labels0 '' / Labels1 'Arg6;Lys6', every LS experiment Labels0 'Arg6;Lys6' / Labels1 '' (paper: labels set 'in light channel for label-swap experiments to obtain inverted H/L ratios'), so MaxQuant 'H/L' = mock/infected in all experiments. Same protocol text in the PXD006759 PRIDE record. Within-deposit host-protein ratio correlations: non-LS vs non-LS +0.63/+0.64, LS vs non-LS -0.64 to -0.70 (label-specific bias, as in the phospho arm). Cross-deposit protein-group ratio correlation with the phospho search is highest for the same digest (WT Rep1 +0.17, WT Rep2_LS +0.13) and has the same sign pattern, consistent with shared digests and shared orientation. Proteome ratios at 60 min are small, so no marker-protein check is claimed; the map rests on the explicit statements plus the MaxQuant label assignment."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-96",
+   "value": "infected sources 1-3 within each (strain, time) group; mock sources 1-6 within each time group (WT-paired 1-3, DsbA-paired 4-6)",
+   "source_ids": [
+    "paper",
+    "design"
+   ],
+   "evidence": "Paper: biological triplicate per time point and strain, each with its respective mock-treated control; each of the 18 digests contains its own mock lysate. Numbering restarts per factor-value group (spec README.adoc:330). Whether the WT- and DsbA-paired mocks of the same replicate came from one split mock culture is not stated (supplemental Fig. S1 not retrieved), so each mock lysate is counted as its own culture."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-96",
+   "value": "study sample (infected) / control sample (mock)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Mock-infected BMDCs are the controls ('Mock-infected BMDCs were centrifuged without bacteria'). PRIDE:0001013 study sample / PRIDE:0001014 control sample, children of PRIDE:0000895."
+  },
+  {
+   "location": "characteristics[infection status] + factor value[infection status] rows 1-96",
+   "value": "FSC200 wild type infected / FSC200 dsbA deletion mutant infected / mock-infected",
+   "source_ids": [
+    "pride",
+    "paper",
+    "design"
+   ],
+   "evidence": "PRIDE: light cells 'were infected either by F. tularensis subsp. holarctica FSC200 strain or its attenuated mutant lacking dsbA gene'; experiment names WT_* / DsbA_*; paper: 'Delta dsbA' attenuated strain; mock-infected controls."
+  },
+  {
+   "location": "characteristics[infectious agent] rows 1-96",
+   "value": "Francisella tularensis subsp. holarctica FSC200 (NCBITaxon:351581) for infected rows; not applicable for mock rows",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:351581 'Francisella tularensis subsp. holarctica FSC200'; OLS4 NCBITaxon:351581 label 'Francisella tularensis subsp. holarctica FSC200', not obsolete. The dsbA mutant is derived from FSC200 (PRIDE protocol), so the taxon applies to both strains."
+  },
+  {
+   "location": "characteristics[infectious agent strain] rows 1-96",
+   "value": "FSC200 wild type / FSC200 dsbA deletion mutant / not applicable",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "As above (free-text custom column, precedent annotations/PXD002388, PXD004707)."
+  },
+  {
+   "location": "characteristics[multiplicity of infection] rows 1-96",
+   "value": "50 (infected) / not applicable (mock)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Infections and Treatments: 'Multiplicity of infection (MOI) was 50' for the proteomics infections (MOI 10 only for 24 h intervals, not used here)."
+  },
+  {
+   "location": "characteristics[sampling time] + factor value[sampling time] rows 1-96",
+   "value": "60 minute",
+   "source_ids": [
+    "design",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Experiment names *_10m_ / *_30m_ / *_60m_; PRIDE: 'left for 10, 30 and 60 minutes'. Proteome only at 60 min (PRIDE description: 'DC proteome changes at 60 min p.i.'). Mock rows carry the time of the infection they were paired with (paper: 'the respective mock-treated BMDCs'); that the mock incubation lasted exactly as long is inferred."
+  },
+  {
+   "location": "characteristics[organism] rows 1-96",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "BMDCs from C57BL/6 mice (paper); PRIDE NEWT:10090. The bacterium is recorded as infectious agent, not as the sample organism."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-96",
+   "value": "bone marrow",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: 'BMDCs were generated from bone marrow progenitors isolated from femurs and tibias'. UBERON:0002371."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-96",
+   "value": "dendritic cell",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "GM-CSF-derived bone marrow dendritic cells harvested day 9 (paper); PRIDE CL:0000451. CL preferred over BTO:0003857 'bone marrow-derived dendritic cell' (contract lists CL first)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-96",
+   "value": "cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Primary cultured cells (not a cell line, not tissue)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-96",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Cells come from healthy mice and were infected in vitro for <=60 min; the infection is encoded in the infection columns. PRIDE's disease tag 'tularemia' (DOID:2123) describes the study topic, not a disease state of the donor animals or cultures."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-96",
+   "value": "C57BL/6",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: '6- to 8-week-old female C57BL/6 mice'. Free-text column (EFO:0022397 C57BL/6 exists; validator warns that it is not in NCBITaxon)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-96",
+   "value": "female",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: 'female C57BL/6 mice'."
+  },
+  {
+   "location": "characteristics[age] rows 1-96",
+   "value": "6W-8W",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: '6- to 8-week-old' mice at bone marrow harvest (cells then cultured 9 days). Custom column (spec age format with range)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-96",
+   "value": "adult",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "6-8-week-old mice are sexually mature young adults; EFO:0001272 adult."
+  },
+  {
+   "location": "comment[data file], assay name rows 1-96",
+   "value": "48 deposited .raw files, each with 2 rows (light, heavy); assay name = file stem",
+   "source_ids": [
+    "files",
+    "design",
+    "mq"
+   ],
+   "evidence": "Every RAW in the PRIDE file list is in experimentalDesignTemplate.txt and summary.txt (0 missing, 0 extra), each assigned to exactly one experiment."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-96",
+   "value": "1,3,4,5,6,7,8,10 (design template Fraction; Fr1a9 = pooled fractions 1+9 -> 1, Fr2a10 = pooled 2+10 -> 10)",
+   "source_ids": [
+    "design",
+    "paper",
+    "scripts"
+   ],
+   "evidence": "Paper: '10 fractions were manually collected ... fractions 1 and 2 were pooled with fractions 9 and 10, respectively' -> 8 injections per digest. Values are the deposited MaxQuant Fraction column, set post-build by fix_fractions.py."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-96",
+   "value": "1",
+   "source_ids": [
+    "design"
+   ],
+   "evidence": "One injection per fraction per digest."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-96",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "'fractionated by high-pH reversed phase liquid chromatography'."
+  },
+  {
+   "location": "comment[instrument] rows 1-96",
+   "value": "NT=Q Exactive;AC=MS:1001911",
+   "source_ids": [
+    "raw",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Raw header 'Q Exactive - Orbitrap MS', 'Method of Q Exactive'; PRIDE MS:1001911."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-96",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw method nLCexp_120min_Top14: TopN 14 (paper/PRIDE say Top12; conflict recorded, does not change DDA)."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] rows 1-96",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422 / 27 NCE / NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw header: HCD, 'NCE / stepped NCE 27', MS2 resolution 17,500 (Orbitrap). Paper: HCD, NCE 27, MS/MS resolution 17,500."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-96",
+   "value": "350m/z-1650m/z",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw header 'Scan range 350 to 1650 m/z'; paper the same."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-96",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "paper",
+    "mq"
+   ],
+   "evidence": "Digestion: 'digested by trypsin (Promega)'. Search rule in summary.txt is Trypsin/P ('Trypsin with no cleavage restriction'); per batch rule 2 the digestion enzyme is annotated."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-96",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608 / NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Paper: DTT 10 mM 1 h 37 C, IAA 20 mM 30 min RT."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-96",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6) R and K (UNIMOD:188) variable",
+   "source_ids": [
+    "mq",
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt: Fixed modifications Carbamidomethyl (C) (parameters.txt); Variable modifications 'Acetyl (Protein N-term);Oxidation (M)' in every raw file; no 'Multi modifications' column exists in this MaxQuant 1.5.2.8 summary.txt; labels Arg6;Lys6 ([13C6], +6.020 Da -> UNIMOD:188 for both R and K), MT=Variable per batch rule 11. The search FASTA also contained the F. tularensis FSC200 proteome (1424 sequences) as stated in the deposit; no SDRF column encodes the database."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-96",
+   "value": "4.5 ppm / 20 ppm",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mq"
+   ],
+   "evidence": "Paper/PRIDE: first search 20 ppm, main search 'from recalibrated spectra 4.5 ppm' -> 4.5 ppm (MaxQuant main-search tolerance); parameters.txt 'MS/MS tol. (FTMS) 20 ppm' (HCD spectra are FTMS)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-96",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.2.0, NT=vertebrates;VV=v1.1.0; NT=sdrf-skills;VV=v0.1.0; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Batch rules 1 and 10; templates from sdrf-tools contract."
+  }
+ ],
+ "limitations": [
+  "Supplemental material of PMC5750852 (incl. supplemental Fig. S1 experimental design) not retrieved: Europe PMC supplementaryFiles 'not open access', Europe PMC fullTextXML HTTP 500, publisher PDF (mcponline.org via Unpaywall) HTTP 403, not bypassed. The article body came from the PMC article page.",
+  "Mock pairing: whether the WT- and DsbA-paired mock lysates of one replicate (and the mocks of different time points) were separate cultures or splits of one mock culture is not stated; each mock source is numbered as its own biological replicate (1-6 per time point, 1-6 at 60 min).",
+  "Mock sampling time is inferred from 'the respective mock-treated BMDCs' (time-matched controls); not stated explicitly.",
+  "Proteome channel map rests on the explicit protocol statements and MaxQuant labels; no protein marker check was possible (60 min proteome changes are small).",
+  "Proteome raw method header says Top14, paper/PRIDE say Top12; no SDRF column depends on it.",
+  "Number of mice per BMDC preparation and whether replicates came from separate animals is not stated; characteristics[individual] omitted.",
+  "characteristics[disease] = normal is a judgement: PRIDE tags the project with tularemia (DOID:2123), but the samples are in vitro-infected primary cells from healthy mice; the infection is encoded in characteristics[infection status]/[infectious agent].",
+  "Raw headers were checked on one file only (10042016_13_ML_IF_dsba-60_rep2_LS_Fr2a10.raw).",
+  "comment[fraction identifier] was edited after sdrf-tools build by a deterministic script (fix_fractions.py) to the deposited MaxQuant Fraction values; justified in validation.txt.",
+  "Review pending (external sdrf-adversarial-review hand-off); not self-approved."
+ ]
+}
