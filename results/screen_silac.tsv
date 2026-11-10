@@ -111,3 +111,19 @@ PXD008454	PRIDE	include		Batch 10: Afatinib resistance PC-9 NSCLC	repository str
 PXD009662	PRIDE	include		Batch 10: CSF3R mutant Ba/F3 pY	repository structured fields; paper methods
 PXD009843	PRIDE	include		Batch 10: Isogenic SW48 KRAS G12D/G13D	repository structured fields; paper methods
 PXD002454	PRIDE	exclude	channel map	Batch 10: EV71 U251, no source assigns channels (BLOCKED.md)	ProteinPilot reports; PRIDE protocol
+PXD002797	PRIDE	include		Batch 11: Estradiol MCF-7 breast cancer	repository structured fields; paper methods
+PXD003543	PRIDE	include		Batch 11: Oxaliplatin CCRF-CEM leukemia	repository structured fields; paper methods
+PXD003762	PRIDE	include		Batch 11: HIV-1 Env/Vif I-DIRT interactome	repository structured fields; paper methods
+PXD003940	PRIDE	include		Batch 11: POPX2 knockdown MDA-MB-231 secretome	repository structured fields; paper methods
+PXD004941	PRIDE	include		Batch 11: Gefitinib-resistant PC9 proteome + ubiquitylome	repository structured fields; paper methods
+PXD005747	PRIDE	include		Batch 11: Francisella-infected mouse BMDC phosphoproteome	repository structured fields; paper methods
+PXD006759	PRIDE	include		Batch 11: Francisella-infected mouse BMDC proteome	repository structured fields; paper methods
+PXD007931	PRIDE	include		Batch 11: HCT116-I8 invasion Cdc42	repository structured fields; paper methods
+PXD032332	PRIDE	include		Batch 11: TIAR/FMRP leukemia nascent proteome	repository structured fields; paper methods
+PXD036363	PRIDE	include		Batch 11: NGI-1 N-glycosylation ABC-DLBCL	repository structured fields; paper methods
+PXD000958	PRIDE	exclude	channel map	Batch 11: CELF1 OSCC, conditions undocumented (BLOCKED.md / DUPLICATES.md)	deposit files; paper
+PXD008100	PRIDE	exclude	channel map	Batch 11: LAD1 MCF10A, label assignment undocumented (BLOCKED.md / DUPLICATES.md)	deposit files; paper
+PXD006395	PRIDE	exclude	channel map	Batch 11: HepG2 palmitate, paper unreachable (BLOCKED.md / DUPLICATES.md)	deposit files; paper
+PXD009009	PRIDE	exclude	channel map	Batch 11: HCT116 hypoxia, label assignment undocumented (BLOCKED.md / DUPLICATES.md)	deposit files; paper
+PXD004015	PRIDE	exclude	duplicate	Batch 11: = PXD004984 (v2) (BLOCKED.md / DUPLICATES.md)	deposit files; paper
+PXD004019	PRIDE	exclude	duplicate	Batch 11: = PXD004983 (v2) (BLOCKED.md / DUPLICATES.md)	deposit files; paper
