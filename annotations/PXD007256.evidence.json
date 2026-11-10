@@ -1,0 +1,316 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD007256.sdrf.tsv",
+ "dataset": "PXD007256",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD007256 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD007256/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/files_p0.json..files_p2.json, merged /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/files_all_raw.json; 14 entries = 13 .raw + 1 .msf; every entry projectAccessions == ['PXD007256'])"
+  },
+  {
+   "id": "msf",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/03/PXD007256/CAL27_Curcumin_2SILAC_pSTY_All_PD1.4_Sequest_Mascot_121713.msf (Proteome Discoverer 1.4 SQLite; tables FileInfos, ProcessingNodes, ProcessingNodeParameters incl. the SILAC 2plex quantification method read by HTTP range through an APSW VFS /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/scripts/httpvfs.py; outputs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/msf_info1.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/msf_params.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/msf_quant.txt; full file later downloaded to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/dl/msf.sqlite for the ratio check)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 1.5 MB of all 13 deposited .raw files under https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/03/PXD007256/ decoded as UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/rawhead/*.raw.bin, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/rawhead/*.txt): instrument model, embedded original file path, instrument method name, scan events, FILETIME creation stamps at header offset 40"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/scripts/orient.py on /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/dl/msf.sqlite)"
+  },
+  {
+   "id": "sister_paper",
+   "kind": "publication",
+   "location": "Sathe G et al. Phosphotyrosine profiling of curcumin-induced signaling. Clin Proteomics 2016;13:13, doi:10.1186/s12014-016-9114-0, PMC4908701 (https://pmc-oa-opendata.s3.amazonaws.com/PMC4908701.1/PMC4908701.1.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/sathe2016.txt). Same laboratory (IOB Bangalore; Chatterjee A, Gowda H), same cell line, curcumin dose and SILAC design for the pTyr arm deposited as PXD002097; used only as corroboration of the PRIDE channel statement."
+  },
+  {
+   "id": "epmc",
+   "kind": "literature-search",
+   "location": "Europe PMC REST search queries 'PXD007256' (0 hits), '(curcumin AND CAL27 AND phospho*)', '(curcumin AND CAMKK2)', '(\"CAMKK2\" AND \"head and neck squamous\")', '(curcumin AND SILAC AND \"CAL 27\")', 'TITLE:\"alternative to curcumin\"', author-restricted queries (Chatterjee A / Gowda H / Sidransky D) on 2026-11-10: no article describing PXD007256 found"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_1107?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/cello_CVCL_1107.txt); sdrf-tools cellline lookup 'CAL 27'"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... and sdrf-tools ols searches (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/ols_ids.txt); all used terms is_obsolete=false"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file], assay name rows 1-12",
+   "value": "CAL27_Curcumin_2SILAC_pST_01_R/04/05/06/11/12.raw (6 of 13 deposited raws)",
+   "source_ids": [
+    "files",
+    "msf",
+    "raw"
+   ],
+   "evidence": "In scope = the deposited raws that are the files the deposited PD1.4 search actually processed: MSF FileInfos lists 13 inputs D:\\IOB\\Gajanan\\CAL27_Curcumin_2SILAC_pST_01, _01_R, _02 ... _12.raw with sizes in KB; deposited byte sizes /1024 match exactly for 01_R (537290), 04 (585921), 05 (664396), 06 (722990), 11 (569033 vs 569032), 12 (690486). These six raws also embed their own original path ...\\CAL27_Curcumin_2SILAC_pST_NN.raw, use instrument method SR_pST_60K7.5K_15_Easy nanoLC_120913.meth and were created 2013-12-10..12. The other seven deposited raws (pST_1, 02, 03, 07, 08, 09, 10) do not match the searched files (e.g. deposited pST_02 846705 KB vs searched 727912 KB; deposited pST_1 701470 KB vs searched pST_01 232942 KB), embed different original names (HNSCC_CAL27_Phospho_2/3/5/7/8/9/10.raw; deposited pST_1 = original HNSCC_CAL27_Phospho_5), a different method (90min_pSTY_MIPS_HCD_Easy nanoLC_071013.meth, top10, MS1 350-1800) and were acquired 2013-10-16/23. Their sample identity and SILAC channel map are undocumented, so they are excluded (manifest limitations, BLOCKED.md)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-12",
+   "value": "1, 4, 5, 6, 11, 12 (number in the file name; 01_R = re-run of fraction 1)",
+   "source_ids": [
+    "pride",
+    "files",
+    "msf"
+   ],
+   "evidence": "PRIDE: 'Peptides were fractionated by basic pH reverse phase liquid chromatography and pooled into 12 fractions'; file names pST_01..12 index the fractions; MSF searched both pST_01 and pST_01_R (re-run). Only 01_R of fraction 1 is a genuine deposited file, so it carries fraction 1, technical replicate 1. Set by the deterministic post-build script scripts/postbuild.py (build numbers by list position)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-12",
+   "value": "1",
+   "source_ids": [
+    "files",
+    "msf"
+   ],
+   "evidence": "Each in-scope fraction is represented by one deposited raw; the original pST_01 injection is not deposited (deposited pST_1.raw is a different acquisition)."
+  },
+  {
+   "location": "source name rows 1-12",
+   "value": "CAL27_curcumin_11.5uM_4h (light), CAL27_DMSO (heavy)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE: 'CAL 27 cells grown in regular media were treated with curcumin at a dose of 11.5 uM for 4h and cells cultured in SILAC media were treated with DMSO ... Equal amount of protein lysate from both the conditions was mixed'. One curcumin-treated culture and one DMSO-treated culture, mixed once, fractionated into 12 fractions; each source name denotes one physical lysate."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] + characteristics[compound] rows 1-6 (SILAC light)",
+   "value": "SILAC light = curcumin 11.5 uM 4 h",
+   "source_ids": [
+    "pride",
+    "msf",
+    "sister_paper",
+    "orientation"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: curcumin-treated cells were grown 'in regular media' (= light); MSF quantification method 'SILAC 2plex (Arg6, Lys6)': channel 1 Light = no label, channel 2 Heavy = Label:13C(6) K and R, ratio reported Light/Heavy. Same-lab sister study (PMC4908701, PXD002097): 'cells grown in light medium were treated with curcumin for 4 h and the cells grown in heavy medium were treated with vehicle (DMSO)'. Data check: Deposited MSF (sha1 278500a3... = PRIDE checksum) re-analysed with scripts/orient.py (full output orient_full.txt). Every in-scope FileID (01_R, 04, 05, 06, 11, 12) carries confident rank-1 PSMs with the 13C6 K/R label (427-717 per file) and 638-1153 phosphoPSMs with both Light and Heavy areas, i.e. all six runs are genuine 2-plex SILAC mixtures. PD ratio is Light/Heavy. Collapsed to unique phosphopeptide sequences over all searched files and median-normalised (global median L/H 1.119): 220 with L/H >= 2 and 341 with L/H <= 0.5. The deposit abstract reports 275 hyper- and 335 hypo-phosphorylated phosphopeptides (>=2-fold) upon curcumin; light = curcumin reproduces the hypo>hyper asymmetry (220/341 vs 275/335), the swapped assignment would invert it (341 hyper / 220 hypo). Consistent with the explicit PRIDE channel statement; the check is supportive, not independent proof (the authors' exact filtering, phosphoRS cut-off and normalisation are not deposited)."
+  },
+  {
+   "location": "comment[label] + characteristics[treatment] + factor value[treatment] + characteristics[compound] rows 7-12 (SILAC heavy)",
+   "value": "SILAC heavy = DMSO vehicle control; treatment 'untreated', compound 'Dimethyl Sulfoxide'",
+   "source_ids": [
+    "pride",
+    "msf",
+    "sister_paper"
+   ],
+   "evidence": "PRIDE: 'cells cultured in SILAC media were treated with DMSO'; PRIDE dataProcessingProtocol 'SILAC labels 13C6-Lysine; 13C6-Arginine'; MSF Heavy channel = Lys6 + Arg6. Vehicle control encoded as treatment 'untreated' (campaign rule 4) with characteristics[compound] Dimethyl Sulfoxide (NCIT:C437)."
+  },
+  {
+   "location": "characteristics[compound] rows 1-6 (SILAC light)",
+   "value": "Curcumin",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'treated with curcumin'; NCIT:C401 Curcumin (OLS, not obsolete). characteristics[treatment] Curcumin uses the same NCIT term."
+  },
+  {
+   "location": "characteristics[dose] rows 1-6 (SILAC light)",
+   "value": "11.5 uM",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE: 'treated with curcumin at a dose of 11.5 uM for 4h'. Heavy rows: DMSO amount not stated -> not available."
+  },
+  {
+   "location": "characteristics[exposure duration] rows 1-6 (SILAC light)",
+   "value": "4 hour",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE: 'for 4h'. Heavy rows: duration of the DMSO treatment not stated in PRIDE -> not available."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-12",
+   "value": "1 (each factor-value group has one culture)",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE describes one curcumin-treated and one DMSO-treated culture, one mixture; no replicate experiment is deposited. Numbering restarts per factor-value group (README.adoc:330)."
+  },
+  {
+   "location": "characteristics[cell line], characteristics[cellosaurus accession], characteristics[cellosaurus name] rows 1-12",
+   "value": "CAL 27 / CVCL_1107 / CAL-27",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'CAL 27 cells'. Cellosaurus CVCL_1107 ID CAL-27, synonyms CAL 27, CAL27; Homo sapiens (exact match, no cross-species collision). characteristics[cell line] uses the EFO label 'CAL 27' (EFO:0006366)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-12",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-12",
+   "value": "tongue",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus: 'Derived from site: In situ; Oral cavity, tongue; UBERON=UBERON_0001723'. PRIDE's 'oral epithelium' is a broader submitter dropdown."
+  },
+  {
+   "location": "characteristics[disease] rows 1-12",
+   "value": "tongue carcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI: NCIt C173807 Tongue adenosquamous carcinoma (no MONDO/EFO/DOID equivalent found); the deposit calls the line head and neck squamous cell carcinoma and PRIDE lists DOID:8618 oral cavity cancer. MONDO:0850154 'tongue carcinoma' (not obsolete) is the most specific allowed-ontology term true under both descriptions."
+  },
+  {
+   "location": "characteristics[material type] rows 1-12",
+   "value": "cell line",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Cultured CAL 27 cell line."
+  },
+  {
+   "location": "characteristics[sample type] rows 1-12",
+   "value": "study sample",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Both channels are experimental samples (treated and vehicle-control cultures); no blanks or reference pools."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-12",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'TiO2-based phosphopeptide enrichment of the 12 fractions was carried out'; EFO:0010806."
+  },
+  {
+   "location": "characteristics[age], characteristics[sex], characteristics[developmental stage], characteristics[ancestry category], characteristics[individual] rows 1-12",
+   "value": "56Y / male / adult / European ancestry / CAL-27_donor",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_1107: AG 56Y; SX Male; 'Population: Caucasian' -> HANCESTRO:0005 European ancestry; 56Y >= 20Y -> EFO:0001272 adult; individual = the single donor of the CAL-27 line."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-6 (SILAC light)",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'CAL 27 cells were grown and maintained in DMEM containing 10% FBS' and the curcumin arm was grown 'in regular media'; NCIT:C185409. Heavy rows: the SILAC medium's base is not named in PRIDE -> not available."
+  },
+  {
+   "location": "comment[instrument] rows 1-12",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "All six in-scope raw headers: instrument model 'LTQ Orbitrap Velos MS'; PRIDE instruments field MS:1001742. PRIDE sampleProcessingProtocol text says 'LTQ-Orbitrap Fusion', 120K/15K resolution, top10, 35% NCE, which contradicts the raw files; the raw headers win."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range], comment[proteomics data acquisition method] rows 1-12",
+   "value": "HCD (beam-type CID, MS:1000422) / 39 NCE / orbitrap / 350m/z-1700m/z / DDA",
+   "source_ids": [
+    "raw",
+    "msf",
+    "ols"
+   ],
+   "evidence": "In-scope raw method SR_pST_60K7.5K_15: scan event 1 'FTMS + p norm o(350.0-1700.0)', event 2 'FTMS + c ... Dep MS/MS Most intense ion from (1)', Activation Type HCD, Normalized Coll. Energy 39.0, repeated for top 15 peaks (data-dependent). MSF spectrum selector: Mass Analyzer FourierTransform, Activation Type HCD."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-12",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "msf"
+   ],
+   "evidence": "PRIDE: 'protein digestion using sequencing grade trypsin'; MSF Mascot Enzyme 'Trypsin', max 2 missed cleavages."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-12",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE: 'fractionated by basic pH reverse phase liquid chromatography and pooled into 12 fractions'."
+  },
+  {
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance] rows 1-12",
+   "value": "20 ppm / 0.1 Da",
+   "source_ids": [
+    "msf",
+    "pride"
+   ],
+   "evidence": "MSF Mascot and Sequest HT nodes: Precursor Mass Tolerance 20 ppm, Fragment Mass Tolerance 0.1 Da; PRIDE dataProcessingProtocol same."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-12",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Phospho S/T/Y, Label:13C(6) K, Label:13C(6) R variable",
+   "source_ids": [
+    "msf",
+    "pride",
+    "ols"
+   ],
+   "evidence": "MSF Mascot node: DynMod_1 Oxidation (M), DynMod_2 Phospho (ST), DynMod_3 Phospho (Y), DynMod_4 Label:13C(6) (R), DynMod_5 Label:13C(6) (K), StaticMod_1 Carbamidomethyl (C); Sequest HT node the same mod IDs; SILAC method modification 'Label:13C(6)' UnimodAccession 188 DeltaMass 6.02013 for K and R. UNIMOD:21 Phospho, UNIMOD:35 Oxidation, UNIMOD:4 Carbamidomethyl. Labels MT=Variable per campaign rule 11. The Mascot/Sequest 'Static_X' entries are the X-residue placeholder and not a modification."
+  },
+  {
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-12",
+   "value": "not available",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE says only 'subjected to reduction, alkylation'; no reagent named for this deposit (the sister paper's DTT/iodoacetamide is not transferred)."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type rows 1-12",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates chosen: MS proteomics, human cell line."
+  }
+ ],
+ "limitations": [
+  "PARTIAL SCOPE: 7 of 13 deposited raws excluded - CAL27_Curcumin_2SILAC_pST_1.raw, _02.raw, _03.raw, _07.raw, _08.raw, _09.raw, _10.raw. They are not the files the deposited search processed (sizes differ from MSF FileInfos), embed other original names (HNSCC_CAL27_Phospho_5/2/3/7/8/9/10.raw), use another instrument method (90min_pSTY_MIPS_HCD, top10, MS1 350-1800) and were acquired 2013-10-16/23, two months before the in-scope Dec 2013 series. Their sample identity, labelling and whether they belong to this curcumin experiment at all are undocumented; recorded in BLOCKED.md. The MSF-searched files CAL27_Curcumin_2SILAC_pST_01, 02, 03, 07, 08, 09, 10 are therefore missing from the deposit.",
+  "No publication found: PRIDE's reference (Solanki HS et al., Mitochondrion 2018, cigarette smoke in lung cells) belongs to PXD007108 and is not this study; Europe PMC search for the accession and for the title returned nothing. All sample metadata comes from the PRIDE protocol text, the MSF and raw headers; the same-lab pTyr paper (PMC4908701 / PXD002097) is used only to corroborate the channel map.",
+  "PRIDE protocol text describes an 'LTQ-Orbitrap Fusion' with 120K/15K resolution, top10 and 35% NCE; the raw files are LTQ Orbitrap Velos, HCD 39 NCE, top15 (in scope). Raw-header values were used.",
+  "characteristics[culture medium], characteristics[dose] and characteristics[exposure duration] of the heavy (DMSO) channel are not available: PRIDE names neither the SILAC base medium nor the DMSO amount/duration.",
+  "characteristics[disease]: Cellosaurus diagnosis 'tongue adenosquamous carcinoma' (NCIt C173807) has no MONDO/EFO/DOID term; encoded as the broader MONDO:0850154 tongue carcinoma.",
+  "characteristics[passage number], characteristics[sample storage temperature], characteristics[cell type], reduction/alkylation reagents: not stated in any retrieved source.",
+  "comment[fraction identifier] is set by a deterministic post-build script (scripts/postbuild.py) because sdrf-tools build numbers fractions by list position; fractions 2, 3, 7, 8, 9, 10 have no in-scope file.",
+  "Single biological replicate per condition: no replicate SILAC experiment exists in the deposit.",
+  "Orientation check: the per-file label/ratio counts use the six in-scope FileIDs, but the unique-phosphopeptide hyper/hypo comparison with the abstract uses all 13 searched FileIDs (as the authors' numbers do), 7 of which are not deposited; it is supportive, not decisive.",
+  "techsdrf not installable; raw verification limited to header strings (first 1.5 MB).",
+  "Review handed off: no review-gate approve and no review file written by the producer (caller's instruction)."
+ ]
+}

@@ -29,6 +29,11 @@
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/scripts/orient.py: log2 of non-normalized and normalized Ratio H/L per experiment from proteinGroups.txt, reverse/contaminants removed)"
   },
   {
+   "id": "masserr",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/masserr.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/scripts/masserr.py: |Mass Error [ppm]| of all evidence.txt rows by Type, from https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062045/Puromycin-treatment_Search.zip member evidence.txt, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/mq/evidence.txt)"
+  },
+  {
    "id": "raw",
    "kind": "raw-file",
    "location": "HTTP range read of the first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062045/FL0025604.raw and https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062045/FL0025606.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/raw/*.head)"
@@ -133,12 +138,65 @@
   },
   {
    "location": "characteristics[organism part] rows 1-4",
+   "value": "pancreas",
+   "source_ids": [
+    "paper",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper: \"human pancreatic cancer cells T3M4\"; Cellosaurus disease pancreatic ductal adenocarcinoma (tumour of origin in the pancreas). UBERON:0001264 pancreas (not obsolete). Same encoding as the sibling deposit PXD062091 (same cells, same paper)."
+  },
+  {
+   "location": "characteristics[sampling site] rows 1-4",
    "value": "lymph node",
    "source_ids": [
     "cellosaurus",
     "ols"
    ],
-   "evidence": "Cellosaurus CVCL_4056: \"Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029\" (OLS label lymph node). Primary tumour organ pancreas is implied by the disease."
+   "evidence": "Cellosaurus CVCL_4056: \"Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029\" (OLS label lymph node): the line was established from a lymph-node metastasis."
+  },
+  {
+   "location": "characteristics[individual] rows 1-4",
+   "value": "T3M-4_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All four samples derive from the single donor of the T3M-4 line (Cellosaurus CVCL_4056, one patient, 64Y male). Label matches the sibling PXD062091 annotation."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-4",
+   "value": "RIKEN BRC Cell Bank RCB1021",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper Methods, Cell lines: \"The human pancreatic cancer cells T3M4 (Riken, RCB1021)\"; Cellosaurus CVCL_4056 cross-reference RCB; RCB1021 (RIKEN BRC Cell Bank)."
+  },
+  {
+   "location": "characteristics[cell line authentication] rows 1-4",
+   "value": "short tandem repeat profiling (DDC Medical)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper Methods, Cell lines: \"The cell lines were authenticated by short-tandem-repeat profiling and tested negative for mycoplasma (DDC Medical).\""
+  },
+  {
+   "location": "characteristics[nascent protein labeling] rows 1-4",
+   "value": "L-azidohomoalanine pulse (100 nM, 3 hour) after methionine depletion, click-chemistry capture on alkyne agarose resin",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Custom characteristics column (spec Extending Templates), same name/value as sibling PXD062091. Paper Methods: 18 h serum starvation, 1 h methionine depletion, then 3 h in deficient medium with 10% dialysed FBS and 100 nM AHA; AHA-labelled nascent proteins covalently linked to alkyne agarose resin (Click-&-Go kit 1033). Applies to all four samples."
+  },
+  {
+   "location": "characteristics[dose] rows 1-4 / characteristics[exposure duration] rows 1-4",
+   "value": "5 ug/mL, 3 hour (Puromycin rows 2,3); not applicable (untreated rows 1,4)",
+   "source_ids": [
+    "paper",
+    "templates"
+   ],
+   "evidence": "Paper Methods: \"3 h in the aforementioned SILAC-labelled deficient medium supplemented with 10% dialysed FBS, 100 nM AHA and 5 ug ml-1 puromycin for the treatment\". Column names and value patterns from spec TERMS.tsv (dose NCIT:C25488, exposure duration NCIT:C83280; licensed there by clinical-metadata, used here as spec-defined custom columns without declaring that template, rule 15). not applicable for untreated controls (no compound)."
   },
   {
    "location": "characteristics[disease] rows 1-4",
@@ -287,12 +345,14 @@
   },
   {
    "location": "comment[precursor mass tolerance] rows 1-4",
-   "value": "7 ppm",
+   "value": "4.5 ppm",
    "source_ids": [
+    "masserr",
+    "mq",
     "paper",
     "pride"
    ],
-   "evidence": "Paper and PRIDE data processing protocol: \"The precursor and fragment mass tolerances were set to 7 and 20 ppm, respectively.\" MaxQuant 1.5.5.1 parameters.txt/summary.txt do not record peptide (first/main search) tolerance and no mqpar.xml was deposited; see limitations."
+   "evidence": "Search output: in the deposited evidence.txt the largest |Mass Error [ppm]| over all 59,482 identified evidence rows is 4.500 ppm (ISO-MSMS n=39613 max 4.500; MULTI-MSMS n=17504 max 4.463; MULTI-SECPEP n=2365 max 4.360; 114 MS/MS rows in the 4.0-4.5 ppm bin, none above), i.e. the MaxQuant main-search default cutoff of 4.5 ppm that the paper's \"default settings\" implies. CONFLICT: paper and PRIDE text say \"precursor and fragment mass tolerances were set to 7 and 20 ppm\"; 7 ppm equals the \"MS/MS deisotoping tolerance (FTMS) 7 ppm\" in parameters.txt and is contradicted by the data, so the data-derived 4.5 ppm is used (same value as sibling PXD062091)."
   },
   {
    "location": "comment[sdrf version] rows 1-4 / comment[sdrf template] rows 1-4 / comment[sdrf annotation tool] rows 1-4",
@@ -312,10 +372,11 @@
   }
  ],
  "limitations": [
-  "comment[precursor mass tolerance] = 7 ppm is the authors' statement (paper and PRIDE protocol); the deposited MaxQuant 1.5.5.1 parameters.txt does not record the peptide tolerance and no mqpar.xml was deposited. The text also says \"default settings\", whose MaxQuant main-search default is 4.5 ppm (first search 20 ppm), and 7 ppm equals the deposited FTMS MS/MS deisotoping tolerance, so the stated value could not be confirmed from search output.",
+  "comment[precursor mass tolerance] = 4.5 ppm is inferred from the deposited evidence.txt mass-error distribution (hard cutoff at 4.500 ppm = MaxQuant main-search default) because parameters.txt (MaxQuant 1.5.5.1) does not record the peptide tolerance and no mqpar.xml was deposited. It conflicts with the authors' text (\"7 and 20 ppm\"), where 7 ppm matches the MS/MS deisotoping tolerance; the first-search tolerance (MaxQuant default 20 ppm) cannot be verified.",
   "characteristics[enrichment process] uses the generic EFO:0009106 sample enrichment because no ontology term for AHA/click-chemistry capture of newly synthesized proteins exists under EFO:0009090; the specific procedure (100 nM AHA pulse 3 h, Click-&-Go alkyne agarose resin, on-resin digestion) is only in this manifest.",
-  "The AHA pulse (Met-free medium, 100 nM L-azidohomoalanine, 3 h, after 18 h serum starvation) applies to all four samples and is not encoded as a column; puromycin dose 5 ug/ml for 3 h is not encoded as a column either.",
-  "characteristics[cell type], characteristics[passage number], characteristics[biorepository], characteristics[sample storage temperature], characteristics[individual] = not available: not stated in the paper or PRIDE record (cell source not named).",
+  "The 18 h serum starvation preceding the AHA pulse is recorded only in this manifest (the AHA pulse itself is in characteristics[nascent protein labeling]; puromycin dose/duration in characteristics[dose] / characteristics[exposure duration]).",
+  "characteristics[cell type], characteristics[passage number], characteristics[sample storage temperature] = not available: not stated in the paper or PRIDE record.",
+  "Revision after independent review round 1: precursor tolerance 7 -> 4.5 ppm (evidence.txt), biorepository/authentication from paper Methods Cell lines, organism part lymph node -> pancreas with sampling site lymph node, individual T3M-4_donor, added nascent protein labeling / dose / exposure duration columns.",
   "The sibling deposit PXD062091 (METTL13 knockdown, same paper) is a separate dataset, not a duplicate; it is not annotated here.",
   "Paper is not open access in Europe PMC; full text was read from the publisher article page (HTTP 200, no bot check). Supplementary Table 2c (per-protein puromycin fold changes) was not downloaded; the channel orientation was checked against the deposited proteinGroups.txt instead.",
   "techsdrf not installed; raw-file verification limited to range-read headers of both raw files.",

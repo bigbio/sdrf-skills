@@ -1,0 +1,6 @@
+# PXD007256 validation log (2026-11-10T18:15Z); SDRF sha256 93798d339145ec876b95ddeed79a65d0ad03798c5eda3ec087cd69c466037a7e
+
+## Build: python3 /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/scripts/make_tables.py; sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/files_inscope.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD007256.sdrf.tsv; python3 /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD007256/scripts/postbuild.py annotations/PXD007256.sdrf.tsv
+Post-build edit (deterministic, scripts/postbuild.py): comment[fraction identifier] set to the basic-pH RP fraction number encoded in the file name (01_R->1, 04->4, 05->5, 06->6, 11->11, 12->12). Justification: build numbers fractions by list position (1..6), but only 6 of the 12 fractions have an in-scope deposited raw; no other cell is changed.
+
+## parse_sdrf validate-sdrf -s annotations/PXD007256.sdrf.tsv -t ms-proteomics -t human -t cell-lines

@@ -1,55 +1,5 @@
-# PXD062045 validation log (2026-11-10T17:59:44Z)
-# SDRF sha256: 27ed93f06a4b5d896aca6e6ba37e0e17ac7c319acc8aea6b9bab847348a3174b
+# PXD062045 validation log (2026-11-10T18:15:50Z)
+# SDRF sha256: b109a67ebb826cc77664eba4acb1c2c4e076edefbe0a7e1069f07b5deee08556
 # SDRF produced solely by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/files_raw.json -t ms-proteomics -t human -t cell-lines (no post-build edits)
 
 $ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv -t ms-proteomics -t human -t cell-lines
-WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
-WARNING: Term: T3M-4 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
-Most seems to be fine. There were only warnings.
-exit code: 0
-
-$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv
-Structure OK: acquisition, template declaration and column order are consistent.
-exit code: 0
-
-$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv
-Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv
-  Terms checked:     18
-  Verified:          18
-  Hallucinated:      0
-  Label mismatches:  0
-  Wrong ontology:    0
-  UNIMOD swaps:      0
-  Status:            CLEAN
-exit code: 0
-
-$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/pride.json --accession PXD062045
-PXD062045: every annotated value agrees with the deposit record.
-exit code: 0
-
-$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD062045.evidence.json
-/home/user/bigbio/sdrf-skills/annotations/PXD062045.evidence.json: valid evidence-manifest
-exit code: 0
-
-$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD062045.evidence.json
-Manifest covers every column with a value (32 column(s)).
-exit code: 0
-
-$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv -t2
-PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv
-Factor columns: ['factor value[treatment]']
-Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
-Conditions (2): dict_keys(['untreated', 'Puromycin'])
-Files per condition: dict_values([2, 2])
-WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 4 times.
-SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv
-exit code: 0
-
-# convert-openms outputs:
-total 8
--rw-r--r-- 1 root root 245 Nov 10 18:02 experimental_design.tsv
--rw-r--r-- 1 root root 599 Nov 10 18:02 openms.tsv
-
-# Notes on warnings:
-# - 'untreated' in characteristics[treatment] is the template-prescribed control value (batch rule 4), not an ontology term; expected warning.
-# - 'T3M-4' in characteristics[cell line] is the Cellosaurus name (CVCL_4056); CLO/BTO/EFO lack this line under that label; identity is carried by characteristics[cellosaurus accession] CVCL_4056.
