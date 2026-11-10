@@ -3,3 +3,84 @@
 
 ## Round 3 - after independent-review fixes (genotype on tumour rows only + tumor EGFR status; disease staging; sampling site; developmental stage)
 $ parse_sdrf validate-sdrf -s PXD046807.sdrf.tsv -t ms-proteomics -t human -t clinical-metadata -t oncology-metadata
+WARNING: Term: normal tissue adjacent to tumor in column 'characteristics[sampling site]', is not found in the given ontology list uberon;bto
+WARNING: Term: tumor in column 'characteristics[sampling site]', is not found in the given ontology list uberon;bto
+WARNING: Term: early stage in column 'characteristics[disease staging]', is not found in the given ontology list ncit;efo
+WARNING: Term: late stage in column 'characteristics[disease staging]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure PXD046807.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools check PXD046807.sdrf.tsv
+Hallucination Report: PXD046807.sdrf.tsv
+  Terms checked:     18
+  Verified:          17
+  Hallucinated:      1
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654, 655, 656, 657, 658, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671, 672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693, 694, 695, 696, 697, 698, 699, 700, 701, 702, 703, 704]: 'Gln->pyro-Glu' in comment[modification parameters]__3
+exit code: 1
+
+$ sdrf-tools check --offline PXD046807.sdrf.tsv
+Hallucination Report: PXD046807.sdrf.tsv
+  Terms checked:     14
+  Verified:          5
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools reconcile PXD046807.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/pride_v3.json --accession PXD046807
+PXD046807: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools reconcile PXD046807.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/pride.json --accession PXD046807
+PXD046807: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+
+$ (cd /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD046807/openms && parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD046807.sdrf.tsv -t2)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD046807.sdrf.tsv
+Factor columns: ['factor value[disease staging]', 'factor value[disease]', 'factor value[tumor egfr status]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[smoking status]', 'characteristics[sampling site]', 'characteristics[genotype]', 'characteristics[clinical data]']
+Conditions (9): dict_keys(['early stage|normal|EGFR wild type', 'not applicable|not applicable|not applicable', 'early stage|lung adenocarcinoma|EGFR wild type', 'late stage|normal|EGFR wild type', 'late stage|lung adenocarcinoma|EGFR wild type', 'early stage|normal|EGFR mutant', 'early stage|lung adenocarcinoma|EGFR mutant', 'late stage|normal|EGFR mutant', 'late stage|lung adenocarcinoma|EGFR mutant'])
+Files per condition: dict_values([44, 352, 44, 44, 44, 44, 44, 44, 44])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 704 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD046807.sdrf.tsv
+exit code: 0
+
+$ sdrf-tools schema-check PXD046807.evidence.json
+PXD046807.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage PXD046807.sdrf.tsv PXD046807.evidence.json
+Manifest covers every column with a value (36 column(s)).
+exit code: 0
+
+## Changes in round 3 (independent review findings; all made in scripts/make_tables.py + make_manifest.py, then rebuilt with sdrf-tools build)
+
+- characteristics[genotype] now only on tumour rows (EGFR wild type / EGFR mutant); adjacent-normal rows `not available` (normal tissue not genotyped); heavy rows `not available`.
+- New custom characteristics[tumor EGFR status] + factor value[tumor EGFR status] (patient-group tumour EGFR status, on tumour and normal rows; heavy `not applicable`). Replaces factor value[genotype].
+- Custom `cancer stage group` renamed to characteristics[disease staging] / factor value[disease staging] (EFO:0000410, oncology-metadata); values early stage / late stage kept.
+- Added characteristics[sampling site] (tumor / normal tissue adjacent to tumor; heavy not applicable) and characteristics[developmental stage] = not available.
+
+## Justification of remaining findings
+
+1. parse_sdrf WARNINGs (4, warning level, exit 0):
+   - 'early stage' / 'late stage' in characteristics[disease staging] not in ncit;efo. The values are OLS SNOMED:234438000 "Early stage" and SNOMED:236040000 "Late stage" (both is_obsolete false). NCIT has only "Limited Stage" (C28065) / "Advanced Stage" (C93281), whose definitions ("too extensively ... to allow complete surgical removal") contradict resected tumours; the authors' grouping is only "early"/"late", so the exact labels are kept.
+   - 'tumor' / 'normal tissue adjacent to tumor' in characteristics[sampling site] not in uberon;bto. These are exactly the example values listed for this column in clinical-metadata v1.0.0 (clinical-metadata.yaml lines 297-299: "Sampling site should be a valid UBERON or BTO term, or a descriptive term").
+2. `sdrf-tools check` (online) exit 1: 'Gln->pyro-Glu' in comment[modification parameters] reported as hallucinated. False positive: OLS4 https://www.ebi.ac.uk/ols4/api/ontologies/unimod/terms?obo_id=UNIMOD:28 returns label 'Gln->pyro-Glu', is_obsolete false; the cell is NT=Gln->pyro-Glu;AC=UNIMOD:28;TA=Q;PP=Any N-term;MT=Variable, from the PD workflows (Sequest HT "Gln->pyro-Glu / -17.027 Da (Q)", Mascot "Gln->pyro-Glu (N-term Q)"). `check --offline` is clean (exit 0). Same false positive documented for PXD007931.
+3. `reconcile` against the flattened MCP record (pride.json): MINOR cleavage_agent_unsupported. False positive: the PRIDE sample processing protocol says "Trypsin was employed at a protein-to-trypsin ratio of 100 ug: 1 ug"; all 8 .msf workflows use Enzyme "Trypsin (Full)". Reconcile against the PRIDE v3 record finds no disagreement (exit 0).
+4. convert-openms WARNING "no TA= specified" (704x): Acetyl protein N-term carries PP=Protein N-term without TA=, as the format rules prescribe. Conversion SUCCESS.
+
+All validators exit 0 except online `check` (finding 2, refuted). The SDRF was written only by `sdrf-tools build`; no post-build edits.
