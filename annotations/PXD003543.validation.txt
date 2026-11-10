@@ -1,0 +1,93 @@
+# PXD003543 validation log
+SDRF: /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv  sha256 e4228b63d5d897da6173f2fdcd2125818ee259e6d3bae6bfb41d6acc55640771  (120 rows x 50 columns; produced by sdrf-tools build, no post-build edits)
+
+## Round 1 (precursor mass tolerance 20 ppm, from the PRIDE protocol)
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: CCRF-CEM in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+[exit 0]
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+[exit 0]
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+  Terms checked:     20
+  Verified:          20
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+[exit 0]
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv --record pride.json --accession PXD003543
+PXD003543: every annotated value agrees with the deposit record.
+[exit 0]
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[dose]']
+Conditions (2): dict_keys(['oxaliplatin', 'untreated'])
+Files per condition: dict_values([60, 60])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 120 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+[exit 0]
+
+
+Change after round 1: comment[precursor mass tolerance] 20 ppm -> 4.5 ppm in technical.tsv (scripts/make_tables.py), because the Andromeda main-search .apar files in SEARCH.zip record peptide mass tolerance=4.5 ppm (20 ppm is the MaxQuant first-search value). Rebuilt with sdrf-tools build.
+
+## Round 2 (final artifact)
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+[exit 0]
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+  Terms checked:     20
+  Verified:          20
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+[exit 0]
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003543/pride.json --accession PXD003543
+PXD003543: every annotated value agrees with the deposit record.
+[exit 0]
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD003543.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD003543.evidence.json: valid evidence-manifest
+[exit 0]
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD003543.evidence.json
+Manifest covers every column with a value (37 column(s)).
+[exit 0]
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[dose]']
+Conditions (2): dict_keys(['oxaliplatin', 'untreated'])
+Files per condition: dict_values([60, 60])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 120 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv
+[exit 0]
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD003543.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: CCRF-CEM in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: child stage (1-4 yo) in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+[exit 0]
+
+## Notes on warnings
+- 'untreated' in characteristics[treatment]: template-prescribed control value (campaign rule 4), not an ontology term; accepted warning.
+- 'CCRF-CEM' not in CLO/BTO/EFO list: cell line identified by characteristics[cellosaurus accession] CVCL_0207; accepted warning, as in other campaign cell-line SDRFs.
+- 'child stage (1-4 yo)' not in EFO: HsapDv:0000265 (not obsolete; OLS), campaign precedent PXD006404/PXD003762; EFO has no equivalent age-band term.
+- convert-openms 'no TA= specified' warning: from the Acetyl PP=Protein N-term modification (positional, correct per format rules).
