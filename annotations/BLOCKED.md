@@ -2373,3 +2373,41 @@ Excluded runs (sample identity undocumented): `CAL27_Curcumin_2SILAC_pST_1.raw`,
 - The genuinely searched `pST_01`, `02`, `03`, `07`, `08`, `09`, `10` raws are missing from the deposit.
 
 What would unblock: the submitters confirming what the `HNSCC_CAL27_Phospho_*` / `CAL27_Phospho_*` acquisitions are (sample, treatment, SILAC orientation, fraction), or re-uploading the original `CAL27_Curcumin_2SILAC_pST_01/02/03/07/08/09/10.raw` files.
+
+## PXD008410 — PI3K isoform inhibitors, SILAC phosphoproteome of Capan-1 (Cintas et al., Mol Cancer Ther 2021; duplex SILAC Lys8/Arg10, light = condition, heavy = DMSO vehicle reference), ISO1/ISO2/ISO3 arms (24 RAW) blocked (partial block)
+
+**Annotated:** `annotations/PXD008410.sdrf.tsv` covers 16 raws:
+- vehicle + FBS runs (`RB1-4-NT/FBS 10min|24H`): `OETCD140606_01`, `_03`, `_05`, `_07`, `_10`, `_12`, `_14`, `_16`;
+- LY294002 runs (`RB1-4-NT/LY 10min|24H`): `OETCD140606_19`, `_21`, `_23`, `_25`, `_28`, `_30`, `_32`, `_34`.
+
+The file → sample names come from Supplementary Table 1 (figshare 22522695) and the raw headers. The light/heavy orientation comes from the paper's Fig. 1 legend, the Supplementary Methods and the PRIDE protocol, and is consistent with the msf ratios.
+
+**Blocked — sample identity undocumented (24 runs):**
+- ISO1 (`RB1-4-NT/ISO1 10min|24H`): `OETCD140614_02`, `_04`, `_06`, `_08`, `_11`, `_13`, `_15`, `_17`
+- ISO2: `OETCD140614_20`, `_22`, `_24`, `_26`, `_29`, `_31`, `_33`, `_35`
+- ISO3: `OETCD140618_01`, `_03`, `_05`, `_07`, `_10`, `_12`, `_14`, `_16`
+
+The paper names three isoform-selective inhibitors: A66 (PI3Kα, 5 µM), TGX-221 (PI3Kβ, 500 nM) and AS-252424 (PI3Kγ, 5 µM). No source says which of them ISO1, ISO2 and ISO3 are. The evidence for a map is strong but inferred:
+- Supplementary Table 2 (figshare 22522692) groups peptides under "PI3Kalpha/beta/gamma selective peptides".
+- By the authors' 0.7/1.4 thresholds:
+
+  | group | changed in | 10 min | 24 h |
+  |---|---|---|---|
+  | α-selective | ISO1 | 56/58 | 35/35 |
+  | β-selective | ISO2 | 25/25 | 30/31 |
+  | γ-selective | ISO3 | 82/86 | 70/71 |
+
+  This implies ISO1 = A66, ISO2 = TGX-221, ISO3 = AS-252424, which is also the paper's listing order.
+- Per-run msf ratios only weakly support it (the matching column has the highest r in 7 of 8 runs; r = 0.12–0.32).
+
+**Sources checked:**
+- the PRIDE record and protocols;
+- all 40 raw headers;
+- all 40 .msf (WorkflowInfo/FileInfos/parameters);
+- the HAL accepted manuscript hal-03223423;
+- AACR figshare Supplementary Tables 1-3, Supplementary Methods and Supplementary Figures (no ISO decoding);
+- Europe PMC search for the accession (only this paper; no data descriptor).
+
+The published AACR text and the bioRxiv JATS were blocked by Cloudflare/429 and were not bypassed. The PhD thesis of C. Cintas is not in HAL, and theses.fr was unreachable.
+
+**Unblocked by:** an explicit statement of the ISO1/ISO2/ISO3 → inhibitor assignment from the authors (J. Guillermet-Guibert / submitter E. Mouton-Barbosa), from the thesis, or added to the PRIDE record.

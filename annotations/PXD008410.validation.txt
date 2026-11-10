@@ -1,15 +1,19 @@
-# PXD008410 validation log (2026-11-10T18:31Z); SDRF sha256 6dc6dca9fe7be00a8da8b96ab64266e845df4253bc6ed3e5e14995b361afac04
-# SDRF written by sdrf-tools build only (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/scripts/make_tables.py); no post-build edit. Single round: first build passed.
+# PXD008410 validation log (2026-11-10T18:45Z); SDRF sha256 d70f5fa2d57346a03a83cd0f75e0eefd694a62bb9fc4a0875fbe25c5bf8bcc88
+# SDRF written by sdrf-tools build only (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/scripts/make_tables.py, files list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/files_raw_kept.json); no post-build edit.
 
-## parse_sdrf validate-sdrf -s annotations/PXD008410.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+## Round 1 (superseded, sha256 6dc6dca9fe7be00a8da8b96ab64266e845df4253bc6ed3e5e14995b361afac04, 80 rows x 57 cols, all 40 runs)
+validate-sdrf exit 0 (5 warnings: A66, TGX-221, AS-252424, untreated in characteristics[treatment]; Capan-1 in characteristics[cell line]); structure, reconcile, check, convert-openms, schema-check, manifest-coverage all exit 0.
+Independent review FAILED. Fixes, all made in make_tables.py and followed by a rebuild:
+  (1) the ISO1/ISO2/ISO3 runs (24 files, map inferred only) are dropped and recorded in BLOCKED.md and in the manifest limitations;
+  (2) heavy reference rows are numbered by the run's RB (1-4), because there is one heavy lysate per replicate week, and the RB is added to the heavy source name;
+  (3) Supplementary Table 3, the Supplementary Figures and the unreachable thesis are added to the manifest sources.
+
+## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD008410.sdrf.tsv -t ms-proteomics -t human -t cell-lines
 WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
-WARNING: Term: A66 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
-WARNING: Term: TGX-221 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
-WARNING: Term: AS-252424 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
 WARNING: Term: Capan-1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
 Most seems to be fine. There were only warnings.
 exit=0
-Warnings explained: A66, TGX-221, AS-252424 have no CHEBI/NCIT/EFO term (OLS search log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/ols_log.txt); 'untreated' is the template-prescribed control value (batch rule 4). Capan-1: CLO/BTO/EFO labels are 'Capan-1 cell' (CLO:0002197), 'CAPAN-1 cell' (BTO:0002744), 'Capan1' (EFO:0002153); the Cellosaurus name Capan-1 is kept and the line is pinned by characteristics[cellosaurus accession] CVCL_0237.
+Warnings explained: 'untreated' is the template-prescribed control value (batch rule 4). Capan-1: the CLO/BTO/EFO labels are 'Capan-1 cell' (CLO:0002197), 'CAPAN-1 cell' (BTO:0002744) and 'Capan1' (EFO:0002153). The Cellosaurus name is kept, and characteristics[cellosaurus accession] CVCL_0237 identifies the line.
 
 ## sdrf-tools structure annotations/PXD008410.sdrf.tsv
 Structure OK: acquisition, template declaration and column order are consistent.
@@ -18,7 +22,7 @@ exit=0
 ## sdrf-tools reconcile annotations/PXD008410.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/pride.json --accession PXD008410
 PXD008410: every annotated value agrees with the deposit record.
 exit=0
-Note: PRIDE instrument field is 'LTQ Orbitrap' (MS:1000449); SDRF uses the more specific LTQ Orbitrap Velos (MS:1001742) from all 40 raw headers and the paper; reconcile raised no finding.
+Note: the PRIDE instrument field is 'LTQ Orbitrap' (MS:1000449). The SDRF uses the more specific LTQ Orbitrap Velos (MS:1001742), taken from all 40 raw headers and the paper. reconcile raised no finding.
 
 ## sdrf-tools check annotations/PXD008410.sdrf.tsv
 Hallucination Report: annotations/PXD008410.sdrf.tsv
@@ -32,12 +36,12 @@ Hallucination Report: annotations/PXD008410.sdrf.tsv
 exit=0
 
 ## parse_sdrf convert-openms -s annotations/PXD008410.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/convert2)
-Conditions (11): dict_keys(['10 minute|untreated', 'not available|untreated', '24 hour|untreated', '10 minute|LY294002', '24 hour|LY294002', '10 minute|A66', '24 hour|A66', '10 minute|TGX-221', '24 hour|TGX-221', '10 minute|AS-252424', '24 hour|AS-252424'])
-Files per condition: dict_values([4, 40, 4, 4, 4, 4, 4, 4, 4, 4, 4])
-WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 80 times.
+Conditions (5): dict_keys(['10 minute|untreated', 'not available|untreated', '24 hour|untreated', '10 minute|LY294002', '24 hour|LY294002'])
+Files per condition: dict_values([4, 16, 4, 4, 4])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 32 times.
 SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD008410.sdrf.tsv
 exit=0
-The TA= warning concerns the Acetyl PP=Protein N-term modification (positional, no residue), as intended (format rules).
+The TA= warning is about the Acetyl modification with PP=Protein N-term: it is positional and has no residue, as the format rules intend.
 
 ## sdrf-tools schema-check annotations/PXD008410.evidence.json
 annotations/PXD008410.evidence.json: valid evidence-manifest
