@@ -223,3 +223,125 @@ exit=0
 
 
 ## Round 2 explanations: the reconcile BLOCKER (exit 1) and the check 'Hallucinated' on the free-text spike-in cell line (spied, exit 1) are the same as in round 1 (see refutations above; the reviewer independently confirmed the reconcile false positive). convert-openms still stops on precursor tolerance 'not available' (unchanged column).
+
+==================================================================
+# ROUND 3 (after review round 2: silac-dilution PASS and untouched - post.py now writes it only to a scratch copy, cmp identical; manifest sha256 unchanged; spied FAIL)
+Changes (gen_tables.py / gen_tech.py / manifest.py / post.py, rebuilt with sdrf-tools build):
+- spied: HEK293 characteristics[developmental stage] = fetal stage (HsapDv:0000037; Cellosaurus AG Fetus; precedent PXD004666-apms). Manifest claim and limitation updated.
+- NEW PXD050961-benchmark3.sdrf.tsv (+ evidence.json): 18 Rev_Benchmark3 runs (b3.log --channels SILAC L/H). Per run: HEK293 light row with characteristics[mass] = n ng (absent in the 0 ng runs), E. coli light row (organism Escherichia coli, sample type negative control, characteristics[mass] 100 ng) per SAMPLE-GUIDELINES.adoc:424, JPT heavy spike row QY=50 fmol (characteristics[mass] 50 fmol); factor value[mass] = HEK293 amount on HEK rows, not applicable on constant E. coli / spike rows; fragment tolerance 12.8404 ppm (b3.log line 56). sdrf-tools build and structure accept two SILAC light rows per run. Same scripted post.py step adds the Lys-C cleavage column.
+- First benchmark3 validate run: ERROR 'Escherichia coli lysate digest (not a cell line; negative-control background) ... is not a valid ontology term' - the ';' made parse_sdrf parse it as key-value. Free text reworded without ';' and rebuilt; spied unchanged by that rebuild (sha256 identical).
+- BLOCKED.md own section: Rev_Benchmark3 removed from excluded runs, benchmark3 file named under Annotated; headings verified identical (77).
+
+## parse_sdrf validate-sdrf cache-only (spied)
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t dia-acquisition --use_ols_cache_only
+WARNING: Term: study sample in column 'characteristics[sample type]', is not found in the given ontology list pride
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: synthetic phosphopeptide spike-in (not cell-derived) in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+WARNING: Accession 'pride:0000450' in column 'comment[proteomics data acquisition method]' is not under parent term 'PRIDE:0000659'
+Most seems to be fine. There were only warnings.
+exit=0
+
+## parse_sdrf validate-sdrf online (spied)
+$ timeout 1200 parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t dia-acquisition
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: synthetic phosphopeptide spike-in (not cell-derived) in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+Most seems to be fine. There were only warnings.
+exit=0
+(completed despite 22 transient OLS4 errors, trimmed)
+
+## sdrf-tools (spied)
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+$ timeout 900 sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv
+  Terms checked:     32
+  Verified:          30
+  Hallucinated:      2
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [2, 4, 6, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112]: 'synthetic phosphopeptide spike-in (not cell-derived)' in characteristics[cell line]
+  Row(s) [2, 4, 6, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112]: 'synthetic phosphopeptide spike-in (not cell-derived)' in factor value[cell line]
+exit=1
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/pride_v3.json --accession PXD050961
+PXD050961: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; the annotation may have matched the enzyme in another role
+exit=1
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.evidence.json: valid evidence-manifest
+exit=0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.evidence.json
+Manifest covers every column with a value (41 column(s)).
+exit=0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-spied.sdrf.tsv -t2
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+
+## parse_sdrf validate-sdrf cache-only (benchmark3, final file)
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t dia-acquisition --use_ols_cache_only
+WARNING: Term: study sample in column 'characteristics[sample type]', is not found in the given ontology list pride
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: Escherichia coli lysate digest, not a cell line (negative-control background) in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: synthetic phosphopeptide spike-in (not cell-derived) in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+WARNING: Term: fetal stage in column 'characteristics[developmental stage]', is not found in the given ontology list efo
+WARNING: Accession 'pride:0000450' in column 'comment[proteomics data acquisition method]' is not under parent term 'PRIDE:0000659'
+Most seems to be fine. There were only warnings.
+exit=0
+
+## parse_sdrf validate-sdrf online (benchmark3, final file)
+$ timeout 1200 parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t dia-acquisition
+exit=124
+(exit 124 = killed by timeout 1200 s: OLS4 search kept returning HTTP 500 / timeouts (6 logged); the cache-only run above is the deterministic result. The earlier online run on the first benchmark3 build completed and differed only by the ';' ERROR now fixed.)
+
+## sdrf-tools (benchmark3, final file)
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+$ timeout 900 sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.sdrf.tsv
+  Terms checked:     21
+  Verified:          19
+  Hallucinated:      2
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            ISSUES FOUND
+
+Hallucinated:
+  Row(s) [1, 3, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50]: 'Escherichia coli lysate digest, not a cell line (negative-control background)' in characteristics[cell line]
+  Row(s) [2, 4, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51]: 'synthetic phosphopeptide spike-in (not cell-derived)' in characteristics[cell line]
+exit=1
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/pride_v3.json --accession PXD050961
+PXD050961: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Lys-C, Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+exit=1
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.evidence.json: valid evidence-manifest
+exit=0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit=0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD050961-benchmark3.sdrf.tsv -t2
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+
+## Round 3 explanations: check exit 1 = the two deliberate free-text characteristics[cell line] values (spike-in rows; E. coli background rows) - cell-lines forbids reserved words there. 'fetal stage' warning: validator lists EFO only; HsapDv:0000037 per precedent. reconcile BLOCKER = same confirmed false positive. convert-openms stops on precursor tolerance 'not available' (unchanged sentinel).
