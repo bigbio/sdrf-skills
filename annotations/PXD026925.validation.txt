@@ -1,0 +1,59 @@
+# PXD026925 validation log (2026-11-10T11:42Z); SDRF sha256 d40fd9e8eb51aa757594b8d52574c3d5e86bc8e51982259d4ab457da190bfe2e
+
+## Round 1 (superseded build): parse_sdrf validate-sdrf -s annotations/PXD026925.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: NTRC 0652-0 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: doxycycline-induced LCK knockout in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: HuCCT-1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+
+[exited with code 0]
+exit=0 (exit code of validate-sdrf; the logged 'exit=' line in the scratch copy captured tail's status)
+Round-1 sdrf-tools check also flagged 'HuCCT-1' in characteristics[cell line] as not found. Fix (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/scripts/make_tables.py -> samples_*.tsv, rebuilt with sdrf-tools build + concat.sh; no post-build edit of values): cell line 'HuCCT-1' -> 'HuCCT-1 cell' (BTO:0003911 label).
+
+## Round 2 (current file): parse_sdrf validate-sdrf -s annotations/PXD026925.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: NTRC 0652-0 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: doxycycline-induced LCK knockout in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+Most seems to be fine. There were only warnings.
+exit=0
+The three remaining warnings are free-text treatment values (control 'untreated' is the template-prescribed value, batch rule 4; NTRC 0652-0 has no NCIT/EFO term; the LCK knockout is a genetic perturbation with no NCIT/EFO treatment term). Warnings, not errors.
+
+## sdrf-tools structure annotations/PXD026925.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## sdrf-tools reconcile annotations/PXD026925.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/proj.json --accession PXD026925
+PXD026925: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  organism_contradicted (characteristics[organism]): the record names only Mus musculus and never Homo sapiens  [declared 'Homo sapiens']
+exit=1
+
+## sdrf-tools check annotations/PXD026925.sdrf.tsv
+Hallucination Report: annotations/PXD026925.sdrf.tsv
+  Terms checked:     22
+  Verified:          22
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools schema-check annotations/PXD026925.evidence.json
+annotations/PXD026925.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD026925.sdrf.tsv annotations/PXD026925.evidence.json
+Manifest covers every column with a value (34 column(s)).
+exit=0
+
+Reconcile finding refuted (false positive): record_reconcile.check_organism scans only title + projectDescription + sampleProcessingProtocol; those mention 'mice' (the excluded PDX/TMT arm) and never the word 'human'. The record itself says Homo sapiens: PRIDE organisms = NEWT:9606 'Homo sapiens (human)', dataProcessingProtocol 'searched ... against a Uniprot human protein database', the SILAC MaxQuant searches used Uniprot_Human_072419.fasta only (parameters.txt), and HuCCT-1 is a human line (Cellosaurus CVCL_0324 OX 9606). The mouse material (PDX tumours) is not in this SDRF. No change made.
+
+## Post-build processing (batch rule 17)
+Deliverable = concatenation of two sdrf-tools build outputs with identical 55-column headers (asserted with cmp) by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/scripts/concat.sh: build_global.sdrf.tsv (72 rows) + build_pty.sdrf.tsv (3 rows). Needed because the two MaxQuant searches differ in variable modifications (Deamidation (NQ) vs Phospho (STY)), batch rule 5. No other edit.
+
+## parse_sdrf convert-openms -s annotations/PXD026925.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD026925/convert)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.6.12.0 parameters.txt does not record it; no mqpar.xml deposited; not inferred). Same outcome as campaign precedent PXD014368.

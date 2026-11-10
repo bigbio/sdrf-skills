@@ -2217,3 +2217,42 @@ The SILAC arm (24 `HuCCT1_Global_FN01..FN24_PepMap_50cm_050620.raw` + `HuCCT1_pY
 **Annotated:** all 83 SILAC raws (basal interactome Rep1-3 IPs and inputs, MC_2580 interactome forward/reverse IPs and inputs) in `annotations/PXD012954.sdrf.tsv`; channel maps from the paper Methods and checked against deposited H/L ratios.
 
 **Excluded runs (out of scope for the SILAC campaign, not missing evidence):** 27 label-free histone-PTM runs (Pro-PIC derivatisation, ArgC search; MaxQuant `txt_HistonesPTM_DDP38003.zip` / `txt_HistonesPTM_WT_KO.zip`, summary Multiplicity 1, no labels): 38003_1_IIIreplica_histones_LN.raw, 38003_1_IIreplica_histones_LN.raw, 38003_1_Ireplica_histones_LN.raw, 38003_2_IIIreplica_histones_LN.raw, 38003_2_IIreplica_histones_LN.raw, 38003_2_Ireplica_histones_LN.raw, 38003_3_IIIreplica_histones_LN.raw, 38003_3_IIreplica_histones_LN.raw, 38003_3_Ireplica_histones_LN.raw, DMSO1_Ireplica_histones_LN.raw, DMSO_1_IIIreplica_histones_LN.raw, DMSO_1_IIreplica_histones_LN.raw, DMSO_2_IIIreplica_histones_LN.raw, DMSO_2_IIreplica_histones_LN.raw, DMSO_2_Ireplica_histones_LN.raw, DMSO_3_IIIreplica_histones_LN.raw, DMSO_3_IIreplica_histones_LN.raw, DMSO_3_Ireplica_histones_LN.raw, KO1_IIIreplica_LNRR.raw, KO1_IIreplica_LNRR.raw, KO1_Ireplica_LNRR.raw, KO2_IIIreplica_LNRR.raw, KO2_IIreplica_LNRR.raw, KO2_Ireplica_LNRR.raw, WT_IIIreplica_LNRR.raw, WT_IIreplica_LNRR.raw, WT_Ireplica_LNRR.raw. They would go in a separate label-free SDRF (batch rule 12). Note for whoever annotates them: PRIDE says KO1 'was also not cited in the publication'; `DMSO1_Ireplica_histones_LN.raw` and `DMSO_1_*` naming differ.
+
+## PXD050961 — SPIED-DIA phosphoproteomics, MEK inhibition in CRC cell lines (van Bentum et al., Nat Commun 2025; SILAC HCT116 dilution + heavy synthetic phosphopeptide spike-in DIA, timsTOF Pro 2), partial: DMSO arm of HCT116 individual-GF experiment blocked; library/DDA/E. coli-background runs excluded
+
+**Annotated:** `PXD050961-silac-dilution.sdrf.tsv` (Benchmark1, 33 runs: HCT116 heavy lysate diluted 1:1–1:2047 into light reference) and `PXD050961-spied.sdrf.tsv` (Benchmark2 9 DIA runs, cell-line panel GFmix 35 runs, HCT116 individual GFs MEKi arm 15 runs; heavy channel = JPT SpikeMix synthetic phosphopeptide reference). Raw data are Bruker .d folders inside 9 RAW zip bundles, read by HTTP range.
+
+**Blocked (channel/condition undocumented, rule 7):** `HCT116GFs_Rawfiles.zip` DMSO arm, 7 runs searched in HCT116GFs_outputDIANN_SPIED/LF: Popeye_20230704_MVB_HStd_SS1_DB1_A1_1_4167.d, DB1_F3_1_4169.d, DB2_G3_1_4182.d, DB3_H3_1_4198.d, DE1_D4_1_4172.d, DE2_E4_1_4190.d, DE3_F4_1_4203.d. Paper, Suppl. Fig. 15/16 and the authors' code (Zenodo 15045498) describe only the MEKi + BSA/EGF/FGF2/HGF/VEGF-C conditions; "D"=DMSO is supported by ERK2 pY187 light intensities (D* 1.2e3–7.6e3 vs M* <500) and B/E by the ligand initials, but no source states the condition. Unblocked by an author file→condition table.
+
+**Excluded runs (out of SILAC scope or not encodable, not missing evidence):**
+- `HpHLib_Rawfiles.zip` 50 .d (DDA-PASEF high-pH library fractions of light HCT116, MaxQuant label-free).
+- `TargetLibBM2_Rawfiles.zip` 6, `Lib_Benchmark3_Rawfiles.zip` 6, `Lib_BioData_Rawfiles.zip` 3 (DDA-PASEF of the synthetic heavy peptide pool alone, library generation).
+- `Benchmark2_Rawfiles.zip` 3 DDA runs Popeye_20240314_MVB_HStd_BM2_250ng_DDA_A4_1_5705/5706/5707.d (DDA benchmark, MaxQuant).
+- `Rev_Benchmark3_Rawfiles.zip` 18 runs Popeye_20240912_SHN_100ngEcoli_50fmolJTP_{0,25,50,100,200,400}ngHEK_DIA_{1,2,3}_*.d (targeted dilution series; light channel is HEK293 + 100 ng E. coli background, and only E. coli in the 0 ng runs — mixed-organism channel not encodable as one SILAC row; would need a separate design with characteristics[mass] rows per component).
+- `HCT116GFs_Rawfiles.zip` 9 runs dated 20230605 (SS1_DB1_A1_1_3907, DB2_B1_1_3918, DE1_G1_1_3909, MB1_D1_1_3908, MB2_E1_1_3919, ME1_B2_1_3913, MF1_E2_1_3914, MH1_C3_1_3917, MV1_H2_1_3915): in no deposited search log (earlier acquisition, not used).
+
+## PXD046502 — Palmitate / CD8+ T-cell histone PTMs (Tiberti et al., Sci Immunol 2026; histone super-SILAC, mouse), whole dataset (25 RAW)
+
+**Blocker: no reachable source states what any deposited sample is.** The channel map itself is documented (PRIDE protocol: each sample's histones = light, "heavy-isotope labelled histones … used as an internal standard (super-SILAC mix)" = heavy; EpiProfile 2.0 `histone with SILAC` outputs give LightR/HeavyR per peptide, so multiplicity 2 is confirmed). What is missing is the identity and condition of the light (study) sample in every run: treatment, cell type vs. whole tissue, tissue of origin, time point and replicate structure are encoded only as file-name abbreviations, and the one deposited design file contradicts the deposited raw set. No SDRF was written.
+
+Blocked runs (25 `.raw`, all in PRIDE files/all, every entry's `projectAccessions` = PXD046502):
+- Q Exactive HF (raw header "Q Exactive HF - Orbitrap MS"): HF190619_RN_BSA18, HF190619_RN_BSA19, HF190619_RN_LINO18, HF190619_RN_LINO19 (searched in `19-06.zip`); HF200217_RN_TM_B1, HF200217_RN_TM_B2, HF200217_RN_TM_P1, HF200217_RN_TM_P2 (searched in `02-20.zip`)
+- Q Exactive Plus (raw header "Q Exactive Plus - Orbitrap MS"; PRIDE `instruments` lists only Q Exactive HF): QEP250924_RN_spleen_6, _8, _9, _10; QEP260924_RN_PDAC_6, _8, _9, QEP260924_RN_PDAC10 (searched in `Manzo2.zip`, the last as `QEP260924_RN_pdc10`); QEP240804_RN_CD8_2, _6, _7, _8, _9, _10, _12, _13 (**no deposited EpiProfile output covers these 8 runs**)
+
+Sources checked:
+
+| source | result |
+|---|---|
+| PRIDE v3 project record | protocol prose only ("histone PTM levels in CTLs in response to PA treatment"); `references` empty; no per-sample condition |
+| PRIDE files/all (29 files) | 25 RAW, 4 EpiProfile ZIPs, `Exp_des.txt` |
+| `Exp_des.txt` | 2 unlabelled columns headed `Spleen` / `PDAC` plus an `early`/`late` column, 12 rows. It pairs spleen_6/8/9/10 with PDAC_1/3/4/5 and CD8_2…13 with QEP240701_RN_TM_PDAC_CD8_2…13. **None of the PDAC-column files has a deposited raw**; the deposited PDAC_6/8/9/10 are absent from it; the CD8_* runs sit under the `Spleen` header with no statement of what they are; `early`/`late` is not defined |
+| EpiProfile ZIPs (central directories + `histone_ratios*.xls`, `histone_logs.txt`, read by HTTP range) | keyed by raw file name only. `Manzo.zip` holds 28 QEP240701_RN_TM_PDAC_CD4/CD8 runs, none deposited as raw; `Manzo2.zip` holds spleen_1–10 and PDAC_1–9/pdc10, of which only 8 are deposited |
+| Raw file headers (first 1.5 MB, 5 files) | instrument model, method path, original file name only; no sample/comment field |
+| Sci Immunol 2026 (doi:10.1126/sciimmunol.aeb1459, PMID:41894555) | not in PMC; Unpaywall closed |
+| bioRxiv preprint 10.1101/2025.01.09.631811 (full text, JATS source.xml) | HTTP 429; Unpaywall closed; Europe PMC PPR965614 fullTextXML HTTP 500. bioRxiv API gives abstract only |
+| Immunometabolism commentary PMC13390978 (OA) | narrative summary; no proteomics design, no sample key |
+| PRIDE keyword search (title, "palmitate CD8", "Manzo histone") | no other/newer deposit |
+
+**Deliberately not used** (campaign rules 6–8): reading `BSA`/`LINO`/`B`/`P` as BSA vehicle / linoleate / palmitate, `spleen`/`PDAC` as organism part or as CD8+ T cells sorted from those tissues, or `early`/`late` as a tumour stage or time point. All are plausible readings of abbreviations and none is stated anywhere reachable.
+
+**Unblocked by:** the paper's Methods/figure legends for the histone MS experiments (Sci Immunol 2026 or the bioRxiv preprint), or a corrected sample sheet from the submitters (T. Manzo / R. Noberini / T. Bonaldi), giving for each deposited raw the sample type (sorted CD8+ T cells vs. tissue), treatment (BSA / PA / linoleate, dose, duration), tissue of origin, the meaning of `early`/`late`, and the mouse/culture replicate identity; and the EpiProfile output for the QEP240804_RN_CD8_* runs (or a statement that they were not analysed). Technical values are settled in `annotations/PXD046502.report.md`.
