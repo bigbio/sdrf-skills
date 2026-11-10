@@ -1,0 +1,431 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD018961.sdrf.tsv",
+ "dataset": "PXD018961",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD018961 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/pride.json): title, sampleProcessingProtocol, dataProcessingProtocol, reference PMID 34624079"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD018961/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/allfiles.json; 146 entries = 142 .raw + MaxQuant_output_gProteome.zip + MaxQuant_output_pYome.zip + file_assignment_gProteome.txt + file_assignment_pYome.txt; raw list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/files_raw.json)"
+  },
+  {
+   "id": "assign_gP",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD018961/file_assignment_gProteome.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/file_assignment_gProteome.txt)"
+  },
+  {
+   "id": "assign_pY",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD018961/file_assignment_pYome.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/file_assignment_pYome.txt)"
+  },
+  {
+   "id": "mq_gP",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD018961/MaxQuant_output_gProteome.zip members summary.txt, parameters.txt, proteinGroups.txt (HTTP range read, Deflate64 members inflated with zipfile-deflate64; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/mq_g/)"
+  },
+  {
+   "id": "mq_pY",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD018961/MaxQuant_output_pYome.zip members summary.txt, parameters.txt, proteinGroups.txt, Phospho (STY)Sites.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/mq_p/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/scripts/orient.py: SHMT2 / CD79A / SYK ratios from the deposited MaxQuant outputs)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of the first 3 MB of 11 raw files (one or two per gel lane L1-L6 and all 4 pYome runs) under https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD018961/; instrument-method text parsed by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/scripts/rawhdr.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/raw_headers.tsv"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_7034?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/cellosaurus_CVCL_7034.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 term lookups (HANCESTRO:0431, UBERON:0001708, CL:0000236, MONDO:0007243, NCIT:C178973, NCIT:C457, EFO:0010806, EFO:0022349, HsapDv:0000265, PRIDE:0000567/0000608/0000599/0000627, MS:1002523/1001251/1000422/1000484); none obsolete"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Wilke AC et al. SHMT2 inhibition disrupts the TCF3 transcriptional survival program in Burkitt lymphoma. Blood 2022;139(4):538-553, doi:10.1182/blood.2021012081, PMID 34624079, PMC8938936. Full text NOT retrieved (PMC record is PDF-only; Europe PMC full text 500; Europe PMC PDF render 403; Unpaywall/publisher PDF 403; not bypassed). Only metadata via NCBI efetch (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/efetch.xml)."
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest: 1.2.0); local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0), README.adoc:330 (biological replicate). The spec submodule's nested templates copy is older than 7da1747."
+  },
+  {
+   "id": "scripts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/scripts/make_tables.py -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/samples_gProteome.tsv, samples_pYome.tsv, technical_gProteome.tsv, technical_pYome.tsv; sdrf-tools build per sub-experiment -> /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/build_*.sdrf.tsv; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD018961/scripts/concat.sh concatenates (identical headers)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-288",
+   "value": "BL-60_<shRNA>_<days>d_gProteome_<lane L1-L6> | BL-60_<shRNA>_<days>d_pYome_mix<803|806>",
+   "source_ids": [
+    "assign_gP",
+    "assign_pY",
+    "mq_gP",
+    "mq_pY",
+    "scripts"
+   ],
+   "evidence": "One source per SILAC-labelled culture in one mix. gProteome: file_assignment_gProteome.txt indexes L1-L6 = six SILAC mixes (gel lanes), file names *_L<n>_<slice>.raw, MaxQuant Experiment L1-L6 with Fraction 1-23. pYome: file_assignment_pYome.txt indexes mixes 803 and 806; rep1/rep2 files of one mix share the mix's three source names (one physical mix, see technical replicate claim)."
+  },
+  {
+   "location": "comment[label] + characteristics[genetic modification] + factor value[genetic modification] rows 1-276 (gProteome)",
+   "value": "SILAC light = dox-inducible non-targeting control shRNA (shGL2); SILAC heavy = dox-inducible shRNA targeting SHMT2 (shSHMT2.1266)",
+   "source_ids": [
+    "assign_gP",
+    "mq_gP",
+    "orientation",
+    "pride"
+   ],
+   "evidence": "file_assignment_gProteome.txt: 'L1..L6: shGL2 (Light) / shSHMT2.1266 (Heavy)'. MaxQuant summary.txt Multiplicity 2, Labels1 Arg10;Lys8 (no medium channel searched). Data check: proteinGroups SHMT2 Ratio H/L normalized L1-L6 = 0.158/0.148/0.146/0.194/0.187/0.190 while SHMT1 ~1.0 -> heavy carries the SHMT2 knockdown. PRIDE protocol: doxycycline-inducible shRNAs shGL2 (non-targeting), shSHMT2.1266, shCD79A in BL60 cells."
+  },
+  {
+   "location": "comment[label] + characteristics[genetic modification] + factor value[genetic modification] rows 277-288 (pYome)",
+   "value": "SILAC light = shGL2; SILAC medium = shCD79A; SILAC heavy = shSHMT2.1266",
+   "source_ids": [
+    "assign_pY",
+    "mq_pY",
+    "orientation",
+    "pride"
+   ],
+   "evidence": "file_assignment_pYome.txt: '803: shGL2 3d (Light) / shCD79A 1d (Medium-Heavy) / shSHMT2.1266 d3 (Heavy)'; '806: shGL2 5d (Light) / shCD79A 2d (Medium-Heavy) / shSHMT2.1266 d5 (Heavy)'. MaxQuant Multiplicity 3, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8. Data check: proteinGroups SHMT2 H/L 0.094/0.085/0.097/0.087 (R1_803/R1_806/R2_803/R2_806) and M/L ~1.1; CD79A pY210 M/L 0.52/0.67/0.54/0.17 and SYK pY352 M/L 0.52/0.27/0.53/0.17 (reduced BCR signalling after CD79A knockdown) -> medium = shCD79A, heavy = shSHMT2."
+  },
+  {
+   "location": "characteristics[sampling time] + factor value[sampling time] rows 1-288",
+   "value": "3 day / 5 day (gProteome L4-L6 / L1-L3; pYome shGL2 and shSHMT2 3 d in 803, 5 d in 806); 1 day / 2 day (pYome shCD79A in 803 / 806)",
+   "source_ids": [
+    "assign_gP",
+    "assign_pY",
+    "pride"
+   ],
+   "evidence": "file_assignment_gProteome.txt: L1-L3 '5d R1-R3', L4-L6 '3d R1-R3'. file_assignment_pYome.txt per channel: shGL2 3d / shCD79A 1d / shSHMT2.1266 d3 (803) and shGL2 5d / shCD79A 2d / shSHMT2.1266 d5 (806). PRIDE protocol: cells 'cultured for 3 or 5 days in SILAC medium containing 1 ug/ml doxycycline to induce shRNA expression'. Value = duration of doxycycline-induced shRNA expression."
+  },
+  {
+   "location": "characteristics[treatment] rows 1-288",
+   "value": "Doxycycline",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: all labelled BL60 shRNA lines were cultured in SILAC medium containing 1 ug/ml doxycycline to induce shRNA expression (control shGL2 included). NCIT:C457. Constant, hence not a factor."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-288",
+   "value": "1-3 for gProteome mixes L1-L3 (5 d) and L4-L6 (3 d); 4 for the pYome culture of the same shRNA/time group; 1 for each shCD79A group",
+   "source_ids": [
+    "assign_gP",
+    "assign_pY",
+    "files",
+    "scripts"
+   ],
+   "evidence": "Numbered 1..n within each (genetic modification, sampling time) group, one number per independent culture (README.adoc:330; campaign rule 3). gProteome R1-R3 are separate SILAC mixes (file_assignment 'R1/R2/R3'; separate tubes and acquisition dates 270117, 310117, 010217 / 030217, 070217, 090217-100217). pYome mixes are separate cultures prepared later (file names 081217, MaxQuant run 2018), so they get the next number (4) in the shGL2 and shSHMT2 groups."
+  },
+  {
+   "location": "comment[technical replicate] rows 277-288 (pYome)",
+   "value": "1 (rep1), 2 (rep2)",
+   "source_ids": [
+    "files",
+    "assign_pY",
+    "mq_pY"
+   ],
+   "evidence": "Each pYome mix (803, 806) has two raw files *_rep1/*_rep2, acquired the same day (140218) with the same method; file_assignment_pYome.txt lists one index per mix, not per rep. Encoded as two measurements of one physical mix (same source names). Whether rep1/rep2 are repeated pTyr IPs or re-injections is not documented (see limitations)."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-276 (gProteome)",
+   "value": "1",
+   "source_ids": [
+    "assign_gP",
+    "mq_gP"
+   ],
+   "evidence": "Each gel slice measured once (one raw file per lane/slice; MaxQuant summary lists 23 fractions per experiment)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-276 (gProteome)",
+   "value": "1-23",
+   "source_ids": [
+    "mq_gP",
+    "files"
+   ],
+   "evidence": "MaxQuant summary.txt Fraction column equals the trailing slice number of every file name (138/138 checked); L6 slices 1-8 were acquired on 090217 and 9-23 on 100217, same lane."
+  },
+  {
+   "location": "comment[fraction identifier] rows 277-288 (pYome)",
+   "value": "1",
+   "source_ids": [
+    "mq_pY"
+   ],
+   "evidence": "pYome runs are unfractionated single injections."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-276 (gProteome)",
+   "value": "NT=Gel electrophoresis;AC=PRIDE:0000567",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "PRIDE protocol: 'Extracted proteins were subjected to gel-based proteome analysis as described previously [Corso et al. 2016]'; PRIDE experimentTypes 'Gel-based experiment'; 23 slices per lane. The gel type (SDS-PAGE is likely) is only in the cited paper's SI, not retrieved, hence the parent term."
+  },
+  {
+   "location": "comment[fractionation method] rows 277-288 (pYome)",
+   "value": "not applicable",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "pYome peptides were pTyr-immunoprecipitated and injected directly."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 277-288 (pYome)",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: 'IP-based enrichment of tyrosine-phosphorylated peptides (pYome) ... PTMScan Phospho-Tyrosine Rabbit mAb (P-Tyr-1000) Kit'. EFO:0010806."
+  },
+  {
+   "location": "characteristics[enrichment process] rows 1-276 (gProteome)",
+   "value": "not applicable",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Global proteome: lysis, gel-based separation, no enrichment."
+  },
+  {
+   "location": "characteristics[organism] rows 1-288",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus BL-60 OX NCBI_TaxID=9606."
+  },
+  {
+   "location": "characteristics[cell line] + characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-288",
+   "value": "BL-60 / CVCL_7034 / BL-60",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE description: 'the human Burkitt's Lymphoma cell line BL60'. Cellosaurus CVCL_7034 ID BL-60, synonyms BL60, IARC/BL60 (EFO_0022349 'BL-60 cell', BTO_0001934). Note: 'sdrf-tools cellline lookup BL60' fuzzy-matched the unrelated NCI-BL1339 (synonym BL6, CVCL_2637); rejected."
+  },
+  {
+   "location": "characteristics[disease] rows 1-288",
+   "value": "Burkitt lymphoma",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C27694 EBV-related Burkitt lymphoma / ORDO Orphanet_543 Burkitt lymphoma; PRIDE disease DOID:8584 Burkitt lymphoma; MONDO:0007243. All samples are BL-60 cells (no normal controls)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-288",
+   "value": "jaw skeleton",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site: In situ; Bone, jaw; UBERON=UBERON_0001708' (UBERON:0001708 jaw skeleton)."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-288",
+   "value": "B cell",
+   "source_ids": [
+    "cellosaurus",
+    "pride"
+   ],
+   "evidence": "Cellosaurus 'Cell type: B-cell; CL=CL_0000236'; PRIDE sample attribute CL:0000236 B cell."
+  },
+  {
+   "location": "characteristics[material type] rows 1-288",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured BL-60 cell line."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] rows 1-288",
+   "value": "4Y / female / child stage (1-4 yo)",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 4Y, SX Female (donor at derivation). HsapDv:0000265 child stage (1-4 yo) covers age 4Y; EFO has no child-stage term (campaign precedent PXD006404/PXD072695; validate-sdrf warns that the term is outside EFO)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-288",
+   "value": "Algerian",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Population: Algerian.' -> HANCESTRO:0431 Algerian (not obsolete)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-288",
+   "value": "BL-60_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All rows derive from the single BL-60 donor (Cellosaurus also lists IARC-261/IARC-277 from the same individual)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-288",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: 'cells were cultured in RPMI without lysine and arginine (Silantes) supplemented with 10% h.i. dialyzed FCS'. NCIT:C178973."
+  },
+  {
+   "location": "comment[instrument] rows 1-288",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw headers of all 11 sampled files (both sub-experiments) contain 'Q Exactive HF'; PRIDE instruments MS:1002523."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-288",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "PRIDE protocol 'data-dependent acquisition using a top 20 MS/MS method'; raw method TOP20_120K30."
+  },
+  {
+   "location": "comment[dissociation method] + comment[ms2 mass analyzer] rows 1-288",
+   "value": "HCD (MS:1000422) / orbitrap (MS:1000484)",
+   "source_ids": [
+    "pride",
+    "raw"
+   ],
+   "evidence": "PRIDE protocol: 'selected ... for HCD', MS/MS resolution 30,000 (Orbitrap); raw method TOP20_120K30."
+  },
+  {
+   "location": "comment[collision energy] rows 1-276 (gProteome)",
+   "value": "30 NCE",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw instrument method 'NCE / stepped NCE 30' in all 7 sampled gProteome files (each lane L1-L6); the PRIDE protocol's 28% applies to the phospho-peptide runs."
+  },
+  {
+   "location": "comment[collision energy] rows 277-288 (pYome)",
+   "value": "28 NCE",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw method 'NCE / stepped NCE 28' in all 4 pYome files; PRIDE protocol 'NCE setting of 28%'."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-288",
+   "value": "350m/z-1600m/z",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw method 'Scan range 350 to 1600 m/z' in all 11 sampled files; PRIDE protocol 'm/z 350-1600'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-288",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_gP",
+    "mq_pY"
+   ],
+   "evidence": "PRIDE protocol 'protein digestion with trypsin was carried out overnight'; MaxQuant search rule Trypsin/P (campaign rule 2: annotate the digestion enzyme)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-288",
+   "value": "6 ppm / 20 ppm",
+   "source_ids": [
+    "pride",
+    "mq_gP",
+    "mq_pY"
+   ],
+   "evidence": "PRIDE dataProcessingProtocol: 'After initial recalibration, precursor and fragment ion mass tolerances of 6 and 20 ppm'. parameters.txt of both searches: 'MS/MS tol. (FTMS) 20 ppm'; main-search precursor tolerance is not in parameters.txt/summary.txt (no mqpar.xml deposited), so the protocol value is used for both searches."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 277-288 (pYome)",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608 / NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE protocol (pYome workflow): 'protein reduction with DTT and alkylation with iodoacetamide'."
+  },
+  {
+   "location": "comment[reduction reagent] + comment[alkylation reagent] rows 1-276 (gProteome)",
+   "value": "not available",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Global proteome workflow is only cited ('as described previously [Corso et al. 2016]'); reagents not stated in the deposit."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-276 (gProteome)",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term, Deamidated N,Q variable; Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) variable; Phospho and Arg6/Lys4 columns 'not applicable'",
+   "source_ids": [
+    "mq_gP"
+   ],
+   "evidence": "gProteome summary.txt: Variable modifications 'Acetyl (Protein N-term);Oxidation (M);Deamidation (NQ)', Multiplicity 2, Labels1 'Arg10;Lys8'; parameters.txt Fixed modifications 'Carbamidomethyl (C)', site tables Deamidation (NQ)Sites.txt, Oxidation (M)Sites.txt. No phospho, no medium label searched."
+  },
+  {
+   "location": "comment[modification parameters] rows 277-288 (pYome)",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl protein N-term, Phospho S,T,Y variable; Label:13C(6)15N(4) R, Label:13C(6)15N(2) K, Label:13C(6) R (UNIMOD:188), Label:2H(4) K (UNIMOD:481) variable; Deamidated column 'not applicable'",
+   "source_ids": [
+    "mq_pY",
+    "pride"
+   ],
+   "evidence": "pYome summary.txt: Variable modifications 'Oxidation (M);Acetyl (Protein N-term);Phospho (STY)', Multi modifications empty, Multiplicity 3, Labels1 'Arg6;Lys4', Labels2 'Arg10;Lys8'; parameters.txt Fixed 'Carbamidomethyl (C)'. PRIDE protocol labels: medium 13C6-Arg + 4,4,5,5-d4-Lys; heavy 13C6 15N4-Arg + 13C6 15N2-Lys. Label mods MT=Variable per campaign rule 11."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-288",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; human (Homo sapiens) and cell-lines (BL-60) templates fit the samples."
+  },
+  {
+   "location": "technology type + assay name + comment[data file] rows 1-288",
+   "value": "proteomic profiling by mass spectrometry; file stem; file name",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Every one of the 142 deposited .raw files appears once per SILAC channel (2 rows each for gProteome, 3 for pYome)."
+  }
+ ],
+ "limitations": [
+  "Paper full text (Blood 2022, PMC8938936) and its supplement not retrievable (PDF-only PMC record; Europe PMC fulltext 500, PDF render 403, Unpaywall/ASH PDF 403; not bypassed). Design comes from the deposited file_assignment_*.txt files, the PRIDE protocol text, MaxQuant outputs and raw headers. The cited gel method (Corso et al. 2016, PMC4878517) has its methods only in SI, not retrieved.",
+  "pYome rep1/rep2 per mix (803, 806) encoded as technical replicates of one physical SILAC mix; whether they are repeated pTyr IPs from the same lysate or re-injections of one IP is undocumented. If they were independent cultures, biological replicate numbers of the pYome rows would need to change.",
+  "Out of scope: the pYome MaxQuant search (summary.txt) also contains TO_Wilke_200418_180518_pYome_R1_277/_280 and _R2_277/_280 (experiments R1_277, R1_280, R2_277, R2_280), which are NOT deposited in PXD018961 and have no channel map in file_assignment_pYome.txt; they are not annotated. All 142 deposited raw files are annotated.",
+  "Software version conflict: PRIDE dataProcessingProtocol says MaxQuant 1.6.0.1; this matches the pYome parameters.txt, but the gProteome parameters.txt says 1.5.2.8. The precursor tolerance 6 ppm is taken from the protocol text for both searches (not recorded in the deposited MaxQuant tables).",
+  "The gProteome deposit protocol does not state reduction/alkylation reagents or gel type (left 'not available' / parent term 'Gel electrophoresis'). PRIDE's instrument/gradient text is written for the phospho-peptide samples; gProteome NCE (30) and scan range come from raw headers (one or two files per lane sampled, not all 138).",
+  "characteristics[genetic modification] is a custom characteristics column (spec 'Extending Templates'), mirrored in factor value[genetic modification]; time encodes days of doxycycline-induced shRNA expression in characteristics[sampling time].",
+  "sdrf-tools cellline lookup returned a wrong fuzzy match for BL60 (NCI-BL1339, CVCL_2637); the Cellosaurus API entry CVCL_7034 was used instead.",
+  "No independent review was run in this task (caller's instruction: no review file, no review-gate approve); status REVIEW_PENDING_EXTERNAL."
+ ]
+}

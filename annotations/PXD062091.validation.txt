@@ -3,3 +3,48 @@
 # sha256: a5662051ba52b348a10f08d0dfee8a818ebc893e33d5b98d21f93dffa2228a6c
 
 $ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: T3M-4 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools check /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv
+Hallucination Report: /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv
+  Terms checked:     18
+  Verified:          18
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+$ sdrf-tools structure /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ sdrf-tools reconcile /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/pride.json --accession PXD062091
+PXD062091: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ sdrf-tools schema-check /home/user/bigbio/sdrf-skills/annotations/PXD062091.evidence.json
+/home/user/bigbio/sdrf-skills/annotations/PXD062091.evidence.json: valid evidence-manifest
+exit code: 0
+
+$ sdrf-tools manifest-coverage /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv /home/user/bigbio/sdrf-skills/annotations/PXD062091.evidence.json
+Manifest covers every column with a value (35 column(s)).
+exit code: 0
+
+$ parse_sdrf convert-openms -s /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv -t2
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv
+Factor columns: ['factor value[genetic modification]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[biorepository]', 'characteristics[cell line authentication]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]', 'characteristics[nascent protein labeling]']
+Conditions (2): dict_keys(['control sgRNA (sgControl) in lentiCRISPRv2 hygro (CRISPR-Cas9)', 'METTL13-targeting sgRNA (sgMETTL13) in lentiCRISPRv2 hygro (CRISPR-Cas9 knockout)'])
+Files per condition: dict_values([5, 5])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 10 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv
+exit code: 0
+
+## Notes on warnings
+- parse_sdrf WARNING "Term: T3M-4 in column 'characteristics[cell line]' is not found in clo;bto;efo": T3M-4 is the Cellosaurus ID of CVCL_4056 (synonyms T3M4, Panc89). OLS4 has BTO:0002864 "T3M4 cell" and EFO:0002714 "Panc89" (synonym T3M-4); a test file with "T3M4" gave the same warning. Kept as the Cellosaurus name (skills/sdrf-annotate/references/cellline.md line 177). Not an error.
+- convert-openms "Warning no TA= specified" is the Acetyl PP=Protein N-term modification (positional, correctly PP= not TA=).
+- reconcile exit 0: no findings to refute.
