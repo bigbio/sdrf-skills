@@ -41,7 +41,7 @@
   {
    "id": "code",
    "kind": "code-repository",
-   "location": "Zenodo 10.5281/zenodo.15045498 (GitHub Mirjamva/SPIED-DIA v1.0) https://zenodo.org/api/records/15045498 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/zen): CellLinePanel_Global_Norm.R lines 90-104 (sample 1-3 BSA_DMSO, 4-6 BSA_MEKi, 7-9 GF, 10-12 GF_MEKi), DiffExpression.R lines ~195-212 and CellLinePanel_TargetedAnalysis.R lines 363-371 (limma factors: 1-3 BSA.DMSO, 4-6 BSA.MEKi, 7-9 LigandMix.DMSO, 10-12 LigandMix.MEKi); README DIA-NN settings"
+   "location": "README image /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/zen/Mirjamva-SPIED-DIA-d877d23/GitHub_SPIED-DIA/images_readme/HCT116_indGFs.jpg (HCT116: AZD6244 + BSA/EGF/HGF/FGF2/VEGF-C); Zenodo 10.5281/zenodo.15045498 (GitHub Mirjamva/SPIED-DIA v1.0) https://zenodo.org/api/records/15045498 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD050961/zen): CellLinePanel_Global_Norm.R lines 90-104 (sample 1-3 BSA_DMSO, 4-6 BSA_MEKi, 7-9 GF, 10-12 GF_MEKi), DiffExpression.R lines ~195-212 and CellLinePanel_TargetedAnalysis.R lines 363-371 (limma factors: 1-3 BSA.DMSO, 4-6 BSA.MEKi, 7-9 LigandMix.DMSO, 10-12 LigandMix.MEKi); README DIA-NN settings"
   },
   {
    "id": "diann_logs",
@@ -70,6 +70,14 @@
   }
  ],
  "claims": [
+  {
+   "location": "characteristics[sample storage temperature], characteristics[passage number] all rows",
+   "value": "-80 °C for HCT116/Caco-2/DLD-1 rows; not available for HEK293 rows; not applicable for synthetic spike-in rows / passage number not available (cell rows), not applicable (synthetic rows)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods \"Cell culture and treatment experiment\": \"HCT116, Caco2 and DLD-1 ... The final PBS wash was removed and the resulting pellet was frozen in ethanol on dry ice and stored at -80 °C\"; SILAC dilution benchmark: \"Cell harvest and lysis as described above\". HEK293 storage not described. Passage numbers are not stated anywhere. Synthetic peptide pool is not a cell sample (lyophilized pools kept at -20, not a cell storage). Both columns allow both reserved words in cell-lines v1.1.0 (contract)."
+  },
   {
    "location": "comment[instrument] all rows",
    "value": "NT=timsTOF Pro 2;AC=MS:1003230",
@@ -165,7 +173,7 @@
    "source_ids": [
     "diann_logs"
    ],
-   "evidence": "No --mass-acc-ms1 given; DIA-NN auto-optimised from the first run and logs only per-run \"Recommended MS1 mass accuracy\" values (~9-15 ppm); no applied MS1 tolerance is recorded."
+   "evidence": "No --mass-acc / --mass-acc-ms1 in any command line; every log says \"DIA-NN will optimise the mass accuracy automatically using the first run in the experiment\". Benchmark1, Benchmark2 and panel logs carry only per-run \"Recommended MS1 mass accuracy setting\" values (~9-15 ppm). The HCT116GFs SPIED log has \"[0:21] Cannot perform MS1 mass calibration, too few confidently identified precursors\" / \"[0:21] Using MS1 mass accuracy: 20 ppm\" / \"[0:21] Using mass accuracy: 20 ppm\", followed by \"[1:04] Optimised mass accuracy: 5.22028 ppm\": 20 ppm is the calibration fallback of the first pass of auto-optimisation, not the search setting, and the MS1 value applied after optimisation is not logged. Hence not available in all rows."
   },
   {
    "location": "comment[fraction identifier], comment[technical replicate], assay name, comment[data file] all rows",
@@ -280,6 +288,6 @@
   "Instrument model from Methods/PRIDE; Bruker analysis.tdf GlobalMetadata not read (91 MB per run).",
   "Benchmark1 DIA-NN log lacks --var-mod UniMod:1; N-terminal acetylation annotated from the MaxQuant HpH library and paper text.",
   "Culture medium for SILAC: arginine/lysine-free DMEM with dialysed FBS plus labelled or unlabelled Arg/Lys (Methods) - encoded as DMEM.",
-  "Excluded runs (deposited but out of SILAC scope or undocumented): HpHLib_Rawfiles.zip 50 .d (DDA-PASEF high-pH library fractions, MaxQuant label-free); TargetLibBM2_Rawfiles.zip 6, Lib_Benchmark3_Rawfiles.zip 6, Lib_BioData_Rawfiles.zip 3 (DDA-PASEF of synthetic heavy peptide pool for libraries); Benchmark2_Rawfiles.zip 3 DDA runs Popeye_20240314_MVB_HStd_BM2_250ng_DDA_A4_1_5705/5706/5707.d (DDA benchmark, MaxQuant); Rev_Benchmark3_Rawfiles.zip 18 runs (targeted dilution series: 100 ng E. coli background + 50 fmol heavy peptides + 0-400 ng HEK293; mixed-organism light channel, 0 ng runs have no human sample - not encodable as one SILAC row per channel); HCT116GFs_Rawfiles.zip 7 DMSO-arm runs Popeye_20230704_MVB_HStd_SS1_DB1_A1_1_4167, DB1_F3_1_4169, DB2_G3_1_4182, DB3_H3_1_4198, DE1_D4_1_4172, DE2_E4_1_4190, DE3_F4_1_4203 (searched but the DMSO arm is not described anywhere in paper/SI/code; condition only from file-name letters); HCT116GFs_Rawfiles.zip 9 runs dated 20230605 (DB1,DB2,DE1,MB1,MB2,ME1,MF1,MH1,MV1; not in any deposited search log). See annotations/BLOCKED.md section PXD050961."
+  "Excluded runs (deposited but out of SILAC scope or undocumented): HpHLib_Rawfiles.zip 50 .d (DDA-PASEF high-pH library fractions, MaxQuant label-free); TargetLibBM2_Rawfiles.zip 6, Lib_Benchmark3_Rawfiles.zip 6, Lib_BioData_Rawfiles.zip 3 (DDA-PASEF of synthetic heavy peptide pool for libraries); Benchmark2_Rawfiles.zip 3 DDA runs Popeye_20240314_MVB_HStd_BM2_250ng_DDA_A4_1_5705/5706/5707.d (DDA benchmark, MaxQuant); Rev_Benchmark3_Rawfiles.zip 18 runs (targeted dilution series: 100 ng E. coli background + 50 fmol heavy peptides + 0-400 ng HEK293; mixed-organism light channel, 0 ng runs have no human sample - not encodable as one SILAC row per channel); HCT116GFs_Rawfiles.zip 7 DMSO-arm runs Popeye_20230704_MVB_HStd_SS1_DB1_A1_1_4167, DB1_F3_1_4169, DB2_G3_1_4182, DB3_H3_1_4198, DE1_D4_1_4172, DE2_E4_1_4190, DE3_F4_1_4203 (searched but the DMSO arm is not described anywhere in paper/SI/code; condition only from file-name letters); Blocked (not annotated): HCT116GFs_Rawfiles.zip 9 runs dated 20230605 - 6 MEKi-arm runs Popeye_20230605_MVB_HStd_SS1_MB1_D1_1_3908, MB2_E1_1_3919, ME1_B2_1_3913, MF1_E2_1_3914, MH1_C3_1_3917, MV1_H2_1_3915 and 3 DMSO-arm runs DB1_A1_1_3907, DB2_B1_1_3918, DE1_G1_1_3909: no deposited search log (neither HCT116GFs SPIED nor LF report.log.txt) lists them, and no source links them to the documented samples (whether they are earlier injections of the 20230704 samples or separate cultures is undocumented; analysis.tdf_bin ~0.5 GB vs ~2.5 GB for the 20230704 runs suggests a different or aborted acquisition), so sample identity cannot be asserted (rule 7). See annotations/BLOCKED.md section PXD050961."
  ]
 }

@@ -2225,12 +2225,13 @@ The SILAC arm (24 `HuCCT1_Global_FN01..FN24_PepMap_50cm_050620.raw` + `HuCCT1_pY
 
 **Blocked (channel/condition undocumented, rule 7):** `HCT116GFs_Rawfiles.zip` DMSO arm, 7 runs searched in HCT116GFs_outputDIANN_SPIED/LF: Popeye_20230704_MVB_HStd_SS1_DB1_A1_1_4167.d, DB1_F3_1_4169.d, DB2_G3_1_4182.d, DB3_H3_1_4198.d, DE1_D4_1_4172.d, DE2_E4_1_4190.d, DE3_F4_1_4203.d. Paper, Suppl. Fig. 15/16 and the authors' code (Zenodo 15045498) describe only the MEKi + BSA/EGF/FGF2/HGF/VEGF-C conditions; "D"=DMSO is supported by ERK2 pY187 light intensities (D* 1.2e3–7.6e3 vs M* <500) and B/E by the ligand initials, but no source states the condition. Unblocked by an author file→condition table.
 
+**Also blocked (sample identity undocumented, rule 7; unsearched):** `HCT116GFs_Rawfiles.zip` 9 runs dated 20230605 — 6 MEKi-arm runs Popeye_20230605_MVB_HStd_SS1_MB1_D1_1_3908.d, MB2_E1_1_3919.d, ME1_B2_1_3913.d, MF1_E2_1_3914.d, MH1_C3_1_3917.d, MV1_H2_1_3915.d and 3 DMSO-arm runs DB1_A1_1_3907.d, DB2_B1_1_3918.d, DE1_G1_1_3909.d. Neither HCT116GFs DIA-NN log (SPIED, LF) lists them, and no source says whether they are earlier injections of the 20230704 samples or separate cultures; their analysis.tdf_bin (~0.5 GB vs ~2.5 GB for the 20230704 runs) suggests a different or aborted acquisition. Unblocked by an author statement linking them to samples (they would then be annotated with tolerances `not applicable`, as never searched).
+
 **Excluded runs (out of SILAC scope or not encodable, not missing evidence):**
 - `HpHLib_Rawfiles.zip` 50 .d (DDA-PASEF high-pH library fractions of light HCT116, MaxQuant label-free).
 - `TargetLibBM2_Rawfiles.zip` 6, `Lib_Benchmark3_Rawfiles.zip` 6, `Lib_BioData_Rawfiles.zip` 3 (DDA-PASEF of the synthetic heavy peptide pool alone, library generation).
 - `Benchmark2_Rawfiles.zip` 3 DDA runs Popeye_20240314_MVB_HStd_BM2_250ng_DDA_A4_1_5705/5706/5707.d (DDA benchmark, MaxQuant).
 - `Rev_Benchmark3_Rawfiles.zip` 18 runs Popeye_20240912_SHN_100ngEcoli_50fmolJTP_{0,25,50,100,200,400}ngHEK_DIA_{1,2,3}_*.d (targeted dilution series; light channel is HEK293 + 100 ng E. coli background, and only E. coli in the 0 ng runs — mixed-organism channel not encodable as one SILAC row; would need a separate design with characteristics[mass] rows per component).
-- `HCT116GFs_Rawfiles.zip` 9 runs dated 20230605 (SS1_DB1_A1_1_3907, DB2_B1_1_3918, DE1_G1_1_3909, MB1_D1_1_3908, MB2_E1_1_3919, ME1_B2_1_3913, MF1_E2_1_3914, MH1_C3_1_3917, MV1_H2_1_3915): in no deposited search log (earlier acquisition, not used).
 
 ## PXD046502 — Palmitate / CD8+ T-cell histone PTMs (Tiberti et al., Sci Immunol 2026; histone super-SILAC, mouse), whole dataset (25 RAW)
 
