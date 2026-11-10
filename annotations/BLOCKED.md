@@ -2116,3 +2116,23 @@ Why blocked:
 - Not a duplicate: absent from `annotations/` and `sdrf-annotated-datasets/datasets/`; Europe PMC links only this paper.
 
 **Unblocked by:** the paper's Experimental Procedures / Fig. 1 / supplementary tables (MCP, CC-BY; fetchable by a human from mcponline.org or PMC) or an author statement giving, per search, the light/heavy conditions (vehicle vs insulin; untreated vs palmitate, with/without insulin) and the meaning of A–H, 1–3 and `<n>_<m>`; then cross-check against `orientation.txt`. Planned SDRF: 65 runs × 2 channels = 130 rows; templates ms-proteomics v1.2.0 + human + cell-lines (Hep-G2, CVCL_0027, male 15Y, hepatoblastoma per Cellosaurus); factors treatment (insulin / palmitate, `untreated` controls) ; modification parameters per search (Phospho only for the two phospho searches); Arg10 UNIMOD:267, Lys8 UNIMOD:259 `MT=Variable`; cleavage agents Lys-C + trypsin for the phospho arms (GdmCl/LysC-then-trypsin protocol) and trypsin for the proteome arm (PRIDE proteome protocol); DDA top-10, Easy-nLC 1000.
+
+---
+
+## PXD009009 — Hypoxia-regulated genes in HCT116 colon cancer cells (Chen et al., J Proteomics 2018; duplex SILAC Lys6/Arg6 proteome + dimethyl secretome), whole SILAC arm (132 RAW) blocked; 44 dimethyl secretome RAW excluded (out of scope)
+
+**Not annotated. The proteome arm is genuine duplex SILAC, but no accessible source says whether the hypoxic or the normoxic cells carried the heavy label in either mixture (Exp1, Exp2). Campaign rules 6–7 therefore block every SILAC run.**
+
+| | |
+|---|---|
+| Publication | Chen JT, Liu CC, Yu JS, Li HH, Lai MC. *J Proteomics* 2018, doi:10.1016/j.jprot.2018.02.031, PMID 29524648. **Closed access**: no PMCID; Unpaywall `closed`; ScienceDirect not fetched (subscription/bot check, not bypassed). Only the abstract was read. Europe PMC found no Data in Brief or dataset descriptor. The same-lab papers PMC4831676 and PMC6444133 (read in full) and the FEBS J 2025 follow-up (abstract, PMID 39710969) do not give the labels. |
+| Deposited | 180 files: `20150318-Exp1-SILAC-33ug-s1..s66.raw` (66) and `20150418-Exp2-SILAC-33ug-s1..s66.raw` (66), which are 2 SILAC mixtures × 66 online-SCX fractions on an Orbitrap Elite (raw header); `20151211-hypoxia-12_5ug-s01..s22.RAW` and `20151214-hypoxia-12_5ug-s01..s22.RAW` (44, secretome, LTQ Orbitrap); 4 PD 1.4 `.msf`. FTP root `pride/data/archive/2018/03/PXD009009/`. |
+| SILAC verified (rule 14) | Exp1/Exp2 msf `ProcessingNodeParameters` (read as SQLite over HTTP range): quantification method "SILAC 2plex (Arg6, Lys6)", channels `Light` / `Heavy` (Label:13C(6) on K and R, UNIMOD:188). Mascot: variable Acetyl (Protein N-term), Gln->pyro-Glu, Oxidation (M), Label:13C(6) (K), Label:13C(6) (R); fixed Carbamidomethyl (C); 10 ppm / 0.6 Da; Trypsin, 2 missed cleavages. |
+
+Why blocked:
+- **No explicit channel map.** PRIDE sample protocol: media "re-supplemented with either normal ... [12C6]lysine/[12C6]arginine or ... [13C6]lysine/[13C6]arginine", without saying which condition got which. The PD channel names are only Light and Heavy, and `WorkflowInfo` and the raw headers carry no sample description.
+- **The data hints at a label swap, but rule 6 forbids a data-only map.** In a sample of high-confidence PSMs (median log2 H/L), PGK1 is +0.68 in Exp1 and −1.23 in Exp2; P4HA1 is +1.80 in Exp1; ERO1A is +0.95 in Exp1 and −1.60 in Exp2. The housekeeping proteins ACTB and HSPA8 are about 0 in both (`scratchpad/b11-PXD009009/orientation.txt`). This suggests hypoxia = heavy in Exp1 and hypoxia = light in Exp2.
+
+Excluded runs (out of scope, not SILAC): the 44 secretome RAWs `20151211-hypoxia-12_5ug-s01..s22.RAW` and `20151214-hypoxia-12_5ug-s01..s22.RAW`, with `20151211-hypoxia-12.5ug_Hypoxia_L.msf` and `20151214-hypoxia-12.5ug_Hypoxia_heavy.msf`. They are reductive-dimethyl labelled (PD "Dimethylation 2plex (C2H4, 13C2D4)"). The msf names state the hypoxic sample's dimethyl label for each mixture, which a non-SILAC pass could use.
+
+**Unblocked by:** the paper's Methods, Fig. 1 or supplement (J Proteomics, subscription), or an author statement giving the SILAC label of the hypoxic and normoxic cells in Exp1 and Exp2. The map should then be cross-checked against the PGK1/P4HA1/ERO1A ratios. Planned SDRF: 264 rows (132 runs × 2 channels); human + cell-lines; HCT 116 (CVCL_0291); factor value[treatment] hypoxia vs normoxia control; biological replicate 1–2 per condition; fraction identifier 1–66.
