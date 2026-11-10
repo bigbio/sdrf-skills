@@ -1,0 +1,405 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv",
+ "dataset": "PXD062091",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD062091 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD062091/files/all (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/files.json; 6 entries = 5 .raw + METTL13-knockdown_Search.zip; every entry projectAccessions contains PXD062091; raw names in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/raw_files.json)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Liu S et al. Methylated eEF1A selectively decodes mRNA to shape cancer proteomes. Nat Cell Biol 2026 Oct 29, doi:10.1038/s41556-026-02085-6, PMID 42957783 (open access; https://www.nature.com/articles/s41556-026-02085-6, local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/nature.html, text /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/nature.txt). Data availability: 'PXD062045 (puromycin treatment) and PXD062091 (METTL13 knockdown)'."
+  },
+  {
+   "id": "supp",
+   "kind": "supplementary",
+   "location": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41556-026-02085-6/MediaObjects/41556_2026_2085_MOESM2_ESM.xlsx (Supplementary Tables 1-4; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/supp/MOESM2.xlsx), sheet 'Supplementary Table 2A'"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062091/METTL13-knockdown_Search.zip members METTL13-knockdown_Search/summary.txt, parameters.txt, proteinGroups.txt (HTTP-range zip read, members inflated individually; script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/../b12-PXD062091-zip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/dl/)"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/scripts/orient.py: per-protein comparison of proteinGroups Ratio H/L per experiment with Supplementary Table 2A columns, plus dDENP marker ratios)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/08/PXD062091/FL0026306_A12848_WT-L.raw and FL0026358_A13641_WT-H.raw, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/raw/*.head; method HCD30_Load_180min_AGC100_dynMIT_60s_Q1p6.meth)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_4056?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/cello_CVCL_4056.txt); sdrf-tools cellline lookup T3M4 -> T3M-4 CVCL_4056 exact"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/terms?obo_id=... (log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/ols_ids.txt) and /api/search for T3M-4/T3M4 in clo,bto,efo"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 'latest: 1.2.0', local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-10",
+   "value": "T3M4_<sgControl|sgMETTL13>_<MaxQuant experiment>_<SILAC channel>",
+   "source_ids": [
+    "mq",
+    "supp",
+    "paper",
+    "files"
+   ],
+   "evidence": "Each raw file is one 1:1 mix of a sgControl and a sgMETTL13 culture (paper Methods: forward = light control + heavy sgMETTL13; reverse = heavy control + light sgMETTL13). One source per (culture, mix); the experiment name (summary.txt WT-H_1..3, WT-L_1, WT-L_3) identifies the independent experiment, so no name denotes two physical samples."
+  },
+  {
+   "location": "comment[label] rows 1-10 and factor value[genetic modification] / characteristics[genetic modification] rows 1-10",
+   "value": "WT-H runs: sgControl = SILAC heavy, sgMETTL13 = SILAC light; WT-L runs: sgControl = SILAC light, sgMETTL13 = SILAC heavy",
+   "source_ids": [
+    "supp",
+    "mq",
+    "orientation",
+    "paper"
+   ],
+   "evidence": "Supplementary Table 2A headers 'H/L sgControl-H_1..3' and 'L/H sgControl-L_1, sgControl-L_2' (explicit: sgControl heavy in H runs, light in L runs). orientation.txt: every protein's Table 2A value equals proteinGroups 'Ratio H/L <exp>' (WT-H_1/2/3, 1577/2008/2169 of 1577/2008/2169) or its reciprocal (WT-L_1 1618/1618; supp 'sgControl-L_2' = deposited WT-L_3, 2121/2121), so WT in the deposited names = sgControl. Cross-check: dDENPs named in the paper as reduced after METTL13 loss (MRPS36, MRPL14, RALA, SSR4) have normalized H/L > 1 in all WT-H runs and < 1 in all WT-L runs."
+  },
+  {
+   "location": "characteristics[genetic modification] rows 1-10",
+   "value": "control sgRNA / METTL13-targeting sgRNA in lentiCRISPRv2 hygro (CRISPR-Cas9)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: 'For METTL13 depletion, SILAC-labelled control and METTL13-knockdown cells were generated using a lentiCRISPRv2 hygro construct harbouring sgControl and sgMETTL13'; 'LentiCRISPRv2 ... were used for CRISPR-Cas9 KOs'. Which of sgMETTL13-1/-2 was used for QuaNCAT is not stated, so no guide is named."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-10",
+   "value": "1-5 within each genetic-modification group, one per run/experiment",
+   "source_ids": [
+    "paper",
+    "supp",
+    "mq"
+   ],
+   "evidence": "Fig. 1b/c legend: 'n = 5 independent replicates' / 'n = 5 independent experiments'; five SILAC mixes deposited (3 forward-named WT-H, 2 WT-L), matching the five Table 2A columns. Each culture is counted once in its group: sgControl rows numbered 1-5 and sgMETTL13 rows 1-5 in run order WT-H_1, WT-H_2, WT-H_3, WT-L_1, WT-L_3; the two cultures in one mix share the number of their experiment."
+  },
+  {
+   "location": "characteristics[nascent protein labeling] rows 1-10",
+   "value": "L-azidohomoalanine pulse (100 nM, 3 hour) after methionine depletion, click-chemistry capture on alkyne agarose resin",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Methods: cells 'cultured for 3 h in the methionine-free SILAC-labelled deficient medium supplemented with 10% dialysed FBS and 100 nM AHA' after 18 h serum starvation and 1 h methionine depletion; 'AHA-labelled nascent proteins were covalently linked to alkyne agarose resin' (Click-&-Go kit). Custom column (spec 'Extending Templates'), precedent annotations/PXD025169."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-10",
+   "value": "T3M-4",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 'T3M4 (Riken, RCB1021)'; Cellosaurus CVCL_4056 ID 'T3M-4', SY 'T3M4; Panc89'; no other-species name collision. OLS has BTO:0002864 'T3M4 cell' and EFO:0002714 'Panc89' (synonym T3M-4) - neither label equals the Cellosaurus ID, hence the parse_sdrf warning (references/cellline.md: use the Cellosaurus name)."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-10",
+   "value": "CVCL_4056",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC CVCL_4056."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-10",
+   "value": "T3M-4",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[organism] rows 1-10",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Cellosaurus OX NCBI_TaxID=9606; PRIDE organisms NEWT:9606; MaxQuant FASTA 'Uniprot human 2016-08-24.fasta'."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-10",
+   "value": "lymph node",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site: Metastatic; Lymph node; UBERON=UBERON_0000029' (primary tumour pancreas); UBERON:0000029 not obsolete."
+  },
+  {
+   "location": "characteristics[disease] rows 1-10",
+   "value": "pancreatic ductal adenocarcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9120 Pancreatic ductal adenocarcinoma; paper 'T3M4 pancreatic cancer cells'; MONDO:0005184 not obsolete. Cell-line disease applies to all rows (no healthy controls)."
+  },
+  {
+   "location": "characteristics[material type] rows 1-10",
+   "value": "cell line",
+   "source_ids": [
+    "cellosaurus",
+    "paper"
+   ],
+   "evidence": "Cultured T3M4 cell line."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-10",
+   "value": "Japanese",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Population: Japanese.'; HANCESTRO:0019 'Japanese' not obsolete (precedent annotations/PXD004707)."
+  },
+  {
+   "location": "characteristics[age] rows 1-10",
+   "value": "64Y",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AG 64Y (donor age)."
+  },
+  {
+   "location": "characteristics[sex] rows 1-10",
+   "value": "male",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Male."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-10",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Donor age 64Y >= 20Y (campaign rule 9); EFO:0001272 not obsolete."
+  },
+  {
+   "location": "characteristics[individual] rows 1-10",
+   "value": "T3M-4_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "All rows derive from the single donor of the T3M-4 line; not a study patient ID."
+  },
+  {
+   "location": "characteristics[biorepository] rows 1-10",
+   "value": "RIKEN BRC Cell Bank RCB1021",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper Methods 'T3M4 (Riken, RCB1021)'; Cellosaurus ST Source(s) RCB=RCB1021."
+  },
+  {
+   "location": "characteristics[cell line authentication] rows 1-10",
+   "value": "short tandem repeat profiling (DDC Medical)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: 'The cell lines were authenticated by short-tandem-repeat profiling and tested negative for mycoplasma (DDC Medical)'."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-10",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: 'T3M4 cells were cultured in DMEM medium for SILAC (Thermo, 88364) supplemented with 10% dialysed FBS'; NCIT:C185409 not obsolete."
+  },
+  {
+   "location": "comment[data file] / assay name rows 1-10",
+   "value": "5 raw files, 2 channel rows each",
+   "source_ids": [
+    "files",
+    "mq"
+   ],
+   "evidence": "All 5 RAW entries in files/all are claimed; summary.txt maps each raw file to one experiment (FL0026306->WT-L_1, FL0026308->WT-H_1, FL0026316->WT-H_2, FL0026358->WT-H_3, FL0026360->WT-L_3), all searched together with Multiplicity 2."
+  },
+  {
+   "location": "comment[instrument] rows 1-10",
+   "value": "NT=Orbitrap Fusion Lumos;AC=MS:1002732",
+   "source_ids": [
+    "raw",
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw headers contain 'Orbitrap Fusion Lumos'; PRIDE instruments MS:1002732; paper 'Fusion Lumos mass spectrometer'."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-10",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride",
+    "paper",
+    "raw"
+   ],
+   "evidence": "PRIDE experimentTypes PRIDE:0000627; paper 'Data-dependent mode was set to top speed with duty cycle of 3 s'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-10",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq"
+   ],
+   "evidence": "Paper: 'digested overnight with 20 ng/ul trypsin on-resin'. MaxQuant search rule Trypsin/P (summary.txt Enzyme), max 2 missed cleavages - recorded here, cleavage agent = the digestion enzyme (campaign rule 2)."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-10",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw method 'ActivationType = HCD'; paper 'higher-energy collisional dissociation with quadrupole isolation'."
+  },
+  {
+   "location": "comment[collision energy] rows 1-10",
+   "value": "30 NCE",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw method 'Collision Energy (%) = 30'; paper 'normalized collision energy of 30%'."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-10",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method MS2 block 'Detector Type = Orbitrap, Orbitrap Resolution = 15K'."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-10",
+   "value": "340m/z-1500m/z",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw method MS1 'Scan Range (m/z) = 340-1500'; paper 'mass range of 340-1,500 m/z'."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-10",
+   "value": "7 ppm",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: 'The precursor and fragment mass tolerances were set to 7 and 20 ppm, respectively.' Not recorded in MaxQuant 1.5.5.1 parameters.txt (no mqpar.xml deposited)."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-10",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq",
+    "paper"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm' (MS2 in Orbitrap); paper 20 ppm."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-10",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'reduced with DTT at 65 C for 20 min'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-10",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'alkylated with iodoacetamide in the dark for 30 min'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-10",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Acetyl Protein N-term, Label:13C(6)15N(4) R (UNIMOD:267), Label:13C(6)15N(2) K (UNIMOD:259) variable",
+   "source_ids": [
+    "mq",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt 'Fixed modifications Carbamidomethyl (C)'; summary.txt 'Variable modifications Oxidation (M);Acetyl (Protein N-term)', 'Multi modifications' empty for all raw files, Multiplicity 2, Labels0 empty (light), Labels1 'Arg10;Lys8'. Paper heavy amino acids [13C6,15N2]-L-lysine and [13C6,15N4]-L-arginine (Silantes 211604102, 201604102). AHA (Met->Aha) was not a search modification and is not annotated. Label mods MT=Variable per campaign rule 11."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-10",
+   "value": "1",
+   "source_ids": [
+    "files",
+    "mq"
+   ],
+   "evidence": "Each SILAC mix was injected once (one raw file per MaxQuant experiment); no repeated injections deposited."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-10",
+   "value": "1",
+   "source_ids": [
+    "files",
+    "mq",
+    "paper"
+   ],
+   "evidence": "Unfractionated: one raw file per experiment, summary.txt has no Fraction assignment beyond one file per experiment."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-10",
+   "value": "not applicable",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "One injection per mix (5 raw files for 5 replicates); no peptide fractionation described."
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] rows 1-10",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10."
+  }
+ ],
+ "limitations": [
+  "Scope: the complete deposit (5 of 5 raw files) is annotated; the companion puromycin QuaNCAT experiment is a separate deposit (PXD062045) and is not part of this SDRF.",
+  "Deposited experiment names are WT-H_1/2/3, WT-L_1, WT-L_3 while Supplementary Table 2A names the reverse mixes sgControl-L_1 and sgControl-L_2; the per-protein ratio match in orientation.txt identifies sgControl-L_2 with WT-L_3. No WT-L_2 raw file is deposited and the paper reports n = 5, so none appears to be missing.",
+  "Which sgMETTL13 guide (sgMETTL13-1 or -2) was used for the QuaNCAT cultures is not stated; the genetic modification is written without a guide sequence.",
+  "comment[precursor mass tolerance] 7 ppm comes from the paper text only; MaxQuant 1.5.5.1 parameters.txt does not record it and no mqpar.xml was deposited.",
+  "Biological replicate numbering assumes each of the 5 mixes used independently cultured cell populations, as the paper's 'n = 5 independent experiments' states; within a mix the sgControl and sgMETTL13 cultures carry the same experiment number in their respective groups.",
+  "characteristics[cell type], passage number and sample storage temperature are not stated in any source (not available).",
+  "parse_sdrf warns that 'T3M-4' is not a CLO/BTO/EFO label (BTO:0002864 'T3M4 cell', EFO:0002714 'Panc89'); the Cellosaurus name is kept per references/cellline.md.",
+  "Independent adversarial review not run in this task (caller instructed: no review-gate approve, no review file)."
+ ]
+}

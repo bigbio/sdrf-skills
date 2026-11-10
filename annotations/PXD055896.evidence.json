@@ -1,0 +1,277 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD055896.sdrf.tsv",
+ "dataset": "PXD055896",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD055896 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/pride.json): title, sampleProcessingProtocol, dataProcessingProtocol, instruments, quantificationMethods (TMT, SILAC)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD055896/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/files_0.json..files_2.json; 45 entries, every projectAccessions contains PXD055896): 22 .raw, 22 .mgf peak lists, 1 peptides_1_1_0.mzid.gz"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Manara P, ..., Schatz JH. Blocking NRF2 Translation by Inhibition of Cap-Dependent Initiation Sensitizes Lymphoma Cells to Ferroptosis and CAR T-cell Immunotherapy. Cancer Res 2025;85(19). PMID 40742310, PMC12363560 (author manuscript NIHMS2102785), doi:10.1158/0008-5472.CAN-24-3420. Full text from https://pmc-oa-opendata.s3.amazonaws.com/PMC12363560.1/PMC12363560.1.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/paper.txt, title verified); Data availability names PXD055896. Preprint: bioRxiv 10.1101/2024.09.09.612133 (PMC11419058)."
+  },
+  {
+   "id": "fig1",
+   "kind": "publication-figure",
+   "location": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/b89f/12363560/fac0234d4c89/nihms-2102785-f0001.jpg (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/supp/f1.jpg), Figure 1 of PMC12363560"
+  },
+  {
+   "id": "mzid",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/04/PXD055896/peptides_1_1_0.mzid.gz (PEAKS Studio 10.6 export, created 2022-10-03; decompressed to /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/mzid.xml and deleted after reading): SpectrumIdentificationProtocol (ModificationParams, Enzymes, tolerances) and Inputs/SpectraData (22 MGF files)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of bytes 0-1500000 of https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/04/PXD055896/S22041-fraction-1.raw, S22041-fraction-11.raw, S22041-2ndrun-1.raw, S22041-2ndrun-11.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/dl/*.head; Xcalibur instrument-method text, UTF-16; read with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/rawhdr.py)"
+  },
+  {
+   "id": "mgf",
+   "kind": "peak-list",
+   "location": "HTTP range read of bytes 0-3000000 of https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/04/PXD055896/S22041-fraction-5.mgf (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/dl/fr5.mgf.part): ion-trap MS2 peak lists only, no MS3 reporter ions"
+  },
+  {
+   "id": "tryptic",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/tryptic_check.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/scripts/tryptic_check.py run over the decompressed mzid before it was deleted)"
+  },
+  {
+   "id": "ho2021",
+   "kind": "publication",
+   "location": "Ho JJD et al. Proteomics reveal cap-dependent translation inhibitors remodel the translation machinery and translatome. Cell Rep 2021;37:109806, PMC8558842 (ref. 6 of the paper); text https://pmc-oa-opendata.s3.amazonaws.com/PMC8558842.1/PMC8558842.1.txt"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_1889?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/cvcl_1889.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4/api (MONDO:0018905, UBERON:0000175, HANCESTRO:0005, EFO:0001272, NCIT:C165746, NCIT:C178973, PRIDE:0000516/0000517/0000520/0000523/0000526/0000529, PRIDE:0000564, PRIDE:0000627; is_obsolete false where reported)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "bigbio/sdrf-templates 7da1747 templates.yaml line 150 (ms-proteomics latest 1.2.0); local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; spec README.adoc:27 (sdrf version v1.1.0). The spec submodule's nested templates copy is older."
+  },
+  {
+   "id": "scripts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/scripts/make_tables.py (writes samples.tsv, technical.tsv, files.json), then sdrf-tools build -t ms-proteomics -t human -t cell-lines; no post-build edits"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[data file] / assay name / comment[fraction identifier] / comment[technical replicate] rows 1-132",
+   "value": "22 .raw: S22041-fraction-1..11.raw (technical replicate 1) and S22041-2ndrun-1..11.raw (technical replicate 2); fraction identifier = trailing number; 6 rows (TMT channels) per file",
+   "source_ids": [
+    "files",
+    "pride",
+    "raw",
+    "mzid"
+   ],
+   "evidence": "PRIDE file list has exactly 22 .raw (+22 .mgf, 1 mzid). dataProcessingProtocol: 'Each of the 11 fractions ...'. The single PEAKS search (mzid Inputs) used all 22 MGFs, project folder 'S22041 1+2batches_1_filters -5FDR_1st+2nd light and heavy'. Raw headers: 'fraction' series acquired D:\\2022-Jul-26, '2ndrun' series D:\\2022-Sep-29, same method 120min_TMT_V3_lowsampleheight.meth. Both series are encoded as two injection series (technical replicates 1, 2) of the same 6-sample TMT mix, because the paper/figure describe only 6 samples (3 DMSO + 3 zotatifin, Fig. 1A) quantified in six channels (Fig. 1E 'matrix_6'), and the combined search treats them as '1st+2nd' batches of S22041. INFERRED, not stated: see limitations (instrument-internal file name of the first series is S22043-fraction-N)."
+  },
+  {
+   "location": "comment[label] / source name / characteristics[biological replicate] / characteristics[treatment] / factor value[treatment] rows 1-132",
+   "value": "TMT126/127/128 = DMSO replicates 1/2/3 (treatment 'untreated'); TMT129/130/131 = zotatifin replicates 1/2/3 (treatment 'Zotatifin')",
+   "source_ids": [
+    "fig1",
+    "paper",
+    "pride"
+   ],
+   "evidence": "Fig. 1E column annotation: 'Intensity TMT6-126', '-127', '-128' carry Treatment=DMSO (pink), 'Intensity TMT6-129', '-130', '-131' carry Treatment=zotatifin (purple); legend: 'Matrix_6 (mat1) shows Z-score normalized intensities across six TMT channels (126-131)'. Fig. 1A: 'DMSO #1, #2, #3, zotatifin #1, #2, #3'. Methods: 'SU-DHL-10 cells ... treated with 12.5 nM zotatifin or DMSO for 24 hours (h), in three independent replicates'. Data cross-check (figure only): the four ferroptosis proteins reported up-regulated by zotatifin (TFRC, SLC3A2, ACSL4, CBS) have high z-scores in 129-131 and low in 126-128. Biological replicate = order of channels within each condition (#1-#3); each is an independent culture. DMSO vehicle encoded as 'untreated' (campaign rule 4); dose 12.5 nM, 24 h exposure."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-132",
+   "value": "24 hour",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'treated with 12.5 nM zotatifin or DMSO for 24 hours'; cells pulsed with heavy medium during the last 8 h, then lysed: both arms harvested at 24 h of treatment."
+  },
+  {
+   "location": "characteristics[cell line] / characteristics[cellosaurus accession] / characteristics[cellosaurus name] rows 1-132",
+   "value": "SU-DHL-10 / CVCL_1889 / SU-DHL-10",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Methods TMT-pSILAC: 'SU-DHL-10 cells (1.5 x 10^7 per condition) were treated ...'; Fig. 1A legend 'SU-DHL10 cells'. Cellosaurus CVCL_1889 ID SU-DHL-10, human; no other-species entry with this name (sdrf-tools cellline lookup exact match, confidence 1.00)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-132",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "pride",
+    "mzid"
+   ],
+   "evidence": "Cellosaurus OX NCBI_TaxID=9606; PRIDE organism Homo sapiens; search database 'Human_July21_2022' (UniProt human, 20500 sequences)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-132",
+   "value": "diffuse large B-cell lymphoma",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C36080 'Diffuse large B-cell lymphoma germinal center B-cell type' / ORDO 544 DLBCL; paper studies DLBCL cell lines. MONDO:0018905 'diffuse large B-cell lymphoma' (not obsolete)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-132",
+   "value": "pleural effusion",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CC 'Derived from site: In situ; Pleural effusion; UBERON=UBERON_0000175'."
+  },
+  {
+   "location": "characteristics[material type] rows 1-132",
+   "value": "cell line",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured SU-DHL-10 cell line (Cellosaurus CA Cancer cell line)."
+  },
+  {
+   "location": "characteristics[age] / characteristics[sex] / characteristics[developmental stage] rows 1-132",
+   "value": "25Y / male / adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 25Y, SX Male; 25Y >= 20Y -> adult (EFO:0001272)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-132",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CC 'Population: Caucasian'; genome ancestry European North 61.61% + South 31.62% (PubMed=30894373). HANCESTRO:0005."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-132",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: 'cells were cultured in light SILAC RPMI 1640 medium for 7 days ... Thermo Fisher Scientific RPMI 1640 Medium for SILAC (#A33823), deficient in L-lysine and L-arginine ... supplemented with 20% dialyzed FBS'. NCIT:C178973."
+  },
+  {
+   "location": "comment[instrument] rows 1-132",
+   "value": "NT=Orbitrap Fusion Lumos;AC=MS:1002732",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "All four raw headers read: 'Orbitrap Fusion Lumos Method Summary'; PRIDE instrument MS:1002732 and protocol 'Orbitrap Fusion-Lumos Tribid'. CONFLICT: paper Methods says 'Orbitrap Exploris 240' — raw files win."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-132",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw method: data-dependent ddMSnScan, cycle time 3 s, MultiNotch SPS-MS3; PRIDE experimentTypes PRIDE:0000627."
+  },
+  {
+   "location": "comment[dissociation method] / comment[collision energy] / comment[ms2 mass analyzer] rows 1-132",
+   "value": "CID (MS:1000133) / 35 NCE / linear ion trap (MS:1000291)",
+   "source_ids": [
+    "raw",
+    "pride"
+   ],
+   "evidence": "Raw method MS2: 'ActivationType = CID', 'Collision Energy (%) = 35', 'Detector Type = IonTrap' (these are the spectra PEAKS searched). Reporter MS3: HCD 65%, Orbitrap 50K — recorded here, not in a column (dissociation method is single-valued)."
+  },
+  {
+   "location": "comment[ms1 scan range] / comment[ms3 scan range] rows 1-132",
+   "value": "400m/z-1700m/z / 100m/z-300m/z",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method MS1 'Scan Range (m/z) = 400-1700' (PRIDE protocol text says 550-1800 — raw wins); MS3 'Scan Range (m/z) = 100-300'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-132",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mzid",
+    "pride",
+    "tryptic",
+    "ho2021"
+   ],
+   "evidence": "The digestion enzyme is not named in PRIDE or the paper ('reduced, alkylated, digested'). mzid Enzyme name Trypsin MS:1001251, SiteRegexp (?<=[KR])(?!P), semiSpecific=true, missedCleavages=3. Data check under that SEMI-specific search (which permits non-tryptic ends): 96.7% of 68,559 identified peptide sequences end in K/R and 93.9% of 75,714 peptide evidences follow K/R or a protein start, i.e. a tryptic digest. The cited method paper (ref. 6, Ho et al. 2021, same BSI TMT-pSILAC workflow) also searched 'Semi-specific tryptic cleavage'. reconcile's cleavage_agent_unsupported BLOCKER is refuted on this evidence in validation.txt."
+  },
+  {
+   "location": "comment[precursor mass tolerance] / comment[fragment mass tolerance] rows 1-132",
+   "value": "15 ppm / 0.6 Da",
+   "source_ids": [
+    "mzid"
+   ],
+   "evidence": "mzid ParentTolerance +/-15.0 ppm; FragmentTolerance +/-0.6 Da. Same search for all 22 files."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-132",
+   "value": "TMT6plex Any N-term Fixed; TMT6plex K Variable; Carbamidomethyl C Fixed; Oxidation M Variable; Deamidated N,Q Variable; Label:13C(6)15N(2) K Variable; Label:13C(6)15N(4) R Variable",
+   "source_ids": [
+    "mzid"
+   ],
+   "evidence": "mzid ModificationParams: 229.16293 N-term fixed ('TMT6plex-Nterm'); K 229.16 variable ('TMT6plex-Konly'); C 57.021465 fixed UNIMOD:4; K 237.18 variable ('TMT6plex-heavyKonly' = TMT6plex + Lys8 on the same K, represented by the TMT6plex K + Label:13C(6)15N(2) entries); M 15.994915 variable UNIMOD:35; N Q 0.984016 variable UNIMOD:7; K 8.014199 variable UNIMOD:259; R 10.008269 variable UNIMOD:267. SILAC masses match the paper's [13C6 15N2] Lys / [13C6 15N4] Arg heavy pulse. TMT 229.163 = UNIMOD:737 (TMT6plex; TMT10plex reagents share this mass)."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-132",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "'High-pH reversed-phase high-performance liquid chromatography (HPLC) fractionation was carried out using a Waters XBridge C18 column. Each of the 11 fractions ...'"
+  },
+  {
+   "location": "comment[sdrf version] / comment[sdrf template] / comment[sdrf annotation tool] rows 1-132",
+   "value": "v1.1.0 / ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0 / sdrf-skills v0.1.0",
+   "source_ids": [
+    "templates",
+    "scripts"
+   ],
+   "evidence": "Campaign rules 1 and 10; templates.yaml line 150 latest ms-proteomics 1.2.0."
+  },
+  {
+   "location": "technology type rows 1-132",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from ms-proteomics."
+  }
+ ],
+ "limitations": [
+  "Injection-series identity INFERRED: the 11 'S22041-fraction-N.raw' files carry the instrument-internal name 'S22043-fraction-N' (D:\\2022-Jul-26), while 'S22041-2ndrun-N.raw' carry 'S22041-2ndrun-N' (D:\\2022-Sep-29). The deposit, the combined PEAKS search ('S22041 1+2batches ... 1st+2nd light and heavy') and the paper (6 samples, six TMT channels) are consistent with both series being injections of the same TMT mix, so both are annotated with the same 6 source names as technical replicates 1 and 2. No source states this explicitly; if 'S22043' was a separately labelled mix the source names of technical replicate 1 would need new names.",
+  "TMT channel naming: the paper says the TMT10plex kit (Thermo #90110) was used, but the analysis and Fig. 1E name the six channels TMT6-126..131 and the search uses TMT6plex masses. Labels are written as the TMT6 channels TMT126-TMT131 (PRIDE:0000516..0000529). Which 10plex reagent (e.g. 127N vs 127C) was used for each is not documented; no MS3 reporter spectra could be read (MGFs hold ion-trap MS2 only; no Thermo raw reader available).",
+  "Channel map cross-check against deposited data was not possible: the deposit holds no quantitative table (mzid has identifications only). The map rests on Fig. 1E's explicit column annotation; its z-scores for TFRC/SLC3A2/ACSL4/CBS (reported zotatifin-induced, confirmed by immunoblot Fig. 1F) are consistent with 129-131 = zotatifin.",
+  "Pulsed SILAC within TMT: each TMT channel carries both the pre-existing (light) and newly synthesised (heavy, last 8 h) proteome of one culture; per the community precedent for pSILAC-TMT (sdrf-annotated-datasets PXD073468, PXD004725) rows are per (file x TMT channel) and the heavy Lys8/Arg10 labels appear as variable modifications.",
+  "Paper/PRIDE conflicts resolved by raw files: instrument (paper 'Orbitrap Exploris 240' vs raw/PRIDE 'Orbitrap Fusion Lumos'); MS1 scan range (PRIDE 550-1800 vs raw 400-1700); gradient (PRIDE '60 min gradient' vs raw method duration 120 min). PRIDE sampleProcessingProtocol says 'polysome lysis buffer', the paper says 'UREA lysis buffer' — not annotated.",
+  "Search details not expressible in columns: semi-specific trypsin, 3 missed cleavages, PEAKS Studio 10.6 (dataProcessingProtocol says PEAKS X+ v10.5), 5% FDR project filter.",
+  "Reduction and alkylation reagents not stated ('Samples were reduced, alkylated') -> not available; Carbamidomethyl C fixed is taken from the search. Passage number, storage temperature, individual and cell type not stated -> not available.",
+  "Treatment dose (12.5 nM zotatifin) and the DMSO vehicle are not in columns (no dose/compound column licensed by the declared templates); DMSO vehicle encoded as 'untreated' per campaign rule 4.",
+  "Supplementary tables (NIHMS2102785-supplement-9..13.xlsx) could not be read: PMC served a reCAPTCHA page; Europe PMC supplementaryFiles answers 'Article with id PMC12363560 is not open access one' (Europe PMC search on PXD055896: 1 hit, this paper; no dataset descriptor). Not bypassed."
+ ]
+}

@@ -1,0 +1,5 @@
+# PXD062091 validation (single build round; SDRF written only by sdrf-tools build, no post-build edits)
+# build: sdrf-tools build --samples samples.tsv --technical technical.tsv --files raw_files.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD062091/scripts/make_tables.py)
+# sha256: a5662051ba52b348a10f08d0dfee8a818ebc893e33d5b98d21f93dffa2228a6c
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD062091.sdrf.tsv -t ms-proteomics -t human -t cell-lines

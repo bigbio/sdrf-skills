@@ -1,0 +1,56 @@
+# PXD055896 validation log
+SDRF: annotations/PXD055896.sdrf.tsv  sha256 ac0791f4578f820c7ae5a47edc9ee720d5cb9816d059b4070a13341cea14ad50
+Built by: python3 -I /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/scripts/make_tables.py /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896 && sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/files.json -t ms-proteomics -t human -t cell-lines -o annotations/PXD055896.sdrf.tsv
+Post-build edits: none.
+
+## 1. parse_sdrf validate-sdrf -s annotations/PXD055896.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology checks)
+WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: SU-DHL-10 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+Warnings explained:
+- 'untreated' in characteristics[treatment]: template-prescribed control value (sample-metadata.yaml: "Use 'untreated' for controls"; campaign rule 4); the DMSO vehicle arm.
+- 'SU-DHL-10' in characteristics[cell line]: correct Cellosaurus name (CVCL_1889); the ontology labels are 'SU-DHL-10 cell' (CLO:0037059) and 'SUDHL10' (EFO:0002354). Value kept as the Cellosaurus name, as in other campaign SDRFs.
+
+## 2. sdrf-tools structure annotations/PXD055896.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+## 3. sdrf-tools check annotations/PXD055896.sdrf.tsv
+Hallucination Report: annotations/PXD055896.sdrf.tsv
+  Terms checked:     19
+  Verified:          19
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit code: 0
+
+## 4. sdrf-tools reconcile annotations/PXD055896.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/pride.json --accession PXD055896
+PXD055896: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+exit code: 1
+
+Refutation of the single finding (cleavage_agent_unsupported): the digest enzyme is not named in PRIDE or the paper ('Samples were reduced, alkylated, digested, and labeled'). Trypsin is supported by (a) the deposited PEAKS mzid (Enzyme Trypsin MS:1001251, regexp (?<=[KR])(?!P), semiSpecific=true, missedCleavages=3) and (b) the data: under that semi-specific search, which allows non-tryptic termini, 96.7% of 68,559 identified peptide sequences end in K/R and 93.9% of 75,714 peptide evidences follow K/R or a protein start (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/tryptic_check.txt, script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/scripts/tryptic_check.py), and (c) the cited method paper (Ho et al. 2021 Cell Rep, PMC8558842; same BSI TMT-pSILAC workflow) searched 'Semi-specific tryptic cleavage'. The value is kept; this is a false positive of a check that only reads the PRIDE record.
+
+## 5. parse_sdrf convert-openms -s annotations/PXD055896.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD055896/openms)
+PROCESSING: /home/user/bigbio/sdrf-skills/annotations/PXD055896.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[sampling time]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[individual]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['untreated', 'Zotatifin'])
+Files per condition: dict_values([66, 66])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 132 times.
+SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD055896.sdrf.tsv
+exit code: 0
+(The 'no TA=' warning refers to the TMT6plex PP=Any N-term entry, which correctly has no TA=.)
+
+## 6. sdrf-tools schema-check annotations/PXD055896.evidence.json
+annotations/PXD055896.evidence.json: valid evidence-manifest
+exit code: 0
+
+## 7. sdrf-tools manifest-coverage annotations/PXD055896.sdrf.tsv annotations/PXD055896.evidence.json
+Manifest covers every column with a value (32 column(s)).
+exit code: 0
