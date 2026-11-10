@@ -1,6 +1,9 @@
-# PXD036363 validation log (2026-11-10T05:54Z); SDRF sha256 fd64414146abee76e020e9c820db14dfacb163cc2a3c6a0c2ea744bb4fbbe187; 417 rows x 51 columns
-# Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/scripts/make_tables.py -> samples/technical_[ABCD].tsv; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/scripts/build_all.py runs sdrf-tools build per group (A 505/1580/1637 QE HF + Biotin(K); B 539 QE HF; C 2310/2311 QE; D pY Fusion + Phospho(STY)), asserts identical headers, concatenates.
-# Post-build edit (scripted, rule 17): comment[fraction identifier] := gel slice number from file name _L<n>_<slice>.raw; changed 45 cells, all in experiment 505 (slices 7-21 x 3 channels; slice 6 not deposited). Identical to positional numbering everywhere else.
+# PXD036363 validation log (2026-11-10T06:27Z); SDRF sha256 64bb10d8c7f5344ce397dd979026e99fe90c7bfed4ac5aafbb5a0ebf1f56892c; 426 rows x 52 columns
+# Round 1 (sha256 fd64414146abee76e020e9c820db14dfacb163cc2a3c6a0c2ea744bb4fbbe187, 417 x 51): validate-sdrf 0 (2 warnings), structure 0, reconcile 0 (1 refuted), check 1 (Biotin false positive), convert-openms 0, schema-check 0, manifest-coverage 0. Independent review FAILED: 3 unsearched 505 raws omitted.
+# Round 2 fixes (all in scripts, rebuilt with sdrf-tools build): make_tables.py adds group E = TO_S_Scheich_180221_220321_HFFR_505_WDH_L5_21/22/23.raw with the existing 505 source names and characteristics; L5_22/L5_23 technical replicate 1 (fractions 22, 23), L5_21 (220321) technical replicate 2 (fraction 21; raw headers show the same autosampler vial BC5 as the searched 190321 L5_21, so it is a repeat injection); added characteristics[individual] = TMD8_donor / HBL-1_donor (placeholder per cell-line donor).
+# Group E (never searched): comment[precursor mass tolerance] and comment[fragment mass tolerance] = not applicable (rule 5). Modification slots keep sample chemistry only: Carbamidomethyl (C) fixed (alkylation) and the four SILAC label mods (media); the search-only variable mods Oxidation (M), Acetyl (Protein N-term) and Biotin (K) are written as not applicable in their slots (2-4), so no search setting is asserted for files that were never searched.
+# Build: /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/scripts/make_tables.py -> samples/technical_[ABCDE].tsv; /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/scripts/build_all.py runs sdrf-tools build per group (A 505/1580/1637 QE HF + Biotin(K); B 539 QE HF; C 2310/2311 QE; D pY Fusion + Phospho(STY); E unsearched 505 QE HF), asserts identical headers, concatenates (E = rows 418-426).
+# Post-build edit (scripted, rule 17): comment[fraction identifier] := gel slice number from file name _L<n>_<slice>.raw; 54 cells changed, all experiment 505 (slices 7-21 x 3 channels, plus 220321 L5_21/22/23 -> 21/22/23). (source, biological replicate, technical replicate, fraction) and (source, assay, label) verified unique after the edit.
 
 ## parse_sdrf validate-sdrf -s annotations/PXD036363.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
 WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
@@ -18,7 +21,7 @@ PXD036363: 1 value(s) disagree with the deposit record:
 
   MAJOR    instrument_contradicted (comment[instrument]): the protocol names 'Orbitrap Fusion Lumos', the annotation says 'Q Exactive HF'  [Fusion Lumos]
 exit=0
-Refuted (false positive): the protocol's Orbitrap Fusion Lumos is the TMTpro glycoproteomics instrument ('MS analysis was done on a Orbitrap Fusion Lumos'), and the TMT runs are excluded. The raw headers of the annotated runs say Q Exactive HF (505, 1580, 1637, 539), Q Exactive (2310, 2311) and Orbitrap Fusion (pY) (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/raw/*.head). PRIDE lists Q Exactive, Orbitrap Fusion and Orbitrap Fusion Lumos.
+Refuted (false positive): the protocol's Orbitrap Fusion Lumos is the TMTpro glycoproteomics instrument ('MS analysis was done on a Orbitrap Fusion Lumos'), and the TMT runs are excluded. The raw headers of the annotated runs say Q Exactive HF (505 incl. all 220321 files, 1580, 1637, 539), Q Exactive (2310, 2311) and Orbitrap Fusion (pY) (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/raw/*.head). PRIDE lists Q Exactive, Orbitrap Fusion and Orbitrap Fusion Lumos.
 
 ## sdrf-tools check annotations/PXD036363.sdrf.tsv
 Hallucination Report: annotations/PXD036363.sdrf.tsv
@@ -33,19 +36,21 @@ Hallucination Report: annotations/PXD036363.sdrf.tsv
 Hallucinated:
   Row(s) [1..198]: 'Biotin' in comment[modification parameters]__4
 exit=1
-Refuted (false positive): 'Biotin' NT=Biotin;AC=UNIMOD:3 is correct. OLS4 /api/terms?obo_id=UNIMOD:3 -> unimod 'Biotin', is_obsolete False. The tool's OLSClient.resolve_accession returns None for every UNIMOD accession here (it also returns None for UNIMOD:21 and UNIMOD:481), so any UNIMOD accession outside the offline UNIMOD_KNOWN table is reported as hallucinated. MaxQuant summary.txt lists 'Biotin (K)' (UNIMOD Biotin, K, +226.08 Da).
+Refuted (false positive): 'Biotin' NT=Biotin;AC=UNIMOD:3 is correct. OLS4 /api/terms?obo_id=UNIMOD:3 -> unimod 'Biotin', is_obsolete False. The tool's OLSClient.resolve_accession returns None for every UNIMOD accession here (it also returns None for UNIMOD:21 and UNIMOD:481), so any UNIMOD accession outside the offline UNIMOD_KNOWN table is reported as hallucinated. MaxQuant summary.txt lists 'Biotin (K)'. The independent reviewer also confirmed this is a false positive.
 
 ## parse_sdrf convert-openms -s annotations/PXD036363.sdrf.tsv -t2 (in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD036363/convert)
-Conditions (22): dict_keys(['BioID2 empty vector|TMD8|not available', 'CD79A-BioID2 fusion|TMD8|untreated', 'CD79A-BioID2 fusion|TMD8|NGI-1', 'SPPLAT isotype control antibody, 30 s labelling|TMD8|not available', 'SPPLAT anti-IgM, 30 s labelling|TMD8|untreated', 'SPPLAT anti-IgM, 30 s labelling|TMD8|NGI-1', 'SPPLAT isotype control antibody, 30 s labelling|HBL-1 cell|not available', 'SPPLAT anti-IgM
-Files per condition: dict_values([20, 20, 20, 23, 23, 23, 23, 23, 23, 69, 23, 23, 23, 23, 23, 23, 2, 2, 2, 2, 2, 2])
-WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 417 times.
-SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD036363.sdrf.tsv
-exit=0 (SUCCESS, 22 conditions; TA= warning concerns the Protein N-term acetyl PP= value)
+    raise ValueError(f"Cannot read precursor mass tolerance: {pc_tol_str}")
+ValueError: Cannot read precursor mass tolerance: not applicable
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not applicable
+exit=1
+
+Expected failure: rows 418-426 (the 3 never-searched 505 raws) carry comment[precursor mass tolerance] = not applicable, as rule 5 requires and the review asked. quantms/OpenMS conversion needs a numeric tolerance for every row. Round 1 (the same file without these 9 rows) converted with SUCCESS and 22 conditions. validate-sdrf and the templates accept the reserved word, and campaign precedents (PXD014368, PXD006676, PXD024103) also exit 1 here because of a non-numeric tolerance. A reprocessing run can drop rows 418-426 or set a tolerance for them.
 
 ## sdrf-tools schema-check annotations/PXD036363.evidence.json
 annotations/PXD036363.evidence.json: valid evidence-manifest
 exit=0
 
 ## sdrf-tools manifest-coverage annotations/PXD036363.sdrf.tsv annotations/PXD036363.evidence.json
-Manifest covers every column with a value (36 column(s)).
+Manifest covers every column with a value (37 column(s)).
 exit=0
