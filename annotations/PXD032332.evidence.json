@@ -1,0 +1,402 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD032332.sdrf.tsv",
+ "dataset": "PXD032332",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD032332 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/pride.json): title, sample/data processing protocols, instrument Q Exactive HF-X, publication PMID 37123244"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD032332/files?pageSize=100&page=0 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/files_all.json; 18 entries = 15 .raw + 3 MaxQuant txt zips; every entry projectAccessions contains PXD032332; page 1 empty)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Wolczyk M et al. TIAR and FMRP shape pro-survival nascent proteome of leukemia cells in the bone marrow microenvironment. iScience 2023;26(4):106543, doi:10.1016/j.isci.2023.106543, PMID 37123244, PMC10140000 (https://pmc-oa-opendata.s3.amazonaws.com/PMC10140000.1/PMC10140000.1.xml and .txt; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/dl/PMC10140000.1.xml, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/dl/PMC10140000.1.txt)"
+  },
+  {
+   "id": "tableS1",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10140000.1/mmc2.xlsx (Table S1, Fig 6 CO vs N; columns 'Ratio CoCult/Norm A/B/C'; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/dl/mmc2.xlsx)"
+  },
+  {
+   "id": "tableS2",
+   "kind": "supplementary",
+   "location": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10140000.1/mmc3.xlsx (Table S2, Fig 7 shRBP vs shNEG; sheets Up/down, columns 'in shTIAR_N', 'in shTIAR_CO', 'in shFMRP_N', 'in shFMRP_CO'; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/dl/mmc3.xlsx)"
+  },
+  {
+   "id": "mq_LMH_1245",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/05/PXD032332/txt_search_LMH_1245.zip members txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt (HTTP range read; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/dl/LMH_1245/); MaxQuant 2.0.3.0, multiplicity 3 (light | Arg6;Lys4 | Arg10;Lys8), 12 PP_* raws"
+  },
+  {
+   "id": "mq_MH_1245",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/05/PXD032332/txt_search_MH_1245.zip members txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/dl/MH_1245/); MaxQuant 2.0.3.0, multiplicity 2 (Arg6;Lys4 | Arg10;Lys8), same 12 PP_* raws"
+  },
+  {
+   "id": "mq_LMH_pp2",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/05/PXD032332/txt_search_LMH_pp2_1.zip members txt/summary.txt, txt/parameters.txt, txt/proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/dl/LMH_pp2_1/); MaxQuant 1.6.17.0, multiplicity 3, raws pp2_1c/d/e"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/orientation.txt (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/scripts/match_s1.py, match_s2.py, pg.py, xlsx.py): Table S1/S2 values matched against deposited proteinGroups ratios, TIAL1 knockdown ratios, hypoxia markers"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "HTTP range read of first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/05/PXD032332/PP_1A_2ul_z_10ul.raw and pp2_1c.raw (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/dl/raw/*.head): instrument string 'Q Exactive HF-X - Orbitrap MS'"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0004?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/cello_CVCL_0004.txt)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 /api/terms?obo_id= and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/ols_search.txt); all terms is_obsolete=false"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/contract.txt); ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 (latest: 1.2.0), local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule's nested templates copy is older; spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "scripts",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/scripts/make_tables.py writes /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/build/samples.tsv, technical.tsv, files.json; SDRF produced by sdrf-tools build -t ms-proteomics -t human -t cell-lines with no post-build edits"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-45",
+   "value": "<run stem>_K-562_<shRNA|parental>_<N|CO>_rep<n>_<nascent-medium-Lys4Arg6|nascent-heavy-Lys8Arg10|pre-existing-light>",
+   "source_ids": [
+    "files",
+    "mq_LMH_1245",
+    "mq_LMH_pp2",
+    "orientation",
+    "scripts"
+   ],
+   "evidence": "15 raws x 3 SILAC states = 45 rows. Each medium/heavy source = one pulse-labelled K562 culture whose lysate went into exactly one combined mix (PRIDE protocol: 'Lysates from equal counts of the heavy and the medium cells were combined'), so names are unique per run. The light channel of each run = pre-existing (unlabelled) proteins of the two combined cultures; it gets its own source name per run (validation.md:22-23) and characteristics[pooled sample] SN= lists the two cultures it came from. These light names are not aliquots of one physical pool shared across runs: each run's light material comes only from that run's two cultures."
+  },
+  {
+   "location": "comment[label] rows 1-45",
+   "value": "SILAC light / SILAC medium / SILAC heavy",
+   "source_ids": [
+    "pride",
+    "mq_LMH_1245",
+    "mq_LMH_pp2",
+    "mq_MH_1245"
+   ],
+   "evidence": "summary.txt Multiplicity=3, Labels0 empty, Labels1 Arg6;Lys4, Labels2 Arg10;Lys8 (LMH searches); MH search multiplicity 2 Arg6;Lys4 | Arg10;Lys8. PRIDE protocol: heavy 13C6,15N2 Lys (#88209) + 13C6,15N4 Arg (#89990); medium 4,4,5,5-D4 Lys (#88437) + 13C6 Arg (#88210). Light rows kept because the primary search quantified light (M/L, H/L ratios) and the light state is the pre-existing proteome (QuaNCAT precedent PXD005059 in sdrf-annotated-datasets)."
+  },
+  {
+   "location": "factor value[growth condition] / characteristics[growth condition], pp2_1c/d/e rows",
+   "value": "medium = normoxia mono-culture (N); heavy = hypoxia co-culture with HS-5 (CO); light = not applicable (pre-existing proteins of both)",
+   "source_ids": [
+    "tableS1",
+    "mq_LMH_pp2",
+    "orientation",
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE data processing: 'Raw files corresponding to 3 replicate samples obtained from K562 cells cultured for 72h in N and CO conditions were processed together' = txt_search_LMH_pp2_1 (pp2_1c,1d,1e). Explicit label source: Table S1 columns 'Ratio CoCult/Norm A/B/C' equal log2(Ratio H/M normalized 1c/1d/1e) exactly for 2126/2085/2009 of 2126/2085/2009 proteins (orientation.txt section 1) => heavy=CoCult, medium=Norm. Data check: hypoxia-induced NDRG1 (H/M 7.7, 5.3), PGK1 (1.8-3.7), SERPINE1 (28-71) up in heavy."
+  },
+  {
+   "location": "factor value[genetic modification] / characteristics[genetic modification], PP_1*,PP_2*,PP_4*,PP_5* rows",
+   "value": "PP_1: M=shNEG N, H=shTIAR N; PP_2: M=shTIAR CO, H=shNEG CO; PP_4: M=shNEG N, H=shFMRP N; PP_5: M=shFMRP CO, H=shNEG CO",
+   "source_ids": [
+    "pride",
+    "tableS2",
+    "mq_LMH_1245",
+    "mq_MH_1245",
+    "orientation"
+   ],
+   "evidence": "PRIDE data processing lists four pairs (1. shNEG/shTIAR N; 2. shNEG/shTIAR CO; 3. shNEG/shFMRP N; 4. shNEG/shFMRP CO) x 3 replicates searched together = experiments 1,2,4,5 x A,B,C in summary.txt. Neither the deposit nor the paper names which experiment number is which pair or which state carried which cells, so the map was taken from the deposited Table S2 values: mean log2 H/M normalized of experiment 1 correlates r=+0.995 with 'in shTIAR_N' (median |diff| 0.013), exp2 r=-0.957 with 'in shTIAR_CO', exp4 r=+0.990 with 'in shFMRP_N' (median |diff| 0.009), exp5 r=-0.974 with 'in shFMRP_CO'; all other column-experiment pairs |r|<=0.75 (orientation.txt section 2). Table S2 is shRBP vs shNEG (Fig 7 legend), so positive r => heavy=shRBP, negative r => medium=shRBP. Independent check: TIAL1 (TIAR) H/M 0.15-0.43 in 1A-1C (heavy = shTIAR knockdown) and 2.47 in 2C (heavy = shNEG), ~1 in exps 4/5. The experiment numbering 1,2,4,5 follows the order of the four pairs in the PRIDE text. FMR1 was not quantified as its own protein group (only grouped with FXR1/FXR2), so FMRP orientation rests on Table S2 alone."
+  },
+  {
+   "location": "characteristics[genetic modification] values",
+   "value": "non-targeting control shRNA (shNEG; SHC202V); shRNA targeting TIAL1 (shTIAR_C5; TRCN0000017212); shRNA targeting FMR1 (shFMRP_C1; TRCN0000059759); parental (not transduced)",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: 'Further experiments were performed using cells transduced with shFMRP_C1 or shTIAR_C5'; key resources table: SHC202V non-mammalian control; FMRP clone 1 TRCN0000059759; TIAR clone 5 TRCN0000017212. pp2 rows: Fig 6 / Table S1 legend says 'K562 cells cultured for 72 h in N or CO' whereas Fig 7 says 'K562 cells transduced with shNEG, shTIAR or shFMRP'; hence parental. Light rows of PP_* runs mix shNEG and shRBP cultures => not applicable."
+  },
+  {
+   "location": "characteristics[growth condition] values",
+   "value": "normoxia mono-culture (N; 21% O2, 5% CO2); hypoxia co-culture with HS-5 bone marrow stromal cells (CO; 1.5% O2, 5% CO2)",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper Methods: co-culture 72 h at 1:1 leukemia-to-stroma ratio with HS-5 cells; normoxia 37 C, 5% CO2, 21% O2; hypoxia 1.5% O2 and 5% CO2. PRIDE: '3 replicate samples ... cultured for 72h in N and CO conditions'."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-45",
+   "value": "1-3 = replicate letter A/B/C (PP_*) or c/d/e (pp2_1*)",
+   "source_ids": [
+    "mq_LMH_1245",
+    "mq_LMH_pp2",
+    "pride",
+    "paper",
+    "tableS1"
+   ],
+   "evidence": "PRIDE: '3 replicate samples' per pair/condition; Fig 6/7 legends: 'Results from 3 independent experiments'. Table S1 columns A/B/C = pp2_1c/1d/1e (exact ratio match). Numbering restarts within each factor-value group (genetic modification x growth condition): parental N 1-3, parental CO 1-3, shTIAR N 1-3, shTIAR CO 1-3, shFMRP N 1-3, shFMRP CO 1-3, shNEG N (PP_1 and PP_4) 1-3, shNEG CO (PP_2 and PP_5) 1-3."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-45",
+   "value": "not pooled (M, H); SN=<medium source>;SN=<heavy source> (light)",
+   "source_ids": [
+    "pride",
+    "orientation"
+   ],
+   "evidence": "Light = unlabelled pre-existing proteins carried by both combined cultures (equal cell counts combined before click/enrichment). SN= syntax per spec README.adoc:352."
+  },
+  {
+   "location": "characteristics[protein population] rows 1-45",
+   "value": "newly synthesized proteins (4 h L-HPG + Lys4/Arg6 or Lys8/Arg10 pulse) / pre-existing (unlabelled) proteins",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE protocol: cells incubated 4 h with 1 mM L-HPG in SILAC DMEM with labelled Lys/Arg 'to label the newly synthetized peptides as heavy ... or as medium'; HPG-containing proteins enriched by azide-PEG3-biotin click and NeutrAvidin beads. Custom column (spec 'Extending Templates')."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-45",
+   "value": "K562",
+   "source_ids": [
+    "paper",
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Paper and PRIDE: K562 CML cells; EFO:0002067 'K562' (OLS, not obsolete); Cellosaurus SY K562."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-45",
+   "value": "CVCL_0004",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AC CVCL_0004 (ID K-562); the accession disambiguates the name."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-45",
+   "value": "K-562",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus ID line."
+  },
+  {
+   "location": "characteristics[organism] rows 1-45",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus OX NCBI_TaxID=9606; PRIDE organism Homo sapiens."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-45",
+   "value": "pleural effusion",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Derived from site: In situ; Pleural effusion; UBERON=UBERON_0000175' (OLS label pleural effusion)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-45",
+   "value": "blast phase chronic myelogenous leukemia, BCR-ABL1 positive",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus DI NCIt C9110 Blast phase chronic myelogenous leukemia, BCR-ABL1 positive = MONDO:0006115 (OLS, not obsolete); paper: CML cells."
+  },
+  {
+   "location": "characteristics[age] rows 1-45",
+   "value": "53Y",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 53Y."
+  },
+  {
+   "location": "characteristics[sex] rows 1-45",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus SX Female."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-45",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus 'Population: Caucasian' -> HANCESTRO:0005 European ancestry (campaign convention, PXD011013)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-45",
+   "value": "adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 53Y (>= 20Y => adult, EFO:0001272; campaign rule 9)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-45",
+   "value": "K-562_donor",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Single donor of the K-562 line; label chosen as in campaign precedent PXD011013."
+  },
+  {
+   "location": "characteristics[cell type], [passage number] rows 1-45",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Not stated in the paper or Cellosaurus."
+  },
+  {
+   "location": "characteristics[material type] rows 1-45",
+   "value": "cell line",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cultured K562 cells."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-45",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Methods: 'Human cells were cultured in RPMI-1640 (Biowest, #L0490)'; NCIT:C178973. The 4 h pulse used SILAC DMEM w/o Arg/Leu/Lys/Met (AthenaES #0421) with 10% filtered FBS (PRIDE protocol)."
+  },
+  {
+   "location": "characteristics[sample storage temperature] rows 1-45",
+   "value": "-80 °C",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "PRIDE protocol: lysates 'stored at -80oC prior further analysis'."
+  },
+  {
+   "location": "comment[instrument] rows 1-45",
+   "value": "NT=Q Exactive HF-X;AC=MS:1002877",
+   "source_ids": [
+    "pride",
+    "raw",
+    "ols"
+   ],
+   "evidence": "PRIDE instrument + protocol; raw header 'Q Exactive HF-X - Orbitrap MS' in PP_1A and pp2_1c."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-45",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "'operated in data-dependent mode ... Up to 12 of the most abundant isotope patterns'."
+  },
+  {
+   "location": "comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer] rows 1-45",
+   "value": "HCD (MS:1000422); 27 NCE; orbitrap (MS:1000484)",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "'fragmented by higher-energy collision dissociation (HCD) with normalized collision energies of 27'; MS/MS acquired at 30,000 resolution (Orbitrap)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-45",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "pride",
+    "mq_LMH_1245"
+   ],
+   "evidence": "Digestion with trypsin (Promega V511A) on beads (PRIDE protocol). MaxQuant search rule Trypsin/P (summary.txt Enzyme) recorded as a note per campaign rule 2."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-45",
+   "value": "Carbamidomethyl C fixed; Oxidation M, Deamidated N/Q, Acetyl Protein N-term variable; Label:2H(4) K, Label:13C(6) R, Label:13C(6)15N(2) K, Label:13C(6)15N(4) R variable",
+   "source_ids": [
+    "mq_LMH_1245",
+    "mq_MH_1245",
+    "mq_LMH_pp2",
+    "ols"
+   ],
+   "evidence": "summary.txt of all three searches: Fixed Carbamidomethyl (C); Variable Oxidation (M);Deamidation (NQ);Acetyl (Protein N-term); Multi modifications column empty; Labels Arg6;Lys4 / Arg10;Lys8 (UNIMOD 188/481, 267/259 from mass shifts; MT=Variable per campaign rule 11). All three searches use the same modification set, so one column set describes every file. The L-HPG/biotin handle was not searched."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-45",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_LMH_1245",
+    "mq_MH_1245",
+    "mq_LMH_pp2"
+   ],
+   "evidence": "parameters.txt 'MS/MS tol. (FTMS) 20 ppm' in all three searches."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-45",
+   "value": "not available",
+   "source_ids": [
+    "mq_LMH_1245",
+    "mq_LMH_pp2"
+   ],
+   "evidence": "parameters.txt/summary.txt do not record first/main search precursor tolerance; no mqpar.xml deposited."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] rows 1-45",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10; build fills comment[sdrf template]."
+  },
+  {
+   "location": "assay name, comment[data file], comment[technical replicate], comment[fraction identifier], technology type rows 1-45",
+   "value": "run stem; .raw file; 1; 1; proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "files",
+    "mq_LMH_1245",
+    "mq_LMH_pp2"
+   ],
+   "evidence": "15 unfractionated single-injection raws; every deposited raw appears in exactly one summary.txt (PP_* in both LMH and MH 1245 searches, pp2_* in LMH_pp2_1)."
+  }
+ ],
+ "limitations": [
+  "Which experiment number (1,2,4,5) is which shNEG/shRBP pair, and which SILAC state carried which cells, is stated nowhere in words; it was derived by matching deposited proteinGroups ratios against the authors' supplementary Table S2 (r=+0.995/-0.957/+0.990/-0.974) and corroborated by TIAL1 knockdown ratios for the TIAR pairs. FMR1 was not quantified as its own protein group, so the FMRP pair orientation rests on Table S2 alone. The pp2 (N vs CO) orientation has an exact Table S1 match.",
+  "Whether the shNEG cells paired with shTIAR and with shFMRP in the same replicate experiment were one culture split in two or two separate cultures is not stated; biological replicate is numbered by independent experiment (A/B/C = 1/2/3, 'Results from 3 independent experiments'), so shNEG rows of PP_1x and PP_4x (and PP_2x/PP_5x) share replicate numbers but have distinct source names (distinct combined mixes).",
+  "Whether K562 cells were separated from the HS-5 stroma before the 4 h pulse/lysis in the CO condition is not stated; the CO rows may contain HS-5 proteins.",
+  "comment[precursor mass tolerance] = not available (no mqpar.xml); parse_sdrf convert-openms therefore exits 1, as for campaign precedents PXD014368/PXD006676.",
+  "The pp2 search (txt_search_LMH_pp2_1) was run with MaxQuant 1.6.17.0 while PRIDE/paper state v2.0.3.0 (true only for the 1245 searches); modification and tolerance settings are identical, so one SDRF covers both.",
+  "The 12 PP_* raws were searched twice (LMH multiplicity 3 and MH multiplicity 2, re-quantify on); both searches use the same modifications, so one set of rows describes them; the light rows describe the LMH search's light state.",
+  "parse_sdrf warns that characteristics[pooled sample] 'SN=...;SN=...' is not an allowed value; the SN= pattern is licensed by TERMS.tsv/spec README.adoc:352 and the validator exits 0.",
+  "characteristics[genetic modification], [growth condition] and [protein population] are custom characteristics columns (spec 'Extending Templates')."
+ ]
+}

@@ -1,0 +1,48 @@
+# PXD032332 validation log (2026-11-10T05:25Z); SDRF sha256 1da90833a6296cc039b13fc5d16c5c1f6d7e71a15b3e4f5eee626bcf4511e1cd
+# SDRF produced by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/build/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/build/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/build/files.json -t ms-proteomics -t human -t cell-lines (tables from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/scripts/make_tables.py). No post-build edits.
+## Round 1 (only round): parse_sdrf validate-sdrf -s annotations/PXD032332.sdrf.tsv -t ms-proteomics -t human -t cell-lines (full ontology)
+WARNING: Invalid value 'SN=PP_1A_2ul_z_10ul_K-562_shNEG_N_rep1_nascent-medium-Lys4Arg6;SN=PP_1A_2ul_z_10ul_K-562_shTIAR_N_rep1_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_1B_2ul_z_10ul_K-562_shNEG_N_rep2_nascent-medium-Lys4Arg6;SN=PP_1B_2ul_z_10ul_K-562_shTIAR_N_rep2_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_1C_2ul_z_10ul_K-562_shNEG_N_rep3_nascent-medium-Lys4Arg6;SN=PP_1C_2ul_z_10ul_K-562_shTIAR_N_rep3_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_2A_2ul_z_10ul_K-562_shTIAR_CO_rep1_nascent-medium-Lys4Arg6;SN=PP_2A_2ul_z_10ul_K-562_shNEG_CO_rep1_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_2B_2ul_z_10ul_K-562_shTIAR_CO_rep2_nascent-medium-Lys4Arg6;SN=PP_2B_2ul_z_10ul_K-562_shNEG_CO_rep2_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_2C_2ul_z_10ul_K-562_shTIAR_CO_rep3_nascent-medium-Lys4Arg6;SN=PP_2C_2ul_z_10ul_K-562_shNEG_CO_rep3_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_4A_2ul_z_10ul_K-562_shNEG_N_rep1_nascent-medium-Lys4Arg6;SN=PP_4A_2ul_z_10ul_K-562_shFMRP_N_rep1_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_4B_2ul_z_10ul_K-562_shNEG_N_rep2_nascent-medium-Lys4Arg6;SN=PP_4B_2ul_z_10ul_K-562_shFMRP_N_rep2_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_4C_2ul_z_10ul_K-562_shNEG_N_rep3_nascent-medium-Lys4Arg6;SN=PP_4C_2ul_z_10ul_K-562_shFMRP_N_rep3_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_5A_2ul_z_10ul_K-562_shFMRP_CO_rep1_nascent-medium-Lys4Arg6;SN=PP_5A_2ul_z_10ul_K-562_shNEG_CO_rep1_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_5B_2ul_z_10ul_K-562_shFMRP_CO_rep2_nascent-medium-Lys4Arg6;SN=PP_5B_2ul_z_10ul_K-562_shNEG_CO_rep2_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=PP_5C_2ul_z_10ul_K-562_shFMRP_CO_rep3_nascent-medium-Lys4Arg6;SN=PP_5C_2ul_z_10ul_K-562_shNEG_CO_rep3_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=pp2_1c_K-562_parental_N_rep1_nascent-medium-Lys4Arg6;SN=pp2_1c_K-562_parental_CO_rep1_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=pp2_1d_K-562_parental_N_rep2_nascent-medium-Lys4Arg6;SN=pp2_1d_K-562_parental_CO_rep2_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+WARNING: Invalid value 'SN=pp2_1e_K-562_parental_N_rep3_nascent-medium-Lys4Arg6;SN=pp2_1e_K-562_parental_CO_rep3_nascent-heavy-Lys8Arg10' - must be one of the allowed values
+Most seems to be fine. There were only warnings.
+exit=0
+# Note: the 15 warnings are all characteristics[pooled sample] 'SN=<medium source>;SN=<heavy source>' on the light rows. The SN= form is licensed by spec README.adoc:352 and TERMS.tsv ('or pattern: SN=sample1;SN=sample2'); the validator only checks the fixed enum. Not an error.
+## sdrf-tools structure annotations/PXD032332.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## sdrf-tools check annotations/PXD032332.sdrf.tsv
+Hallucination Report: annotations/PXD032332.sdrf.tsv
+  Terms checked:     19
+  Verified:          19
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+## sdrf-tools reconcile annotations/PXD032332.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/pride.json --accession PXD032332
+PXD032332: every annotated value agrees with the deposit record.
+exit=0
+## sdrf-tools schema-check annotations/PXD032332.evidence.json
+annotations/PXD032332.evidence.json: valid evidence-manifest
+exit=0
+## sdrf-tools manifest-coverage annotations/PXD032332.sdrf.tsv annotations/PXD032332.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit=0
+## parse_sdrf convert-openms -s annotations/PXD032332.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD032332/convert)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+# convert-openms exit 1 is caused only by comment[precursor mass tolerance] = not available: the MaxQuant parameters.txt/summary.txt do not record the precursor tolerance and no mqpar.xml was deposited (same as campaign precedent PXD014368). Not fixed by inventing a value.
