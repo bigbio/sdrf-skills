@@ -147,21 +147,47 @@
   },
   {
    "location": "characteristics[genotype] (all 704 rows)",
-   "value": "EGFR wild type / EGFR mutant (light) / not available (heavy)",
+   "value": "EGFR wild type / EGFR mutant (tumour rows) / not available (adjacent-normal and heavy rows)",
    "source_ids": [
     "pride",
     "files"
    ],
-   "evidence": "Group prefix WT/MT = EGFR wild-type / mutant (PRIDE sample protocol and description); applies to the patient group (tumour EGFR status), also for the adjacent normal part. Cell-line EGFR status not given."
+   "evidence": "Group prefix WT/MT = EGFR wild-type / mutant (PRIDE sample protocol and description) = somatic EGFR status of the tumour; adjacent normal tissue was not genotyped, so not available there. Cell-line EGFR status not given."
   },
   {
-   "location": "characteristics[cancer stage group] (all 704 rows)",
-   "value": "early stage / late stage (light) / not applicable (heavy)",
+   "location": "characteristics[tumor EGFR status] (all 704 rows)",
+   "value": "EGFR wild type / EGFR mutant (all tissue rows) / not applicable (heavy)",
    "source_ids": [
     "pride",
     "files"
    ],
-   "evidence": "Custom column (spec Extending Templates): group code E/L = \"early stage\"/\"late stage\" (\"different histological stages (early and late)\"). Exact TNM stages per group not in the accessible record, so no NCIT stage term is asserted (NCIT Limited Stage / Advanced Stage definitions do not match resected tumours)."
+   "evidence": "Custom column (spec Extending Templates): the tumour EGFR status of the patient group, carried on both tumour and adjacent-normal rows so that normal rows keep their comparison group (WT-x-N / MT-x-N)."
+  },
+  {
+   "location": "characteristics[disease staging] (all 704 rows)",
+   "value": "early stage / late stage (tissue rows) / not applicable (heavy)",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "oncology-metadata column (EFO:0000410). Group code E/L = \"different histological stages (early and late)\" (PRIDE description). Values match OLS SNOMED:234438000 \"Early stage\" and SNOMED:236040000 \"Late stage\" (both not obsolete); the template validator lists NCIT/EFO only (warning level). NCIT Limited Stage / Advanced Stage not used because their definitions do not fit resected tumours. Exact TNM stages not in the accessible record. Patient-level property, so also on the adjacent-normal rows."
+  },
+  {
+   "location": "characteristics[sampling site] (all 704 rows)",
+   "value": "tumor / normal tissue adjacent to tumor (tissue rows) / not applicable (heavy)",
+   "source_ids": [
+    "pride",
+    "files"
+   ],
+   "evidence": "Group code T = tumour parts, N = adjacent normal parts (PRIDE sample protocol); values are the clinical-metadata template examples for this column."
+  },
+  {
+   "location": "characteristics[developmental stage] (all 704 rows)",
+   "value": "not available",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "Not stated in the accessible record."
   },
   {
    "location": "characteristics[clinical data] (all 704 rows)",
@@ -360,15 +386,15 @@
    "evidence": "FTMS scan event o(350.0-2000.0); the PRIDE protocol says m/z 400-2000 (that is the ITMS/global MS mass range in the method); raw scan event used."
   },
   {
-   "location": "factor value[genotype] (all 704 rows)",
+   "location": "factor value[tumor EGFR status] (all 704 rows)",
    "value": "EGFR wild type / EGFR mutant / not applicable (heavy)",
    "source_ids": [
     "pride"
    ],
-   "evidence": "Study compares EGFR WT vs MT (title, description)."
+   "evidence": "Study compares EGFR WT vs MT patients (title, description); value = patient-group tumour status, on tumour and normal rows."
   },
   {
-   "location": "factor value[cancer stage group] (all 704 rows)",
+   "location": "factor value[disease staging] (all 704 rows)",
    "value": "early stage / late stage / not applicable (heavy)",
    "source_ids": [
     "pride"
@@ -388,7 +414,8 @@
   "Publication (PMID 40752010, PMC12419241) full text and supplementary information were not accessible (not in PMC OA subset; PDF routes behind bot checks, not bypassed). Everything below rests on the PRIDE record, the PD .msf workflows and raw headers.",
   "Whether each of the 8 sample groups is a single patient or a pool of several patients, and how many patients it contains, is not stated in the accessible record -> characteristics[pooled sample] and characteristics[individual] = not available; biological replicate 1 per group (one measured sample per factor combination).",
   "Whether the N and T groups of the same EGFR/stage combination come from the same patients (paired) is not stated.",
-  "Exact pathological stages behind \"early\" and \"late\" are not given -> custom free-text characteristics[cancer stage group] instead of an NCIT stage term.",
+  "Exact pathological stages behind \"early\" and \"late\" are not given -> characteristics[disease staging] = early stage / late stage (SNOMED labels; parse_sdrf may warn because the template lists NCIT/EFO).",
+  "Adjacent normal tissue was not EGFR-genotyped: characteristics[genotype] only on tumour rows; the patient-group tumour EGFR status is in custom characteristics/factor value[tumor EGFR status].",
   "Sex = female and smoking status = Never Smoker come from the project-level PRIDE description (\"LUAD tissues from women, never smokers\"), applied as a selection criterion to every tissue sample; no individual-level sheet exists. Age, ancestry and EGFR mutation types are not available.",
   "The three locally established LUAD cell lines of the super-SILAC reference are not named in the accessible record; their sex, EGFR status and whether one identical mix was used for all 8 groups are not stated. The 8 heavy source names are aliquots of the super-SILAC reference, one per group run.",
   "PRIDE data processing protocol says Proteome Discoverer 1.4 / Mascot; the deposited .msf files were produced by Proteome Discoverer 2.2.0.388 with Sequest HT and Mascot in parallel - the .msf values are used.",
