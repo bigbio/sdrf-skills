@@ -83,7 +83,7 @@
     "pride",
     "paper"
    ],
-   "evidence": "NO WRITTEN SOURCE NAMES THE LABELS. PRIDE protocol / paper Methods state only that intermediate (2H4-Lys, 13C6-Arg) and heavy (15N2 13C6-Lys, 15N4 13C6-Arg) labelled lysates were merged and that \"SILAC ratios were inverted to account for SILAC label swap between replicate experiments\". The map is derived from the knock-down target's own ratios under the campaign-owner decision of 2026-11-10 for this dataset (rule 6 exception). FBL (P22087) Ratio H/M normalized: rep1 9.25, rep1_10p 7.95, rep2 0.151, rep2_10p 0.243 -> FBL is higher in heavy in mix1 (heavy = shCtrl) and lower in heavy in mix2 (heavy = shFBL). Table S4 top hits (log2FC nascent shFBL vs shCtrl) agree: LGR4 -3.98 (H/M rep1 23.9, rep2 0.080), MNDA -3.83 (35.7 / 0.173), CTSG -3.55 (18.0 / 0.136). log2 H/M rep1 vs rep2 Pearson r = -0.72 (n=5,819), matching Fig. S6A r = 0.73 after the label-swap inversion. Medium = intermediate label per the protocol (MaxQuant multiplicity 3, light channel empty; msms mass deltas confirm M = Lys4/Arg6 and H = Lys8/Arg10)."
+   "evidence": "NO WRITTEN SOURCE NAMES THE LABELS. PRIDE protocol / paper Methods state only that intermediate (2H4-Lys, 13C6-Arg) and heavy (15N2 13C6-Lys, 15N4 13C6-Arg) labelled lysates were merged and that \"SILAC ratios were inverted to account for SILAC label swap between replicate experiments\". The map is derived from the knock-down target's own ratios under the campaign-owner decision of 2026-11-10 for this dataset (rule 6 exception). FBL (P22087) Ratio H/M normalized: rep1 9.25, rep1_10p 7.95, rep2 0.151, rep2_10p 0.243 -> FBL is higher in heavy in mix1 (heavy = shCtrl) and lower in heavy in mix2 (heavy = shFBL). Table S4 top hits (log2FC nascent shFBL vs shCtrl) agree: LGR4 -3.98 (H/M rep1 23.9, rep2 0.080), MNDA -3.83 (35.7 / 0.173), CTSG -3.55 (18.0 / 0.136). log2 H/M rep1 vs rep2 Pearson r = -0.72 (n=5,819), matching Fig. S6A r = 0.73 after the label-swap inversion. Medium = intermediate label per the protocol; msms mass deltas confirm M = Lys4/Arg6 and H = Lys8/Arg10. NO SILAC LIGHT ROWS ARE ENCODED, but the light channel is NOT empty: MaxQuant multiplicity 3, msms labelling state 0 = ~10% of PSMs per raw (~2,000-2,700), proteinGroups Intensity L sums 3.79e12 (rep1), 6.4e11 (rep1_10p), 4.14e12 (rep2), 6.9e11 (rep2_10p) vs M 9.0e12/1.5e13 and H 1.5e13/1.1e13 (rep1/rep2). In pAHA + pulsed SILAC the light signal is unpulsed, pre-existing protein (synthesised before the 3 h pulse, carried through the AHA click enrichment) from BOTH pooled cultures; it cannot be assigned to one sample and is not a study channel, so it gets no row. The 10p injections have the same light share (~9%) as the fractions (~11%)."
   },
   {
    "location": "source name rows 1-36",
@@ -226,13 +226,13 @@
   },
   {
    "location": "comment[proteomics data acquisition method], comment[dissociation method], comment[collision energy], comment[ms2 mass analyzer], comment[ms1 scan range], comment[ms2 scan range] rows 1-36",
-   "value": "DDA / HCD / 26 NCE / orbitrap / 350m/z-1500m/z / 200m/z-2000m/z",
+   "value": "DDA / HCD / 26 NCE / orbitrap / 350m/z-1500m/z / 110m/z-2000m/z",
    "source_ids": [
     "rawhdr",
     "msms_fbl",
     "paper"
    ],
-   "evidence": "Method HCD_2H5M_T20_HI.meth in all 18 files (raw_internal_names.txt); method text of rep1_fr1: Full MS 60,000 res, scan range 350 to 1500 m/z; dd-MS2 15,000 res, TopN 20, isolation 2.0 m/z, scan range 200 to 2000 m/z, \"(N)CE / stepped (N)CE nce: 26\". msms: all PSMs Fragmentation HCD, Mass analyzer FTMS. Paper: \"data-dependent mode ... TOP20 ... HCD fragmentation\"."
+   "evidence": "Method HCD_2H5M_T20_HI.meth in all 18 files (raw_internal_names.txt); method text of rep1_fr1: Full MS 60,000 res, scan range 350 to 1500 m/z; dd-MS2 15,000 res, TopN 20, isolation 2.0 m/z, \"Scan range 200 to 2000 m/z\" together with \"Fixed first mass 110.0 m/z\" (the fixed first mass sets the start of each MS2 scan, so the MS2 range is 110-2000 m/z; deposited PSMs carry matched fragments down to ~110 m/z per the independent review), \"(N)CE / stepped (N)CE nce: 26\". msms: all PSMs Fragmentation HCD, Mass analyzer FTMS. Paper: \"data-dependent mode ... TOP20 ... HCD fragmentation\"."
   },
   {
    "location": "comment[cleavage agent details] rows 1-36",
@@ -282,6 +282,9 @@
   }
  ],
  "limitations": [
+  "SILAC light channel not encoded although it carries signal (~10% of PSMs; Intensity L 3.8e12/4.1e12 in rep1/rep2): it is unpulsed pre-existing protein from both pooled cultures (pAHA-pSILAC), not attributable to one sample.",
+  "Nascent-proteome specifics are not encoded in a column: AHA + pulsed SILAC labelling for 3 h (Methods) after 45 min Met/Lys/Arg depletion, and Click-iT alkyne-agarose enrichment of AHA-containing proteins before on-bead trypsin digestion (PRIDE protocol, paper Methods).",
+  "The 10p rows (9, 18, 27, 36) are technical replicate 2, fraction 1, of fractionated sources; replicate-pairing tools will see an unbalanced design.",
   "CHANNEL MAP WITHOUT A WRITTEN SOURCE: the label-to-condition map rests on the knock-down target FBL's own deposited H/M ratios (plus Table S4 top-hit agreement and the rep1/rep2 anticorrelation), accepted by the campaign owner on 2026-11-10 for this dataset only; no publication, PRIDE text or supplementary header states which label carried shCtrl or shFBL.",
   "Partial scope: only the FBL-knockdown arm (18 Q Exactive HF RAW) is annotated. Not annotated: the SNORD127 arm, 32 Orbitrap Fusion RAW 20190301_FS1_DF_snoRNA_{1..4}_{1..8}.raw (search output proteinGroups.txt/msms.txt, experiments SNOR5D127_KO_C1_rep1/rep2, C34_rep1/rep2) - its channel map and raw-to-experiment map are undocumented (BLOCKED.md).",
   "Excluded run: 20181218_QE1_DF_shFBL_int_rep2_fr1_10p.raw (1,074,606 bytes; acquired as 20181218_QE1_DF_Feng_int_rep1_fr1_10p.raw) - an aborted/stub acquisition, absent from msmss_shFBL_0712019.txt (18 raw files there) and not part of any MaxQuant experiment.",

@@ -2198,7 +2198,8 @@ Why blocked:
 | Publication | Zhou F et al. *Cancer Discov* 2023;13(2):332-347, doi:10.1158/2159-8290.CD-22-0210, PMID 36259929, PMC9900322 (OA). The full text, Supplementary Figures S1–S9 and Tables S1–S4 were read from PMC OA S3. Europe PMC returned 503 throughout. |
 | Excluded runs | `20181218_QE1_DF_shFBL_int_rep2_fr1_10p.raw` (1 MB stub, acquired as `..._Feng_int_rep1_fr1_10p.raw`). It is absent from `msmss_shFBL_0712019.txt` and so was never searched. |
 | Blocked (whole runs) | The 32 Orbitrap Fusion RAW `20190301_FS1_DF_snoRNA_{1..4}_{1..8}.raw` (search output `proteinGroups.txt`, `msms.txt`; experiments SNOR5D127_KO_C1_rep1/rep2, SNOR5D127_KO_C34_rep1/rep2). |
-| SILAC verified (rule 14) | proteinGroups has Intensity and Ratio columns for L, M and H (multiplicity 3, light unused). msms mass deltas give M = Lys4/Arg6 and H = Lys8/Arg10. |
+| SILAC verified (rule 14) | proteinGroups has Intensity and Ratio columns for L, M and H (multiplicity 3). msms mass deltas give M = Lys4/Arg6 and H = Lys8/Arg10. |
+| Light channel | Not empty: about 10% of PSMs per raw, and Intensity L sums to 3.8e12 (rep1) and 4.1e12 (rep2). In pAHA-pSILAC this is unpulsed, pre-existing protein from **both** pooled cultures. It cannot be assigned to one sample, so no SILAC light rows are encoded. |
 
 Why the SNORD127 arm stays blocked:
 - **No explicit channel map.** The PRIDE protocol and the paper say only that a label swap was made between replicates. Fig. 4F gives only SNORD127+/− vs +/+. The +/+ control clone(s) are not named.
