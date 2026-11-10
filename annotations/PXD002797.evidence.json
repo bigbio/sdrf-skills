@@ -39,6 +39,11 @@
    "location": "HTTP range read of first 1.5 MB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/04/PXD002797/SILAC_E2_6hrs_rep1_Frc22-1.RAW, SILAC_E2_6hrs_rep1_Frc22-2.RAW, SILAC_E2_36hrs_rep3_Frc43-47-2.RAW, decoded UTF-16-LE (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/raw/*.head; summary /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/raw_summary.txt)"
   },
   {
+   "id": "apar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/04/PXD002797/MaxQuant_results_6h.zip and https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/04/PXD002797/MaxQuant_results_36h.zip members combined/allSpectra.CID.iso.apar, allSpectra.CID.sil0.apar, allSpectra.CID.sil1.apar (Andromeda search parameters; HTTP range read with /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/scripts/rzip.py; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/apar_6h/, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/apar_36h/)"
+  },
+  {
    "id": "cellosaurus",
    "kind": "database",
    "location": "https://api.cellosaurus.org/cell-line/CVCL_0031?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD002797/cello_CVCL_0031.txt); id search id:MCF-7 returns a single Homo sapiens entry CVCL_0031"
@@ -185,6 +190,24 @@
    "evidence": "Cellosaurus AG 69Y, SX Female, CC Population: Caucasian -> HANCESTRO:0005 European ancestry; adult EFO:0001272 (69Y >= 20Y, campaign rule 9)."
   },
   {
+   "location": "characteristics[biorepository] rows 1-432",
+   "value": "ATCC",
+   "source_ids": [
+    "paper",
+    "cellosaurus"
+   ],
+   "evidence": "Paper: \"MCF-7 breast cancer cell line was purchased from the American Type Culture Collection (Manassas, VA)\"; Cellosaurus CVCL_0031 ST Source(s) ATCC=HTB-22."
+  },
+  {
+   "location": "characteristics[individual] rows 1-432",
+   "value": "MCF-7_donor",
+   "source_ids": [
+    "cellosaurus",
+    "tables"
+   ],
+   "evidence": "PLACEHOLDER donor identifier (not an ID published anywhere): all samples derive from the single donor of the MCF-7 cell line (Cellosaurus CVCL_0031, one 69Y female donor); added because the human template recommends characteristics[individual]."
+  },
+  {
    "location": "characteristics[material type] + characteristics[pooled sample] rows 1-432",
    "value": "cell line / not pooled",
    "source_ids": [
@@ -256,14 +279,13 @@
   },
   {
    "location": "comment[precursor mass tolerance] + comment[fragment mass tolerance] rows 1-432",
-   "value": "20 ppm / 0.5 Da",
+   "value": "6 ppm / 0.5 Da",
    "source_ids": [
-    "paper",
-    "pride",
+    "apar",
     "mq_6h",
     "mq_36h"
    ],
-   "evidence": "Paper/PRIDE: \"peptide mass tolerance of 20 ppm for precursor ion and MS/MS tolerance of 0.5 Da\"; parameters.txt MS/MS tol. (CID) 0.5 Da (MS2 in the ion trap, CID). parameters.txt records only First search ppm tol 7; main-search tolerance not in the deposited parameters, so the paper value is used."
+   "evidence": "All six combined Andromeda parameter files (allSpectra.CID.{iso,sil0,sil1}.apar in both MaxQuant zips): \"peptide mass tolerance=6\", \"peptide mass tolerance unit=ppm\", \"fragment mass tolerance=0.5\", \"fragment mass tolerance unit=Da\", fragmentation type=CID; parameters.txt First search ppm tol 7 (first search only) and MS/MS tol. (CID) 0.5 Da. The paper/PRIDE text says 20 ppm precursor; the deposited search parameters win (conflict recorded in limitations)."
   },
   {
    "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] + technology type rows 1-432",
@@ -278,7 +300,8 @@
   "Not pulsed SILAC: despite the campaign hint, this is a standard 2-plex SILAC design (heavy = 10 nM estradiol, light = 0.1% ethanol vehicle) at two time points (6 h, 36 h), 3 biological replicates each, 18 SCX fractions, 2 injections per fraction. SRM experiments described in the paper are not part of this deposit.",
   "comment[technical replicate]: the -1/-2 suffix meaning is not stated in the paper or PRIDE; interpreted as duplicate injections of the same SCX fraction because MaxQuant assigns both to the same Slice/Experiment and the raw files use the identical method.",
   "Control rows use characteristics[treatment] = untreated per campaign rule 4; the controls actually received vehicle (0.1% ethanol). No separate vehicle column is asserted.",
-  "comment[precursor mass tolerance] 20 ppm comes from the paper/PRIDE text; MaxQuant 1.1.1.25 parameters.txt lists only the first-search tolerance (7 ppm) and no mqpar.xml was deposited.",
+  "comment[precursor mass tolerance] = 6 ppm from the deposited Andromeda .apar files (both searches). CONFLICT: the paper and PRIDE data protocol state \"peptide mass tolerance of 20 ppm for precursor ion\"; the deposited search parameters are used because the SDRF must describe the search the files went through. (An earlier draft wrongly said the main-search tolerance was not deposited.)",
+  "characteristics[individual] = MCF-7_donor is a placeholder label for the single (anonymous) donor of the cell line, not a published identifier.",
   "Paper says \"1 missed cleavage\" and \"minimum peptide length of 7\"; deposited summary.txt/parameters.txt say max 2 missed cleavages and min length 6. Not encoded in the SDRF (no column); recorded here. PRIDE data protocol text says \"SILAC double measurements of Lys6 and Arg8\" whereas the paper says Lys8 and Arg6 and MaxQuant summary.txt says Arg6;Lys8 with heavy L-13C6-arginine/L-13C6,15N2-lysine; the search output and paper win.",
   "characteristics[cell type], characteristics[passage number] = not available: not stated.",
   "Paper full text was read from the PMC HTML page (pmc.ncbi.nlm.nih.gov); Europe PMC fullTextXML returned 500 and the Unpaywall/Europe PMC PDF returned 403 (not bypassed). Supplementary tables were not consulted; the channel map rests on explicit Methods text plus deposited ratios.",

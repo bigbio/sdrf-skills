@@ -34,6 +34,16 @@
    "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD003940/MaxQuantOutput.zip member Secretome_Combined_Normalized_K8R6/Secretome_Combined_Normalized_K8R6/combined/txt/proteinGroups.txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003940/mq/)"
   },
   {
+   "id": "mq_evidence",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/01/PXD003940/MaxQuantOutput.zip members Secretome_Combined_Normalized_K8R6/Secretome_Combined_Normalized_K8R6/combined/txt/evidence.txt and Secretome_Combined_Normalized_K8R6/Secretome_Combined_Normalized_K8R6/combined/txt/peptides.txt (HTTP range read; evidence.txt 70.8 MB deleted after extraction to save shared disk, extracted rows for the PPM1F/POPX2 group in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003940/target_check.txt by script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003940/scripts/target_check.py; peptides.txt local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003940/mq/)"
+  },
+  {
+   "id": "review2020",
+   "kind": "publication",
+   "location": "PMC7547661: the Koh lab's 2020 review on POPX2, open access; states that POPX2 knock-down cells secrete more exosomes/cytokines (cited for the unexplained direction conflict only)"
+  },
+  {
    "id": "orientation",
    "kind": "derived",
    "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003940/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD003940/scripts/orient.py: Ratio H/L normalized of exosome markers, cytokines and the knock-down target in proteinGroups.txt)"
@@ -82,9 +92,13 @@
     "pride",
     "sister",
     "mq_summary",
-    "orientation"
+    "mq_evidence",
+    "mq_proteingroups",
+    "mq_parameters",
+    "orientation",
+    "review2020"
    ],
-   "evidence": "Explicit label statement, PRIDE sampleProcessingProtocol: 'The control cells were cultured in RPMI1640 medium containing heavy arginine and heavy lysine ... The X2-shRNA1cells were maintained in RPMI1640 medium containing light arginine and light lysine'; 'complete incorporation of heavy K8 and R6 into cellular proteins were confirmed ... in control cells'. Same orientation stated in the lab's earlier deposit PXD001618 ('The control cells were cultured in RPMI1640 medium containing heavy arginine, heavy lysine'). MaxQuant: Multiplicity 2, Labels0 empty, Labels1 Arg6;Lys8. DATA CHECK CONFLICT: the knock-down target PPM1F has no ratio in the secretome; exosome markers and cytokines have Ratio H/L normalized > 1 (CD9 1.41, CD63 1.41, SDCBP 1.43, TSG101 1.50, CXCL8 1.72, VEGFA 1.59, PTX3 1.41), i.e. higher in the stated CONTROL channel, whereas the abstract says silencing POPX2 increases exosome secretion and pro-angiogenic cytokines. Paper body (which would show how ratios were reported) is closed access. Per campaign rule 6 the label is not re-derived from the abstract's biological direction; the explicit statement is kept and the conflict recorded in limitations."
+   "evidence": "Explicit label statement, PRIDE sampleProcessingProtocol: 'The control cells were cultured in RPMI1640 medium containing heavy arginine and heavy lysine ... The X2-shRNA1cells were maintained in RPMI1640 medium containing light arginine and light lysine'; 'complete incorporation of heavy K8 and R6 into cellular proteins were confirmed ... in control cells'. Same orientation stated in the lab's earlier deposit PXD001618 ('The control cells were cultured in RPMI1640 medium containing heavy arginine, heavy lysine'). MaxQuant: Multiplicity 2, Labels0 empty, Labels1 Arg6;Lys8. LABEL-SPECIFIC DATA CHECK (confirming): the knock-down target PPM1F/POPX2 (protein group B5MCT7;P49593-2;P49593;A8MX49) is quantified at the evidence level: evidence.txt id 5417 AIGDVFQKPYVSGEADAASR BR2_TR1 MULTI-MSMS Ratio H/L normalized 3.4833 (raw 2.3162); id 121961 VNGTLAVSR BR3_TR1 MULTI-MSMS normalized 10.113 (raw 8.2762); heavy-only ISO-MSMS ids 5418 (BR2_TR2, Int H 10.3e6), 113969/113970 (VAEELVAAAR BR3_TR1/TR2, Int H 9.2e6/8.2e6) with Re-quantify False (parameters.txt); one weak light-only id 5416 (BR1_TR1, PEP 0.046). proteinGroups.txt: Intensity H 32,537,000 vs Intensity L 5,830,900; protein Ratio H/L NaN only because Ratio H/L count = 1 < Min. ratio count 2. Global raw Ratio H/L median 0.583 (proteinGroups, n=1545) / 0.68 (evidence, n=88525), so POPX2 is strongly heavy-enriched beyond the global offset: more POPX2 in heavy => heavy is the non-knock-down control, as stated. UNEXPLAINED SECONDARY CONFLICT (kept on record): exosome markers and cytokines are higher in heavy (CD9 1.41, CD63 1.41, SDCBP 1.43, TSG101 1.50, CXCL8 1.72, VEGFA 1.59, PTX3 1.41 normalized H/L), whereas the abstract and the lab's 2020 review PMC7547661 say the knock-down secretes more; this is biological-direction inference and does not override the explicit statement confirmed by the target protein (campaign rule 6)."
   },
   {
    "location": "characteristics[biological replicate] rows 1-120",
@@ -142,7 +156,7 @@
     "pride",
     "ols"
    ],
-   "evidence": "PRIDE sample attributes (organism part values) list CL:0000066 epithelial cell."
+   "evidence": "Submitter-supplied PRIDE sample attribute (sampleAttributes 'organism part' values BTO:0000214 cell culture and CL:0000066 epithelial cell); not stated in the protocol text."
   },
   {
    "location": "characteristics[material type] / characteristics[specimen] rows 1-120",
@@ -240,13 +254,13 @@
   }
  ],
  "limitations": [
-  "LABEL-DIRECTION CONFLICT (reviewer attention): the explicit PRIDE protocol (and the sister deposit PXD001618) states control = SILAC heavy (Lys8/Arg6), X2-shRNA1 = SILAC light; the deposited proteinGroups.txt shows exosome markers (CD9, CD63, SDCBP, TSG101) and cytokines (CXCL8, VEGFA, PTX3) with normalized H/L ~1.4-1.7, i.e. higher in the stated control channel, opposite to the abstract's claim that POPX2 silencing increases exosome and pro-angiogenic cytokine secretion. The closed-access paper could not be read to see how ratios were reported. The SDRF follows the explicit label statement (campaign rule 6: never re-derive labels from an abstract's biological direction); if the paper shows H = knock-down, swap characteristics/factor value[genetic modification] and source names between the heavy and light rows.",
+  "Channel map heavy = control, light = X2-shRNA1 rests on the explicit PRIDE protocol statement (repeated in PXD001618) and is confirmed by the knock-down target itself: PPM1F/POPX2 evidence-level normalized H/L 3.48 (BR2_TR1) and 10.1 (BR3_TR1), three heavy-only detections, protein Intensity H 32.5e6 vs L 5.8e6 (see claim on comment[label]). Unexplained, recorded discrepancy: secreted cytokines/growth factors and exosome markers are higher in the heavy (control) channel (e.g. CXCL8 1.72, VEGFA 1.59, CD9 1.41, CD63 1.41, SDCBP 1.43), opposite to the abstract and the lab's 2020 review (PMC7547661), which say POPX2 knock-down increases their secretion. The paper body that might explain this could not be obtained: Europe PMC (no PMCID, not open access), Unpaywall/OpenAlex (closed), DR-NTU hdl 10220/43514 (AWS-WAF captcha), pubs.acs.org supporting information and core.ac.uk (Cloudflare challenge; per independent review), CORE API (HTTP 429); none bypassed. PXD001618 mascotSearch.zip has no ratios ('Quantitation: None', per independent review) and the deposited proteinGroupsK8R6.xlsx has only MaxQuant columns (no author annotation).",
   "Control construct of the 'control' stable cell line is not stated in the deposit (PXD001618: 'control and POPX2 knockdown (X2-shRNA1/2) MDA-MB-231 stable cells were described previously'); value written as 'control stable cell line (no POPX2 shRNA; control construct not stated in deposit)'. shRNA sequence/clone identifier not available.",
-  "Paper (J Proteome Res 2017, doi:10.1021/acs.jproteome.6b00748) is closed access; Supplementary data 1/2 not retrieved. All values come from the PRIDE protocol text, MaxQuant output, raw header and Cellosaurus.",
+  "Paper (J Proteome Res 2017, doi:10.1021/acs.jproteome.6b00748) is closed access; Supplementary data 1/2 not retrieved. characteristics[cell type] = epithelial cell comes only from a submitter-supplied PRIDE sample attribute. All values come from the PRIDE protocol text, MaxQuant output, raw header and Cellosaurus.",
   "Not a re-deposit: PXD001618 ('Phosphatase POPX2 secretome SILAC', same lab) is a different experiment (2012 LTQ-FT runs 120218_ZSJ_SILAC_Secretome_*, 13C6-Lys/13C6-Arg labels, Mascot search, single raw.tar.gz) vs PXD003940 (2015 Q Exactive runs 151218_Songjing_SILAC_*, Lys8/Arg6, MaxQuant 1.5.2.8). No SDRF for PXD003940 in sdrf-annotated-datasets.",
   "MaxQuant search used enzyme rule Trypsin/P; SDRF records the digestion enzyme Trypsin (campaign rule 2).",
   "characteristics[passage number] = not available (only 'up to seven passages' for SILAC adaptation is stated).",
   "techsdrf not installed; raw verification limited to the range-read header of 1 of 60 files.",
-  "Independent review not yet performed: REVIEW_PENDING_EXTERNAL."
+  "Independent review round 1 FAILED on manifest provenance only (target-protein check missing); this manifest revision addresses it. SDRF unchanged."
  ]
 }
