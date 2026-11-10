@@ -1,0 +1,5 @@
+# PXD062045 validation log (2026-11-10T17:59:44Z)
+# SDRF sha256: 27ed93f06a4b5d896aca6e6ba37e0e17ac7c319acc8aea6b9bab847348a3174b
+# SDRF produced solely by: sdrf-tools build --samples /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/samples.tsv --technical /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/technical.tsv --files /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD062045/files_raw.json -t ms-proteomics -t human -t cell-lines (no post-build edits)
+
+$ parse_sdrf validate-sdrf -s /home/user/bigbio/sdrf-skills/annotations/PXD062045.sdrf.tsv -t ms-proteomics -t human -t cell-lines

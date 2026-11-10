@@ -18,3 +18,29 @@ Structure OK: acquisition, template declaration and column order are consistent.
 exit=0
 
 ## sdrf-tools check annotations/PXD030581.sdrf.tsv (online)
+Hallucination Report: annotations/PXD030581.sdrf.tsv
+  Terms checked:     17
+  Verified:          17
+  Hallucinated:      0
+  Label mismatches:  0
+  Wrong ontology:    0
+  UNIMOD swaps:      0
+  Status:            CLEAN
+exit=0
+
+## sdrf-tools reconcile annotations/PXD030581.sdrf.tsv --record /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/pride.json --accession PXD030581
+PXD030581: every annotated value agrees with the deposit record.
+exit=0
+
+## parse_sdrf convert-openms -s annotations/PXD030581.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD030581/openms)
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit=1
+Expected failure: comment[precursor mass tolerance] = not available (MaxQuant 1.5.1.2 parameters.txt/summary.txt record only MS/MS tolerances; no mqpar.xml deposited). Same outcome as campaign precedents (e.g. PXD014368). The template and validate-sdrf accept the reserved word.
+
+## sdrf-tools schema-check annotations/PXD030581.evidence.json
+annotations/PXD030581.evidence.json: valid evidence-manifest
+exit=0
+
+## sdrf-tools manifest-coverage annotations/PXD030581.sdrf.tsv annotations/PXD030581.evidence.json
+Manifest covers every column with a value (33 column(s)).
+exit=0
