@@ -1,0 +1,12 @@
+PXD033337 — validation log
+
+No SDRF was built: the whole dataset is BLOCKED (sample identity of every run undocumented; see BLOCKED.md section "## PXD033337 …" and PXD033337.report.md).
+Commands not run (no input file): parse_sdrf validate-sdrf, sdrf-tools check / structure / reconcile / schema-check / manifest-coverage, parse_sdrf convert-openms. No evidence manifest was written (the manifest schema requires an artifact).
+
+Evidence checks performed:
+- PRIDE v3 files?pageSize=100&page=0: 37 entries (page 1: 0), all projectAccessions contain PXD033337 (assert passed): 36 .raw + txt.zip. (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD033337/files_all.json)
+- txt.zip central directory read by HTTP range (20 members); parameters.txt, summary.txt, evidence.txt inflated individually (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD033337/mq/).
+- summary.txt: 36 raw files == the 36 deposited .raw (set difference empty); Multiplicity 2; Labels0 empty, Labels1 Arg10; Variable modifications "Trimethyl (K);Dimethyl (K);Propionyl;Pmet"; no Multi-modifications column (MaxQuant 1.5.2.8); parameters.txt Fixed modifications PIC; enzyme ArgC; MS/MS tol. (FTMS) 20 ppm.
+- sdrf-tools search-params /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD033337/mq/summary.txt → Trimethyl UNIMOD:37, Dimethyl UNIMOD:36, Label:13C(6)15N(4) UNIMOD:267 (R); Propionyl and Pmet unmapped (custom MaxQuant entries); cleavage ArgC rule (digestion enzyme is trypsin per protocol, batch rule 2).
+- Raw headers bytes 0–20000 of all 36 .raw (/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD033337/raw_headers.txt) and 0–1.5 MB of QEP211220_RN_GR_Elena_1: "Q Exactive Plus - Orbitrap MS"; method QEP_histone_PIC_8minB_gradient.meth; Full MS 70k, m/z 300–1350; top-12 dd-MS2 at 17.5k, HCD NCE 28; sample-ID field batch-constant (H8 / H3), no per-sample identity.
+- Diagnostic only (not used for annotation): /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD033337/scripts/h3k4.py → /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD033337/h3k4_lh.tsv (H3 3-8 L/H %RA per run).

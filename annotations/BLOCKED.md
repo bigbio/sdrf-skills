@@ -2275,3 +2275,43 @@ An MS1 SILAC-ratio cross-check of D06/D18/T06/T18 against the per-experiment rat
 Blocked runs: Du_121917_D01–D12, Du_012318_D13–D24, Du_012318_T01–T24 (.raw). No runs are excluded as out of scope.
 
 **Unblocked by:** the MaxQuant summary.txt / experimentalDesignTemplate / mqpar.xml, or a raw-file → experiment (+ slice) table from the submitter (Y. Du), or the preprint Methods/SI if they list it. A ready generator with the provisional map is at `/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b12-PXD060444/scripts/make_tables.py`.
+
+---
+
+## PXD033337 — KDM5B-NTT overexpression, histone PTMs in MCF7 / MDA-MB-231 (Di Nisio et al., Cancer Gene Ther 2023; histone super-SILAC spike-in, Arg10), whole dataset (36 RAW)
+
+**Blocker: the sample identity of every run is undocumented.** The channel map is documented: the light channel is the study sample and the heavy channel is the super-SILAC histone internal standard (PRIDE protocol; Suppl. Methods: "light (sample) and heavy (internal standard)"; MaxQuant `summary.txt` has Multiplicity 2 and Labels1 `Arg10`). What is missing is the cell line, condition (NT = not transfected, E = empty vector, NTT = KDM5B-NTT overexpression) and replicate (R#1–R#6) of the light sample in each run. The design is 2 cell lines × 3 conditions × 6 biological replicates = 36, which matches the 36 deposited raws, but nothing maps a run to a cell, so no SDRF was written.
+
+Blocked runs (36 `.raw`; PRIDE v3 files (pageSize=100) give 37 entries, all with `projectAccessions` = PXD033337; all 36 raws are in `txt.zip` summary.txt, each as its own MaxQuant experiment):
+- QEP211220_RN_GR_Elena_1, _2, _3, _7, _8, _9, _13, _14, _15, _19, _20, _21, _25, _26, _27
+- QEP220103_RN_GR_Elena_31, _32, _33
+- QEP220209_RN_GR_ELENA_37, _38, _39, _43, _44, _45, _49, _50BIS, _51, _55, _56BIS, _57, _61, _62BIS, _63BIS, _67, _68, _69BIS
+
+Sources checked:
+
+| source | result |
+|---|---|
+| PRIDE v3 project + files | protocol describes the design (MDA-MB231, MCF7; NT/E/NTT; 6 biological replicates); no per-run key; no SDRF/design file deposited |
+| `txt.zip` (central directory + parameters.txt, summary.txt, evidence.txt, read by HTTP range) | experiment names = raw file stems; no sample names; MaxQuant 1.5.2.8, ArgC, fixed PIC, variable Trimethyl (K)/Dimethyl (K)/Propionyl/Pmet, Arg10 |
+| Raw headers (bytes 0–20000 of all 36; 0–1.5 MB of Elena_1) | instrument "Q Exactive Plus - Orbitrap MS", method `QEP_histone_PIC_8minB_gradient.meth`, file name, vial, sequence row number; the sample-ID field holds only the batch-constant `H8` (Dec 2021) / `H3` (Jan–Feb 2022); nothing per sample |
+| Paper PMC10281864 (PMC OA text) + Suppl. Methods/Tables (MOESM1–3 docx) | Table S2 gives L/H ratios of H3K4un/me1/me2/me3 per cell line × condition × R#1–6, with no raw-file names |
+| Europe PMC search "PXD033337" | only the article itself; no Data in Brief or other dataset descriptor |
+| GEO GSE218819 | RNA-seq only |
+
+**Deliberately not used:**
+- **The run-number pattern.** The runs come in blocks of three (1–3, 7–9, …, 67–69). These could be read as NT/E/NTT triplets, but no source states this.
+- **A data-driven cell-line split.** In `evidence.txt`, H3 3–8 (TKQTAR) light/heavy %RA ratios separate Elena_1–15 and 37–51 (MCF7-like: high me1, low me2) from 19–33 and 55–69 (MDA-MB-231-like), consistent with Table S2. The per-run values are too sparse and noisy (many NA) to match Table S2 columns to individual runs, so they could not assign condition or replicate.
+
+Rule 7 forbids keeping rows with `not available` conditions.
+
+**Unblocked by:** a run → (cell line, NT/E/NTT, replicate R#) table from the submitters (G. Robusti / R. Noberini / T. Bonaldi, IEO), or a deposited SDRF / experimentalDesign. Technical values already settled are in `annotations/PXD033337.report.md`.
+
+## PXD046000 — PTP1B substrates by pTyr-IP SILAC phosphoproteomics in Ptp1b-/- vs +/+ MEFs (Villamar-Cruz et al., Mol Cell Biol 2023; duplex SILAC, MaxQuant 1.2.0.18), 2 `PMn_200` runs excluded (excluded runs, not a blocker)
+
+**Excluded runs:** `o110826_PMn_200_01.RAW`, `o110826_PMn_200_02.RAW`. They are in no deposited search (summary.txt lists only `o110826_JC569_01..13`) and in neither Supplemental Dataset. Their raw headers give the same method and folder (`o110826_JC569SILAC`) and no sample field. No source says what `PMn_200` is or whether it is SILAC-labelled. The 8 deposited `JC569` runs are annotated in `annotations/PXD046000.sdrf.tsv`.
+
+**Missing from the deposit (not blockable, recorded):** searched runs `o110826_JC569_01/05/07/09/11`, and the `NS` experiment runs `o110826_JC569nselu_15..23` that appear in the paper's Supplemental Dataset 1.
+
+**Open point for the reviewer (annotated, not blocked):** the channel map follows Fig. 1B (+/+ light, -/- heavy) and Table 1 'KO/wt' = Supplemental Dataset 2 'Ratio H/L'. The PRIDE protocol word order and the deposited EGFR/CTNND1/p38 pY ratios point the other way. If a reviewer rejects that map, all 16 rows must move here. The evidence is in `annotations/PXD046000.report.md`.
+
+**Unblocked by:** a submitter statement of what the `PMn_200` runs are, together with their search output.
