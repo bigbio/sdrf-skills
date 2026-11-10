@@ -2222,7 +2222,7 @@ The SILAC arm (24 `HuCCT1_Global_FN01..FN24_PepMap_50cm_050620.raw` + `HuCCT1_pY
 
 ## PXD050961 — SPIED-DIA phosphoproteomics, MEK inhibition in CRC cell lines (van Bentum et al., Nat Commun 2025; SILAC HCT116 dilution + heavy synthetic phosphopeptide spike-in DIA, timsTOF Pro 2), partial: DMSO arm of HCT116 individual-GF experiment blocked; library/DDA/E. coli-background runs excluded
 
-**Annotated:** `PXD050961-silac-dilution.sdrf.tsv` (Benchmark1, 33 runs: HCT116 heavy lysate diluted 1:1–1:2047 into light reference) and `PXD050961-spied.sdrf.tsv` (Benchmark2 9 DIA runs, cell-line panel GFmix 35 runs, HCT116 individual GFs MEKi arm 15 runs; heavy channel = JPT SpikeMix synthetic phosphopeptide reference). Raw data are Bruker .d folders inside 9 RAW zip bundles, read by HTTP range.
+**Annotated:** `PXD050961-silac-dilution.sdrf.tsv` (Benchmark1, 33 runs: HCT116 heavy lysate diluted 1:1–1:2047 into light reference) and `PXD050961-spied.sdrf.tsv` (Benchmark2 9 DIA runs, cell-line panel GFmix 35 runs, HCT116 individual GFs MEKi arm 15 runs; heavy channel = JPT SpikeMix synthetic phosphopeptide reference) and `PXD050961-benchmark3.sdrf.tsv` (Rev_Benchmark3 targeted dilution series, 18 runs: HEK293 light row with characteristics[mass], separate E. coli 100 ng background light row per SAMPLE-GUIDELINES.adoc:424, JPT heavy spike 50 fmol; added in round 3, previously listed here as excluded). Raw data are Bruker .d folders inside 9 RAW zip bundles, read by HTTP range.
 
 **Blocked (channel/condition undocumented, rule 7):** `HCT116GFs_Rawfiles.zip` DMSO arm, 7 runs searched in HCT116GFs_outputDIANN_SPIED/LF: Popeye_20230704_MVB_HStd_SS1_DB1_A1_1_4167.d, DB1_F3_1_4169.d, DB2_G3_1_4182.d, DB3_H3_1_4198.d, DE1_D4_1_4172.d, DE2_E4_1_4190.d, DE3_F4_1_4203.d. Paper, Suppl. Fig. 15/16 and the authors' code (Zenodo 15045498) describe only the MEKi + BSA/EGF/FGF2/HGF/VEGF-C conditions; "D"=DMSO is supported by ERK2 pY187 light intensities (D* 1.2e3–7.6e3 vs M* <500) and B/E by the ligand initials, but no source states the condition. Unblocked by an author file→condition table.
 
@@ -2232,7 +2232,6 @@ The SILAC arm (24 `HuCCT1_Global_FN01..FN24_PepMap_50cm_050620.raw` + `HuCCT1_pY
 - `HpHLib_Rawfiles.zip` 50 .d (DDA-PASEF high-pH library fractions of light HCT116, MaxQuant label-free).
 - `TargetLibBM2_Rawfiles.zip` 6, `Lib_Benchmark3_Rawfiles.zip` 6, `Lib_BioData_Rawfiles.zip` 3 (DDA-PASEF of the synthetic heavy peptide pool alone, library generation).
 - `Benchmark2_Rawfiles.zip` 3 DDA runs Popeye_20240314_MVB_HStd_BM2_250ng_DDA_A4_1_5705/5706/5707.d (DDA benchmark, MaxQuant).
-- `Rev_Benchmark3_Rawfiles.zip` 18 runs Popeye_20240912_SHN_100ngEcoli_50fmolJTP_{0,25,50,100,200,400}ngHEK_DIA_{1,2,3}_*.d (targeted dilution series; light channel is HEK293 + 100 ng E. coli background, and only E. coli in the 0 ng runs — mixed-organism channel not encodable as one SILAC row; would need a separate design with characteristics[mass] rows per component).
 
 ## PXD046502 — Palmitate / CD8+ T-cell histone PTMs (Tiberti et al., Sci Immunol 2026; histone super-SILAC, mouse), whole dataset (25 RAW)
 
