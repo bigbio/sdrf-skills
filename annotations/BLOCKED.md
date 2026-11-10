@@ -2368,8 +2368,8 @@ Annotated: `annotations/PXD007256.sdrf.tsv` covers the 6 raws that are the files
 
 Excluded runs (sample identity undocumented): `CAL27_Curcumin_2SILAC_pST_1.raw`, `_02.raw`, `_03.raw`, `_07.raw`, `_08.raw`, `_09.raw`, `_10.raw`.
 - Their byte sizes do not match the MSF `FileInfos` entries of the same names (e.g. deposited `_02` 846705 KB vs searched 727912 KB; deposited `_1` 701470 KB vs searched `_01` 232942 KB), whereas all six in-scope files match exactly.
-- Their raw headers embed other original names (`HNSCC_CAL27_Phospho_2/3/5/7/8/9/10.raw`; deposited `pST_1` = original `HNSCC_CAL27_Phospho_5`), another instrument method (`90min_pSTY_MIPS_HCD_Easy nanoLC_071013.meth`, top10, MS1 350–1800 vs `SR_pST_60K7.5K_15`, top15, 350–1700) and creation dates 2013-10-16/23 (in-scope series: 2013-12-10..12).
+- Their raw headers embed other original names (`HNSCC_CAL27_Phospho_2/5/8/9/10.raw` and `CAL27_Phospho_3/7.raw`; deposited `pST_1` = original `HNSCC_CAL27_Phospho_5`), another instrument method (`90min_pSTY_MIPS_HCD_Easy nanoLC_071013.meth`, top10, MS1 350–1800 vs `SR_pST_60K7.5K_15`, top15, 350–1700) and creation dates 2013-10-16/23 (in-scope series: 2013-12-10..12).
 - No paper exists for the deposit (PRIDE's reference is PXD007108's cigarette-smoke paper; Europe PMC has nothing for the accession or title), so nothing says what these acquisitions are or which channel is which.
 - The genuinely searched `pST_01`, `02`, `03`, `07`, `08`, `09`, `10` raws are missing from the deposit.
 
-What would unblock: the submitters confirming what the `HNSCC_CAL27_Phospho_*` acquisitions are (sample, treatment, SILAC orientation, fraction), or re-uploading the original `CAL27_Curcumin_2SILAC_pST_01/02/03/07/08/09/10.raw` files.
+What would unblock: the submitters confirming what the `HNSCC_CAL27_Phospho_*` / `CAL27_Phospho_*` acquisitions are (sample, treatment, SILAC orientation, fraction), or re-uploading the original `CAL27_Curcumin_2SILAC_pST_01/02/03/07/08/09/10.raw` files.
