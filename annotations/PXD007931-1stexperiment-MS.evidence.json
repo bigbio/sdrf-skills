@@ -1,0 +1,359 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD007931-1stexperiment-MS.sdrf.tsv",
+ "dataset": "PXD007931",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD007931 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD007931/files?pageSize=100&page=0..2 (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/files_all.json; 6 entries = 3 RAW zips 1st/2nd/3rdexperiment-MS.zip + 3 SEARCH zips 1st/2nd/3rdexperiment.zip; every entry projectAccessions contains PXD007931)"
+  },
+  {
+   "id": "zipcd",
+   "kind": "raw-file",
+   "location": "Central directories of https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/11/PXD007931/1stexperiment-MS.zip, 2ndexperiment-MS.zip, 3rdexperiment-MS.zip read by HTTP range (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/list_1stexperiment-MS.txt, list_2ndexperiment-MS.txt, list_3rdexperiment-MS.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/zip_members.tsv; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/ziplist.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/zipdates.py): each zip holds 16 .wiff (H-HCT116-I8-1..16.wiff) + 16 .scan/.wiff.scan companions; the three zips use identical member basenames (full member paths differ: \"1st experiment/\", \"2nd experiment-MS/2nd experiment/\", \"3rd experiment-MS/3rd experiment/\"); all 48 .wiff CRCs differ"
+  },
+  {
+   "id": "wiff",
+   "kind": "raw-file",
+   "location": "First 400 kB of every one of the 48 inflated .wiff members (UTF-16 strings: embedded acquisition path/name, Checksum Time, acquisition method, Mass Spectrometer string) (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/wiff_names.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/wiff_meta.tsv; full first file /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/dl/I8-1_exp1.wiff = 1stexperiment-MS.zip H-HCT116-I8-1.wiff; scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/wiffnames.py, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/wiffmeta.py)"
+  },
+  {
+   "id": "mq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/11/PXD007931/1stexperiment.zip, 2ndexperiment.zip, 3rdexperiment.zip members summary.txt, parameters.txt, proteinGroups.txt, evidence.txt (MaxQuant 1.5.2.8; local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/dl/mq_1st/, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/dl/mq_2nd/, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/dl/mq_3rd/; copies of summary/parameters as /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/sp/<exp>/summary.txt, parameters.txt; sdrf-tools search-params output /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/sp_1st.txt, sp_2nd.txt, sp_3rd.txt)"
+  },
+  {
+   "id": "runmatch",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/run_match.tsv (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/match_runs.py): embedded .wiff acquisition name of each deposited file vs the Raw file list of each MaxQuant summary.txt"
+  },
+  {
+   "id": "fracassign",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/fraction_assignment_3rdsearch.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/best_match.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/run_similarity.tsv (scripts /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/margin.py, best_match.py, run_similarity.py): peptide-set Jaccard (MULTI-MSMS evidence, modified sequence) between every fraction run of the three MaxQuant searches"
+  },
+  {
+   "id": "orientation",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/orientation.txt (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/orient.py): log2 Ratio H/L normalized of marker proteins and between-search Pearson correlation from proteinGroups.txt"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "Hu HF et al. Comparative proteomics analysis identifies Cdc42-Cdc42BPA signaling as prognostic biomarker and therapeutic target for colon cancer invasion. J Proteome Res 2018;17(1):265-275, doi:10.1021/acs.jproteome.7b00550, PMID 29072916. Closed access (Unpaywall oa_status closed; not in PMC); only the Europe PMC abstract was available (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/epmc.json)."
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0291?format=txt (local /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/cello_CVCL_0291.txt); subline searches logged in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/cello_search_I8.txt (no HCT116-I8 entry; hi:CVCL_0291 has 2099 children, first 2000 in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/cello_children_CVCL_0291.tsv)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4/api/ontologies/<o>/terms?obo_id=... and /api/search (logs /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/ols_ids.txt, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/ols_search.txt); every term is_obsolete=false"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines (ms-proteomics v1.2.0 per upstream bigbio/sdrf-templates 7da1747 templates.yaml line 150 latest: 1.2.0, local checkout /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/tpl/t; the spec submodule nested templates copy is older); spec README.adoc:27 sdrf version v1.1.0"
+  },
+  {
+   "id": "build",
+   "kind": "derived",
+   "location": "/tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/build/samples.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/build/technical.tsv, /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/build/files.json (script /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/make_tables.py), split per RAW zip and built by /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b11-PXD007931/scripts/split_build.py (sdrf-tools build once per zip; no post-build edit)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-32",
+   "value": "HCT116_exp1 (rows 1-16, SILAC light) / HCT116-I8_exp1 (rows 17-32, SILAC heavy)",
+   "source_ids": [
+    "files",
+    "zipcd",
+    "wiff",
+    "mq",
+    "pride"
+   ],
+   "evidence": "This file covers the deposited RAW zip 1stexperiment-MS.zip only = MaxQuant \"1st experiment\" (1stexperiment.zip; Raw files 20160818_hhf-I_1..16; acquired 2016-08-18/20, folder 20160813LB). One source per (cell population, mixture). Mapping of zips to searches from the acquisition names embedded in every .wiff (run_match.tsv): 1stexperiment-MS.zip = MaxQuant \"1st experiment\"; 2ndexperiment-MS.zip = MaxQuant \"3rd experiment\"; 3rdexperiment-MS.zip = MaxQuant \"2nd experiment\" (zip and search labels swapped for experiments 2 and 3). Source names follow the zips."
+  },
+  {
+   "location": "comment[label] + characteristics[phenotype] + factor value[phenotype] rows 1-32",
+   "value": "SILAC light = parental HCT116; SILAC heavy = highly invasive subline HCT116-I8 (all three mixtures)",
+   "source_ids": [
+    "pride",
+    "zipcd",
+    "orientation",
+    "mq",
+    "paper"
+   ],
+   "evidence": "PRIDE sampleProcessingProtocol: \"HCT116-I8 and HCT116 cells were cultured ... either light media (Arg0, Lys0) or heavy media (Arg10, Lys8) ... The lysates of heavy-labeled HCT116-I8 and light-labeled HCT116 cells were mixed with equal amounts\". Every deposited file is named H-HCT116-I8-<n> (H = heavy HCT116-I8). Data check: the paper (abstract) reports upregulation of Cdc42BPA in HCT116-I8; deposited log2 H/L normalized of CDC42BPA (Q5VT25) = +0.87 / +1.05 / +1.25 in the 1st / 2nd / 3rd MaxQuant searches -> heavy = HCT116-I8. Searches correlate positively (Pearson log2 H/L 0.73-0.77, n 3388-3579), so no label swap between mixtures. Conflict recorded: CDH1 log2 H/L is +0.45..+0.53 although the abstract reports decreased E-cadherin (western blot) in I8 cells; the explicit label statement, the file names and the paper's headline protein outrank this."
+  },
+  {
+   "location": "characteristics[phenotype] rows 1-32",
+   "value": "highly invasive subline HCT116-I8 / parental HCT116",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE projectDescription / abstract: \"Eight rounds of selection of cancer cells invading through matrigel-coated chamber was performed to obtain highly invasive colon cancer sublines HCT116-I8 and RKO-I8\"; \"HCT116-I8 ... cells showed significantly stronger invasive potential ... compared with parental cells\". Custom use of the TERMS.tsv phenotype column (EFO:0000651, free text allowed) outside its clinical-metadata template (spec Extending Templates) to carry the subline identity, because HCT116-I8 has no Cellosaurus or ontology record."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-32",
+   "value": "1 (both rows groups; replicates 1/2/3 = 1st/2nd/3rdexperiment-MS.zip, numbered within each phenotype group across the three SDRF files)",
+   "source_ids": [
+    "files",
+    "mq",
+    "wiff",
+    "fracassign"
+   ],
+   "evidence": "PRIDE names the deposits 1st/2nd/3rd experiment; each is a separately fractionated (16 fractions) and separately searched SILAC mixture acquired on different dates (2016-08-18/20; 2017-09-06/08 + 2017-09-13/14 re-runs; 2017-09-08/09). Peptide content differs between mixtures (same-fraction Jaccard 0.37-0.58, i.e. not identical injections). Whether each mixture came from an independently grown culture pair is not stated (paper Methods not accessible): treated as independent labelling experiments."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-32",
+   "value": "HCT116",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Both populations are HCT116 (parental) or derived from it (HCT116-I8, selected from HCT116 by eight rounds of Matrigel invasion). Cellosaurus has no entry for HCT116-I8 (searches q=HCT116-I8, id:\"HCT 116-I8\", hi:CVCL_0291 AND (sy:*I8* OR id:*I8*), hi:CVCL_0291 AND invasive: no hit; log cello_search_I8.txt), so the parental term is used (precedent PXD005246). EFO:0002824 label \"HCT116\" (Cellosaurus DR EFO_0002824), not obsolete."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] + characteristics[cellosaurus name] rows 1-32",
+   "value": "CVCL_0291 / HCT 116",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC CVCL_0291, ID \"HCT 116\" (SY HCT116). Parental line of HCT116-I8 (no derivative entry)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-32",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:9606; Cellosaurus OX NCBI_TaxID=9606; OLS NCBITaxon:9606 Homo sapiens."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-32",
+   "value": "colon",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CVCL_0291 \"Derived from site: In situ; Colon; UBERON=UBERON_0001155\"; OLS UBERON:0001155 label colon."
+  },
+  {
+   "location": "characteristics[disease] rows 1-32",
+   "value": "colon carcinoma",
+   "source_ids": [
+    "cellosaurus",
+    "ols",
+    "pride"
+   ],
+   "evidence": "Cellosaurus DI NCIt C4910 Colon carcinoma; OLS MONDO:0002032 colon carcinoma (not obsolete). PRIDE diseases DOID:219 colon cancer (broader). Both populations are tumour-derived, so no normal arm."
+  },
+  {
+   "location": "characteristics[material type] rows 1-32",
+   "value": "cell line",
+   "source_ids": [
+    "pride",
+    "cellosaurus"
+   ],
+   "evidence": "Cultured cell lines (SILAC culture in RPMI 1640)."
+  },
+  {
+   "location": "characteristics[ancestry category] rows 1-32",
+   "value": "European ancestry",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus CC \"Population: Caucasian.\"; OLS HANCESTRO:0005 European ancestry."
+  },
+  {
+   "location": "characteristics[age] + characteristics[sex] + characteristics[developmental stage] rows 1-32",
+   "value": "48Y / male / adult",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus AG 48Y, SX Male; donor age >= 20Y -> EFO:0001272 adult (batch rule 9)."
+  },
+  {
+   "location": "characteristics[individual] rows 1-32",
+   "value": "HCT_116_donor",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Both populations derive from the single HCT 116 donor (HCT116-I8 is selected from parental HCT116)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-32",
+   "value": "Roswell Park Memorial Institute 1640 Medium",
+   "source_ids": [
+    "pride",
+    "ols"
+   ],
+   "evidence": "PRIDE protocol: \"SILAC RPMI 1640 media (Thermo Fisher Scientific), supplemented with 10% dialytic fetal bovine serum\"; OLS NCIT:C178973 Roswell Park Memorial Institute 1640 Medium, not obsolete."
+  },
+  {
+   "location": "comment[data file] rows 1-32",
+   "value": "H-HCT116-I8-1..16.wiff = the 16 .wiff members of 1stexperiment-MS.zip",
+   "source_ids": [
+    "zipcd",
+    "files"
+   ],
+   "evidence": "Vendor raw files are available only inside 1stexperiment-MS.zip (with .scan/.wiff.scan companions). The same basenames also occur in the other two RAW zips (different files, CRCs differ), which is why each zip has its own SDRF; within this file every data file is unique and maps 1:1 to a member of 1stexperiment-MS.zip. Precedent PXD009311 names the .wiff member inside a zip."
+  },
+  {
+   "location": "assay name rows 1-32",
+   "value": "file stem H-HCT116-I8-<n> (set by sdrf-tools build; no post-build edit)",
+   "source_ids": [
+    "zipcd",
+    "build"
+   ],
+   "evidence": "One assay per data file; channels share it and comment[label] separates them."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-32",
+   "value": "zip member n = embedded name 20160818_hhf-I_n = fraction n",
+   "source_ids": [
+    "wiff",
+    "runmatch",
+    "fracassign",
+    "mq"
+   ],
+   "evidence": "Runs acquired in number order ~1 h 44 min apart (wiff_meta.tsv), and run n overlaps best with fraction n of the other two mixtures (best_match.tsv; peptide Jaccard 0.37-0.58). The fractionation method itself is not documented."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-32",
+   "value": "1",
+   "source_ids": [
+    "zipcd",
+    "mq"
+   ],
+   "evidence": "One injection per (mixture, fraction) in the deposit and in each MaxQuant search; superseded first injections of the exp2 re-run fractions were not deposited."
+  },
+  {
+   "location": "comment[instrument] rows 1-32",
+   "value": "NT=TripleTOF 5600+;AC=MS:1002584",
+   "source_ids": [
+    "wiff",
+    "zipcd",
+    "ols",
+    "mq"
+   ],
+   "evidence": "Every .wiff (SCIEX Analyst TF 1.6 data file) carries \"Mass Spectrometer:TripleTOF 5600 ... Component Name: Hybrid Quadrupole-TOF LC/MS/MS Mass Spectrometer, Component ID: TripleTOF 5600+, Manufacturer: AB Sciex Instruments\" (checked fully in 1stexperiment-MS H-HCT116-I8-1.wiff); MaxQuant msmsScans Mass analyzer = TOF. PRIDE instruments field (MS:1000449 LTQ Orbitrap) and the protocol sentence about an LTQ-Orbitrap are contradicted by the vendor format and the raw header (an LTQ Orbitrap cannot write .wiff); rejected."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-32",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "mq",
+    "wiff"
+   ],
+   "evidence": "MaxQuant processed the runs as standard DDA (MS/MS of selected precursors; msmsScans Type ISO/MULTI/PEAK, Fragmentation CID); acquisition method SILAC_8ul_90min.dam / SILAC_6ul_90min.dam."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-32",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "wiff",
+    "mq",
+    "ols"
+   ],
+   "evidence": "QqTOF (TripleTOF 5600+) fragments in the q2 collision cell = beam-type CID; MaxQuant reports Fragmentation \"CID\". Campaign precedent PXD004880 (TripleTOF 5600) uses MS:1000422."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-32",
+   "value": "NT=time-of-flight;AC=MS:1000084",
+   "source_ids": [
+    "mq",
+    "wiff"
+   ],
+   "evidence": "MaxQuant msmsScans.txt column Mass analyzer = TOF; QqTOF instrument."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-32",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "mq",
+    "pride"
+   ],
+   "evidence": "MaxQuant summary.txt Enzyme \"Trypsin\", Enzyme mode \"Specific\", max 2 missed cleavages, in all three searches, giving 72,527-76,559 MS/MS-identified evidences and 12-18 % identified MS/MS per run; a non-tryptic digest would not identify at this rate in a specific trypsin search. The PRIDE protocol says only \"Protein digestion and MS analysis were performed as described previously\"; the digestion enzyme is not named in the accessible record (reconcile finding refuted in validation.txt)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-32",
+   "value": "Carbamidomethyl C fixed; Acetyl protein N-term, Oxidation M, Gln->pyro-Glu Q (any N-term), Label:13C(6)15N(4) R, Label:13C(6)15N(2) K variable",
+   "source_ids": [
+    "mq",
+    "pride",
+    "ols"
+   ],
+   "evidence": "parameters.txt \"Fixed modifications Carbamidomethyl (C)\"; summary.txt Variable modifications \"Acetyl (Protein N-term);Oxidation (M);Gln->pyro-Glu\", Multiplicity 2, Labels1 \"Arg10;Lys8\" (identical in the three searches; summary.txt has no Multi modifications column); PRIDE data protocol lists the same. UNIMOD 4, 1, 35, 28, 267 (Arg10), 259 (Lys8) verified in OLS. Labels MT=Variable per batch convention."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-32",
+   "value": "40 ppm",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (TOF) 40 ppm\" (the analyzer of these runs is TOF). The PRIDE text \"FTMS-20 ppm, ITMS-0.5 Da\" lists the other analyzer classes."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "mq"
+   ],
+   "evidence": "MaxQuant 1.5.2.8 parameters.txt/summary.txt do not record the precursor (first/main search) tolerance and no mqpar.xml was deposited."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-32",
+   "value": "not available",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "16 fractions per mixture, but the method is only referenced (\"as described previously\") and the paper Methods were not accessible."
+  },
+  {
+   "location": "comment[sdrf version] + comment[sdrf template] + comment[sdrf annotation tool] rows 1-32",
+   "value": "v1.1.0; ms-proteomics v1.2.0, human v1.1.0, cell-lines v1.1.0; NT=sdrf-skills;VV=v0.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Campaign rules 1 and 10."
+  },
+  {
+   "location": "technology type rows 1-32",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by sdrf-tools build from the ms-proteomics template."
+  }
+ ],
+ "limitations": [
+  "Paper (J Proteome Res 2018, doi:10.1021/acs.jproteome.7b00550) is closed access; only the abstract and the PRIDE protocol texts were available. Biological-replicate independence, fractionation method, digestion details and reduction/alkylation reagents are therefore not documented.",
+  "Deposited zip labels vs MaxQuant search labels are swapped for experiments 2 and 3 (2ndexperiment-MS.zip = MaxQuant \"3rd experiment\"; 3rdexperiment-MS.zip = MaxQuant \"2nd experiment\"), established from embedded .wiff acquisition names; source names follow the zips.",
+  "exp2 fraction identifiers for 8 files are assigned from peptide-content similarity, not from file names (the embedded acquisition names of those files are permuted relative to content); see the fraction-identifier claim.",
+  "PRIDE instrument field and protocol (LTQ Orbitrap, 350-1500 m/z, 35K resolution, \"middle versus light\" ratio) describe a different instrument/experiment and are contradicted by the .wiff headers; no MS1 scan range was annotated.",
+  "CDH1 (E-cadherin) log2 H/L is +0.45..+0.53 in the deposited searches while the abstract reports decreased E-cadherin by western blot in I8 cells; channel map kept from the explicit PRIDE label statement, file names (H-HCT116-I8) and CDC42BPA (+0.87..+1.25).",
+  "Precursor mass tolerance not recorded by MaxQuant 1.5.2.8 -> not available; convert-openms fails on it (expected).",
+  "RKO-I8 (also named in the abstract) has no runs in this deposit; scope = HCT116-I8 vs HCT116 only.",
+  "The SDRF is split into three files, one per deposited RAW zip (review B1): the zips reuse the basenames H-HCT116-I8-1..16.wiff for different physical runs, so a combined file would repeat comment[data file]. Each file's data files are the members of the zip named in its file name; extract each zip into its own directory.",
+  "The six 2017-09-13/14 re-runs in 2ndexperiment-MS.zip (members 2,3,6,7,9,13; embedded names I 8_2_2, I 8_2_3, I 8_2_6, I 8_2_7, I 8_2_9, I 8_2_13) carry the I 8_2_ prefix of the 3rdexperiment-MS.zip mixture. Their assignment to exp2 rests on the depositor's zip packaging, the MaxQuant grouping (same \"3rd experiment\" search as the I 8_ runs) and the fact that they fill exactly the six acquisition-time gaps of the I 8_ series; independent review measured their content as modestly closer to the I 8_2 mixture than the genuine I 8_ runs are (Jaccard excess mean +0.065 vs +0.004..+0.026), not decisive. Which mixture they belong to is therefore ambiguous.",
+  "SCIEX companion files are not annotated: comment[associated data file] is in TERMS.tsv (no accession, pending PRIDE ontology #180) but not in the resolved ms-proteomics/human/cell-lines contract, and build has no per-file source for it. Companions: 1stexperiment-MS.zip and 2ndexperiment-MS.zip members H-HCT116-I8-<n>.scan; 3rdexperiment-MS.zip members 1-2 .scan, 3-16 .wiff.scan. Readers (ProteoWizard) expect <name>.wiff.scan, so .scan files must be renamed after extraction.",
+  "Independent review round 1 FAILED on the combined file (annotations/PXD007931.review.md, sha256 ee2aedd0...); this split is the repair. A new independent review is pending (REVIEW_PENDING_EXTERNAL)."
+ ]
+}
