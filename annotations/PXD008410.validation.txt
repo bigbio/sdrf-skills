@@ -1,5 +1,5 @@
-# PXD008410 validation log (2026-11-10T19:06Z); SDRF sha256 72aeea7d17e34114bada54c11b6d3e095adb4ca6382248550281a5186454322c
-# The SDRF is written by sdrf-tools build only (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/scripts/make_tables.py, files list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/files_raw_kept.json). No post-build edits.
+# PXD008410 validation log (2026-11-11T13:29Z); SDRF sha256 f8ecf4e303bb13af9c0dfe48dc57d1e139bc32a4507aee012d007b9f7a395b0c
+# The SDRF is written by sdrf-tools build only (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/scripts/make_tables.py, files list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/files_raw.json = all 40 raws). No post-build edits.
 
 ## Round 1 (superseded: sha256 6dc6dca9fe7be00a8da8b96ab64266e845df4253bc6ed3e5e14995b361afac04, 80 x 57, all 40 runs)
 All checks exited 0. validate-sdrf gave 5 warnings.
@@ -17,12 +17,20 @@ Re-review FAILED. Fixes, all made in make_tables.py and followed by a rebuild:
   - characteristics[individual] = Capan-1_donor was added;
   - the manifest now cites the TiO2 statement and addresses the 'flowthrough' mention.
 
-## Round 3 (current file): parse_sdrf validate-sdrf -s annotations/PXD008410.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+## Round 3 (superseded: sha256 72aeea7d17e34114bada54c11b6d3e095adb4ca6382248550281a5186454322c, 32 x 59)
+All checks exited 0. convert-openms: 6 conditions.
+Owner decision (2026-11-11): the ISO1/ISO2/ISO3 -> A66/TGX-221/AS-252424 map (from Supplementary Table 2) is accepted. make_tables.py KEEP now includes ISO1/ISO2/ISO3, and the file was rebuilt with all 40 runs (round-3 design otherwise unchanged).
+
+## Round 4 (current file): parse_sdrf validate-sdrf -s annotations/PXD008410.sdrf.tsv -t ms-proteomics -t human -t cell-lines
 WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: A66 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: TGX-221 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: AS-252424 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
 WARNING: Term: Capan-1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
 Most seems to be fine. There were only warnings.
 exit=0
 Warnings explained:
+  - A66, TGX-221 and AS-252424 have no CHEBI/NCIT/EFO term (OLS log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/ols_log.txt).
   - 'untreated' is the control value the template prescribes (batch rule 4).
   - Capan-1: the CLO/BTO/EFO labels are 'Capan-1 cell' (CLO:0002197), 'CAPAN-1 cell' (BTO:0002744) and 'Capan1' (EFO:0002153). The Cellosaurus name is kept, and characteristics[cellosaurus accession] CVCL_0237 identifies the line.
 
@@ -47,14 +55,14 @@ Hallucination Report: annotations/PXD008410.sdrf.tsv
 exit=0
 
 ## parse_sdrf convert-openms -s annotations/PXD008410.sdrf.tsv -t2 (run in /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/convert2)
-Conditions (6): dict_keys(['10 minute|2% dialysed fetal bovine serum|untreated', '10 minute|unstimulated|untreated', '24 hour|2% dialysed fetal bovine serum|untreated', '24 hour|unstimulated|untreated', '10 minute|2% dialysed fetal bovine serum|LY294002', '24 hour|2% dialysed fetal bovine serum|LY294002'])
-Files per condition: dict_values([4, 8, 4, 8, 4, 4])
-WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 32 times.
+Conditions (12): dict_keys(['10 minute|2% dialysed fetal bovine serum|untreated', '10 minute|unstimulated|untreated', '24 hour|2% dialysed fetal bovine serum|untreated', '24 hour|unstimulated|untreated', '10 minute|2% dialysed fetal bovine serum|LY294002', '24 hour|2% dialysed fetal bovine serum|LY294002', '10 minute|2% dialysed fetal bovine serum|A66', '24 hour|2% dialysed fetal bovine serum|A66', '10 minute|2% dialysed fetal bovine serum|TGX-221', '24 hour|2% dialysed fetal bovine serum|TGX-221', '10 minute|2% dialysed fetal bovine serum|AS-252424', '24 hour|2% dialysed fetal bovine serum|AS-252424'])
+Files per condition: dict_values([4, 20, 4, 20, 4, 4, 4, 4, 4, 4, 4, 4])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 80 times.
 SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD008410.sdrf.tsv
 exit=0
-6 conditions:
-  - light vehicle+FBS and light LY294002+FBS, at 10 min and 24 h (4 files each);
-  - heavy unstimulated references at 10 min and 24 h (8 files each, because each heavy culture appears in the FBS run and the LY run).
+12 conditions:
+  - light: 5 treatments x 2 times (4 files each);
+  - heavy unstimulated references at 10 min and 24 h (20 files each, because each heavy culture appears in the 5 condition runs of its replicate and time point).
 The TA= warning is about the Acetyl modification with PP=Protein N-term, which is positional and has no residue.
 
 ## sdrf-tools schema-check annotations/PXD008410.evidence.json
