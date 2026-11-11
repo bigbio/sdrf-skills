@@ -148,4 +148,4 @@ PXD062045	PRIDE	include		Batch 13: puromycin nascent proteome T3M4 pancreatic ca
 PXD035748	PRIDE	include		Batch 13: DNMT/HDAC inhibition NCI-H1299 nascent proteome (QE-HF arm; 57 runs blocked)	repository structured fields; paper methods
 PXD007256	PRIDE	include		Batch 13: curcumin CAL 27 HNSCC phosphoproteome (6 of 13 runs; 7 blocked)	repository structured fields; paper methods
 PXD046807	PRIDE	include		Batch 13: super-SILAC lung adenocarcinoma tissue by stage and EGFR status	repository structured fields; paper methods
-PXD008410	PRIDE	include		Batch 13: PI3K inhibition Capan-1 PDAC phosphoproteome (vehicle/LY294002 arm; ISO arms blocked)	repository structured fields; paper methods
+PXD008410	PRIDE	include		Batch 13: PI3K inhibition Capan-1 PDAC phosphoproteome (all 40 runs; ISO map from Supp Table 2 labels, owner-accepted)	repository structured fields; paper methods
