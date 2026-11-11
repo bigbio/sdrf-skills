@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "artifact": "/home/user/bigbio/sdrf-skills/annotations/PXD008410.sdrf.tsv",
+ "artifact": "annotations/PXD008410.sdrf.tsv",
  "dataset": "PXD008410",
  "sources": [
   {
@@ -242,13 +242,23 @@
    "evidence": "Cellosaurus DI NCIt C9120 Pancreatic ductal adenocarcinoma; MONDO:0005184 (OLS, not obsolete). PRIDE gives the broader DOID:1793 pancreatic cancer."
   },
   {
-   "location": "characteristics[organism part] / characteristics[sampling site] rows 1-80",
+   "location": "characteristics[organism part] rows 1-80",
+   "value": "pancreas",
+   "source_ids": [
+    "cellosaurus",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Primary tissue of origin of the cell line (spec README:299; cellline.md section 4.4; campaign convention PXD062045/PXD062091). Capan-1 is a pancreatic ductal adenocarcinoma line (Cellosaurus DI NCIt C9120; paper: \"human pancreatic cancer cell line Capan-1\"). UBERON:0001264 pancreas (OLS, not obsolete)."
+  },
+  {
+   "location": "characteristics[sampling site] rows 1-80",
    "value": "liver",
    "source_ids": [
     "cellosaurus",
     "ols"
    ],
-   "evidence": "Cellosaurus \"Derived from site: Metastatic; Liver; UBERON=UBERON_0002107\" (Capan-1 comes from a liver metastasis of pancreatic adenocarcinoma). UBERON:0002107 liver (OLS). PRIDE organismParts (cell culture / pancreatic ductal cell / pancreatic acinus) are dropdown values that do not describe the sample site."
+   "evidence": "Cellosaurus CVCL_0237: \"Derived from site: Metastatic; Liver; UBERON=UBERON_0002107\" (the line was established from a liver metastasis). UBERON:0002107 liver (OLS)."
   },
   {
    "location": "characteristics[age] / characteristics[sex] / characteristics[developmental stage] / characteristics[ancestry category] rows 1-80",
@@ -329,7 +339,7 @@
     "suppM",
     "ols"
    ],
-   "evidence": "All 40 raw method headers (the 16 annotated included): \"FTMS + p norm ... o(350.0-1800.0)\" survey scan; \"ITMS + c norm Dep MS/MS ... Activation Type: CID ... Normalized Coll. Energy: 30.0\". Supplementary Methods: 350-1,800 m/z, top 20, CID, fragments analysed in the LTQ."
+   "evidence": "All 40 raw method headers (all 40 annotated runs): \"FTMS + p norm ... o(350.0-1800.0)\" survey scan; \"ITMS + c norm Dep MS/MS ... Activation Type: CID ... Normalized Coll. Energy: 30.0\". Supplementary Methods: 350-1,800 m/z, top 20, CID, fragments analysed in the LTQ."
   },
   {
    "location": "comment[cleavage agent details] rows 1-80",

@@ -1,4 +1,4 @@
-# PXD008410 validation log (2026-11-11T13:29Z); SDRF sha256 f8ecf4e303bb13af9c0dfe48dc57d1e139bc32a4507aee012d007b9f7a395b0c
+# PXD008410 validation log (2026-11-11T13:58Z); SDRF sha256 e0ebd6a8a2d20e66609f34df0a0eaaf574d9c0465f635196b5eba44c18f63c4c
 # The SDRF is written by sdrf-tools build only (samples.tsv/technical.tsv from /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/scripts/make_tables.py, files list /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/files_raw.json = all 40 raws). No post-build edits.
 
 ## Round 1 (superseded: sha256 6dc6dca9fe7be00a8da8b96ab64266e845df4253bc6ed3e5e14995b361afac04, 80 x 57, all 40 runs)
@@ -21,7 +21,23 @@ Re-review FAILED. Fixes, all made in make_tables.py and followed by a rebuild:
 All checks exited 0. convert-openms: 6 conditions.
 Owner decision (2026-11-11): the ISO1/ISO2/ISO3 -> A66/TGX-221/AS-252424 map (from Supplementary Table 2) is accepted. make_tables.py KEEP now includes ISO1/ISO2/ISO3, and the file was rebuilt with all 40 runs (round-3 design otherwise unchanged).
 
-## Round 4 (current file): parse_sdrf validate-sdrf -s annotations/PXD008410.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+## Round 4 (superseded: sha256 f8ecf4e303bb13af9c0dfe48dc57d1e139bc32a4507aee012d007b9f7a395b0c, 80 x 59)
+All checks exited 0. convert-openms: 12 conditions. The review PASSED.
+Campaign-consistency follow-ups:
+  - characteristics[organism part] liver -> pancreas (UBERON:0001264, OLS, not obsolete). This is the primary tissue of origin (spec README:299, cellline.md 4.4).
+  - characteristics[sampling site] stays liver (the Cellosaurus metastasis site).
+  - The manifest wording was fixed, and the artifact path is now repository-relative.
+  - Rebuilt with sdrf-tools build.
+
+## Round 5 (current file): parse_sdrf validate-sdrf -s annotations/PXD008410.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+ERROR:sdrf_pipelines.ols.ols:OLS search term capan-1 error, retry number 9
+ERROR:sdrf_pipelines.ols.ols:OLS error searching term capan-1. Error: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=capan-1&name=class&rows=10&start=90&ontology=clo&exact=off
+Traceback (most recent call last):
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/sdrf_pipelines/ols/ols.py", line 902, in _perform_ols_search
+    req.raise_for_status()
+  File "/home/user/bigbio/sdrf-skills/.venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/ols4/api/search?q=capan-1&name=class&rows=10&start=90&ontology=clo&exact=off
 WARNING: Term: untreated in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
 WARNING: Term: A66 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
 WARNING: Term: TGX-221 in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
@@ -29,6 +45,7 @@ WARNING: Term: AS-252424 in column 'characteristics[treatment]', is not found in
 WARNING: Term: Capan-1 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
 Most seems to be fine. There were only warnings.
 exit=0
+Note: the OLS 500 traceback is a transient server error on one page (start=90) of the paginated CLO search for 'capan-1'. The validator retried, completed, and reported the same Capan-1 warning as in rounds 1-4.
 Warnings explained:
   - A66, TGX-221 and AS-252424 have no CHEBI/NCIT/EFO term (OLS log /tmp/claude-0/-home-user/a98b4c07-45f2-5d08-aa74-0c95b1e5e538/scratchpad/b13-PXD008410/ols_log.txt).
   - 'untreated' is the control value the template prescribes (batch rule 4).
@@ -62,7 +79,7 @@ SUCCESS (WARNINGS=1): /home/user/bigbio/sdrf-skills/annotations/PXD008410.sdrf.t
 exit=0
 12 conditions:
   - light: 5 treatments x 2 times (4 files each);
-  - heavy unstimulated references at 10 min and 24 h (20 files each, because each heavy culture appears in the 5 condition runs of its replicate and time point).
+  - heavy unstimulated references at 10 min and 24 h (20 files each).
 The TA= warning is about the Acetyl modification with PP=Protein N-term, which is positional and has no residue.
 
 ## sdrf-tools schema-check annotations/PXD008410.evidence.json
