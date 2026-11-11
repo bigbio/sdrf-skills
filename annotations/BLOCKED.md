@@ -2396,4 +2396,6 @@ What would unblock: the submitters confirming what the `HNSCC_CAL27_Phospho_*` /
 
 The manifest records the map as an owner-accepted inference.
 
+**Added after the round-5 review:** the same Supplementary Table 2 workbook labels the groups in its "Pathway analysis" sheets as `alphaInh-select ISO1_*`, `betaInh-select ISO2_*` and `gammaInh-select ISO3_*` (10 min rows 47/59/73/83, 24 h rows 54/63/73/91), and the Supplementary Methods define A66 = α-inh, TGX-221 = β-inh, AS-252424 = γ-inh. So the map is backed by labels in the deposited supplement (a two-step label chain), not only by the ratio pattern.
+
 **Still open:** an explicit statement of the ISO assignment from the authors, the thesis or PRIDE would replace the inference. The thesis and the published AACR text were unreachable.
