@@ -438,7 +438,8 @@ def check_cleavage_agent(record: dict, declared: Iterable[str]) -> list[Finding]
     Lys-C/trypsin co-digest is seen and the second is reported as missing.
     """
     written = [term_name(p) for d in declared for p in d.split("|")]
-    written = [w for w in written if w]
+    # a reserved word in a repeated column (e.g. no second digest on some runs) names no enzyme
+    written = [w for w in written if _declared(w)]
     supported = proteases_in_record(record)
     out: list[Finding] = []
     if not supported:

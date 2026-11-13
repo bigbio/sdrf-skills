@@ -92,6 +92,10 @@ def parse_technical(rows: list[dict[str, str]]) -> dict[str, list[str]]:
     return out
 
 
+def _split_multi(value: str) -> list[str]:
+    return [v.strip() for v in value.split(MULTI_SEP) if v.strip()] or [""]
+
+
 def is_channel(label: str) -> bool:
     return bool(CHANNEL_RE.match(label.strip()))
 
@@ -162,6 +166,7 @@ def expand(samples: list[Sample], technical: dict[str, list[str]], contract: Con
     # header: contract order; optional columns only when something fills them; extra characteristics
     # after the contract's; factor values last; 'multiple' columns repeated per value
     header: list[str] = []
+    repeat: set[str] = set()
     for name in contract_names:
         col = spec[name]
         if name == "comment[sdrf template]":
@@ -172,8 +177,12 @@ def expand(samples: list[Sample], technical: dict[str, list[str]], contract: Con
         if name in technical and len(technical[name]) > 1 and not (col.multiple or name in REPEATABLE):
             raise BuildError(f"technical.tsv: {name} takes one value, got {len(technical[name])} "
                              f"('{MULTI_SEP}'-separated); refusing to drop any")
-        if (col.multiple or name in REPEATABLE) and name in technical:
-            header += [name] * len(technical[name])
+        if col.multiple or name in REPEATABLE:
+            # one column per value: as many as technical.tsv or any samples.tsv row ('|'-separated) gives
+            n = max([len(technical.get(name, []))]
+                    + [len(_split_multi(s.values[name])) for s in samples if s.values.get(name)])
+            repeat.add(name)
+            header += [name] * max(n, 1)
         else:
             header.append(name)
     last_char = max((i for i, h in enumerate(header) if h.startswith("characteristics[")), default=0)
@@ -207,6 +216,13 @@ def expand(samples: list[Sample], technical: dict[str, list[str]], contract: Con
                     tmpl_i += 1
                 elif h in fixed:
                     row.append(fixed[h])
+                elif h in repeat and (s.values.get(h) or h in technical):
+                    # a row's own value wins over technical.tsv; its '|' parts fill the repeated
+                    # columns in order, and a column past its last part stays empty (never invented)
+                    i = multi_i.get(h, 0)
+                    multi_i[h] = i + 1
+                    vals = _split_multi(s.values[h]) if s.values.get(h) else technical[h]
+                    row.append(vals[i] if i < len(vals) else "")
                 elif s.values.get(h):
                     row.append(s.values[h])
                 elif h in technical:

@@ -363,3 +363,28 @@ def test_single_value_column_refuses_to_drop_extra_values():
     c = template_contract(["ms-proteomics"])
     with pytest.raises(BuildError):
         expand(s, {"comment[proteomics data acquisition method]": ["NT=Data-dependent acquisition;AC=PRIDE:0000627", "NT=Data-independent acquisition;AC=PRIDE:0000450"]}, c)
+
+
+def test_sample_value_splits_across_repeated_columns_per_row():
+    """A samples.tsv value with '|' fills a repeatable column per row (e.g. one digest step per run);
+    a row with fewer parts leaves the extra column empty rather than copying its value into it."""
+    tech = {"comment[cleavage agent details]": ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]}
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1,
+                {"comment[cleavage agent details]": "NT=Trypsin;AC=MS:1001251|not applicable"}),
+         Sample("S2", ["b.raw"], "label free sample", None, 1, {}),
+         Sample("S3", ["c.raw"], "label free sample", None, 1,
+                {"comment[cleavage agent details]": "NT=Trypsin;AC=MS:1001251"})]
+    header, rows = expand(s, tech, template_contract(["ms-proteomics"]))
+    idx = [i for i, h in enumerate(header) if h == "comment[cleavage agent details]"]
+    assert len(idx) == 2
+    assert [rows[0][i] for i in idx] == ["NT=Trypsin;AC=MS:1001251", "not applicable"]
+    assert [rows[1][i] for i in idx] == ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]
+    assert [rows[2][i] for i in idx] == ["NT=Trypsin;AC=MS:1001251", ""]
+
+
+def test_sample_value_alone_sets_the_number_of_repeated_columns():
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1,
+                {"comment[cleavage agent details]": "NT=Lys-C;AC=MS:1001309|NT=Trypsin;AC=MS:1001251"})]
+    header, rows = expand(s, {}, template_contract(["ms-proteomics"]))
+    idx = [i for i, h in enumerate(header) if h == "comment[cleavage agent details]"]
+    assert [rows[0][i] for i in idx] == ["NT=Lys-C;AC=MS:1001309", "NT=Trypsin;AC=MS:1001251"]
