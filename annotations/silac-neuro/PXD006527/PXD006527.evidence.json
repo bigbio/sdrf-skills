@@ -1,0 +1,35 @@
+{
+  "accession": "PXD006527",
+  "label": "exclude",
+  "failed_criterion": [
+    2,
+    4
+  ],
+  "reason": "Deposited SILAC experiment is tunicamycin-stressed vs control Neuro2a (general proteostasis); Huntington polyQ/HD-iPSC experiments are flow cytometry only and not deposited; deposit holds mzML/mgf/mzid only, no vendor .raw.",
+  "evidence": {
+    "pride_diseases": [],
+    "pride_keywords": [
+      "Neuro2a",
+      "Mouse",
+      "Tpe-mi",
+      "Silac",
+      "Lc/msms",
+      "Orbitrap fusion lumos"
+    ],
+    "file_counts": {
+      "mzML": 5,
+      "mgf": 5,
+      "pride.mgf.gz": 5,
+      "mzid.gz": 5,
+      "pride.mztab.gz": 5,
+      "vendor_raw": 0
+    },
+    "sample_protocol": "Neuro2a SILAC-LYS6 heavy treated with tunicamycin 1ug/ml overnight; light unlabelled control; 1:1 mix; n=5",
+    "publication": {
+      "pmid": 28883394,
+      "doi": "10.1038/s41467-017-00203-5"
+    },
+    "manuscript_hd_context": "Httex1 25Q/97Q-mCherry Neuro2a and HD patient pNSC (ND36999 180Q, ND36997 33Q, corrected 18Q) assessed by flow cytometry for TPE-MI fluorescence; not proteomics"
+  },
+  "status": "EXCLUDED"
+}

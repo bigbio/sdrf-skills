@@ -1,0 +1,178 @@
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv -t ms-proteomics -t invertebrates  # round 1
+exit code: 124
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv  # round 1
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd conv_day5adult) flock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv -t2  # round 1
+exit code: 143
+
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv -t ms-proteomics -t invertebrates  # round 1
+exit code: 143
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv  # round 1
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd conv_developing) flock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv -t2  # round 1
+# round 1 (2026-11-13T07:22:08Z); note: an earlier attempt of validate-sdrf on day5adult exited 124 only because 'timeout 900' expired while queued on the shared parse_sdrf lock
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv -t ms-proteomics -t invertebrates
+WARNING: Term: N2 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: CB1370 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: CF1038 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: DR1209 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: OW40 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: OW450 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd conv_day5adult) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv
+Factor columns: ['factor value[disease]', 'factor value[genotype]', 'factor value[sampling time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]']
+Conditions (18): dict_keys(['normal|wild type|6 hour', 'normal|wild type|24 hour', 'normal|wild type|48 hour', 'normal|daf-2(e1370) III|6 hour', 'normal|daf-2(e1370) III|24 hour', 'normal|daf-2(e1370) III|48 hour', 'normal|daf-16(mu86) I|6 hour', 'normal|daf-16(mu86) I|24 hour', 'normal|daf-16(mu86) I|48 hour', 'normal|daf-16(mu86) I; daf-2(e1370) III|6 hour', 'normal|daf-16(mu86) I; daf-2(e1370) III|24 hour', 'normal|daf-16(mu86) I; daf-2(e1370) III|48 hour', 'Parkinson disease|zgIs15[P(unc-54)::alpha-synuclein::YFP] IV|6 hour', 'Parkinson disease|zgIs15[P(unc-54)::alpha-synuclein::YFP] IV|24 hour', 'Parkinson disease|zgIs15[P(unc-54)::alpha-synuclein::YFP] IV|48 hour', 'normal|rmIs126[P(unc-54)Q0::YFP] V|6 hour', 'normal|rmIs126[P(unc-54)Q0::YFP] V|24 hour', 'normal|rmIs126[P(unc-54)Q0::YFP] V|48 hour'])
+Files per condition: dict_values([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 72 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv
+exit code: 0
+
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv -t ms-proteomics -t invertebrates
+WARNING: Term: N2 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: CB1370 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: CF1038 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: DR1209 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd conv_developing) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv
+Factor columns: ['factor value[genotype]', 'factor value[sampling time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]']
+Conditions (16): dict_keys(['wild type|4 hour', 'wild type|7 hour', 'wild type|9 hour', 'wild type|24 hour', 'daf-2(e1370) III|4 hour', 'daf-2(e1370) III|7 hour', 'daf-2(e1370) III|9 hour', 'daf-2(e1370) III|24 hour', 'daf-16(mu86) I|4 hour', 'daf-16(mu86) I|7 hour', 'daf-16(mu86) I|9 hour', 'daf-16(mu86) I|24 hour', 'daf-16(mu86) I; daf-2(e1370) III|4 hour', 'daf-16(mu86) I; daf-2(e1370) III|7 hour', 'daf-16(mu86) I; daf-2(e1370) III|9 hour', 'daf-16(mu86) I; daf-2(e1370) III|24 hour'])
+Files per condition: dict_values([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 64 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv
+exit code: 0
+
+# round 1 done
+# round 2 (2026-11-13T08:19:11Z)
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv -t ms-proteomics@1.1.0 -t invertebrates@1.1.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'invertebrates@1.1.0' not found in registry
+exit code: 1
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd conv_day5adult) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv
+Factor columns: ['factor value[disease]', 'factor value[genotype]', 'factor value[sampling time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]']
+Conditions (18): dict_keys(['normal|wild type|6 hour', 'normal|wild type|24 hour', 'normal|wild type|48 hour', 'normal|daf-2(e1370) III|6 hour', 'normal|daf-2(e1370) III|24 hour', 'normal|daf-2(e1370) III|48 hour', 'normal|daf-16(mu86) I|6 hour', 'normal|daf-16(mu86) I|24 hour', 'normal|daf-16(mu86) I|48 hour', 'normal|daf-16(mu86) I; daf-2(e1370) III|6 hour', 'normal|daf-16(mu86) I; daf-2(e1370) III|24 hour', 'normal|daf-16(mu86) I; daf-2(e1370) III|48 hour', 'Parkinson disease|zgIs15[P(unc-54)::alpha-synuclein::YFP] IV|6 hour', 'Parkinson disease|zgIs15[P(unc-54)::alpha-synuclein::YFP] IV|24 hour', 'Parkinson disease|zgIs15[P(unc-54)::alpha-synuclein::YFP] IV|48 hour', 'normal|rmIs126[P(unc-54)Q0::YFP] V|6 hour', 'normal|rmIs126[P(unc-54)Q0::YFP] V|24 hour', 'normal|rmIs126[P(unc-54)Q0::YFP] V|48 hour'])
+Files per condition: dict_values([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 72 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv
+exit code: 0
+
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv -t ms-proteomics@1.1.0 -t invertebrates@1.1.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'invertebrates@1.1.0' not found in registry
+exit code: 1
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ (cd conv_developing) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv
+Factor columns: ['factor value[genotype]', 'factor value[sampling time]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]']
+Conditions (16): dict_keys(['wild type|4 hour', 'wild type|7 hour', 'wild type|9 hour', 'wild type|24 hour', 'daf-2(e1370) III|4 hour', 'daf-2(e1370) III|7 hour', 'daf-2(e1370) III|9 hour', 'daf-2(e1370) III|24 hour', 'daf-16(mu86) I|4 hour', 'daf-16(mu86) I|7 hour', 'daf-16(mu86) I|9 hour', 'daf-16(mu86) I|24 hour', 'daf-16(mu86) I; daf-2(e1370) III|4 hour', 'daf-16(mu86) I; daf-2(e1370) III|7 hour', 'daf-16(mu86) I; daf-2(e1370) III|9 hour', 'daf-16(mu86) I; daf-2(e1370) III|24 hour'])
+Files per condition: dict_values([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 64 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv
+exit code: 0
+
+# round 2 done
+# round 2b (2026-11-13T08:25:48Z): parse_sdrf has no name@version syntax ('Schema invertebrates@1.1.0 not found in registry'), so validate-sdrf is re-run with bare template names; the files declare NT=ms-proteomics;VV=v1.1.0 / NT=invertebrates;VV=v1.1.0 and were built from the pinned 1.1.0 contract
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv -t ms-proteomics -t invertebrates
+WARNING: Term: N2 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: CB1370 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: CF1038 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: DR1209 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: OW40 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: OW450 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock timeout 1500 parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-developing.sdrf.tsv -t ms-proteomics -t invertebrates
+WARNING: Term: N2 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: CB1370 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: CF1038 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: DR1209 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+# round 2b done

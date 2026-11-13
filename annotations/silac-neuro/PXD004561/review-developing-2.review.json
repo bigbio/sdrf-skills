@@ -1,0 +1,68 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD004561/PXD004561-developing.sdrf.tsv",
+ "artifact_sha256": "b482bf11d14ceb36c1328e745d549215b3f48df63942d7761f401fb0281f5a94",
+ "verdict": "PASS",
+ "summary": "Independent review of the developing-worm pulsed-SILAC SDRF (32 Bio21 runs x light/heavy = 64 rows) found no blocker or important issues; values trace to the deposited mqpar.xml, raw method header, PRIDE record and the paper's Supplemental Experimental Procedures.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh subagent without producer transcript; producer manifest treated as untrusted and re-checked against primary files (PRIDE files/all re-fetched, mqpar.xml, raw header, paper text, OLS)"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD004561/PXD004561-developing.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Columns compared with sdrf-tools contract -t ms-proteomics@1.1.0 -t invertebrates@1.1.0: all required columns present (incl. developmental stage, strain or breed), order source/characteristics/assay/technology/comment/factor; reserved words only where allowed (cell type, developmental stage); declared templates NT=ms-proteomics;VV=v1.1.0 and invertebrates v1.1.0 match templates.yaml latest; (source,assay,label) and (source,bio rep,tech rep,fraction) unique over 64 rows."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4: MS:1002416 Orbitrap Fusion, MS:1001251 Trypsin, MS:1001309 Lys-C, MS:1000422 beam-type CID, MS:1000264 ion trap, PRIDE:0000608 DTT, PRIDE:0000599 IAA, PRIDE:0000627 DDA, UNIMOD:1/4/7/35/259 labels match, NCBITaxon:6239, BTO:0001489 whole body, PATO:0000461 normal; none obsolete. sdrf-tools check: 15/15 verified, 0 UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "mqpar.xml (WormBio21, MQ 1.5.2.8): 32 files, experiments strain_time, fractions AF=1/WF=2, multiplicity 2 Lys8, Trypsin/P, var Acetyl(Protein N-term)/Deamidation(NQ)/Oxidation(M), fixed Carbamidomethyl(C), mainSearchTol 4.5 ppm, ITMS 0.5 Da. Raw header: Orbitrap Fusion, HCD 30%, MS2 IonTrap, MS1 400-1500, ddMS cycle 1 s. Paper SEP: strains N2/CB1370/CF1038/DR1209, harvest 4,7,9,24 h from L4, trypsin + Lys-C co-digest, DTT/IAA."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE v3 files/all re-fetched (projectAccessions PXD004561): 82 .raw. This SDRF has 32 distinct raw files, all present; sibling day5adult has 36; overlap 0; 14 deposited runs (20141107_F1_HRV_SM_B1-B7, C1-C7) in neither, documented as unmappable. Every file name parsed to strain/time/fraction and matched row values (0 mismatches)."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "4 strains x 4 time points x 2 fractions x 2 SILAC channels = 64 rows; genotype and sampling-time factors equal their characteristics; strain token mapping Daf2->CB1370, Daf16->CF1038, Daf2-16->DR1209 matches paper strain list; light/heavy rows share assay name per run."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No per-sample value asserted beyond source: developmental stage left 'not available' instead of inferring stage per time point; biological replicate 1 with Bio21 caveat; no fractionation method asserted for AF/WF; ETD model not asserted; excluded runs documented rather than guessed."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "flock parse_sdrf validate-sdrf -s <artifact> -t ms-proteomics -t invertebrates: exit 0, only warnings (strain names not in NCBITaxon; column is free text). sdrf-tools check exit 0 CLEAN; sdrf-tools score 100/100; sdrf-tools structure exit 0."
+  }
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "dataset-level (PXD004561)",
+   "message": "14 deposited raw files (20141107_F1_HRV_SM_B1-B7, C1-C7) are annotated in neither SDRF; by the paper's design (7 time points) they are likely the developing OW40/OW450 Parkinson's experiment or the daf-2 replicate.",
+   "evidence": "PRIDE files/all vs union of both SDRFs; 20141222_sasha experimentalDesignTemplate names only letter/number groups.",
+   "correction": "State the partial coverage in the contribution PR; add the runs if an author mapping is obtained."
+  },
+  {
+   "severity": "minor",
+   "category": "ontology",
+   "location": "comment[instrument] all rows",
+   "message": "PRIDE lists Orbitrap Fusion ETD (MS:1002417, a sibling not child of MS:1002416); raw method contains an 'ETD Internal Calibration' setting.",
+   "evidence": "PRIDE project instruments; raw header model string 'Orbitrap Fusion'.",
+   "correction": "Keep MS:1002416 unless ETD hardware is confirmed; choice is grounded in the raw header."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "source name all rows",
+   "message": "Pulsed SILAC light/heavy channels of one worm population are encoded as two source names (_Lys0/_Lys8); documented, but downstream tools will see 32 'samples' instead of 16.",
+   "evidence": "Manifest limitation; mqpar experiments = 16.",
+   "correction": "None required; optional note in PR."
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD002292/PXD002292.sdrf.tsv",
+ "artifact_sha256": "1a031d4c8c29547bcd40c2d1c2b44683b5ce21af369e4ceeeff95b38c3817633",
+ "verdict": "PASS",
+ "summary": "Independent review of the 4-row two-plex SILAC SDRF (hCMEC/D3 secretome, OGD vs normoxia/normoglycemia, cross-labelled, 2 BAF files). Every value traced to PRIDE, search-result metadata, raw BAF headers, Cellosaurus or OLS; validation passes with only expected free-text/cell-line warnings. Minor findings only.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh subagent with no producer transcript; review-1 not read; all primary sources re-fetched into review-2/"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD002292/PXD002292.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "sdrf-tools contract -t ms-proteomics -t human -t cell-lines: all required columns present (source name, organism, organism part, biological replicate, age, sex, cell line, cellosaurus accession, assay name, technology type, technical replicate, data file, acquisition method, instrument, cleavage agent, label, fraction identifier); only extra column factor value[treatment] (legal, last). Column order source->characteristics->assay/technology->comment->factor. Reserved words only where allowed (age, ancestry = not available; age allows not available). passage '20-35' fits 'integer or range'; '-80°C' fits number+°C; label bare 'SILAC light/heavy' per format-rules. Templates/version v1.1.0 match released spec (campaign decision)."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 (2026-11-13), defining ontology, none obsolete: UBERON:0001871 temporal lobe, CL:0000115 endothelial cell, PATO:0000461 normal, PATO:0000383 female, EFO:0001272 adult, NCIT:C178973 Roswell Park Memorial Institute 1640 Medium, NCBITaxon:9606, MS:1003462 maXis impact, PRIDE:0000627 Data-dependent acquisition, MS:1001251 Trypsin, MS:1000133 collision-induced dissociation, MS:1000084 time-of-flight, UNIMOD:4 Carbamidomethyl, UNIMOD:35 Oxidation, UNIMOD:188 Label:13C(6), UNIMOD:267 Label:13C(6)15N(4) - labels match NT= exactly, no UNIMOD swap. Cellosaurus CVCL_U985 ID hCMEC/D3. Treatment free text justified: OLS NCIT/EFO search for OGD/normoxia returns no matching term."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "PRIDE v3 PXD002292 re-fetched: hCMEC/D3, SILAC RPMI 1640-Flex, cross-labelling (exp1 Nm light/OGD heavy; exp2 reversed), passage 20-35, -80ºC storage, trypsin, Maxis Impact Q-TOF, top-20 DDA, 10 ppm / 0.05 Da, Cys CAM fixed, Met ox variable, +6 K / +10 R. mzTab F070441 title 'experiment 2 Nm H_OGD L' matches rows 3-4. Both BAF headers (first 2 MB, re-downloaded) contain 'maXis impact'. Cellosaurus CVCL_U985: female, adult, temporal lobe, endothelial cell CL_0000115, no DI. sdrf-tools reconcile vs my PRIDE copy: all values agree."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE files/all (projectAccessions PXD002292) lists exactly 2 RAW files, analysis_exp1.baf and analysis_exp2.baf; SDRF references both, each on its 2 label rows; no peak lists, no missing or unmatched files."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "2 experiments x 2 SILAC channels = 4 rows; per file one light + one heavy; label assignment matches protocol and search titles; 2 conditions x 2 biological replicates (separate subcultures per experiment); technical replicate 1, fraction 1 (single 500 ng injection per mixture); (source name, assay name, label) and (source, bio rep, tech rep, fraction) unique. convert-openms in producer log reports 2 conditions x 2 files."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No value asserts beyond evidence: age/ancestry left not available (Cellosaurus gives only 'Adult'); CID explicitly disclosed as inferred from Q-TOF; instrument specificity (maXis impact over PRIDE's generic maXis) supported by Methods and raw headers. Omissions noted as minor findings (secretome nature, donor epilepsy-surgery origin, characteristics[individual])."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "flock ... parse_sdrf validate-sdrf -s datasets/PXD002292/PXD002292.sdrf.tsv -t ms-proteomics -t human -t cell-lines: exit 0, 3 warnings (treatment free text x2, hCMEC/D3 not in CLO/BTO/EFO). sdrf-tools structure exit 0; sdrf-tools score 100/100; sdrf-tools check exit 1 solely for 'hCMEC/D3' unresolved in OLS (see minor finding); sdrf-tools reconcile exit 0."
+  }
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "category": "ontology",
+   "location": "characteristics[cell line] rows 1-4",
+   "message": "'hCMEC/D3' is not an OLS label (BTO:0003339 is 'HCMEC/D3 cell'); sdrf-tools check reports it as hallucinated and parse_sdrf warns.",
+   "evidence": "cellline.md Step 4.1 sets cell line to the Cellosaurus recommended name (ID hCMEC/D3), so the value is per policy; flag is a tool false positive. Acceptable as is."
+  },
+  {
+   "severity": "minor",
+   "category": "source_evidence",
+   "location": "characteristics[disease] rows 1-4",
+   "message": "Donor tissue came from epilepsy surgery; 'normal' follows the Cellosaurus-no-DI rule but omits this provenance.",
+   "evidence": "Weksler 2013 (PMC3623852): 'derived from human temporal lobe microvessels isolated from tissue excised during surgery for control of epilepsy'. Weksler 2005 abstract calls the cells 'normal'. Optionally record in limitations."
+  },
+  {
+   "severity": "minor",
+   "category": "omission",
+   "location": "file (all rows)",
+   "message": "Samples are conditioned-medium secretomes, not cell lysates; nothing in the SDRF says so.",
+   "evidence": "mzTab sample[1]-description 'conditioned medium'; characteristics[material type] is a closed enum without such a value, so no spec column fits cleanly."
+  },
+  {
+   "severity": "minor",
+   "category": "spec",
+   "location": "header",
+   "message": "Recommended human-template column characteristics[individual] absent.",
+   "evidence": "Contract lists it recommended; all rows share one donor."
+  },
+  {
+   "severity": "minor",
+   "category": "scope",
+   "location": "file",
+   "message": "Dataset is ischemic stroke / blood-brain-barrier OGD model, not a neurodegenerative disease as the request specifies; caller should confirm it belongs in the campaign.",
+   "evidence": "PRIDE description: 'biomarkers for ischemic stroke diagnosis'. Does not affect SDRF correctness."
+  }
+ ]
+}

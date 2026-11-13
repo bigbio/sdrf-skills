@@ -1,0 +1,472 @@
+# Round 1 (2026-11-13T07:21:33Z)
+$ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_phospho) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv -t2
+exit code: killed (background time limit while waiting for the shared parse_sdrf lock); re-run below
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_phospho) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['not available', 'Cdkl5 knockout', 'wild type'])
+Files per condition: dict_values([24, 18, 18])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 60 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+exit code: 0
+$ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+1 structural problem(s):
+  technical-replicate-not-contiguous [comment[technical replicate]]: 4 sample(s) number technical replicates with a gap or not from 1 ('Control 3 K4R6 culture' has [2, 3]; 'Control 3 K8R10 culture' has [2, 3]; 'Control 4 K4R6 culture' has [2, 3]; ...); within one sample they run 1..n
+exit code: 1
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_qc) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t2
+environment: line 1: cd: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_qc: No such file or directory
+exit code: 1
+# Round 2 (2026-11-13T07:47:14Z) - QC SDRF rebuilt: Control 3/4 technical replicates renumbered 1..2 (they have no incorporation run). Phospho SDRF unchanged (byte-identical rebuild).
+$ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_qc) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['not available', 'Cdkl5 knockout', 'wild type'])
+Files per condition: dict_values([20, 18, 18])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 56 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 56 times.
+SUCCESS (WARNINGS=2): /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+exit code: 0
+# Round 3 (2026-11-13T08:19:04Z) - GLOBAL_FIX: templates pinned ms-proteomics@1.1.0 vertebrates@1.1.0 clinical-metadata@1.0.0; sdrf version v1.1.0; cleavage agent Trypsin|Lys-C. Both SDRFs rebuilt.
+$ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'clinical-metadata@1.0.0' not found in registry
+exit code: 1
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_phospho) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['not available', 'Cdkl5 knockout', 'wild type'])
+Files per condition: dict_values([24, 18, 18])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 60 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+exit code: 0
+$ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'clinical-metadata@1.0.0' not found in registry
+exit code: 1
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_qc) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['not available', 'Cdkl5 knockout', 'wild type'])
+Files per condition: dict_values([20, 18, 18])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 56 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 56 times.
+SUCCESS (WARNINGS=2): /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+exit code: 0
+# Round 3b (2026-11-13T08:54:59Z) - the installed parse_sdrf CLI rejects name@version (exit 1 above: 'Schema ... not found in registry') and its bare names load ms-proteomics 1.2.0. Re-validated with scripts/validate_pinned.py: the stock 'validate-sdrf' command on a registry pinned like tools/contract.py (eb65367). SDRFs unchanged since Round 3.
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/scripts) /home/user/sdrf-skills/.venv/bin/python -I validate_pinned.py /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv ms-proteomics@1.1.0 vertebrates@1.1.0 clinical-metadata@1.0.0
+pinned registry: ms-proteomics loaded version 1.1.0
+pinned registry: vertebrates loaded version 1.1.0
+pinned registry: clinical-metadata loaded version 1.0.0
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/scripts) /home/user/sdrf-skills/.venv/bin/python -I validate_pinned.py /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv ms-proteomics@1.1.0 vertebrates@1.1.0 clinical-metadata@1.0.0
+pinned registry: ms-proteomics loaded version 1.1.0
+pinned registry: vertebrates loaded version 1.1.0
+pinned registry: clinical-metadata loaded version 1.0.0
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+# Round 4 (2026-11-13T09:30:30Z) - review-qc-1 FAIL fix: QC SDRF only. RW3 rows (36) cleavage agent = Trypsin | not applicable; RW5 rows (20) keep Trypsin | Lys-C. Built with tools/build.py extended for per-row '|' values in repeatable columns (uncommitted). Phospho SDRF not rebuilt (approved; rebuild check byte-identical).
+$ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/scripts) /home/user/sdrf-skills/.venv/bin/python -I validate_pinned.py /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv ms-proteomics@1.1.0 vertebrates@1.1.0 clinical-metadata@1.0.0
+ERROR:sdrf_pipelines.ols.ols:Connection error during OLS search: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=mus+musculus&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 779, in urlopen
+    self._prepare_proxy(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1074, in _prepare_proxy
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 844, in connect
+    self._tunnel()
+    ~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/http/client.py", line 1029, in _tunnel
+    raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+OSError: Tunnel connection failed: 403 Forbidden
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=mus+musculus&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/ols/ols.py", line 893, in _perform_ols_search
+    req = self.session.get(self.ontology_search, params=params)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/adapters.py", line 723, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=mus+musculus&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+ERROR:sdrf_pipelines.ols.ols:Connection error during OLS search: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=mus+musculus&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 779, in urlopen
+    self._prepare_proxy(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1074, in _prepare_proxy
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 844, in connect
+    self._tunnel()
+    ~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/http/client.py", line 1029, in _tunnel
+    raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+OSError: Tunnel connection failed: 403 Forbidden
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=mus+musculus&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/ols/ols.py", line 893, in _perform_ols_search
+    req = self.session.get(self.ontology_search, params=params)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/adapters.py", line 723, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=mus+musculus&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 779, in urlopen
+    self._prepare_proxy(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1074, in _prepare_proxy
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 844, in connect
+    self._tunnel()
+    ~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/http/client.py", line 1029, in _tunnel
+    raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+OSError: Tunnel connection failed: 403 Forbidden
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=mus+musculus&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/ols/ols.py", line 893, in _perform_ols_search
+    req = self.session.get(self.ontology_search, params=params)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/adapters.py", line 723, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=mus+musculus&name=class&rows=10&start=0&ontology=ncbitaxon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+ERROR:sdrf_pipelines.ols.ols:Connection error during OLS search: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=not+available&name=class&rows=10&start=0&ontology=uberon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 779, in urlopen
+    self._prepare_proxy(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1074, in _prepare_proxy
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 844, in connect
+    self._tunnel()
+    ~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/http/client.py", line 1029, in _tunnel
+    raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+OSError: Tunnel connection failed: 403 Forbidden
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=not+available&name=class&rows=10&start=0&ontology=uberon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/ols/ols.py", line 893, in _perform_ols_search
+    req = self.session.get(self.ontology_search, params=params)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/requests/adapters.py", line 723, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='www.ebi.ac.uk', port=443): Max retries exceeded with url: /ols4/api/search?q=not+available&name=class&rows=10&start=0&ontology=uberon&exact=on (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+pinned registry: ms-proteomics loaded version 1.1.0
+pinned registry: vertebrates loaded version 1.1.0
+pinned registry: clinical-metadata loaded version 1.0.0
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_qc) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['not available', 'Cdkl5 knockout', 'wild type'])
+Files per condition: dict_values([20, 18, 18])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 56 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 56 times.
+SUCCESS (WARNINGS=2): /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+exit code: 0
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv --record evidence/pride.json --accession PXD038505
+PXD038505: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_contradicted (comment[cleavage agent details]): the annotation says 'not applicable' but the record's digest names Trypsin, Lys-C
+exit code: 1
+$ sdrf-tools schema-check /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-qc.evidence.json
+/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-qc.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-qc.evidence.json
+Manifest covers every column with a value (22 column(s)).
+exit code: 0
+# Round 4b (2026-11-13T09:55:23Z) - reconcile BLOCKER above was a tool false positive (reserved word 'not applicable' read as an enzyme name); fixed in tools/record_reconcile.py (uncommitted, + test). Pinned validation re-run because the Round 4 pinned run hit OLS proxy 403 errors mid-run. SDRF unchanged since Round 4.
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv --record evidence/pride.json --accession PXD038505
+PXD038505: every annotated value agrees with the deposit record.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/scripts) /home/user/sdrf-skills/.venv/bin/python -I validate_pinned.py /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv ms-proteomics@1.1.0 vertebrates@1.1.0 clinical-metadata@1.0.0
+pinned registry: ms-proteomics loaded version 1.1.0
+pinned registry: vertebrates loaded version 1.1.0
+pinned registry: clinical-metadata loaded version 1.0.0
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+# Round 5 (2026-11-13T12:05:58Z) - review-qc-2 fix, both SDRFs rebuilt (pinned templates, sdrf-skills 850006b): characteristics[developmental stage] 'mouse embryo stage' -> 'embryonic day 16.5' (EFO:0002567) on the 36 Cdkl5 KO/WT rows of each file; QC adds comment[collision energy] '30 NCE' from all 36 raw headers. Positional diff vs previous build: only those cells.
+$ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/scripts) /home/user/sdrf-skills/.venv/bin/python -I validate_pinned.py /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv ms-proteomics@1.1.0 vertebrates@1.1.0 clinical-metadata@1.0.0
+pinned registry: ms-proteomics loaded version 1.1.0
+pinned registry: vertebrates loaded version 1.1.0
+pinned registry: clinical-metadata loaded version 1.0.0
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_phospho) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[enrichment process]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['not available', 'Cdkl5 knockout', 'wild type'])
+Files per condition: dict_values([24, 18, 18])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 60 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv
+exit code: 0
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv --record evidence/pride.json --accession PXD038505
+PXD038505: every annotated value agrees with the deposit record.
+exit code: 0
+$ sdrf-tools schema-check /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-phospho.evidence.json
+/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-phospho.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-phospho.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit code: 0
+$ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/scripts) /home/user/sdrf-skills/.venv/bin/python -I validate_pinned.py /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv ms-proteomics@1.1.0 vertebrates@1.1.0 clinical-metadata@1.0.0
+pinned registry: ms-proteomics loaded version 1.1.0
+pinned registry: vertebrates loaded version 1.1.0
+pinned registry: clinical-metadata loaded version 1.0.0
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/openms_qc) parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['not available', 'Cdkl5 knockout', 'wild type'])
+Files per condition: dict_values([20, 18, 18])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 56 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 56 times.
+SUCCESS (WARNINGS=2): /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv
+exit code: 0
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv --record evidence/pride.json --accession PXD038505
+PXD038505: every annotated value agrees with the deposit record.
+exit code: 0
+$ sdrf-tools schema-check /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-qc.evidence.json
+/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-qc.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage /home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-qc.sdrf.tsv /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-qc.evidence.json
+Manifest covers every column with a value (23 column(s)).
+exit code: 0

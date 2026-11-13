@@ -1,0 +1,113 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD001942/PXD001942.sdrf.tsv",
+ "artifact_sha256": "dfd51a893bb7ee6d641a0b2b303b8e9dca5de5665a2e44789cf88f93c2bb6bd7",
+ "verdict": "FAIL",
+ "summary": "Content of the 102 annotated runs is well supported (instruments by raw header, SILAC L/H convention by proteinGroups and Table S1 ratio signs, repeat injections by shared raw-header sample/vial, terms verified in OLS/Cellosaurus). FAIL on one important finding: the canonical-named datasets/ file covers 102 of 122 deposited RAW files (20 whole-proteome runs excluded), which the repository rules route to a suffixed subset file plus a sandbox/ remainder.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh subagent, no producer transcript; producer manifest/report/validation log treated as untrusted; all key claims re-derived from PRIDE files/all (fetched fresh), raw-file headers (own HTTP range reads), deposited MaxQuant zips, Supplement/Table S1, OLS4, Cellosaurus"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/PXD001942.evidence.json",
+ "coverage": {
+  "deposited_runs": 122,
+  "annotated_runs": 102,
+  "matched_runs": 102,
+  "fraction": 0.8361,
+  "missing": [
+   "Tiffy_20120213_FPH_APP_48h_III_slice1_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice1_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice2_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice2_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice3_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice3_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice4_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice4_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice5_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_III_slice5_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice1_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice1_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice2_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice2_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice3_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice3_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice4_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice4_02.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice5_01.raw",
+   "Tiffy_20120213_FPH_APP_48h_IV_slice5_02.raw"
+  ],
+  "invented": []
+ },
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Columns licensed by union contract ms-proteomics@1.1.0+human@1.1.0+cell-lines@1.1.0+clinical-metadata@1.0.0 (sdrf-tools contract): 0 unlicensed, 0 missing required; reserved words allowed per column; VV values match templates.yaml latest; anchor-key (source,assay,label) and row coordinate unique; 2 rows (light/heavy) per RAW."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4: UNIMOD:1/4/35/259/267, MS:1001309 Lys-C, MS:1001251 Trypsin, MS:1001742/1000556/1000449, MS:1000133, PRIDE:0000627/0000325/0000326 labels exact, none obsolete; BTO:0002181 HEK-293T cell; NCIT:C185409 DMEM; Cellosaurus CVCL_0063 HEK293T, Female, Fetus; sdrf-tools check 15/15 verified, 0 UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "HEK293T, SILAC Lys8/Arg10 heavy media, Lys-C+trypsin digest, CID ion-trap MS2, 0.5 Da fragment tolerance (Mascot and APP parameters.txt ITMS), C fixed/M ox+protein N-term acetyl variable: Supplement mmc1. Constructs from Table S1. Instruments verified on 14 raw headers myself (Ernie=LTQ Orbitrap, Bert/Orbi6=XL, Tiffy IDIP=Velos). L/H convention: proteinGroups bait H/L >>1 when bait named second (ATXN1 61.5/72.5, PSEN1 41.6, PARK2 23.5/34.9, HTT 51.6, APP 25.5) and Table S1 log2FC signs (HTT506-Q145 vs Q23 +4.99)."
+  },
+  "file_mapping": {
+   "status": "fail",
+   "evidence": "PRIDE files/all (projectAccessions=PXD001942): 122 RAW; SDRF maps 102, no invented/duplicate/non-raw files, but 20 Tiffy_20120213_FPH_APP_48h_* whole-proteome RAWs are absent from a file named as the full-accession SDRF."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "Bait/genotype per channel recomputed from file stems and MaxQuant experiment names; biological replicate = SILAC experiment index per comparison; _01/_02 as technical replicates supported by identical raw-header sample position (e.g. PSEN1 ctrl_v_wt_01/_02 CStk1-01:49, HDex1 ctrl_v_wt CStk1-01:37, APP Exp1_01/_02) and Table S1 n counting injections."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No value asserts more than sources support; unknowns left as not available; proteome runs omitted rather than guessed (their L/H construct map is genuinely not stated: no label swap, design gives only Exp3/Exp4). Omission is a placement issue, reported under file_mapping."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "flock-serialized parse_sdrf validate-sdrf (installed sdrf-pipelines; bare template names) on the artifact: --template ms-proteomics exit 0, human exit 0, cell-lines exit 0, clinical-metadata exit 0, union -t x4 exit 0, all 'Everything seems to be fine'. sdrf-tools check exit 0 (CLEAN, 15/15), score 98/100. Logs in review-2/val_*.txt."
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "file_mapping",
+   "location": "file: datasets/PXD001942/PXD001942.sdrf.tsv",
+   "message": "Canonical-named datasets/ SDRF covers only 102/122 deposited RAW files; 20 whole-proteome runs (Tiffy_20120213_FPH_APP_48h_{III,IV}_slice1-5_{01,02}.raw) are excluded.",
+   "evidence": "PRIDE files/all lists 122 RAW; audit-existing coverage 0.836. AGENTS.md: 'If parse_sdrf validate-sdrf fails or the file is incomplete, use sandbox/'; CONTRIBUTING.md: multiple SDRFs per accession use descriptive suffixes; precedent datasets/PXD064974/PXD064974-prm.sdrf.tsv + sandbox/PXD064974/BRIEF.md.",
+   "correction": "Either annotate the 20 runs from a source that states the Exp3/Exp4 channel map, or rename this file to a descriptive subset (e.g. datasets/PXD001942/PXD001942-interaction.sdrf.tsv) and record the 20 proteome runs in sandbox/PXD001942/ with a BLOCKED note (channel map not stated). Content otherwise needs no change."
+  },
+  {
+   "severity": "minor",
+   "category": "spec",
+   "location": "characteristics[genotype], factor value[genotype]; comment[sdrf template] clinical-metadata",
+   "message": "Transiently overexpressed myc-tagged constructs are recorded as cell genotype; clinical-metadata is declared only to license this column.",
+   "evidence": "clinical-metadata also offers characteristics[genetic modification] (EFO, e.g. overexpression); genotype is described as the subject's known variant.",
+   "correction": "Optionally add characteristics[genetic modification] with an OLS-verified EFO term for transient transfection/overexpression."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "rows of Bert_20100508_FPH_HDex1_* (mutant channel)",
+   "message": "HTT exon-1 mutant written as Q79 (Table S1, HTTEx1-Q79) while deposited proteinGroups names the experiments Q145_1.",
+   "evidence": "Table S1 sheet HTTEx1 headers say Q79; paper value is the defensible choice.",
+   "correction": "None required; keep the limitation in the PR description."
+  },
+  {
+   "severity": "minor",
+   "category": "completeness",
+   "location": "comment[precursor mass tolerance]",
+   "message": "Recommended column absent.",
+   "evidence": "Not recorded for the Mascot/MaxQuant 1.0.13.13 IP searches; APP parameters.txt also lacks it.",
+   "correction": "Optional; add only if a source states it."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "Ernie_20100503_FPH_PSEN1_ctrl_v_mut_02.RAW; Tiffy_20110207_FPH_ATXN1_IDIP_mut_v_ctrl_03.raw",
+   "message": "Internal acquisition names differ from deposited names (_01_100504032954 and _02 respectively); both are same-sample repeat injections, so technical replicate 2 is correct.",
+   "evidence": "raw header file-name strings",
+   "correction": "None; could be noted in the PR."
+  }
+ ]
+}

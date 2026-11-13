@@ -147,6 +147,19 @@ class TestCleavageAgent:
         assert [x.code for x in f] == ["cleavage_agent_incomplete"]
         assert f[0].severity == MAJOR
 
+    def test_reserved_word_in_a_repeated_column_is_not_an_enzyme(self):
+        """Runs taken before a second digest carry 'not applicable' in the second cleavage column."""
+        r = rec(sampleProcessingProtocol=(
+            "Protein was digested with Lys-C for 4 h and subsequently with trypsin overnight."))
+        declared = ["NT=Lys-C;AC=MS:1001309", "NT=Trypsin;AC=MS:1001251", "not applicable"]
+        assert check_cleavage_agent(r, declared) == []
+
+    def test_only_a_reserved_word_against_a_described_digest_is_incomplete(self):
+        r = rec(sampleProcessingProtocol="Protein was digested with trypsin overnight.")
+        f = check_cleavage_agent(r, ["not applicable"])
+        assert [x.code for x in f] == ["cleavage_agent_incomplete"]
+        assert "reserved word" in f[0].summary
+
     def test_complete_co_digest_is_clean(self):
         r = rec(sampleProcessingProtocol=(
             "Protein was digested with Lys-C for 4 h and subsequently with trypsin overnight."))

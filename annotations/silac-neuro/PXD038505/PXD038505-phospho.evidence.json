@@ -1,0 +1,352 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD038505/PXD038505-phospho.sdrf.tsv",
+ "dataset": "PXD038505",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD038505 (local copy: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD038505/files/all (local copy: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/evidence/files.json; 66 raw files)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC10713615 / doi:10.1038/s41467-023-43475-w, Methods > Mouse handling; SILAC phosphoproteomics sample preparation; Mass spectrometry of enriched phosphopeptides (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/evidence/manuscript.txt)"
+  },
+  {
+   "id": "design",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD038505/Experimental_Design.xlsx (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/dl/Experimental_Design.xlsx)"
+  },
+  {
+   "id": "mqpar",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD038505/mqpar.xml (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/dl/mqpar.xml)"
+  },
+  {
+   "id": "mainsites",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD038505/DNU7717txt.zip member \"DNU7717txt/Phospho (STY)Sites.txt\" and parameters.txt (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/dl/main/)"
+  },
+  {
+   "id": "qcsearch",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD038505/DNU7717QCtxt.zip members \"DNU7717 Incorporation txt/summary.txt|parameters.txt|evidence.txt\", \"DNU7717 Digest and Mix Check 1/2 txt/summary.txt\" (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/dl/qc/)"
+  },
+  {
+   "id": "inccalc",
+   "kind": "supplementary",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD038505/IncorporationandConversionCalculations.xlsx (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/dl/IncorporationandConversionCalculations.xlsx)"
+  },
+  {
+   "id": "rawhdr",
+   "kind": "raw-file",
+   "location": "HTTP range read (first 60-400 kB) of every deposited .raw at https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/12/PXD038505/ ; sample name + instrument method per file in /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/raw_methods.txt"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "/home/user/sdrf-skills/spec/sdrf-proteomics/sdrf-templates/templates.yaml (released: ms-proteomics 1.1.0, vertebrates 1.1.0, clinical-metadata 1.0.0)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (verification log /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/verify.log)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism] all rows",
+   "value": "Mus musculus",
+   "source_ids": [
+    "paper",
+    "pride",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "Mouse cortical neurons from Cdkl5 litters; MaxQuant searched UniProt mouse (taxonomy 10090) canonical FASTA for every run. NCBITaxon:10090 verified. For Control rows organism is inferred from the same SILAC neuron-culture experiment and mouse-only search (genotype/tissue of controls unstated)."
+  },
+  {
+   "location": "characteristics[organism part] rows of Cdkl5 KO/WT sources",
+   "value": "cerebral cortex",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "\"Mouse cortical neurons were cultured from individual male E16.5 embryos\". UBERON:0000956 verified."
+  },
+  {
+   "location": "characteristics[cell type] rows of Cdkl5 KO/WT sources",
+   "value": "cerebral cortex neuron",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Primary cortical neuron cultures (Ara-C added at DIV4 to inhibit glia). CL:0010012 verified."
+  },
+  {
+   "location": "characteristics[biological replicate] all rows",
+   "value": "1-3 (embryo index within genotype) / 1-4 (Control index)",
+   "source_ids": [
+    "design",
+    "paper"
+   ],
+   "evidence": "Design sheet names KO1-3, WT1-3, Control1-4; paper: \"3 Cdkl5 WT and 3 Cdkl5 KO animals\"; each embryo gave one K4R6 and one K8R10 dish."
+  },
+  {
+   "location": "characteristics[disease] rows of Cdkl5 KO sources",
+   "value": "CDKL5 disorder",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cdkl5 -/Y knockout neurons model CDKL5 deficiency disorder (CDD, DEE2). MONDO:0100039 (synonym \"CDKL5 Deficiency Disorder\") verified."
+  },
+  {
+   "location": "characteristics[disease] rows of Cdkl5 WT sources",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Cdkl5 +/Y littermate wild-type embryos. PATO:0000461."
+  },
+  {
+   "location": "characteristics[material type] rows of Cdkl5 KO/WT sources",
+   "value": "cell",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Primary neuronal cell cultures (8x10^6 cells per 10 cm dish)."
+  },
+  {
+   "location": "characteristics[developmental stage] rows of Cdkl5 KO/WT sources",
+   "value": "embryonic day 16.5",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: \"cultured from individual male E16.5 embryos\" (donor stage; cultures then grown to DIV12). EFO:0002567 \"embryonic day 16.5\" (def. \"mouse embryo stage at age 16.5 days\", not obsolete) verified in OLS."
+  },
+  {
+   "location": "characteristics[strain or breed] rows of Cdkl5 KO/WT sources",
+   "value": "C57BL/6",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"Mouse strains were backcrossed into C57 Bl/6 (Jackson)\"; Cdkl5 KO line gift from C. Gross."
+  },
+  {
+   "location": "characteristics[sex] rows of Cdkl5 KO/WT sources",
+   "value": "male",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "\"individual male E16.5 embryos\"; genotypes Cdkl5 +/Y and -/Y (X-linked, hemizygous males)."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype] rows of Cdkl5 KO/WT sources",
+   "value": "Cdkl5 knockout / wild type",
+   "source_ids": [
+    "paper",
+    "design",
+    "mainsites"
+   ],
+   "evidence": "Paper: Cdkl5 +/Y (WT) or -/Y (KO). Per-channel genotype from the design sheet; orientation independently confirmed by Phospho (STY)Sites.txt normalized H/L of CDKL5-dependent sites: EB2 pS222 = 9.0/5.4/5.8 in E1-E3 (heavy WT) and 0.13/0.23/0.24 in E4-E6 (heavy KO); CDKL5 pS407 and Cav2.3 pS15 follow the same direction; C1-C4 ratios ~1 (same sample both channels)."
+  },
+  {
+   "location": "rows with source name \"Control n ...\" (all characteristics except organism and biological replicate)",
+   "value": "not available",
+   "source_ids": [
+    "design",
+    "paper",
+    "inccalc"
+   ],
+   "evidence": "Control1-4 appear only in the design sheet (same identity in both SILAC channels; C1-C4 ratios ~1). Neither the paper nor PRIDE states their genotype, tissue, sex or stage; inccalc labels Control1/2 as culture IDs 2.1/2.2, but no biology is given. Left not available."
+  },
+  {
+   "location": "source name all rows",
+   "value": "one source per culture dish (embryo/control x K4R6 or K8R10 medium)",
+   "source_ids": [
+    "paper",
+    "design"
+   ],
+   "evidence": "\"For every embryo, one dish of cortical neurons was labeled with K8R10 (heavy) and one dish was labeled with K4R6 (light)\"; the two dishes are distinct biological material, so each is its own source."
+  },
+  {
+   "location": "comment[label] all rows",
+   "value": "SILAC light = K4R6 (Lys4/Arg6); SILAC heavy = K8R10 (Lys8/Arg10)",
+   "source_ids": [
+    "paper",
+    "design",
+    "mqpar",
+    "qcsearch"
+   ],
+   "evidence": "Paper and design sheet call K4R6 \"light\" and K8R10 \"heavy\"; MaxQuant labels channel 0 = Arg6;Lys4 and channel 1 = Arg10;Lys8. No unlabelled (K0R0) channel was used."
+  },
+  {
+   "location": "comment[instrument] all rows",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "rawhdr",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers read \"LTQ Orbitrap Velos\" (not Velos Pro); matches Methods and PRIDE."
+  },
+  {
+   "location": "comment[cleavage agent details] (2 columns) all rows",
+   "value": "NT=Trypsin;AC=MS:1001251 | NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "mqpar",
+    "ols"
+   ],
+   "evidence": "Methods: overnight trypsin digest, desalting, then Lys-C 2 h followed by overnight trypsin (trypsin was the first step, so listed first); search enzyme Trypsin/P. MS:1001251 and MS:1001309 verified."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all rows",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "rawhdr",
+    "ols"
+   ],
+   "evidence": "Top10 DDA (methods \"Top10CID/MSA/HCD\" in every raw header)."
+  },
+  {
+   "location": "comment[technical replicate] all rows",
+   "value": "injection index per source",
+   "source_ids": [
+    "rawhdr",
+    "design"
+   ],
+   "evidence": "Repeated injections of the same source: in phospho SDRF 1=CID (RW8), 2=MSA (RW9), 3=HCD (RW10) of the same TiO2 eluate; in QC SDRF 1=incorporation digest (RW3, single-label), 2=digest/mix check 1 (RW3), 3=digest/mix check 2 (RW5); Control 3/4 have no incorporation run, so their mix checks are 1 and 2."
+  },
+  {
+   "location": "comment[data file] / assay name all rows",
+   "value": "deposited .raw names",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Every deposited raw file in files/all is used exactly once across the two SDRFs (30 + 36 = 66)."
+  },
+  {
+   "location": "comment[fraction identifier] all rows",
+   "value": "1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "No fractionation; one injection per raw file."
+  },
+  {
+   "location": "comment[dissociation method] all rows",
+   "value": "CID (MS:1000133) / beam-type CID (MS:1000422)",
+   "source_ids": [
+    "rawhdr",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw header method per file: RW8 Top10CID, RW9 Top10MSA (CID with multistage activation; no PSI-MS term for MSA, written as CID), RW10 Top10HCD; QC runs RW3/RW5 Top10CID. NOTE: Experimental_Design.xlsx swaps these (RW10=CID, RW8=MSA, RW9=HCD); raw headers win."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] all rows",
+   "value": "radial ejection linear ion trap (MS:1000083) for CID/MSA; orbitrap (MS:1000484) for HCD",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: CID/MSA MS2 \"acquired in the linear ion trap\"; HCD MS2 \"acquired in the Orbitrap at 7500\"."
+  },
+  {
+   "location": "comment[fragment mass tolerance] all rows",
+   "value": "0.5 Da (ion-trap MS2) / 20 ppm (Orbitrap MS2)",
+   "source_ids": [
+    "mqpar",
+    "mainsites",
+    "qcsearch"
+   ],
+   "evidence": "MaxQuant MS/MS tol. ITMS 0.5 Da, FTMS 20 ppm (parameters.txt of main and QC searches)."
+  },
+  {
+   "location": "comment[modification parameters] (Carbamidomethyl, Oxidation, Acetyl, Lys4/Arg6/Lys8/Arg10 labels)",
+   "value": "UNIMOD:4 C Fixed; UNIMOD:35 M; UNIMOD:1 Protein N-term; UNIMOD:481 K; UNIMOD:188 R; UNIMOD:259 K; UNIMOD:267 R",
+   "source_ids": [
+    "mqpar",
+    "qcsearch",
+    "ols"
+   ],
+   "evidence": "mqpar.xml: fixed Carbamidomethyl (C); variable Oxidation (M), Acetyl (Protein N-term); labels \"Arg6; Lys4\" and \"Arg10; Lys8\"; QC summaries list the same. Lys4=Label:2H(4), Arg6=Label:13C(6), Lys8=Label:13C(6)15N(2), Arg10=Label:13C(6)15N(4) (paper: L-Lysine-4 (4,4,5,5-D4), L-Arginine-6 (U-13C6), L-Lysine-8 (U-13C6,U-15N2), L-Arginine-10 (U-13C6,U-15N4)). UNIMOD accessions verified in OLS."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool], technology type all rows",
+   "value": "v1.1.0; NT=ms-proteomics;VV=v1.1.0, NT=vertebrates;VV=v1.1.0, NT=clinical-metadata;VV=v1.0.0; manual curation",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version (spec/sdrf-proteomics/README.adoc: 'Version v1.1.0'); template versions are a separate track and are declared only in comment[sdrf template]. Released template versions in spec templates.yaml (ms-proteomics latest 1.1.0); written by sdrf-tools build from the pinned templates; clinical-metadata declared only to license characteristics[genotype]."
+  },
+  {
+   "location": "characteristics[enrichment process] all rows",
+   "value": "enrichment of phosphorylated protein",
+   "source_ids": [
+    "paper",
+    "rawhdr",
+    "ols"
+   ],
+   "evidence": "TiO2 (Titansphere) phosphopeptide enrichment; raw sample names \"DNU7717 TiO2 <mix> <method>\". EFO:0010806 verified."
+  },
+  {
+   "location": "comment[collision energy] all rows",
+   "value": "30 NCE (CID, RW8) / 35 NCE (MSA, RW9) / 45 NCE (HCD, RW10)",
+   "source_ids": [
+    "rawhdr",
+    "paper"
+   ],
+   "evidence": "Raw-header instrument method \"Normalized Coll. Energy\" read from all 30 files: RW8 30.0, RW9 35.0, RW10 45.0 (per-file list /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/raw_nce.txt); matches Methods (CID 30%, MSA 35%, HCD 45%)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] all rows",
+   "value": "6 ppm",
+   "source_ids": [
+    "mqpar"
+   ],
+   "evidence": "mqpar.xml mainSearchTol 6 (ppm; first search 20 ppm)."
+  },
+  {
+   "location": "comment[modification parameters] Phospho",
+   "value": "NT=Phospho;AC=UNIMOD:21;TA=S,T,Y;MT=Variable",
+   "source_ids": [
+    "mqpar",
+    "paper",
+    "ols"
+   ],
+   "evidence": "mqpar.xml variableModifications include \"Phospho (STY)\". UNIMOD:21 verified."
+  },
+  {
+   "location": "scope: 30 TiO2-enriched runs (A17-A26 x RW8/RW9/RW10), 2 rows each",
+   "value": "60 rows",
+   "source_ids": [
+    "mqpar",
+    "files",
+    "rawhdr"
+   ],
+   "evidence": "Exactly the 30 files in mqpar.xml filePaths (mixtures C1-C4, E1-E6). Perseus used only E1-E6; C1-C4 same-sample controls included because deposited and searched."
+  }
+ ],
+ "limitations": [
+  "Experimental_Design.xlsx is internally wrong in two places, both corrected from stronger evidence: (a) its MS-method column swaps RW8/RW9/RW10 (raw headers: RW8=CID, RW9=MSA, RW10=HCD); (b) for incorporation runs A1-A16 it lists A1-A8 as K8R10 and A9-A16 as K4R6, whereas the deposited incorporation search (summary.txt) labels A1-A8 Arg6;Lys4 and A9-A16 Arg10;Lys8, the calculation sheet calls A1-A8 \"medium\" (=K4R6), and median log2(H/L) of 3.7-5.9 for those labels shows they are really incorporated. Sample identities per run are still taken from the design sheet (pairing A1/A9, A2/A10 ... is consistent with the calc-sheet IDs 2.1-3.5).",
+  "Per-embryo identity (which KO/WT embryo is in which mixture/dish) rests on the design sheet alone; only the genotype orientation per channel is independently confirmed by the phosphosite ratios.",
+  "Control1-4: genotype, organism part, cell type, sex, developmental stage and strain are not stated anywhere; written as not available. Organism Mus musculus is inferred.",
+  "Multistage activation (MSA) has no PSI-MS dissociation term; MSA runs (RW9) are annotated as collision-induced dissociation with 35 NCE.",
+  "K4R6 is the lighter of two isotope-labelled media (no K0R0 arm); following the authors and MaxQuant it is written SILAC light, not SILAC medium.",
+  "Reduction (DTT) / alkylation (iodoacetamide) reagents are stated in Methods but not annotated (optional columns).",
+  "mqpar.xml references several runs with acquisition timestamps appended (e.g. DNU7717A17RW10_SU_A1_170208113643.raw); the deposited file names lack the suffix and are used as deposited."
+ ]
+}

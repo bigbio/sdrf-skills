@@ -1,0 +1,477 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv",
+ "dataset": "PXD015293",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD015293 (local copy: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD015293/files/all (local copy: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/evidence/files_raw.json; 320 entries, 303 RAW, all projectAccessions=PXD015293)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC8628316 / PMID 34061533 / doi:10.1021/acs.jproteome.0c01002 (NCBI efetch db=pmc id=8628316, local copy: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/evidence/efetch.xml; text /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/evidence/manuscript.txt)"
+  },
+  {
+   "id": "mzid_protocol",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD015293/Mouse_SILAM_PBS_rep2.mzid.gz and Mouse_SILAM_A53T_control_rep1.mzid.gz, AnalysisProtocolCollection + Inputs excerpts (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/evidence/search/*.protocol_inputs.xml)"
+  },
+  {
+   "id": "mzid_mods",
+   "kind": "search-output",
+   "location": "Peptide/Modification elements streamed from Mouse_SILAM_{PBS_rep1,A53T_control_rep1,PFF_rep2,A53T_mutant_rep1,PBS_rep2}.mzid.gz (counts: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/evidence/search/modification_counts.txt)"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "HTTP range bytes 0-400000 of https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD015293/Mouse_SILAM_PBS_rep1_F01.raw and Mouse_SILAM_A53T_mutant_rep2_Tryp_F01.raw (utf-16-le header string 'Orbitrap Elite MS')"
+  },
+  {
+   "id": "raw_methods",
+   "kind": "raw-file",
+   "location": "Embedded instrument method of every deposited RAW (HTTP range bytes 0-3000000, utf-16-le; PFF_rep1_F18b re-read to 8 MB) from https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/06/PXD015293/<file>; per-file results: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/evidence/rawscan_methods.jsonl (303 lines: method name, Normalized Coll. Energy, first scan event FTMS o(range))"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools verify / ols, 2026-11-13)"
+  },
+  {
+   "id": "templates",
+   "kind": "specification",
+   "location": "/home/user/sdrf-skills/spec/sdrf-proteomics/sdrf-templates/templates.yaml (released ms-proteomics 1.1.0, vertebrates 1.1.0; sdrf-tools contract -t ms-proteomics@1.1.0 -t vertebrates@1.1.0)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-24, 49-72, 97-120, 145-147, 151-171",
+   "value": "PFF_injected_WT_mouse / PBS_injected_WT_mouse / AAV1-tTA_injected_TetP-hA53T_mouse / AAV1-GFP_injected_TetP-hA53T_mouse (light channel = the individual model/control mouse)",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Paper Experimental Design: 'The number of alpha-synuclein PFF-injected mouse, PBS-injected mouse, AAV1-tTA-GFP-injected TetP-hA53T alpha-synuclein transgenic mouse, and AAV1-GFP-injected TetP-hA53T alpha-synuclein transgenic mouse used in this study was one for each.' File names Mouse_SILAM_{PFF,PBS,A53T_mutant,A53T_control}_rep*: A53T_mutant = AAV1-tTA (hA53T expressed), A53T_control = AAV1-GFP (no tTA, transgene not induced). Light = unlabelled model mouse because the SILAM reference is the 13C6-Lys (heavy) channel."
+  },
+  {
+   "location": "source name rows 25-48, 73-96, 121-144, 148-150, 172-192",
+   "value": "SILAM_13C6-Lys_reference_pool_spiked_into_<mouse>",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: 'The lysates of PD model mice were mixed with the pool of lysate of the SILAM mice in an equivalent tissue mass.' One physical aliquot of the SILAM pool per mixture; named per mixture so that the (source, biological replicate, technical replicate, fraction) coordinate stays unique. Name is a producer-chosen identifier, not a deposited one."
+  },
+  {
+   "location": "comment[label] rows 1-24, 49-72, 97-120, 145-147, 151-171",
+   "value": "SILAC light",
+   "source_ids": [
+    "paper",
+    "mzid_mods",
+    "ols"
+   ],
+   "evidence": "Model/control mice are unlabelled; heavy Lys (Label:13C(6) +6.020129) marks the SILAM spike. PRIDE:0000326 'SILAC light' verified in OLS."
+  },
+  {
+   "location": "comment[label] rows 25-48, 73-96, 121-144, 148-150, 172-192",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "paper",
+    "mzid_mods",
+    "ols"
+   ],
+   "evidence": "Methods 'Generation of SILAM Mice': fed L-lysine (13C6) chow for three generations (Cambridge Isotope Laboratories); search output shows Label:13C(6) UNIMOD:188 +6.020129 on K. PRIDE:0000325 'SILAC heavy' verified in OLS."
+  },
+  {
+   "location": "characteristics[organism] rows 1-192",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:10090 Mus musculus; paper: C57BL6 and TetP-hA53T mice, SILAM C57BL/6J mice. NCBITaxon:10090 verified."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-192",
+   "value": "midbrain",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 'the mouse ventral midbrain samples from PD model mice or SILAM mice'; 'ventral midbrain samples from the SILAM mice were spiked into the ventral midbrain samples'. No UBERON term for ventral midbrain exists; UBERON:0001891 midbrain used as the closest correct parent (UBERON midbrain tegmentum is defined to exclude substantia nigra; BTO:0003388 'tegmentum' carries the synonym 'ventral midbrain' but its bare label collides with UBERON:0024151 generic brainstem tegmentum)."
+  },
+  {
+   "location": "characteristics[cell type] rows 1-192",
+   "value": "not applicable",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Bulk tissue lysate of dissected ventral midbrain; no cell type was isolated."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-192",
+   "value": "1",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: one mouse per group ('was one for each'); the SILAM spike is one pool."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 1-24, 49-72, 97-120, 145-147, 151-171",
+   "value": "not pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Each light sample is one mouse ('one for each')."
+  },
+  {
+   "location": "characteristics[pooled sample] rows 25-48, 73-96, 121-144, 148-150, 172-192",
+   "value": "pooled",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "'mixed with the pool of lysate of the SILAM mice'. Number of SILAM mice in the pool not stated."
+  },
+  {
+   "location": "characteristics[disease] rows 97-120, 145-147, 151-171",
+   "value": "Parkinson disease",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "PFF-injected WT mouse = sporadic PD model, AAV1-tTA-injected TetP-hA53T mouse = familial PD model (paper Results headings); both validated for DA-neuron loss and motor deficits. MONDO:0005180 'Parkinson disease' verified. Disease of a model organism = the modelled disease."
+  },
+  {
+   "location": "characteristics[disease] rows 1-24, 49-72; rows 25-48, 73-96, 121-144, 148-150, 172-192",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "PBS-injected WT control, AAV1-GFP-injected TetP-hA53T control (transgene not induced without tTA), and wild-type SILAM C57BL/6J reference mice. PATO:0000461 'normal' verified."
+  },
+  {
+   "location": "factor value[disease] rows 1-24, 49-72, 97-120, 145-147, 151-171",
+   "value": "Parkinson disease / normal (mirrors characteristics[disease])",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Compared variable in both models: PFF vs PBS and AAV1-tTA (hA53T) vs AAV1-GFP control (Figure 2A,B volcano plots)."
+  },
+  {
+   "location": "factor value[disease] rows 25-48, 73-96, 121-144, 148-150, 172-192",
+   "value": "not applicable",
+   "source_ids": [
+    "paper",
+    "templates"
+   ],
+   "evidence": "The SILAM heavy reference is the common normaliser spiked into every run (intensities divided by the SILAM intensity), not a member of either compared group; not applicable keeps it out of the control condition in convert-openms. characteristics[disease] stays normal. Contract permits not applicable for disease."
+  },
+  {
+   "location": "characteristics[material type] rows 1-192",
+   "value": "tissue",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Dissected ventral midbrain tissue."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-192",
+   "value": "adult",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Model mice injected at 3 months and harvested 6 months later (~9 months old); SILAM F3 mice harvested at two months of age. Both adult; EFO:0001272 'adult' verified. Inferred from stated ages."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-24, 49-72, 97-120, 145-147, 151-171",
+   "value": "B6C3F2 x C57BL/6",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Genetic background of the TetP-hA53T line: 'pronuclear microinjection of single-cell embryos from B6C3F2 strain ... Positive founder mice ... were crossed to B6 mice.' The transgene itself (PrP-TetP-hA53T alpha-synuclein) is carried in the source name; no genotype column is licensed by ms-proteomics+vertebrates. Free text (validator warns it is not an NCBITaxon term; expected)."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 25-48, 73-96, 121-144, 148-150, 172-192",
+   "value": "C57BL/6J",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "'C57BL/6J wide-type F2 SILAM wide-type female mice ... crossed with wild-type C57BL/6J males'."
+  },
+  {
+   "location": "characteristics[sex] rows 1-192",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Model/control: '3 month old male and female mice' were injected; the sex of the single mouse per group is not reported. SILAM reference: the F2 dams were female, but the harvested F3 pups' sex is not stated."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-192",
+   "value": "values in this file: 1, 2, 3 (scheme: 1/2 = first acquisition of a fraction in injection series rep1/rep2; rep+2n = n-th re-acquisition, file suffix a/b/_b/c)",
+   "source_ids": [
+    "paper",
+    "files",
+    "mzid_protocol"
+   ],
+   "evidence": "Paper: 'All the mass spectrometry analyses were conducted in technical duplicate'; 'The prepared peptide samples were injected twice'. One mouse per group, so file-name rep1/rep2 = injection series 1/2, each with its own mzid; the raw methods confirm two separate acquisition campaigns (rep1: data dirs 2014, NCE 32, top-10 methods; rep2: January 2016, method 120m_120_30_8HCD_35_long_column_011216.meth, NCE 35). A re-acquired fraction (f09a, F17b, F21_b, F19c ...) is a further injection of the same fraction, so it keeps the nominal fraction number and takes technical replicate rep+2n (n = re-acquisition index): odd = series 1, even = series 2. A suffixed file with no base file in its series (PFF_rep2 F08b-F11b, F12_b) is the only acquisition of that fraction and keeps the series value (2). Note: Methods also says 'the entire amount was injected', so rep2 may be a second preparation of the same lysate; it is a technical replicate of the same mouse either way."
+  },
+  {
+   "location": "comment[data file] rows 1-192",
+   "value": "<deposited .raw name>",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Every RAW file name in files/all; LysC SDRF holds 207 files (PFF, PBS, A53T LysC series), trypsin SDRF holds 96 (A53T Tryp series); 303 total = all deposited RAW."
+  },
+  {
+   "location": "assay name rows 1-192",
+   "value": "<raw file stem>",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One assay per raw file, shared by its light and heavy rows."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-192",
+   "value": "nominal fraction number from the file name (F05 -> 5; f09a -> 9; F12_b -> 12), 1-24",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "'fractionated into 24 fractions by basic pH reversed-phase liquid chromatography' (96 collected, concatenated to 24). Each deposited file name carries its fraction number; missing fractions (e.g. PBS_rep2 F02-F04, PFF_rep2 F17-F20, A53T_mutant_rep2 Tryp F09-F11, A53T_control_rep2 LysC F09) are simply absent. Emitted through the samples.tsv 'fraction identifier' column of sdrf-tools build."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-192 (column 1)",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "paper",
+    "mzid_protocol",
+    "ols"
+   ],
+   "evidence": "A53T Methods: proteins digested with LysC (1:50) in the 30 kDa centricon overnight; the LysC flow-through became the *_LysC_* series; then 'Sequencing-grade trypsin (1:100, Promega) ... was added to the centricon' and the trypsin-released peptides became the *_Tryp_* series. The retained material was therefore digested sequentially, Lys-C first and then trypsin. The deposited mzid declares Enzyme MS:1001309 LysC for these files too. MS:1001309 'Lys-C' verified in OLS."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-192 (column 2)",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Second step of the sequential digest of the retained material in the same centricon (see column 1). MS:1001251 'Trypsin' verified in OLS."
+  },
+  {
+   "location": "comment[instrument] rows 1-192",
+   "value": "NT=Orbitrap Elite;AC=MS:1001910",
+   "source_ids": [
+    "pride",
+    "paper",
+    "raw_header",
+    "ols"
+   ],
+   "evidence": "Paper/PRIDE: LTQ-Orbitrap Elite; raw headers of two files contain 'Orbitrap Elite MS'. MS:1001910 OLS label 'Orbitrap Elite'."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-192",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "'Mass spectrometry analysis was carried out in a data-dependent manner'. PRIDE:0000627 verified."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-192",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "raw_methods",
+    "ols"
+   ],
+   "evidence": "'Precursor ions were fragmented using higher-energy collisional dissociation (HCD)'. MS:1000422 (HCD) verified."
+  },
+  {
+   "location": "comment[collision energy] rows 1-48, 97-150",
+   "value": "32 NCE",
+   "source_ids": [
+    "raw_methods",
+    "paper"
+   ],
+   "evidence": "Embedded method of every rep1 RAW: 'Normalized Coll. Energy: 32.0' (methods 120m_120-30_10HCD32_long_column_*). The paper's 'HCD energy was set to 32 for mouse samples' holds only for rep1."
+  },
+  {
+   "location": "comment[collision energy] rows 49-96, 151-192",
+   "value": "35 NCE",
+   "source_ids": [
+    "raw_methods"
+   ],
+   "evidence": "Embedded method of every rep2 RAW (120m_120_30_8HCD_35_long_column_011216.meth, acquired January 2016): 'Normalized Coll. Energy: 35.0'. The raw data outranks the paper's 32."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-192",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "'Both MS and MS/MS were acquired and measured using the Orbitrap mass analyzer'."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-48, 97-150",
+   "value": "300m/z-1700m/z",
+   "source_ids": [
+    "raw_methods"
+   ],
+   "evidence": "First scan event in the embedded method of every rep1 RAW: 'FTMS + p norm !corona !pi o(300.0-1700.0)'. The paper's 'm/z 350-1550' matches no deposited run."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 49-96, 151-192",
+   "value": "350m/z-1700m/z",
+   "source_ids": [
+    "raw_methods"
+   ],
+   "evidence": "First scan event in the embedded method of every rep2 RAW: FTMS o(350.0-1700.0). The paper's 'm/z 350-1550' matches no deposited run."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-192",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "'fractionated into 24 fractions by basic pH reversed-phase liquid chromatography ... XBridge C18'. PRIDE:0000564 verified."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-192",
+   "value": "10 ppm",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'a peptide mass error tolerance of 10 ppm'."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-192",
+   "value": "0.02 Da",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'a fragment mass error tolerance of 0.02 Da'."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-192",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "'sonicated in 50 mM TEAB/4% SDS/10 mM dithiothreitol ... heating at 95 C'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-192",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "'alkylated with 30 mM iodoacetamide at room temperature for 30 min'."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-192 (column 1)",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "paper",
+    "mzid_mods",
+    "ols"
+   ],
+   "evidence": "'carbamidomethylation of cysteine (+57.02146 Da) as fixed modification'; mzid Modification UNIMOD:4 +57.021464."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-192 (column 2)",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "paper",
+    "mzid_mods",
+    "ols"
+   ],
+   "evidence": "'oxidation of methionine (+15.99492 Da) ... as variable modifications'; mzid UNIMOD:35 +15.994915."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-192 (column 3)",
+   "value": "NT=Label:13C(6);AC=UNIMOD:188;TA=K;MT=Variable",
+   "source_ids": [
+    "paper",
+    "mzid_mods",
+    "ols"
+   ],
+   "evidence": "'Lys6 (+6.02013) as variable modifications'; mzid UNIMOD:188 Label:13C(6) +6.020129 on C-terminal K; SILAM chow = L-lysine (13C6). UNIMOD:188 verified in OLS ('13C(6) Silac label')."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-192 (column 4)",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "mzid_mods",
+    "ols"
+   ],
+   "evidence": "Not in paper/PRIDE prose, but every deposited mzid sampled contains Acetyl UNIMOD:1 +42.010565 at location 1; in Mouse_SILAM_PBS_rep2.mzid.gz all 766 acetylated peptides start with the initiator M and all their PeptideEvidence have pre='-' (protein N-terminus): a Proteome Discoverer protein-N-terminal dynamic modification. Deposited search outranks prose (annotator brief)."
+  },
+  {
+   "location": "technology type rows 1-192",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Filled by build from ms-proteomics."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-192",
+   "value": "v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version (spec/sdrf-proteomics/README.adoc: 'Version v1.1.0'); template versions are a separate track and are declared only in comment[sdrf template]."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-192",
+   "value": "NT=ms-proteomics;VV=v1.1.0 / NT=vertebrates;VV=v1.1.0",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Pinned to the released versions in spec templates.yaml. Templates: MS proteomics + mouse organism layer; no cell lines, no DIA, no clinical layer."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-192",
+   "value": "manual curation",
+   "source_ids": [
+    "templates"
+   ],
+   "evidence": "Annotated by hand-authored samples.tsv/technical.tsv expanded with sdrf-tools build."
+  }
+ ],
+ "limitations": [
+  "Split into two SDRFs by digest: for the A53T mice the LysC flow-through (*_LysC_*) and the trypsin digest of the material retained on the 30 kDa filter (*_Tryp_*) are separate peptide pools, each fractionated into its own 24 high-pH fractions; in one SDRF their fraction numbers 1-24 would collide on (source, biological replicate, technical replicate, fraction identifier) for the same mouse and injection, and recoding a digest as a technical replicate would be false. The deposited search combined both series per mouse/rep in one mzid; users reprocessing A53T need both SDRFs.",
+  "Re-acquired fractions (suffix a/b/_b/c) are treated as re-injections of the same fraction (technical replicate rep+2n); the deposit does not document whether they are re-injections or split fractions. Suffixed files without a base file (PFF_rep2 F08b-F11b, F12_b) are taken as the only acquisition of that fraction.",
+  "Trypsin SDRF: the *_Tryp_* series is recorded as a sequential Lys-C then trypsin digest (two cleavage-agent columns), matching the Methods and the deposited search, which used LysC specificity for these files.",
+  "Sex of the four model/control mice is not reported ('3 month old male and female mice' were injected) -> not available.",
+  "Sex of the SILAM reference (F3 pups of female F2 SILAM dams x C57BL/6J males) is not stated -> not available.",
+  "Number of SILAM mice in the heavy pool not stated; heavy source names are producer-chosen per-mixture aliquot identifiers.",
+  "Organism part: 'ventral midbrain' has no UBERON term; generalised to UBERON:0001891 midbrain.",
+  "Age not recorded as a column (not licensed by ms-proteomics+vertebrates contract); model mice ~9 months (3 months at injection + 6 months), SILAM mice 2 months. Developmental stage 'adult' is inferred from those ages.",
+  "No characteristics[treatment] column: no ontology term (NCIT/EFO) was found for intrastriatal alpha-synuclein PFF injection or AAV1-tTA/AAV1-GFP nigral injection; the arm identity is carried by source name, strain and disease.",
+  "Caller brief mentions 311 raw files; PRIDE files/all lists 303 RAW (plus 8 mzML, 8 mzid.gz, 1 FASTA = 320). All 303 RAW are annotated.",
+  "rep1 and rep2 were acquired about 1.5 years apart with different instrument methods (rep1, 2014: top-10 HCD, NCE 32, MS1 300-1700 m/z; rep2, January 2016: 120m_120_30_8HCD_35_long_column_011216.meth, NCE 35, MS1 350-1700 m/z). The paper reports only NCE 32 and m/z 350-1550, so its acquisition text is wrong for rep2 and its scan range matches no run. The SDRF values come from the raw files, per row. Whether rep2 re-injected the same peptide fractions or used a second preparation of the same lysate is undocumented.",
+  "Precursor tolerance, fragment tolerance and modifications are from the paper/PRIDE text and mzid Peptide elements; the PD-exported mzid carries no ModificationParams/tolerance block to confirm tolerances.",
+  "Europe PMC fullTextXML returned HTTP 500 and sdrf-tools fetch failed on the Europe PMC lookup; full text came from NCBI efetch (db=pmc, numeric id 8628316; title verified).",
+  "Supplementary tables (S2: quantified protein counts) were not retrieved; they are not needed for the run->sample map, which the file names and Methods fix."
+ ]
+}
