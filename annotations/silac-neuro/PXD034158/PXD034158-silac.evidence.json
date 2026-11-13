@@ -244,7 +244,7 @@
    "source_ids": [
     "spec_templates"
    ],
-   "evidence": "SDRF-Proteomics specification version (VERSIONING.adoc); released spec templates are ms-proteomics 1.1.0. [Corrected after review: comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version, spec/sdrf-proteomics/README.adoc 'Version v1.1.0'; template versions belong only to comment[sdrf template].]"
+   "evidence": "comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version (spec/sdrf-proteomics/README.adoc: 'Version v1.1.0'); template versions are a separate track and are declared only in comment[sdrf template]."
   },
   {
    "location": "comment[sdrf annotation tool] rows 1-24",

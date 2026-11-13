@@ -1,4 +1,4 @@
-{"accession":"PXD012462","label":"exclude","failed_criterion":"rule 2",
+{"accession":"PXD012462","criteria_file":"silac_neuro.md (screened before the widening to silac_neurological.md; the exclusion also holds under the widened rule 2: hemorrhage not studied, Alzheimer's only motivation)","label":"exclude","failed_criterion":"rule 2",
  "rule1":"pass: in vivo 13C6-leucine SILK infusion; light/heavy peak-area ratios (Skyline)",
  "rule2":"fail: three post-subarachnoid-hemorrhage neurosurgery patients with ventricular drainage (patient 1 profiled by HRMS); AD/ALS only motivation/protocol name/funding",
  "sources":["PRIDE PXD012462 sampleProcessingProtocol/dataProcessingProtocol","doi:10.1101/710418 (bioRxiv preprint, Results + Online Methods)","PMID:31730336 (abstract)","PMC11232576 (follow-up, same protocol NCT02263235)"],
