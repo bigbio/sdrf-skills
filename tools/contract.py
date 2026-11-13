@@ -127,10 +127,40 @@ def value_form(column: str, section: str) -> str:
     return "free text"
 
 
+def split_pins(templates: list[str]) -> tuple[list[str], dict[str, str]]:
+    """Split `name@1.1.0` pins into bare names and a {name: version} map.
+
+    The installed sdrf-pipelines can bundle a template version newer than the spec has released
+    (ms-proteomics 1.2.0 shipped in sdrf-pipelines while the spec still listed 1.1.0 as latest),
+    and the registry otherwise always picks its own latest. A pin keeps the file on the released one.
+    """
+    names, pins = [], {}
+    for t in templates:
+        name, _, version = t.partition("@")
+        name = name.strip()
+        names.append(name)
+        if version.strip():
+            pins[name] = version.strip().lstrip("v")
+    return names, pins
+
+
 def template_contract(templates: list[str], terms_path: str | Path | None = None) -> Contract:
     from sdrf_pipelines.sdrf.schemas.registry import SchemaRegistry
 
-    registry = SchemaRegistry()
+    class _PinRespectingRegistry(SchemaRegistry):
+        # A child's `extends: ms-proteomics@>=1.1.0` re-resolves the parent to the newest available
+        # version and overwrites a pinned one; let an explicit pin win.
+        def _get_template_version(self, template_name, constraint=None):
+            if template_name in self.template_versions:
+                return self.template_versions[template_name]
+            return super()._get_template_version(template_name, constraint)
+
+    templates, pins = split_pins(templates)
+    registry = _PinRespectingRegistry(template_versions=pins) if pins else SchemaRegistry()
+    for name, version in pins.items():
+        loaded = registry.get_schema(name)
+        if loaded is not None and str(loaded.version) != version:
+            raise ValueError(f"template {name}@{version} is not available; the registry loaded {loaded.version}")
     known = sorted(registry.get_schema_names())
     unknown = [t for t in templates if t not in known]
     if unknown:

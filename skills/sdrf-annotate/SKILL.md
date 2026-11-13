@@ -211,6 +211,11 @@ takes multiple values, the value form (`bare value`, `NT=<name>;AC=<accession>`,
 `<number> ppm|Da`, `integer`), and which reserved words it permits. Keep it in context; do
 **not** read `TERMS.tsv`, the template YAMLs or the spec README to learn the same thing.
 
+Pin each template to the version the spec has released (`spec/sdrf-proteomics/sdrf-templates/templates.yaml`
+`latest`), e.g. `-t ms-proteomics@1.1.0`, and pass the same pins to `build`: the installed sdrf-pipelines
+can bundle a newer, not yet accepted version (ms-proteomics 1.2.0) and otherwise stamps it into
+`comment[sdrf template]` and the contract header.
+
 `contract` and `build` need `sdrf-pipelines`; if the `python3` on your PATH cannot import it
 but `parse_sdrf` is installed, they re-run themselves under `parse_sdrf`'s interpreter. Do not
 go looking for another Python yourself.
@@ -227,6 +232,7 @@ the evidence:
 | `label` | yes | `label free sample`, or one channel (`TMT126`, `TMT127N`, `iTRAQ114`, `SILAC heavy`) — never a plex name like `TMT10` |
 | `assay name` | no | only to override the default (the file stem, shared by every channel of a multiplexed run) |
 | `technical replicate` | no | integer; default 1 |
+| `fraction identifier` | no | comma list parallel to `files`, the nominal fraction of each file (e.g. `1,2,5` when F03-F04 are missing); default is the position in `files` |
 | `characteristics[...]` | as evidenced | bare values; `not available` only where the contract allows it |
 | `factor value[...]` | as designed | the variable(s) the study compares |
 
@@ -254,6 +260,10 @@ column	value
 comment[instrument]	NT=Orbitrap Fusion Lumos;AC=MS:1002732
 comment[modification parameters]	NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed|NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable
 ```
+
+A digest that combines enzymes (Lys-C + trypsin) lists both in `comment[cleavage agent details]`
+separated by `|`; `build` repeats that column. Any other single-value column given several values is
+refused rather than truncated.
 
 `comment[sdrf template]` and `technology type` are filled by `build` from the templates you
 pass; do not add them.

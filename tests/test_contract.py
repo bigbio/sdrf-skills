@@ -141,3 +141,14 @@ def test_cli_doctor_reports_each_dependency(capsys):
     out = capsys.readouterr().out
     for what in ("parse_sdrf", "sdrf_pipelines importable", "sdrf-tools on PATH", "spec TERMS.tsv", "techsdrf"):
         assert what in out
+
+
+def test_contract_pins_a_template_version():
+    c = template_contract(["ms-proteomics@1.1.0", "human"])
+    assert c.templates == ["ms-proteomics", "human"]
+    assert c.versions["ms-proteomics"] == "1.1.0"
+
+
+def test_contract_rejects_an_unavailable_pin():
+    with pytest.raises(ValueError):
+        template_contract(["ms-proteomics@9.9.9"])

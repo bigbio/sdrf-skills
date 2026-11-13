@@ -21,7 +21,10 @@ from tools.contract import Contract, template_contract
 # a single reporter channel or SILAC state - not a plex name such as TMT10 or TMT11plex
 CHANNEL_RE = re.compile(r"^(TMT1(2[6-9]|3[0-5])[NC]?|iTRAQ1(1[3-9]|2[01])|SILAC (light|medium|heavy))$", re.I)
 MULTI_SEP = "|"
-STRUCTURAL = {"source name", "files", "label", "assay name", "technical replicate"}
+# Single-cardinality in the template YAML, but repeated once per agent by convention when a
+# digest combines enzymes (Lys-C + trypsin): parse_sdrf accepts it and the curated corpus uses it.
+REPEATABLE = {"comment[cleavage agent details]"}
+STRUCTURAL = {"source name", "files", "label", "assay name", "technical replicate", "fraction identifier"}
 BIO_REP = "characteristics[biological replicate]"
 
 
@@ -37,6 +40,12 @@ class Sample:
     assay: str | None
     technical_replicate: int
     values: dict[str, str] = field(default_factory=dict)
+    # explicit comment[fraction identifier] per file (optional 'fraction identifier' column,
+    # comma-separated, parallel to 'files'); default is the position in 'files'
+    fractions: list[int] | None = None
+
+    def fraction_ids(self) -> list[int]:
+        return self.fractions or list(range(1, len(self.files) + 1))
 
 
 def read_table(path: str | Path) -> tuple[list[str], list[dict[str, str]]]:
@@ -62,7 +71,14 @@ def parse_samples(header: list[str], rows: list[dict[str, str]]) -> list[Sample]
         if not tr.isdigit():
             raise BuildError(f"samples.tsv row {n}: 'technical replicate' must be an integer, got '{tr}'")
         values = {k: v for k, v in r.items() if k not in STRUCTURAL and k}
-        out.append(Sample(r["source name"], files, r["label"], r.get("assay name") or None, int(tr), values))
+        fractions = None
+        if r.get("fraction identifier"):
+            raw = [x.strip() for x in r["fraction identifier"].split(",")]
+            if len(raw) != len(files) or not all(x.isdigit() and int(x) > 0 for x in raw):
+                raise BuildError(f"samples.tsv row {n} ('{r['source name']}'): 'fraction identifier' must list one "
+                                 f"positive integer per file in 'files' ({len(files)}), got '{r['fraction identifier']}'")
+            fractions = [int(x) for x in raw]
+        out.append(Sample(r["source name"], files, r["label"], r.get("assay name") or None, int(tr), values, fractions))
     return out
 
 
@@ -119,15 +135,15 @@ def check_coordinates(samples: list[Sample]) -> None:
     for s in samples:
         if not s.source:
             continue
-        for k in range(1, len(s.files) + 1):
+        for f, k in zip(s.files, s.fraction_ids()):
             key = (s.source, s.values.get(BIO_REP, ""), s.technical_replicate, k, s.label)
             if key in seen:
                 raise BuildError(
                     f"samples.tsv: two rows for source '{s.source}' share biological replicate "
                     f"'{key[1] or '-'}', technical replicate {s.technical_replicate} and fraction {k} "
-                    f"(files '{seen[key]}' and '{s.files[k - 1]}'). Separate replicate runs need a different "
+                    f"(files '{seen[key]}' and '{f}'). Separate replicate runs need a different "
                     f"'{BIO_REP}' or 'technical replicate'; fractions of one injection go in one row's 'files'.")
-            seen[key] = s.files[k - 1]
+            seen[key] = f
 
 
 def _stem(name: str) -> str:
@@ -153,7 +169,10 @@ def expand(samples: list[Sample], technical: dict[str, list[str]], contract: Con
             continue
         if col.requirement != "required" and name not in used:
             continue
-        if col.multiple and name in technical:
+        if name in technical and len(technical[name]) > 1 and not (col.multiple or name in REPEATABLE):
+            raise BuildError(f"technical.tsv: {name} takes one value, got {len(technical[name])} "
+                             f"('{MULTI_SEP}'-separated); refusing to drop any")
+        if (col.multiple or name in REPEATABLE) and name in technical:
             header += [name] * len(technical[name])
         else:
             header.append(name)
@@ -165,7 +184,7 @@ def expand(samples: list[Sample], technical: dict[str, list[str]], contract: Con
     for s in samples:
         if not s.source:  # explicitly unused channel
             continue
-        for k, f in enumerate(s.files, start=1):
+        for k, f in zip(s.fraction_ids(), s.files):
             fixed = {
                 "source name": s.source,
                 # one assay per data file: the channels of a multiplexed run share it, and
