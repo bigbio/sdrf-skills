@@ -437,9 +437,11 @@ def check_cleavage_agent(record: dict, declared: Iterable[str]) -> list[Finding]
     value is split before reading its NT= name; otherwise only the first enzyme of a
     Lys-C/trypsin co-digest is seen and the second is reported as missing.
     """
-    written = [term_name(p) for d in declared for p in d.split("|")]
-    # a reserved word in a repeated column (e.g. no second digest on some runs) names no enzyme
-    written = [w for w in written if _declared(w)]
+    raw = [term_name(p) for d in declared for p in d.split("|")]
+    # a reserved word in a repeated column (e.g. no second digest on some runs) names no enzyme,
+    # but a column holding only reserved words still declares something about the digest
+    written = [w for w in raw if _declared(w)]
+    declared_any = any(w.strip() for w in raw)
     supported = proteases_in_record(record)
     out: list[Finding] = []
     if not supported:
@@ -463,11 +465,11 @@ def check_cleavage_agent(record: dict, declared: Iterable[str]) -> list[Finding]
                                f"the annotation says {w!r} but the record's digest names "
                                f"{', '.join(supported)}"))
     missing = [s for s in supported if s.lower() not in {w.lower() for w in written}]
-    if missing and written:
+    if missing and declared_any:
         out.append(Finding("cleavage_agent_incomplete", MAJOR,
                            "comment[cleavage agent details]",
                            f"the record names a {'/'.join(supported)} digest but only "
-                           f"{', '.join(written)} is declared",
+                           f"{', '.join(written) or 'a reserved word'} is declared",
                            f"missing: {', '.join(missing)}"))
     return out
 

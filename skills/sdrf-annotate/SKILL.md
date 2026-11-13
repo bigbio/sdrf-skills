@@ -211,10 +211,10 @@ takes multiple values, the value form (`bare value`, `NT=<name>;AC=<accession>`,
 `<number> ppm|Da`, `integer`), and which reserved words it permits. Keep it in context; do
 **not** read `TERMS.tsv`, the template YAMLs or the spec README to learn the same thing.
 
-Pin each template to the version the spec has released (`spec/sdrf-proteomics/sdrf-templates/templates.yaml`
-`latest`), e.g. `-t ms-proteomics@1.1.0`, and pass the same pins to `build`: the installed sdrf-pipelines
-can bundle a newer, not yet accepted version (ms-proteomics 1.2.0) and otherwise stamps it into
-`comment[sdrf template]` and the contract header.
+Pin each template to the version the spec has released (its `latest` in
+`spec/sdrf-proteomics/sdrf-templates/templates.yaml`) as `-t <template>@<version>`, and pass the same
+pins to `build`: the installed sdrf-pipelines can bundle a newer, not yet accepted version and
+otherwise stamps it into `comment[sdrf template]` and the contract header.
 
 `contract` and `build` need `sdrf-pipelines`; if the `python3` on your PATH cannot import it
 but `parse_sdrf` is installed, they re-run themselves under `parse_sdrf`'s interpreter. Do not
@@ -345,7 +345,7 @@ a gap to fill with an unrelated column.
 Two rows in `technical.tsv`; the third column is `build`'s:
 
 - `comment[sdrf version]` → the SDRF-Proteomics **specification** version (the `Version` line of
-  `spec/sdrf-proteomics/README.adoc`, currently `v1.1.0`). It is not a template version: those are a
+  `spec/sdrf-proteomics/README.adoc`). It is not a template version: those are a
   separate track (`spec/sdrf-proteomics/VERSIONING.adoc`) and go only into `comment[sdrf template]`
 - `comment[sdrf annotation tool]` → `manual curation` (or the tool name if applicable)
 - `comment[sdrf template]` → filled by `build`, one column per template you passed with `-t`

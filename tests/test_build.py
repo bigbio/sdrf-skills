@@ -366,20 +366,37 @@ def test_single_value_column_refuses_to_drop_extra_values():
 
 
 def test_sample_value_splits_across_repeated_columns_per_row():
-    """A samples.tsv value with '|' fills a repeatable column per row (e.g. one digest step per run);
-    a row with fewer parts leaves the extra column empty rather than copying its value into it."""
+    """A samples.tsv value with '|' fills a repeatable column per row (e.g. one digest step per run)
+    instead of being copied into every repeated column; other rows fall back to technical.tsv."""
     tech = {"comment[cleavage agent details]": ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]}
     s = [Sample("S1", ["a.raw"], "label free sample", None, 1,
                 {"comment[cleavage agent details]": "NT=Trypsin;AC=MS:1001251|not applicable"}),
-         Sample("S2", ["b.raw"], "label free sample", None, 1, {}),
-         Sample("S3", ["c.raw"], "label free sample", None, 1,
-                {"comment[cleavage agent details]": "NT=Trypsin;AC=MS:1001251"})]
+         Sample("S2", ["b.raw"], "label free sample", None, 1, {})]
     header, rows = expand(s, tech, template_contract(["ms-proteomics"]))
     idx = [i for i, h in enumerate(header) if h == "comment[cleavage agent details]"]
     assert len(idx) == 2
     assert [rows[0][i] for i in idx] == ["NT=Trypsin;AC=MS:1001251", "not applicable"]
     assert [rows[1][i] for i in idx] == ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]
-    assert [rows[2][i] for i in idx] == ["NT=Trypsin;AC=MS:1001251", ""]
+
+
+def test_short_value_in_a_required_repeated_column_is_refused():
+    """build never picks the reserved word for an unused position of a required column."""
+    tech = {"comment[cleavage agent details]": ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]}
+    s = [Sample("S3", ["c.raw"], "label free sample", None, 1,
+                {"comment[cleavage agent details]": "NT=Trypsin;AC=MS:1001251"})]
+    with pytest.raises(BuildError, match="S3"):
+        expand(s, tech, template_contract(["ms-proteomics"]))
+
+
+def test_short_value_in_an_optional_repeated_column_stays_empty():
+    mods = "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed"
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1,
+                {"comment[modification parameters]": f"{mods}|NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable"}),
+         Sample("S2", ["b.raw"], "label free sample", None, 1,
+                {"comment[modification parameters]": mods})]
+    header, rows = expand(s, {}, template_contract(["ms-proteomics"]))
+    idx = [i for i, h in enumerate(header) if h == "comment[modification parameters]"]
+    assert [rows[1][i] for i in idx] == [mods, ""]
 
 
 def test_sample_value_alone_sets_the_number_of_repeated_columns():

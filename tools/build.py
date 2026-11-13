@@ -96,6 +96,21 @@ def _split_multi(value: str) -> list[str]:
     return [v.strip() for v in value.split(MULTI_SEP) if v.strip()] or [""]
 
 
+def _repeat_cell(vals: list[str], i: int, col, name: str, source: str) -> str:
+    """Value for position i of a repeated column, refusing to leave a required cell empty.
+
+    Which reserved word fills an unused position (e.g. no second digest on some runs) is a
+    claim about the sample, so the table must state it ('X|not applicable'); build never picks one.
+    """
+    if i < len(vals):
+        return vals[i]
+    if col is not None and col.requirement == "required":
+        raise BuildError(f"samples.tsv row '{source}': {name} is required and repeated "
+                         f"{i + 1}+ times, but only {len(vals)} value(s) are given; write every "
+                         f"position, using a reserved word where the column allows one")
+    return ""
+
+
 def is_channel(label: str) -> bool:
     return bool(CHANNEL_RE.match(label.strip()))
 
@@ -222,7 +237,7 @@ def expand(samples: list[Sample], technical: dict[str, list[str]], contract: Con
                     i = multi_i.get(h, 0)
                     multi_i[h] = i + 1
                     vals = _split_multi(s.values[h]) if s.values.get(h) else technical[h]
-                    row.append(vals[i] if i < len(vals) else "")
+                    row.append(_repeat_cell(vals, i, spec.get(h), h, s.source))
                 elif s.values.get(h):
                     row.append(s.values[h])
                 elif h in technical:
