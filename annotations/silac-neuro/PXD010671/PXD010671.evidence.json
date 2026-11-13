@@ -439,7 +439,7 @@
     "spec_templates",
     "samples_tsv"
    ],
-   "evidence": "Released template versions per the spec templates.yaml (ms-proteomics latest 1.1.0; vertebrates 1.1.0; clinical-metadata 1.0.0); comment[sdrf version] = technology template version v1.1.0. clinical-metadata is declared only to license characteristics[genotype]; vertebrates for the mouse layer."
+   "evidence": "Released template versions per the spec templates.yaml (ms-proteomics latest 1.1.0; vertebrates 1.1.0; clinical-metadata 1.0.0); comment[sdrf version] = technology template version v1.1.0. clinical-metadata is declared only to license characteristics[genotype]; vertebrates for the mouse layer. [Corrected after review: comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version, spec/sdrf-proteomics/README.adoc 'Version v1.1.0'; template versions belong only to comment[sdrf template].]"
   }
  ],
  "limitations": [

@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv",
+ "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942-interaction.sdrf.tsv",
  "dataset": "PXD001942",
  "sources": [
   {

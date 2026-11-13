@@ -439,7 +439,7 @@
    "source_ids": [
     "templates"
    ],
-   "evidence": "Released ms-proteomics version in spec templates.yaml is 1.1.0 (1.2.0 is a proposed version bundled only in sdrf-pipelines); build pinned with -t ms-proteomics@1.1.0, contract header v1.1.0."
+   "evidence": "Released ms-proteomics version in spec templates.yaml is 1.1.0 (1.2.0 is a proposed version bundled only in sdrf-pipelines); build pinned with -t ms-proteomics@1.1.0, contract header v1.1.0. [Corrected after review: comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version, spec/sdrf-proteomics/README.adoc 'Version v1.1.0'; template versions belong only to comment[sdrf template].]"
   },
   {
    "location": "comment[sdrf template] rows 1-192",

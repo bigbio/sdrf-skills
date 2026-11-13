@@ -481,7 +481,7 @@
    "source_ids": [
     "spec"
    ],
-   "evidence": "Released ms-proteomics template version 1.1.0 in the spec manifest templates.yaml; build pinned with -t ms-proteomics@1.1.0 (sdrf-tools contract header: ms-proteomics v1.1.0)."
+   "evidence": "Released ms-proteomics template version 1.1.0 in the spec manifest templates.yaml; build pinned with -t ms-proteomics@1.1.0 (sdrf-tools contract header: ms-proteomics v1.1.0). [Corrected after review: comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version, spec/sdrf-proteomics/README.adoc 'Version v1.1.0'; template versions belong only to comment[sdrf template].]"
   },
   {
    "location": "comment[sdrf annotation tool] rows 1-64",

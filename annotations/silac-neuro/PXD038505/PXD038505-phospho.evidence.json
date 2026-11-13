@@ -290,7 +290,7 @@
    "source_ids": [
     "spec"
    ],
-   "evidence": "Released template versions in spec templates.yaml (ms-proteomics latest 1.1.0); written by sdrf-tools build from the pinned templates; clinical-metadata declared only to license characteristics[genotype]."
+   "evidence": "Released template versions in spec templates.yaml (ms-proteomics latest 1.1.0); written by sdrf-tools build from the pinned templates; clinical-metadata declared only to license characteristics[genotype]. [Corrected after review: comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version, spec/sdrf-proteomics/README.adoc 'Version v1.1.0'; template versions belong only to comment[sdrf template].]"
   },
   {
    "location": "characteristics[enrichment process] all rows",

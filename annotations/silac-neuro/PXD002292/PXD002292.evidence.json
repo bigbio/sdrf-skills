@@ -340,7 +340,7 @@
     "spec_templates",
     "pride"
    ],
-   "evidence": "Template versions are the released latest in the pinned spec templates.yaml (ms-proteomics 1.1.0, human 1.1.0, cell-lines 1.1.0), built with -t ms-proteomics@1.1.0 -t human@1.1.0 -t cell-lines@1.1.0 (contract header confirms v1.1.0); sdrf version = ms-proteomics template version. Template choice: MS proteomics (PRIDE) on a human cell line."
+   "evidence": "Template versions are the released latest in the pinned spec templates.yaml (ms-proteomics 1.1.0, human 1.1.0, cell-lines 1.1.0), built with -t ms-proteomics@1.1.0 -t human@1.1.0 -t cell-lines@1.1.0 (contract header confirms v1.1.0); sdrf version = ms-proteomics template version. Template choice: MS proteomics (PRIDE) on a human cell line. [Corrected after review: comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version, spec/sdrf-proteomics/README.adoc 'Version v1.1.0'; template versions belong only to comment[sdrf template].]"
   }
  ],
  "limitations": [

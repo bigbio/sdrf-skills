@@ -280,7 +280,7 @@
    "source_ids": [
     "spec"
    ],
-   "evidence": "Released template versions in spec templates.yaml (ms-proteomics latest 1.1.0); written by sdrf-tools build from the pinned templates; clinical-metadata declared only to license characteristics[genotype]."
+   "evidence": "Released template versions in spec templates.yaml (ms-proteomics latest 1.1.0); written by sdrf-tools build from the pinned templates; clinical-metadata declared only to license characteristics[genotype]. [Corrected after review: comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version, spec/sdrf-proteomics/README.adoc 'Version v1.1.0'; template versions belong only to comment[sdrf template].]"
   },
   {
    "location": "comment[cleavage agent details] (2 columns) rows whose comment[data file] ends RW3 (36 rows: A1-A16 RW3 incorporation digests, A17-A26 RW3 digest/mix check 1)",
