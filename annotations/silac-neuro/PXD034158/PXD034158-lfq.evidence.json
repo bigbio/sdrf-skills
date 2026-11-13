@@ -1,0 +1,385 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv",
+ "dataset": "PXD034158",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/evidence/pride.json (https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD034158)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/evidence/files.json (https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD034158/files/all; 84 .raw)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC9540350 / doi:10.1016/j.mcpro.2022.100275 / PMID 35932982; full text at /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/evidence/manuscript.txt"
+  },
+  {
+   "id": "msf_silac",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD034158/20220128_2M20Q1_IP.msf (HTTP-range read; extract /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/msf_params_silac_20220128_2M20Q1_IP.txt; other three SILAC .msf checked in /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/silac_msf_check.txt)"
+  },
+  {
+   "id": "msf_lfq",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD034158/20210816_2M-20Q-FLAG_F.msf (HTTP-range read; extract /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/msf_params_lfq_20210816_2M-20Q-FLAG_F.txt)"
+  },
+  {
+   "id": "msf_paths",
+   "kind": "search-output",
+   "location": "first 8 MiB of each of the 24 label-free https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD034158/2021*_F.msf; raw paths with repN folders tabulated in /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/msf_rep_map.tsv"
+  },
+  {
+   "id": "raw_header",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2022/08/PXD034158/20220128_2M140Q2_IP_F2.raw, 20210806_2M-140Q-FLAG_F1.raw, 20210821_2M-20Q-IgG_F1.rerun.raw (first 512 KiB, utf-16 header)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 lookups via sdrf-tools ols, log /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/ols1.txt"
+  },
+  {
+   "id": "spec_templates",
+   "kind": "specification",
+   "location": "/home/user/sdrf-skills/spec/sdrf-proteomics/sdrf-templates/templates.yaml (+ ms-proteomics/1.1.0, vertebrates/1.1.0, clinical-metadata/1.0.0 YAMLs) and /home/user/sdrf-skills/spec/sdrf-proteomics/VERSIONING.adoc"
+  },
+  {
+   "id": "pxd025510",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD025510 sampleProcessingProtocol, saved /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/pxd025510_protocol.txt"
+  },
+  {
+   "id": "tables",
+   "kind": "producer-tables",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/make_tables.py, samples_*.tsv, technical_*.tsv"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism] rows 1-72",
+   "value": "Mus musculus",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Htt3xFlag knock-in mice (paper Mouse Strains); NCBITaxon:10090 verified in OLS."
+  },
+  {
+   "location": "characteristics[material type] rows 1-72",
+   "value": "tissue",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Cortical tissue (and, for SILAC heavy, whole-brain tissue) lysed for IP."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-72",
+   "value": "adult",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Mice harvested at 2 and 10 months of age (paper); 'adult' (EFO:0001272) is INFERRED from those ages, not stated as a stage."
+  },
+  {
+   "location": "characteristics[sex] rows 1-72",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: 'male and female mice' were used and paired IPs within a replicate were sex matched, but no per-replicate sex is given."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-72",
+   "value": "1-3 (LFQ) / 1-2 (SILAC)",
+   "source_ids": [
+    "msf_paths",
+    "files"
+   ],
+   "evidence": "LFQ: rep folder (rep1/rep2/rep3) in the raw paths stored inside each deposited .msf; SILAC: '1'/'2' suffix in 20220128_2M{20,140}Q{1,2}_IP file names; paper: isotope-labelled IP-MS in duplicate."
+  },
+  {
+   "location": "comment[instrument] rows 1-72",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw_header",
+    "pride",
+    "paper"
+   ],
+   "evidence": "Raw headers read 'Q Exactive HF - Orbitrap MS'; PRIDE and paper agree."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-72",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "'analyzed by data-dependent LC-MS/MS on a Q Exactive HF'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-72",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "msf_lfq"
+   ],
+   "evidence": "Paper: 'protease digestion of the samples using trypsin'; .msf Sequest HT Enzyme Name 'Trypsin (Full)'. (reconcile flagged the PRIDE protocol text, which says only 'protease digestion'.)"
+  },
+  {
+   "location": "comment[dissociation method] rows 1-72",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "msf_lfq",
+    "raw_header"
+   ],
+   "evidence": "Q Exactive HF fragments by HCD only; HCD strings present in the .msf spectrum tables. Not stated in Methods (inferred from instrument)."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-72",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "raw_header"
+   ],
+   "evidence": "Q Exactive HF MS2 is Orbitrap-only (inferred from instrument)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-72",
+   "value": "4 ppm",
+   "source_ids": [
+    "msf_lfq",
+    "paper"
+   ],
+   "evidence": "Sequest HT node Precursor Mass Tolerance '4 ppm' (paper: 4 ppm). The 15 ppm value in the .msf belongs to the Spectrum Files RC recalibration node."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-72",
+   "value": "0.02 Da",
+   "source_ids": [
+    "msf_lfq",
+    "paper"
+   ],
+   "evidence": "Sequest HT node Fragment Mass Tolerance '0.02 Da'. Paper prose says '20 ppm' (taken as a unit slip for 0.02 Da); the search output wins. 0.1 Da belongs to the RC node."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-72",
+   "value": "NT=Tris(2-carboxyethyl)phosphine (TCEP);AC=PRIDE:0000609",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "'reduced and alkylated with ... TCEP and chloroacetamide'."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-72",
+   "value": "NT=Chloroacetamide (ClAA);AC=PRIDE:0000600",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "'chloroacetamide (1.5 ul of 500 mM)'."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-72",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "pxd025510"
+   ],
+   "evidence": "This paper: 'StageTip desalting and peptide fractionation (n = 3 fractions) as previously described (PXD025510)'. PXD025510's protocol: 'fractionated over SDB-RPS StageTips'. No PRIDE:0000550 descendant names SDB-RPS (mixed-mode sulfonated reversed phase); mapping to RP or SCX would be a guess, so the reserved word is kept."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-72",
+   "value": "1-3",
+   "source_ids": [
+    "files",
+    "paper"
+   ],
+   "evidence": "_F1/_F2/_F3 in raw names; paper: n = 3 fractions."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-72",
+   "value": "1",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One injection per fraction; the '_rerun' files are the only deposited copy of those runs (no original injection deposited)."
+  },
+  {
+   "location": "comment[data file] rows 1-72",
+   "value": "raw file names",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "From PRIDE files/all."
+  },
+  {
+   "location": "assay name rows 1-72",
+   "value": "raw file stem",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Built from the file stem."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-72",
+   "value": "Carbamidomethyl C Fixed; Oxidation M, Deamidated N, Met-loss+Acetyl Protein N-term Variable",
+   "source_ids": [
+    "msf_lfq",
+    "ols"
+   ],
+   "evidence": "PD workflow XML: Static Carbamidomethyl (C) UnimodAccession 4; Dynamic Oxidation (M) 35, Deamidated (N) 7; N-Terminal Met-loss+Acetyl (M) UnimodAccession 766, PositionType Protein_N_Terminus. All accessions verified exact in OLS UNIMOD."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-72",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec_templates"
+   ],
+   "evidence": "SDRF-Proteomics specification version (VERSIONING.adoc); released spec templates are ms-proteomics 1.1.0."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-72",
+   "value": "manual curation",
+   "source_ids": [
+    "tables"
+   ],
+   "evidence": "Producer-authored tables."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-72",
+   "value": "NT=ms-proteomics;VV=v1.1.0 | NT=vertebrates;VV=v1.1.0 | NT=clinical-metadata;VV=v1.0.0",
+   "source_ids": [
+    "spec_templates"
+   ],
+   "evidence": "Versions as released in the pinned spec templates.yaml; clinical-metadata declared only to license characteristics[genotype]."
+  },
+  {
+   "location": "technology type rows 1-72",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "tables"
+   ],
+   "evidence": "Filled by build from ms-proteomics."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-72",
+   "value": "cerebral cortex",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "IP-MS from cortical tissues; UBERON:0000956."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-72",
+   "value": "C57BL/6J",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "'congenic in the C57BL/6J background'."
+  },
+  {
+   "location": "characteristics[genotype] rows 1-72",
+   "value": "Htt3xFlag Q20/+ or Htt3xFlag Q140/+",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Paper: Htt3xFlagQ20/+ (control) and Htt3xFlagQ140/+ (HD knock-in); 20Q/140Q in each raw name."
+  },
+  {
+   "location": "factor value[genotype] rows 1-72",
+   "value": "mirrors characteristics[genotype]",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Q140 vs Q20 is the compared variable."
+  },
+  {
+   "location": "characteristics[disease] rows 1-72",
+   "value": "Huntington disease (Q140) / normal (Q20)",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Q140 = HD knock-in model, Q20 = control allele within the non-mutant human range (paper); MONDO:0007739 / PATO:0000461."
+  },
+  {
+   "location": "factor value[age] rows 1-72",
+   "value": "2M / 10M",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "'2 months and 10 months age'; 2M/10M in raw names. No age characteristics column: characteristics[age] is licensed only by the human template."
+  },
+  {
+   "location": "characteristics[sample type] rows with FLAG in assay name (36 rows)",
+   "value": "study sample",
+   "source_ids": [
+    "paper",
+    "files",
+    "ols"
+   ],
+   "evidence": "anti-FLAG (Htt3xFlag bait) IP; PRIDE:0001013."
+  },
+  {
+   "location": "factor value[sample type] rows 1-72",
+   "value": "study sample (FLAG IP) / negative control (IgG IP)",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Mirrors characteristics[sample type]; bait vs control IP is a compared variable (SAINT), so conditions separate FLAG from IgG."
+  },
+  {
+   "location": "characteristics[sample type] rows with IgG in assay name (36 rows)",
+   "value": "negative control",
+   "source_ids": [
+    "paper",
+    "files",
+    "ols"
+   ],
+   "evidence": "'2 x 4.5 mL aliquots were used for anti-FLAG and control IgG IPs'; nonspecific IgG = negative control (PRIDE:0000905)."
+  },
+  {
+   "location": "comment[label] rows 1-72",
+   "value": "label free sample",
+   "source_ids": [
+    "paper",
+    "msf_lfq"
+   ],
+   "evidence": "'Label-free FLAG IP-MS experiments'; quantified by Minora precursor-intensity LFQ; .msf has no quantification method and no Label modification. PRIDE's project-level 'SILAC' applies only to the 20220128 runs (separate SDRF)."
+  },
+  {
+   "location": "source name rows 1-72",
+   "value": "cortex_<age>_Q<n>_rep<r>_<FLAG|IgG>-IP",
+   "source_ids": [
+    "msf_paths",
+    "files",
+    "paper"
+   ],
+   "evidence": "One source per IP aliquot (FLAG and IgG IPs are split from the same lysate but are distinct IP samples)."
+  }
+ ],
+ "limitations": [
+  "Per-replicate sex is not reported (male and female mice used, sex-matched within a replicate): characteristics[sex] = not available.",
+  "Age has no licensed characteristics column for vertebrates; age is carried only as factor value[age] (2M/10M) and developmental stage 'adult' is inferred from age.",
+  "FLAG and IgG IPs of one replicate come from the same cortical lysate; the shared lysate is not linked in the SDRF other than by matching age/genotype/replicate in source names.",
+  "Fractionation chemistry (StageTip, 3 fractions) is only cited to a previous study: comment[fractionation method] = not available.",
+  "Dissociation method (HCD) and MS2 analyzer (orbitrap) are inferred from the Q Exactive HF instrument, not stated in Methods.",
+  "Search parameters were read from one label-free .msf (20210816_2M-20Q-FLAG_F); the other 23 were read only for their raw paths (replicate folders).",
+  "Paper prose says fragment tolerance 20 ppm; the .msf Sequest node says 0.02 Da, which is used.",
+  "PRIDE quantificationMethods = SILAC is project-level; reconcile flags label-free rows as a BLOCKER, rebutted by the paper and the .msf."
+ ]
+}

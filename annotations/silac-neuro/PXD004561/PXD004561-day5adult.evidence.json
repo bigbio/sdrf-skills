@@ -1,0 +1,581 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD004561/PXD004561-day5adult.sdrf.tsv",
+ "dataset": "PXD004561",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004561 (local copy evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD004561/files/all (local copies evidence/files.json, files_all_PXD004561.json)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "doi:10.1016/j.celrep.2016.08.025 (PMID 27626671; Visscher et al. 2016 Cell Rep 16:3041-3051). Full text incl. Supplemental Experimental Procedures from the Ghent University repository copy https://biblio.ugent.be/publication/8121767/file/8121791.pdf (local text paper/paper.txt)"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "/home/user/sdrf-skills/spec/sdrf-proteomics/sdrf-templates/templates.yaml (+ ms-proteomics/1.1.0, invertebrates/1.1.0 YAMLs)"
+  },
+  {
+   "id": "tooling",
+   "kind": "tool",
+   "location": "/home/user/sdrf-skills tools/build.py at commit eb65367 (sdrf-tools build)"
+  },
+  {
+   "id": "search",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/07/PXD004561/oldworms.7z member oldworms/mqpar.xml (MaxQuant 1.5.2.8), range-extracted to extract/oldworms_oldworms__mqpar.xml; also oldworms/combined/experimentalDesignTemplate.txt -> extract/oldworms__combined__experimentalDesignTemplate.txt and combined/txt/parameters.txt -> extract/oldworms_oldworms__combined__txt__parameters.txt"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2016/07/PXD004561/20160205_F1_RM_SH_OW40_6h_AF.raw first 400 kB (instrument method header), local hdr_20160205_F1_RM_SH_OW40_6h_AF.raw"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name rows 1-72",
+   "value": "<experiment>_<strain>_<hours on heavy Lys>h_<Lys0|Lys8>",
+   "source_ids": [
+    "search",
+    "files"
+   ],
+   "evidence": "One biological sample per strain x pulse time (MaxQuant experiment, e.g. \"40_6\"); the _Lys0/_Lys8 suffix separates the pre-existing (light Lys) and newly synthesized (heavy 13C6-15N2 Lys) protein pools of the SAME worm population measured in one run, so that the (source, replicate, fraction) coordinate stays unique per channel."
+  },
+  {
+   "location": "characteristics[organism] rows 1-72",
+   "value": "Caenorhabditis elegans",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE organisms NEWT:6239 Caenorhabditis elegans; paper studies C. elegans strains. OLS NCBITaxon:6239."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-72",
+   "value": "whole body",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "PRIDE organismParts BTO:0001489 whole body; worms were lysed whole (Supplemental Experimental Procedures: \"Worms were lysed in 150 ul 8M urea\")."
+  },
+  {
+   "location": "characteristics[material type] rows 1-72",
+   "value": "whole organism",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Whole worms harvested, snap frozen and lysed (Supplemental Experimental Procedures, Pulse labeling / Preparation of MS samples)."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-72",
+   "value": "1",
+   "source_ids": [
+    "search",
+    "paper"
+   ],
+   "evidence": "Each strain x time point is a single MaxQuant experiment (one worm population per well, \"each worm strain was dispensed into 7 wells ... / 3 wells ... until harvest at different time points\"); no replicate populations of the same strain/time are deposited in this search."
+  },
+  {
+   "location": "characteristics[sampling time] rows 1-4, 13-16, 25-28, 37-40, 49-52, 61-64",
+   "value": "6 hour",
+   "source_ids": [
+    "search",
+    "files",
+    "paper"
+   ],
+   "evidence": "Time on heavy-Lys bacteria at harvest: run names / MaxQuant experiment \"6h\"; paper: harvest at 6, 24 and 48 hours (day 5 adults)."
+  },
+  {
+   "location": "factor value[sampling time] rows 1-4, 13-16, 25-28, 37-40, 49-52, 61-64",
+   "value": "6 hour",
+   "source_ids": [
+    "search",
+    "files",
+    "paper"
+   ],
+   "evidence": "Mirrors characteristics[sampling time]; pulse duration is the variable from which turnover (THPLH) is fitted."
+  },
+  {
+   "location": "characteristics[sampling time] rows 5-8, 17-20, 29-32, 41-44, 53-56, 65-68",
+   "value": "24 hour",
+   "source_ids": [
+    "search",
+    "files",
+    "paper"
+   ],
+   "evidence": "Time on heavy-Lys bacteria at harvest: run names / MaxQuant experiment \"24h\"; paper: harvest at 6, 24 and 48 hours (day 5 adults)."
+  },
+  {
+   "location": "factor value[sampling time] rows 5-8, 17-20, 29-32, 41-44, 53-56, 65-68",
+   "value": "24 hour",
+   "source_ids": [
+    "search",
+    "files",
+    "paper"
+   ],
+   "evidence": "Mirrors characteristics[sampling time]; pulse duration is the variable from which turnover (THPLH) is fitted."
+  },
+  {
+   "location": "characteristics[sampling time] rows 9-12, 21-24, 33-36, 45-48, 57-60, 69-72",
+   "value": "48 hour",
+   "source_ids": [
+    "search",
+    "files",
+    "paper"
+   ],
+   "evidence": "Time on heavy-Lys bacteria at harvest: run names / MaxQuant experiment \"48h\"; paper: harvest at 6, 24 and 48 hours (day 5 adults)."
+  },
+  {
+   "location": "factor value[sampling time] rows 9-12, 21-24, 33-36, 45-48, 57-60, 69-72",
+   "value": "48 hour",
+   "source_ids": [
+    "search",
+    "files",
+    "paper"
+   ],
+   "evidence": "Mirrors characteristics[sampling time]; pulse duration is the variable from which turnover (THPLH) is fitted."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-12",
+   "value": "N2",
+   "source_ids": [
+    "paper",
+    "files",
+    "search"
+   ],
+   "evidence": "Supplemental Experimental Procedures strain list: Bristol N2 (wild type)."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 13-24",
+   "value": "CB1370",
+   "source_ids": [
+    "paper",
+    "files",
+    "search"
+   ],
+   "evidence": "Supplemental Experimental Procedures strain list: CB1370 (daf-2(e1370)III); run token \"Daf2\"."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 25-36",
+   "value": "CF1038",
+   "source_ids": [
+    "paper",
+    "files",
+    "search"
+   ],
+   "evidence": "Supplemental Experimental Procedures strain list: CF1038 (daf-16(mu86)I); run token \"Daf16\"."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 37-48",
+   "value": "DR1209",
+   "source_ids": [
+    "paper",
+    "files",
+    "search"
+   ],
+   "evidence": "Supplemental Experimental Procedures strain list: DR1209 (daf-16(mu86)I;daf-2(e1370)III); run token \"Daf2-16\" / MaxQuant experiment \"Daf2/16\"."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 49-60",
+   "value": "OW40",
+   "source_ids": [
+    "paper",
+    "files",
+    "search"
+   ],
+   "evidence": "Supplemental Experimental Procedures strain list: OW40 (zgIs15[P(unc-54)::alpha-synuclein::YFP]IV); run token \"OW40\" / experiment \"40_*\"."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 61-72",
+   "value": "OW450",
+   "source_ids": [
+    "paper",
+    "files",
+    "search"
+   ],
+   "evidence": "Supplemental Experimental Procedures strain list: OW450 (rmIs126[P(unc-54)Q0::YFP]V); run token \"OW450\" / experiment \"450_*\"."
+  },
+  {
+   "location": "characteristics[genotype] rows 1-12",
+   "value": "wild type",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Genotype as written in the paper strain list for the strain in these rows (allele/transgene names verbatim; alpha written out for the Greek letter)."
+  },
+  {
+   "location": "factor value[genotype] rows 1-12",
+   "value": "wild type",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared strains."
+  },
+  {
+   "location": "characteristics[genotype] rows 13-24",
+   "value": "daf-2(e1370) III",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Genotype as written in the paper strain list for the strain in these rows (allele/transgene names verbatim; alpha written out for the Greek letter)."
+  },
+  {
+   "location": "factor value[genotype] rows 13-24",
+   "value": "daf-2(e1370) III",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared strains."
+  },
+  {
+   "location": "characteristics[genotype] rows 25-36",
+   "value": "daf-16(mu86) I",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Genotype as written in the paper strain list for the strain in these rows (allele/transgene names verbatim; alpha written out for the Greek letter)."
+  },
+  {
+   "location": "factor value[genotype] rows 25-36",
+   "value": "daf-16(mu86) I",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared strains."
+  },
+  {
+   "location": "characteristics[genotype] rows 37-48",
+   "value": "daf-16(mu86) I; daf-2(e1370) III",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Genotype as written in the paper strain list for the strain in these rows (allele/transgene names verbatim; alpha written out for the Greek letter)."
+  },
+  {
+   "location": "factor value[genotype] rows 37-48",
+   "value": "daf-16(mu86) I; daf-2(e1370) III",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared strains."
+  },
+  {
+   "location": "characteristics[genotype] rows 49-60",
+   "value": "zgIs15[P(unc-54)::alpha-synuclein::YFP] IV",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Genotype as written in the paper strain list for the strain in these rows (allele/transgene names verbatim; alpha written out for the Greek letter)."
+  },
+  {
+   "location": "factor value[genotype] rows 49-60",
+   "value": "zgIs15[P(unc-54)::alpha-synuclein::YFP] IV",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared strains."
+  },
+  {
+   "location": "characteristics[genotype] rows 61-72",
+   "value": "rmIs126[P(unc-54)Q0::YFP] V",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Genotype as written in the paper strain list for the strain in these rows (allele/transgene names verbatim; alpha written out for the Greek letter)."
+  },
+  {
+   "location": "factor value[genotype] rows 61-72",
+   "value": "rmIs126[P(unc-54)Q0::YFP] V",
+   "source_ids": [
+    "paper",
+    "files"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared strains."
+  },
+  {
+   "location": "characteristics[disease] rows 1-48, 61-72",
+   "value": "normal",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Wild-type, insulin/IGF-signalling mutants and the YFP-only control (OW450) are not disease models in the paper; PATO:0000461 normal."
+  },
+  {
+   "location": "factor value[disease] rows 1-48, 61-72",
+   "value": "normal",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Mirrors characteristics[disease]; alpha-synuclein-YFP (OW40) vs YFP control (OW450) is the Parkinson model contrast."
+  },
+  {
+   "location": "characteristics[disease] rows 49-60",
+   "value": "Parkinson disease",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "OW40 expresses human alpha-synuclein-YFP in body-wall muscle and is the paper's \"Parkinson's model\" (\"C. elegans models of longevity and Parkinson's disease\", abstract; Fig. 3/5 \"Parkinson's disease model worms\"). MONDO:0005180 Parkinson disease (OLS)."
+  },
+  {
+   "location": "factor value[disease] rows 49-60",
+   "value": "Parkinson disease",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Mirrors characteristics[disease]; alpha-synuclein-YFP (OW40) vs YFP control (OW450) is the Parkinson model contrast."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-72",
+   "value": "adult",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Worms \"allowed to grow until day 5 of adulthood\" and then pulse-labelled 6/24/48 h (Supplemental Experimental Procedures); EFO:0001272 adult."
+  },
+  {
+   "location": "assay name rows 1-72",
+   "value": "<raw file stem>",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One assay per deposited raw file; light and heavy rows of the same run share it."
+  },
+  {
+   "location": "comment[data file] rows 1-72",
+   "value": "<raw file>",
+   "source_ids": [
+    "files",
+    "search"
+   ],
+   "evidence": "Raw files listed in PRIDE files/all and in the MaxQuant filePaths/experimentalDesign of this search."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-72",
+   "value": "1 (_AF runs) / 2 (_WF runs)",
+   "source_ids": [
+    "search"
+   ],
+   "evidence": "MaxQuant fraction column: every *_AF.raw = fraction 1 and every *_WF.raw = fraction 2 of the same experiment."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-72",
+   "value": "1",
+   "source_ids": [
+    "search"
+   ],
+   "evidence": "One injection per fraction per experiment."
+  },
+  {
+   "location": "comment[label] rows 1-2, 5-6, 9-10, 13-14, 17-18, 21-22, 25-26, 29-30, 33-34, 37-38, 41-42, 45-46, 49-50, 53-54, 57-58, 61-62, 65-66, 69-70",
+   "value": "SILAC light",
+   "source_ids": [
+    "search",
+    "paper"
+   ],
+   "evidence": "MaxQuant multiplicity 2, labelMods [\"\" (light), \"Lys8\"]; paper: pulse with 15N2-13C6-L-Lysine, H/L ratio per protein."
+  },
+  {
+   "location": "comment[label] rows 3-4, 7-8, 11-12, 15-16, 19-20, 23-24, 27-28, 31-32, 35-36, 39-40, 43-44, 47-48, 51-52, 55-56, 59-60, 63-64, 67-68, 71-72",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "search",
+    "paper"
+   ],
+   "evidence": "MaxQuant multiplicity 2, labelMods [\"\" (light), \"Lys8\"]; paper: pulse with 15N2-13C6-L-Lysine, H/L ratio per protein."
+  },
+  {
+   "location": "comment[instrument] rows 1-72",
+   "value": "NT=Orbitrap Fusion;AC=MS:1002416",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride"
+   ],
+   "evidence": "Raw header: \"Orbitrap Fusion Method Summary\", instrument name \"Orbitrap Fusion\"; paper: \"Thermo Scientific Orbitrap Fusion Tribrid\". PRIDE lists Orbitrap Fusion ETD (MS:1002417), but nothing in the raw header or paper names the ETD model, and the method uses HCD only, so the generic Fusion term was chosen."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-72",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "\"Top Speed data dependent mode\" (paper); raw method: ddMSnScan, cycle time 1 s."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-72",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw method ActivationType = HCD; paper \"fragmented with a HCD collision energy of 30%\"."
+  },
+  {
+   "location": "comment[collision energy] rows 1-72",
+   "value": "30 NCE",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw method Collision Energy (%) = 30, stepped CE off."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-72",
+   "value": "NT=ion trap;AC=MS:1000264",
+   "source_ids": [
+    "raw",
+    "paper"
+   ],
+   "evidence": "Raw method MS2 Detector Type = IonTrap (rapid); paper \"maximum injection time of the iontrap\"."
+  },
+  {
+   "location": "comment[ms1 scan range] rows 1-72",
+   "value": "400m/z-1500m/z",
+   "source_ids": [
+    "raw"
+   ],
+   "evidence": "Raw method MasterScan Scan Range (m/z) = 400-1500 (method name ...ScanR400-1500...)."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-72",
+   "value": "4.5 ppm",
+   "source_ids": [
+    "search"
+   ],
+   "evidence": "mqpar.xml mainSearchTol 4.5, searchTolInPpm true."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-72",
+   "value": "0.5 Da",
+   "source_ids": [
+    "search",
+    "raw"
+   ],
+   "evidence": "mqpar.xml msmsParams ITMS MatchTolerance 0.5 Da (MS2 is in the ion trap per raw method)."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-72",
+   "value": "NT=Trypsin;AC=MS:1001251 | NT=Lys-C;AC=MS:1001309 (two repeated columns)",
+   "source_ids": [
+    "paper",
+    "pride",
+    "search"
+   ],
+   "evidence": "Co-digest: \"100 ng trypsin + Lys-C (Promega) was added on ice for 30', after which another 100 ng was added\" (Supplemental Experimental Procedures; same text in PRIDE sampleProcessingProtocol). Both enzymes added together, no sequential step. MaxQuant search enzyme Trypsin/P. MS:1001251 Trypsin and MS:1001309 Lys-C verified in OLS."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-72",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "\"20' incubation with 6.5 mM dithiothreitol (DTT)\"."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-72",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pride",
+    "search"
+   ],
+   "evidence": "\"10' with 55 mM iodoacetamide\"; MaxQuant fixed Carbamidomethyl (C)."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-72",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "search"
+   ],
+   "evidence": "Read from mqpar.xml by sdrf-tools search-params: fixedModifications Carbamidomethyl (C); variableModifications Acetyl (Protein N-term), Oxidation (M); SILAC labelMods Lys8 = Label:13C(6)15N(2) on K (UNIMOD:259, OLS-verified). Accessions verified in OLS (UNIMOD:1 Acetyl, 4 Carbamidomethyl, 7 Deamidated, 35 Oxidation, 259 Label:13C(6)15N(2))."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-72",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "search"
+   ],
+   "evidence": "Read from mqpar.xml by sdrf-tools search-params: fixedModifications Carbamidomethyl (C); variableModifications Acetyl (Protein N-term), Oxidation (M); SILAC labelMods Lys8 = Label:13C(6)15N(2) on K (UNIMOD:259, OLS-verified). Accessions verified in OLS (UNIMOD:1 Acetyl, 4 Carbamidomethyl, 7 Deamidated, 35 Oxidation, 259 Label:13C(6)15N(2))."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-72",
+   "value": "NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "search"
+   ],
+   "evidence": "Read from mqpar.xml by sdrf-tools search-params: fixedModifications Carbamidomethyl (C); variableModifications Acetyl (Protein N-term), Oxidation (M); SILAC labelMods Lys8 = Label:13C(6)15N(2) on K (UNIMOD:259, OLS-verified). Accessions verified in OLS (UNIMOD:1 Acetyl, 4 Carbamidomethyl, 7 Deamidated, 35 Oxidation, 259 Label:13C(6)15N(2))."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-72",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "search"
+   ],
+   "evidence": "Read from mqpar.xml by sdrf-tools search-params: fixedModifications Carbamidomethyl (C); variableModifications Acetyl (Protein N-term), Oxidation (M); SILAC labelMods Lys8 = Label:13C(6)15N(2) on K (UNIMOD:259, OLS-verified). Accessions verified in OLS (UNIMOD:1 Acetyl, 4 Carbamidomethyl, 7 Deamidated, 35 Oxidation, 259 Label:13C(6)15N(2))."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-72",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "Released ms-proteomics template version 1.1.0 in the spec manifest templates.yaml; build pinned with -t ms-proteomics@1.1.0 (sdrf-tools contract header: ms-proteomics v1.1.0)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-72",
+   "value": "manual curation",
+   "source_ids": [
+    "tooling"
+   ],
+   "evidence": "Values curated manually from the cited sources; SDRF written by sdrf-tools build from samples_*.tsv / technical_*.tsv."
+  },
+  {
+   "location": "technology type rows 1-72",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "pride",
+    "paper"
+   ],
+   "evidence": "Shotgun LC-MS/MS on an Orbitrap Fusion."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-72",
+   "value": "NT=ms-proteomics;VV=v1.1.0 / NT=invertebrates;VV=v1.1.0",
+   "source_ids": [
+    "spec",
+    "pride"
+   ],
+   "evidence": "Templates and versions from spec templates.yaml (ms-proteomics 1.1.0, invertebrates 1.1.0); invertebrates chosen because the organism is C. elegans (PRIDE organisms NEWT:6239)."
+  }
+ ],
+ "limitations": [
+  "Meaning of the _AF / _WF run suffixes is not stated anywhere; they are annotated only as MaxQuant fractions 1 and 2 of one sample (experimentalDesign / mqpar fractions). No comment[fractionation method] is asserted.",
+  "14 deposited runs (20141107_F1_HRV_SM_B1-B7, C1-C7) are left out: their MaxQuant search (20141222_sasha.7z, experimentalDesignTemplate.txt) names them only as experiments \"B1\"..\"C7\" out of a 12-group A-L design; nothing public maps letters B/C to a strain (developing OW40/OW450 and the daf-2 vs daf-2;daf-16 duplicate both used 7 time points) or digits 1-7 to hours.",
+  "PRIDE lists the instrument as Orbitrap Fusion ETD; raw header and paper say Orbitrap Fusion, which was used.",
+  "Paper Methods/PRIDE prose state MaxQuant 1.5.1.0 with variable deamidation + oxidation; the deposited mqpar.xml files are MaxQuant 1.5.2.8 and also include Acetyl (Protein N-term), and the day-5 search has no deamidation. The deposited search was followed.",
+  "SILAC Lys8 written as MT=Variable as emitted by sdrf-tools search-params from the MaxQuant labelMods (light state unlabelled).",
+  "Pulsed SILAC: light and heavy rows describe the same worm population (pre-existing vs newly synthesized proteins); they carry distinct source names (_Lys0/_Lys8) only to keep the row coordinate unique."
+ ]
+}

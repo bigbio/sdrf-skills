@@ -1,0 +1,9 @@
+{"accession":"PXD006792","label":"exclude","failed_criterion":1,
+ "reason":"Deposited runs are label-free AP-MS (MaxQuant LFQ); no SILAC labelling. Isotope labelling in the paper refers to 15N/13C NMR samples and HDX-MS, not in this deposit.",
+ "evidence":[
+  {"source":"PMC5963539 Methods/Results/Fig 9 legend","quote":"label free quantification measurements of the various IP experiments; Using a label-free quantification strategy; Data were acquired using label free MS/MS methods from n=3 replicates"},
+  {"source":"MaxQuant_Output.zip/parameters.txt","quote":"Label-free protein quantification True; Fixed modifications Carbamidomethyl (C)"},
+  {"source":"MaxQuant_Output.zip/proteinGroups.txt","quote":"LFQ intensity columns for 9 experiments; 0 Ratio columns"},
+  {"source":"PRIDE files/all","quote":"9 .raw (GFP1-3, 25Q1-3, 46Q1-3) + MaxQuant_Output.zip"}],
+ "publication":{"pmid":29627459,"pmcid":"PMC5963539","doi":"10.1016/j.jmb.2018.03.031"},
+ "status":"EXCLUDED"}

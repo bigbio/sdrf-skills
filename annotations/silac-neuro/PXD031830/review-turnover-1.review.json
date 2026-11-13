@@ -1,0 +1,94 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD031830/PXD031830-turnover.sdrf.tsv",
+ "artifact_sha256": "af2ec1ab92d76fada8c2d8d71ab731d58958fe0298cbbe562982dfef68151e67",
+ "verdict": "PASS",
+ "summary": "Independent review of the PXD031830 pulsed-SILAC (Lys-13C6) + TMTpro-16 turnover sub-experiment (2 batches x 160 fractions, 32 channels, 5120 rows). Every sample->channel->batch mapping, genotype, sex, labelling time and replicate matches PRIDE_sample_information.xlsx; instrument, mods, digest, DDA/HCD/NCE confirmed in raw headers, pepXML and paper; all 320 turnover runs mapped, no overlap with the plaque sibling, union = all 400 deposited RAW. Only minor findings remain.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh isolated subagent with no producer transcript; re-fetched PRIDE record, file list, sample sheet, Europe PMC full text, pepXML headers and raw headers itself"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD031830/PXD031830-turnover.evidence.json",
+ "coverage": {
+  "deposited_runs": 320,
+  "annotated_runs": 320,
+  "matched_runs": 320,
+  "fraction": 1.0,
+  "missing": [],
+  "invented": []
+ },
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Templates ms-proteomics v1.2.0 (validator-bundled latest; spec submodule pins 1.1.0, diff is only experimental QC columns and acquisition-method wording), vertebrates v1.1.0, clinical-metadata v1.0.0 are appropriate for Mus musculus with genotype/exposure duration. sdrf-tools contract column order matched; 38 columns, all rows width 38; reserved words only in columns allowing them; modification syntax NT/AC/TA|PP/MT correct; (source name, assay name, label) and (source, bio rep, tech rep, fraction) unique (0 duplicates)."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 live: MS:1002523 Q Exactive HF, MS:1001251 Trypsin, PRIDE:0000627 Data-dependent acquisition, MS:1000422 beam-type collision-induced dissociation, PRIDE:0000564 hpHRP, MS:1000484 orbitrap, UNIMOD:2016 TMTpro, UNIMOD:35 Oxidation, UNIMOD:188 Label:13C(6), NCBITaxon:10090, UBERON:0000956 cerebral cortex, EFO:0001272 adult, MONDO:0004975 Alzheimer disease, PATO:0000461 normal - all labels exact, none obsolete. TMT126/127N/133C/134N exist in PRIDE (PRIDE:0000516/519/633/643). sdrf-tools check: 14/14 verified, 0 UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "PRIDE PXD031830 (DOI 10.1038/s41467-025-56853-3 = Europe PMC PMC11814087, identity asserted): Q Exactive HF, TMT, 16-plex, 160 basic-pH fractions, DDA top20. Paper Methods: Lys-C+trypsin, HCD 32% NCE, MS2 60k Orbitrap, cortical tissue, only male mice in turnover, Lys-13C6 diet, SILAM fully labelled over 2 generations. pepXML mtob1_f001 and mtob2_f100: TMTpro K and peptide n-term static (+304.2071453), M ox and K +6.02013 variable, tryptic, no Cys mod. Raw headers mtob1_f001/mtob2_f001: 'Q Exactive HF - Orbitrap MS'. Sample sheet re-downloaded from PRIDE FTP: all 32 channel/batch/genotype/sex/labelling-day values match per source."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE files/all (801 files, all projectAccessions=PXD031830): 400 RAW = mtob1 160 + mtob2 160 + plaque 80. Turnover SDRF has 320 distinct .raw = all mtob1/mtob2; plaque sibling 80; overlap 0; union equals deposited RAW exactly. assay name = file stem, fraction identifier = fNNN index on every row; 16 distinct labels and sources per run; label->source constant across fractions within a batch."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "30 male mice (15 WT, 15 5xFAD) x 5 labelling times (0/4/8/16/32 d) = 3 replicates per genotype x time; biological replicate 1-3 correctly assigned (WT1/2/3 at 0 d etc.); SILAM reference (female WT, fully labelled) in TMT126 of each batch with exposure duration not applicable; factors genotype and exposure duration match the paper's two-way ANOVA. Disease applied only to 5xFAD rows."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No value asserts more than evidence: developmental stage 'adult' supported by 8-9 mo ages; disease not broadcast to WT; strain, tolerances, reduction/alkylation left 'not available' with documented reasons. Minor under-annotation noted in findings (strain now resolvable, DTT/IAA stated in Methods, deposit-specific tolerances)."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "flock parse_sdrf validate-sdrf -t ms-proteomics -t vertebrates -t clinical-metadata --use_ols_cache_only: 'Everything seems to be fine', exit 0 (same mode as repo CI validate-sdrf.yml). sdrf-tools check exit 0 CLEAN; sdrf-tools score 100/100; sdrf-tools structure OK; repo .github/scripts/sdrf_review.py: 1/1 clean. Online-OLS parse_sdrf run queued behind shared lock, not completed; ontology verified live separately."
+  }
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "category": "omission",
+   "location": "characteristics[strain or breed], all 5xFAD rows (2400)",
+   "message": "Strain can now be stated for 5xFAD mice instead of 'not available'.",
+   "evidence": "MMRRC record for stock 034848 (cited in Methods) = B6.Cg-Tg(APPSwFlLon,PSEN1*M146L*L286V)6799Vas/Mmjax. WT littermate background is not stated per mouse, so keep WT as-is unless a source names it."
+  },
+  {
+   "severity": "minor",
+   "category": "omission",
+   "location": "comment[reduction reagent], comment[alkylation reagent], all rows",
+   "message": "Methods state DTT reduction and iodoacetamide alkylation for mouse brain digests; 'not available' is conservative.",
+   "evidence": "Paper Methods: '~50 ug protein from each sample was then digested in two steps by Lys-C and trypsin, with DTT reduction and iodoacetamide alkylation'. Absence of Cys carbamidomethyl in the JUMP search does not contradict reduction; consider DTT/IAA if the general protocol is accepted as applying."
+  },
+  {
+   "severity": "minor",
+   "category": "technical",
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance], all rows",
+   "message": "Deposit-specific values exist (6 ppm / 15 ppm in PRIDE data processing protocol) vs 10 ppm in paper; 'not available' blocks parse_sdrf convert-openms.",
+   "evidence": "PRIDE DPP: '6 ppm mass tolerance for precursor ions due to JUMP's auto mass correction function and 15ppm for fragment ions'. Paper: 'precursor ion and product ion mass tolerance (10 ppm)'."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "source name SILAM_B1 / SILAM_B2 (TMT126, mtob1/mtob2)",
+   "message": "Sample sheet lists one Sample ID 'SILAM' in both batches; the split into two source names is a modelling choice and whether it is one lysate is unstated.",
+   "evidence": "PRIDE_sample_information.xlsx 'Protein turnover': SILAM row appears twice (second typed Batch=1 but heads the batch-2 block)."
+  },
+  {
+   "severity": "minor",
+   "category": "technical",
+   "location": "comment[cleavage agent details]",
+   "message": "Lys-C (first digestion step) not recorded.",
+   "evidence": "Methods: 'digested in two steps by Lys-C and trypsin'."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "characteristics[exposure duration]",
+   "message": "Exposure duration does not name what was administered (Lys-13C6 diet); an optional characteristics[treatment]/[compound] would disambiguate.",
+   "evidence": "Methods: Mouse Express L-Lysine (13C6, 99%) feed."
+  }
+ ]
+}

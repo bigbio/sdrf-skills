@@ -1,0 +1,183 @@
+## Round 1 (2026-11-13T06:57:06Z)
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+(round 1 online-OLS run killed after ~9 min with ~3 s CPU: blocked on online ontology lookups; no result. Re-run with --use_ols_cache_only.)
+## Round 1b (2026-11-13T07:06:04Z), offline ontology cache (online lookups hung)
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata --use_ols_cache_only
+Everything seems to be fine. Well done.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd openms_turnover && flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv -t2)
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata --use_ols_cache_only
+Everything seems to be fine. Well done.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd openms_plaque && flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv -t2)
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 95, in openms_from_sdrf
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+ROUND_DONE
+## Manifest checks (2026-11-13T07:40:30Z)
+$ sdrf-tools schema-check PXD031830-turnover.evidence.json
+PXD031830-turnover.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv PXD031830-turnover.evidence.json
+Manifest covers every column with a value (22 column(s)).
+exit code: 0
+sha256: af2ec1ab92d76fada8c2d8d71ab731d58958fe0298cbbe562982dfef68151e67
+$ sdrf-tools schema-check PXD031830-plaque.evidence.json
+PXD031830-plaque.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv PXD031830-plaque.evidence.json
+Manifest covers every column with a value (22 column(s)).
+exit code: 0
+sha256: 65f66f52e9d596287627504e4b8d9a6bffddb3b551a3f8b43222a54b8f610351
+## reconcile (Step 8.5)
+=== turnover
+PXD031830: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+rc=0
+=== plaque
+PXD031830: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  run_names_name_another_organ (characteristics[organism part]): 1280 of 1280 run names name carotid artery, but every row says 'amyloid plaque'  [plaque_f001]
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+rc=1
+## Round 2 (2026-11-13T08:21:53Z): rebuild after review-1 + GLOBAL_FIX (pinned templates, v1.1.0, Lys-C|Trypsin, age, 5xFAD strain); offline ontology cache
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0 --use_ols_cache_only
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'clinical-metadata@1.0.0' not found in registry
+exit code: 1
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd openms_turnover && flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv -t2)
+exit code: 143
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv --record evidence/pride.json --accession PXD031830
+PXD031830: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0 --use_ols_cache_only
+(round 2 aborted here: parse_sdrf validate-sdrf rejects pinned template names ('Schema clinical-metadata@1.0.0 not found in registry'); per GLOBAL_FIX note, re-validating with bare names in round 2b)
+exit code: 143
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+## Round 2b (2026-11-13T08:31:50Z): same rebuilt files, validated with bare template names (built with ms-proteomics@1.1.0, vertebrates@1.1.0, clinical-metadata@1.0.0); offline ontology cache
+sha256 turnover: 52b37d2507e74015b39f862e31f20d0b872df13e9e7c2f08ea4994f97d68e312
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata --use_ols_cache_only
+WARNING: Term: B6.Cg-Tg(APPSwFlLon,PSEN1*M146L*L286V)6799Vas/Mmjax in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd openms_turnover && flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv -t2)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv --record evidence/pride.json --accession PXD031830
+PXD031830: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 0
+$ sdrf-tools schema-check PXD031830-turnover.evidence.json
+PXD031830-turnover.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-turnover.sdrf.tsv PXD031830-turnover.evidence.json
+Manifest covers every column with a value (24 column(s)).
+exit code: 0
+sha256 plaque: b156245ef1409e072fd0f1c9cd29d5a93c64f046f25e4a0c98ebb5cf8e6482eb
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata --use_ols_cache_only
+WARNING: Term: B6.Cg-Tg(APPSwFlLon,PSEN1*M146L*L286V)6799Vas/Mmjax in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+$ (cd openms_plaque && flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv -t2)
+    raise ValueError(msg) from ex
+ValueError: Error: Cannot read precursor mass tolerance: not available
+exit code: 1
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv --record evidence/pride.json --accession PXD031830
+PXD031830: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  run_names_name_another_organ (characteristics[organism part]): 1280 of 1280 run names name carotid artery, but every row says 'amyloid plaque'  [plaque_f001]
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Lys-C, Trypsin as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit code: 1
+$ sdrf-tools schema-check PXD031830-plaque.evidence.json
+PXD031830-plaque.evidence.json: valid evidence-manifest
+exit code: 0
+$ sdrf-tools manifest-coverage /home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv PXD031830-plaque.evidence.json
+Manifest covers every column with a value (25 column(s)).
+exit code: 0
+ROUND2B_DONE

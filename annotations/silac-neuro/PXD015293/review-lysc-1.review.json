@@ -1,0 +1,80 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD015293/PXD015293-lysc.sdrf.tsv",
+ "artifact_sha256": "2841adf97688da3f6cafd48fbdf6bbff5b9841a3ac624f4b605eddd8ec92b87a",
+ "verdict": "FAIL",
+ "summary": "Columns, ontology terms, sample->run mapping, labels, digest split and technical metadata are supported by PRIDE, the paper (PMC8628316) and the deposited mzid. One important defect: comment[fraction identifier] is a per-series position counter rather than the physical bRP fraction, so identical identifiers denote different fractions across series (e.g. PBS_rep2_F05 = 2, PBS_rep1 F18 = 19).",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh isolated subagent; no producer transcript; producer manifest/report treated as untrusted and re-checked against PRIDE files/all (re-fetched), paper text, mzid excerpts and OLS"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/PXD015293-lysc.evidence.json",
+ "coverage": {
+  "deposited_runs": 207,
+  "annotated_runs": 207,
+  "matched_runs": 207,
+  "fraction": 1.0,
+  "missing": [],
+  "invented": []
+ },
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "38 columns match the ms-proteomics v1.2.0 + vertebrates v1.1.0 contract order; required columns present; reserved words only where allowed (cell type n/a, sex n/a); 4 modification and 2 sdrf template columns legal (multiple); (source,assay,label) unique; dedup coordinate unique; sdrf-tools structure OK."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 confirmed non-obsolete label/accession for UBERON:0001891 midbrain, MONDO:0005180, PATO:0000461, EFO:0001272 adult, MS:1001309 Lys-C, MS:1001910 Orbitrap Elite, MS:1000422, MS:1000484, PRIDE:0000564/0000608/0000599/0000627/0000325/0000326, UNIMOD:188 Label:13C(6), UNIMOD:1 Acetyl; sdrf-tools check 17/17 verified, 0 UNIMOD swaps. Midbrain is a justified generalisation of 'ventral midbrain'."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "Paper Methods quotes verified in NCBI efetch PMC8628316 (title/PXD015293 asserted): one mouse per group, technical duplicate/injected twice, SILAM pool spiked at equal tissue mass, LysC for PFF/PBS and LysC flow-through then trypsin for A53T, LTQ-Orbitrap Elite, DDA, HCD 32, m/z 350-1550, DTT, IAA, 10 ppm/0.02 Da, Lys6 variable, C57BL6 (JAX) and C57BL/6J SILAM, 3-month injection + 6-month harvest, SILAM harvested at 2 months. Acetyl protein N-term supported by mzid Modification counts (all at position 1, pre='-'). Sex correctly not available."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "Re-fetched PRIDE v3 files/all (320 entries, all projectAccessions=PXD015293, 303 RAW). LysC SDRF holds 207 unique RAW (PFF, PBS, *_LysC_*), trypsin SDRF 96 (*_Tryp_*): overlap 0, union = all 303 RAW, no non-raw files. Each file has exactly one light + one heavy row; source matches file-name arm; tech rep = file rep; assay name = stem. audit-existing coverage 207/207, no missing/invented."
+  },
+  "design_consistency": {
+   "status": "fail",
+   "evidence": "Conditions recomputed: PD (PFF, AAV1-tTA light) 99 rows; normal 315 incl. 207 heavy reference rows. Digest split justified by paper (sequential LysC flow-through vs trypsin on retained material). FAIL: fraction identifier is a positional counter, inconsistent with nominal fraction across series (see finding)."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No value asserts more than its source: sex not available, strain C57BL/6 (no substrain) for JAX WT, developmental stage inferred from stated ages, no treatment/age column invented; heavy pool size not stated and recorded only as 'pooled'. Positional fraction scheme is disclosed in limitations but still misstates the fraction (scored under design)."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "pass: parse_sdrf validate-sdrf -t ms-proteomics -t vertebrates exit 0 (only ncbitaxon warnings on free-text strain); sdrf-tools structure exit 0; check exit 0 CLEAN 17/17; score 100; audit-existing exit 0 (1 minor)"
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "design",
+   "location": "comment[fraction identifier], all 414 rows (e.g. PBS_rep2_F05.raw rows -> 2; PBS_rep1_F18.raw -> 19; PFF_rep2_F21.raw -> 19; A53T_control_rep2_LysC_F10.raw -> 9; PBS_rep1_F24.raw -> 31)",
+   "message": "Fraction identifier is the file's position in its sorted series, not the bRP fraction. The same identifier denotes different physical fractions across technical replicates/mice (rep1 F05=5 vs rep2 F05=2), which breaks fraction-aware reprocessing (OpenMS fraction groups) and violates 'fraction identifier consistent across samples' / no counter-as-row-index (validation.md, existing-annotation.md counter_abuse). Correction criterion: Every unsuffixed file and every lone suffixed file (e.g. PFF_rep2_F08b..F12_b) must carry its nominal fraction number (F05 -> 5); the same identifier must mean the same physical fraction in every series. For base+suffix duplicate acquisitions of one fraction (F17/F17b, f09/f09a, F19/F19b/F19c ...), choose an evidence-backed encoding that keeps the nominal number visible and still satisfies the dedup coordinate, and document it.",
+   "evidence": "File names carry the nominal fraction (F01-F24, paper: concatenated to 24 fractions); gaps (PBS_rep2 F02-F04, PFF_rep2 F17-F20, A53T_control_rep2 F09) and re-acquisitions (F17b, f09a, F19c, F12_b) shift all later positions; values range 1-31 though only 24 fractions exist."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "factor value[disease], 207 SILAC heavy rows",
+   "message": "SILAM reference channel carries factor 'normal', so convert-openms merges it into the control condition (normal 315 vs PD 99 files-rows); consider marking the reference so it is not counted as a control sample.",
+   "evidence": "Validation log convert-openms: Conditions normal/Parkinson disease only."
+  },
+  {
+   "severity": "minor",
+   "category": "convention",
+   "location": "source name",
+   "message": "Source names do not follow <ACCESSION>-Sample-<n> (audit-existing minor); descriptive names are otherwise clear.",
+   "evidence": "audit-existing source_name_convention"
+  },
+  {
+   "severity": "minor",
+   "category": "annotation",
+   "location": "characteristics[strain or breed], AAV1 rows",
+   "message": "'PrP-TetP-hA53T alpha-synuclein transgenic' is a free-text line description, not a registered strain; the paper gives the background (B6C3F2 founders crossed to B6). Acceptable as free text; could name the background.",
+   "evidence": "Paper Methods; validator warning (ncbitaxon)."
+  }
+ ]
+}

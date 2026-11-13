@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "artifact": "datasets/PXD031830/PXD031830-plaque.sdrf.tsv",
+  "artifact_sha256": "65f66f52e9d596287627504e4b8d9a6bffddb3b551a3f8b43222a54b8f610351",
+  "verdict": "FAIL",
+  "summary": "Structurally valid and every value present is supported, but per-sample age (3/8/12 months), a deposited design variable, is omitted although the declared template union accepts characteristics[age]; WT channels exist only at 8 and 12 months, so without age the genotype contrast is silently confounded.",
+  "reviewer_context": {
+    "independent": true,
+    "context": "fresh subagent with no producer transcript; primary evidence re-fetched (PRIDE v3 project + files/all, PRIDE_sample_information.xlsx, Europe PMC fullTextXML PMC11814087, plaque_f001.1.pepXML header, OLS4, MMRRC)"
+  },
+  "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD031830/PXD031830-plaque.evidence.json",
+  "coverage": {
+    "deposited_runs": 80,
+    "annotated_runs": 80,
+    "matched_runs": 80,
+    "fraction": 1.0,
+    "missing": [],
+    "invented": []
+  },
+  "checks": {
+    "spec_compliance": {
+      "status": "pass",
+      "evidence": "1280 rows x 37 cols, uniform; columns match sdrf-tools contract for ms-proteomics v1.2.0 + vertebrates v1.1.0 + clinical-metadata v1.0.0; (source name, assay name, comment[label]) unique; reserved words only where allowed."
+    },
+    "ontology_integrity": {
+      "status": "pass",
+      "evidence": "OLS4 resolved all 17 accessions/labels, none obsolete: PRIDE:0000627, MS:1002523, MS:1001251, MS:1000422, PRIDE:0000564/0000608/0000599, UNIMOD:2016/4/35, MS:1000484, BTO:0002774 amyloid plaque, UBERON:0000955, MONDO:0004975, PATO:0000461, EFO:0001272, NCBITaxon:10090. sdrf-tools check: 19/19 verified, 0 UNIMOD swaps."
+    },
+    "source_evidence": {
+      "status": "pass",
+      "evidence": "Sample->TMTpro channel, genotype and region map matches the 'Plaque proteome' sheet of PRIDE_sample_information.xlsx exactly (16/16). Mods match plaque_f001.1.pepXML (TMTpro K/n-term static, C +57.02146 static, M +15.99492 variable, tryptic). LCM plaque/non-plaque, Lys-C+trypsin, DTT/IAA, HCD 32% NCE, Q Exactive HF confirmed in paper Methods/PRIDE."
+    },
+    "file_mapping": {
+      "status": "pass",
+      "evidence": "PRIDE files/all (801 files, all projectAccessions=PXD031830): 400 RAW = plaque 80 + mtob1 160 + mtob2 160. Plaque SDRF holds exactly plaque_f001..f080.raw, assay name = file stem, fraction = file index; turnover SDRF holds the other 320; overlap 0, union = all 400 RAW."
+    },
+    "design_consistency": {
+      "status": "fail",
+      "evidence": "1 batch x 16 channels x 80 fractions recomputed and correct, but sample sheet age (3/8/12 mo) is not encoded: FAD at 3/8/12 mo, WT only at 8/12 mo, so factor value[genotype] is confounded with age unless age is recorded."
+    },
+    "omission_safety": {
+      "status": "fail",
+      "evidence": "No unsupported additions found, but material per-sample evidence (Age (mo) column) was omitted on the false premise that no declared template licenses characteristics[age]; a variant adding characteristics[age] 3M/8M/12M validates (exit 0) against the same three templates."
+    },
+    "deterministic_validation": {
+      "status": "pass",
+      "evidence": "flock ... parse_sdrf validate-sdrf -s <artifact> -t ms-proteomics -t vertebrates -t clinical-metadata --use_ols_cache_only: 'Everything seems to be fine', exit 0 (online-OLS run timed out at 300 s, not completed); sdrf-tools check CLEAN exit 0; score 100/100; structure OK exit 0."
+    }
+  },
+  "findings": [
+    {
+      "severity": "important",
+      "category": "omission",
+      "location": "characteristics[age] (absent), all 1280 rows; factor values",
+      "message": "Per-sample age (3, 8, 12 months) from the deposited sample sheet is not recorded; it lives only in source names. WT controls exist only at 8 and 12 months, so the genotype factor is confounded with age.",
+      "evidence": "PRIDE_sample_information.xlsx 'Plaque proteome' column 'Age (mo)'; review-plaque-1/age_variant.tsv with characteristics[age] validates exit 0 under the declared templates; 74 mouse SDRFs in this repo carry characteristics[age].",
+      "correction": "Add characteristics[age] = 3M/8M/12M per Sample ID (FAD_3m_*=3M, *_8m*=8M, *_12m*=12M), and add factor value[age] (or state why not)."
+    },
+    {
+      "severity": "minor",
+      "category": "source_evidence",
+      "location": "characteristics[strain or breed], all rows",
+      "message": "'not available' although JAX/MMRRC stock 034848 resolves to B6.Cg-Tg(APPSwFlLon,PSEN1*M146L*L286V)6799Vas/Mmjax (congenic C57BL/6J).",
+      "evidence": "mmrrc.org catalog sds.php?mmrrc_id=34848 (reachable 2026-11-13)."
+    },
+    {
+      "severity": "minor",
+      "category": "spec",
+      "location": "comment[sdrf template] NT=clinical-metadata",
+      "message": "clinical-metadata is declared only to license characteristics[genotype] in a mouse model study; acceptable to the validator but semantically a stretch.",
+      "evidence": "clinical-metadata/1.0.0 description: clinical study samples with treatment, demographics, lifestyle; TERMS.tsv genotype usage lists clinical-metadata among its templates."
+    },
+    {
+      "severity": "minor",
+      "category": "provenance",
+      "location": "evidence manifest / validation log",
+      "message": "Validation ran only with --use_ols_cache_only; online OLS validation never completed (producer and reviewer both timed out). Ontology terms were checked live via OLS4 separately.",
+      "evidence": "PXD031830.validation.txt round 1 online run killed after ~9 min; reviewer online run exit 124 after 300 s."
+    }
+  ]
+}

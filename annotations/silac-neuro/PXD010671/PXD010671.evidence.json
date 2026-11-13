@@ -1,0 +1,459 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv",
+ "dataset": "PXD010671",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/evidence/pride.json (https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD010671)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/evidence/files.json (https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD010671/files/all; 1186 .raw + 5 search zips)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC8816717 / PMID 34979241 / doi:10.1016/j.mcpro.2021.100192; local text /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/evidence/manuscript.txt"
+  },
+  {
+   "id": "tableS7",
+   "kind": "supplementary",
+   "location": "PMC8816717 Supplemental Table S7 (mmc8.xlsx, from https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8816717/supplementaryFiles); local /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/supp/mmc8.xlsx, flattened /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/tableS7.tsv"
+  },
+  {
+   "id": "tableS3",
+   "kind": "supplementary",
+   "location": "PMC8816717 Supplemental Table S3 (mmc4.xlsx); local /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/supp/mmc4.xlsx"
+  },
+  {
+   "id": "mq_summary",
+   "kind": "search-output",
+   "location": "summary.txt of every txt_* folder in the five deposited MaxQuant zips (https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/12/PXD010671/{tgCRND8_P113,tgCRND8_P285,APP-NLF_P186,APP-NLF_P548,G93A-SOD1_P120}.zip), read by HTTP range; local copies /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/mq/*__summary.txt; collated /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/run_map_from_maxquant_summary.tsv"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "parameters.txt of every txt_* folder in the five MaxQuant zips; local /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/mq/*__parameters.txt"
+  },
+  {
+   "id": "mq_pg_p113",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/12/PXD010671/tgCRND8_P113.zip member tgCRND8_P113/txt_LFQ_1/proteinGroups.txt; local /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/pg/tgCRND8_P113__txt_LFQ_1__proteinGroups.txt; comparison /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/p113_genotype_crosscheck.txt"
+  },
+  {
+   "id": "rawhdr",
+   "kind": "raw-file",
+   "location": "first 400 kB of https://ftp.pride.ebi.ac.uk/pride/data/archive/2018/12/PXD010671/{MMD1661A1LC3_A1,MMD2309A5LC3_E1,MMD2555A1LC3_P1_A1,MMD2761A1LC3_44_1,MMD2102A1LC3_1}.raw; local /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/rawhead/*.bin"
+  },
+  {
+   "id": "spec_templates",
+   "kind": "specification",
+   "location": "/home/user/sdrf-skills/spec/sdrf-proteomics/sdrf-templates/templates.yaml (ms-proteomics latest 1.1.0) and {ms-proteomics/1.1.0,vertebrates/1.1.0,clinical-metadata/1.0.0}/*.yaml"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "OLS4 https://www.ebi.ac.uk/ols4 via sdrf-tools ols (MS, PRIDE, UNIMOD, UBERON, MONDO, PATO, NCBITaxon, EFO)"
+  },
+  {
+   "id": "samples_tsv",
+   "kind": "working-file",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/samples.tsv and /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/scripts/make_samples.py (deterministic run->source map); /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/technical.tsv"
+  }
+ ],
+ "claims": [
+  {
+   "location": "source name all data rows 1-2344 (header excluded)",
+   "value": "<cohort>_<WT|model>_<mouse id>_<organism part>_<protein fraction>_<K0-light|K6-heavy>",
+   "source_ids": [
+    "mq_summary",
+    "tableS7",
+    "samples_tsv"
+   ],
+   "evidence": "Each source is one SILAC channel (pre-existing K0 or newly synthesised K6 proteome) of one mouse x one biochemical protein fraction (or plasma) of one of the five cohorts; the _K0-light/_K6-heavy suffix keeps the (source, biological replicate, technical replicate, fraction) coordinate unique while both channels stay the same mouse (identical characteristics). Cohort = the search zip; mouse id and fraction are parsed from the MaxQuant Experiment names in summary.txt (e.g. \"834 wt DOCmem\", \"299-GDN-det\", \"4-Tg-cyt\"); for P186 TXmem/GDNdet and P548 numbered experiments the mouse id is carried in the raw-file names (_44_/_45_/_46_/_59_/_66_/_69_ = WT-744/745/746, KI-059/066/069 as named in the P186 DOC/Tx experiments; _635_/_636_/_637_ = \"1/2/3-DOCmem-Wt\", _021_/_297_/_371_ = \"4/5/6-DOCmem-Tg\"). Plasma of P285, P548 and P120 is keyed by the experiment index (plasma1..6 / mouse1..6) because the plasma file names do not carry the brain mouse ids."
+  },
+  {
+   "location": "comment[data file] all data rows 1-2344 (header excluded)",
+   "value": "1172 of 1186 deposited .raw files",
+   "source_ids": [
+    "files",
+    "mq_summary"
+   ],
+   "evidence": "Every deposited raw file appears in at least one MaxQuant summary.txt (0 deposited files unmapped). 14 files (MMD1780A147-A160) are listed in the deposited searches under two different experiments (350-GDN-det in txt_K6_4/txt_LFQ_4 and 352-tri-sol in txt_K6_3/txt_LFQ_3) and are therefore left out. 52 searched files (MMD1983*, MMD1987*: P186 DOC/Tx K6 searches) are not deposited."
+  },
+  {
+   "location": "comment[fraction identifier] all data rows 1-2344 (header excluded)",
+   "value": "1-16 (gel slice)",
+   "source_ids": [
+    "mq_summary",
+    "paper",
+    "tableS7"
+   ],
+   "evidence": "Fraction = MaxQuant \"Fraction\" in summary.txt; every source has contiguous fractions 1..n, so the positional numbering written by build equals the MaxQuant fraction. Paper: 16 gel sections per lane, \"in some cases ... combined into four samples\"."
+  },
+  {
+   "location": "assay name all data rows 1-2344 (header excluded)",
+   "value": "raw file stem",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "One assay per raw file; the SILAC light and heavy rows of a run share it."
+  },
+  {
+   "location": "comment[label] all data rows 1-2344 (header excluded)",
+   "value": "SILAC light / SILAC heavy (two rows per run)",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "Paper: mice fed 13C lysine (Lys-6, Silantes) for 6-8 days; K0/K6 pairs quantified. summary.txt: Multiplicity 2, Labels1 = Lys6 for K6 searches; LFQ searches of the same runs use Lysine6 as variable modification. PRIDE:0000326 SILAC light, PRIDE:0000325 SILAC heavy. In this pulse design both channels come from the same mouse."
+  },
+  {
+   "location": "comment[modification parameters] all data rows 1-2344 (header excluded)",
+   "value": "NT=Label:13C(6);AC=UNIMOD:188;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_summary",
+    "paper",
+    "ols"
+   ],
+   "evidence": "MaxQuant Labels1 = Lys6 (13C6-lysine, +6.02 Da per paper); UNIMOD:188 Label:13C(6) verified in OLS."
+  },
+  {
+   "location": "comment[modification parameters] all data rows 1-2344 (header excluded)",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "mq_params",
+    "paper",
+    "ols"
+   ],
+   "evidence": "parameters.txt \"Fixed modifications: Carbamidomethyl (C)\" in every folder; paper same."
+  },
+  {
+   "location": "comment[modification parameters] all data rows 1-2344 (header excluded)",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "mq_summary",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt Variable modifications \"Acetyl (Protein N-term);Oxidation (M)\" (one folder, tgCRND8_P113/txt_K6_2, used Oxidation (M) only)."
+  },
+  {
+   "location": "comment[modification parameters] all data rows 1-2344 (header excluded)",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "mq_summary",
+    "paper",
+    "ols"
+   ],
+   "evidence": "summary.txt Variable modifications include Oxidation (M) in every folder."
+  },
+  {
+   "location": "comment[instrument] all data rows 1-2344 (header excluded)",
+   "value": "NT=Q Exactive Plus;AC=MS:1002634",
+   "source_ids": [
+    "rawhdr",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Raw headers of 5 runs spanning the batches read \"Q Exactive Plus - Orbitrap MS\"; paper: Q-Exactive Plus. PRIDE lists Q Exactive (MS:1001911); raw file and paper outrank it."
+  },
+  {
+   "location": "comment[cleavage agent details] all data rows 1-2344 (header excluded)",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "ols"
+   ],
+   "evidence": "Paper: in-gel digestion with 6 ng/ul trypsin (Promega) overnight; no other protease is named in the Methods, so a single cleavage agent. MaxQuant enzyme Trypsin/P, 2 missed cleavages."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] all data rows 1-2344 (header excluded)",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: data-dependent analysis, top-10 MS/MS."
+  },
+  {
+   "location": "comment[dissociation method] all data rows 1-2344 (header excluded)",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: HCD (MS:1000422 is the HCD term)."
+  },
+  {
+   "location": "comment[collision energy] all data rows 1-2344 (header excluded)",
+   "value": "27 NCE",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: \"threshold energy of 27 for higher-energy collisional dissociation\"."
+  },
+  {
+   "location": "comment[ms1 scan range] all data rows 1-2344 (header excluded)",
+   "value": "300m/z-2000m/z",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: MS spectra collected over m/z 300 to 2000."
+  },
+  {
+   "location": "comment[precursor mass tolerance] all data rows 1-2344 (header excluded)",
+   "value": "20 ppm",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Paper: mass tolerance +/-20 ppm for MS."
+  },
+  {
+   "location": "comment[fragment mass tolerance] all data rows 1-2344 (header excluded)",
+   "value": "20 ppm",
+   "source_ids": [
+    "mq_params"
+   ],
+   "evidence": "parameters.txt \"MS/MS tol. (FTMS) 20 ppm\" (Q Exactive HCD spectra are FTMS). The paper says 0.5 Da, which is the MaxQuant ITMS setting; the deposited search wins."
+  },
+  {
+   "location": "comment[fractionation method] all data rows 1-2344 (header excluded)",
+   "value": "NT=SDS PAGE;AC=PRIDE:0000568",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: 4-12% Bis-Tris SDS-PAGE, 16 sections cut per lane, in-gel digestion. PRIDE:0000568 is a child of PRIDE:0000550 Fractionation method."
+  },
+  {
+   "location": "comment[reduction reagent] all data rows 1-2344 (header excluded)",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: gel pieces reduced with 10 mM DTT (extraction buffer also contained 2 mM TCEP)."
+  },
+  {
+   "location": "comment[alkylation reagent] all data rows 1-2344 (header excluded)",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper: cysteines alkylated with 10 mM iodoacetamide before SDS-PAGE and 55 mM after reduction."
+  },
+  {
+   "location": "characteristics[organism] all data rows 1-2344 (header excluded)",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "Mouse models; NCBITaxon:10090."
+  },
+  {
+   "location": "characteristics[organism part] rows of P113 (1-808) and P285 (1265-2092) except plasma sources",
+   "value": "hippocampal formation",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper/Fig. 1-3: TgCRND8 turnover measured in hippocampus. UBERON:0002421."
+  },
+  {
+   "location": "characteristics[organism part] rows of P186 (1013-1264) and P548 (2093-2344) except plasma sources",
+   "value": "cerebral cortex",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Fig. 2C-F / 3D-E: AppNL-F cortex. UBERON:0000956."
+  },
+  {
+   "location": "characteristics[organism part] rows of P120 (809-1012) except plasma sources",
+   "value": "spinal cord",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Paper Fig. 2G-H: TgSOD1-G93A spinal cord. UBERON:0002240."
+  },
+  {
+   "location": "characteristics[organism part] rows whose source name ends in _plasma (P113 129-144, 273-288, 417-432, 533-548, 677-692, 793-808; P120 809-818, 843-852, 877-886, 911-920, 945-954, 979-988; P186 1045-1054, 1087-1096, 1129-1138, 1171-1180, 1213-1222, 1255-1264; P285 1649-1678, 2063-2092; P548 2189-2218, 2315-2344)",
+   "value": "blood plasma",
+   "source_ids": [
+    "mq_summary",
+    "paper",
+    "ols"
+   ],
+   "evidence": "txt_plasma_K6 folders (experiments *-plasma, *-grd, *-sod1); paper: plasma protein turnover as label-incorporation control. UBERON:0001969."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype], P113 rows 1-808",
+   "value": "wild type (mice 299, 300, 301) / TgCRND8 transgenic (human APP overexpression) (mice 350, 351, 352)",
+   "source_ids": [
+    "mq_pg_p113",
+    "tableS3",
+    "paper"
+   ],
+   "evidence": "The P113 experiment names carry no genotype. Per-mouse LFQ intensities in txt_LFQ_1/proteinGroups.txt match Table S3a exactly: 299/300/301 = WT_LFQ_1/2/3 (42/33/33 matches), 350/351/352 = TG_LFQ_1/2/3 (40/34/41), zero cross-genotype matches; App LFQ is ~3x higher in 350-352, as in the explicitly labelled P285 tg mice."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype], P285 rows 1265-2092",
+   "value": "wild type (834, 907, 917; plasma 1-3) / TgCRND8 transgenic (817, 908, 909; plasma 4-6)",
+   "source_ids": [
+    "mq_summary",
+    "tableS7"
+   ],
+   "evidence": "Experiment names \"834 wt DOCmem\", \"817 tg DOCmem\" ...; plasma \"1-wt-grd\" ... \"4-Tg-grd\"."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype], P186 rows 1013-1264",
+   "value": "wild type (744, 745, 746) / App NL-F/NL-F knock-in (059, 066, 069)",
+   "source_ids": [
+    "mq_summary",
+    "tableS7",
+    "paper"
+   ],
+   "evidence": "Experiment names WT-744 / KI-059, DOC-744 / Tx-059, plasma \"1-WT-P186-plasma\" (file _744_1) ... \"4-Tg-P186-plasma\" (file _059_1); numbered TXmem/GDNdet experiments mapped by the mouse id in the raw-file name."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype], P548 rows 2093-2344",
+   "value": "wild type (635, 636, 637; plasma 1-3) / App NL-F/NL-F knock-in (021, 297, 371; plasma 4-6)",
+   "source_ids": [
+    "mq_summary",
+    "tableS7"
+   ],
+   "evidence": "Experiment names \"1-DOCmem-Wt\" (file _635_) ... \"4-DOCmem-Tg\" (file _021_), \"1-WT-Txdet\" ... ; plasma \"1-WT-plasma\" ... \"4-Tg-plasma\"."
+  },
+  {
+   "location": "characteristics[genotype] and factor value[genotype], P120 rows 809-1012",
+   "value": "wild type (mouse1-3) / SOD1-G93A transgenic (mouse4-6)",
+   "source_ids": [
+    "mq_summary",
+    "tableS7",
+    "paper"
+   ],
+   "evidence": "Experiment names \"1-WT-cyt\", \"4-Tg-cyt\", \"1-WT-DOCmem\", \"1-WT-TXdet\", plasma \"1-WT-sod1\" ...; Tg file names carry 42/43/44 consistently in all fractions and plasma."
+  },
+  {
+   "location": "characteristics[disease] rows with genotype wild type",
+   "value": "normal",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Age-matched wild-type controls; PATO:0000461."
+  },
+  {
+   "location": "characteristics[disease] model rows of P113, P285, P186, P548",
+   "value": "Alzheimer disease",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "TgCRND8 \"mouse model of familial AD\"; AppNL-F/NL-F \"knockin mouse model of familial AD\". MONDO:0004975. Disease is the modelled disease of a mouse model."
+  },
+  {
+   "location": "characteristics[disease] model rows of P120 (809-1012)",
+   "value": "amyotrophic lateral sclerosis",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "TgSOD1-G93A \"mouse model of familial ALS\". MONDO:0004976."
+  },
+  {
+   "location": "characteristics[biological replicate] all data rows 1-2344 (header excluded)",
+   "value": "1-42, one integer per animal, unique across the file",
+   "source_ids": [
+    "mq_summary",
+    "samples_tsv"
+   ],
+   "evidence": "One number per mouse (cohort x mouse id), shared by all of its detergent fractions and both SILAC channels: P113 1-6 (299,300,301 / 350,351,352), P285 7-9 WT 834/907/917, 10-12 WT plasma1-3, 13-15 tg 817/908/909, 16-18 tg plasma4-6, P186 19-24 (744,745,746 / 059,066,069), P548 25-27 WT 635/636/637, 28-30 WT plasma1-3, 31-33 KI 021/297/371, 34-36 KI plasma4-6, P120 37-42 (mouse1-6). Plasma reuses the brain number where the deposit links them: P113 (same experiment ids 299-plasma ...), P186 (plasma file names carry 744 ... 069), P120 (index naming 1-6-WT/Tg-sod1, Tg file ids 42/43/44 shared with the spinal-cord runs). P285 and P548 plasma are not linkable, so they get their own numbers. Paper: three mice per genotype per cohort."
+  },
+  {
+   "location": "comment[sample preparation batch] all data rows 1-2344 (header excluded)",
+   "value": "experiment P113 TgCRND8 / P285 TgCRND8 / P186 AppNL-F / P548 AppNL-F / P120 SOD1-G93A",
+   "source_ids": [
+    "paper",
+    "mq_summary",
+    "files"
+   ],
+   "evidence": "Paper: \"Five independent experiments were performed\"; each has its own search zip, its own WT controls and its own labelling run. Rows per experiment: P113 1-808, P120 809-1012, P186 1013-1264, P285 1265-2092, P548 2093-2344."
+  },
+  {
+   "location": "factor value[organism part] all data rows 1-2344 (header excluded)",
+   "value": "hippocampal formation / cerebral cortex / spinal cord / blood plasma",
+   "source_ids": [
+    "paper",
+    "mq_summary"
+   ],
+   "evidence": "Mirrors characteristics[organism part]. The paper analyses each tissue and plasma separately (plasma as a turnover control), so tissue is a second factor next to genotype."
+  },
+  {
+   "location": "characteristics[strain or breed] all data rows 1-2344 (header excluded)",
+   "value": "not available",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "The genetic background of the TgCRND8, App NL-F and SOD1-G93A colonies and of the controls is not stated. The paper says only that they were bred from founder mice with matched background."
+  },
+  {
+   "location": "characteristics[developmental stage] all data rows 1-2344 (header excluded)",
+   "value": "adult",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "All cohorts are postnatal day 113-548 (paper: P113, P120, P186, P285, P548; 3- to 18-month-old mice), i.e. adult mice. EFO:0001272. Inferred from the stated ages."
+  },
+  {
+   "location": "comment[technical replicate] all data rows 1-2344 (header excluded)",
+   "value": "1",
+   "source_ids": [
+    "mq_summary"
+   ],
+   "evidence": "One injection per gel fraction per sample in the deposited searches."
+  },
+  {
+   "location": "technology type all data rows 1-2344 (header excluded)",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "LC-MS/MS study."
+  },
+  {
+   "location": "comment[sdrf version], comment[sdrf template], comment[sdrf annotation tool] all data rows 1-2344 (header excluded)",
+   "value": "v1.1.0; ms-proteomics v1.1.0, vertebrates v1.1.0, clinical-metadata v1.0.0; manual curation",
+   "source_ids": [
+    "spec_templates",
+    "samples_tsv"
+   ],
+   "evidence": "Released template versions per the spec templates.yaml (ms-proteomics latest 1.1.0; vertebrates 1.1.0; clinical-metadata 1.0.0); comment[sdrf version] = technology template version v1.1.0. clinical-metadata is declared only to license characteristics[genotype]; vertebrates for the mouse layer."
+  }
+ ],
+ "limitations": [
+  "In this in vivo pulse (SILAM) design both SILAC channels of a run come from the same mouse; the light and heavy rows are given distinct source names (suffix _K0-light/_K6-heavy) only so that the row coordinate (source, biological replicate, technical replicate, fraction) is unique. They are not different animals.",
+  "Age (postnatal day: P113, P285, P186, P548, P120) has no licensed column in ms-proteomics + vertebrates (+ clinical-metadata); it is carried only in the source name prefix. characteristics[developmental stage]=adult is inferred from the stated ages.",
+  "Sex is not reported per mouse (paper: \"age-, sex-, and genetic background-matched\"): written not available.",
+  "Strain/background of TgCRND8, AppNL-F and SOD1-G93A lines is not stated; characteristics[strain or breed] = not available.",
+  "14 deposited raw files (MMD1780A147LC3_C7 ... MMD1780A160LC3_H8) are assigned in the deposited MaxQuant searches to both 350-GDN-det (fractions 3-16) and 352-tri-sol (fractions 3-16) of P113; left out, so P113 sources model_350 GDN and model_352 TritonX100-sol carry only fractions 1-2.",
+  "52 runs that were searched (MMD1983*, MMD1987*: P186 DOC/Triton-prec K6 searches incl. WT-REM) are not deposited; the deposited MMD2102* runs (DOC-/Tx- experiments of the same mice) are annotated instead.",
+  "Plasma runs of P285, P548 and P120 cannot be linked to the brain mouse ids; they are separate sources keyed by experiment index, so biological replicate n of plasma and of brain in those cohorts is not asserted to be the same animal.",
+  "Detergent/protein fraction (DOC-solubilised, Triton X-100 precipitate/solubilised, GDN, homogenate supernatant) is encoded only in the source name; no SDRF column fits it. For P120 the MaxQuant \"TXdet\" fraction is written TritonX100-sol, following Table S7 (\"Fraction 3 (Triton X-100 sol.)\").",
+  "Biological replicate numbers are animal identifiers (1-42), not within-group indices. The five experiments are distinguished by comment[sample preparation batch].",
+  "Search settings vary between MaxQuant folders (MaxQuant 1.5.0.0 vs 1.5.0.12; P113 txt_K6_1/2 searched a human reference FASTA; P113 txt_K6_2 used only Oxidation (M), 0 missed cleavages); the modification set annotated is the majority set, also stated in the paper.",
+  "Precursor tolerance (20 ppm) is from the paper; MaxQuant parameters.txt does not print the main-search precursor tolerance.",
+  "characteristics[disease] for mouse models is the modelled human disease; controls are normal."
+ ]
+}

@@ -1,0 +1,150 @@
+# PXD010671 validation log (producer). Lock: flock <scratchpad>/parse_sdrf.lock
+
+## Round 1 (light and heavy rows of a run shared one source name)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+[2344 lines of: WARNING: Combination '(<source>, <assay>)' in columns 'source name, assay name' is duplicated at rows: n, m  -- first 3 shown]
+ERROR: Combination '('P113-TgCRND8_WT_299_hippocampal-formation_DOC', 'MMD1661A10LC3_B2')' in columns 'source name, assay name' is duplicated at rows: 9, 25
+ERROR: Combination '('P113-TgCRND8_WT_299_hippocampal-formation_DOC', 'MMD1661A11LC3_C2')' in columns 'source name, assay name' is duplicated at rows: 10, 26
+ERROR: Combination '('P113-TgCRND8_WT_299_hippocampal-formation_DOC', 'MMD1661A12LC3_D2')' in columns 'source name, assay name' is duplicated at rows: 11, 27
+There were validation errors.
+exit=1
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+1 structural problem(s):
+  duplicate-row-coordinate [source name]: 1172 row(s) repeat a coordinate that must be unique: 'P113-TgCRND8_WT_299_hippocampal-formation_DOC' (bio 1, tech 1, fraction 1) x2; 'P113-TgCRND8_WT_299_hippocampal-formation_DOC' (bio 1, tech 1, fraction 2) x2; ...
+exit=1
+
+Fix: samples.tsv source name suffixed _K0-light / _K6-heavy per channel; rebuilt with sdrf-tools build.
+
+## Round 2 (SILAC light/heavy rows given distinct source names; previous round exit 1 with only 'source name, assay name duplicated' warnings + structure duplicate-row-coordinate)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+Everything seems to be fine. Well done.
+exit=0
+## structure
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## convert-openms
+$ cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/openms && flock <lock> parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[developmental stage]', 'characteristics[sex]']
+Conditions (4): dict_keys(['wild type', 'TgCRND8 transgenic (human APP overexpression)', 'SOD1-G93A transgenic', 'App NL-F/NL-F knock-in'])
+Files per condition: dict_values([1200, 790, 102, 252])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 2344 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+exit=0
+total 344
+drwxr-xr-x  2 root root   4096 Nov 13 08:12 .
+drwxr-xr-x 11 root root   4096 Nov 13 07:49 ..
+-rw-r--r--  1 root root  86855 Nov 13 08:12 experimental_design.tsv
+-rw-r--r--  1 root root 253501 Nov 13 08:12 openms.tsv
+DONE
+
+## Step 8.5
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv --record evidence/pride.json --accession PXD010671
+PXD010671: every annotated value agrees with the deposit record.
+exit=0
+## manifest checks
+PXD010671.evidence.json: valid evidence-manifest
+exit=0
+Manifest covers every column with a value (23 column(s)).
+exit=0
+
+# ===== GLOBAL_FIX rebuild (coordinator) =====
+$ sdrf-tools build --samples samples.tsv --technical technical.tsv --files evidence/files.json -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0 -o /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv   (contract header: CONTRACT for templates: ms-proteomics v1.1.0, vertebrates v1.1.0, clinical-metadata v1.0.0)
+## Round 3 (GLOBAL_FIX: templates pinned ms-proteomics@1.1.0, vertebrates@1.1.0, clinical-metadata@1.0.0; comment[sdrf version] v1.1.0; cleavage agent unchanged: Methods name trypsin only)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'clinical-metadata@1.0.0' not found in registry
+exit=1
+## structure
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## convert-openms
+$ cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/openms3 && flock <lock> parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[developmental stage]', 'characteristics[sex]']
+Conditions (4): dict_keys(['wild type', 'TgCRND8 transgenic (human APP overexpression)', 'SOD1-G93A transgenic', 'App NL-F/NL-F knock-in'])
+Files per condition: dict_values([1200, 790, 102, 252])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 2344 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+exit=0
+DONE
+
+## Round 3b: parse_sdrf's SchemaRegistry has no versioned names (get_schema('ms-proteomics@1.1.0'), 'vertebrates@1.1.0', 'clinical-metadata@1.0.0' all return None; registry names are unversioned), so the pinned -t values above fail before validating. Same file validated against parse_sdrf's bundled unversioned schemas:
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+Everything seems to be fine. Well done.
+exit=0
+DONE
+## Step 8.5
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv --record evidence/pride.json --accession PXD010671
+PXD010671: every annotated value agrees with the deposit record.
+exit=0
+## manifest checks
+PXD010671.evidence.json: valid evidence-manifest
+exit=0
+Manifest covers every column with a value (23 column(s)).
+exit=0
+sha256: ddbcf7e566a3f207dbb4df3874c446bb398dacb960b59893a1a563168cf5be0a
+
+# ===== Review-1 repair (coordinator): global per-animal biological replicate (1-42), comment[sample preparation batch] = experiment, factor value[organism part], characteristics[strain or breed] = not available, P120 TXdet sources renamed TritonX100-sol =====
+$ sdrf-tools build --samples samples.tsv --technical technical.tsv --files evidence/files.json -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0 -o /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+wrote /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv: 2344 rows x 38 columns
+## Round 4 validate (bare template names)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+Everything seems to be fine. Well done.
+exit=0
+## structure
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## convert-openms
+$ cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/openms4 && flock <lock> parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+Factor columns: ['factor value[genotype]', 'factor value[organism part]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (10): dict_keys(['wild type|hippocampal formation', 'wild type|blood plasma', 'TgCRND8 transgenic (human APP overexpression)|hippocampal formation', 'TgCRND8 transgenic (human APP overexpression)|blood plasma', 'wild type|spinal cord', 'SOD1-G93A transgenic|blood plasma', 'SOD1-G93A transgenic|spinal cord', 'wild type|cerebral cortex', 'App NL-F/NL-F knock-in|cerebral cortex', 'App NL-F/NL-F knock-in|blood plasma'])
+Files per condition: dict_values([768, 168, 712, 78, 72, 30, 72, 192, 192, 60])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 2344 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv
+exit=0
+## Step 8.5
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD010671/PXD010671.sdrf.tsv --record evidence/pride.json --accession PXD010671
+PXD010671: every annotated value agrees with the deposit record.
+exit=0
+## manifest checks
+PXD010671.evidence.json: valid evidence-manifest
+exit=0
+Manifest covers every column with a value (25 column(s)).
+exit=0
+sha256: fda7c24d040bbcda2ba07d276e37ec62e43e01947c8ddca8e45219f7d4ebef70
+DONE

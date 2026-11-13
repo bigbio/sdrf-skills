@@ -1,0 +1,80 @@
+## Round 1
+$ timeout 900 flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+exit code: 124
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ timeout 600 flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['normoxia and normoglycemia', 'oxygen and glucose deprivation'])
+Files per condition: dict_values([2, 2])
+SUCCESS (WARNINGS=0): /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv
+exit code: 0
+
+## Round 2 (the round-1 validate-sdrf hit the 900 s timeout, exit 124, waiting on the shared parse_sdrf lock; same unchanged SDRF re-validated with --use_ols_cache_only)
+$ flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv -t ms-proteomics -t human -t cell-lines --use_ols_cache_only
+WARNING: Term: normoxia and normoglycemia in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: oxygen and glucose deprivation in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: hCMEC/D3 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0
+## Round 3 (GLOBAL_FIX rebuild: templates pinned ms-proteomics@1.1.0, human@1.1.0, cell-lines@1.1.0; sdrf version v1.1.0; sha256 1a031d4c8c29547bcd40c2d1c2b44683b5ce21af369e4ceeeff95b38c3817633)
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv --record evidence/pride.json --accession PXD002292
+PXD002292: every annotated value agrees with the deposit record.
+exit code: 0
+
+$ timeout 1700 flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv -t ms-proteomics@1.1.0 -t human@1.1.0 -t cell-lines@1.1.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'cell-lines@1.1.0' not found in registry
+exit code: 1
+
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit code: 0
+
+$ timeout 1200 flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv
+Factor columns: ['factor value[treatment]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[developmental stage]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[passage number]', 'characteristics[culture medium]', 'characteristics[sample storage temperature]']
+Conditions (2): dict_keys(['normoxia and normoglycemia', 'oxygen and glucose deprivation'])
+Files per condition: dict_values([2, 2])
+SUCCESS (WARNINGS=0): /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv
+exit code: 0
+
+## Round 4 (parse_sdrf has no 'name@version' syntax - 'cell-lines@1.1.0 not found in registry'; re-run on the same unchanged SDRF with bare template names. parse_sdrf's registry has no version pin, so it validates against its bundled versions; the pinned v1.1.0 contract was enforced by sdrf-tools contract/build)
+$ timeout 1700 flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD002292/PXD002292.sdrf.tsv -t ms-proteomics -t human -t cell-lines
+WARNING: Term: normoxia and normoglycemia in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: oxygen and glucose deprivation in column 'characteristics[treatment]', is not found in the given ontology list ncit;efo
+WARNING: Term: hCMEC/D3 in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit code: 0

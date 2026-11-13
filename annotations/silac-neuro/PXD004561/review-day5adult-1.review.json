@@ -1,0 +1,73 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD004561/PXD004561-day5adult.sdrf.tsv",
+ "artifact_sha256": "6bf868c3a4643d088d88a405e0c408189dab796b938f8367f7d05fa02c30352a",
+ "verdict": "FAIL",
+ "summary": "Independent review: structure, ontology terms, file mapping and design check out against PRIDE, the mqpar.xml/experimentalDesign of oldworms.7z, raw headers and the paper. One important omission is left: the digest was trypsin + Lys-C (paper Supplemental Experimental Procedures and PRIDE sampleProcessingProtocol), but only Trypsin is declared. The producer recorded this as a limitation, and its own reconcile step flagged it MAJOR.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh isolated subagent; no producer transcript; producer manifest/report treated as untrusted and re-checked against primary sources fetched or re-read by the reviewer"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD004561/PXD004561-day5adult.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "39 columns in ms-proteomics 1.2.0 + invertebrates 1.1.0 order (sdrf-pipelines bundled templates; spec submodule only carries ms-proteomics 1.1.0, but v1.2.0 is used by 70k+ rows in the repo); sdrf-tools structure OK; no reserved-word misuse; (source name, assay name, label) unique over 72 rows; 4 modification columns and 2 sdrf template columns are legal multiples."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "Reviewer resolved each term in OLS4, and none is obsolete: NCBITaxon:6239, BTO:0001489 whole body, MONDO:0005180, PATO:0000461, EFO:0001272 adult, MS:1002416 Orbitrap Fusion, PRIDE:0000627, MS:1000422, MS:1000264, MS:1001251, PRIDE:0000608, PRIDE:0000599, UNIMOD:1/35/259/4 (labels exact, no Acetyl/Phospho swap). material type 'whole organism' is in the fixed enum. sdrf-tools check reports 16/16 verified, CLEAN."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "Paper identity was confirmed in Europe PMC (DOI 10.1016/j.celrep.2016.08.025 -> PMID 27626671). The strain list, genotypes, day-5 adult pulse at 6/24/48 h, whole-worm lysis, DTT/IAA, Orbitrap Fusion Top Speed DDA with HCD 30% and ion-trap MS2 all match the Supplemental Experimental Procedures. The reviewer range-read the raw headers of N2_48h_AF and OW40_6h_WF: Orbitrap Fusion, HCD, CE 30, IonTrap MS2, scan range 400-1500. mqpar.xml (36 matching filePaths) gives Trypsin/P, 4.5 ppm, ITMS 0.5 Da, Carbamidomethyl fixed, Acetyl (Protein N-term) and Oxidation (M) variable, and Lys8 with multiplicity 2. Exception: Lys-C is omitted (finding 1)."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "The reviewer fetched PRIDE files/all (projectAccessions == {PXD004561}): 82 .raw files. The artifact's 36 raw files all exist, none is duplicated within a label, and all are vendor .raw. The sibling developing SDRF holds 32 different raw files with zero overlap. The 14 runs 20141107_F1_HRV_SM_B1-B7 and C1-C7 are in neither file; they come from a 7-time-point design, so they cannot be day-5 runs, which have 3 time points."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "6 strains x 3 pulse times = 18 conditions x 2 fractions x 2 SILAC channels = 72 rows, which matches the experimentalDesignTemplate.txt (36 runs, 18 experiments, AF=fraction 1, WF=fraction 2). AF and WF use the same MS method and differ only in the LC gradient (%B 10/28/45 vs 7/25/40), which fits two peptide fractions of one digest. bio rep = 1 is consistent with one well per strain/time."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "The reviewer traced every value to a cited source. No values were added beyond the evidence: the generic Orbitrap Fusion term was used where PRIDE says ETD, and the raw header does not distinguish the ETD model. The omission pass did find that the evidenced Lys-C was left out (finding 1); this is recorded as an important finding rather than a failed pass."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "Reviewer ran: flock parse_sdrf validate-sdrf -t ms-proteomics -t invertebrates -> exit 0, warnings only (strain names not in NCBITaxon; free-text strain column, expected); sdrf-tools structure exit 0; sdrf-tools check exit 0 CLEAN 16/16; sdrf-tools score 100/100."
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "omission",
+   "location": "comment[cleavage agent details], rows 1-72",
+   "message": "Lys-C is missing: only NT=Trypsin;AC=MS:1001251 is declared, but the samples were digested with trypsin + Lys-C (Promega).",
+   "evidence": "Supplemental Experimental Procedures: '100 ng trypsin + Lys-C (Promega) was added'. PRIDE sampleProcessingProtocol says the same. sdrf-tools reconcile reports MAJOR cleavage_agent_incomplete. 1763 SDRFs in this repo carry repeated cleavage agent columns.",
+   "correction": "Add a second comment[cleavage agent details] column next to the first, with NT=Lys-C;AC=MS:1001309 (OLS-verified) on all 72 rows. Do this through the build pipeline, extending it if needed, then re-validate and re-review."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "comment[instrument]",
+   "message": "PRIDE declares Orbitrap Fusion ETD (MS:1002417); the parent term MS:1002416 is defensible because the raw header names 'Orbitrap Fusion' and the method is HCD-only.",
+   "evidence": "PRIDE project instruments; raw method summary"
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "source name",
+   "message": "Light and heavy channels of one pulsed population carry distinct source names (_Lys0/_Lys8). This is acceptable for row-coordinate uniqueness but makes one population look like two biological sources.",
+   "evidence": "pulsed SILAC design (paper Fig. 1)"
+  },
+  {
+   "severity": "minor",
+   "category": "documentation",
+   "location": "comment[fraction identifier]",
+   "message": "The meaning of AF/WF is undocumented. The gradient difference supports treating them as two peptide fractions, but no fractionation method is recorded.",
+   "evidence": "raw LC method gradients differ"
+  }
+ ]
+}
