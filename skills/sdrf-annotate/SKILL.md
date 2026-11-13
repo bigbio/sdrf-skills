@@ -344,8 +344,9 @@ a gap to fill with an unrelated column.
 
 Two rows in `technical.tsv`; the third column is `build`'s:
 
-- `comment[sdrf version]` → the technology template's version as the contract header prints
-  it (e.g. `v1.1.0` for `ms-proteomics v1.1.0`); do not read `templates.yaml` for it
+- `comment[sdrf version]` → the SDRF-Proteomics **specification** version (the `Version` line of
+  `spec/sdrf-proteomics/README.adoc`, currently `v1.1.0`). It is not a template version: those are a
+  separate track (`spec/sdrf-proteomics/VERSIONING.adoc`) and go only into `comment[sdrf template]`
 - `comment[sdrf annotation tool]` → `manual curation` (or the tool name if applicable)
 - `comment[sdrf template]` → filled by `build`, one column per template you passed with `-t`
 
