@@ -4,7 +4,10 @@ Evidence for the SDRFs merged in bigbio/sdrf-annotated-datasets#3091: 8 PRIDE pr
 
 - `silac_neuro.md`, `silac_neurological.md`: the screening criteria. The second widens rule 2 from
   neurodegenerative to neurological diseases; it was adopted mid-campaign.
-- `screen_*.tsv`: one screening decision per candidate, per criteria file.
+- `screen_*.tsv`: one screening decision per candidate, in the TSV of the criteria file it was screened
+  against. Candidates screened before the widening are not re-listed in the widened TSV; where an
+  evidence manifest notes that a decision also holds under the widened rule (PXD012462), that is a
+  remark, not a second screening.
 - `<PXD>/`: per accession, the producer report, the evidence manifest(s), the validation log and every
   independent review report (`review-*.review.json`, PASS and FAIL rounds).
 
