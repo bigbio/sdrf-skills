@@ -1,0 +1,72 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD001942/PXD001942-interaction.sdrf.tsv",
+ "artifact_sha256": "dfd51a893bb7ee6d641a0b2b303b8e9dca5de5665a2e44789cf88f93c2bb6bd7",
+ "verdict": "PASS",
+ "summary": "Independent review of the 102-run qAP-MS interaction SDRF for PXD001942 (Hosp et al. 2015) found no blocker or important issue. File list, light/heavy construct map, instruments, ontology terms and search parameters were re-derived from PRIDE, the paper, the Supplemental Information, the deposited MaxQuant zips and raw-file headers. Only minor findings remain.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh subagent (review-3) with no producer transcript; did not read review-1/review-2; re-fetched PRIDE files/all, project record, PMC9014711 full text, mmc1.pdf and all six deposited zips into review-3/; raw headers range-read independently"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/PXD001942.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Columns licensed by ms-proteomics 1.1.0 + human 1.1.0 + cell-lines 1.1.0 + clinical-metadata 1.0.0 (genotype only licensed by clinical-metadata per TERMS.tsv); all required columns present; no mutual-exclusion conflict (human excludes vertebrates/invertebrates/plants; ms-proteomics excludes affinity-proteomics); VV versions equal templates.yaml latest; sdrf version v1.1.0 = README; reserved words correct; 38 cols x 204 rows uniform; no whitespace issues; source name+assay name+label unique; (source, biorep, techrep, fraction) unique; each source has one consistent characteristics/label tuple."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 resolved, non-obsolete, labels exact: MS:1000556/1000449/1001742/1001309/1001251/1000133, PRIDE:0000627/0000326/0000325, UNIMOD:4/35/1/259/267, NCBITaxon:9606, UBERON:0002113, PATO:0000461, PATO:0000383, BTO:0002181 'HEK-293T cell', NCIT:C185409. Cellosaurus CVCL_0063 = HEK293T, SX Female, no DI line. sdrf-tools check: 15/15 verified, 0 UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "Supplement: HEK293T, SILAC DMEM with 13C6 15N4 Arg + 13C6 15N2 Lys, LysC + trypsin in-solution digest, LTQ-Orbitrap/XL DDA top5 CID with LTQ MS2, 0.5 Da fragment tolerance, CAM fixed, Ox(M) + protein N-term acetyl variable; Table S1 constructs (APP wt/K670N-M671L, PSEN1 wt/A431E, HTT 506aa Q23/Q145, HTT exon1 Q23/Q79, PARK2 wt/Q329Stop, ATXN1 Q30/Q82). Light/heavy map '<A>_v_<B>' = A light verified independently: bait H/L ratios in every bait-vs-EV MaxQuant experiment are >11 when EV is named first and <0.08 when the bait is named first (APP, ATXN1, HTT, PARK2, PSEN1), and the explicit Bert ATXN1 mutL_vs_wtH file name agrees."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE files/all (projectAccessions = PXD001942): 122 RAW + 6 zips. SDRF holds 102 unique raw files, all deposited, all vendor RAW; the 20 missing are exactly Tiffy_20120213_FPH_APP_48h_{III,IV}_slice1-5_{01,02}.raw, covered by sandbox BLOCKED.md. Instrument per run matches raw-header model string for all 102 runs (producer table cross-checked; independent range reads of 8 files agree: Orbi6/Bert = LTQ Orbitrap XL, Ernie = LTQ Orbitrap, Tiffy IDIP = LTQ Orbitrap Velos)."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "53 SILAC experiments x 2 channels = 106 sources; 36 bait-vs-EV experiments (=72 pull-downs, matching the paper's '72 pull-downs'), forward and reverse orientations present for every construct; injections _01/_02/_03 grouped in one MaxQuant experiment with empty Slice -> technical replicates, fraction 1. factor value[genotype] mirrors characteristics[genotype]."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No per-sample value asserted beyond sources: age/ancestry/cell type 'not available'; disease 'normal' from Cellosaurus (PRIDE's project-level Huntington disease not broadcast); precursor tolerance omitted because no source gives it for these searches; whole-proteome runs excluded rather than guessed. Residual convention-based assumptions (wt-vs-mut channel orientation, HDex1 Q79) are disclosed in the manifest limitations."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "Reviewer-run (flock) parse_sdrf validate-sdrf with bare names: -t ms-proteomics -t human -t cell-lines -t clinical-metadata -> 'Everything seems to be fine', exit 0; -t ms-proteomics exit 0; -t human exit 0; -t cell-lines exit 0; -t clinical-metadata exit 0. sdrf-tools check exit 0 (CLEAN); sdrf-tools score 98/100."
+  }
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "category": "source_evidence",
+   "location": "characteristics[genotype]/factor value[genotype], Bert_20100508_FPH_HDex1_* rows (rows 133-156)",
+   "message": "Exon-1 mutant is written as Q79 per Table S1, while the deposited HTT proteinGroups.txt names the corresponding *_1 experiments 'Q145'. Paper-over-deposit choice is defensible and disclosed in the manifest, but the conflict is unresolved.",
+   "evidence": "mmc1 Table S1: Huntingtin (Exon1) wild-type Q23 / mutant Q79; HTT.zip proteinGroups columns 'Ratio H/L empty vector vs Q145_1' etc.; HTT experimentalDesignTemplate lists only HD506 *_2 runs."
+  },
+  {
+   "severity": "minor",
+   "category": "technical_metadata",
+   "location": "comment[modification parameters] column 5 (Label:13C(6)15N(4) UNIMOD:267), all non-APP rows",
+   "message": "Arg-10 is annotated for runs whose MaxQuant 1.0.13.13 search quantified Lys-8 only; it reflects the heavy medium, not the search. Disclosed in limitations.",
+   "evidence": "Supplement: 'heavy labels: Lys-8'; heavy medium contains 28 mg/l 13C6 15N4 L-arginine; APP 1.4.1.4 parameters 'Special AAs KR'."
+  },
+  {
+   "severity": "minor",
+   "category": "completeness",
+   "location": "file",
+   "message": "characteristics[genetic modification] (transient overexpression of myc-tagged constructs) is licensed by the declared clinical-metadata template but absent; characteristics[developmental stage] (Cellosaurus AG Fetus) and comment[precursor mass tolerance] also omitted.",
+   "evidence": "clinical-metadata.yaml defines genetic modification (EFO, e.g. 'overexpression'); paper: 'transiently transfected'; sdrf-tools score lists the two recommended columns as missing."
+  },
+  {
+   "severity": "minor",
+   "category": "spec_compliance",
+   "location": "comment[sdrf template] NT=clinical-metadata",
+   "message": "clinical-metadata (described as for clinical study samples) is declared only to license characteristics[genotype] for a cell-line experiment; valid per spec and validator, but semantically a stretch.",
+   "evidence": "TERMS.tsv genotype usage: single-cell, invertebrates, clinical-metadata."
+  }
+ ]
+}

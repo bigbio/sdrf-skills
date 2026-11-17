@@ -1,0 +1,84 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD034158/PXD034158-lfq.sdrf.tsv",
+ "artifact_sha256": "62825efb717d21a4cf6192ea201c021a20d368ffb80ff53f25705db913c84ebc",
+ "verdict": "FAIL",
+ "summary": "Valid, well-sourced label-free SDRF (72 runs, files/replicates/search params independently confirmed), but the factor design merges anti-FLAG bait IPs and IgG control IPs into the same 4 conditions, so any factor-driven reanalysis treats bait and control runs as replicates of one condition.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh subagent with no producer transcript; producer manifest/report treated as untrusted and re-checked against PRIDE, PMC9540350, .msf range reads and OLS"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/PXD034158-lfq.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "38 columns in correct order; templates ms-proteomics v1.2.0 (sdrf-pipelines 0.1.7 bundle; spec submodule only ships 1.1.0, delta is 3 optional columns), vertebrates v1.1.0, clinical-metadata v1.0.0; reserved words only where allow_* permit; mod syntax with PP=Protein N-term correct; (source name, assay name, label) unique on all 72 rows."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 obo_id lookups (ols_check.txt): NCBITaxon:10090, UBERON:0000956, MONDO:0007739, PATO:0000461, EFO:0001272, PRIDE:0000627, MS:1002523, MS:1001251, MS:1000422, PRIDE:0000609, PRIDE:0000600, MS:1000484, UNIMOD:4/35/7/766 all exact-label, non-obsolete; study sample=PRIDE:0001013, negative control=PRIDE:0000905. sdrf-tools check's 'hallucinated Met-loss+Acetyl' is a tool false positive (OLS confirms UNIMOD:766 = Met-loss+Acetyl)."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "PMC9540350 (title/accession asserted): label-free FLAG IP-MS from cortex of Htt3xFlagQ20/+ and Q140/+ mice at 2 and 10 months, triplicate with parallel IgG IPs, C57BL/6J congenic, male and female (sex matched within replicate, per-replicate sex not given), TCEP/chloroacetamide, 3 StageTip fractions, DDA on Q Exactive HF. Search params re-read from a second msf (20210806_2M-140Q-IgG_F, tail 80 MiB): Sequest 4 ppm/0.02 Da, Carbamidomethyl C static, Oxidation M + Deamidated N dynamic, only N-term mod set = Met-loss+Acetyl; no quantification method."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "Fresh PRIDE files/all (projectAccessions=[PXD034158]): 84 .raw. LFQ 72 unique + SILAC 12 unique = 84, no overlap, none missing, none extra, no peak lists. rerun files are the only deposited copies. Rep folders spot-checked in 3 .msf headers (rep1 20210821_2M-20Q-IgG, rep3 20210819_10M-20Q-FLAG, rep1 20210806_2M-140Q-IgG) match the SDRF."
+  },
+  "design_consistency": {
+   "status": "fail",
+   "evidence": "24 sources = 2 ages x 2 genotypes x 3 reps x {FLAG,IgG}, 3 fractions each: consistent. But factor values are only age+genotype; producer's own convert-openms log shows 4 conditions x 18 files, each = 9 FLAG + 9 IgG runs."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "Inferred values (adult, HCD, orbitrap, fragment tol over paper's '20 ppm') are disclosed and supported by instrument/msf; sex and fractionation chemistry left 'not available' rather than guessed; no invented sample maps."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "parse_sdrf validate-sdrf -t ms-proteomics -t vertebrates -t clinical-metadata: exit 0 (one warning: C57BL/6J not in NCBITaxon). sdrf-tools check exit 1 solely for the UNIMOD:766 false positive refuted in OLS. sdrf-tools score 97/100."
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "design",
+   "location": "factor value columns (cols 37-38), all 72 rows",
+   "message": "Bait (anti-FLAG, study sample) and control (IgG, negative control) IPs are not separated by any factor value, so each of the 4 conditions mixes 9 FLAG and 9 IgG runs, and each biological replicate number appears twice per condition under different sources.",
+   "evidence": "convert-openms in PXD034158.validation.txt: Conditions (4), Files per condition 18; characteristics[sample type] is the only column distinguishing FLAG from IgG.",
+   "correction": "Add a factor that distinguishes FLAG-IP from IgG-IP (e.g. factor value[sample type] mirroring characteristics[sample type]) so conversion yields 8 conditions of 9 runs; re-run validate and convert-openms."
+  },
+  {
+   "severity": "minor",
+   "category": "spec",
+   "location": "factor value[age]",
+   "message": "Factor has no matching characteristics/comment column (sdrf-tools score design issue); characteristics[age] is licensed only by the human template, so this is a disclosed spec limitation.",
+   "evidence": "score.txt; human/1.1.0 is the only template with characteristics[age].",
+   "correction": "Optional; keep as is or record age in a licensed column if the spec adds one."
+  },
+  {
+   "severity": "minor",
+   "category": "ontology",
+   "location": "characteristics[strain or breed]",
+   "message": "C57BL/6J not resolvable in NCBITaxon (validator warning); conventional value used across the repo.",
+   "evidence": "parse_sdrf warning.",
+   "correction": "None required."
+  },
+  {
+   "severity": "minor",
+   "category": "tooling",
+   "location": "comment[modification parameters] Met-loss+Acetyl",
+   "message": "sdrf-tools check reports UNIMOD:766 Met-loss+Acetyl as hallucinated; OLS confirms it, so this is a checker false positive.",
+   "evidence": "check.txt vs ols_check.txt.",
+   "correction": "None for the SDRF; tool issue."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "comment[sdrf template] ms-proteomics v1.2.0",
+   "message": "Declared version exists in the installed sdrf-pipelines template bundle but not in the pinned spec submodule (1.1.0).",
+   "evidence": "spec/sdrf-proteomics/sdrf-templates/ms-proteomics has only 1.1.0; 554 repo datasets already declare v1.2.0.",
+   "correction": "None required."
+  }
+ ]
+}

@@ -1,0 +1,692 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942-interaction.sdrf.tsv",
+ "dataset": "PXD001942",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/evidence/pride.json (https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD001942)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/files_all.json (https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD001942/files/all)"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC9014711 / doi:10.1016/j.celrep.2015.04.030; /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/evidence/manuscript.txt"
+  },
+  {
+   "id": "suppinfo",
+   "kind": "supplementary",
+   "location": "https://ars.els-cdn.com/content/image/1-s2.0-S2211124715004313-mmc1.pdf ; text /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/supp/mmc1.txt (Supplemental Information: Table S1 bait list, Cell culture and SILAC, LC-MS/MS, MaxQuant settings)"
+  },
+  {
+   "id": "mq_design",
+   "kind": "search-output",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/zips/{APP,PSEN1,HTT,PARK2,ATXN1}/experimentalDesignTemplate.txt (from ftp.pride.ebi.ac.uk/pride/data/archive/2015/09/PXD001942/<bait>.zip)"
+  },
+  {
+   "id": "mq_params",
+   "kind": "search-output",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/zips/{APP,PSEN1,HTT,PARK2,ATXN1}/parameters.txt (MaxQuant 1.0.13.13; APP: 1.4.1.4)"
+  },
+  {
+   "id": "mq_pg",
+   "kind": "search-output",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/zips/{APP,PSEN1,HTT,PARK2,ATXN1}/proteinGroups.txt; bait H/L ratios printed by /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/check_bait.py"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/instruments.tsv + /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/instruments_fix.tsv (first 300 KB-1.5 MB of every .raw via HTTP range, utf-16-le instrument model string)"
+  },
+  {
+   "id": "cellosaurus",
+   "kind": "database",
+   "location": "https://api.cellosaurus.org/cell-line/CVCL_0063 (HEK293T: SX Female, AG Fetus, DR BTO_0002181/CLO_0050894/EFO_0001082, no DI line)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools verify / ols4 api terms?obo_id=...)"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "/home/user/sdrf-skills/spec/sdrf-proteomics/README.adoc and spec/sdrf-proteomics/sdrf-templates/templates.yaml"
+  },
+  {
+   "id": "filenames",
+   "kind": "repository",
+   "location": "deposited raw file names in comment[data file] (files_all.json)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "characteristics[organism] rows 1-204",
+   "value": "Homo sapiens",
+   "source_ids": [
+    "pride",
+    "paper",
+    "suppinfo",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "PRIDE organism NEWT:9606; Methods: 'Human HEK293T cells'; NCBITaxon:9606 verified in OLS."
+  },
+  {
+   "location": "characteristics[cell line] rows 1-204",
+   "value": "HEK-293T cell",
+   "source_ids": [
+    "paper",
+    "suppinfo",
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "All pull-downs: 'Cell lysates with overexpressed c-myc::bait fusion proteins from 2x10^7 HEK293T cells' (Supplemental Pull-down experiments); HEK293T from System Biosciences. Written as the label of BTO:0002181 'HEK-293T cell' (synonym HEK293T cell), the BTO cross-reference in Cellosaurus CVCL_0063; the bare 'HEK293T' drew a parse_sdrf not-in-ontology warning in round 1."
+  },
+  {
+   "location": "characteristics[cellosaurus accession] rows 1-204",
+   "value": "CVCL_0063",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus AC CVCL_0063 for ID HEK293T (sdrf-tools cellline lookup exact match)."
+  },
+  {
+   "location": "characteristics[cellosaurus name] rows 1-204",
+   "value": "HEK293T",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus ID line 'HEK293T'."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-204",
+   "value": "kidney",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "HEK293T = human embryonic kidney derived; Cellosaurus tissue Kidney; UBERON:0002113 'kidney' verified in OLS."
+  },
+  {
+   "location": "characteristics[sex] rows 1-204",
+   "value": "female",
+   "source_ids": [
+    "cellosaurus"
+   ],
+   "evidence": "Cellosaurus SX Female."
+  },
+  {
+   "location": "characteristics[disease] rows 1-204",
+   "value": "normal",
+   "source_ids": [
+    "cellosaurus",
+    "ols"
+   ],
+   "evidence": "Cellosaurus has no DI (disease) line for HEK293T (donor not diseased); PATO:0000461 normal. PRIDE's project-level 'Huntington disease' describes the bait context, not the cell line, and is not broadcast (cell-lines rule: disease is a property of the line)."
+  },
+  {
+   "location": "characteristics[culture medium] rows 1-204",
+   "value": "Dulbecco's Modified Eagle Medium",
+   "source_ids": [
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "'we used Dulbecco's Modified Eagle Medium (DMEM) Glutamax lacking arginine and lysine ... supplemented with 10% (HEK293T) ... dialyzed FBS'; NCIT:C185409 verified in OLS4."
+  },
+  {
+   "location": "characteristics[genotype] rows 1,3,6,8-9,11,14,16,21,23,25,27,30,32,34,36-37,39,41,43,46,48,50,52,65,67,69,71,78,80,82,84-85,87,89,91,94,96,102,104,109,111,113,115,118,120,126,128,133,135,137,139,142,144,150,152,157,159,161,163,166,168,176,178,183,185,187,189,192,198,200",
+   "value": "empty vector control (myc tag only)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 1,3,6,8-9,11,14,16,21,23,25,27,30,32,34,36-37,39,41,43,46,48,50,52,65,67,69,71,78,80,82,84-85,87,89,91,94,96,102,104,109,111,113,115,118,120,126,128,133,135,137,139,142,144,150,152,157,159,161,163,166,168,176,178,183,185,187,189,192,198,200",
+   "value": "empty vector control (myc tag only)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 17,19,22,24,26,28-29,31,33,35,38,40,45,47,54,56",
+   "value": "myc-APP K670N/M671L (Swedish mutation)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 17,19,22,24,26,28-29,31,33,35,38,40,45,47,54,56",
+   "value": "myc-APP K670N/M671L (Swedish mutation)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 2,4-5,7,10,12-13,15,18,20,42,44,49,51,53,55",
+   "value": "myc-APP wild-type",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 2,4-5,7,10,12-13,15,18,20,42,44,49,51,53,55",
+   "value": "myc-APP wild-type",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 58,60-61,63,70,72-73,75,81,83,90,92,98,100-101,103,105,107",
+   "value": "myc-ATXN1 Q30 (wild-type)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 58,60-61,63,70,72-73,75,81,83,90,92,98,100-101,103,105,107",
+   "value": "myc-ATXN1 Q30 (wild-type)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 57,59,62,64,66,68,74,76-77,79,86,88,93,95,97,99,106,108",
+   "value": "myc-ATXN1 Q82 (mutant)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 57,59,62,64,66,68,74,76-77,79,86,88,93,95,97,99,106,108",
+   "value": "myc-ATXN1 Q82 (mutant)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 110,112,117,119,121,123,130,132",
+   "value": "myc-HTT N-terminal 506 aa Q145 (mutant)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 110,112,117,119,121,123,130,132",
+   "value": "myc-HTT N-terminal 506 aa Q145 (mutant)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 114,116,122,124-125,127,129,131",
+   "value": "myc-HTT N-terminal 506 aa Q23 (wild-type)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 114,116,122,124-125,127,129,131",
+   "value": "myc-HTT N-terminal 506 aa Q23 (wild-type)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 138,140,146,148-149,151,153,155",
+   "value": "myc-HTT exon 1 Q23 (wild-type)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 138,140,146,148-149,151,153,155",
+   "value": "myc-HTT exon 1 Q23 (wild-type)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 134,136,141,143,145,147,154,156",
+   "value": "myc-HTT exon 1 Q79 (mutant)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 134,136,141,143,145,147,154,156",
+   "value": "myc-HTT exon 1 Q79 (mutant)",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 158,160,170,172,174-175,177,179,181",
+   "value": "myc-PARK2 Q329Stop",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 158,160,170,172,174-175,177,179,181",
+   "value": "myc-PARK2 Q329Stop",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 162,164-165,167,169,171,173,180,182",
+   "value": "myc-PARK2 wild-type",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 162,164-165,167,169,171,173,180,182",
+   "value": "myc-PARK2 wild-type",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 184,186,191,193,195,202,204",
+   "value": "myc-PSEN1 A431E",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 184,186,191,193,195,202,204",
+   "value": "myc-PSEN1 A431E",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "characteristics[genotype] rows 188,190,194,196-197,199,201,203",
+   "value": "myc-PSEN1 wild-type",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames",
+    "mq_pg"
+   ],
+   "evidence": "Construct from Table S1 bait list (APP wt / K670N/M671L; PSEN1 wt / A431E; HTT N-term 506 aa Q23 / Q145; HTT Exon1 Q23 / Q79; PARK2 wt / Q329Stop; ATXN1 Q30 / Q82; empty vector = myc-tag control) mapped to the file-name role tokens ctrl/wt/mut, EV/WT/SWE, and the MaxQuant experiment names ('empty vector vs A431E_1' etc.). Channel: '<A>_v_<B>' = A light, B heavy, proven by Bert_..._ATXN1_mutL_vs_wtH (explicit L/H) = design 'Q82 vs Q30_1', and by bait H/L ratios in proteinGroups.txt (e.g. ATXN1 'empty vector vs Q30_1' H/L 61.5, 'Q30 vs empty vector_1' 0.0055; PSEN1 'empty vector vs A431E_1' 41.6 / 'A431E vs empty vector_1' 0.0045; HTT 'empty vector vs Q23_2' 51.6; PARK2 'empty vector vs WT_1' 23.5; APP EVvsWT 25.5 / WTvsEV 0.044)."
+  },
+  {
+   "location": "factor value[genotype] rows 188,190,194,196-197,199,201,203",
+   "value": "myc-PSEN1 wild-type",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "filenames"
+   ],
+   "evidence": "Mirrors characteristics[genotype]; the compared variable is the transfected bait construct (wild-type vs disease variant vs empty vector)."
+  },
+  {
+   "location": "comment[label] rows 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,125,127,129,131,133,135,137,139,141,143,145,147,149,151,153,155,157,159,161,163,165,167,169,171,173,175,177,179,181,183,185,187,189,191,193,195,197,199,201,203",
+   "value": "SILAC light",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "mq_pg",
+    "filenames",
+    "ols"
+   ],
+   "evidence": "MaxQuant 'SILAC type doublets'; light = first construct in '<A>_v_<B>'; PRIDE:0000326 SILAC light verified."
+  },
+  {
+   "location": "comment[label] rows 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,124,126,128,130,132,134,136,138,140,142,144,146,148,150,152,154,156,158,160,162,164,166,168,170,172,174,176,178,180,182,184,186,188,190,192,194,196,198,200,202,204",
+   "value": "SILAC heavy",
+   "source_ids": [
+    "suppinfo",
+    "mq_design",
+    "mq_pg",
+    "filenames",
+    "ols"
+   ],
+   "evidence": "heavy = second construct; heavy medium 13C6 15N4 L-arginine + 13C6 15N2 L-lysine; PRIDE:0000325 SILAC heavy verified."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-204",
+   "value": "1-6 (per bait-pair SILAC experiment)",
+   "source_ids": [
+    "mq_design",
+    "filenames",
+    "paper"
+   ],
+   "evidence": "Each SILAC experiment (forward or label-swap) is an independent transfection/pull-down ('Every bait protein was tested in at least four biological replicates (i.e., at least two forward and two reverse experiments)'). Numbered 1..n per (bait family, construct pair) in date/name order, both orientations together; APP Rep1/Rep2/Rep3 from file names and design."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-204",
+   "value": "1-3",
+   "source_ids": [
+    "filenames",
+    "mq_design"
+   ],
+   "evidence": "Raw files _01/_02/_03 of one experiment are grouped into one MaxQuant experiment with no fraction/slice (experimentalDesignTemplate 'Slice' empty) -> repeat injections of one sample, renumbered 1..n per source (PSEN1 mut_v_ctrl has only _02 deposited -> 1; Tiffy ATXN1 IDIP mut_v_ctrl _01,_03 -> 1,2)."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-204",
+   "value": "1",
+   "source_ids": [
+    "mq_design"
+   ],
+   "evidence": "No fractionation: design Slice/Fraction column empty for all pull-down runs."
+  },
+  {
+   "location": "comment[data file] rows 1-204",
+   "value": "deposited .raw/.RAW names",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Every value is a vendor raw file listed in files/all (102 of 122 run files; 20 proteome runs excluded, see limitations)."
+  },
+  {
+   "location": "assay name rows 1-204",
+   "value": "raw file stem",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "build default: data-file stem, shared by the light and heavy rows of a run."
+  },
+  {
+   "location": "comment[instrument] rows 65-84,109-132,157-204",
+   "value": "NT=LTQ Orbitrap;AC=MS:1000449",
+   "source_ids": [
+    "raw",
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "Instrument model string read from the header of every one of these raw files (Ernie runs). Supplement: pull-downs on LTQ-Orbitrap or LTQ-Orbitrap XL; the Tiffy ATXN1 IDIP pull-downs are LTQ Orbitrap Velos per raw header (paper only says Velos for whole-proteome). PRIDE lists LTQ Orbitrap + Velos only (missing XL). Accession verified in OLS."
+  },
+  {
+   "location": "comment[instrument] rows 1-64,133-156",
+   "value": "NT=LTQ Orbitrap XL;AC=MS:1000556",
+   "source_ids": [
+    "raw",
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "Instrument model string read from the header of every one of these raw files (Bert/Orbi6 runs). Supplement: pull-downs on LTQ-Orbitrap or LTQ-Orbitrap XL; the Tiffy ATXN1 IDIP pull-downs are LTQ Orbitrap Velos per raw header (paper only says Velos for whole-proteome). PRIDE lists LTQ Orbitrap + Velos only (missing XL). Accession verified in OLS."
+  },
+  {
+   "location": "comment[instrument] rows 85-108",
+   "value": "NT=LTQ Orbitrap Velos;AC=MS:1001742",
+   "source_ids": [
+    "raw",
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "Instrument model string read from the header of every one of these raw files (Tiffy runs). Supplement: pull-downs on LTQ-Orbitrap or LTQ-Orbitrap XL; the Tiffy ATXN1 IDIP pull-downs are LTQ Orbitrap Velos per raw header (paper only says Velos for whole-proteome). PRIDE lists LTQ Orbitrap + Velos only (missing XL). Accession verified in OLS."
+  },
+  {
+   "location": "comment[cleavage agent details] (column 1 of 2) rows 1-204",
+   "value": "NT=Lys-C;AC=MS:1001309",
+   "source_ids": [
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "Supplement 'Protein precipitation and in-solution digest': 'Lysyl endopeptidase (LysC) (Wako) and sequence-grade modified Trypsin (Promega) was used for in-solution digestion' - one protocol for all immunoprecipitation eluates; Lys-C listed first. The 'LysC specificity' in the MaxQuant 1.0.13.13 section is a Mascot search setting, not the digest. Accession verified in OLS."
+  },
+  {
+   "location": "comment[cleavage agent details] (column 2 of 2) rows 1-204",
+   "value": "NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "Supplement 'Protein precipitation and in-solution digest': 'Lysyl endopeptidase (LysC) (Wako) and sequence-grade modified Trypsin (Promega) was used for in-solution digestion' - one protocol for all immunoprecipitation eluates; Lys-C listed first. The 'LysC specificity' in the MaxQuant 1.0.13.13 section is a Mascot search setting, not the digest. Accession verified in OLS."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-204",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "'Data dependent mode was used ... five most intense ions selected for fragmentation'."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-204",
+   "value": "NT=collision-induced dissociation;AC=MS:1000133",
+   "source_ids": [
+    "suppinfo",
+    "mq_params",
+    "ols"
+   ],
+   "evidence": "'selected for fragmentation by collision induced dissociation'; parameters.txt 'MS/MS tol. (CID) 0.5 Da'."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-204",
+   "value": "0.5 Da",
+   "source_ids": [
+    "suppinfo",
+    "mq_params"
+   ],
+   "evidence": "'the mass tolerance for fragment ions was set at 0.5 Da'; parameters.txt MS/MS tol. (CID) 0.5 Da (1.0.13) and MS/MS tol. (ITMS) 0.5 Da (APP 1.4.1.4); MS/MS read in the LTQ ion trap."
+  },
+  {
+   "location": "comment[modification parameters] (column 1 of 5) rows 1-204",
+   "value": "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed",
+   "source_ids": [
+    "mq_params",
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "parameters.txt 'Fixed modifications Carbamidomethyl (C)' (all zips); Supplement 'Carbamidomethylation of cysteine was used as fixed modification'. UNIMOD accession/label verified in OLS4 unimod."
+  },
+  {
+   "location": "comment[modification parameters] (column 2 of 5) rows 1-204",
+   "value": "NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable",
+   "source_ids": [
+    "mq_params",
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "parameters.txt 'Variable modifications Oxidation (M);Acetyl (Protein N-term)'. UNIMOD accession/label verified in OLS4 unimod."
+  },
+  {
+   "location": "comment[modification parameters] (column 3 of 5) rows 1-204",
+   "value": "NT=Acetyl;AC=UNIMOD:1;PP=Protein N-term;MT=Variable",
+   "source_ids": [
+    "mq_params",
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "parameters.txt 'Variable modifications ... Acetyl (Protein N-term)'; positional -> PP=. UNIMOD accession/label verified in OLS4 unimod."
+  },
+  {
+   "location": "comment[modification parameters] (column 4 of 5) rows 1-204",
+   "value": "NT=Label:13C(6)15N(2);AC=UNIMOD:259;TA=K;MT=Variable",
+   "source_ids": [
+    "mq_params",
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "Heavy medium '49 mg/l 13C6 15N2 L-lysine'; MaxQuant 'heavy labels: Lys-8'; APP 'Special AAs KR'. UNIMOD accession/label verified in OLS4 unimod."
+  },
+  {
+   "location": "comment[modification parameters] (column 5 of 5) rows 1-204",
+   "value": "NT=Label:13C(6)15N(4);AC=UNIMOD:267;TA=R;MT=Variable",
+   "source_ids": [
+    "mq_params",
+    "suppinfo",
+    "ols"
+   ],
+   "evidence": "Heavy medium '28 mg/l 13C6 15N4 L-arginine'; APP parameters.txt 'Special AAs KR'. The 1.0.13 searches quantified Lys-8 only (see limitations). UNIMOD accession/label verified in OLS4 unimod."
+  },
+  {
+   "location": "technology type rows 1-204",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "pride"
+   ],
+   "evidence": "MS data (ms-proteomics template)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-204",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "SDRF-Proteomics specification version v1.1.0 (spec/sdrf-proteomics/README.adoc 'Version v1.1.0'; base.yaml defines comment[sdrf version] as the specification version)."
+  },
+  {
+   "location": "comment[sdrf template] (column 1 of 4) rows 1-204",
+   "value": "NT=ms-proteomics;VV=v1.1.0",
+   "source_ids": [
+    "spec",
+    "paper"
+   ],
+   "evidence": "Pinned released versions from spec templates.yaml (ms-proteomics 1.1.0, human 1.1.0, cell-lines 1.1.0, clinical-metadata 1.0.0). Templates declared: ms-proteomics (MS), human (Homo sapiens), cell-lines (HEK293T), clinical-metadata (only to license characteristics[genotype] for the bait construct)."
+  },
+  {
+   "location": "comment[sdrf template] (column 2 of 4) rows 1-204",
+   "value": "NT=human;VV=v1.1.0",
+   "source_ids": [
+    "spec",
+    "paper"
+   ],
+   "evidence": "Pinned released versions from spec templates.yaml (ms-proteomics 1.1.0, human 1.1.0, cell-lines 1.1.0, clinical-metadata 1.0.0). Templates declared: ms-proteomics (MS), human (Homo sapiens), cell-lines (HEK293T), clinical-metadata (only to license characteristics[genotype] for the bait construct)."
+  },
+  {
+   "location": "comment[sdrf template] (column 3 of 4) rows 1-204",
+   "value": "NT=cell-lines;VV=v1.1.0",
+   "source_ids": [
+    "spec",
+    "paper"
+   ],
+   "evidence": "Pinned released versions from spec templates.yaml (ms-proteomics 1.1.0, human 1.1.0, cell-lines 1.1.0, clinical-metadata 1.0.0). Templates declared: ms-proteomics (MS), human (Homo sapiens), cell-lines (HEK293T), clinical-metadata (only to license characteristics[genotype] for the bait construct)."
+  },
+  {
+   "location": "comment[sdrf template] (column 4 of 4) rows 1-204",
+   "value": "NT=clinical-metadata;VV=v1.0.0",
+   "source_ids": [
+    "spec",
+    "paper"
+   ],
+   "evidence": "Pinned released versions from spec templates.yaml (ms-proteomics 1.1.0, human 1.1.0, cell-lines 1.1.0, clinical-metadata 1.0.0). Templates declared: ms-proteomics (MS), human (Homo sapiens), cell-lines (HEK293T), clinical-metadata (only to license characteristics[genotype] for the bait construct)."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-204",
+   "value": "manual curation",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Annotated by hand from the deposit, paper and search outputs, built with sdrf-tools build."
+  },
+  {
+   "location": "source name rows 1-204",
+   "value": "<experiment stem>_<light|heavy>",
+   "source_ids": [
+    "filenames",
+    "mq_design"
+   ],
+   "evidence": "One source per SILAC channel per experiment (each channel is a separately transfected, separately labelled HEK293T population); experiment stem = raw-file name without the injection suffix."
+  }
+ ],
+ "limitations": [
+  "20 whole-proteome runs (Tiffy_20120213_FPH_APP_48h_{III,IV}_slice1-5_{01,02}.raw; MaxQuant Exp3/Exp4 in proteome_changes_APPsw.zip) are EXCLUDED: the paper says cells were 'differentially SILAC-labeled' and transfected with APP or APPsw (Fig. 6A) or APPsw+LRPPRC (Fig. 6B), but no source states which construct was light or heavy in Exp3/Exp4, nor which figure panel they are; proteinGroups shows no label swap (APP H/L 0.27/0.18, LRPPRC 0.49/0.46). Inferring the map from the measured biology would be guessing.",
+  "HTT exon-1 (HDex1, Bert_20100508) runs: no deposited experimentalDesignTemplate lists them (HTT design lists only HD506 *_2 experiments) although HTT proteinGroups.txt carries six *_1 experiments named 'Q145'/'Q23'. Table S1 gives Huntingtin (Exon1) wild-type Q23 and mutant Q79; the paper (manuscript > deposit) was followed, so mutant = 'myc-HTT exon 1 Q79 (mutant)'. The proteinGroups label 'Q145_1' contradicts this.",
+  "Light/heavy channel assignment rests on the naming convention '<A>_v_<B>' = A light / B heavy; it is explicit only in Bert_20101213_FPH_ATXN1_mutL_vs_wtH, and is otherwise corroborated per bait family by proteinGroups bait H/L ratios (bait-vs-EV experiments). For wt-vs-mutant runs the convention is assumed to hold (ratios ~1 cannot confirm it).",
+  "Injections _01/_02/_03 of one experiment were treated as technical replicates (repeat injections) of one sample: the design file groups them in one experiment with no slice/fraction, but no source says 'repeat injection' explicitly. Technical replicate renumbered 1..n per source, so it does not always equal the file suffix (PSEN1 mut_v_ctrl _02 -> 1; Tiffy ATXN1 IDIP mut_v_ctrl _03 -> 2).",
+  "Cleavage agent: both Lys-C and Trypsin are annotated on every row from the digest protocol. The 2010-2011 IP searches (MaxQuant 1.0.13.13/Mascot) used LysC specificity, and the 2013 APP search enzyme is not recorded.",
+  "SILAC Arg-10 (UNIMOD:267) is annotated for all rows because the heavy medium contained 13C6 15N4 arginine; the Supplement says the MaxQuant 1.0.13.13 IP searches used 'heavy labels: Lys-8' only.",
+  "Precursor mass tolerance not recorded for the Mascot/MaxQuant 1.0.13.13 searches nor in APP parameters.txt; column omitted.",
+  "characteristics[age], [ancestry category], [cell type] = not available (Cellosaurus: age 'Fetus', no ancestry, no cell type). Developmental stage not annotated.",
+  "The Tiffy_20110207 ATXN1 'IDIP' runs were acquired on an LTQ Orbitrap Velos (raw header), not on LTQ-Orbitrap/XL as the paper states for pull-downs; the meaning of 'IDIP' is not explained; they are annotated like the other ATXN1 pull-downs per the ATXN1 design file (empty vector vs Q82_2 etc.).",
+  "PRIDE lists disease 'Huntington disease' only and instruments LTQ Orbitrap + LTQ Orbitrap Velos; both are incomplete versus paper/raw headers. Disease is written as the cell line's ('normal'); the neurodegenerative-disease context is carried by the genotype (bait construct) values.",
+  "clinical-metadata template declared solely to license characteristics[genotype]; no clinical columns are used.",
+  "Some deposited/declared mismatch: PSEN1 design lists Ernie_20100503_FPH_PSEN1_ctrl_v_mut_01_100504032954 and mut_v_ctrl_01, which are not deposited; only deposited files are annotated."
+ ]
+}

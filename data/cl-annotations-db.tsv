@@ -1711,7 +1711,7 @@ WM1799	WM1799	CVCL_A341	not available	Homo Sapiens	Skin	not available	not availa
 HCC1588	HCC1588	CVCL_A351	not available	Homo Sapiens	Lung	Lung	63Y	Adult	Female	African American	Squamous cell lung carcinoma	not available	cell	HCC-1588; HAMON CANCER CENTER 1588	curated
 HCC2108	HCC2108	CVCL_A352	not available	Homo Sapiens	Lung	Lung	59Y	Adult	Male	not available	Lung adenocarcinoma	not available	cell	HCC-2108; HAMON CANCER CENTER 2108	curated
 HSC-39	HSC-39	CVCL_A385	not available	Homo Sapiens	Stomach	Ascites	54Y	Adult	Male	Japanese	Gastric signet ring cell adenocarcinoma	not available	cell	HSC39	curated
-KBM-7	KBM-7	CVCL_A426	KBM-7 cell	Homo Sapiens	Bone Marrow	Bone marrow	39Y	Adult	Male	not available	 bcr-abl1 positive; Chronic myelogenous leukemia	not available	cell	KBM-7/HAP8; KBM7; KBM7 CELL	curated
+KBM-7	KBM-7	CVCL_A426	KBM-7 cell	Homo Sapiens	Bone Marrow	Bone marrow	40Y	Adult	Male	not available	 bcr-abl1 positive; Chronic myelogenous leukemia	not available	cell	KBM-7/HAP8; KBM7; KBM7 CELL	curated
 CC-SW-1	CC-SW-1	CVCL_A429	not available	Homo Sapiens	Biliary Tract	Liver	55Y	Adult	Female	Caucasian	Intrahepatic cholangiocarcinoma	not available	cell	CC-SW-I; CCSW-1; CCSW1	curated
 TTC-466	TTC-466	CVCL_A444	not available	Homo Sapiens	Bone	Pleural effusion; Lung	4Y-5Y	Children	Female	not available	Ewing sarcoma	not available	cell	TCC466; TTC466	curated
 NCI-H3118	NCI-H3118	CVCL_A464	not available	Homo Sapiens	Mouth	not available	not available	not available	Female	Caucasian	Mucoepidermoid carcinoma of parotid gland	not available	cell	H-3118; H3118	curated
@@ -1952,7 +1952,7 @@ NCC010	NCC010	CVCL_X505	not available	Homo Sapiens	Kidney	not available	not avai
 NCC021	NCC021	CVCL_X506	not available	Homo Sapiens	Kidney	not available	not available	not available	not available	Asian	Renal cell carcinoma	not available	cell	NCC021	curated
 STS-0421	STS-0421	CVCL_X508	not available	Homo Sapiens	Stomach	not available	not available	not available	not available	Caucasian	Gastric adenocarcinoma	not available	cell	STS 0421; STS0421	curated
 AGPN	AGPN	CVCL_X981	not available	Homo Sapiens	Bone	not available	not available	not available	not available	not available	Ewing sarcoma	not available	cell	CB-AGPN; CBAGPN	curated
-HAP1	HAP1	CVCL_Y019	not available	Homo Sapiens	Bone Marrow	Bone marrow	39Y	Adult	Male	not available	 bcr-abl1 positive; Chronic myelogenous leukemia	not available	cell	HAP-1	curated
+HAP1	HAP1	CVCL_Y019	not available	Homo Sapiens	Bone Marrow	Bone marrow	40Y	Adult	Male	not available	 bcr-abl1 positive; Chronic myelogenous leukemia	not available	cell	HAP-1	curated
 PGA-1	PGA-1	CVCL_Y545	not available	Homo Sapiens	Haematopoietic and Lymphoid	not available	not available	not available	Male	Caucasian	Chronic lymphocytic leukemia	not available	cell	PG A1; PGA1; CLL-PGA	curated
 HG-3	HG-3	CVCL_Y547	not available	Homo Sapiens	Blood	Peripheral blood	70Y	Elderly	Male	White	Chronic lymphocytic leukemia	not available	cell	HG3	curated
 WA-OSEL	WA-OSEL	CVCL_Y549	not available	Homo Sapiens	Blood	Peripheral blood	not available	Adult	Male	not available	Chronic lymphocytic leukemia	not available	cell	WA-OSEL; WA OSEL; WAOSEL4	curated

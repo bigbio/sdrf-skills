@@ -1,0 +1,5 @@
+id	repository	label	failed_criterion	reason	evidence
+PXD065808	PRIDE	exclude	2	Wild-type C57Bl/6J SILAM pulse-chase comparing sex and fear conditioning; autism only as post-hoc SFARI cross-reference.	paper methods (PMC13367811)
+PXD001074	PRIDE	exclude	2	SILAC compares BDNF-treated MNK1-WT vs MNK1-KO neurons (kinase knockout); Fragile X only as discussion/in-silico overlap.	paper methods + Fig. 7 legend (PMC4300335)
+PXD002292	PRIDE	include		Two-state SILAC of hCMEC/D3 brain endothelial cells under oxygen-glucose deprivation (in-vitro ischemic stroke model) vs normoxia; map stated in deposit.	PRIDE protocol; deposited search-result titles
+PXD038505	PRIDE	include		SILAC (K4R6/K8R10) phosphoproteomics of Cdkl5 KO vs WT cortical neurons, CDKL5 deficiency disorder (epileptic encephalopathy).	paper methods (PMC10713615); deposited Experimental_Design.xlsx; mqpar.xml

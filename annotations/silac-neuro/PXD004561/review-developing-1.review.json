@@ -1,0 +1,88 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD004561/PXD004561-developing.sdrf.tsv",
+ "artifact_sha256": "3e7c4ccfbd355637d3ed1c75081055c2dca07370ff0275c4c52714002917b228",
+ "verdict": "FAIL",
+ "summary": "Structurally valid, well-evidenced SDRF (64 rows, 32 Bio21 raw files, 4 strains x 4 pulse times x 2 fractions x SILAC L/H), but comment[cleavage agent details] omits Lys-C although the paper, the PRIDE sample protocol and sdrf-tools reconcile (MAJOR cleavage_agent_incomplete) all state a trypsin + Lys-C digest. The omission must be fixed before contribution.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh isolated subagent with no producer transcript; producer manifest/report treated as untrusted and re-checked against PRIDE files/all and project record (fetched afresh), paper full text (identity asserted: Visscher et al. 2016 Cell Rep, doi:10.1016/j.celrep.2016.08.025, PXD004561), deposited mqpar.xml, a fresh 600 kB raw-header range fetch, and OLS4"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD004561/PXD004561-developing.evidence.json",
+ "coverage": {
+  "deposited_runs": 82,
+  "annotated_runs": 32,
+  "matched_runs": 32,
+  "fraction": 0.39,
+  "missing": [],
+  "invented": []
+ },
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Active templates derived from file: ms-proteomics v1.2.0 + invertebrates v1.1.0 (v1.2.0 exists in the installed sdrf-pipelines template bundle; the sdrf-skills spec submodule only carries 1.1.0, and 70k rows in the target repo already use v1.2.0). All required columns of base/sample-metadata/ms-proteomics/invertebrates present; 39 columns on all 65 lines; reserved words only in columns allowing them (cell type not applicable, developmental stage not available); modification syntax correct with PP= for Protein N-term; (source name, assay name, label) unique; LF line endings."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 resolved all 19 accessions with matching labels, none obsolete: NCBITaxon:6239, BTO:0001489 whole body, PATO:0000461 normal, MS:1002416 Orbitrap Fusion, PRIDE:0000627, MS:1000422, MS:1000264, MS:1001251 Trypsin, PRIDE:0000608, PRIDE:0000599, UNIMOD:1/7/35/259/4. sdrf-tools check: 14/14 verified, 0 UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "fail",
+   "evidence": "Strains/genotypes match the paper strain list verbatim; times 4/7/9/24 h match the Methods and mqpar experiment names; MS settings (Orbitrap Fusion, HCD 30%, IonTrap MS2, 400-1500 m/z, Top Speed DDA) confirmed in a fresh raw header of Daf2_9h_WF; tolerances, mods and Lys8 label confirmed in mqpar.xml (MaxQuant 1.5.2.8, multiplicity 2). Fails on the digest: paper and PRIDE sampleProcessingProtocol both say '100 ng trypsin + Lys-C', SDRF declares Trypsin only."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE files/all (projectAccessions == PXD004561) lists 82 RAW; this SDRF's 32 data files all exist in PRIDE and equal the 32 filePaths of the Bio21 mqpar.xml; each file appears once per label (2 rows). Sibling day5adult SDRF holds 36 different files, zero overlap; together 68/82. The 14 unannotated 20141107_F1_HRV_SM_B1-C7 runs are excluded with a documented reason (experiment letters B/C of a 12-group A-L design cannot be mapped to strain or time from public evidence), which I confirmed from experimentalDesignTemplate.txt and the paper (7-time-point experiments include both the daf-2 duplicate and OW40/OW450)."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "Recomputed from file names for all 64 rows: strain, genotype (characteristics and factor), sampling time (characteristics and factor), fraction (AF=1, WF=2 per mqpar fractions), assay name = file stem, source name token and Lys0/Lys8 vs label all consistent. 16 conditions x 4 rows; no duplicate (source, bio rep, tech rep, fraction) coordinate. convert-openms run by producer reports 16 conditions x 4 files."
+  },
+  "omission_safety": {
+   "status": "fail",
+   "evidence": "No unsupported additions found: developmental stage left 'not available' rather than inferred, ETD instrument variant not asserted, unmappable HRV runs not invented. However material evidence was omitted: Lys-C, a second protease explicitly stated in both paper and PRIDE record, is absent from the SDRF."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "parse_sdrf validate-sdrf -t ms-proteomics -t invertebrates (run by reviewer under flock): WARNING: Term: N2 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon | WARNING: Term: CB1370 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon | WARNING: Term: CF1038 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon | WARNING: Term: DR1209 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon | Most seems to be fine. There were only warnings. |  | real\t15m45.046s | user\t0m6.601s | sys\t0m1.502s | exit 0 ; sdrf-tools check exit 0 CLEAN; sdrf-tools score 100/100; sdrf-tools structure OK exit 0; sdrf-tools reconcile vs fresh PRIDE record: MAJOR cleavage_agent_incomplete."
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "source_evidence",
+   "location": "comment[cleavage agent details], all rows 1-64",
+   "message": "Lys-C missing: the digest was trypsin + Lys-C but only NT=Trypsin;AC=MS:1001251 is declared.",
+   "evidence": "Paper Suppl. Exp. Procedures and PRIDE sampleProcessingProtocol: '100 ng trypsin + Lys-C (Promega) was added'; sdrf-tools reconcile against the PRIDE record reports MAJOR cleavage_agent_incomplete [missing: Lys-C]; the producer's own manifest limitations acknowledge it. 1,759 SDRFs in bigbio/sdrf-annotated-datasets already carry repeated comment[cleavage agent details] columns.",
+   "correction": "Add a second comment[cleavage agent details] column with NT=Lys-C;AC=MS:1001309 on every row (adjacent to the Trypsin column), regenerate via the producer pipeline, re-run validation and reconcile until cleavage_agent_incomplete is gone."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "source name rows 1-64",
+   "message": "Light and heavy channels of one worm population carry different source names (_Lys0/_Lys8), which reads as two biological samples.",
+   "evidence": "Pulsed SILAC: the manifest itself states both channels are the same population; the split exists only to keep the row coordinate unique."
+  },
+  {
+   "severity": "minor",
+   "category": "specificity",
+   "location": "characteristics[developmental stage] rows 1-64",
+   "message": "'not available' is safe, but the paper states the pulse starts at L4 and spans L4 to young adult; a stage at pulse start could be documented if the template convention allows.",
+   "evidence": "Methods: 'At L4 stage ... dispensed into 7 wells'."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "comment[cleavage agent details]",
+   "message": "MaxQuant searched with Trypsin/P (MS:1001313) while the reagent is annotated as Trypsin (MS:1001251); acceptable as reagent annotation but worth noting.",
+   "evidence": "mqpar.xml enzymes = Trypsin/P."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "comment[sdrf annotation tool]",
+   "message": "'manual curation' is cited to the PRIDE source in the manifest, which does not support it; cite the build pipeline instead.",
+   "evidence": "Manifest claim source_ids ['pride'] for annotation tool and sdrf version."
+  }
+ ]
+}

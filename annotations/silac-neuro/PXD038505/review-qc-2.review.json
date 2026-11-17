@@ -1,0 +1,92 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD038505/PXD038505-qc.sdrf.tsv",
+ "artifact_sha256": "552e2d15616b04baad39d994a58cd3167c2a09fe1c189409a2588fb797eac56a",
+ "verdict": "FAIL",
+ "summary": "Structurally valid and well evidenced (labels, cleavage per digest, file coverage, genotype orientation all verified), but characteristics[developmental stage] uses the generic EFO:0005857 'mouse embryo stage' on the basis of a false manifest claim that EFO has no E16.5 term; EFO:0002567 'embryonic day 16.5' exists and is not obsolete.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh isolated subagent (review-qc-2), no producer transcript; earlier review-* dirs not read; all key evidence re-fetched (PRIDE files/all, Europe PMC PMC10713615 XML, Experimental_Design.xlsx, IncorporationandConversionCalculations.xlsx, QC zip members by range read, 36 raw headers)"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD038505/PXD038505-qc.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Contract for ms-proteomics@1.1.0+vertebrates@1.1.0+clinical-metadata@1.0.0: all required columns present, order correct, reserved words only where allowed (cleavage agent allows not applicable), (source,assay,label) and (source,biorep,techrep,fraction) unique over 56 rows. clinical-metadata licenses characteristics[genotype]."
+  },
+  "ontology_integrity": {
+   "status": "fail",
+   "evidence": "All 18 controlled terms resolve in OLS with matching labels, none obsolete (MONDO:0100039, CL:0010012, UBERON:0000956, PATO:0000461, MS:1001742/1000083/1000133/1001251/1001309, PRIDE:0000627, UNIMOD 4/35/1/481/188/259/267; sdrf-tools check CLEAN). Fails on specificity: EFO:0002567 'embryonic day 16.5' exists but generic EFO:0005857 was used."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "Paper Methods: male E16.5 cortical neurons, C57 Bl/6, K4R6 'light'/K8R10 'heavy', trypsin o/n then Lys-C 2h + trypsin o/n, mixing/digestion checks after each step, LTQ Orbitrap Velos. Raw headers: A1-A16 'Digest of LB-n', A17-A26 RW3 'Digest of <mix>', RW5 'Digest of Digest of <mix>', all Top10CID, ITMS MS2, NCE 30. Label override verified: Incorporation summary.txt searches A1-A8 with Arg6;Lys4 (experiments medium 2.1-3.5) and A9-A16 with Arg10;Lys8 (heavy 2.1-3.5); calc sheet gives 92.7-97.6% incorporation for medium, so A1-A8 are K4R6 despite the design sheet. Mix-check channel identities match design sheet and paper (3 heavy WT/light KO, 3 heavy KO/light WT)."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE files/all (projectAccessions=PXD038505): 66 RAW. QC SDRF 36 unique .raw, phospho sibling 30; union = 66, intersection empty, no unmatched names; no peak lists."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "20 sources (KO1-3, WT1-3, Control1-4 x K4R6/K8R10 dish); 16 single-label incorporation runs (1 row each), 20 two-channel mix checks (2 rows each) = 56 rows. Dish pairing A1/A9 ... A8/A16 matches calc-sheet culture IDs 2.1-3.5. Trypsin-only on RW3 (36 rows), Trypsin+Lys-C on RW5 (20 rows), matching raw sample names."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No value asserts more than evidence supports; Control biology left not available; label naming deviation documented. Under-specification of developmental stage is reported under ontology_integrity."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "flock parse_sdrf validate-sdrf with -t ms-proteomics -t vertebrates -t clinical-metadata exit 0 (warning only: C57BL/6 not in NCBITaxon, column is free text); each template alone exit 0. sdrf-tools check CLEAN 18/18; score 94/100."
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "ontology",
+   "location": "characteristics[developmental stage], 36 Cdkl5 KO/WT rows (all rows not 'Control n ...')",
+   "message": "Generic 'mouse embryo stage' (EFO:0005857) used although the exact term exists; manifest claim 'EFO has no E16.5-specific term' is false.",
+   "evidence": "OLS EFO:0002567 'embryonic day 16.5' (def 'mouse embryo stage at age 16.5 days', not obsolete); Methods: 'cultured from individual male E16.5 embryos'.",
+   "correction": "Write 'embryonic day 16.5' in these rows and fix the manifest claim; apply the same check to the phospho sibling."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "comment[cleavage agent details] rows A1-A16 RW3",
+   "message": "Trypsin for the single-lysate incorporation digests (LB-1..16) is inferred; the Methods digestion text describes the mixed samples.",
+   "evidence": "Raw headers 'Digest of LB-n'; no enzyme in QC parameters.txt.",
+   "correction": "Record as an inference in manifest limitations."
+  },
+  {
+   "severity": "minor",
+   "category": "completeness",
+   "location": "file",
+   "message": "comment[collision energy] omitted though raw headers state NCE 30 for every QC run; manifest says it is unstated.",
+   "evidence": "Raw method 'Normalized Coll. Energy: 30.0'.",
+   "correction": "Optionally add '30 NCE'; correct the limitation."
+  },
+  {
+   "severity": "minor",
+   "category": "completeness",
+   "location": "file",
+   "message": "Recommended comment[precursor mass tolerance] absent.",
+   "evidence": "sdrf-tools score completeness issue.",
+   "correction": "Add from MaxQuant 1.3.0.5 defaults if documented, else leave."
+  },
+  {
+   "severity": "minor",
+   "category": "label",
+   "location": "comment[label]",
+   "message": "K4R6 written 'SILAC light' though it is isotope-labelled (no K0R0 arm); a reprocessor may assume unlabelled light.",
+   "evidence": "Paper calls K4R6 light; calc sheet/QC search call it medium; label mods listed.",
+   "correction": "Consider 'SILAC medium' jointly with sibling; acceptable as documented."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "Control 1-4 rows",
+   "message": "Organism part/cell type/material type 'not available' although controls are clearly from the same SILAC cortical-neuron culture series (LB-n, culture IDs 2.1/2.2).",
+   "evidence": "Calc-sheet culture IDs; same culture protocol.",
+   "correction": "Optional; conservative value is acceptable."
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD015293/PXD015293-trypsin.sdrf.tsv",
+ "artifact_sha256": "ba3ae7490ffe33aae2f665e5f7d0c43f3b4c7eb3d20aae579df2dd5ff07e4492",
+ "verdict": "FAIL",
+ "summary": "Structurally valid and ontologically clean, file coverage with the LysC sibling is complete and disjoint, and the digest split is defensible; but fraction identifiers contradict the deposited file names for 31 of the 48 A53T-mutant runs, and the heavy SILAM reference rows carry the control factor level, merging the spike-in reference into the 'normal' condition.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh isolated subagent with no producer transcript; producer manifest treated as untrusted and re-checked against PRIDE files/all (fetched fresh), NCBI PMC8628316 full text (title/PXD asserted), deposited mzid excerpts and a raw-header range read"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/PXD015293-trypsin.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Columns, order and value forms match the ms-proteomics v1.2.0 + vertebrates v1.1.0 contract (sdrf-tools contract); reserved words allowed where used; 0 duplicates on (source name, assay name, comment[label]) and 0 on (source, biological replicate, technical replicate, fraction); sdrf-tools structure OK."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "18 accessions resolved in OLS4 with exact labels, none obsolete: MS:1001910, MS:1000422, MS:1000484, MS:1001251, PRIDE:0000627/0000564/0000608/0000599/0000325/0000326, UNIMOD:4/35/188/1, MONDO:0005180, UBERON:0001891, EFO:0001272, PATO:0000461; sdrf-tools check CLEAN 17/17, no UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "PMC8628316 (title 'Complement and Coagulation Cascades...', cites PXD015293): one mouse per group, technical duplicate, ventral midbrain, LysC then trypsin on filter for A53T samples, 24 hpH fractions, Orbitrap Elite, DDA m/z 350-1550, HCD 32, 10 ppm/0.02 Da, CAM fixed, Ox+Lys6 variable, '3 month old male and female mice' (sex not available is correct), SILAM C57BL/6J. Acetyl protein N-term confirmed in mzid excerpts; 'Orbitrap Elite MS' confirmed in raw header of Mouse_SILAM_A53T_mutant_rep1_Tryp_f09a.raw."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE files/all (320 entries, projectAccessions={PXD015293}) has 303 RAW; trypsin SDRF 96 files (all *_Tryp_*), LysC sibling 207 (no *_Tryp_*); intersection 0, union = all 303 RAW, no non-raw files referenced."
+  },
+  "design_consistency": {
+   "status": "fail",
+   "evidence": "Recomputed: 4 mouse-level sources x light/heavy, tech reps 1/2 (51+45 runs). Fraction identifiers are file positions, not fractions (rows 106-123,133-150,159-171,180-192); factor value[disease] puts the 96 heavy reference rows into 'normal' (convert-openms: normal 144 vs PD 48)."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "Every value traced to paper, PRIDE, mzid or raw header; no invented demographics; sex left not available; organism part generalised to midbrain, not over-specified; strain free text as stated in Methods."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "parse_sdrf validate-sdrf -t ms-proteomics -t vertebrates exit 0 (2 NCBITaxon warnings on free-text strain); sdrf-tools check exit 0 CLEAN; sdrf-tools score 100/100 exit 0; sdrf-tools structure exit 0. Logs in review-trypsin-1/."
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "design/fraction identifier",
+   "location": "comment[fraction identifier], rows 106-123, 133-150 (A53T_mutant_rep1 f09a..f24) and 159-171, 180-192 (A53T_mutant_rep2 F12..F24); 62 rows / 31 files",
+   "message": "Fraction identifier is the file's position in its series, not the fraction. Mutant rep2 F12-F24 are labelled 9-21 and rep1 f10-f24 are shifted by 1-3, so fraction 9 means f09 in rep1 but F12 in rep2, and mutant fraction N no longer matches control fraction N.",
+   "evidence": "Deposited names carry the fraction number (Mouse_SILAM_A53T_mutant_rep2_Tryp_F12.raw -> fraction 9; ..._rep1_Tryp_f24.raw -> 27); rep2 has no suffixed files, so nominal numbers are already unique there. Paper: 24 concatenated fractions. Correction: every unsuffixed file carries the nominal number from its name (rep2 F12-F24 = 12-24; rep1 f10..f24 = 10..24); the three re-acquired files f09a/f10a/f11a get distinct identifiers that do not shift any other fraction, under a stated rule; uniqueness coordinate must still hold."
+  },
+  {
+   "severity": "important",
+   "category": "design/factor",
+   "location": "factor value[disease], heavy rows 25-48, 73-96, 124-150, 172-192",
+   "message": "The heavy SILAM spike-in reference (present in every run, including PD runs) carries factor level 'normal', the same level as the AAV1-GFP control arm, so the reference is counted as control samples.",
+   "evidence": "Producer's own convert-openms output: conditions normal=144 (48 GFP light + 96 reference heavy) vs PD=48. Paper quantifies each mouse relative to the SILAM reference (intensities divided by SILAM). Repository precedent PXD001364 gives the heavy reference factor values 'not applicable'. Correction: reference rows take a factor level that is not an experimental arm (e.g. 'not applicable'), characteristics[disease]=normal may stay; re-run validate-sdrf and convert-openms showing the reference outside the compared conditions."
+  },
+  {
+   "severity": "minor",
+   "category": "design/split",
+   "location": "file",
+   "message": "Split by digest is justified (LysC and Tryp series of the same mouse/rep are separately fractionated pools whose 1-24 fraction coordinates collide), but the manifest's 'cleavage agent holds one value per row' is not a constraint; rows can differ. Same fraction-position and reference-factor issues likely apply to the A53T rows of the LysC sibling (e.g. control rep2 LysC F09 missing).",
+   "evidence": "PRIDE file list; Methods sequential LysC -> trypsin on the 30 kDa filter."
+  },
+  {
+   "severity": "minor",
+   "category": "annotation",
+   "location": "characteristics[strain or breed] light rows",
+   "message": "'PrP-TetP-hA53T alpha-synuclein transgenic' is a genotype, not a strain; background is B6 (founders B6C3F2 crossed to B6).",
+   "evidence": "Methods transgenic generation paragraph."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "comment[technical replicate]",
+   "message": "'The entire amount was injected' conflicts with 'injected twice'; rep2 may be a second preparation of the same lysate rather than a re-injection. Value 2 is still a technical replicate of the same mouse.",
+   "evidence": "PMC8628316 Methods vs Results."
+  }
+ ]
+}

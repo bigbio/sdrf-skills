@@ -1,0 +1,72 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD015293/PXD015293-trypsin.sdrf.tsv",
+ "artifact_sha256": "5d0d5570f45ee37f48c449399418cce684e8273e3b6e50e368d8b6109e9575c3",
+ "verdict": "PASS",
+ "summary": "Independent review of the A53T *_Tryp_* SDRF (96 RAW, 192 SILAC light/heavy rows): spec, ontology, source, file mapping, design and RAW-method spot-checks all hold; only minor findings.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh subagent with no producer transcript; read only PXD015293-scoped files; did not read earlier review-* dirs"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/PXD015293-trypsin.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Columns match the sdrf-tools contract for ms-proteomics@1.1.0 + vertebrates@1.1.0 (all required present, order correct, reserved words only where allowed). (source name, assay name, comment[label]) and (source, biorep, techrep, fraction) unique over 192 rows. Repeated comment[cleavage agent details] for the sequential Lys-C->trypsin digest is an intended campaign convention with >1700 precedent files in the repo."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 resolved all 20 controlled terms with exact labels, defining ontology, not obsolete: MS:1001309, MS:1001251, MS:1001910, PRIDE:0000627, MS:1000422, PRIDE:0000564, PRIDE:0000608, PRIDE:0000599, MS:1000484, UNIMOD:4/35/188/1, PRIDE:0000325/0000326, UBERON:0001891, MONDO:0005180, EFO:0001272, PATO:0000461, NCBITaxon:10090. No UBERON exact 'ventral midbrain' exists, so midbrain is the justified parent."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "Re-read PMC8628316 (title verified) Methods: A53T samples LysC in centricon, flow-through = LysC series, retained material then trypsin = Tryp series (sequential Lys-C+trypsin correct); one mouse per group; technical duplicate/'injected twice'; DTT, IAA, hpH RP 24 fractions, Orbitrap Elite, HCD, DDA, 10 ppm/0.02 Da, Carbamidomethyl/Oxidation/Lys6; SILAM C57BL/6J 13C6-Lys; TetP-hA53T from B6C3F2 crossed to B6. PRIDE record PXD015293 concurs. Own HTTP range reads (4 MB) of 8 RAW (mutant rep1 f01, f10, f09a, f11a; control rep1 f24; control rep2 F01; mutant rep2 F12, F24): all 'Orbitrap Elite'; rep1 files NCE 32.0, FTMS o(300.0-1700.0), *_10HCD32_* methods; rep2 files NCE 35.0, o(350.0-1700.0), 120m_120_30_8HCD_35_long_column_011216.meth - every value matches its SDRF row."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "Fresh PRIDE files/all (320 entries, projectAccessions={PXD015293}, 303 RAW unique). Trypsin SDRF has 96 RAW (all *_Tryp_*), sibling LysC SDRF 207 (none Tryp); intersection 0, union = all 303 deposited RAW, no extra names, vendor .raw only."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "Recomputed per assay: exactly one light + one heavy row, data file = assay name + .raw, fraction id = file-name fraction number, technical replicate = rep1->1, rep2->2, re-acquired rep1 f09a/f10a/f11a->3 (RAW method confirms rep1 campaign), CE/scan range consistent with rep. GFP control->normal, tTA (hA53T expressed)->Parkinson disease, heavy SILAM pool->characteristics normal, factor not applicable. Missing mutant rep2 F09-F11 are absent in the deposit."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "Sex not available (paper: male and female, unspecified per mouse); pool size not asserted; developmental stage adult inferred from stated ages (~9 mo / 2 mo); Acetyl protein N-term supported by deposited mzid Modification elements (A53T_mutant_rep1 and A53T_control_rep1 mzid contain UNIMOD:1); no invented demographics or sample maps."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "parse_sdrf validate-sdrf -t ms-proteomics -t vertebrates: exit 0, only 2 ncbitaxon warnings on strain free text; sdrf-tools check exit 0 (18/18 verified, CLEAN); sdrf-tools score exit 0 (100/100)."
+  }
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "category": "sample_metadata",
+   "location": "characteristics[strain or breed], light rows",
+   "message": "'B6C3F2 x C57BL/6' is free text (validator warning) and the hA53T transgene/genotype is carried only in source name.",
+   "evidence": "vertebrates template recommends NCBITaxon strain names; no genotype column licensed."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "source name, heavy rows",
+   "message": "The single SILAM reference pool is split into two per-mixture source names; acceptable for row uniqueness but implies two distinct sources.",
+   "evidence": "Methods: one pool of SILAM lysate mixed into each model lysate."
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "comment[modification parameters] Acetyl PP=Protein N-term",
+   "message": "Protein N-terminal position was verified by the producer only in a LysC-series mzid (PBS_rep2); A53T mzid shows Acetyl presence but position not re-checked.",
+   "evidence": "evidence/search/modification_counts.txt"
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "comment[technical replicate]=3 (rep1 f09a/f10a/f11a)",
+   "message": "Re-acquisition treated as further technical replicate; deposit does not document re-injection vs split.",
+   "evidence": "RAW methods confirm rep1 campaign; manifest limitation states the assumption."
+  }
+ ]
+}

@@ -1,0 +1,218 @@
+# Validation log PXD034158 (an earlier round-1 attempt was stopped while still waiting on the shared lock; nothing ran)
+### ROUND 1 [lfq] $ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+### ROUND 1 [lfq] (cwd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/openms_lfq) $ parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv
+Factor columns: ['factor value[age]', 'factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (4): dict_keys(['2M|Htt3xFlag Q140/+', '10M|Htt3xFlag Q140/+', '10M|Htt3xFlag Q20/+', '2M|Htt3xFlag Q20/+'])
+Files per condition: dict_values([18, 18, 18, 18])
+SUCCESS (WARNINGS=0): /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv
+exit code: 0
+experimental_design.tsv
+openms.tsv
+
+### ROUND 1 [silac] $ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+### ROUND 1 [silac] (cwd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/openms_silac) $ parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv
+Factor columns: ['factor value[age]', 'factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['2M|Htt3xFlag Q20/+', '2M|wild type', '2M|Htt3xFlag Q140/+'])
+Files per condition: dict_values([6, 12, 6])
+SUCCESS (WARNINGS=0): /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv
+exit code: 0
+experimental_design.tsv
+openms.tsv
+
+DONE1
+### sdrf-tools structure (both files)
+== lfq
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+== silac
+Structure OK: acquisition, template declaration and column order are consistent.
+exit 0
+
+### sdrf-tools reconcile --record evidence/pride.json (Step 8.5; both BLOCKER kinds rebutted in report)
+== lfq
+PXD034158: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+exit 1
+== silac
+PXD034158: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+exit 1
+
+### schema-check / manifest-coverage: all exit 0 (see report)
+
+######## ROUND 2 (after external review FAIL: pinned templates, sdrf version v1.1.0, LFQ factor value[sample type], SILAC factor value[age] dropped)
+### structure + reconcile
+== lfq
+Structure OK: acquisition, template declaration and column order are consistent.
+structure exit 0
+PXD034158: 2 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+  BLOCKER  labelled_annotated_as_label_free (comment[label]): the record registers a labelled quantification method  [quantificationMethods = {'@type': 'CvParam', 'cvLabel': 'PRIDE', 'accession': 'PRIDE:0000315', 'name': 'SILAC'}]
+reconcile exit 1
+== silac
+Structure OK: acquisition, template declaration and column order are consistent.
+structure exit 0
+PXD034158: 1 value(s) disagree with the deposit record:
+
+  BLOCKER  cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin as a digest reagent; the annotation may have matched the enzyme in another role
+reconcile exit 1
+### ROUND 2 [lfq] $ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'clinical-metadata@1.0.0' not found in registry
+exit code: 1
+
+### ROUND 2 [lfq] (cwd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/openms_lfq) $ parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv
+Factor columns: ['factor value[age]', 'factor value[genotype]', 'factor value[sample type]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (8): dict_keys(['2M|Htt3xFlag Q140/+|study sample', '2M|Htt3xFlag Q140/+|negative control', '10M|Htt3xFlag Q140/+|study sample', '10M|Htt3xFlag Q140/+|negative control', '10M|Htt3xFlag Q20/+|study sample', '10M|Htt3xFlag Q20/+|negative control', '2M|Htt3xFlag Q20/+|study sample', '2M|Htt3xFlag Q20/+|negative control'])
+Files per condition: dict_values([9, 9, 9, 9, 9, 9, 9, 9])
+SUCCESS (WARNINGS=0): /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv
+exit code: 0
+experimental_design.tsv
+openms.tsv
+
+### ROUND 2 [silac] $ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'clinical-metadata@1.0.0' not found in registry
+exit code: 1
+
+### ROUND 2 [silac] (cwd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/openms_silac) $ parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['Htt3xFlag Q20/+', 'wild type', 'Htt3xFlag Q140/+'])
+Files per condition: dict_values([6, 12, 6])
+SUCCESS (WARNINGS=0): /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv
+exit code: 0
+experimental_design.tsv
+openms.tsv
+
+DONE2
+# NOTE: round-2 validate-sdrf above failed on tool syntax (stock parse_sdrf cannot resolve name@version), not on the SDRF. Round 2b re-runs it on the SAME files (no rebuild), stock CLI with bare names and pinned via parse_sdrf_pinned.py.
+### ROUND 2b [lfq] (stock CLI, bare names) $ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+### ROUND 2b [lfq] (pinned) $ /home/user/sdrf-skills/.venv/bin/python /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/parse_sdrf_pinned.py validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0
+[pinned] ms-proteomics -> 1.1.0
+[pinned] vertebrates -> 1.1.0
+[pinned] clinical-metadata -> 1.0.0
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+### ROUND 2b [lfq] (cwd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/openms_lfq) $ parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv
+Factor columns: ['factor value[age]', 'factor value[genotype]', 'factor value[sample type]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (8): dict_keys(['2M|Htt3xFlag Q140/+|study sample', '2M|Htt3xFlag Q140/+|negative control', '10M|Htt3xFlag Q140/+|study sample', '10M|Htt3xFlag Q140/+|negative control', '10M|Htt3xFlag Q20/+|study sample', '10M|Htt3xFlag Q20/+|negative control', '2M|Htt3xFlag Q20/+|study sample', '2M|Htt3xFlag Q20/+|negative control'])
+Files per condition: dict_values([9, 9, 9, 9, 9, 9, 9, 9])
+SUCCESS (WARNINGS=0): /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-lfq.sdrf.tsv
+exit code: 0
+experimental_design.tsv
+openms.tsv
+
+### ROUND 2b [silac] (stock CLI, bare names) $ parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv -t ms-proteomics -t vertebrates -t clinical-metadata
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+### ROUND 2b [silac] (pinned) $ /home/user/sdrf-skills/.venv/bin/python /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/parse_sdrf_pinned.py validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0
+[pinned] ms-proteomics -> 1.1.0
+[pinned] vertebrates -> 1.1.0
+[pinned] clinical-metadata -> 1.0.0
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+exit code: 0
+
+### ROUND 2b [silac] (cwd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/openms_silac) $ parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[sample type]', 'characteristics[organism]', 'characteristics[organism part]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['Htt3xFlag Q20/+', 'wild type', 'Htt3xFlag Q140/+'])
+Files per condition: dict_values([6, 12, 6])
+SUCCESS (WARNINGS=0): /home/user/sdrf-annotated-datasets/datasets/PXD034158/PXD034158-silac.sdrf.tsv
+exit code: 0
+experimental_design.tsv
+openms.tsv
+
+DONE2b
+### ROUND 2 schema-check / manifest-coverage
+PXD034158-lfq.evidence.json: valid evidence-manifest
+schema exit 0
+Manifest covers every column with a value (26 column(s)).
+coverage exit 0
+PXD034158-silac.evidence.json: valid evidence-manifest
+schema exit 0
+Manifest covers every column with a value (24 column(s)).
+coverage exit 0

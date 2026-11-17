@@ -1,0 +1,108 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD034158/PXD034158-silac.sdrf.tsv",
+ "artifact_sha256": "1e1d615c47914e0b8b96494bcf701b899c58e6fc81a66041043de32e1ef19819",
+ "verdict": "FAIL",
+ "summary": "Independent review: biology, ontology terms, SILAC channel design and file mapping are supported, but comment[sdrf version] declares a non-existent SDRF-Proteomics specification version (v1.2.0); fix to v1.1.0 and re-review.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh isolated subagent; no producer transcript; producer manifest/extracts treated as untrusted and re-checked against PRIDE, PMC9540350 text, OLS4, raw/msf range reads"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/PXD034158-silac.evidence.json",
+ "coverage": {
+  "deposited_runs": 84,
+  "annotated_runs": 12,
+  "matched_runs": 12,
+  "fraction": 1.0,
+  "missing": [],
+  "invented": []
+ },
+ "checks": {
+  "spec_compliance": {
+   "status": "fail",
+   "evidence": "Columns/order/reserved words/mod syntax conform to ms-proteomics+vertebrates+clinical-metadata (characteristics[age] licensed only by human; genotype licensed by clinical-metadata). But comment[sdrf version]=v1.2.0: VERSIONING.adoc defines it as the specification version and lists only v1.0.0/v1.1.0."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 resolved non-obsolete: NCBITaxon:10090, UBERON:0000956/0000955, MONDO:0007739, PATO:0000461, EFO:0001272, MS:1002523/1001251/1000422/1000484, PRIDE:0000627/0000609/0000600/0000326/0000325/0000899/0001013, UNIMOD:4/35/7/766/188 (labels exact). sdrf-tools check 'hallucinated Met-loss+Acetyl' is a false positive (UNIMOD:766 label is Met-loss+Acetyl)."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "PMC9540350 Methods: Htt3xFlagQ20/+ and Q140/+ congenic C57BL/6J, cortex, 2M SILAC in duplicate, 1:1 w:w with 13C6-Lys whole brain (Cambridge Isotopes) of wild-type age/sex-matched mice, TCEP/chloroacetamide, trypsin FASP, 3 StageTip fractions, DDA on Q Exactive HF; raw header of 20220128_2M20Q1_IP_F1.raw reads 'Q Exactive HF - Orbitrap MS'; msf range read confirms Trypsin (Full), Label:13C(6) K, template PWF_QE_Mouse_Trypsin_SILAC_Lys6. Reconcile trypsin BLOCKER rebutted by paper + msf."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "Fresh PRIDE files/all (projectAccessions=PXD034158): 84 .raw. SILAC SDRF holds the 12 20220128_*_IP_F1-3.raw files, each with one light and one heavy row; LFQ sibling holds the other 72; overlap 0, missing 0, invented 0; no peak lists."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "2 genotypes x 2 replicates x 3 fractions = 12 runs x 2 channels = 24 rows; (source, assay, label) and (source, biorep, techrep, fraction) unique; light = study sample cortex, heavy = reference brain; convert-openms gave 3 conditions per producer log."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "sex, heavy strain and fractionation chemistry left 'not available' rather than guessed; no invented per-sample demographics. Inferred values (adult, HCD, orbitrap MS2) are documented in the manifest and follow from instrument/ages."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "Reviewer-run parse_sdrf validate-sdrf (sdrf-pipelines 0.1.7) union of 3 templates and each template separately: see val_*.txt in review dir; sdrf-tools check exit 1 (one false-positive, see ontology), sdrf-tools score 97/100."
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "spec_compliance",
+   "location": "comment[sdrf version], rows 1-24",
+   "message": "Declares SDRF-Proteomics specification v1.2.0, which does not exist; the value is the ms-proteomics template version copied from the contract header.",
+   "evidence": "spec/sdrf-proteomics/VERSIONING.adoc: comment[sdrf version] is the specification version; version table lists v1.0.0 and v1.1.0 only; template versions are separate (comment[sdrf template] VV=). sdrf-annotate SKILL.md Step 8 instructs the conflation.",
+   "correction": "Set comment[sdrf version] to v1.1.0 in all rows (and fix sdrf-annotate Step 8 upstream)."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "factor value[age]",
+   "message": "Constant (2M) in every row and has no characteristics counterpart; not a study variable within this file.",
+   "evidence": "sdrf-tools score: 'Factor value[age] has no matching characteristics or comment column'.",
+   "correction": "Drop factor value[age] here or add characteristics[age]=2M if accepted for vertebrates."
+  },
+  {
+   "severity": "minor",
+   "category": "source_evidence",
+   "location": "comment[fractionation method]",
+   "message": "Chemistry is traceable: the cited prior protocol (PXD025510) states 'fractionated over SDB-RPS StageTips'.",
+   "evidence": "PRIDE PXD025510 sampleProcessingProtocol.",
+   "correction": "Optional: annotate if a matching PRIDE term exists; 'not available' is acceptable."
+  },
+  {
+   "severity": "minor",
+   "category": "spec_compliance",
+   "location": "comment[sdrf template] NT=ms-proteomics;VV=v1.2.0",
+   "message": "ms-proteomics 1.2.0 exists in sdrf-pipelines' bundled templates (CI) but not in the pinned spec submodule, and upstream sdrf-templates main folded it into 1.1.0 on 2026-11-11.",
+   "evidence": "spec submodule a9cb494 has only 1.1.0; sdrf-templates commit 9fac3f2.",
+   "correction": "Track; consider VV=v1.1.0 once sdrf-pipelines picks up the fold."
+  },
+  {
+   "severity": "minor",
+   "category": "source_evidence",
+   "location": "comment[fragment mass tolerance]",
+   "message": "0.02 Da rests on producer's msf extract (Sequest node not reached in reviewer's 48 MiB range read); paper says 20 ppm.",
+   "evidence": "msf_params_silac_20220128_2M20Q1_IP.txt lines 48-49.",
+   "correction": "None required."
+  },
+  {
+   "severity": "minor",
+   "category": "ontology",
+   "location": "characteristics[strain or breed] / developmental stage",
+   "message": "C57BL/6J not in NCBITaxon (validator warning, free text allowed); 'adult' inferred from 2-month age.",
+   "evidence": "validator warning; manifest.",
+   "correction": "None required."
+  },
+  {
+   "severity": "minor",
+   "category": "tooling",
+   "location": "comment[modification parameters] Met-loss+Acetyl",
+   "message": "sdrf-tools check reports a false-positive hallucination.",
+   "evidence": "OLS UNIMOD:766 = Met-loss+Acetyl.",
+   "correction": "Fix the checker, not the SDRF."
+  }
+ ]
+}

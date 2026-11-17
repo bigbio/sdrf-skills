@@ -1,0 +1,11 @@
+{
+ "accession": "PXD065808",
+ "label": "exclude",
+ "failed_criterion": 2,
+ "reason": "All mice wild-type C57Bl/6J (sex x fear-conditioning SILAM pulse-chase); ASD appears only as post hoc SFARI risk-gene cross-referencing and discussion, no disease model or patient material.",
+ "evidence": [
+  "manuscript Methods: C57Bl/6J from Jackson; Lys-13C6 heavy diet pulse, Lys-12C6 chase",
+  "manuscript Methods: SFARI Gene database cross-reference for ASD risk genes",
+  "PRIDE files: 40 .raw, txt.zip, FASTA"
+ ]
+}

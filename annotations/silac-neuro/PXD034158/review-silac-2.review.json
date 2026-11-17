@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "artifact": "datasets/PXD034158/PXD034158-silac.sdrf.tsv",
+  "artifact_sha256": "5c0a02d00128e24668bc6799f3d7e87017bb5ef3cc834f3332791baff3cab818",
+  "verdict": "PASS",
+  "summary": "Independent review of the 24-row SILAC (Lys6) FLAG-Htt IP-MS SDRF of PXD034158 (12 raw files x light/heavy) found no blocking or important issues; all values trace to PRIDE, the MCP paper (PMC9540350) or the deposited PD .msf parameters, and all controlled terms resolve in OLS.",
+  "reviewer_context": {
+    "independent": true,
+    "context": "fresh subagent without producer transcript; read no earlier review-* dirs; re-fetched PRIDE record, PRIDE files/all and Europe PMC full text independently"
+  },
+  "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD034158/PXD034158-silac.evidence.json",
+  "checks": {
+    "spec_compliance": {"status": "pass", "evidence": "Resolved ms-proteomics 1.1.0, vertebrates 1.1.0, clinical-metadata 1.0.0 with spec/scripts/resolve_templates.py: no required column missing, no unlicensed column (genotype licensed by clinical-metadata), no mutual exclusion among the three. 24 rows x 38 columns, reserved words only where allow_not_available is true. Modification syntax NT/AC/TA/PP/MT correct (Met-loss+Acetyl with PP=Protein N-term)."},
+    "ontology_integrity": {"status": "pass", "evidence": "OLS4 exact lookups, none obsolete: UNIMOD:4/35/7/766/188, MS:1002523/1001251/1000422/1000484, PRIDE:0000627/0000609/0000600/0000325/0000326/0000899/0001013 (study sample), MONDO:0007739, PATO:0000461, UBERON:0000956/0000955, EFO:0001272, NCBITaxon:10090; C57BL/6J = EFO:0000606. Labels match exactly."},
+    "source_evidence": {"status": "pass", "evidence": "Europe PMC PMC9540350 (title HTT-OMNI, cites PXD034158): Htt3xFlagQ20/+ and Q140/+ congenic C57BL/6J, male and female with sex-matched pairs, cortex light mixed 1:1 with 13C6-Lys whole brain of wild-type age-matched mice (CIL MT-LYSC6-MB-PK, 2 months), duplicate SILAC experiments, TCEP/chloroacetamide, trypsin FASP, 3 StageTip fractions, Q Exactive HF DDA, 4 ppm precursor, mods incl. heavy 13C6-Lys variable. PRIDE record: Q Exactive HF, SILAC, Mus musculus. .msf Sequest node 4 ppm / 0.02 Da, Label:13C(6) K dynamic (producer extract, whose embedded raw paths name these files)."},
+    "file_mapping": {"status": "pass", "evidence": "PRIDE files/all (projectAccessions = PXD034158) lists 84 .raw. SILAC SDRF holds the 12 20220128_*_IP_F{1,2,3}.raw, each twice (light+heavy); sibling LFQ SDRF holds 72; union = 84, overlap 0, missing 0, invented 0. No peak lists referenced."},
+    "design_consistency": {"status": "pass", "evidence": "2 genotypes x 2 replicates x 3 fractions = 12 runs, 2 labels per run. Q20/Q140 and rep 1/2 match file names; fractions 1-3 from _F suffix; (source, bio rep, tech rep, fraction) and (source, assay, label) both unique. factor value[genotype] mirrors characteristics[genotype]; age constant (2 months) so not a factor."},
+    "omission_safety": {"status": "pass", "evidence": "Unknowns kept as reserved words (sex per replicate, heavy reference strain, fractionation chemistry SDB-RPS with no PRIDE:0000550 descendant). No invented demographics or channel maps; inferred values (adult, HCD, orbitrap) are disclosed in the manifest and implied by instrument/age."},
+    "deterministic_validation": {"status": "pass", "evidence": "flock ... parse_sdrf validate-sdrf --sdrf_file <artifact> -t ms-proteomics -t vertebrates -t clinical-metadata: exit 0 (warning only: C57BL/6J not in ncbitaxon). Per template ms-proteomics/vertebrates/clinical-metadata: each exit 0. sdrf-tools score 100/100. sdrf-tools check exit 1 on a single false positive (Met-loss+Acetyl reported hallucinated, but UNIMOD:766 label is exactly Met-loss+Acetyl in OLS)."}
+  },
+  "findings": [
+    {"severity": "minor", "category": "tooling", "location": "comment[modification parameters] (4th), rows 1-24", "message": "sdrf-tools check flags 'Met-loss+Acetyl' as hallucinated; this is a checker false positive (likely '+' in the OLS query).", "evidence": "OLS4 unimod exact search and term UNIMOD:766 both return label Met-loss+Acetyl."},
+    {"severity": "minor", "category": "validator-warning", "location": "characteristics[strain or breed] rows with C57BL/6J", "message": "parse_sdrf warns C57BL/6J is not in ncbitaxon; the value is correct (EFO:0000606) and the column is free text in TERMS.tsv.", "evidence": "TERMS.tsv strain or breed values = free text."},
+    {"severity": "minor", "category": "completeness", "location": "file", "message": "Recommended characteristics[cell type] absent; acceptable for whole-tissue lysate but could be 'not applicable'.", "evidence": "Recommended in all three resolved templates."},
+    {"severity": "minor", "category": "inference", "location": "characteristics[developmental stage] rows 1-24", "message": "'adult' is inferred from 2-month age, not stated; disclosed in the manifest.", "evidence": "Paper gives ages only."}
+  ]
+}

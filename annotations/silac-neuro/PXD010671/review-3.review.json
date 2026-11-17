@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "artifact": "datasets/PXD010671/PXD010671-mapped.sdrf.tsv",
+  "artifact_sha256": "fda7c24d040bbcda2ba07d276e37ec62e43e01947c8ddca8e45219f7d4ebef70",
+  "verdict": "PASS",
+  "summary": "Independent review (review-3) of the PXD010671 in vivo SILAC (K6 pulse) SDRF, 2344 rows / 1172 runs / 5 cohorts. Validation, ontology terms, the run-to-mouse/fraction/genotype map, technical metadata and file coverage were checked against primary sources. No blocker or important findings; minor findings only.",
+  "reviewer_context": {
+    "independent": true,
+    "context": "fresh isolated subagent reviewer; no producer transcript; earlier review-* dirs not read; producer manifest/report treated as untrusted"
+  },
+  "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/PXD010671.evidence.json",
+  "checks": {
+    "spec_compliance": {
+      "status": "pass",
+      "evidence": "Active templates derived from the file: ms-proteomics v1.1.0 + vertebrates v1.1.0 + clinical-metadata v1.0.0 (all released latest in spec templates.yaml; vertebrates excludes only human/invertebrates/plants). The sdrf-tools contract for the pinned union has every required column present; characteristics[age] is licensed only by human, so its absence is correct. Reserved words used only in sex/strain, which allow not available. 38 columns on every row; 0 duplicates of (source, bio rep, tech rep, fraction) and 0 of (source, assay, label)."
+    },
+    "ontology_integrity": {
+      "status": "pass",
+      "evidence": "All 22 controlled accessions resolved in OLS4 with matching labels and not obsolete: NCBITaxon:10090, UBERON:0002421/0000956/0002240/0001969, MONDO:0004975/0004976, PATO:0000461, EFO:0001272, PRIDE:0000627 (under PRIDE:0000659), PRIDE:0000325/0000326 (SILAC), PRIDE:0000568 (under PRIDE:0000550), PRIDE:0000608/0000599, MS:1002634, MS:1001251, MS:1000422 (under MS:1000044), UNIMOD:4/1/35/188. sdrf-tools check: 23/23 verified, 0 UNIMOD swaps."
+    },
+    "source_evidence": {
+      "status": "pass",
+      "evidence": "Paper PMC8816717/PMID 34979241 (identity confirmed in Europe PMC) Methods: K6 food 6-8 days, five experiments (P113/P285 TgCRND8, P186/P548 AppNL-F, P120 SOD1-G93A), hippocampus/cortex/spinal cord + plasma, 16 gel sections, SDS-PAGE, in-gel trypsin, DTT/IAA, Q-Exactive Plus, top-10 DDA HCD 27, m/z 300-2000, 20 ppm MS1. Raw headers of 3 runs I fetched myself (MMD1780A150, MMD2632A46, MMD2493A1) read 'Q Exactive Plus - Orbitrap MS', scan range 300-2000, loop count 10. MaxQuant summary/parameters: Multiplicity 2 / Lys6, Carbamidomethyl fixed, Acetyl (Protein N-term) + Oxidation (M) variable, MS/MS tol FTMS 20 ppm in all 43 folders. P113 genotype (no genotype in experiment names) re-derived: per-mouse LFQ intensities in txt_LFQ_1/proteinGroups.txt best-match Table S3a TgCRND8_P113 diagonally (299/300/301 -> WT_LFQ_1-3, 350/351/352 -> TG_LFQ_1-3); App LFQ ~3x higher in 350-352."
+    },
+    "file_mapping": {
+      "status": "pass",
+      "evidence": "PRIDE v3 files/all fetched fresh (projectAccessions = {PXD010671}): 1186 .raw + 5 zips. SDRF holds 1172 unique .raw, each on exactly 2 rows (SILAC light + heavy), assay name = file stem; 0 files not deposited; the 14 deposited files left out are exactly MMD1780A147LC3_C7 ... MMD1780A160LC3_H8. Every deposited raw is in a deposited summary.txt; the 52 searched but not deposited runs are MMD1983*/MMD1987*. I re-downloaded the P120 (7) and P186 (9) summary.txt files from the FTP zips by HTTP range: byte-identical to the producer's copies. A fresh P113 re-read failed on the 4.9 GB zip, so P113/P285/P548 used the producer copies, cross-checked against Table S7."
+    },
+    "design_consistency": {
+      "status": "pass",
+      "evidence": "Per-cohort run->experiment->source comparison against all 43 MaxQuant folders: every experiment maps to one SDRF source (P113 52, P285 54, P186 42, P548 54, P120 42 experiments; 0 multi-source), and fraction identifier = MaxQuant Fraction for every run (0 mismatches). 144 sources x 2 channels = 288 source names; characteristics are constant per source and per biological replicate. Genotype is consistent with disease (wild type -> normal; models -> AD/ALS). Factor values equal their characteristics. Each biological replicate sits in one sample preparation batch. Light and heavy rows differ only in source suffix and label. P186 _44_/_59_ style ids, P548 _635_ ids and P120 Tg _42_/_43_/_44_ ids are consistent across fractions and plasma."
+    },
+    "omission_safety": {
+      "status": "pass",
+      "evidence": "Sex and strain are 'not available' (the paper says only 'age-, sex-, and background-matched'), and developmental stage 'adult' follows from the stated ages P113-P548. The 14 doubly assigned P113 runs are excluded rather than guessed. Plasma of P285/P548 is not linked to the brain animals. P120 plasma is linked by index, supported by Tg file ids 42/43/44 shared with the spinal-cord runs. No per-sample value rests on a cohort summary alone, except the cohort-level labelling and technical constants, which are protocol-wide."
+    },
+    "deterministic_validation": {
+      "status": "pass",
+      "evidence": "Run by reviewer: flock parse_sdrf validate-sdrf -s <artifact> -t ms-proteomics -t vertebrates -t clinical-metadata -> 'Everything seems to be fine. Well done.' exit 0; sdrf-tools check exit 0 (CLEAN); sdrf-tools score 100/100 exit 0; sdrf-tools structure OK exit 0. Logs in review-3/{val,check,score,structure}.txt."
+    }
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "provenance",
+      "location": "PXD010671.evidence.json limitations[6] vs claim characteristics[biological replicate]",
+      "message": "The manifest contradicts itself. The limitation says P120 plasma cannot be linked to the brain mouse ids, but the biological replicate claim (and the SDRF, bio rep 37-42) links P120 plasma to the spinal-cord animals.",
+      "evidence": "In the SDRF, P120 plasma sources share bio rep 37-42 with the spinal-cord sources. The Tg files carry _42_/_43_/_44_ in both MMD2555 (spinal) and MMD2632A46-60 (plasma). Correction: drop P120 from that limitation sentence."
+    },
+    {
+      "severity": "minor",
+      "category": "design",
+      "location": "characteristics[biological replicate] P285 plasma (10-12, 16-18) and P548 plasma (28-30, 34-36)",
+      "message": "Separate animal numbers for unlinkable plasma read as 6 animals per genotype in these cohorts, while the paper describes 3 mice per genotype.",
+      "evidence": "Paper: 'Three TgCRND8 and three ... WT mice were K6 labeled'. P285/P548 plasma experiments are index-named. Conservative and documented, so not blocking. An author-confirmed link would allow merging."
+    },
+    {
+      "severity": "minor",
+      "category": "design",
+      "location": "source name (detergent fraction suffix _DOC/_TritonX100-prec/_TritonX100-sol/_GDN/_homogenate-supernatant)",
+      "message": "The biochemical detergent fraction, a real design axis (Table S7 'Fraction 1-4'), is carried only in the source name.",
+      "evidence": "No column in the active templates fits it (enrichment process = children of EFO:0009090), and it is documented in the manifest limitations. Consider a free-text comment column if the spec gains one."
+    },
+    {
+      "severity": "minor",
+      "category": "spec",
+      "location": "comment[label]",
+      "message": "The labels are the bare 'SILAC light'/'SILAC heavy', not the NT=;AC= form that the contract prints for PRIDE-backed comments.",
+      "evidence": "The ms-proteomics 1.1.0 YAML examples use bare 'SILAC light'/'SILAC heavy' and parse_sdrf accepts them, so this is informational only."
+    }
+  ]
+}

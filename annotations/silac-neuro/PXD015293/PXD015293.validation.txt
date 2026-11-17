@@ -1,0 +1,200 @@
+### ROUND 1: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: PrP-TetP-hA53T alpha-synuclein transgenic in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+EXIT CODE: 0
+### ROUND 1: sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+EXIT CODE: 0
+### ROUND 1: (cd conv_lysc) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t2
+### ROUND 1 convert-openms (lysc): interrupted while waiting on the shared parse_sdrf lock after a heavy-channel sex fix (female -> not available); not completed. EXIT CODE: n/a (killed)
+### ROUND 2: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: PrP-TetP-hA53T alpha-synuclein transgenic in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+EXIT CODE: 0
+### ROUND 2: sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+EXIT CODE: 0
+### ROUND 2: (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/conv_lysc) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (2): dict_keys(['normal', 'Parkinson disease'])
+Files per condition: dict_values([315, 99])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 414 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+EXIT CODE: 0
+total 80
+drwxr-xr-x 2 root root  4096 Nov 13 07:33 .
+drwxr-xr-x 5 root root  4096 Nov 13 07:23 ..
+-rw-r--r-- 1 root root 18451 Nov 13 07:33 experimental_design.tsv
+-rw-r--r-- 1 root root 50067 Nov 13 07:33 openms.tsv
+### ROUND 2: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: PrP-TetP-hA53T alpha-synuclein transgenic in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+EXIT CODE: 0
+### ROUND 2: sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+EXIT CODE: 0
+### ROUND 2: (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/conv_trypsin) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (2): dict_keys(['normal', 'Parkinson disease'])
+Files per condition: dict_values([144, 48])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 192 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+EXIT CODE: 0
+total 48
+drwxr-xr-x 2 root root  4096 Nov 13 07:49 .
+drwxr-xr-x 6 root root  4096 Nov 13 07:40 ..
+-rw-r--r-- 1 root root  9978 Nov 13 07:49 experimental_design.tsv
+-rw-r--r-- 1 root root 24897 Nov 13 07:49 openms.tsv
+### ===== REVIEW ROUND 1 FIXES (nominal fraction ids, re-acquisition tech reps, heavy factor not applicable, strain background) =====
+### ROUND 3: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: B6C3F2 x C57BL/6 (B6C3F2 founders crossed to B6) in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+EXIT CODE: 0
+### ROUND 3: sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+EXIT CODE: 0
+### ROUND 3: (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/conv_lysc) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t2
+### ROUND 3 above (templates ms-proteomics v1.2.0) superseded/interrupted: campaign GLOBAL_FIX pins ms-proteomics@1.1.0; rebuilt and re-validated as ROUND 4.
+### ROUND 4: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'ms-proteomics@1.1.0' not found in registry
+EXIT CODE: 1
+### ROUND 4: sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+EXIT CODE: 0
+### ROUND 4: (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/conv_lysc) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['normal', 'not applicable', 'Parkinson disease'])
+Files per condition: dict_values([108, 207, 99])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 414 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+EXIT CODE: 0
+### ROUND 4: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv -t ms-proteomics@1.1.0 -t vertebrates@1.1.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'ms-proteomics@1.1.0' not found in registry
+EXIT CODE: 1
+### ROUND 4: sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+EXIT CODE: 0
+### ROUND 4: (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/conv_trypsin) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['normal', 'not applicable', 'Parkinson disease'])
+Files per condition: dict_values([48, 96, 48])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 192 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+EXIT CODE: 0
+### NOTE: parse_sdrf (sdrf-pipelines registry) rejects the @1.1.0 pin ('Schema ms-proteomics@1.1.0 not found in registry', exit 1 above, a CLI limitation, not an SDRF error). It exposes no version option; re-run with the bare template names (registry ms-proteomics = 1.2.0, a superset of the 1.1.0 columns used here).
+### ROUND 4b: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: B6C3F2 x C57BL/6 (B6C3F2 founders crossed to B6) in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+EXIT CODE: 0
+### ROUND 4b: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: B6C3F2 x C57BL/6 (B6C3F2 founders crossed to B6) in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+EXIT CODE: 0
+### ===== REVIEW ROUND 2 FIXES (per-row NCE 32/35 and MS1 300-1700/350-1700 from raw methods; trypsin file Lys-C+Trypsin; manifest cleanups) =====
+### ROUND 5: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: B6C3F2 x C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+EXIT CODE: 0
+### ROUND 5: sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+EXIT CODE: 0
+### ROUND 5: (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/conv_lysc) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['normal', 'not applicable', 'Parkinson disease'])
+Files per condition: dict_values([108, 207, 99])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 414 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-lysc.sdrf.tsv
+EXIT CODE: 0
+### ROUND 5: flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv -t ms-proteomics -t vertebrates
+WARNING: Term: B6C3F2 x C57BL/6 in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+WARNING: Term: C57BL/6J in column 'characteristics[strain or breed]', is not found in the given ontology list ncbitaxon
+Most seems to be fine. There were only warnings.
+EXIT CODE: 0
+### ROUND 5: sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+EXIT CODE: 0
+### ROUND 5: (cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD015293/conv_trypsin) flock /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/parse_sdrf.lock parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+Factor columns: ['factor value[disease]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[pooled sample]', 'characteristics[disease]', 'characteristics[material type]', 'characteristics[developmental stage]', 'characteristics[strain or breed]', 'characteristics[sex]']
+Conditions (3): dict_keys(['normal', 'not applicable', 'Parkinson disease'])
+Files per condition: dict_values([48, 96, 48])
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 192 times.
+SUCCESS (WARNINGS=1): /home/user/sdrf-annotated-datasets/datasets/PXD015293/PXD015293-trypsin.sdrf.tsv
+EXIT CODE: 0

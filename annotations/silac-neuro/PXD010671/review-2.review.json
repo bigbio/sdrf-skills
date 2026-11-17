@@ -1,0 +1,102 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD010671/PXD010671.sdrf.tsv",
+ "artifact_sha256": "fda7c24d040bbcda2ba07d276e37ec62e43e01947c8ddca8e45219f7d4ebef70",
+ "verdict": "PASS",
+ "summary": "Independent review found no blocking or important issues. The run->cohort/mouse/genotype/detergent-fraction/gel-fraction map agrees with the deposited MaxQuant summary.txt files for all 1172 annotated runs, and with Table S7 for the fraction names. Validation passes for the template union and for each template on its own. Every controlled term resolves in OLS. Only minor findings remain.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "Fresh subagent with no producer transcript. Producer manifest and report were treated as untrusted. PRIDE file list, MaxQuant zip members and raw headers were fetched again independently in review-2/."
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/PXD010671.evidence.json",
+ "coverage": {
+  "deposited_runs": 1186,
+  "annotated_runs": 1172,
+  "matched_runs": 1172,
+  "fraction": 0.9882,
+  "missing": [
+   "MMD1780A147LC3_C7.raw",
+   "MMD1780A148LC3_D7.raw",
+   "MMD1780A149LC3_E7.raw",
+   "MMD1780A150LC3_F7.raw",
+   "MMD1780A151LC3_G7.raw",
+   "MMD1780A152LC3_H7.raw",
+   "MMD1780A153LC3_A8.raw",
+   "MMD1780A154LC3_B8.raw",
+   "MMD1780A155LC3_C8.raw",
+   "MMD1780A156LC3_D8.raw",
+   "MMD1780A157LC3_E8.raw",
+   "MMD1780A158LC3_F8.raw",
+   "MMD1780A159LC3_G8.raw",
+   "MMD1780A160LC3_H8.raw"
+  ],
+  "invented": []
+ },
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "Active templates were derived from the file (ms-proteomics v1.1.0, vertebrates v1.1.0, clinical-metadata v1.0.0), and these versions match templates.yaml latest. vertebrates and clinical-metadata are both sample-layer templates, and neither excludes the other. clinical-metadata is what licenses characteristics[genotype]. All columns required by vertebrates (disease, developmental stage) are present. Reserved words appear only where allow_not_available permits them (strain or breed, sex). The modification strings are well-formed, and Acetyl uses PP=Protein N-term. Every one of the 1172 runs has exactly one SILAC light row and one SILAC heavy row, and the two rows are identical apart from the label and the source-name suffix. (source name, fraction) is unique. sdrf-tools structure reports OK."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "Each term was resolved in the OLS4 API, and none is obsolete: PRIDE:0000568 SDS PAGE, PRIDE:0000608 DTT, PRIDE:0000599 IAA, PRIDE:0000627 DDA, PRIDE:0000326/0000325 SILAC light/heavy, MS:1002634 Q Exactive Plus, MS:1000422 beam-type CID, MS:1001251 Trypsin, UNIMOD:188/1/4/35, UBERON:0002421/0001969/0002240/0000956, MONDO:0004975/0004976, EFO:0001272 adult, PATO:0000461 normal. sdrf-tools check: 23/23 verified, 0 UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "Mapping: an independent parse of all 43 summary.txt files assigns each of the 1172 annotated runs to exactly one (zip, experiment, fraction). For every run, the SDRF genotype, mouse id, detergent fraction and gel fraction agree with the MaxQuant experiment names, with 0 fraction mismatches. 7 of the producer's summary.txt copies were checked against fresh HTTP-range extracts from the PRIDE zips and are byte-identical. P113, whose experiment names carry no genotype: per-mouse LFQ intensities in txt_LFQ_1/proteinGroups.txt match the Table S3a WT_LFQ_1-3 / TG_LFQ_1-3 columns on the diagonal (75/52/51 vs 76/69/63, against at most 33 off-diagonal), so 299-301 are WT and 350-352 are Tg. Detergent fraction names (DOC sol., Triton X-100 prec./sol., GDN sol., homogenate supernatant) match the Table S7 headers for every cohort. Tissue: the paper and its supplement caption give hippocampus for TgCRND8, cortex for AppNL-F and spinal cord for SOD1-G93A. The raw header of MMD1780A147 gives Q Exactive Plus, scan range 300-2000 m/z, HCD NCE 27 and top10. parameters.txt gives MS/MS tol. (FTMS) 20 ppm and fixed Carbamidomethyl (C)."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "A fresh PRIDE files/all listing (projectAccessions == PXD010671) holds 1186 .raw and 5 .zip files. All 1172 SDRF data files are deposited and unique, there are no peak lists and nothing is invented. The 14 unannotated runs (MMD1780A147-A160) are assigned to both 352-tri-sol and 350-GDN-det, both in the deposited searches (txt_K6_3/txt_K6_4 and txt_LFQ_3/txt_LFQ_4) and in Table S7. The raw headers contain no sample name. Leaving these runs out is documented and avoids fabricating a sample relationship (see the minor finding)."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "Recomputed: 5 independent experiments (comment[sample preparation batch]). Each has 3 WT and 3 model mice: P113 299-301/350-352, P285 834/907/917 and 817/908/909, P186 744-746 and 059/066/069, P548 635-637 and 021/297/371, P120 mouse1-6. Every animal has a single biological-replicate number shared by all of its fractions and both SILAC channels. Gel fractions run 1..n and match MaxQuant. factor value[genotype] and factor value[organism part] mirror the characteristics. convert-openms (producer log) yields 4 conditions. Plasma of P285 and P548 is kept as separate replicate ids because the deposit does not link it to brain mouse ids, which is the conservative choice."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No value claims more than its source supports. Sex, strain and background are not reported per mouse, so they are 'not available'. developmental stage 'adult' is justified by P113-P548. The disease of each mouse model is the modelled disease and controls are 'normal'. Values the producer omitted and that the evidence does support (K6 pulse length, age, genetic modification, the run-order resolution of the 14 ambiguous runs) are listed as minor findings. None of them is required by the active templates."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "Run by the reviewer under flock: parse_sdrf validate-sdrf -t ms-proteomics -t vertebrates -t clinical-metadata exit 0 ('Everything seems to be fine'), and each template on its own (ms-proteomics, vertebrates, clinical-metadata) exit 0. sdrf-tools check exit 0 (CLEAN). sdrf-tools score 100/100. sdrf-tools structure OK. sdrf-tools audit-existing: coverage 1172/1186. Its missing_runs blocker refers to the 14 runs whose identity is ambiguous, and it is handled as a reviewed minor finding."
+  }
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "category": "file_mapping",
+   "location": "file (14 deposited runs MMD1780A147LC3_C7..MMD1780A160LC3_H8; P113 sources model_350 GDN and model_352 TritonX100-sol)",
+   "message": "14 deposited runs are left out because the authors assign them to two sources. Run order and plate wells point to 350-GDN-det fractions 3-16: A145-A146 are 350-GDN fractions 1-2, A161-176 are 351-GDN, and A97-A144 are 299-301 GDN. 352-tri-sol fractions 1-2 are A95-A96. The PR description must state the omission and its reason. Adding the runs as 350-GDN-det fractions 3-16 is optional, and only with that inference stated.",
+   "evidence": "mq/tgCRND8_P113__txt_K6_3 and txt_K6_4 summary.txt; tableS7.tsv columns 7 and 10; PRIDE file list; the raw header has no sample name. sdrf-tools audit-existing reports missing_runs (14)."
+  },
+  {
+   "severity": "minor",
+   "category": "omission",
+   "location": "all rows; batch 'experiment P548 AppNL-F' (rows 2093-2344)",
+   "message": "The K6 pulse length is not recorded, although clinical-metadata licenses characteristics[exposure duration] (e.g. '6 day' / '8 day', with characteristics[compound]). Per the paper, P548 mice and their controls were fed 8 days and all other cohorts 6 days. This is the key variable for interpreting heavy/light ratios.",
+   "evidence": "Methods: 'All transgenic models of disease were fed K6 food for 6 days ... the 18-month-old AppNL-F/NL-F and control of mice were fed for 8 days.'"
+  },
+  {
+   "severity": "minor",
+   "category": "omission",
+   "location": "source name / comment[sample preparation batch]",
+   "message": "Age exists only in the source-name prefix and the batch label, because the active templates license characteristics[age] only for human. Table S5 gives the oldest WT cohort as 503 days, while the paper names the cohort P548. Do not add more precision without a source.",
+   "evidence": "mmc6.xlsx (Table S5) header '113 days | 186 days | 285 days | 503 days'; Methods 'P548 AppNL-F/NL-F'."
+  },
+  {
+   "severity": "minor",
+   "category": "specificity",
+   "location": "model rows (characteristics)",
+   "message": "Optional characteristics[genetic modification] (clinical-metadata, EFO) could record transgenic overexpression (TgCRND8, SOD1-G93A) vs knock-in (AppNL-F). The genotype column currently carries this only as free text.",
+   "evidence": "clinical-metadata.yaml characteristics[genetic modification] is optional and EFO-validated."
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "source name, all rows",
+   "message": "Light and heavy rows of a run are given distinct source names (_K0-light/_K6-heavy), although in this pulse design both channels come from the same mouse sample. This is documented in the manifest and the biological replicate is shared, so the representation is acceptable. Reprocessing should group the two channels by biological replicate, not by source name.",
+   "evidence": "Manifest limitations[0]. The producer's round-1 parse_sdrf run failed on a duplicated (source name, assay name) pair."
+  }
+ ]
+}

@@ -525,7 +525,7 @@ def main() -> None:
         help="Print the column contract (order, requirement, value form, reserved words) for a template union",
     )
     p.add_argument("-t", "--template", dest="templates", action="append", required=True,
-                   help="Template name; repeat for a union (e.g. -t ms-proteomics -t human)")
+                   help="Template name, optionally pinned as name@version; repeat for a union (e.g. -t ms-proteomics@1.1.0 -t human)")
     p.add_argument("--terms", default=None, help="Path to TERMS.tsv (default: bundled spec)")
     p.add_argument("--json", action="store_true", help="Machine-readable output")
 

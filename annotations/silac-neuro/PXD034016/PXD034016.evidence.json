@@ -1,0 +1,8 @@
+{"accession":"PXD034016","repository":"PRIDE","label":"exclude","failed_criterion":1,
+ "reason":"Deposited runs are a label-free spectral-count G4C2 RNA pulldown (Mascot/Scaffold); SILAC in the paper applies only to the SRSF1/SF3B1 IPs in PXD034092/PXD034093.",
+ "evidence":["PMC11983130 Data availability: 'G4C2 pulldown (30/32 files); PXD034016' vs 'SILAC pulldown' for PXD034092/093",
+  "PMC11983130 Methods Mass spectrometry: Mascot 2.4 + Scaffold 4.6.4, 'Spectral count was used as a proxy for protein abundance'",
+  "PRIDE sampleProcessingProtocol: 'Pulldown with G4C2 combined label-free analysis'; dataProcessingProtocol: 'Scaffold analysis of label-free data'",
+  "PRIDE quantificationMethods=SILAC contradicted by manuscript and protocol text",
+  "30 raw files PXP0486_G4C_{1,3}_{1..16}_2018 = 2 lanes x 16 gel slices, no SILAC token"],
+ "publication":{"pmid":40207633,"pmcid":"PMC11983130","doi":"10.1093/nar/gkaf253"}}

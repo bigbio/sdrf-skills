@@ -1,0 +1,72 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD010671/PXD010671.sdrf.tsv",
+ "artifact_sha256": "ddbcf7e566a3f207dbb4df3874c446bb398dacb960b59893a1a563168cf5be0a",
+ "verdict": "FAIL",
+ "summary": "The spec, ontology terms, technical values and run-to-mouse/genotype/fraction map all hold up against PRIDE, the five deposited MaxQuant zips (all 86 summary/parameters files re-fetched, byte-identical to the producer's copies), Table S3 and Table S7. One important design defect remains. characteristics[biological replicate] restarts at 1-3 within each cohort and genotype, while the only factor is genotype. Seven different animals or sources across 5 independent experiments, 3 tissues and plasma therefore share the same (factor value, biological replicate) pair. Downstream tools that key subjects on condition and BioReplicate would silently merge them.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh isolated subagent context with no producer transcript; producer manifest/report treated as untrusted and re-checked against PRIDE v3, ftp.pride.ebi.ac.uk zips/raw headers, OLS4, and Supplemental Tables S3/S7"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD010671/PXD010671.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "35 columns, 2344 rows, no ragged rows. Templates ms-proteomics 1.1.0 + vertebrates 1.1.0 + clinical-metadata 1.0.0 are all released in templates.yaml, with no mutual exclusion among them. vertebrates-required characteristics[disease] and [developmental stage] are present. characteristics[genotype] is licensed by clinical-metadata (free-text pattern). Age has no licensed column outside human, confirmed. Reserved words are correct (sex = not available). Modification strings are well formed, with Acetyl in PP=Protein N-term. Collision energy, tolerances and ms1 scan range match their validators. (source, assay, label) is unique and the row-coordinate is unique thanks to the _K0-light/_K6-heavy suffixes."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "All 22 accessions resolved in OLS4 with exact labels, none obsolete: NCBITaxon:10090, UBERON:0002421/0001969/0002240/0000956, PATO:0000461, MONDO:0004975/0004976, EFO:0001272, PRIDE:0000326/0000325/0000627/0000568/0000608/0000599, MS:1002634/1001251/1000422, UNIMOD:4/1/35/188. sdrf-tools check: 19/19 verified, 0 UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "Methods (PMC8816717) support Q-Exactive Plus, DDA top-10, HCD at 27, m/z 300-2000, trypsin in-gel, DTT/IAA, K6 (Silantes) pulse, carbamidomethyl fixed, protein N-acetyl and Met oxidation variable, and 20 ppm MS tolerance. Raw headers of MMD1780A145/A147/A95 read 'Q Exactive Plus - Orbitrap MS' with a 300-2000 m/z scan range. parameters.txt shows MS/MS tol (FTMS) 20 ppm in all 43 folders. The P113 genotype was verified independently: proteinGroups LFQ_1 per-mouse LFQ best-matches Table S3a, 299/300/301 to WT_LFQ_1/2/3 and 350/351/352 to TG_LFQ_1/2/3 on the diagonal. Tissues (hippocampus, cortex, spinal cord, plasma) are as stated in Fig. 2 and Results."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE v3 files/all (projectAccessions = PXD010671) lists 1186 .raw files and 5 zips. The SDRF has 1172 unique .raw files, none outside PRIDE and no peak lists. All 1186 deposited raws occur in the MaxQuant summary.txt files. Every annotated run maps to exactly one MaxQuant experiment, with 0 fraction mismatches. All S7-listed runs agree with the detergent fraction in the source name. The 14 excluded files (MMD1780A147-A160) are double-assigned to 350-GDN-det and 352-tri-sol in both summary.txt and Table S7, so the producer documented them as left out."
+  },
+  "design_consistency": {
+   "status": "fail",
+   "evidence": "Grouping rows by (factor value[genotype], characteristics[biological replicate]) gives 'wild type'/1 = 7 sources: P113 299, P120 mouse1, P186 744, P285 834, P285 plasma1, P548 635 and P548 plasma1, across hippocampus, spinal cord, cortex and plasma. 'TgCRND8'/1 and 'App NL-F'/1 each hold 3 animals from two cohorts. convert-openms reports only 4 conditions (wild type 1200 files). The paper's comparisons are within each of the 5 experiments."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No value asserts more than its source. Strain and sex are absent or not available because the paper does not state them. Disease for model mice is the modelled disease, and controls are normal. The developmental stage 'adult' follows from the stated P113-P548 ages. The plasma of P285/P548 is deliberately not linked to brain mouse ids. The 52 searched-but-undeposited MMD1983/1987 runs are not invented. The deposited MMD2102 DOC-/Tx- runs are used instead, and they are present in the deposited summary.txt."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "flock parse_sdrf validate-sdrf -t ms-proteomics -t vertebrates -t clinical-metadata: 'Everything seems to be fine', exit 0. sdrf-tools check: CLEAN, exit 0. sdrf-tools score: 100/100, exit 0. sdrf-tools structure: OK, exit 0."
+  }
+ },
+ "findings": [
+  {
+   "severity": "important",
+   "category": "design",
+   "location": "characteristics[biological replicate] (all 2344 rows) together with factor value[genotype]",
+   "message": "Biological replicate numbers 1-3 are reused across 5 independent cohorts, 3 tissues and plasma, and genotype is the only factor. Distinct animals therefore collapse into the same (condition, BioReplicate) subject: e.g. 'wild type'/1 holds 7 sources from P113, P120, P186, P285 and P548. Fix: give every distinct animal a biological replicate integer that is unique across the file, as the repo's PXD064974 does with globally unique identifiers. Keep one number per mouse across its detergent fractions and both SILAC channels. Reuse it for plasma only where the file names link the plasma to that mouse (P113, P186, P120). Give the unlinked plasma sources of P285 and P548 their own numbers. Fixed when no (factor value[genotype], characteristics[biological replicate]) pair spans more than one mouse prefix. Also recommended: add factor value[organism part] so that tissue is not pooled into one 'wild type' condition, and record the cohort (P113/P285, P186/P548) in a licensed column such as comment[sample preparation batch].",
+   "evidence": "Grouping (factor value[genotype], biological replicate) -> mouse prefix of source name: wild type/1 = {P113 299, P120 mouse1, P186 744, P285 834, P285 plasma1, P548 635, P548 plasma1}; TgCRND8/1 = {P113 350, P285 817, P285 plasma4}; App NL-F/1 = {P186 059, P548 021, P548 plasma4}. Producer's convert-openms log: 'Conditions (4) ... Files per condition 1200, 790, 102, 252'. Paper Methods: 'Five independent experiments were performed', each comparing model mice to their own age-matched controls."
+  },
+  {
+   "severity": "minor",
+   "category": "file_mapping",
+   "location": "MMD1780A147LC3_C7 ... MMD1780A160LC3_H8 (14 deposited raws, absent from SDRF)",
+   "message": "Plate position suggests these 14 files belong to 350-GDN-det. A145/A146 are 350-GDN-det fractions 1-2 and A147-A160 complete a contiguous 16-well block. The 352-tri-sol fractions 1-2 are at A95/A96, followed by 299-GDN-det at A97. Leaving the files out is defensible because the authors' own tables double-assign them. If they are added, cite the plate-block evidence and keep the uncertainty in a note.",
+   "evidence": "summary.txt and Table S7 both list A147-A160 under 350-GDN-det and 352-tri-sol with the same fraction numbers. The raw headers carry no sample name."
+  },
+  {
+   "severity": "minor",
+   "category": "spec",
+   "location": "characteristics[strain or breed] (absent)",
+   "message": "The column is recommended by the vertebrates template. Consider adding it with 'not available', since the paper does not state strain or background.",
+   "evidence": "vertebrates/1.1.0 marks it requirement: recommended and allows not available."
+  },
+  {
+   "severity": "minor",
+   "category": "source",
+   "location": "P120 source names '..._spinal-cord_TritonX100'",
+   "message": "Table S7 names this P120 fraction 'Fraction 3 (Triton X-100 sol.)', so the source name could carry '-sol' as the other cohorts do.",
+   "evidence": "Table S7 shows MMD2555A49LC3_P3_A1 as 'Fraction 3 (Triton X-100 sol.)', experiment 1-WT-TXdet."
+  }
+ ]
+}

@@ -1,0 +1,118 @@
+## Round 1 (first attempt was killed while queued on the shared parse_sdrf lock; re-run)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t clinical-metadata
+WARNING: Term: HEK293T in column 'characteristics[cell line]', is not found in the given ontology list clo;bto;efo
+Most seems to be fine. There were only warnings.
+exit=0
+
+## Round 1 structure (after build)
+$ sdrf-tools structure /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+
+## Round 2 (cell line value changed HEK293T -> HEK-293T cell, BTO:0002181)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t clinical-metadata
+Everything seems to be fine. Well done.
+exit=0
+
+## convert-openms
+$ cd /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/openms && flock <lock> parse_sdrf convert-openms -s /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv -t2
+PROCESSING: /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv
+Factor columns: ['factor value[genotype]']
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]']
+Conditions (13): dict_keys(['empty vector control (myc tag only)', 'myc-APP wild-type', 'myc-APP K670N/M671L (Swedish mutation)', 'myc-ATXN1 Q82 (mutant)', 'myc-ATXN1 Q30 (wild-type)', 'myc-HTT N-terminal 506 aa Q145 (mutant)', 'myc-HTT N-terminal 506 aa Q23 (wild-type)', 'myc-HTT exon 1 Q79 (mutant)', 'myc-HTT exon 1 Q23 (wild-type)', 'myc-PARK2 Q329Stop', 'myc-PARK2 wild-type', 'myc-PSEN1 A431E', 'myc-PSEN1 wild-type'])
+Files per condition: dict_values([71, 16, 16, 18, 18, 8, 8, 8, 8, 9, 9, 7, 8])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 204 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 204 times.
+SUCCESS (WARNINGS=2): /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv
+exit=0
+## structure
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+DONE
+
+## reconcile (Step 8.5)
+$ sdrf-tools reconcile /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv --record evidence/pride.json --accession PXD001942
+PXD001942: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+## manifest checks
+PXD001942.evidence.json: valid evidence-manifest
+exit=0
+Manifest covers every column with a value (21 column(s)).
+exit=0
+
+################ Repair after review-1 (FAIL) ################
+build: sdrf-tools build ... -t ms-proteomics@1.1.0 -t human@1.1.0 -t cell-lines@1.1.0 -t clinical-metadata@1.0.0 (204 rows x 38 columns)
+## Round 3 (review-1 fixes: sdrf version v1.1.0, templates pinned, Lys-C + Trypsin on every row)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv -t ms-proteomics@1.1.0 -t human@1.1.0 -t cell-lines@1.1.0 -t clinical-metadata@1.0.0
+Traceback (most recent call last):
+  File "/home/user/sdrf-skills/.venv/bin/parse_sdrf", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 850, in main
+    cli()
+    ~~~^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/parse_sdrf.py", line 304, in validate_sdrf
+    errors.extend(validator.validate(sdrf_df, template, use_ols_cache_only, skip_ontology=skip_ontology))
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/sdrf-skills/.venv/lib/python3.13/site-packages/sdrf_pipelines/sdrf/schemas/validator.py", line 216, in validate
+    raise ValueError(f"Schema '{schema_name}' not found in registry")
+ValueError: Schema 'cell-lines@1.1.0' not found in registry
+exit=1
+## convert-openms
+Characteristics columns (those covered by factor columns removed): ['characteristics[organism]', 'characteristics[organism part]', 'characteristics[cell type]', 'characteristics[biological replicate]', 'characteristics[disease]', 'characteristics[ancestry category]', 'characteristics[age]', 'characteristics[sex]', 'characteristics[cell line]', 'characteristics[cellosaurus accession]', 'characteristics[cellosaurus name]', 'characteristics[culture medium]']
+Conditions (13): dict_keys(['empty vector control (myc tag only)', 'myc-APP wild-type', 'myc-APP K670N/M671L (Swedish mutation)', 'myc-ATXN1 Q82 (mutant)', 'myc-ATXN1 Q30 (wild-type)', 'myc-HTT N-terminal 506 aa Q145 (mutant)', 'myc-HTT N-terminal 506 aa Q23 (wild-type)', 'myc-HTT exon 1 Q79 (mutant)', 'myc-HTT exon 1 Q23 (wild-type)', 'myc-PARK2 Q329Stop', 'myc-PARK2 wild-type', 'myc-PSEN1 A431E', 'myc-PSEN1 wild-type'])
+Files per condition: dict_values([71, 16, 16, 18, 18, 8, 8, 8, 8, 9, 9, 7, 8])
+WARNING: "No precursor mass tolerance set. Assuming 10 ppm." occurred 204 times.
+WARNING: "Warning no TA= specified. Setting to N-term or C-term if possible." occurred 204 times.
+SUCCESS (WARNINGS=2): /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv
+exit=0
+## structure
+Structure OK: acquisition, template declaration and column order are consistent.
+exit=0
+## reconcile
+PXD001942: 1 value(s) disagree with the deposit record:
+
+  MINOR    cleavage_agent_unsupported (comment[cleavage agent details]): the record never names Trypsin, Lys-C as a digest reagent; it does not describe the digest at all, so cite the paper or the search output
+exit=0
+DONE
+
+## Round 3b (parse_sdrf rejected 'cell-lines@1.1.0' as a registry name; human/cell-lines/clinical-metadata have one installed version each = the pinned 1.1.0/1.1.0/1.0.0, so passed unversioned)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv -t ms-proteomics@1.1.0 -t human -t cell-lines -t clinical-metadata
+ValueError: Schema 'ms-proteomics@1.1.0' not found in registry
+exit=1
+DONE
+
+## Round 3c — pinned validation via /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD001942/scripts/validate_pinned.py (loads sdrf-pipelines' bundled 1.1.0/1.1.0/1.1.0/1.0.0 YAMLs; the CLI itself rejects name@version)
+$ flock <lock> python -I validate_pinned.py ms-proteomics@1.1.0 human@1.1.0 cell-lines@1.1.0 clinical-metadata@1.0.0 -- validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t clinical-metadata
+pinned versions in use: {'ms-proteomics': '1.1.0', 'human': '1.1.0', 'cell-lines': '1.1.0', 'clinical-metadata': '1.0.0'} | ms-proteomics has QC column 'number of MS1 spectra': False | ms-proteomics columns: 59
+Everything seems to be fine. Well done.
+exit=0
+
+## Round 3d — stock CLI, unversioned (= installed latest: ms-proteomics 1.2.0, others same as pins)
+$ flock <lock> parse_sdrf validate-sdrf -s /home/user/sdrf-annotated-datasets/datasets/PXD001942/PXD001942.sdrf.tsv -t ms-proteomics -t human -t cell-lines -t clinical-metadata
+Everything seems to be fine. Well done.
+exit=0
+DONE
+## manifest checks
+PXD001942.evidence.json: valid evidence-manifest
+exit=0
+Manifest covers every column with a value (21 column(s)).
+exit=0
+sha256: dfd51a893bb7ee6d641a0b2b303b8e9dca5de5665a2e44789cf88f93c2bb6bd7

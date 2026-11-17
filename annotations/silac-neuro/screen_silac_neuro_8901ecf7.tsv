@@ -1,0 +1,67 @@
+id	repository	label	failed_criterion	reason	evidence
+PXD004212	PRIDE	exclude	2	SIRT2 interactome in normal MRC5 fibroblasts; neurodegeneration is background motivation only.	PRIDE protocol; repository description
+PXD007168	PRIDE	exclude	2	Yeast [PSI+] Sup35 translation-termination prion; not a neurodegenerative disease model.	PRIDE protocol; repository description
+PXD009854	PRIDE	exclude	2	Developmental axon pruning in DRG neurons; no neurodegenerative disease model.	repository description
+PXD014740	PRIDE	exclude	2	Neurodevelopmental ribosome/Ebp1 study in embryonic neocortex; no disease model.	repository description
+PXD034050	PRIDE	exclude	1	SICyLIA isotopic iodoacetamide cysteine labelling plus TMT, not SILAC metabolic labelling.	PRIDE protocol
+PXD035841	PRIDE	exclude	2	Retinal pigment epithelium stress model of Stargardt-type retinal degeneration, not a CNS neurodegenerative disease.	PRIDE protocol; repository description
+PXD050991	PRIDE	exclude	1	Part 1 of the dopaminergic neuron series is label-free DIA; parts 2 and 3 are SILAC and already curated.	repository structured fields; raw file names
+PXD001834	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD001834/
+PXD002111	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD002111/
+PXD002127	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD002127/
+PXD002135	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD002135/
+PXD002552	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD002552/
+PXD003071	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD003071/
+PXD003446	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD003446/
+PXD004241	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD004241/
+PXD004548	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD004548/
+PXD004666	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD004666/
+PXD005312	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD005312/
+PXD005854	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD005854/
+PXD006648	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD006648/
+PXD007981	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD007981/
+PXD009444	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD009444/
+PXD012612	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD012612/
+PXD012871	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD012871/
+PXD013502	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD013502/
+PXD014577	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD014577/
+PXD016299	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD016299/
+PXD017887	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD017887/
+PXD018640	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD018640/
+PXD019692	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD019692/
+PXD021718	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD021718/
+PXD023025	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD023025/
+PXD023400	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD023400/
+PXD023994	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD023994/
+PXD024198	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD024198/
+PXD025356	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD025356/
+PXD025510	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD025510/
+PXD025617	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD025617/
+PXD027000	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD027000/
+PXD029113	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD029113/
+PXD029429	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD029429/
+PXD029618	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD029618/
+PXD030729	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD030729/
+PXD034092	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD034092/
+PXD034093	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD034093/
+PXD037859	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD037859/
+PXD041799	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD041799/
+PXD049302	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD049302/
+PXD049431	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD049431/
+PXD051015	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD051015/
+PXD051016	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD051016/
+PXD051090	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD051090/
+PXD051673	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD051673/
+PXD055851	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD055851/
+PXD061537	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD061537/
+PXD063206	PRIDE	exclude	3	A curated SDRF already exists in sdrf-annotated-datasets.	curated SDRF datasets/PXD063206/
+PXD006527	PRIDE	exclude	2	Deposited SILAC runs compare tunicamycin-stressed vs untreated Neuro2a cells (general proteostasis); the Huntington experiments in the paper are not in the deposit, and only mzML/mgf (no vendor raw) are deposited.	paper methods (PMID 28883394); PRIDE files/all
+PXD034016	PRIDE	exclude	1	Label-free G4C2 RNA pulldown quantified by spectral counting; the PRIDE SILAC tag belongs to sibling deposits PXD034092/PXD034093.	paper methods + data availability (PMC11983130); PRIDE protocol
+PXD012462	PRIDE	exclude	2	In vivo 13C6-leucine SILK in CSF of post-subarachnoid-hemorrhage neurosurgery patients; Alzheimer/ALS named only as motivation.	preprint doi:10.1101/710418 results+methods; PRIDE description
+PXD006792	PRIDE	exclude	1	Deposited Httex1 AP-MS runs are label-free (MaxQuant LFQ); isotope labelling in the paper is NMR/HDX only.	paper methods (PMC5963539); deposited MaxQuant parameters.txt
+PXD031830	PRIDE	include		In vivo pulsed SILAC (Lys-13C6) + TMTpro in 5xFAD vs WT mouse cortex; channel maps in deposited sample sheet.	paper methods (PMC11814087); deposited PRIDE_sample_information.xlsx; pepXML
+PXD015293	PRIDE	include		SILAM 13C6-Lys mouse-brain reference spiked into ventral midbrain of two Parkinson disease mouse models (PFF, A53T) and controls.	paper methods (PMC8628316); deposited mzid; raw file names
+PXD034158	PRIDE	include		12 of 84 runs are 13C6-Lys SILAC-reference FLAG-Htt IP-MS in Htt Q140 vs Q20 knock-in mouse cortex (rest label-free, annotated separately).	paper methods (PMC9540350); deposited .msf quantification method
+PXD001942	PRIDE	include		SILAC doublet qAP-MS in HEK293T of AD, HD, PD and SCA1 disease proteins (wt vs disease variants vs empty vector).	paper (PMC9014711) + Table S1; deposited MaxQuant experimentalDesign/parameters
+PXD004561	PRIDE	include		Pulsed SILAC (Lys8) in C. elegans incl. alpha-synuclein Parkinson model OW40 vs OW450 control and longevity mutants.	Visscher et al. 2016 Cell Rep full text; deposited mqpar.xml/experimental design
+PXD010671	PRIDE	include		In vivo Lys6 SILAM pulse in TgCRND8, App NL-F and SOD1-G93A mice vs WT (AD and ALS models).	paper methods (PMC8816717); deposited MaxQuant summary.txt; Table S7

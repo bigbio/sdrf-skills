@@ -104,6 +104,32 @@ def test_check_coordinates_accepts_rows_separated_by_replicate():
     check_coordinates(s)  # no raise
 
 
+def test_explicit_fraction_identifiers_are_parsed_checked_and_emitted(tmp_path):
+    # a series with a missing fraction keeps the nominal numbers instead of renumbering by position
+    p = _tsv(tmp_path / "samples.tsv",
+             ["source name", "files", "label", "fraction identifier"],
+             [["S1", "x_F01.raw,x_F05.raw", "label free sample", "1,5"]])
+    s = parse_samples(*read_table(p))
+    assert s[0].fraction_ids() == [1, 5]
+    c = template_contract(["ms-proteomics"])
+    header, rows = expand(s, {}, c)
+    col = header.index("comment[fraction identifier]")
+    assert [r[col] for r in rows] == ["1", "5"]
+
+
+def test_explicit_fraction_identifiers_must_match_files(tmp_path):
+    p = _tsv(tmp_path / "samples.tsv", ["source name", "files", "label", "fraction identifier"],
+             [["S1", "a.raw,b.raw", "label free sample", "3"]])
+    with pytest.raises(BuildError):
+        parse_samples(*read_table(p))
+
+
+def test_explicit_fraction_identifiers_collide_within_a_row():
+    s = [Sample("S1", ["a.raw", "a2.raw"], "label free sample", None, 1, {}, [9, 9])]
+    with pytest.raises(BuildError):
+        check_coordinates(s)
+
+
 # ---------- expansion ----------
 
 def test_expand_fraction_and_assay_defaults():
@@ -321,3 +347,61 @@ def test_cli_build_smoke(tmp_path, capsys):
         sys.argv = argv
     assert out.exists()
     assert "70 rows" in capsys.readouterr().out
+
+
+def test_combined_digest_repeats_the_cleavage_agent_column():
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1, {})]
+    c = template_contract(["ms-proteomics"])
+    tech = {"comment[cleavage agent details]": ["NT=Lys-C;AC=MS:1001309", "NT=Trypsin;AC=MS:1001251"]}
+    header, rows = expand(s, tech, c)
+    idx = [i for i, h in enumerate(header) if h == "comment[cleavage agent details]"]
+    assert [rows[0][i] for i in idx] == ["NT=Lys-C;AC=MS:1001309", "NT=Trypsin;AC=MS:1001251"]
+
+
+def test_single_value_column_refuses_to_drop_extra_values():
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1, {})]
+    c = template_contract(["ms-proteomics"])
+    with pytest.raises(BuildError):
+        expand(s, {"comment[proteomics data acquisition method]": ["NT=Data-dependent acquisition;AC=PRIDE:0000627", "NT=Data-independent acquisition;AC=PRIDE:0000450"]}, c)
+
+
+def test_sample_value_splits_across_repeated_columns_per_row():
+    """A samples.tsv value with '|' fills a repeatable column per row (e.g. one digest step per run)
+    instead of being copied into every repeated column; other rows fall back to technical.tsv."""
+    tech = {"comment[cleavage agent details]": ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]}
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1,
+                {"comment[cleavage agent details]": "NT=Trypsin;AC=MS:1001251|not applicable"}),
+         Sample("S2", ["b.raw"], "label free sample", None, 1, {})]
+    header, rows = expand(s, tech, template_contract(["ms-proteomics"]))
+    idx = [i for i, h in enumerate(header) if h == "comment[cleavage agent details]"]
+    assert len(idx) == 2
+    assert [rows[0][i] for i in idx] == ["NT=Trypsin;AC=MS:1001251", "not applicable"]
+    assert [rows[1][i] for i in idx] == ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]
+
+
+def test_short_value_in_a_required_repeated_column_is_refused():
+    """build never picks the reserved word for an unused position of a required column."""
+    tech = {"comment[cleavage agent details]": ["NT=Trypsin;AC=MS:1001251", "NT=Lys-C;AC=MS:1001309"]}
+    s = [Sample("S3", ["c.raw"], "label free sample", None, 1,
+                {"comment[cleavage agent details]": "NT=Trypsin;AC=MS:1001251"})]
+    with pytest.raises(BuildError, match="S3"):
+        expand(s, tech, template_contract(["ms-proteomics"]))
+
+
+def test_short_value_in_an_optional_repeated_column_stays_empty():
+    mods = "NT=Carbamidomethyl;AC=UNIMOD:4;TA=C;MT=Fixed"
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1,
+                {"comment[modification parameters]": f"{mods}|NT=Oxidation;AC=UNIMOD:35;TA=M;MT=Variable"}),
+         Sample("S2", ["b.raw"], "label free sample", None, 1,
+                {"comment[modification parameters]": mods})]
+    header, rows = expand(s, {}, template_contract(["ms-proteomics"]))
+    idx = [i for i, h in enumerate(header) if h == "comment[modification parameters]"]
+    assert [rows[1][i] for i in idx] == [mods, ""]
+
+
+def test_sample_value_alone_sets_the_number_of_repeated_columns():
+    s = [Sample("S1", ["a.raw"], "label free sample", None, 1,
+                {"comment[cleavage agent details]": "NT=Lys-C;AC=MS:1001309|NT=Trypsin;AC=MS:1001251"})]
+    header, rows = expand(s, {}, template_contract(["ms-proteomics"]))
+    idx = [i for i, h in enumerate(header) if h == "comment[cleavage agent details]"]
+    assert [rows[0][i] for i in idx] == ["NT=Lys-C;AC=MS:1001309", "NT=Trypsin;AC=MS:1001251"]

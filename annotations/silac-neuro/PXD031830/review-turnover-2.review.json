@@ -1,0 +1,79 @@
+{
+ "schema_version": 1,
+ "artifact": "datasets/PXD031830/PXD031830-turnover.sdrf.tsv",
+ "artifact_sha256": "52b37d2507e74015b39f862e31f20d0b872df13e9e7c2f08ea4994f97d68e312",
+ "verdict": "PASS",
+ "summary": "Independent review of the PXD031830 pulsed-SILAC/TMTpro turnover SDRF (5120 rows x 40 cols, 320 runs) found no blocker or important issues; channel map, files, ontology terms and technical values trace to PRIDE, the deposited sample sheet, the paper and the JUMP pepXML. Mass tolerances 'not available' is justified: paper (10 ppm both), PRIDE (6/15 ppm) and the pepXML candidate window (~+/-15 ppm precursor) disagree.",
+ "reviewer_context": {
+  "independent": true,
+  "context": "fresh subagent (review-turnover-2) without producer transcript; did not read earlier review-* dirs; re-fetched PRIDE project, files/all, PRIDE_sample_information.xlsx and pepXML into its own dir"
+ },
+ "evidence_manifest": "/tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD031830/PXD031830-turnover.evidence.json",
+ "checks": {
+  "spec_compliance": {
+   "status": "pass",
+   "evidence": "sdrf-tools contract -t ms-proteomics@1.1.0 -t vertebrates@1.1.0 -t clinical-metadata@1.0.0: all required columns present; only out-of-contract columns are characteristics[age] (human-template term, see minor) and the two factor value columns. Reserved words only in columns whose allow_* flags permit them (strain, exposure duration, tolerances, reduction/alkylation). Template declarations and sdrf version v1.1.0 match released templates.yaml. (source name, assay name, comment[label]) unique over 5120 rows; sdrf-tools structure exit 0."
+  },
+  "ontology_integrity": {
+   "status": "pass",
+   "evidence": "OLS4 exact lookups 2026-11-13: PRIDE:0000627 Data-dependent acquisition, MS:1002523 Q Exactive HF, MS:1001309 Lys-C, MS:1001251 Trypsin, MS:1000422 beam-type collision-induced dissociation, PRIDE:0000564 High-pH reversed-phase chromatography (hpHRP), MS:1000484 orbitrap, UNIMOD:2016 TMTpro, UNIMOD:35 Oxidation, UNIMOD:188 Label:13C(6); none obsolete, labels exact. Characteristics labels resolve: Mus musculus (NCBITaxon:10090), cerebral cortex (UBERON:0000956), Alzheimer disease (MONDO:0004975), normal, adult, male/female. sdrf-tools check: 15/15 verified, 0 UNIMOD swaps."
+  },
+  "source_evidence": {
+   "status": "pass",
+   "evidence": "Channel map re-derived from freshly downloaded PRIDE_sample_information.xlsx 'Protein turnover' sheet: all 5120 rows match on source, genotype, age, sex, labelling days, TMTpro channel and batch (0 mismatches); cross-checked against Supplementary Data 2 (B1/B2 channels). Methods: cortical tissue, male-only turnover mice, Mouse Express L-Lys 13C6, Lys-C+trypsin, HCD 32% NCE, basic-pH RPLC, Q Exactive HF, DDA. pepXML mtob1_f001 search_summary: TMTpro K/N-term static, M ox and K +6.02013 variable, no Cys static (db ..._c0_TMTpro). Strain from Methods stock #034848."
+  },
+  "file_mapping": {
+   "status": "pass",
+   "evidence": "PRIDE files/all re-fetched (801 entries, all projectAccessions=PXD031830; 400 .raw). Turnover SDRF references 320 unique .raw (mtob1/2_f001-f160), each with 16 channel rows; sibling plaque SDRF references 80; overlap 0, union = all 400 deposited raw files, no non-raw file referenced; assay name = data file stem; fraction identifier = fNNN."
+  },
+  "design_consistency": {
+   "status": "pass",
+   "evidence": "32 sources: WT1-15, FAD1-15 (5 timepoints x 3 replicates x 2 genotypes = 30 mice, matches paper) + SILAM_B1/B2 references in TMT126. Biological replicate (n-1)%3+1 consistent with sheet ordering (WT1/2/3 = 0 d etc.). Factors genotype and exposure duration equal their characteristics; SILAM factor 'not applicable'. Batch 1 = 10 WT + 5 FAD, batch 2 = 5 WT + 10 FAD as deposited."
+  },
+  "omission_safety": {
+   "status": "pass",
+   "evidence": "No value asserts more than sources: WT strain, tolerances and reduction/alkylation left 'not available' where sources are silent or conflict; disease not broadcast to WT; SILAM split documented. Mass tolerances: paper generic Methods 10 ppm precursor+product; PRIDE dataProcessingProtocol (turnover-specific, mentions Lys +6.02013) 6 ppm precursor / 15 ppm fragment; pepXML mtob1_f001 candidate hits span about -15..+16 ppm precursor error, matching neither stated value, so no source settles it. Developmental stage 'adult' inferred from 8-9 mo ages (reasonable)."
+  },
+  "deterministic_validation": {
+   "status": "pass",
+   "evidence": "parse_sdrf validate-sdrf -t ms-proteomics -t vertebrates -t clinical-metadata --use_ols_cache_only: exit 0, only warning = strain free text not in NCBITaxon (strain is free text per TERMS.tsv). sdrf-tools check exit 0 (CLEAN), score 100/100, structure exit 0. Online-OLS validation not run (producer log shows it hangs); all accessions verified live in OLS separately. convert-openms fails only because tolerances are 'not available' (justified above)."
+  }
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "category": "technical",
+   "location": "comment[reduction reagent], comment[alkylation reagent] rows 1-5120",
+   "message": "Methods state 'digested in two steps by Lys-C and trypsin, with DTT reduction and iodoacetamide alkylation' for the mouse brain samples; the turnover search lacking Carbamidomethyl argues against IAA only weakly. DTT reduction has no counter-evidence and could be annotated; 'not available' is conservative, not wrong.",
+   "evidence": "manuscript Methods protein digestion paragraph; pepXML mtob1_f001 search_summary (no C static)"
+  },
+  {
+   "severity": "minor",
+   "category": "technical",
+   "location": "comment[precursor mass tolerance], comment[fragment mass tolerance]",
+   "message": "'not available' is justified, but the manifest should record that PRIDE's protocol text is turnover-specific (6 ppm/15 ppm) and that the pepXML candidate window (~+/-15 ppm) matches neither source, so a downstream user can choose.",
+   "evidence": "PRIDE project dataProcessingProtocol; paper Methods 10 ppm; pepXML mass diffs"
+  },
+  {
+   "severity": "minor",
+   "category": "spec",
+   "location": "characteristics[age]",
+   "message": "Column is outside the resolved ms-proteomics+vertebrates+clinical-metadata contract (TERMS usage: human); accepted by parse_sdrf and informative, keep but note.",
+   "evidence": "sdrf-tools contract --json"
+  },
+  {
+   "severity": "minor",
+   "category": "design",
+   "location": "characteristics[exposure duration]",
+   "message": "Duration is given without stating what the exposure is (heavy L-Lys-13C6 diet); consider characteristics[compound] or treatment to name it.",
+   "evidence": "TERMS.tsv exposure duration = duration of treatment exposure"
+  },
+  {
+   "severity": "minor",
+   "category": "provenance",
+   "location": "characteristics[strain or breed] WT rows",
+   "message": "Paper calls controls 'WT littermates' of B6.Cg-Tg 5xFAD; background not named, so 'not available' is acceptable.",
+   "evidence": "Results pSILAC paragraph"
+  }
+ ]
+}

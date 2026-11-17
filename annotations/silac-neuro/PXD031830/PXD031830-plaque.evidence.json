@@ -1,0 +1,383 @@
+{
+ "schema_version": 1,
+ "artifact": "/home/user/sdrf-annotated-datasets/datasets/PXD031830/PXD031830-plaque.sdrf.tsv",
+ "dataset": "PXD031830",
+ "sources": [
+  {
+   "id": "pride",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD031830 (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD031830/evidence/pride.json)"
+  },
+  {
+   "id": "files",
+   "kind": "repository",
+   "location": "https://www.ebi.ac.uk/pride/ws/archive/v3/projects/PXD031830/files/all (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD031830/dl/files_all.json; 400 RAW, 400 SEARCH, 1 OTHER; all projectAccessions=PXD031830)"
+  },
+  {
+   "id": "sampleinfo",
+   "kind": "repository",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/10/PXD031830/PRIDE_sample_information.xlsx (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD031830/dl/PRIDE_sample_information.xlsx; sheets 'Protein turnover', 'Plaque proteome')"
+  },
+  {
+   "id": "paper",
+   "kind": "publication",
+   "location": "PMC11814087 / doi:10.1038/s41467-025-56853-3 (Yarbro et al., Nat Commun 2025 16:1533; local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD031830/evidence/manuscript.txt)"
+  },
+  {
+   "id": "suppdata",
+   "kind": "supplementary",
+   "location": "Europe PMC supplementaryFiles PMC11814087 -> 41467_2025_56853_MOESM3_ESM.xlsx (local: /tmp/claude-0/-home-user/dfc24ca4-db02-5def-9e81-80403267abd4/scratchpad/PXD031830/supp/41467_2025_56853_MOESM3_ESM.xlsx; sheets '2' = Supplementary Data 2, '21', '23')"
+  },
+  {
+   "id": "pepxml_turnover",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/10/PXD031830/mtob1_f001.1.pepXML and https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/10/PXD031830/mtob2_f100.1.pepXML (JUMP 2.01 search_summary header, HTTP range read)"
+  },
+  {
+   "id": "pepxml_plaque",
+   "kind": "search-output",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/10/PXD031830/plaque_f001.1.pepXML (JUMP 2.01 search_summary header, HTTP range read)"
+  },
+  {
+   "id": "raw",
+   "kind": "raw-file",
+   "location": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2024/10/PXD031830/mtob1_f001.raw, mtob2_f160.raw, plaque_f080.raw (first 400 kB, UTF-16LE instrument string)"
+  },
+  {
+   "id": "spec",
+   "kind": "specification",
+   "location": "/home/user/sdrf-skills/spec/sdrf-proteomics/sdrf-templates/templates.yaml and ms-proteomics/1.1.0, vertebrates/1.1.0, clinical-metadata/1.0.0 YAMLs; spec/sdrf-proteomics/SAMPLE-GUIDELINES.adoc (age format)"
+  },
+  {
+   "id": "mmrrc",
+   "kind": "strain-registry",
+   "location": "https://www.mmrrc.org/catalog/sds.php?mmrrc_id=34848 (stock 034848 = B6.Cg-Tg(APPSwFlLon,PSEN1*M146L*L286V)6799Vas/Mmjax, fetched 2026-11-13)"
+  },
+  {
+   "id": "ols",
+   "kind": "ontology",
+   "location": "https://www.ebi.ac.uk/ols4 (sdrf-tools verify / sdrf-tools ols, 2026-11-13)"
+  }
+ ],
+ "claims": [
+  {
+   "location": "comment[instrument] rows 1-1280",
+   "value": "NT=Q Exactive HF;AC=MS:1002523",
+   "source_ids": [
+    "raw",
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Raw headers of mtob1_f001.raw, mtob2_f160.raw and plaque_f080.raw read 'Q Exactive HF - Orbitrap MS'; Methods: 'Q-Exactive HF Orbitrap MS'; PRIDE instruments MS:1002523. OLS label 'Q Exactive HF'."
+  },
+  {
+   "location": "comment[cleavage agent details] rows 1-1280 (two columns)",
+   "value": "NT=Lys-C;AC=MS:1001309 | NT=Trypsin;AC=MS:1001251",
+   "source_ids": [
+    "paper",
+    "pepxml_turnover",
+    "pepxml_plaque",
+    "ols"
+   ],
+   "evidence": "Methods: '~50 ug protein from each sample was then digested in two steps by Lys-C and trypsin'; pepXML sample_enzyme 'tryptic' cut=KR no_cut=P. Lys-C listed first (first step). MS:1001309 Lys-C and MS:1001251 Trypsin verified in OLS."
+  },
+  {
+   "location": "comment[proteomics data acquisition method] rows 1-1280",
+   "value": "NT=Data-dependent acquisition;AC=PRIDE:0000627",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Methods: '20 data-dependent MS2 scans'; PRIDE protocol: 'up to 20 datadependent high-resolution MS/MS scans'."
+  },
+  {
+   "location": "comment[dissociation method] rows 1-1280",
+   "value": "NT=beam-type collision-induced dissociation;AC=MS:1000422",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods MS2 settings: 'HCD, 32% specified normalized collision energy'. MS:1000422 = HCD (OLS label 'beam-type collision-induced dissociation')."
+  },
+  {
+   "location": "comment[collision energy] rows 1-1280",
+   "value": "32% NCE",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Methods: 'HCD, 32% specified normalized collision energy'."
+  },
+  {
+   "location": "comment[fractionation method] rows 1-1280",
+   "value": "NT=High-pH reversed-phase chromatography (hpHRP);AC=PRIDE:0000564",
+   "source_ids": [
+    "paper",
+    "pride",
+    "ols"
+   ],
+   "evidence": "Methods: 'fractionated by offline basic reverse phase (RP) LC ... pH 8.0'; PRIDE protocol: 'fractionated ... under basic pH conditions'."
+  },
+  {
+   "location": "comment[ms2 mass analyzer] rows 1-1280",
+   "value": "NT=orbitrap;AC=MS:1000484",
+   "source_ids": [
+    "paper",
+    "ols"
+   ],
+   "evidence": "Methods: MS2 at '60,000 resolutions' on the Q Exactive HF Orbitrap (MS2 read in the Orbitrap)."
+  },
+  {
+   "location": "comment[sdrf version] rows 1-1280",
+   "value": "v1.1.0",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "comment[sdrf version] v1.1.0 is the SDRF-Proteomics specification version (spec/sdrf-proteomics/README.adoc: 'Version v1.1.0'); template versions are a separate track and are declared only in comment[sdrf template]."
+  },
+  {
+   "location": "comment[sdrf template] rows 1-1280",
+   "value": "NT=ms-proteomics;VV=v1.1.0 | NT=vertebrates;VV=v1.1.0 | NT=clinical-metadata;VV=v1.0.0",
+   "source_ids": [
+    "spec"
+   ],
+   "evidence": "Templates chosen: MS proteomics; mouse -> vertebrates; clinical-metadata licenses characteristics[genotype] (and exposure duration). Filled by sdrf-tools build."
+  },
+  {
+   "location": "comment[sdrf annotation tool] rows 1-1280",
+   "value": "manual curation",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "Annotation produced by curation from the sources listed (sdrf-tools build expander)."
+  },
+  {
+   "location": "characteristics[organism] rows 1-1280",
+   "value": "Mus musculus",
+   "source_ids": [
+    "pride",
+    "paper",
+    "ols"
+   ],
+   "evidence": "PRIDE organisms NEWT:10090; Methods: 5xFAD and WT mice. NCBITaxon:10090 'Mus musculus'."
+  },
+  {
+   "location": "characteristics[developmental stage] rows 1-1280",
+   "value": "adult",
+   "source_ids": [
+    "sampleinfo",
+    "ols"
+   ],
+   "evidence": "Sample sheet ages: 8-9 months (turnover), 3, 8, 12 months (plaque) - all post-weaning adult mice. EFO:0001272 'adult'. INFERRED from age."
+  },
+  {
+   "location": "characteristics[biological replicate] rows 1-1280",
+   "value": "1/2/3",
+   "source_ids": [
+    "sampleinfo"
+   ],
+   "evidence": "Replicate index per (genotype, condition) group taken from the sample-ID suffix in PRIDE_sample_information.xlsx."
+  },
+  {
+   "location": "comment[data file] rows 1-1280",
+   "value": "<run>.raw",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "Every vendor .raw listed in files/all for this sub-experiment; one file per fraction."
+  },
+  {
+   "location": "assay name rows 1-1280",
+   "value": "<run stem>",
+   "source_ids": [
+    "files"
+   ],
+   "evidence": "File stem of the raw file; shared by the 16 TMT channel rows of each run."
+  },
+  {
+   "location": "technology type rows 1-1280",
+   "value": "proteomic profiling by mass spectrometry",
+   "source_ids": [
+    "paper"
+   ],
+   "evidence": "TMT-LC/LC-MS/MS; filled by sdrf-tools build from ms-proteomics."
+  },
+  {
+   "location": "comment[technical replicate] rows 1-1280",
+   "value": "1",
+   "source_ids": [
+    "sampleinfo"
+   ],
+   "evidence": "Each TMT batch was fractionated and injected once per fraction; no repeated injections."
+  },
+  {
+   "location": "comment[label] rows 1-1280",
+   "value": "TMT126..TMT134N",
+   "source_ids": [
+    "sampleinfo",
+    "paper",
+    "pride"
+   ],
+   "evidence": "TMTpro 16-plex channel per sample from the 'TMTpro channel' column; PRIDE protocol '16-plex tandem-mass-tag (TMT) labeling'."
+  },
+  {
+   "location": "comment[fraction identifier] rows 1-1280",
+   "value": "1..N",
+   "source_ids": [
+    "files",
+    "sampleinfo"
+   ],
+   "evidence": "Position of the run in the f001..fNNN series; sheet: 'Number of fractions in each batch: 160' (turnover) / 80 (plaque)."
+  },
+  {
+   "location": "characteristics[genotype] rows 1-1280",
+   "value": "5xFAD / wild type",
+   "source_ids": [
+    "sampleinfo",
+    "suppdata"
+   ],
+   "evidence": "'Genotype' column (WT / 5xFAD) per sample ID; Supplementary Data 2 agrees for the 30 turnover mice."
+  },
+  {
+   "location": "factor value[genotype] rows 1-1280",
+   "value": "5xFAD / wild type",
+   "source_ids": [
+    "sampleinfo",
+    "paper"
+   ],
+   "evidence": "Genotype (WT vs 5xFAD) is the compared variable (two-way ANOVA genotype x labelling time; plaque study 5xFAD vs WT)."
+  },
+  {
+   "location": "characteristics[disease] rows 1-1280",
+   "value": "Alzheimer disease (5xFAD rows) / normal (WT rows)",
+   "source_ids": [
+    "sampleinfo",
+    "paper",
+    "ols"
+   ],
+   "evidence": "5xFAD = familial AD amyloidosis model (Methods); WT littermates are controls -> normal (PATO:0000461); MONDO:0004975 'Alzheimer disease'. Disease is not broadcast onto WT rows."
+  },
+  {
+   "location": "characteristics[strain or breed] rows 1-1280 (5xFAD rows)",
+   "value": "B6.Cg-Tg(APPSwFlLon,PSEN1*M146L*L286V)6799Vas/Mmjax",
+   "source_ids": [
+    "paper",
+    "mmrrc"
+   ],
+   "evidence": "Methods: 'The 5xFAD transgenic mice ... were purchased from The Jackson Laboratory (stock #034848)'; MMRRC catalog record 034848 gives this strain designation. WT rows (littermates / SILAM / plaque WT) stay not available: no source names their background."
+  },
+  {
+   "location": "source name rows 1-1280",
+   "value": "FAD_{3,8,12}m_{plq,nonplq}{1,2}, WT_{8,12}m{1,2}",
+   "source_ids": [
+    "sampleinfo"
+   ],
+   "evidence": "'Sample ID' column of sheet 'Plaque proteome' (16 samples, one TMTpro-16 batch, 80 fractions)."
+  },
+  {
+   "location": "characteristics[organism part] rows 1-1280",
+   "value": "amyloid plaque (plq) / brain (nonplq, WT)",
+   "source_ids": [
+    "sampleinfo",
+    "paper",
+    "ols"
+   ],
+   "evidence": "'Region' column plaque / non-plaque / N/A (WT). Methods: X-34 stained dense-core plaques laser-capture microdissected from brain sections, non-plaque areas captured as control. BTO:0002774 'amyloid plaque' (def: plaque of amyloid in nervous tissue); UBERON:0000955 'brain'. WT rows: region not stated -> brain (whole-organ level, INFERRED)."
+  },
+  {
+   "location": "factor value[organism part] rows 1-1280",
+   "value": "amyloid plaque / brain",
+   "source_ids": [
+    "sampleinfo",
+    "suppdata"
+   ],
+   "evidence": "Supp Data 21 compares plaque vs non-plaque (Log2FC Plaque vs non-plaque)."
+  },
+  {
+   "location": "characteristics[age] rows 1-1280",
+   "value": "3M / 8M / 12M",
+   "source_ids": [
+    "sampleinfo",
+    "spec"
+   ],
+   "evidence": "Sheet 'Plaque proteome' column 'Age (mo)': FAD 3, 8, 12; WT 8, 12. Format {Number}M per SAMPLE-GUIDELINES."
+  },
+  {
+   "location": "factor value[age] rows 1-1280",
+   "value": "3M / 8M / 12M",
+   "source_ids": [
+    "sampleinfo"
+   ],
+   "evidence": "Age is a design variable of the plaque batch (FAD_3m/8m/12m); WT controls exist only at 8 and 12 months, so genotype is confounded with age at 3 months."
+  },
+  {
+   "location": "characteristics[sex] rows 1-1280",
+   "value": "not available",
+   "source_ids": [
+    "sampleinfo",
+    "suppdata"
+   ],
+   "evidence": "Plaque sheet has no sex column; Supplementary Data 2 does not list the plaque mice."
+  },
+  {
+   "location": "comment[modification parameters] rows 1-1280",
+   "value": "TMTpro K Fixed | TMTpro Any N-term Fixed | Carbamidomethyl C Fixed | Oxidation M Variable",
+   "source_ids": [
+    "pepxml_plaque",
+    "ols"
+   ],
+   "evidence": "pepXML search_summary: K +304.2071453 variable=N; n-term +304.2071453 variable=N; C +57.02146 variable=N; M +15.99492 variable=Y. No Lys+6 label (plaque runs are not SILAC). UNIMOD:2016/4/35 verified in OLS."
+  },
+  {
+   "location": "comment[reduction reagent] rows 1-1280",
+   "value": "NT=Dithiothreitol (DTT);AC=PRIDE:0000608",
+   "source_ids": [
+    "paper",
+    "pepxml_plaque",
+    "ols"
+   ],
+   "evidence": "Methods: 'DTT reduction and iodoacetamide alkylation'; the plaque search declares static Carbamidomethyl C, consistent."
+  },
+  {
+   "location": "comment[alkylation reagent] rows 1-1280",
+   "value": "NT=Iodoacetamide (IAA);AC=PRIDE:0000599",
+   "source_ids": [
+    "paper",
+    "pepxml_plaque",
+    "ols"
+   ],
+   "evidence": "As above."
+  },
+  {
+   "location": "comment[precursor mass tolerance] rows 1-1280",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper Methods 10 ppm vs PRIDE protocol 6 ppm precursor; not resolvable per sub-experiment -> not available."
+  },
+  {
+   "location": "comment[fragment mass tolerance] rows 1-1280",
+   "value": "not available",
+   "source_ids": [
+    "paper",
+    "pride"
+   ],
+   "evidence": "Paper Methods 10 ppm vs PRIDE protocol 15 ppm fragment -> not available."
+  }
+ ],
+ "limitations": [
+  "Mass tolerances conflict (paper 10 ppm vs PRIDE 6 ppm precursor / 15 ppm fragment); written as not available.",
+  "WT strain background not stated (littermates, SILAM line, plaque WT); strain or breed = not available on WT rows. 5xFAD rows use the MMRRC 034848 designation.",
+  "characteristics[age] is not listed in the contract of ms-proteomics@1.1.0 + vertebrates@1.1.0 + clinical-metadata@1.0.0 (it is a human-template column); it is added per sample from the sheet at the coordinator's request after review 1, and parse_sdrf validates it (exit 0).",
+  "Reconcile flags plaque runs as 'carotid artery' from the token 'plaque' - a keyword false positive (amyloid plaques LCM from brain, Methods).",
+  "Plaque sex not available (no sex column for plaque samples; Supp Data 2 omits them).",
+  "WT plaque-experiment samples have Region 'N/A' in the sheet; organism part = brain is inferred (all samples are brain).",
+  "Whether plq/nonplq samples with the same index come from the same mouse is not stated; biological replicate numbers are per group only.",
+  "Supp Data 21 reports only 4 plaque vs 4 non-plaque samples (8-12 mo); the deposited batch also contains 3-month and WT channels, annotated from the PRIDE sample sheet.",
+  "parse_sdrf validate-sdrf was run with --use_ols_cache_only (online ontology lookups hung on the shared host); ontology terms were verified separately live via OLS (sdrf-tools verify/ols).",
+  "parse_sdrf convert-openms fails ('Cannot read precursor mass tolerance: not available'): the JUMP pepXML records no tolerances and paper vs PRIDE disagree, so the sentinel is kept and the file is not OpenMS-convertible as is."
+ ]
+}
