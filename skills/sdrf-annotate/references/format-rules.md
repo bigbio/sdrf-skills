@@ -17,7 +17,10 @@ template union; this file is the reasoning behind them.
 - No trailing whitespace in any cell or column name
 - No empty cells in required columns
 - **Data files are vendor RAW** (`.raw`/`.d`/`.wiff`/`.wiff2`) in `comment[data file]` — never peak lists (`.mgf`/`.mzML`/`.mzXML`); a peak-list reference validates structurally but breaks reprocessing
-- **At least one `factor value[...]`** column must be present (the experimental variable)
+- **If the study has a comparison, at least one `factor value[...]`** column must be present
+  (the experimental variable). A genuinely single-condition dataset (one sample type, replicate
+  injections or fractions only) has no factor column; `sdrf_review.py` reports that as the
+  advisory `no_factor_value`, not an error. Never invent a factor to satisfy a column count.
 - **Acquisition method**: `comment[proteomics data acquisition method]` is REQUIRED for MS files and must be a descendant of `PRIDE:0000659` (DDA `PRIDE:0000627`, DIA `PRIDE:0000450`, PRM `PRIDE:0000629`, SRM `PRIDE:0000630`); never `NCIT:C161786`/`MS:1000206`, and there is no `comment[dia method]` column
 - **Carrier / reference channels** (single-cell / TMT): `comment[carrier channel]` = `PRIDE:0000901`, `comment[reference channel]` = `PRIDE:0000899` (not `PRIDE:0000941`/`0000942`); values are TMT channel labels (e.g. `TMT131C`)
 - **Never write SDRF with pandas `to_csv`** — it renames legitimately repeated headers (`comment[modification parameters].1`); write raw TSV preserving duplicated column names
@@ -128,13 +131,18 @@ The UNIMOD:1 ↔ UNIMOD:21 swap is the **#1 most common error** in SDRF files (~
 | Label Type | comment[label] value | Rows per raw file |
 |---|---|---|
 | Label-free | `label free sample` | 1 row per file |
-| TMT6plex | `TMT126`, `TMT127N`, `TMT127C`, `TMT128N`, `TMT128C`, `TMT129N` | 6 rows per file |
-| TMT10plex | TMT126 through TMT131N | 10 rows per file |
-| TMT11plex | TMT126 through TMT131C | 11 rows per file |
+| TMT6plex | `TMT126`, `TMT127`, `TMT128`, `TMT129`, `TMT130`, `TMT131` | 6 rows per file |
+| TMT10plex | `TMT126`, `TMT127N`, `TMT127C`, `TMT128N`, `TMT128C`, `TMT129N`, `TMT129C`, `TMT130N`, `TMT130C`, `TMT131` | 10 rows per file |
+| TMT11plex | the TMT10plex set with `TMT131` split into `TMT131N` and `TMT131C` | 11 rows per file |
 | TMT16plex (TMTpro) | TMT126 through TMT134N | 16 rows per file |
 | TMT18plex (TMTpro) | TMT126 through TMT135N | 18 rows per file |
 | SILAC | `SILAC light`, `SILAC medium`, `SILAC heavy` | 2-3 rows per file |
 | iTRAQ4plex | `iTRAQ114`, `iTRAQ115`, `iTRAQ116`, `iTRAQ117` | 4 rows per file |
+
+TMT6plex uses the six **nominal** channels `TMT126`…`TMT131`; the N/C-suffixed names
+(`TMT127N`, `TMT127C`, `TMT128N`, …) only exist in TMT10plex and higher. Writing a
+`TMT127N`-style label for a six-plex still passes `parse_sdrf`, so it is not caught by
+validation - check the reagent kit before copying a channel list from a higher-plex dataset.
 
 Row count formula:
 ```text

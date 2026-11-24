@@ -123,7 +123,7 @@ Alternative terms:
 - Cross-reference Cellosaurus for: species of origin, disease, tissue of origin, STR profile
 
 ### Instruments
-- Format in SDRF: `AC=MS:1001911;NT=Q Exactive HF`
+- Format in SDRF: `AC=MS:1001911;NT=Q Exactive` (`Q Exactive HF` = MS:1002523, `Q Exactive HF-X` = MS:1002877)
 - Search MS ontology for the instrument model
 - Include manufacturer in search if needed
 
