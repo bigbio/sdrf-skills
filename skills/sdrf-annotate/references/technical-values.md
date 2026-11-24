@@ -10,14 +10,19 @@ acquisition method, and raw-file verification. The values go into `technical.tsv
 ### 5.1 Instrument
 ```text
 searchClasses(query="Q Exactive", ontologyId="ms")
-Format in SDRF: AC=MS:1001911;NT=Q Exactive HF
+Format in SDRF: AC=MS:1001911;NT=Q Exactive
 ```
 
-If validation complains about an instrument term that is also documented in the
-official PSI-MS / ProteomeXchange schema, verify the accession first instead of
-rewriting the instrument blindly. Example: `LTQ Orbitrap Elite` with
-`MS:1001910` may warn in some validator/cache combinations even though the term
-is publicly documented.
+The label must be the OLS label of the accession: `Q Exactive` is MS:1001911,
+`Q Exactive Plus` MS:1002634, `Q Exactive HF` MS:1002523, `Q Exactive HF-X`
+MS:1002877. `NT=Q Exactive HF;AC=MS:1001911` is a label/accession mismatch that
+`tools check` reports and that silently misstates the model.
+
+If validation complains about an instrument term, verify the accession before
+rewriting the instrument. A warning usually means the *label* does not match the
+accession: MS:1001910's official label is `Orbitrap Elite`, so
+`NT=LTQ Orbitrap Elite;AC=MS:1001910` warns even though the accession is real.
+Write the OLS label of the accession you mean (check it in OLS, not from memory).
 
 ### 5.2 Modifications — CRITICAL
 Use EXACT UNIMOD accessions. Common setup:
@@ -148,6 +153,15 @@ Column: `comment[proteomics data acquisition method]`
 
 Do **not** write plain text, `NT=`-only, or PSI-MS accessions (e.g. `MS:1000206`) for
 this column when the PRIDE term above applies.
+
+**Exception — `dia-acquisition@1.1.0` in the shipped `parse_sdrf`.** That template
+restricts the column to the single exact value `Data-independent acquisition` and
+**rejects** `NT=Data-independent acquisition;AC=PRIDE:0000450` ("must be one of the
+allowed values", exit 1). When the file declares `dia-acquisition`, write the bare
+label and record the PRIDE accession in the report; the NT/AC form makes the file
+fail validation. Note that `sdrf-tools contract -t dia-acquisition` still prints the
+NT/AC form for this column, so the contract and the template disagree; the value
+validator is what fails, so follow it.
 
 ### 5.6 Verify technical metadata with raw file analysis (recommended)
 If the dataset has raw files available (PRIDE or local), recommend using **techsdrf**
